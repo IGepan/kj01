@@ -1,0 +1,141 @@
+<div class="c-chat-dlg" v-show="show">
+    <div class="c-chat-container" ref="container">
+        <div class="c-chat-inner">
+            <div class="c-chat-title" @mousedown="mouseDown">
+                <div class="c-chat-usertitle">
+                    <span class="c-chat-userlogo"><img :src="userHead"></span>
+                    <span class="c-chat-username" v-html="userinfo.userName"></span>
+                </div>
+                <span v-html="chat_title"></span>
+                <span class="iconfont icon-shanchuguanbicha2" @click="close"></span>
+            </div>
+            <div class="c-chat-left" style="width:35%;">
+                <div class="c-chat-searchuser">
+                    <input type="text" placeholder="搜索：用户名" v-model="userName" @keyup="searchUserByEnter"><span class="iconfont icon-sousuo6" @click="searchUser"></span>
+                </div>
+                <div class="c-chat-menu">
+                    <div class="c-chat-menu-td" :class="{active:menuActiveIndex===0}" @click="activeMenu(0)">
+                        当前消息
+                    </div>
+                    <div class="c-chat-menu-td" :class="{active:menuActiveIndex===1}" @click="activeMenu(1)">
+                        历史消息
+                    </div>
+                </div>
+                <div class="c-chat-userlist">
+                    <div v-if="userList.length > 0">
+                        <div @dblclick="popDlg(k, index)" class="c-chat-userlist-item" v-for="k,index in userList" :class="{active:userActiveIndex===index}" @click="activeUser(k,index)">
+                            <div class="c-chat-userlist-logo">
+                                <img :src="k.userLogo">
+                                <span class="c-chat-noread" :class="{readed:k._readed}"></span>
+                            </div>
+                            <div class="c-chat-userlist-txt">
+                                <div class="c-chat-userlist-title" v-html="k.userName"></div>
+                                <div class="c-chat-userlist-msg" v-html="k.message"></div>
+                            </div>
+                            <div class="c-chat-userlist-time">
+                                <span v-html="k.time"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else style="color:#000;text-align: center">
+                    </div>
+                </div>
+            </div>
+            <div class="c-chat-right">
+                <!--历史消息框-->
+                <div class="c-chat-wrapper" v-show="m_history">
+                    <div class="c-chat-block">
+                        <div class="c-chat-date">
+                            <span class="iconfont icon-rili"></span><label v-html="date"></label>
+                            <div class="c-laydate"></div>
+                        </div>
+                        <div class="c-chat-keysearch">
+                            <input v-model="m_history_keyword" type="text" placeholder="搜索关键字" @keydown="searchHistory"><span class="iconfont icon-sousuo6" @click="searchByBtn"></span>
+                        </div>
+                    </div>
+                    <div class="c-chat-record" ref="history" style="height:87%">
+                        <div v-if="recordList.length > 0">
+                            <div v-for="k in recordList">
+                                <div class="c-chat-item" v-if="k.type===1">
+                                    <div class="c-chat-item-title">
+                                        <span class="c-chat-user" v-html="k.userName"></span>
+                                        <span class="c-chat-time" v-html="k.datetime"></span>
+                                    </div>
+                                    <div class="c-chat-content">
+                                        <span v-html="gifConvert(k.message)" @dblclick="pickText"></span>
+                                    </div>
+                                </div>
+                                <div class="c-chat-item right" v-else>
+                                    <div class="c-chat-item-title">
+                                        <span class="c-chat-user" v-html="k.userName"></span>
+                                        <span class="c-chat-time" v-html="k.datetime"></span>
+                                    </div>
+                                    <div class="c-chat-content">
+                                        <span v-html="gifConvert(k.message)" @dblclick="pickText"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else style="text-align: center;color: #000">
+                            无记录
+                        </div>
+                    </div>
+                    <div>
+                        <div class="c-chat-page">
+                            <span :class="{disabled:m_prev_disable}" class="iconfont icon-xiangzuoshouqi" @click="toPage(0)"></span>
+                            <span :class="{disabled:m_prev_disable}"  class="iconfont icon-jiantou-zuo" @click="toPage(-1)"></span>
+                            <span :class="{disabled:m_next_disable}"  class="iconfont icon-jiantou-you" @click="toPage(1)"></span>
+                            <span :class="{disabled:m_next_disable}"  class="iconfont icon-xiangzuoshouqi" style="margin-top:-6px;transform: rotate(180deg)" @click="toPage(2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <!--聊天框-->
+                <div class="c-chat-wrapper" v-show="!m_history">
+                    <div class="c-chat-record" ref="record">
+                        <div ref="viewchat">
+                            <div v-for="k in list">
+                                <div class="c-chat-item"v-if="k.type===1">
+                                    <div class="c-chat-item-title">
+                                        <span class="c-chat-user" v-html="k.userName"></span>
+                                        <span class="c-chat-time" v-html="k.datetime"></span>
+                                    </div>
+                                    <div class="c-chat-content">
+                                        <span v-html="gifConvert(k.message)" @dblclick="pickText"></span>
+                                    </div>
+                                </div>
+                                <div class="c-chat-item right" v-else>
+                                    <div class="c-chat-item-title">
+                                        <span class="c-chat-user" v-html="k.userName"></span>
+                                        <span class="c-chat-time" v-html="k.datetime"></span>
+                                    </div>
+                                    <div class="c-chat-content">
+                                        <span v-html="gifConvert(k.message)" @dblclick="pickText" :class="{rot:k.anis}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <iframe name="tmp_ifr" style="display:none;"></iframe>
+                    <form method="post" ref="form" target="tmp_ifr">
+                        <input name="file" type="file" accept="*/*" ref="file" style="display: none">
+                    </form>
+                    <div class="c-chat-ops">
+                        <span class="iconfont icon-biaoqing" @click="showEmoji"></span>
+                        <span class="iconfont icon-wenjian" @click="fileSelect(0)"></span>
+                        <span class="iconfont icon-tupian" @click="fileSelect(1)"></span>
+                        <div class="c-chat-face" v-show="emoji">
+                            <span v-for="k,index in gifs" @click="selectGif(index)"><img :src="getGif(k)"></span>
+                        </div>
+                    </div>
+                    <div class="c-chat-message">
+                        <textarea @keydown="sendByEnter" v-model="m_message" ref="textarea" @click="hideGif"></textarea>
+                        <label>Ctrl + Enter</label><button @click="send">发送</button>
+                        <transition name="fade" v-on:after-enter="hideError">
+                            <div class="c-chat-error" v-show="err_msg">消息不能为空</div>
+                        </transition>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

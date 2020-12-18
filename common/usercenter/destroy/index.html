@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>帐号管理-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/common/css/forgotpwd.css">
+  <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
+  <link href="../css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="../css/form.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type='account' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <auth-left :http='http' :jquery='jquery'></auth-left>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--个人信息-->
+            <div class="info-Box">
+              <div class="box-title">账号注销</div>
+              <div class="content-Box">
+                <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false'
+                  ref='validateRef'>
+                </validate-dialog>
+                <div class="forgot-step">
+                  <div class="forgot-step-num active">
+                    <div class="forgot-tracker right"></div>
+                    <span>1</span>
+                    <div>注销须知</div>
+                  </div>
+                  <div class="forgot-step-num" :class="{active: step !== 1}">
+                    <div class="forgot-tracker left"></div>
+                    <div class="forgot-tracker right"></div>
+                    <span>2</span>
+                    <div>安全验证</div>
+                  </div>
+                  <div class="forgot-step-num" :class="{active: step === 3}">
+                    <div class="forgot-tracker left"></div>
+                    <span>3</span>
+                    <div>注销完成</div>
+                  </div>
+                </div>
+                <div class="form-box mt44" style="padding: 32px;" v-if="step === 1">
+                  <div class="form-item">
+                    <label for=""></label>
+                    <div class="form-item-content">
+                      <p><b>账号注销后：</b><br>
+                        1. 您将再也无法登录。<br>
+                        2. 您将不再享有专属的会员权益。<br>
+                        3. 您的账号信息、个人身份信息、历史交易信息将无法找回。<br>
+                        4. 账号绑定的手机号、绑定的邮箱可自动解除绑定，之后可以与<span v-text="platform"></span>其他账号进行绑定。<br></p>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for=""></label>
+                    <div class="form-item-content">
+                      <label for="protocol" style="margin-left: 180px;"><input id="protocol" type="checkbox"
+                          v-model="isProtocol">我已了解</label><span style="color:blue;"
+                        @click="handleShowProtocol($event)">《<span v-text="platform"></span>平台账号注销须知》</span>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for=""></label>
+                    <div class="form-item-content">
+                      <button class="btnbig" style="background-color: #696969;" :disabled="isNextDisabled"
+                        @click="handleNext">继续注销</button>
+                      <button class="btnbig" @click="handleCancel">暂不注销</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-box mt44" v-if="step === 2">
+                  <div class="form-item">
+                    <label for="">手机验证：</label>
+                    <div class="form-item-content">
+                      <span v-text="'请验证您已绑定的手机'+ info.sphone"></span>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for="">验证码：</label>
+                    <div class="form-item-content">
+                      <div class="input-group verification">
+                        <input type="text" class="input" maxlength="6" v-model="info.verification" placeholder="请输入验证码">
+                        <div class="input-group__append">
+                          <button class="btn-text" @click="handleSendClick" :disabled="verification.isDisabled"
+                            v-text="verification.text"></button>
+                        </div>
+                      </div>
+                      <div class="item-tips">
+                        如果原始手机已无法使用，请 <span class="orage" style="cursor: pointer;"
+                          onclick="window.open('http://www.kj01.cn/service.htm?arg=10113491&amp;style=4&amp;kflist=off&amp;kf=edwinzuo&amp;zdkf_type=1&amp;lnk_overflow=0&amp;callback_id6ds=10152438&amp;language=zh-cn&amp;charset=gbk&amp;referer={hz6d_referer}&amp;keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&amp;tfrom=1&amp;tpl=crystal_blue', '_blank', 'height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no')"><i
+                            class="iconfont icon-fuwu"></i>联系客服</span> 进行处理。
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for=""></label>
+                    <div class="form-item-content">
+                      <button class="btnbig" style="background-color: #696969;margin-left: 0;" @click="handleBindSubmit"
+                        :disabled="isNextDisabled">下一步</button>
+                      <button class="btnbig" @click="handleCancel">暂不注销</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-box mt44" v-if="step === 3">
+                  <div class="form-item">
+                    <label for=""><i class="iconfont icon-xuanzhong"
+                        style="font-size: 50px; color: #505050;"></i></label>
+                    <div class="form-item-content" style="color: #505050;vertical-align: top;padding-left: 20px;">
+                      <b style="font-size: 23px;padding: 13px 0;display: inline-block;">账号已注销</b><br>
+                      感谢您对<span v-text="platform"></span>平台的支持！<br>
+                      如果再次使用<span v-text="platform"></span>服务，请重新注册账号。<br>
+                    </div>
+                  </div>
+                  <div class=" form-item">
+                    <label for=""></label>
+                    <div class="form-item-content">
+                      <button class="btnbig" style="margin-left: 20px;" @click="handleIndex"
+                        :disabled="isNextDisabled">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/个人信息-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script src="/common/js/libs/progress.js"></script>
+  <script src="/common/js/libs/require.js"></script>
+  <script src="../js/destroy.js"></script>
+</body>
+
+</html>

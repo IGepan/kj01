@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/login.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/forgotpwd.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+</head>
+
+<body>
+  <div class="box" id="reg_box" v-cloak>
+    <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
+    </validate-dialog>
+    <div class="login_header">
+      <div class="mdiv">
+        <div class="logo"><a href="/index.html"><img src="/style/images/logos/blue.png" alt="" /></a></div>
+        <div class="l_title">密码找回</div>
+      </div>
+      <div class="clear"></div>
+      <!--<div class="tips">
+        依据《网络安全法》，为保障您相关功能的正常使用，会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！
+      </div>-->
+    </div>
+    <div class="mdiv center">
+      <div class="forgot-container">
+        <div class="forgot-step">
+          <div class="forgot-step-num" :class="{active:step>-1}">
+            <div class="forgot-tracker right" :class="{active:step>0}"></div>
+            <span>1</span>
+            <div>确认账户</div>
+          </div>
+          <div class="forgot-step-num" :class="{active:step>0}">
+            <div class="forgot-tracker left" :class="{active:step>0}"></div>
+            <div class="forgot-tracker right" :class="{active:step>1}"></div>
+            <span>2</span>
+            <div>安全验证</div>
+          </div>
+          <div class="forgot-step-num" :class="{active:step>1}">
+            <div class="forgot-tracker left" :class="{active:step>1}"></div>
+            <span>3</span>
+            <div>重置密码</div>
+          </div>
+        </div>
+        <div class="forgot-content">
+          <!--1-->
+          <div v-if="step===0" class="forgot-wrapper">
+            <div class="forgot-item">
+              <span class="forgot-item-label">用户名：</span>
+              <span class="forgot-item-content">
+                <input v-model="name" type="text" placeholder="请输入用户名" @blur="validateType('name','name',name)"
+                  @change="checkUserName">
+                <div class="error-tips" v-html="error.name"></div>
+                <div class="forgot-tips">如果您忘记用户名，请<a @click="toService">联系客服</a>进行处理。</div>
+              </span>
+            </div>
+            <div class="forgot-item-btn">
+              <button class="forgot-item-button" @click="toStep(1)" :class="{disabled:btn_disabled}">下一步</button>
+            </div>
+          </div>
+          <!--2-->
+          <div v-if="step===1" class="forgot-wrapper">
+            <div class="forgot-item">
+              <span class="forgot-item-label">手机号：</span>
+              <span class="forgot-item-content">
+                <input v-model="phone" type="text" placeholder="请输入绑定的手机号" @blur="validateType('phone','phone',phone)"
+                  @change="checkPhone">
+                <div class="error-tips" v-html="error.phone"></div>
+              </span>
+            </div>
+            <BR />
+            <div class="forgot-item">
+              <span class="forgot-item-label">验证码：</span>
+              <span class="forgot-item-content" style="font-size:0">
+                <input v-model="code" type="text" placeholder="请输入验证码" @blur="validateType('code','code',code)">
+                <span @click="sendCode" class="forgot-code" v-html="codeBtnText" :class="{disabled:btn_code_disabled}"
+                  style="font-size:16px"></span>
+                <div class="error-tips" v-html="error.code"></div>
+                <div class="forgot-tips">如果您忘记用户名，请<a @click="toService">联系客服</a>进行处理。</div>
+              </span>
+            </div>
+            <div class="forgot-item-btn">
+              <button class="forgot-item-button" @click="toStep(2)" :class="{disabled:btn_disabled}">下一步</button>
+            </div>
+          </div>
+          <!--3-->
+          <div v-if="step===2" class="forgot-wrapper">
+            <div class="forgot-item">
+              <span class="forgot-item-label">新密码：</span>
+              <span class="forgot-item-content">
+                <input v-model="pwd_1" type="password" placeholder="请输入新密码" autocomplete="off"
+                  @blur="validateType('pwd','pwd_1',pwd_1)">
+                <div class="error-tips" v-html="error.pwd_1"></div>
+              </span>
+            </div>
+            <BR />
+            <div class="forgot-item">
+              <span class="forgot-item-label">确认新密码：</span>
+              <span class="forgot-item-content">
+                <input v-model="pwd_2" type="password" placeholder="请再次输入新密码" autocomplete="off"
+                  @blur="validateType('pwd','pwd_2',pwd_2)">
+                <div class="error-tips" v-html="error.pwd_2" :class="{disabled:btn_disabled}"></div>
+              </span>
+            </div>
+            <div class="forgot-item-btn">
+              <button class="forgot-item-button" @click="resetPwd">重置密码</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script src="/common/js/forgotpwd.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+.mainContent {
+  background-color: #fff;
+  padding: 35px 70px;
+  margin: 20px auto 30px;
+}
+.pinggu {
+	font-size: 18px;
+	line-height: 32px;
+	color: #302e2e;
+	padding: 0 80px 60px;
+	margin: 0;
+}
+.h2 {
+  width: 100%;
+  font-size: 26px;
+  text-align: center;
+  color: #302e2e;
+  font-weight: 100;
+}
+
+.imgbox {
+  text-align: center;
+}
+
+.yiju {
+  background: url(/image/50.jpg) no-repeat center center;
+  background-size: 100%;
+  width: 940px;
+  height: 280px;
+  margin: 0 auto 80px;
+  padding: 30px;
+}
+.yiju li {
+  background: url(/image/dot_a.png) no-repeat center left;
+  font-size: 16px;
+  padding-left: 20px;
+  line-height: 36px;
+  color: #302e2e;
+}
+
+.haochu {
+  display: flex;
+  padding: 0 80px;
+  margin-bottom: 120px;
+}
+.haochu-item {
+  flex: 1;
+  margin-right: 105px;
+}
+.haochu-item:last-child {
+  margin-right: 0;
+}
+.haochu-item-textBox {
+  margin-top: 27px;
+  display: flex;
+}
+.haochu-item-textBox-label {
+  width: 60px;
+	font-size: 32px;
+	font-weight: bold;
+	color: #dfdfdf;
+}
+.haochu-item-textBox-content {
+  font-size: 16px;
+  padding-left: 5px;
+	line-height: 30px;
+	color: #302e2e;
+}
+
+.service {
+  display: flex;
+  padding: 22px 3px 10px 26px;
+  margin-bottom: 103px;
+}
+.service-item {
+  width: 163px;
+  margin-right: 50px;
+}
+.service-item:last-child {
+  margin-right: 0;
+}
+.service-item-title {
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: 0px;
+  margin-bottom: 10px;
+  color: #302e2e;
+  text-align: center;
+}
+.service-item-content {
+  font-size: 14px;
+  line-height: 24px;
+  color: #7d7d7d;
+}
+
+.service-item-content span {
+	color: #f79311;
+}
+.materials {
+	border: solid 1px #e5e5e5;
+	padding: 0 53px 45px 53px;
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 80px;
+}
+.materials-list {
+  flex: 1;
+  margin-left: 42px;
+}
+.materials-list li {
+	line-height: 35px;
+	font-size: 18px;
+	color: #0078d7;
+}
+.materials-list li b{
+	font-size: 24px;
+}
+.materials-list li span{
+  font-size: 16px;
+	color: #898989;
+}
+.remark {
+	font-size: 16px;
+	line-height: 35px;
+	color: #302e2e;
+}

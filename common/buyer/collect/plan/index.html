@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>用户中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box" v-cloak>
+    <ly-toper></ly-toper>
+    <header-bar type='buyer' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">
+            用户中心
+          </a>
+          <span>收藏的方案</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--待验收-->
+            <div class="userform active">
+              <div class="orderbox">
+                <h1 style="font-size: 18px;">收藏的方案</h1>
+                <div class="control bline">
+                  <label>
+                    <input type="checkbox" v-model="isOrderSelectedAll">
+                    <b></b>全选</label>
+                  <button @click="deleteBatch">删除</button>
+                </div>
+                <ul>
+                  <li class="uplan" v-for="(order, oi) in orderList">
+                    <i class="iconfont icon-remove-1-copy" @click="deleteOne(order.id, order.version)"></i>
+                    <div class="uplan-top">
+                      <span class="uplan-top_tit" v-text="order.planName"></span>
+                      <div class="updateName" v-if="order.isUpdate">
+                        <input type="text" v-model="order.newplanName">
+                        <button @click="planupdate(oi)">修改</button>
+                      </div>
+                      <i v-else class="iconfont icon-bianji" @click="order.isUpdate = true"></i>
+                      <span class="uplan-top_cost">费用合计：<font v-text="order.totalMinPrice"></font>元起</span>
+                    </div>
+                    <div class="uplan-cen" v-text="'共'+order.goodsCount+'个服务，涉及'+order.shopCount+'家服务商'"></div>
+                    <div class="uplan-btn">
+                      <ul v-viewer.static>
+                        <li class="uplan-btn_logo" v-for="(detail, i) in order.detailList" v-if="6 > i">
+                          <img :src="detail.goodsImgUrl || 'http://dummyimage.com/60x60'" alt="">
+                        </li>
+                      </ul>
+                      <a target="_blank" :href="'/common/buyer/collect/plan/detail.html?id=' + order.id"
+                        class="uplan-btn_project">查看方案</a>
+                    </div>
+                  </li>
+                </ul>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                </div>
+                <!--/分页-->
+              </div>
+            </div>
+            <!--/待验收-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/plan.js"></script>
+</body>
+
+</html>

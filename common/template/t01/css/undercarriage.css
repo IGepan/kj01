@@ -1,0 +1,192 @@
+/* CSS Document */
+[v-cloak] {
+	display: none;
+}
+.cnts {
+	width: 100%;
+}
+.mt10 {
+	margin-top: 10px;
+}
+.finishrecommends {
+	height: 40px;
+	background-color: #fff;
+/*	border: 1px solid #dcdcdc;*/
+	border-bottom: 1px solid #dcdcdc;
+}
+.ftts {
+	display: block;
+	color: #06114f;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 37px;
+	width: 122px;
+	text-align: center;
+	border-bottom: 3px solid #06114f;
+}
+.mainboxs {
+	width: 100%;
+	padding: 20px 0px 30px;
+	margin-bottom: 20px;
+/*	border: 1px solid #dcdcdc;*/
+	background-color: #fff;
+	text-align: center;
+}
+.skills {
+	width: 220px;
+	margin-left: 20px;
+	border: 1px solid #dcdcdc;
+}
+.skills:first-child {
+	margin-left: 0;
+}
+.inlines{
+	display: inline-block;
+	vertical-align: middle;
+}
+.skillbtns{
+	display: block;
+	padding: 0 10px;
+}
+.skillimgs {
+	display: block;
+	width: 100%;
+	height: 212px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+.skilltxts {
+	display: block;
+	color: #000000;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 5px;
+	text-align: left;
+}
+.skillorgs {
+	color: #ff7200;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 35px;
+}
+.focuss {
+	color: #787777;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 30px;
+	padding-left: 20px;
+	background: url(../images/star2.png) no-repeat center left 5px;
+  background-size: 16px;
+}
+.focus.seleced {
+	color: #ff7200;
+}
+.skillbtns i{
+	font-style: normal;
+}
+.content-hint{
+	display: table;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+.content-hint_left{
+	display: table-cell;
+}
+.content-hint_right{
+	display: table-cell;
+	vertical-align: middle;
+}
+.content-hint_right div{
+	color: #565656;
+	font-size: 18px;
+	line-height: 36px;
+	margin-left: 30px;
+}
+.content-hint_right .sorry{
+	color: #3f3f3f;
+	font-size: 24px;
+	line-height: 60px;
+}
+.content-hint_left div{
+	font-size: 83px;
+	color: #787777;
+}
+.division{
+	height: 38px;
+	background-color: #f7f7f7;
+}
+.content{
+	background-color: #ffffff;
+}
+.traded{
+	padding: 0 20px;
+}
+.traded a{
+	display: block;
+	padding: 20px 0;
+	border-bottom: 1px #d9d9d9 dashed;
+}
+.traded a:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+/* .traded-row{
+	display: block;
+} */
+.traded-row span{
+	display: inline-block;
+}
+.traded-row_title{
+	width: 40%;
+	color: #000000;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 21px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.traded-row_time{
+	color: #959595;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+.traded-row_name{
+	width: 40%;
+	color: #666666;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 24px;
+}
+.traded-row_price{
+	width: 20%;
+	color: #1a1a1a;
+	font-size: 14px;
+	font-weight: 400;
+}
+.traded-row_price i{
+	font-style: normal;
+	color: #ff7800;
+	font-size: 20px;
+	font-weight: 700;
+}
+.tradedlist{
+	border: 1px solid #dcdcdc;
+	background-color: #ffffff;
+}
+.traded-left{
+	width: 75%;
+}
+.traded-row:first-child{
+	margin-bottom: 20px;
+}
+.traded-right{
+	padding-top: 41px;
+}

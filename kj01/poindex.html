@@ -1,0 +1,271 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资讯</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/poindex.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯"  :nav-index="0"></sub-head>
+    <div class="mdiv boxtitle">
+      <div class="boxtitle-text">政 策 <span>速 递</span></div>
+      <div class="boxtitle-subtext">第一时间了解政策动态</div>
+      <div class="boxtitle-more">
+      </div>
+    </div>
+
+    <div class="mdiv policyBox">
+      <div class="fl policyMain">
+        <template v-if="activeHot"></template>
+        <a :href="activeHot.itemUrl" target="blank">
+          <div class="item-img activeHotImg" :style="activeHot.styles">
+            <img :src="activeHot.imgUrl" :alt="activeHot.title">
+          </div>
+          <div class="policyMain-info">
+            <div class="policyMain-row">
+              <div class="policyMain-state activity-info-state" :type="activeHot.statusCode">{{activeHot.statusDisplay}}
+              </div>
+              <div class="policyMain-title line" :title="activeHot.title">{{activeHot.title}}</div>
+            </div>
+            <div class="policyMain-row">
+              <div class="policyMain-time"><i
+                  class="iconfont icon-lishijilu"></i>{{activeHot.activeStartTimeDisplay&& activeHot.activeStartTimeDisplay[8]}}
+              </div>
+            </div>
+            <div class="policyMain-other">
+              <span v-if="activeHot.publishDepartmentDisplays"><i
+                  class="iconfont icon-neirongtuisong"></i>{{activeHot.publishDepartmentDisplays&&activeHot.publishDepartmentDisplays[0]}}</span>
+              <span v-if="activeHot.userName"><i class="iconfont icon-neirongtuisong"></i>{{activeHot.userName}}</span>
+              <span v-else></span>
+              <span>{{activeHot.joinNum}} 人参与</span>
+            </div>
+          </div>
+        </a>
+        </template>
+        <div class="hotList">
+          <template v-for="(active, ai) in activeHotList">
+            <div @click.stop="handleSetHot(ai)" class="item-img hotItemImg" :class="{active: active.selected}"
+              :style="active.styles">
+              <img :src="active.imgUrl" :alt="activeHot.title">
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="fr policyList">
+        <div class="ptabs">
+          <template v-for="(navs, index) in ptabsNavs">
+            <div :key="index" class="ptabs-head__item" @mouseover.stop="handlePTabsNav(index)"
+              :class="{active: navs.selected}"><a :href="navs.itemUrl">{{navs.display}}</a> </div>
+          </template>
+        </div>
+        <div class="ptabs-body">
+          <template v-for="(policy, pi) in policyList">
+            <a class="policyItem" :title="policy.title" :href="policy.itemUrl" :key="pi">
+              <div class="policy-title line2">
+                <span v-if="policy.dismantleFlag === '1' || policy.tearFlag === '1'" class="jiedu">解读</span>
+                <span v-if="policy.policyFileType">【{{policy.policyFileTypeDisplay}}】</span>
+                <span>{{policy.title|fomatPolicyTitle}}</span> <span v-if="policy.isNew" class="policyNew">NEW</span>
+              </div>
+              <div class="policy-other"><span class="label"><i
+                    class="iconfont icon-lishijilu"></i>{{policy.publishDateDisplay && policy.publishDateDisplay[8]}}</span><span
+                  class="label"><i class="iconfont icon-xingzhuanggongnengtubiao-"></i>{{policy.address}}</span></div>
+            </a>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdiv boxtitle explain-title">
+      <div class="boxtitle-text">项 目 <span>申 报</span></div>
+      <div class="boxtitle-subtext">专业政策分析及执行团队，为您全面解读申报条件</div>
+    </div>
+
+    <div class="mdiv helper">
+      <div class="helperUp">
+        <div class="helperUp-left">
+          <div class="helper-title">
+            <div><span class="title">申报助手</span><span class="text">解决企业申报难点</span></div>
+            <a href="/declarationHelper/list.html" class="more"><span>进入专题</span><span class="iconfont icon-gengduo"></span></a>
+          </div>
+          <div class="lists">
+            <a  v-for="item in helperList" :href="'/declarationHelper/detail.html?id='+item.id">
+              <div class="name" title="">{{item.title}}</div>
+              <div class="subname" title="" v-for="items in item.files">{{items.title}}</div>
+            </a>
+          </div>
+        </div>
+        <div class="helperUp-right">
+          <div class="helper-title">
+            <div><span class="title">政策答人</span><span class="text">政策百问百答</span></div>
+            <a href="/answer/index.html" class="more"><span>进入专题</span><span class="iconfont icon-gengduo"></span></a>
+          </div>
+          <div class="helperUp-right_lists" v-for="(item,i) in policyResList">
+            <div class="brief" :class="i===0?'violet':'blue'">
+              <div class="name">{{item.typeDisplay}}</div>
+              <div class="text" v-text="item.type==='02'?'促进企业加大研发投入，支持科技创新的税收优惠政策':'帮助企业完成高企认定，享受税收减免优惠政策'"></div>
+            </div>
+            <div class="lists">
+              <a :href="'/answer/qadetail.html?id='+items.id" title="" v-for="items in item.questiones">{{items.ask}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="helperDown">
+        <div class="helperDown-left">
+          <div class="helperDown-title">企业成长评估与政策智配<span class="helperDown-title_text">企业成长导航工具，让大数据赋能企业成长
+          </span></div>
+          <ul class="helperDown-left_lists">
+            <li>
+              <div class="name">政策智配</div>
+              <div class="text">大数据智能匹配惠企政策</div>
+              <div class="text">看看您的企业能享受哪些政策红利</div>
+            </li>
+            <li>
+              <div class="name">成长导航</div>
+              <div class="text">数据体检+综合分析</div>
+              <div class="text">为您的企业发展路径科学导航</div>
+            </li>
+            <li>
+              <div class="name">创新诊断</div>
+              <div class="text">用数据为企业画像</div>
+              <div class="text">发掘企业创新能力增长潜力</div>
+            </li>
+          </ul>
+        </div>
+        <div class="helperDown-right">
+          <div class="avater">
+            <img src="/style/images/footerCode1.png" alt="">
+          </div>
+          <div class="text">扫描二维码，进入政策惠</div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="mdiv helper">
+      <div class="helper-row">
+        <a :href="'./declarationHelper/detail.html?id=' + item.id" class="helperItem" v-for="item in helperList" :key="item.id" target="_blank">
+          <div class="helperItem-img">
+            <img :src="item.path" alt="">
+          </div>
+          <div class="helperItem-title">
+            <div v-text="item.title"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="mdiv bannerBox">
+      <div class="bannerMax">
+        <a>
+          <img src="/image/poindex/banner.png">
+        </a>
+      </div>
+      <div class="helper-bannerBlocks">
+        <div class="helper-bannerBlock_row" @click="handleAnswer">
+          <div class="helper-bannerBlock_max">
+            <div><img src="/style/images/poindex/wd.jpg" alt=""></div>
+            <div class="bannerBlock-info">
+              <div class="bannerBlock-title">百问百答</div>
+              <div class="bannerBlock-desc">读懂需求智能问答</div>
+            </div>
+          </div>
+          <div class="helper-bannerBlock_btnBox"><button typeName="ask" type="button">我要提问</button></div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="mdiv boxtitle explain-title">
+      <div class="boxtitle-text">权 威 <span>解 读</span></div>
+      <div class="boxtitle-more">
+        <a class="more" @click.stop.prevent="handleMoreNewsList">
+          更多
+          <i class="iconfont icon-gengduo"></i></a>
+      </div>
+    </div>
+
+    <div class="tabs-head">
+      <template v-for="(navs, index) in tabsNavs">
+        <div :key="index" class="tabs-head__item" @click.stop="handleTabsNav(index)" :class="{active: navs.active}">
+          <a :href="navs.url">{{navs.label}}</a> </div>
+      </template>
+    </div>
+
+    <div class="mdiv newsBox">
+      <template v-for="(snew, ni) in newsList" v-if="show === 0">
+        <a :key="ni" :href="snew.url" target="_blank" class="newItem" :title="snew.title">
+          <div>
+            <div class="newsImg" :style="{backgroundImage: 'url(' + snew.titleImg + ')'}">
+              <img :src="snew.titleImg" alt="" srcset="">
+            </div>
+          </div>
+          <div class="newsInfo">
+            <div class="newsInfo-title line2">{{snew.title}}</div>
+            <div class="newsInfo-desc line">来源：{{snew.srcName||''}}</div>
+            <div class="newsInfo-time">{{snew.publishDateDisplay[8]}}</div>
+            <div class="newsInfo-keys" v-if="snew.keyWord">
+              <template v-for="tag in snew.keyWord">
+                <span> #{{tag}}</span>
+              </template>
+            </div>
+          </div>
+        </a>
+      </template>
+      <div class="tabs-body" v-if="show === 1">
+        <template v-for="(vitem, vi) in activeList">
+          <div class="itembox" :key="vi">
+            <a :href="vitem.itemUrl" target="blank" :title="vitem.title">
+              <div v-if="vitem.imgUrl" class="item-imgbox">
+                <div class="tabitemimg" :style="{backgroundImage: 'url(' + vitem.imgUrl + ')'}">
+                  <img :src="vitem.imgUrl" alt="">
+                </div>
+              </div>
+              <div v-if="vitem.imgUrl" class="item-title line">{{vitem.title}}</div>
+              <div v-else class="item-title1 line2">{{vitem.title}}</div>
+              <div v-if="vitem.imgUrl" class="item-desc line2">{{vitem.activeAbstract}}</div>
+              <div v-else class="line2 item-desc1">{{vitem.summary}}</div>
+              <div class="item-other">
+                <div class="other-heard" v-if="vitem.imgUrl">
+                  <user-heads :heads="vitem.headers"></user-heads><span class="small"
+                    v-if="vitem.joinNum">{{vitem.joinNum}} 人参与</span>
+                </div>
+                <span class="blueText" v-else>{{vitem.publishDateDisplay && vitem.publishDateDisplay[8]}}</span><span
+                  class="detail">查看 <i class="iconfont icon-gengduo"></i></span>
+              </div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div class="bgw">
+      <div class="mdiv topNumber">
+        <template v-for="(numberCount, ni) in numberCounts">
+          <div class="countBox" :key="ni">
+            <div class="countBox_icon">
+              <i class="iconfont" :class="numberCount.icon"></i>
+            </div>
+            <div class="countBox_text">
+              <div class="countBox__number">
+                <number-grow :value="numberCount.count" color="#343334" :time="1"></number-grow>
+                <span>{{numberCount.unit}}</span>
+              </div>
+              <div class="countBox__label">{{numberCount.label}}</div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="./style/js/poindex.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>我的订单-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type='buyer' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a>
+          <span>我的订单</span>
+        </div>
+        <div class="centerbox">
+          <ul class="usertabs">
+            <li v-for="tab in orderTabs" :class="{active: tab.selected}"> <a :href="!tab.selected && tab.url"
+                v-text="tab.label"></a></li>
+          </ul>
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="active">
+              <!--搜索框-->
+              <div class="searchform" v-if="orderTabs['01'].selected">
+                <div class="searchrow normal">
+                  <label><span>订单搜索</span>
+                    <div class="ipt"><input type="search" v-model="queryForm.id" placeholder="请输入订单号"></div>
+                  </label>
+                  <button type="button" @click="getOrderList">搜索</button>
+                  <div class="more" @click="showSearchrow" :class="{show: showFull}">更多查询条件</div>
+                </div>
+                <div class="searchrow senior" :class="{show: showFull}">
+                  <label>
+                    <span>订单类型</span>
+                    <div class="select">
+                      <select v-model="queryForm.orderType">
+                        <option value="">请选择</option>
+                        <option :value="opt.value" v-for="opt in options.order_type" :key="opt.id">{{opt.display}}
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <label>
+                    <span>下单时间</span>
+                    <div class="ipt">
+                      <input type="text" id="timeStart" readonly v-model="queryForm.orderCreateTimeStart">
+                    </div>
+                    <em>至</em>
+                    <div class="ipt">
+                      <input type="text" id="timeEnd" readonly v-model="queryForm.orderCreateTimeEnd">
+                    </div>
+                  </label>
+                  <label>
+                    <span>评价状态</span>
+                    <div class="select">
+                      <select v-model="queryForm.evaluateFlag">
+                        <option value="">请选择</option>
+                        <option :value="opt.value" v-for="opt in options.yes_no" :key="opt.id">{{opt.display}}
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <label>
+                    <span>交易状态</span>
+                    <div class="select">
+                      <select v-model="queryForm.orderStatus">
+                        <option value="">请选择</option>
+                        <option :value="opt.value" v-for="opt in options.order_status" :key="opt.id">{{opt.display}}
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <button class="fr" type="button" @click="getOrderList">搜索</button>
+                </div>
+              </div>
+              <!--/搜索框-->
+              <!--订单列表-->
+              <div class="orderbox">
+                <div class="control">
+                  <!-- <label><input type="checkbox" v-model="isOrderSelectedAll"><b></b>全选</label><button type="button"
+                    @click="deleteBatch">删除</button> -->
+                </div>
+                <div class="orderheader">
+                  <div class="goods">商品详情</div>
+                  <div class="price">单价</div>
+                  <div class="number">数量</div>
+                  <div class="total">金额</div>
+                  <div class="state">交易状态</div>
+                  <div class="operation">操作</div>
+                </div>
+                <div class="orderlist">
+                  <!--订单列表-->
+                  <div class="orderitem" v-for="order in orderList">
+                    <!--订单项-->
+                    <div class="itemhead">
+                      <!--订单信息-->
+                      <!-- <label><input type="checkbox" v-model="order.selected" @change="changeSelected"><b></b></label> -->
+                      <strong v-text="order.orderCreateTime"></strong>
+                      <span v-text="'订单编号：' + order.id"></span>
+                      <span v-text="'店铺名称：' + order.shopName"></span>
+                      <i v-if="order.orderStatus === '008' || order.orderStatus === '007'"
+                        class="iconfont icon-remove-1-copy" @click="deleteOne(order.id, order.version)"></i>
+                    </div>
+                    <div class="itembody">
+                      <div class="goodslist">
+                        <!--商品列表-->
+                        <div class="goodsitem" v-for="sku in order.details">
+                          <!--商品项-->
+                          <a>
+                            <span class="img"
+                              :style="'background-image: url(' + ((sku.goodsImg && sku.goodsImg.url) || 'http://dummyimage.com/62x62') + ')'"></span>
+                            <span class="title" v-text="sku.goodsName"></span>
+                            <span class="message" v-text="'服务需求描述：' + sku.requirement"></span>
+                          </a>
+                          <div class="price" v-text="'￥' + sku.protocolPrice"></div>
+                          <div class="number" v-text="sku.number"></div>
+                        </div>
+                      </div>
+                      <div class="total" v-text="'￥' + order.goodsPrices"></div>
+                      <div class="state" v-text="order.orderStatusDisplay"></div>
+                      <div class="operation">
+                        <a target="_blank" :href="'/common/buyer/order/detail.html?id=' + order.id">订单详情</a>
+                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"
+                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>
+                        <button v-if="order.orderStatus === '001'" class="acceptance"
+                          @click="setCancelInfo(order.id, order.version)">取消订单</button>
+                        <template v-if="order.orderType === '001' || order.orderType === '002'">
+                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="acceptance"
+                            @click="setAcceptOrderInfo(order)">验收确认</button>
+                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="acceptance"
+                            @click="notFun">签订合同</button>
+                        </template>
+                        <template v-if="order.orderType === '003'">
+                          <button v-if="order.orderStatus === '003'" @click="notFun" class="acceptance">申请退款</button>
+                          <button
+                            v-if="order.orderStatus === '005' || order.orderStatus === '002' || order.orderStatus === '004'"
+                            class="acceptance" @click="payment(order.id)">支付</button>
+                          <button v-if="order.orderStatus === '006'" @click="receipt(order.id, order.version)" class="
+                          acceptance">确认收货</button>
+                        </template>
+                        <button v-if="order.orderStatus === '007' && !order.evaluated" class="evaluate"
+                          @click="evaluate(order.id)">评价</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                </div>
+                <!--/分页-->
+              </div>
+              <!--/订单列表-->
+            </div>
+            <!--/所有订单-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+    <div class="cover close" :class="{open:isOpenCancel}">
+      <div class="ctr">
+        <div class="editalert" style="width: 630px">
+          <div class="tit2">
+            <strong>取消订单</strong>
+          </div>
+          <div class="listbox cancelOrderForm">
+            <div class="mb20 clear">
+              <div class="iptline fl">
+                <span class="fl mt5">订单编号：</span>
+                <div class="inputContent mt5" v-text="cancelOrderForm.id"></div>
+              </div>
+            </div>
+            <div class="mt20 clear">
+              <div class="iptline">
+                <span class="fl mt5"><i>*</i>取消原因：</span>
+                <div class="ovflh">
+                  <label class="labelbox w130">
+                    <div class="inputContent"><select class="storeipt w130 required"
+                        v-model="cancelOrderForm.cancelReason" data-valid="isNonEmpty" data-error='请选择取消原因'>
+                        <option value="">请选择</option>
+                        <option :value="opt.value" v-for="opt in options.cancel_reason" :key="opt.id">{{opt.display}}
+                        </option>
+                        <div class="down iconfont icon-xiala"></div>
+                      </select>
+                      <span class="vlt form_msg"></span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="mt20 clear">
+              <div class="iptline fl">
+                <span class="fl mt5"><i>*</i>备注：</span>
+                <div class="inputContent">
+                  <textarea data-valid="isNonEmpty||maxLength:500" data-error='备注不能为空||最大长度为500个字符'
+                    v-model="cancelOrderForm.cancelComment" class="required" cols="50" rows="10"></textarea><span
+                    class="vlt form_msg"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mt40 textcenter">
+              <button class="alertbtn" type="button" :disabled="isSubmitDisabled" @click="saveCancelInfo">提交</button>
+              <button class="alertbtn" type="button" @click="cancelDialog('isOpenCancel')">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cover close" :class="{open:isOpenAccept}">
+      <div class="ctr">
+        <div class="editalert" style="width: 430px">
+          <div class="tit2">
+            <strong>验收确认</strong>
+          </div>
+          <div class="listbox">
+            <div class="content textcenter">
+              <p>是否确认服务完成？</p>
+              <p>已完成服务费用结算，完成线下服务。</p>
+            </div>
+            <div class="mt40 textcenter">
+              <button class="alertbtn" type="button" :disabled="isSubmitDisabled" @click="saveAcceptInfo">确认</button>
+              <button class="alertbtn" type="button" @click="cancelDialog('isOpenAccept')">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/userorderlist.js"></script>
+</body>
+
+</html>

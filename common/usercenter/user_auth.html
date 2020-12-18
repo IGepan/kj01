@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>帐号管理-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="css/form.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type='account' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <auth-left :http='http' :jquery='jquery'></auth-left>
+        </div>
+        <div class="centerbox">
+          <ul class="usertabs">
+            <li class="active">身份认证</li>
+          </ul>
+          <div class="tabbox">
+            <!--个人信息-->
+            <div class="userform active valiform">
+              <auth-personal v-if="activeTabsIndex == '0'" ref='auth'></auth-personal>
+              <auth-company v-if="activeTabsIndex == '1'" ref='auth'></auth-company>
+            </div>
+            <!--/个人信息-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/userAuth.js"></script>
+</body>
+
+</html>

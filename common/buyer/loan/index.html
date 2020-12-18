@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>我的贷款-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a>
+          <span>我的贷款</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="active">
+              <!--搜索框-->
+              <div class="searchform">
+                <div class="searchrow normal">
+                  <label><span>关键字：</span>
+                    <div class="ipt"><input type="search" v-model="queryForm.keyWord" placeholder="订单编号/银行"></div>
+                  </label>
+                  <label style="margin-left: 20px;">
+                    <span>申请时间：</span>
+                    <div class="ipt" style="width: 165px;">
+                      <input type="text" id="startDate" readonly>
+                    </div>
+                    <em>至</em>
+                    <div class="ipt" style="width: 165px;">
+                      <input type="text" id="endDate" readonly>
+                    </div>
+                  </label>
+                  <label>
+                    <span>状态：</span>
+                    <div class="select" style="width: 120px;">
+                      <select v-model="queryForm.status">
+                        <option :value="opt.value" v-for="opt in options.loan_status" :key="opt.id"
+                          v-text="opt.display">
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <button style="margin-left: 20px;" type="button" @click="getloanselectByPage()">搜索</button>
+                </div>
+              </div>
+              <!--/搜索框-->
+              <!--订单列表-->
+              <div class="orderbox">
+                <div class="csearchform-table">
+                  <table cellspacing="1" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>订单编号</td>
+                        <td>银行</td>
+                        <td>产品名称</td>
+                        <td>申请日期</td>
+                        <td>申请人</td>
+                        <td>状态</td>
+                      </tr>
+                    </thead>
+                    <tbody v-cloak>
+                      <tr v-if="loanList.length < 1">
+                        <td colspan="6">无记录</td>
+                      </tr>
+                      <tr v-else v-for="k,index in loanList">
+                        <td v-html="k.id"></td>
+                        <td v-html="k.bankName"></td>
+                        <td v-html="k.name"></td>
+                        <td v-html="k.applyDate"></td>
+                        <td v-html="k.applyUser"></td>
+                        <td v-html="k.statusDisplay"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                  <span>[共<span v-text='queryForm.total'></span>条]</span>
+                </div>
+                <!--/分页-->
+              </div>
+              <!--/订单列表-->
+            </div>
+            <!--/所有订单-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/loan/index.js"></script>
+</body>
+
+</html>

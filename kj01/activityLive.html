@@ -1,0 +1,57 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动直播</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/activityLive.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
+    <sub-head name="活动中心" :bottom-border="true" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
+
+    <template>
+        <div class="mdiv activity-live">
+            <div class="detail-base">
+                <div class="detail-base-info">
+                    <div class="title-box">
+                        <h1 class="line title" :title="detail.title">{{detail.title}}</h1>
+                        <div class="title-tips">直播</div>
+                    </div>
+                    <div class="time"><i class="iconfont icon-lishijilu"></i>{{detail.liveStartTimeDisplay}}
+                    </div>
+                    <div class="sponsor"><i class="iconfont icon-neirongtuisong"></i>主办方：{{detail.sponsor}}</div>
+                </div>
+                <div class="detail-base-info">
+                    <div class="time"><i class="iconfont icon-liulanliang"></i>{{detail.visitNum}}
+                    </div>
+                </div>
+            </div>
+            <div class="detail-content">
+               <iframe name="liveFrame" allowfullscreen="true"  :src="detail.pullStreamUrl" frameborder="0" style="width: 100%; height: 600px" scrolling="yes"></iframe>
+            </div>
+            <div class="detail-desc">
+              <div class="title">活动介绍</div>
+              <div class="desc-box" v-html="detail.activeAbstract"></div>
+            </div>
+        </div>
+    </template>
+
+    <web-footer></web-footer>
+</div>
+<script src="/style/css/icon/iconfont.js"></script>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/activityLive.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/seller.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="store_box">
+    <div class="header">
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+      </div>
+      <div class="mdiv mt20">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="rightmainbox">
+          <div class="routenav">
+            <a href="/common/seller/index.html">卖家中心&nbsp;&nbsp;&gt;</a>
+            <span>店铺激活</span>
+          </div>
+          <div class="activestore">
+            <div class="storetit">
+              店铺激活
+            </div>
+            <div class="auditstatus">
+              <span>审核状态：</span>
+              <span class="fr" v-if="activateinfo.activeFlag !== '0'"><a style="color:#000" @click="fileSaveAs" :href="httpUrl.baseUrl + '/shop/downloadFiling'
+">下载备案信息表</a></span>
+              <span class="red" v-text="activateinfo.activeFlag === '0'?'未激活，请尽快完成店铺激活':'店铺已激活'"></span>
+            </div>
+            <div class="storestep">
+              <div class="step" :class="{active: activateinfo.shopCompleteFlag == '1'}" @click='goShopInfoClick'>
+                <span class="iconfont icon-maijia2"></span>
+                <span class="steptxt">店铺资料完善</span>
+                <button class="finish" v-text="activateinfo.shopCompleteFlag == '1'?'已完成':'去完成'"></button>
+              </div>
+
+              <div class="step" :class="{active: activateinfo.userCompleteFlag == '1'}" @click="goUserInfoClick">
+                <span class="iconfont icon-wanshanxinxi-"></span>
+                <span class="steptxt">用户资料完善</span>
+                <button class="finish" v-text="activateinfo.userCompleteFlag == '1'?'已完成':'去完成'"></button>
+              </div>
+
+              <div class="step" :class="{active: activateinfo.certificationFlag == '04'}" @click="goUserAuthClick">
+                <span class="iconfont icon-shenfen"></span>
+                <span class="steptxt">身份认证</span>
+                <button class="finish" v-text="activateinfo.certificationFlagDisplay"></button>
+              </div>
+
+              <button class="nowactivate" :class="{active: isActive}" :disabled="!isDisabled" @click='activeClick'
+                v-text='isActive?"已激活":"立即激活"'></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/activate.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/seller.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="store_box">
+    <div class="header">
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+      </div>
+      <div class="mdiv mt20">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="rightmainbox">
+          <div class="routenav">
+            <a href="/common/seller/index.html">卖家中心&nbsp;&nbsp;&gt;</a>
+            <span>店铺解冻</span>
+          </div>
+          <div class="activestore">
+            <div class="storetit">
+              申请解冻
+            </div>
+            <div class="auditstatus">
+              <span>冻结原因：</span>
+              <p style="margin: 0;padding: 20px;font-size: 14px;color: red;" v-text="activateinfo.frozenReason"></p>
+              <span
+                v-if="activateinfo.certificationFlag === '02' || activateinfo.certificationFlag === '04'">申请解冻状态：</span>
+              <p v-if="activateinfo.certificationFlag === '02' || activateinfo.certificationFlag === '04'"
+                style="margin: 0;padding: 20px;font-size: 14px;color: red;"
+                v-text="activateinfo.certificationFlagDisplay"></p>
+              <span v-if="activateinfo.certificationFlag === '04'">申请解冻未通过原因：</span>
+              <p v-if="activateinfo.certificationFlag === '04'"
+                style="margin: 0;padding: 20px;font-size: 14px;color: red;" v-text="activateinfo.noPassReason"></p>
+            </div>
+            <div class="storestep"><button class="nowactivate" :class="{active: isDisabled}"
+                :disabled="isDisabled || activateinfo.certificationFlag === '02'" @click='activeClick'>申请解冻</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/frozen.js"></script>
+</body>
+
+</html>

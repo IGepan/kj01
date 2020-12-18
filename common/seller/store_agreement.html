@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/open.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="store_box">
+    <div class="header">
+      <div class="userbanner">
+        <div class="mdiv">
+          <a href="/" class="logo">
+            <img src="/style/images/logos/center.png" alt="" />
+          </a>
+          <div class="openstore">
+            店铺协议
+          </div>
+        </div>
+      </div>
+      <div class="notice">
+        依据《网络安全法》，为保障您相关功能的正常使用，会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！
+      </div>
+    </div>
+    <div class="mdiv cnt2">
+      <div class="cnt_box">
+        <span class="xytit">入驻开店协议</span>
+        <p class="xycont" v-html="protocol"></p>
+      </div>
+      <a @click="agreementClick" class="xybtn" :style="{backgroundColor: disabled?'#999999':'#1154b0'}">我已阅读并同意协议</a>
+    </div>
+
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/storeAgreement.js"></script>
+</body>
+
+</html>

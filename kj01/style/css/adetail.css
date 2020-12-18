@@ -1,0 +1,491 @@
+.activity-base {
+  margin-bottom: 30px;
+  position: relative;
+}
+.activity-base-img {
+  width: 540px;
+	height: 360px;
+	background-color: #4295fa;
+}
+
+.activity-base-info {
+  background-color: #fff;
+  width: 640px;
+  height: 360px;
+  padding: 30px;
+  position: relative;
+}
+
+.activity-base-info-topic {
+  margin-top: 21px;
+  position: relative;
+}
+.activity-base-info-topic .topic1 {
+	height: 24px;
+	border: solid 1px #ed5b5c;
+	font-size: 16px;
+	line-height: 24px;
+	padding: 0 15px;
+	color: #ed5b5c;
+	display: inline-block;
+}
+.activity-base-info-topic .topicUrl {
+  width: 480px;
+  font-size: 16px;
+  padding: 0 10px;
+  line-height: 24px;
+  color: #343334;
+}
+.activity-base-info-topic .icon-gengduokuozhe {
+  color: #9496a5;
+}
+.activity-base-info-title {
+	font-size: 28px;
+	line-height: 28px;
+	color: #343334;
+	margin: 0;
+}
+.activity-base-info .time, .activity-base-info .address,.activity-base-info .onLine,.activity-base-info .sponsor {
+  font-size: 14px;
+	line-height: 24px;
+	color: #9496a5;
+}
+.activity-base-info .time {
+  margin-top: 33px;
+}
+.activity-base-info .iconfont {
+  margin-right: 5px;
+}
+.activity-base-info .other {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: absolute;
+  width: 100%;
+  padding: 0 30px;
+  left: 0;
+  bottom: 30px;
+}
+
+.activity-base-info .other-info {
+	font-size: 14px;
+	line-height: 24px;
+	color: #9496a5;
+}
+.activity-base-info .other-info .label {
+  margin-right: 44px;
+}
+.activity-base-info .other-info .label.select {
+  cursor: pointer;
+}
+.activity-base-info .other-info .label.colSelected {
+  color: #ff8a00;
+}
+.activity-base-info .other-btns {
+  display: flex;
+}
+.activity-base-info .tags {
+  margin-top: 32px;
+	font-size: 14px;
+	line-height: 24px;
+	color: #0096ff;
+}
+.activity-base-info .tags .tag {
+  margin-right: 10px;
+}
+button[typeName~="articleBtn"].shareBtn {
+  width: 80px;
+  height: 40px;
+  background-color: rgba(237, 91, 92, .1);
+  color: #ed5b5c;
+  padding: 0;
+}
+button[typeName~="activity-state"] {
+  margin-left: 10px;
+}
+
+.activity-box {
+  width: 100%;
+  background-color: #fff;
+}
+
+.activity-box-title {
+  padding: 15px 20px;
+  height: 60px;
+  position: relative;
+}
+
+.activity-box-title-text {
+  position: relative;
+  font-size: 18px;
+  line-height: 30px;
+  color: #343334;
+  margin-left: -20px;
+  text-indent: 14px;
+}
+.activity-box-title-text::before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 6px;
+  height: 30px;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #018fff;
+  border-radius: 3px;
+}
+
+.activity-box-title-more {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.more {
+  font-size: 14px;
+  line-height: 36px;
+  color: #018fff;
+}
+
+.activity {
+  width: 770px;
+}
+
+
+
+.activity-activeText {
+  padding: 10px 40px 30px;
+}
+
+
+.activity-aside {
+  width: 370px;
+}
+
+.activity > .activity-box, .activity-aside > .activity-box, .activity-aside > .qrcodebox {
+  margin-bottom: 20px;
+}
+
+
+.activity > .activity-box.activity-box-files {
+  position: relative;
+  margin-top: -20px;
+  background-color: #eeeff6;
+}
+
+.activityMap {
+  width: 368px;
+  height: 270px;
+  margin: 1px;
+}
+/* 评价 */
+.activity-evaluate {
+  padding: 10px 20px 10px;
+}
+.activity-evaluate-top {
+  font-size: 0;
+  position: relative;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid #f5f8fb;
+  margin: 0 -20px;
+}
+.activity-evaluate-top-left {
+  width: 630px;
+}
+.activity-evaluate-main {
+  font-size: 0;
+  line-height: 30px;
+  font-weight: bold;
+	color: #ff8a00;
+}
+.activity-evaluate-main-label {
+  font-size: 18px;
+  margin-right: 8px;
+}
+.activity-evaluate-main .svg-icon {
+  font-size: 17px;
+  margin-right: 3px;
+}
+.activity-evaluate-main .mainNumber {
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+.activity-evaluate-tips {
+  font-size: 14px;
+	line-height: 30px;
+	color: #9496a5;
+}
+.activity-evaluate-top-right {}
+.activity-evaluate-body {}
+.evaluate-item {
+  font-size: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #f5f8fb;
+}
+.evaluate-item:last-child {
+  border-bottom: 0;
+}
+.evaluate-item-head {
+  width: 40px;
+	height: 40px;
+  background-color: #e0dede;
+  border-radius: 50%;
+}
+.evaluate-item-body {
+  width: 515px;
+  padding: 0 10px;
+}
+.evaluate-item-name {
+	font-size: 16px;
+	line-height: 24px;
+	color: #343334;
+}
+.evaluate-item-time {
+	font-size: 12px;
+	line-height: 24px;
+	color: #9496a5;
+
+}
+.evaluate-item-options {
+  font-size: 14px;
+	line-height: 24px;
+	color: #343334;
+}
+.evaluate-item-option {
+    margin-right: 20px;
+}
+.evaluate-item-mark {
+  width: 175px;
+  color: #ff8a00;
+  font-size: 0;
+  text-align: right;
+}
+.evaluate-item-mark .svg-icon {
+  font-size: 17px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+.evaluate-item-mark-score {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.evaluate-item-mark-unit {
+	font-size: 14px;
+}
+.activity-evaluate-footer {
+  border-top: 1px solid #f5f8fb;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #9496a5;
+  cursor: pointer;
+}
+.activity-evaluate-footer:hover {
+  color: #ff8a00;
+}
+.activity-evaluate-footer .iconfont {
+	margin-right: 5px;
+}
+/* 文件 */
+.filesbox {
+  padding: 10px 40px 30px;
+}
+.activity-file {
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+.activity-file .line {
+  
+max-width: 650px;
+}
+/* 用户头像 */
+.userList {
+  padding: 10px 40px 30px;
+}
+.user-item {
+  width: 70px;
+  margin-right: 54px;
+}
+.user-item:last-child{
+  margin-right: 0;
+}
+.user-img {
+  width: 70px;
+	height: 70px;
+  background-color: #e0dede;
+  border-radius: 50%;
+}
+.user-item-info {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.user-item-info_name{
+	font-size: 16px;
+	line-height: 16px;
+	color: #343334;
+}
+
+.user-item-info_type .typeFlag {
+  width: 44px;
+  height: 18px;
+  background-color: #018fff;
+  border-radius: 9px;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.user-item-info_type .typeFlag.attention {
+  background-color: #ff8a00;
+}
+
+.user-item-info_time{
+	font-size: 12px;
+	line-height: 15px;
+	color: #9496a5;
+}
+
+/* 列表 */
+.list {
+  font-size: 0;
+}
+.listBox {
+  font-size: 0;
+  width: 100%;
+  padding: 10px 40px 37px 37px;
+}
+.topic-item {
+  width: 195px;
+  margin-right: 54px;
+  font-size: 14px;
+  background-color: #fff;
+  position: relative;
+}
+.topic-item:nth-child(3n+0) {
+  margin-right: 0;
+}
+.topic-item:nth-child(n+4) {
+  margin-top: 30px;
+}
+
+.specialTopic-img {
+  width: 195px;
+  height: 130px;
+  background-color: #52bcb6;
+}
+
+.topic-item-info {
+  padding: 10px 0px 0px;
+  width: 100%;
+}
+.topic-item-info-title {
+	font-size: 16px;
+	line-height: 16px;
+	margin: 0;
+	padding: 0;
+	color: #343334;
+	font-weight: normal;
+}
+.topic-item-info-line {
+	font-size: 12px;
+	line-height: 12px;
+	color: #9496a5;
+}
+.topic-item-info-line.mt {
+  margin-top: 10px;
+}
+.topic-item-info-line.state {
+  display: flex;
+  justify-content: space-between;
+}
+.topic-item .iconfont {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.topic-item:hover {
+  position: relative;
+  /* margin-top: -10px;
+  border: solid 1px #ff8a00;
+  box-shadow: 0px 0px 24px 0px rgba(22, 37, 87, 0.3); */
+}
+
+.topic-item:hover .specialTopic-img{
+  /* width: 193px; */
+}
+
+/* 单位 */
+.unit-box {
+  padding: 10px 10px 30px;
+}
+.unit-row {
+  margin-bottom: 20px;
+}
+.unit-row:last-child {
+  margin-bottom: 0;
+}
+
+.unit-label {
+  width: 72px;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #9496a5;
+}
+
+.unit-units {
+  width: 239px;
+  font-size: 14px;
+  line-height: 24px;
+  color: #343334;
+}
+
+.unit-units .unit {
+  width: 100%;
+}
+
+/* 二维码 */
+.qrcodebox {
+  padding: 9px 20px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.qrcodebox-info {
+  margin-left: 27px;
+}
+.qrcodebox-title {
+	font-size: 24px;
+	line-height: 36px;
+	color: #343334;
+}
+.qrcodebox-tips {
+	font-size: 16px;
+	line-height: 36px;
+	color: #9496a5;
+}
+
+.activityBox {
+  margin-bottom: 36px;
+}
+
+.nullList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+.nullList .text {
+  font-size: 16px;
+  line-height: 36px;
+  color: #9496a5;
+  margin-top: 30;
+}

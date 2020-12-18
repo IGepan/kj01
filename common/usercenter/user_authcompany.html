@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>帐号管理-成渝城市群综合科技服务平台</title>
+	<link href="/common/css/main.css" rel="stylesheet" type="text/css">
+	<link href="css/usercenter.css" rel="stylesheet" type="text/css">
+	<link href="css/form.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="box" id='index_box'>
+		<header-bar type='account' :http="httpCom"></header-bar>
+		<div class="contant">
+			<div class="mdiv">
+				<div class="leftbox">
+					<div class="leftbar">
+						<div class="user_info">
+							<div class="head" style="background-image:url(/common/images/defaultImg/default.gif)"> </div>
+						</div>
+						<div class="group">
+							<div class="name">会员资料</div>
+							<a href="user_information.html?code=001.003.001.001">基本信息</a>
+							<a href="#">偏好设置</a>
+						</div>
+						<div class="group">
+							<div class="name">账号安全</div>
+							<a href="#">登录账号设置</a>
+							<a href="#">当前安全级别</a>
+							<a href="#">修改登录密码</a>
+							<a href="#">手机绑定</a>
+							<a href="#">邮箱绑定</a>
+							<a href="#">第三方账号绑定</a>
+						</div>
+						<div class="group">
+							<div class="name">身份认证</div>
+							<a href="user_authpersonal.html">个人身份认证</a>
+							<a href="user_authcompany.html" class="active">单位身份认证</a>
+						</div>
+					</div>
+				</div>
+				<div class="centerbox">
+					<ul class="usertabs">
+						<li class="active">
+							机构实名认证
+						</li>
+					</ul>
+					<div class="tabbox">
+						<!--单位信息-->
+						<div class="userform active">
+							<div class="form_title"> 认证信息 </div>
+							<div style="margin-top: 20px;">
+								<div class="form_item_title" style="width: 130px;">身份类型：</div>
+								<div class="form_item_content">
+									<ly-radio @change='radioChange' class="radio" group='2' code='identity_type' :http='httpUser'
+										v-model='formData.identityType'></ly-radio>
+								</div>
+							</div>
+							<!--企业 start-->
+							<table v-if="formData.identityType=='02'" border="0" cellpadding="5" cellspacing="5"
+								class="form_table valiform" style="margin-top: 0px;">
+
+								<tr class="validate form_item">
+									<th>企业名称</th>
+									<td>
+										<div class="ipt">
+											<input placeholder="请填写与组织机构代码证上一致的名称" v-model="formData.organizationName" type="text"
+												class="required" data-valid="isNonEmpty||maxLength:50" data-error='请输入企业名称||内容过长'>
+										</div>
+									</td>
+									<td class="form_msg" v-if="formData.identityType=='02'"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>营业执照注册号</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.unifiedCode" type="text" class="required"
+												data-valid="isNonEmpty||maxLength:30" data-error='请输入营业执照注册号||内容过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>营业年限</th>
+									<td>
+										<div class="ipt date">
+											<input v-model="formData.businessDuration" type="text" id="business" class="required"
+												data-valid="custom:businessValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th style="width: 130px;">营业执照所在地</th>
+									<td>
+										<ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+											:http='httpUser'></ly-address-select>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>常用地址</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.commonLocation" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入常用地址'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>联系人</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contacts" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入联系人'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>联系电话</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contactsPhone" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入联系电话'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>组织机构代码证</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.organizationCode" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入组织机构代码证'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>证件扫描件</th>
+									<td>
+										<div class="head required" data-valid="custom:certificatImgsValid"
+											:style="{backgroundImage: formData.attachmentIdUrl?'url('+formData.attachmentIdUrl+')':'url(http://dummyimage.com/110x110)'}">
+										</div>
+										<button class="edithead">点击上传</button>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+
+							</table>
+							<div class="form_title" v-if="formData.identityType=='02'">
+								法人信息
+							</div>
+							<table v-if="formData.identityType=='02'" border="0" cellpadding="5" cellspacing="5"
+								class="form_table valiform" style="margin-top: 0px;">
+								<tr class="validate form_item">
+									<th style="width: 130px;">法定代表人</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.legalPersonName" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入法定代表人'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate">
+									<th>证件类型</th>
+									<td>
+										<ly-select v-model='formData.legalPersonCertificatType' class='select name' code='certificate_type'
+											:http='httpUser'></ly-select>
+									</td>
+								</tr>
+								<tr class="validate form_item">
+									<th>证件号码</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.legalPersonCertificatCode" type="text" class="required"
+												data-valid="isNonEmpty" data-error='请输入证件号码'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>证件到期时间</th>
+									<td>
+										<div class="radio">
+											<label>
+												<input type="radio" name="'radio_time" value="0" checked v-model="formData.alwaysValidFlag" />
+												<b></b>
+											</label>
+										</div>
+										<div class="radio_date date">
+											<input class="required" v-model="formData.expireDate" type="text" id="expireDate"
+												data-valid="custom:expireDateValid" />
+										</div>
+										<div class="radio" style="margin-left: 40px;">
+											<label>
+												<input type="radio" name="'radio_time" value="1" v-model="formData.alwaysValidFlag" />
+												<b></b>长期有效
+											</label>
+										</div>
+
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="btns">
+									<td></td>
+									<td><button class="btn primary" @click="submitClick">提交审核</button>
+										<button class="btn">取消</button></td>
+								</tr>
+							</table>
+							<!--/企业-->
+							<!--高校-->
+							<table v-if="formData.identityType=='03'" border="0" cellpadding="5" cellspacing="5"
+								class="form_table valiform" style="margin-top: 0px;">
+
+								<tr class="validate form_item">
+									<th>机构名称</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.organizatioName" type="text" class="required" data-tip=""
+												data-valid="isNonEmpty||maxLength:20" data-error='请输入用户名||用户名过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th style="width: 125px;">组织机构代码证</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.organizationCode" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入组织机构代码证'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>证件所在地</th>
+									<td>
+										<ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+											:http='httpUser'></ly-address-select>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>常用地址</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.commonLocation" type="text" class="required" data-valid="isNonEmpty"
+												data-error='请输入常用地址'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>证件扫描件</th>
+									<td>
+										<div class="head required" data-valid="custom:certificatImgsValid"
+											:style="{backgroundImage: formData.attachmentIdUrl?'url('+formData.attachmentIdUrl+')':'url(http://dummyimage.com/110x110)'}">
+										</div>
+										<button class="edithead">点击上传</button>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="btns">
+									<td></td>
+									<td><button class="btn primary" @click="submitClick">提交审核</button>
+										<button class="btn">取消</button></td>
+								</tr>
+							</table>
+							<!--/高校-->
+							<!--政府部门及社会团体-->
+
+							<!--/政府部门及社会团体-->
+						</div>
+						<!--/单位信息-->
+					</div>
+				</div>
+			</div>
+		</div>
+    <ly-minifooter></ly-minifooter>
+	</div>
+	<script src="/common/js/laydate/laydate.js"></script>
+	<script type="text/javascript" src="/common/js/libs/require.js"></script>
+	<script src="js/authcompany.js"></script>
+</body>
+
+</html>

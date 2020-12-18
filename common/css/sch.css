@@ -1,0 +1,209 @@
+/* CSS Document */
+
+
+.schban {
+	width: 100%;
+	height: 280px;
+	background: url(../images/sch.png) no-repeat center center;
+	background-size: cover;
+}
+
+.schbantext {
+	color: #ffffff;
+	font-size: 48px;
+	font-weight: 700;
+	line-height: 54px;
+	text-align: center;
+	padding-top: 65px;
+}
+
+.schul{
+	margin-top: 35px;
+	text-align: center;
+}
+.schul li{
+	display: inline-block;
+	padding: 0 30px;
+	color: #ffffff;
+	font-size: 30px;
+	font-weight: 300;
+	line-height: 30px;
+	border-right: 2px solid #fff;
+}
+.schul li:last-child{
+	border-right: 0;
+}
+
+.schitem {
+	width: 300px;
+	height: 135px;
+	background-color: #dedede;
+	float: left;
+}
+.schitem.active{
+	background-color: #fff;
+	height: 150px;
+	margin-top: -15px;
+	padding-top: 15px;
+}
+
+.schbox {
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px rgba(6, 0, 1, 0.27);
+}
+
+.f30 {
+	font-size: 30px;
+	line-height: 30px;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.colgreen {
+	color: #229058;
+}
+.colred {
+	color: #cc2a1e;
+}
+.colblue {
+	color: #3859d4;
+}
+.colorg {
+	color: #e7790e;
+}
+
+
+
+
+.schitext {
+	text-align: center;
+	color: #3a3a3a;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 22px;
+	margin-top: 15px;
+}
+
+.htxt {
+	color: #818181;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	text-align: center;
+}
+
+.schcontent {
+	padding: 40px;
+}
+
+.tecl {
+	width: 164px;
+	height: 378px;
+	background: url(../images/tcl.png) no-repeat center center;
+	background-size: cover;
+	float: left;
+	text-align: center;
+	padding-top: 35px;
+}
+.tecl span{
+	color: #ffffff;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 32px;
+}
+
+.borline {
+	border: 1px solid #d2d2d2;
+}
+
+.tcllist>li{
+	width: 318px;
+	height: 136px;
+	float: left;
+	padding-top: 23px;
+	border: 1px solid #d2d2d2;
+	border-width: 0 0 1px 1px;
+}
+
+.tcltit {
+	height: 20px;
+	border-left: 3px solid #eb5e09;
+	padding-left: 20px;
+	color: #1f1f1f;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 20px;
+}
+.cplist{
+	padding-top: 18px;
+}
+.cplist li a{
+	color: #1f1f1f;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 32px;
+	padding: 0 18px;
+}
+.cplist li{
+	display: inline-block;
+	vertical-align: middle;
+}
+.cplist li:hover a{
+	color: #29529b;
+}
+
+.ovflh {
+	overflow: hidden;
+}
+
+.caselist {
+	padding: 30px 20px 0;
+}
+.caselist li{
+	width: 188px;
+	float: left;
+	margin: 0 20px;
+}
+.caselist li a{
+	display: block;
+}
+.caselist li a span{
+	display: block;
+	width: 188px;
+	height: 126px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+.caselist li a strong{
+	display: block;
+	color: #1f1f1f;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 40px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.caselist li a em{
+	display: block;
+	font-style: normal;
+	color: #717171;
+	line-height: 14px;
+	font-size: 14px;
+	font-weight: 400;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.main_footer {
+	border-top: 1px solid #000;
+}
+
+.mt100 {
+	margin-top: 100px;
+}
+
+.pb100 {
+	padding-bottom: 100px;
+}

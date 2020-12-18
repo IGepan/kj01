@@ -1,0 +1,49 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策汇</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/ndetail.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :breadcrumb="breadcrumb" :nav-index="3"></sub-head>
+
+    <div class="mdiv newDetail">
+      <div class="detail-title-Box">
+        <h1 class="detail-title-text">关于新闻标题这里是新闻的标题哦新闻的标题可能会很长很多字需要占两排的位置关于开展《石景山区促进应用场景建设加快创新发展支持办法》奖励补贴类政策兑现的通知</h1>
+        <div class="detail-title-other">
+          <span class="label">发布时间：2020.02.26</span>
+          <span class="label">来源：重庆市人民政府网</span>
+        </div>
+      </div>
+      <div class="detail-contentBox">
+        正文内容盒子
+      </div>
+      <div class="detail-bottomBox">
+        <button type="button" typeName="articleBtn" class="vaMiddle shareBtn">
+          <i class="iconfont icon-fenxiang vaMiddle"></i><span  class="vaMiddle">分享</span>
+          <div class="shareBox">
+            <div class="share-item" @click.stop="handleShowTips"><i class="iconfont icon-weixin"></i><span class="text">微信</span></div>
+            <div class="share-item" @click.stop="handleShareToQQ"><i class="iconfont icon-qq"></i><span class="text">QQ</span></div>
+          </div>
+        </button>
+        <button type="button" typeName="articleBtn"><i class="iconfont icon-zhengce vaMiddle"></i><span class="vaMiddle">查看原文</span></button>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/ndetail.js"></script>
+</body>
+
+</html>

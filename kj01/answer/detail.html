@@ -1,0 +1,48 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资讯</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/answer.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :nav-index="3" :breadcrumb="breadcrumb" :cms-url="cmsUrl"></sub-head>
+
+    <div class="answerBox mdiv">
+      <div class="qadetail">
+        <div class="qadetail-title">
+          <span class="left" v-text="typeDisplay"></span>
+        </div>
+        <div class="qadetailList">
+          <a :href="'/answer/qadetail.html?id=' + list.id + 'type=' + searchForm.type" class="qadetail-list" v-for="(list,i) in qadetail" :key="i">
+            <div class="qadetail-list_left"><span>问</span></div>
+            <div class="qadetail-list_right">
+              <div class="top-title" :title="list.ask" v-text="list.ask"></div>
+              <div class="bottom-info">
+                <div class="left-data" v-text="list.createTime"></div>
+                <div class="right-amount" v-text="'访问：'+ list.visitNumber"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <template v-if="pages">
+      <pages :pages="pages" @changepage="bindPageChange"></pages>
+    </template>
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/answer/detail.js"></script>
+</body>
+
+</html>

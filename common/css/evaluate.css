@@ -1,0 +1,281 @@
+.orderinfos::after, .evaluate::after, .horizontal::after {
+  content: '';
+  display: block;
+  overflow: hidden;
+  clear: both;
+  width: 100%;
+  height: 0;
+  zoom: 1;
+}
+.horizontal > * {
+  float: left;
+}
+
+.tabItem {
+  width: 155px;
+  height: 45px;
+  line-height: 45px;
+  background-color: #e2e1e1;
+  font-family: MicrosoftYaHei;
+  font-size: 16px;
+  color: #232323;
+  border-right: 1px solid #FFF;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active .tabItem {
+	font-weight: bold;
+  background-color: transparent;
+  border-right: none;
+}
+.infosTable {
+  border-collapse:collapse;
+  border: solid 1px #dcdcdc;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.infosTable .thead {
+  border-top: 2px solid #89b2ec;
+}
+
+.infosTable .thead tr {
+  background-color: #ffffff;
+}
+
+.infosTable .thead td {
+  border: solid 1px #dcdcdc;
+  padding: 16px 28px;
+  vertical-align: middle;
+}
+
+.content .item p {
+  margin-top: 0;
+}
+.content .item p:last-child {
+  margin-bottom: 0;
+}
+.white_bg {
+  height: 20px;
+}
+
+.orange {
+  color: #ff3c00 !important;
+}
+.yellow {
+  color: #ff9600 !important;
+}
+.gray {
+  color: #7a7a7a !important;
+}
+.blue {
+  color: #0a469a;
+  vertical-align: top;
+}
+.small_gray {
+  color: #969696;
+}
+
+
+.evtitle {
+  margin: 20px auto;
+  border-bottom: 1px solid #212121;
+  padding: 10px;
+}
+
+.tips {
+  padding: 10px;
+  background-color: #daeafe;
+}
+.tips p {
+  margin: 0;
+}
+.storecontent {
+  padding-bottom: 0;
+}
+
+.evaluateBox {
+  border: solid 5px #daeafe;
+  margin-top: 20px;
+  padding: 50px;
+}
+
+.evaluate {
+  margin-top: 20px;
+}
+.evaluate:first-child {
+  margin-top: 0;
+}
+
+.evaluate> * {
+  float: left;
+}
+
+.orderinfos {
+  border-right: 1px solid #cfcfcf;
+  padding: 30px 70px 30px 0;
+  min-width: 229px;
+}
+.evaluateForm {
+  padding: 30px 0 30px 70px;
+  display: table;
+  width: 770px;
+  table-layout: auto;
+}
+
+textarea {
+  resize: none;
+}
+.form-group {
+  font-weight: bold;
+}
+.form-item {
+  display: table;
+  width: 100%;
+}
+.form-item > * {
+  display: table-cell;
+}
+.form-item__title {
+  /* vertical-align: top; */
+  width: 90px;
+  line-height: 32px;
+}
+.form-item__contents {
+  vertical-align: middle;
+}
+
+.plain {
+  background-color: transparent;
+  color: #2649a1
+}
+.etextarea {
+  font-family: "microsoft yahei";
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+}
+.tags {font-size: 0}
+.tags > * {
+  border: solid 1px #898989;
+  font-size: 14px;
+  line-height: 18px;
+  color: #404040;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 10px;
+  margin-right: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.tags > .active {
+  border-color: #ff3c00;
+  color: #ff3c00;
+}
+.tags > :last-child {
+  margin-right: 0;
+}
+
+.infotitle {
+  overflow: hidden;
+  display: inline-block;
+  max-width: 96px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.imglist {
+  display: inline-block;
+  vertical-align: middle;
+}
+.imglist .item {
+  margin-left: 10px;
+  position: relative;
+}
+.imglist .item:first-child {
+  margin-left: 0;
+}
+.imglist .item .icon-cuowu {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  color: red;
+}
+.imglist img {
+  display: block;
+  border: 1px solid #e1e1e1;
+  overflow: hidden;
+}
+.upload-btn {
+  position: relative;
+  display: inline-block;
+  width: 69px;
+  padding: 9px;
+  height: 69px;
+  text-align: center;
+  border: 1px dashed #b5b5b5;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  margin-left: 10px;
+}
+.upload-btn:first-child {
+  margin-left: 0;
+}
+.upload-btn__icon {
+  font-size: 28px;
+  color: #b5b5b5;
+  line-height: 28px;
+}
+.upload-btn__text {
+  font-size: 12px;
+  line-height: 18px;
+	letter-spacing: 0px;
+	color: #9e9e9e;
+}
+
+.upload-btn .upload_box .pro {
+  left: 10000px;
+  bottom: 9px;
+}
+
+.rvItem {
+  display: inline-block;
+  width: 33%;
+}
+.rvItem .num {
+  font-size: 18px;
+}
+
+
+.reply {
+  min-height: 51px;
+  background-color: #e7eff9;
+  padding: 16px;
+}
+.btdashedline {
+  border-bottom: 1px dashed #cdcdcd;
+}
+.reply p {
+  margin: 0;
+}
+.replyForm {
+
+}
+.replyInput {
+  display: inline-block;
+  width: 680px;
+	height: 40px;
+	background-color: #ffffff;
+  border: solid 1px #c9c9c9;
+  padding: 0 10px;
+}
+.replyBtn{
+  display: inline-block;
+  width: 122px;
+  height: 40px;
+  cursor: pointer;
+	border: solid 1px #2649a1;
+  background-color: #2649a1;
+  color: #ffffff;
+}

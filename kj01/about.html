@@ -1,0 +1,235 @@
+
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/about.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="box" id='index_box' v-cloak>
+  <ly-toper ref="lytoper" top-class="white"></ly-toper>
+  <index-head :nav-index="sIndex"></index-head>
+  <div class="content">
+    <div class="mdiv">
+      <div class="left">
+        <ul class="left-lists">
+          <li v-for="(nav,index) in navList" :key="index" @click="handleNav(index)" :class="nowIndex===index?'active':''">{{ nav.label }}</li>
+        </ul>
+      </div>
+      <div class="right">
+        <div class="title" v-if="nowIndex===0">平台简介</div>
+        <div class="title"  v-if="nowIndex===1">服务内容</div>
+        <div class="title"  v-if="nowIndex===2">联系我们</div>
+        <!-- 简介 -->
+        <div class="brief" v-show="nowIndex === 0">
+          <div class="synopsis">
+            易智网（www.kj01.cn）是在重庆市科学技术局和两江新区管理委员会的大力支持下，由重庆市科学技术研究院与重庆两江新区创新创业投资发展有限公司联合建立，面向政府与企业的资源深度聚集、服务智能精准、线上线下融合的科技创新综合服务大平台，由“1+2+N”构成，“1”是指“易智网总部基地”；“2”是指重庆两江新区、重庆高新区两个区域服务中心”；“N”是指区县和环高校创新生态圈分支基地。
+          </div>
+          <div class="avatar">
+            <img src="/style/images/about/base.png" alt="">
+          </div>
+          <div class="avatar-text">易智网总部服务基地</div>
+          <div class="avatar">
+            <img src="/style/images/about/lobby.png" alt="">
+          </div>
+          <div class="avatar-text">易智网综合服务大厅</div>
+        </div>
+        <!-- 服务内容 -->
+        <div v-show="nowIndex === 1">
+          <div class="sub-title">政府端服务</div>
+          <ul class="gov-lists">
+            <li>
+              <div class="name">人才培育</div>
+              <div class="text">企业人才培训、高端人才引育</div>
+            </li>
+            <li>
+              <div class="name">双创载体建设</div>
+              <div class="text">建设规划、运营指导、团队建设、
+                资质申报（国家级、市级）</div>
+            </li>
+            <li>
+              <div class="name">创新主体培育</div>
+              <div class="text">政策咨询、战略规划、科技型企业
+                （高新技术企业）培育</div>
+            </li>
+            <li>
+              <div class="name">产业育成</div>
+              <div class="text">园区建设规划、招商对接</div>
+            </li>
+          </ul>
+          <div class="sub-title">企业端服务</div>
+          <div class="enterprise">
+            <div class="enterprise-title">综合服务</div>
+            <ul class="enterprise-lists">
+              <li>
+                <div class="name">科技政策</div>
+                <div class="text">
+                  <span>政策解读</span>
+                  <span>政策速递</span>
+                  <span>政策兑现</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">创新活动</div>
+                <div class="text">
+                  <span>峰会</span>
+                  <span>论坛</span>
+                  <span>路演</span>
+                  <span>对接</span>
+                  <span>沙龙</span>
+                  <span>展会</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">成果转化</div>
+                <div class="text">
+                  <span>展示发布</span>
+                  <span>成果路演</span>
+                  <span>供需对接</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">科技金融</div>
+                <div class="text">
+                  <span>创业投资</span>
+                  <span>融资贷款</span>
+                  <span>上市辅导</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">技术研发</div>
+                <div class="text">
+                  <span>难题诊断</span>
+                  <span>创新协同</span>
+                  <span>研发设计</span>
+                  <span>产品开发</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">技术评估</div>
+                <div class="text">
+                  <span>成果评价</span>
+                  <span>价值评估</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">科技咨询</div>
+                <div class="text">
+                  <span>战略咨询</span>
+                  <span>发展规划</span>
+                  <span>决策报告</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">检验检测</div>
+                <div class="text">
+                  <span>检测分析</span>
+                  <span>计量校准</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">科技人才</div>
+                <div class="text">
+                  <span>人才培训</span>
+                  <span>人才引育</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="enterprise">
+            <div class="enterprise-title green">特色服务</div>
+            <ul class="enterprise-lists green">
+              <li>
+                <div class="name">政策智配</div>
+                <div class="text">
+                  <span>政策智能匹配</span>
+                  <span>自动推送、速递</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">智能答人</div>
+                <div class="text">
+                  <span>企业需求智能问答</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">申报助手</div>
+                <div class="text">
+                  <span>政策解读</span>
+                  <span>项目申报</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">企业学堂</div>
+                <div class="text">
+                  <span>政策直播</span>
+                  <span>创新课堂</span>
+                  <span>管理学院</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">云活动</div>
+                <div class="text">
+                  <span>云路演</span>
+                  <span>云展会</span>
+                  <span>云创赛</span>
+                  <span>云对接</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">自助体检</div>
+                <div class="text">
+                  <span>企业自检</span>
+                  <span>资源匹配</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 联系我们 -->
+        <div v-show="nowIndex === 2">
+          <div class="info">
+            <div>
+              <div class="info-text">
+                <span class="iconfont icon-dingwei"></span>
+                <span>重庆市渝北区黄山大道中段杨柳路2号重科智谷C栋2楼</span>
+              </div>
+              <div class="info-text">
+                <span class="iconfont icon-zuoji"></span>
+                <span class="number">023-61365808</span>
+              </div>
+              <div class="info-text">
+                <span class="iconfont icon-wangzhi-copy"></span>
+                <span>https://www.kj01.cn</span>
+              </div>
+            </div>
+            <div class="imagesBox">
+              <div class="info-img">
+                <img src="/style/images/index/qrcode.jpg" alt="">
+              </div>
+              <div class="info-img_text">关注微信公众号</div>
+            </div>
+          </div>
+          <!-- 地图 -->
+          <div class="map">
+            <img src="/style/images/about/map.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <web-footer></web-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="./style/js/about.js"></script>
+</body>
+
+</html>

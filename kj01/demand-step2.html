@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>需求诊断-智能匹配-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/demand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box" v-cloak>
+    <ly-toper></ly-toper>
+    <ly-header pagename="需求诊断" :http="httpCom"></ly-header>
+    <div class="crumbs">
+      <div class="mdiv"><strong>你现在的位置：</strong>
+        <a href="/">首页</a>
+        <a href="/demand.html">需求诊断</a>
+        <span>智能匹配</span>
+      </div>
+    </div>
+    <div class="mainBox">
+      <div class="mdiv">
+        <div class="mian-tips">免费需求诊断，为您推荐最适合的服务方案</div>
+        <ul class="setps">
+          <li>Step1：提交需求</li>
+          <li class="active">Step2：智能匹配</li>
+          <li>Step3：选择服务</li>
+        </ul>
+        <div class="mianForm">
+          <div class="data-info">
+            <div class="data-info-scene" v-text="'需求场景：' + (demandForm.sceneName|| '')"></div>
+            <ul class="data-info-params">
+              <li v-text="'需求说明：' + demandForm.planName"></li>
+              <li>初步预算：<span class="data-info-price" v-text="demandForm.budget"></span>元</li>
+              <li>所属行业：<p class="data-info-indBox"><span class="data-info-ind" v-for="industry in demandForm.industry"
+                    v-text="industry.name"></span></p>
+              </li>
+              <li v-text="'紧急程度：' + demandForm.periodName"></li>
+            </ul>
+            <div class="updateBtn" @click="handleUpdate"><i class="iconfont icon-xiugai"></i>修改需求</div>
+          </div>
+          <div class="accurate">
+            <div class="accurate-text">系统已为您智能匹配服务：<span class="seleced-price" v-text="sumServers"></span>项，服务金额预估：<i
+                class="seleced-price">￥{{searchInfo.negotiableFlag | formatPrice(searchInfo.price, searchInfo.minPrice, searchInfo.maxPrice)}}</i> 元起</div>
+            <div class="accurate-body clear">
+              <div class="servicesBox" v-for="servicesField1 in searchInfo.servicesField1ViewList">
+                <div class="services-title" v-text="servicesField1.servicesLevel1TypeDisplay">技术转移</div>
+                <div class="services-body">
+                  <div class="services-item" v-for="servicesField2 in servicesField1.servicesField2ViewList">
+                    <label class="services-item__text" v-text="servicesField2.serviceType2Name">技术推广推广推广</label>
+                    <span class="services-badge" v-text="servicesField2.servicesField3ViewList.length">9</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accurate-footer">
+              <span class="accurate-btn" @click="dialogVisible = true"><span
+                  class="accurate-btn line-btn">HI~想要服务方案更精确？点击</span>补充需求信息，精确匹配</span>
+            </div>
+          </div>
+          <div class="seleced-items" v-for="(servicesField1, i) in searchInfo.servicesField1ViewList">
+            <div class="seleced-title" v-text="servicesField1.servicesLevel1TypeDisplay">技术转移</div>
+            <div class="seleced-item" v-for="(servicesField2, si) in servicesField1.servicesField2ViewList">
+              <label class="seleced-item__title" v-text="servicesField2.serviceType2Name">技术推广</label>
+              <div class="seleced-item__subitems">
+                <div class="subitem" v-for="(services, ti) in servicesField2.servicesField3ViewList"
+                  :class="{active: services.selected}" @click="selectItem(i, si, ti)">
+                  <div class="subitem-title" :title="services.serviceName" v-text="services.serviceName">在线建店</div>
+                  <div class="subitem-desc" v-if="services.comment" :title="services.comment"
+                    v-text="services.comment + ' >'">在线创建技术店铺 ></div>
+                  <i class="iconfont icon-xuanzhong"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="submitBtn big" type="button" @click="submit">确认服务方案，选择服务商</button>
+        </div>
+      </div>
+    </div>
+    <div class="bgshade" :style="{display: dialogVisible ? 'block' : 'none'}">
+      <div class="dialog">
+        <div class="dialog-title"><span>精准匹配</span></div>
+        <div class="dialog-body">
+          <div class="mianForm dialogForm">
+            <div class="form-item" v-for="(custom, ci) in customForm" :key="custom.columnId">
+              <label class="title" v-text="custom.columnName + '：'"></label>
+              <div class="form-content">
+                <template v-if="custom.columnType === '1'">
+                  <div class="radioGroup">
+                    <div v-for="(vItem, vi) in custom.valueViewList" :key="vi" class="radio-item"
+                      :class="{'checkbox-item': custom.type === '02'}">
+                      <input :id="'' + custom.columnId + vi" :name="custom.columnId" @click="customChangeValue(ci, vi)"
+                        v-model="custom.columnValue" :value="vItem.vauleId"
+                        :type="custom.type === '01'? 'radio' : 'checkbox'">
+                      <label :for="'' + custom.columnId + vi" v-text="vItem.value"></label>
+                    </div>
+                  </div>
+                </template>
+                <template v-else>
+                  <input type="text" v-model="custom.columnValue" placeholder="请输入筛选条件" style="width: 400px;">
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button type="button" @click="setCustomParams">提交</button>
+          <button type="button" @click="dialogVisible = false">取消</button>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/demandStep1.js"></script>
+</body>
+
+</html>

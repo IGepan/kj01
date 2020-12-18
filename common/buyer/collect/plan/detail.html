@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>用户中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <style>
+    .clist li {
+      padding: 35px 35px 0;
+    }
+
+    .clist .planinfo {
+      padding-bottom: 25px;
+      border-bottom: 1px dashed #d5d5d5;
+    }
+
+    .clist {
+      margin-top: 15px;
+      border: 1px solid #cccccc;
+    }
+
+    .tabbox {
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="index_box" v-cloak>
+    <ly-toper></ly-toper>
+    <header-bar type='buyer' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">
+            用户中心
+          </a>
+          <a href="/common/buyer/collect/plan/index.html">
+            收藏的方案
+          </a>
+          <span>方案详情</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--待验收-->
+            <div class="userform active">
+              <div class="orderbox" v-if="detailInfo">
+                <div class="uplan-top">
+                  <span class="uplan-top_tit scenario-name" v-text="detailInfo.planName||''"></span>
+                  <span class="uplan-top_cost total">费用合计：<font v-text="detailInfo.totalPrice"></font>元起</span>
+                </div>
+                <div class="uplan-cen"
+                  v-text="'共'+detailInfo.detailDtlViewList.length+'个服务，涉及'+detailInfo.shopCount+'家服务商'"></div>
+                <ul class="clist">
+                  <li class="planinfo" v-for="detail in detailInfo.detailDtlViewList">
+                    <div class="planinfo-right">
+                      <div class="planinfo-right_cost">￥{{detail.negotiableFlag | formatPrice(detail.price, detail.minPrice, detail.maxPrice)}}元</div>
+                      <span class="planinfo-right_car"
+                        @click="add(detail.goodsId, detail.skuId, detail.stock)">添加到购物车</span>
+                    </div>
+                    <div class="planinfo-left">
+                      <div class="planinfo-left_img"
+                        :style="'background-image: url('+ (detail.goodsImgUrl || 'http://dummyimage.com/94x82')+')'">
+                      </div>
+                      <div class="planinfo-left_tit" v-text="detail.goodsName"></div>
+                      <div class="planinfo-left_name" v-text="detail.shopName"></div>
+                      <div class="planinfo-left_describe">服务描述：</div>
+                      <div class="planinfo-left_text" v-text="detail.serviceDesc"></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!--/待验收-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/planDetail.js"></script>
+</body>
+
+</html>

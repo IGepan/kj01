@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/seller/css/seller.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+  <style>
+    .form {
+      background: #fff;
+    }
+
+    .form-view th {
+      text-align: right;
+    }
+
+    .form-padding {
+      padding-left: 100px;
+    }
+
+    .form-view_box {
+      border-top: 1px solid #bfbfbf;
+    }
+
+    .inputbox-tag.inputbox-add span {
+      background: #e1e1e1;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .form-view {
+      padding: 19px;
+    }
+
+    .form table {
+      border-collapse: separate;
+      border-spacing: 15px;
+    }
+
+    .form-view tr {
+      color: #404040;
+      line-height: 30px;
+    }
+
+    .form th {
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    .table th {
+      font-weight: 400;
+      vertical-align: top;
+    }
+
+    .form-padding_item {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #f3ebd0;
+    }
+
+    .form td {
+      font-size: 14px;
+    }
+
+    ol li {
+      list-style: decimal;
+    }
+
+    .download.inputbox {
+      cursor: pointer;
+      color: #297ae9;
+    }
+
+    .table th {
+      width: 150px;
+    }
+
+    .table-sub-title {
+      padding: 10px;
+      font-weight: bold;
+      background: #f3ebd0;
+      margin-top: 35px;
+    }
+
+    caption {
+      font-weight: bold;
+      text-align: left;
+    }
+
+    p {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="store_box" v-cloak>
+    <div class="header">
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/seller/index.html">卖家中心</a>
+          <span>投标详情</span>
+        </div>
+        <div class="rightmainbox">
+          <div style="overflow: hidden;background-color: #fff;display: block;">
+            <div class="form-view">
+              <div class="form-view_box">
+                <h3 class="table-title">需求信息</h3>
+                <div class="" style="padding-left: 100px">
+                  <div style="overflow: hidden;display:block">
+                    <table class="table" style="border-collapse: separate;border-spacing: 15px;font-size: 14px">
+                      <tr>
+                        <th>需求标题：</th>
+                        <td v-text="detailList.title"></td>
+                      </tr>
+                      <tr>
+                        <th>需求类型：</th>
+                        <td style="width: 700px">
+                          <div class="inputradio" v-text="detailList.demandTypeDisplay"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>面向地区：</th>
+                        <td>
+                          <div class="selectarea">
+                            <span v-text="detailList.countryDisplay"></span>
+                            <span v-text="detailList.provinceDisplay"></span>
+                            <span v-text="detailList.cityDisplay"></span>
+                            <span v-text="detailList.districtDisplay"></span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>需求预算（元）：</th>
+                        <td v-text="(detailList.budget||'')"></td>
+                      </tr>
+                      <tr>
+                        <th>截止日期：</th>
+                        <td v-text="detailList.endDate"></td>
+                      </tr>
+                      <tr>
+                        <th>联系人：</th>
+                        <td v-text="detailList.demandContacts"></td>
+                      </tr>
+                      <tr>
+                        <th>联系电话：</th>
+                        <td v-text="detailList.demandPhone"></td>
+                      </tr>
+                      <template v-if="detailList.stageDisplay">
+                        <tr>
+                          <th>需求所处阶段：</th>
+                          <td v-text="detailList.stageDisplay"></td>
+                        </tr>
+                        <tr v-if="detailList.demandCaseDisplay">
+                          <th>需求缘由：</th>
+                          <td v-text="detailList.demandCaseDisplay"></td>
+                        </tr>
+                        <tr v-if="detailList.cooperationModeDisplay">
+                          <th>意向合作方式：</th>
+                          <td v-text="detailList.cooperationModeDisplay"></td>
+                        </tr>
+                      </template>
+                      <template v-if="detailList.profession">
+                        <tr>
+                          <th>人才职业描述：</th>
+                          <td v-text="detailList.profession"></td>
+                        </tr>
+                      </template>
+                      <tr>
+                        <th>需求描述：</th>
+                        <td>
+                          <div class="inputbox" v-html="detailList.demandComment"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>对投标方的要求：</th>
+                        <td>
+                          <div class="inputbox" v-html="detailList.requirement"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th style="font-weight: bold;">投标指标（自定义）：</th>
+                        <td>
+
+                        </td>
+                      </tr>
+                      <tr v-for="quota in detailList.demandQuotas">
+                        <th v-text="quota.quotaName + '：'"></th>
+                        <td v-text="quota.quotaComment">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>需求附件：</th>
+                        <td>
+                          <div v-for="(file,i) in detailList.demandFiles" class="download inputbox" v-text="file.name"
+                            @click="fileSaveAs(file)"></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="form-view_box">
+                <h3 class="table-title">我的投标信息</h3>
+                <div style="padding-left: 100px">
+                  <div style="overflow: hidden;display:block">
+                    <table class="table" style="border-collapse: separate;border-spacing: 15px;font-size: 14px;">
+                      <tr>
+                        <th>投标人：</th>
+                        <td>
+                          <div v-text="detailList.bidUserName"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>报价（元）：</th>
+                        <td style="word-wrap: break-word;word-break: break-all;overflow: hidden;"
+                          v-text="detailList.amount"></td>
+                      </tr>
+                      <tr>
+                        <th>联系人：</th>
+                        <td v-text="detailList.contacts"></td>
+                      </tr>
+                      <tr>
+                        <th>联系电话：</th>
+                        <td v-text="detailList.phone"></td>
+                      </tr>
+                      <tr>
+                        <th>服务周期（天）：</th>
+                        <td v-text="detailList.actualPeriod"></td>
+                      </tr>
+                      <tr>
+                        <th>投标方案描述：</th>
+                        <td v-text="detailList.comment"></td>
+                      </tr>
+                      <tr>
+                        <th>投标时间：</th>
+                        <td v-text="detailList.createDate"></td>
+                      </tr>
+                      <tr>
+                        <th>投标人简介：</th>
+                        <td v-text="detailList.bidderInfo"></td>
+                      </tr>
+                      <tr>
+                        <th>投标附件：</th>
+                        <td>
+                          <div v-for="(file,i) in detailList.bidFiles" class="download inputbox" v-text="file.name"
+                            @click="fileSaveAs(file)"></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="form-view_box">
+                <h3 class="table-title">其它信息</h3>
+                <div style="padding-left: 100px">
+                  <div style="overflow: hidden;display:block">
+                    <div class="table-sub-title" v-if="detailList.delays && detailList.delays.length > 0">延期信息</div>
+                    <table class="table" style="border-collapse: separate;border-spacing: 15px;font-size: 14px;"
+                      v-for="k,i in detailList.delays">
+                      <caption v-text="'第' + (i+1) + '次延期'"></caption>
+                      <tr>
+                        <th>申请延期时间：</th>
+                        <td>
+                          <div v-text="k.createdate"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>延期原因：</th>
+                        <td>
+                          <div v-text="k.delayCase"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>延期天数（天）：</th>
+                        <td>
+                          <div v-text="k.delayPeriod"></div>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="table-sub-title">验收信息</div>
+                    <table class="table" style="border-collapse: separate;border-spacing: 15px;font-size: 14px;">
+                      <tr>
+                        <th>验收时间：</th>
+                        <td>
+                          <div v-text="detailList.inspectedDate"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>验收原因：</th>
+                        <td>
+                          <div v-text="detailList.inspectedCase"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>验收附件：</th>
+                        <td>
+                          <div v-for="(file,i) in detailList.checkFiles" class="download inputbox" v-text="file.name"
+                            @click="fileSaveAs(file)"></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ly-minifooter></ly-minifooter>
+    </div>
+    <script src="/common/js/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="js/biddetail.js"></script>
+</body>
+
+</html>

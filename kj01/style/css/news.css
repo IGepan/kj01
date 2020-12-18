@@ -1,0 +1,59 @@
+.commonCententBox {
+  background: url(../images/newBanner.png) no-repeat top center;
+  padding-top: 80px;
+}
+.recommend {
+  margin-top: 0;
+}
+
+.newsList .list-item {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #e3eaf1;
+}
+
+.list-item-title-text {
+  position: relative;
+  margin-left: -20px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 34px;
+  color: #343334;
+  border-left: 4px solid #018fff;
+  text-indent: 16px;
+}
+
+.list-item-desc {
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 12px;
+  letter-spacing: 0px;
+  color: #999999;
+}
+
+.list-item-other {
+	font-size: 12px;
+	margin-top: 18px;
+	color: #999999;
+	display: flex;
+	justify-content: space-between;
+}
+.list-item-other-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.list-item-other-label .label-item {
+  margin-right: 30px;
+}
+.label-item .icon {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0px;
+}
+.label-item .labelText {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 17px;
+  height: 17px;
+  margin-left: 4px;
+}

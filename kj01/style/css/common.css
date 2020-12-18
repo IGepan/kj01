@@ -1,0 +1,589 @@
+template {
+  display: none;
+}
+
+.mb60 {
+  margin-bottom: 60px;
+}
+.animation {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.line {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.line2 {
+	overflow: hidden;
+	display: -webkit-box !important;
+	word-break: break-all;
+	word-wrap:break-word;
+	text-overflow:ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+}
+.line3 {
+	-webkit-line-clamp:3;
+}
+.detailMark {
+	font-size: 12px;
+	color: #018fff;
+}
+.mdiv {
+  width: 1180px;
+}
+img {
+  max-width: 100%;
+}
+.boxtitle {
+  height: 160px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  padding: 47px 0;
+}
+.boxtitle-text {
+  font-size: 36px;
+  line-height: 37px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #343334;
+}
+.boxtitle-subtext {
+	font-family: MicrosoftYaHei;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 18px;
+	letter-spacing: 0px;
+	color: #999999;
+	margin-top: 19px;
+}
+.boxtitle-more {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bannerBlock-small{
+  padding: 15px 10px;
+  display: flex;
+  width: 175px;
+  align-items: center;
+  height: 65px;
+  cursor: pointer;
+  background-color: #fff;
+}
+.bannerBlock-small:hover {
+	border: 1px solid #ff8110
+}
+
+.bannerBlock-info {
+  margin-left: 7px;
+}
+.bannerBlock-title {
+  font-size: 16px;
+  line-height: 23px;
+  color: #343334;
+}
+.bannerBlock-desc {
+  font-size: 12px;
+  line-height: 17px;
+  color: #999999;
+}
+
+.vaMiddle {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.vaTop {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.vaBottom {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.activity-info-state {
+	display: block;
+	height: 26px;
+	color: #fff;
+	margin-right: 9px;
+	padding: 0 10px;
+	line-height: 26px;
+	font-size: 14px;
+	text-align: center;
+	background-color: #597dfa;
+	border-radius: 0;
+	white-space: nowrap;
+}
+/* 预热 */
+.activity-info-state[type="0301"] {
+	background-color: #ef970b;
+}
+/* 进行中 */
+.activity-info-state[type="0303"] {
+	background-color: #28c917;
+}
+/* 结束 */
+.activity-info-state[type="0304"] {
+    background-color: #eff1fe;
+    color: #9496a5;
+}
+/* 签到 */
+.activity-info-state[type="0305"], .activity-info-state[type="0306"] {
+	background-color: #e65757;
+}
+
+/* 侧边栏 */
+.sideBar {
+  width: 270px;
+  position: relative;
+}
+
+
+/* 推荐 */
+.recommend {
+  margin: 20px 0;
+  padding: 15px 20px 20px;
+  background-color: #fff;
+}
+
+.list-body {
+  margin-top: 15px;
+}
+.recommend .list-item {
+  width: 100%;
+  font-size: 0;
+}
+.recommend .list-item .list-item-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: solid 1px #e6e7f1;
+}
+.recommend .list-item .list-item-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 34px;
+  max-width: 92%;
+  color: #343334;
+  text-indent: 8px;
+}
+.recommend .list-item:hover .list-item-circle {
+	border-color: #ff8a00;
+}
+.recommend .list-item:hover .list-item-text {
+  color: #ff8a00;
+}
+.list-title-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 18px;
+  line-height: 30px;
+  color: #343334;
+  text-indent: 16px;
+  position: relative;
+  margin-left: -20px;
+}
+
+.list-title-text::before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 6px;
+  height: 30px;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #018fff;
+  border-radius: 3px;
+}
+
+.list-title-small {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #ef910b;
+  margin-left: 10;
+}
+
+/* 分页 */
+.pages {
+  font-size: 0;
+  text-align: center;
+  padding: 30px 0 35px;
+}
+
+.page-item {
+  position: relative;
+  display: inline-block;
+  margin-left: -1px;
+}
+.page-item .link {
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999999;
+  border: solid 1px #e3eaf1;
+}
+.page-item.current-item .link, .page-item:hover .link {
+  color: #fff;
+  border-color: #018fff;
+	background-color: #018fff;
+}
+.page-item:first-child {
+  margin-left: 0;
+}
+
+
+.paginationjs{line-height:1.6;font-family:Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;font-size:14px;box-sizing:initial;text-align: center;}
+.paginationjs:after{display:table;content:" ";clear:both}
+.paginationjs .paginationjs-pages{display: inline-block;}
+.paginationjs .paginationjs-pages ul{float:left;margin:0;padding:0}
+.paginationjs .paginationjs-go-button,.paginationjs .paginationjs-go-input,.paginationjs .paginationjs-nav{float:left;margin-left:10px;font-size:14px}
+.paginationjs .paginationjs-pages li{float:left;border-right:none;list-style:none;}
+.paginationjs .paginationjs-pages li>a{min-width:30px;display:block;background:#fff;text-decoration:none;text-align:center;cursor: pointer;padding: 6px 12px;font-size: 14px;line-height: 20px;color: #999999;border: solid 1px #e3eaf1;}
+.paginationjs .paginationjs-pages li>a:hover{color: #fff;border-color: #018fff;background-color: #018fff;}
+.paginationjs .paginationjs-pages li.active{border:none}
+.paginationjs .paginationjs-pages li.active>a{color: #fff;border-color: #018fff;background-color: #018fff;}
+.paginationjs .paginationjs-pages li.disabled>a{opacity: .6;cursor: no-drop;}
+.paginationjs .paginationjs-pages li.disabled>a:hover{background: #018fff;}
+.paginationjs .paginationjs-pages li:first-child,.paginationjs .paginationjs-pages li:first-child>a{}
+.paginationjs .paginationjs-pages li:last-child{}
+.paginationjs .paginationjs-pages li:last-child>a{}
+.paginationjs .paginationjs-go-input>input[type=text]{width:30px;height:28px;background:#fff;border-radius:3px;border:1px solid #aaa;padding:0;font-size:14px;text-align:center;vertical-align:baseline;outline:0;box-shadow:none;box-sizing:initial}
+.paginationjs .paginationjs-go-button>input[type=button]{min-width:40px;height:30px;line-height:28px;background:#fff;border-radius:3px;border:1px solid #aaa;text-align:center;padding:0 8px;font-size:14px;vertical-align:baseline;outline:0;box-shadow:none;color:#333;cursor:pointer;vertical-align:middle\9}
+.paginationjs.paginationjs-theme-blue .paginationjs-go-input>input[type=text],.paginationjs.paginationjs-theme-blue .paginationjs-pages li{border-color:#289de9}
+.paginationjs .paginationjs-go-button>input[type=button]:hover{background-color:#f8f8f8}
+.paginationjs .paginationjs-nav{height:30px;line-height:30px}
+.paginationjs .paginationjs-go-button,.paginationjs .paginationjs-go-input{margin-left:5px\9}
+.paginationjs.paginationjs-small{font-size:12px}
+.paginationjs.paginationjs-small .paginationjs-pages li>a{min-width:26px;height:24px;line-height:24px;font-size:12px}
+.paginationjs.paginationjs-small .paginationjs-pages li.active>a{height:26px;line-height:26px}
+.paginationjs.paginationjs-small .paginationjs-go-input{font-size:12px}
+.paginationjs.paginationjs-small .paginationjs-go-input>input[type=text]{width:26px;height:24px;font-size:12px}
+.paginationjs.paginationjs-small .paginationjs-go-button{font-size:12px}
+.paginationjs.paginationjs-small .paginationjs-go-button>input[type=button]{min-width:30px;height:26px;line-height:24px;padding:0 6px;font-size:12px}
+.paginationjs.paginationjs-small .paginationjs-nav{height:26px;line-height:26px;font-size:12px}
+.paginationjs.paginationjs-big{font-size:16px}
+.paginationjs.paginationjs-big .paginationjs-pages li>a{min-width:36px;height:34px;line-height:34px;font-size:16px}
+.paginationjs.paginationjs-big .paginationjs-pages li.active>a{height:36px;line-height:36px}
+.paginationjs.paginationjs-big .paginationjs-go-input{font-size:16px}
+.paginationjs.paginationjs-big .paginationjs-go-input>input[type=text]{width:36px;height:34px;font-size:16px}
+.paginationjs.paginationjs-big .paginationjs-go-button{font-size:16px}
+.paginationjs.paginationjs-big .paginationjs-go-button>input[type=button]{min-width:50px;height:36px;line-height:34px;padding:0 12px;font-size:16px}
+.paginationjs.paginationjs-big .paginationjs-nav{height:36px;line-height:36px;font-size:16px}.paginationjs.paginationjs-theme-blue .paginationjs-pages li>a{color:#289de9}
+.paginationjs.paginationjs-theme-blue .paginationjs-pages li>a:hover{background:#e9f4fc}
+.paginationjs.paginationjs-theme-blue .paginationjs-pages li.active>a{background:#289de9;color:#fff}
+.paginationjs.paginationjs-theme-blue .paginationjs-pages li.disabled>a:hover{background:0 0}
+.paginationjs.paginationjs-theme-blue .paginationjs-go-button>input[type=button]{background:#289de9;border-color:#289de9;color:#fff}
+.paginationjs.paginationjs-theme-green .paginationjs-go-input>input[type=text],.paginationjs.paginationjs-theme-green .paginationjs-pages li{border-color:#449d44}
+.paginationjs.paginationjs-theme-blue .paginationjs-go-button>input[type=button]:hover{background-color:#3ca5ea}
+.paginationjs.paginationjs-theme-green .paginationjs-pages li>a{color:#449d44}
+.paginationjs.paginationjs-theme-green .paginationjs-pages li>a:hover{background:#ebf4eb}
+.paginationjs.paginationjs-theme-green .paginationjs-pages li.active>a{background:#449d44;color:#fff}
+.paginationjs.paginationjs-theme-green .paginationjs-pages li.disabled>a:hover{background:0 0}
+.paginationjs.paginationjs-theme-green .paginationjs-go-button>input[type=button]{background:#449d44;border-color:#449d44;color:#fff}
+.paginationjs.paginationjs-theme-yellow .paginationjs-go-input>input[type=text],.paginationjs.paginationjs-theme-yellow .paginationjs-pages li{border-color:#ec971f}
+.paginationjs.paginationjs-theme-green .paginationjs-go-button>input[type=button]:hover{background-color:#55a555}
+.paginationjs.paginationjs-theme-yellow .paginationjs-pages li>a{color:#ec971f}
+.paginationjs.paginationjs-theme-yellow .paginationjs-pages li>a:hover{background:#fdf5e9}
+.paginationjs.paginationjs-theme-yellow .paginationjs-pages li.active>a{background:#ec971f;color:#fff}
+.paginationjs.paginationjs-theme-yellow .paginationjs-pages li.disabled>a:hover{background:0 0}
+.paginationjs.paginationjs-theme-yellow .paginationjs-go-button>input[type=button]{background:#ec971f;border-color:#ec971f;color:#fff}
+.paginationjs.paginationjs-theme-red .paginationjs-go-input>input[type=text],.paginationjs.paginationjs-theme-red .paginationjs-pages li{border-color:#c9302c}
+.paginationjs.paginationjs-theme-yellow .paginationjs-go-button>input[type=button]:hover{background-color:#eea135}
+.paginationjs.paginationjs-theme-red .paginationjs-pages li>a{color:#c9302c}
+.paginationjs.paginationjs-theme-red .paginationjs-pages li>a:hover{background:#faeaea}
+.paginationjs.paginationjs-theme-red .paginationjs-pages li.active>a{background:#c9302c;color:#fff}
+.paginationjs.paginationjs-theme-red .paginationjs-pages li.disabled>a:hover{background:0 0}
+.paginationjs.paginationjs-theme-red .paginationjs-go-button>input[type=button]{background:#c9302c;border-color:#c9302c;color:#fff}
+.paginationjs.paginationjs-theme-red .paginationjs-go-button>input[type=button]:hover{background-color:#ce4541}
+.paginationjs .paginationjs-pages li.paginationjs-next{}
+.paginationjs .paginationjs-go-input>input[type=text]{line-height:28px\9;vertical-align:middle\9}
+.paginationjs.paginationjs-big .paginationjs-pages li>a{line-height:36px\9}
+.paginationjs.paginationjs-big .paginationjs-go-input>input[type=text]{height:36px\9;line-height:36px\9}
+
+/* 广告 */
+
+.bannerBlock {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.box.grayBgbox {
+	background-color: #f5f8fb;
+}
+
+/* 主要盒子 */
+.commonCententBox {
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
+.mainBox{
+  width: 870px;
+  background-color: #fff;
+}
+
+
+/* 分享 */
+.shareBox {
+  display: flex;
+  position: absolute;
+  display: none;
+  padding: 0 16px;
+  left: 50%;
+  cursor: default;
+  animation: 0.3s;
+  transform: translateX(-50%);
+  top: -65px;
+  height: 60px;
+  background-color: #ffffff;
+  box-shadow: 4px 6px 26px 0px rgba(0, 0, 0, 0.22);
+}
+.shareBox::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  border-width: 10px 10px 10px 10px;
+  border-color: white transparent transparent transparent;
+  border-style: solid;
+  transform: translateX(-50%);
+}
+.share-item {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  width: 40px;
+}
+.shareBox .share-item .icon-weixin {
+  color: #11d08f;
+  font-size: 22px;
+  margin-right: 0;
+  line-height: 18px;
+}
+.shareBox .share-item .icon-qq {
+  color: #4aadff;
+  font-size: 23px;
+  margin-right: 0;
+  line-height: 18px;
+}
+.shareBox .share-item .text {
+	font-size: 12px;
+	line-height: 18px;
+	color: #343334;
+}
+.shareBtn:hover .shareBox {
+  display: flex;
+}
+
+/*  */
+.topNumber {
+  height: 140px;
+  display: flex;
+  background-color: #ffffff;
+}
+.countBox {
+  flex: 1;
+  display: flex;
+  /* justify-content: center; */
+  flex-flow: row;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+.countBox::after {
+  content: '';
+  display: inline-block;
+  height: 60px;
+  border-right: 1px solid #e3eaf1;
+  position: absolute;
+  right: 0;
+}
+.countBox:last-child::after {
+  display: none;
+}
+.countBox_icon {
+
+margin-right: 20px;
+}
+.countBox_icon .iconfont {
+	font-size: 46px;
+	color:#ff8110;
+}
+.countBox__number {
+  display: flex;
+  align-items: flex-end;
+}
+.countBox__number .number-grow-warp .number-grow{
+  font-size: 40px;
+  line-height: 40px;
+}
+.countBox__label{
+  margin-top: 20px;
+}
+
+/* 活动系列标识 */
+.topic {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-size: 14px;
+  line-height: 14px;
+  box-sizing: border-box;
+  letter-spacing: 0px;
+  z-index: 0;
+  color: #ffffff;
+  background-color: #ee5b5b;
+  padding: 4px 5px 4px 5px;
+}
+
+.topic::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  box-sizing: border-box;
+  top: 0;
+  right: -10px;
+  border-style: solid;
+  border-width: 11px 11px 11px 11px;
+  border-color: #ee5b5b transparent #ee5b5b #ee5b5b;
+  z-index: -1;
+}
+
+.jsicon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/* 盒子图片公用 */
+.item-img {
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  user-select: none;
+}
+.item-img img {opacity: 0;}
+
+/* 日历 */
+.calendarBox {
+  background-color: #fff;
+}
+.calendartop {
+  height: 60px;
+  line-height: 58px;
+  border-bottom: 1px solid #e6e7f1;
+  color: #018fff;
+  font-size: 0;
+}
+.calendartop .prev, .calendartop .next {
+  padding: 0 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.calendartop .viewDisplay {
+  font-size: 16px;
+  line-height: 36px;
+  color: #018fff;
+  text-align: center;
+  user-select: none;
+  width: 250px;
+  font-weight: bold;
+}
+.calendartop .iconfont {
+  font-size: 19px;
+}
+
+.calendarweek {
+  font-size: 0;
+  padding: 30px 10px 0;
+  user-select: none;
+}
+.calendarweek .week {
+  width: 50px;
+  text-align: center;
+  line-height: 34px;
+  height: 36px;
+	font-size: 16px;
+	color: #343334;
+}
+.calendarDays {
+  user-select: none;
+  font-size: 0;
+  padding: 0 10px 30px;
+  border-bottom: 1px solid #e6e7f1;
+}
+.calendarDays .day {
+  width: 50px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  line-height: 34px;
+  z-index: 1;
+  height: 36px;
+  font-size: 16px;
+  color: #343334;
+}
+.calendarDays .day.dot::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #ff8a00;
+  border-radius: 3px;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  z-index: 2;
+}
+.calendarDays .day.default{
+	/* color: #018fff; */
+}
+.calendarDays .day.active, .calendarDays .day:hover{
+  color: #fff;
+}
+.calendarDays .day.active::before, .calendarDays .day:hover::before {
+  content: '';
+  display: inline-block;
+  background-color: #ff8a00;
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  top: 3px;
+  z-index: -1;
+}
+
+.calendarDays .day.none {
+  cursor: default;
+  /* cursor: no-drop; */
+	color: #9496a5;
+}
+.calendarDays .day.none:hover::before {
+  display: none;
+}

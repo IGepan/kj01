@@ -1,0 +1,924 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>系列活动发布</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <style>
+    .checkbox {
+      display: inline-block;
+    }
+
+    .checkbox-input {
+      display: inline-block;
+      vertical-align: middle;
+      height: 18px;
+      width: 18px;
+      margin-right: 5px;
+    }
+
+    .text {
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .checkbox-group {
+      width: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .checkbox-group .checkbox {
+      margin-right: 20px;
+    }
+
+    .checkbox-group .checkbox:last-child {
+      margin-right: 0;
+    }
+
+    .btnBox {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .btn {
+      border-radius: 5px;
+      padding: 10px 30px;
+      font-size: 14px;
+      border: 1px solid #D7DDE4;
+      background-color: #F7F7F7;
+      color: #999999;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      border: 1px solid #1ABC9C;
+      background-color: #1ABC9C;
+      color: #fff;
+    }
+
+    .contant {
+      background: #fff;
+      padding-top: 20px;
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    .leftbar {
+      border: 1px solid #d2d2d2;
+    }
+
+    .edithead {
+      height: 104px;
+      width: 104px;
+      border: 0;
+      position: relative;
+    }
+
+    .icon-image-add {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border: 2px dashed #D9D9D9;
+      border-radius: 5px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .icon-image-add::after,
+    .icon-image-add::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 18px;
+      height: 2px;
+      background-color: #B7B7B7;
+      left: 50%;
+      top: 50%;
+      margin-left: -9px;
+      margin-top: -1px;
+    }
+
+    .icon-image-add::before {
+      transform: rotateZ(90deg);
+    }
+
+    .icon-image-add+span {
+      position: absolute;
+      left: 0;
+      bottom: 10px;
+      right: 0;
+      text-align: center;
+      color: #999999;
+    }
+
+    .icon-image-add.on {
+      border-color: transparent;
+    }
+
+    .icon-image-add.on::after,
+    .icon-image-add.on::before {
+      background-color: transparent;
+    }
+
+    .icon-image-add.on+span {
+      display: none;
+    }
+
+    .filelist {
+      font-size: 14px;
+      color: #9D9D9D;
+    }
+
+    .icon_del {
+      cursor: pointer;
+    }
+
+    .form_table .exbtn {
+      background-color: transparent !important;
+      width: auto !important;
+    }
+
+    .form_table .inputbox-button {
+      border: 1px solid #D9D9D9;
+      border-radius: 5px;
+      padding: 0 20px;
+      color: #5A5A5A;
+
+    }
+
+    .inputbox-button i {
+      color: #ADADAD;
+    }
+
+    .footer {
+      position: initial;
+    }
+
+    .liline {
+      display: list-item;
+      width: 100%;
+      line-height: 38px;
+      vertical-align: middle;
+      font-size: 14px;
+      list-style: decimal;
+      margin-left: 1em;
+    }
+
+    .liline span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .litext {
+      height: 40px;
+      line-height: 38px;
+      text-align: left;
+    }
+
+    .lineTitle {
+      font-weight: 800;
+    }
+
+    .liline input[type="text"] {
+      display: inline-block;
+      border: 1px solid #c9c9c9;
+      vertical-align: middle;
+      height: 30px;
+      width: 53%;
+      padding: 0 5px;
+    }
+
+    .liline .checkbox-group {
+      width: auto;
+    }
+
+    .textarea {
+      resize: none;
+      border: 1px solid #c9c9c9;
+      width: 100%;
+      padding: 5px;
+    }
+
+    .lastBorderBottom tbody tr:last-child th,
+    .lastBorderBottom tbody tr:last-child td {
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* 谷歌 */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+
+    /* 火狐 */
+    input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .plan * {
+      font-size: 14px;
+      line-height: 32px;
+    }
+
+
+
+    .icon-icon-link {
+      color: #35A3F7;
+    }
+
+    .items {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .items .input {
+      height: 32px;
+      width: 100%;
+      border: 1px solid #D9D9D9;
+    }
+
+    .items .inputTime {
+      font-size: 0;
+    }
+
+    .items .inputTime .inputBox {
+      position: relative;
+      display: inline-block;
+      width: 49%;
+      font-size: 14px;
+    }
+
+    .items .inputTime .inputBox:nth-child(2) {
+      margin-left: 2%;
+    }
+
+    .items .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .items .topicBtns {
+      position: absolute;
+      right: -96px;
+      height: 32px;
+      width: 96px;
+      top: 0;
+      display: block;
+      font-size: 0;
+      cursor: pointer;
+    }
+
+    .items .topicBtns .itbtn {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 18px;
+      text-align: center;
+      height: 25px;
+      width: 32px;
+    }
+
+    .inputName {
+      width: 181px;
+    }
+
+    .inputTime {
+      width: 355px;
+    }
+
+    .tipsBox {
+      background-color: #FFF1F0;
+      border: 1px solid #FFA39E;
+      border-radius: 5px;
+      padding: 20px;
+      display: flex;
+      font-size: 14px;
+      line-height: 32px;
+    }
+
+    .tipsBox .iconfont {
+      color: #F5222D;
+      font-size: 25px;
+    }
+
+    .tips-content {
+      margin-left: 10px;
+    }
+
+    .tipsBox .title {
+      font-size: 16px;
+      color: rgba(0, 0, 0, .65);
+      line-height: 26px;
+    }
+
+    .tipsBox .titleSmall {
+      color: rgba(0, 0, 0, .43);
+    }
+
+    .contentTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .contentTable thead th {
+      border-top: 2px solid #89b2ec;
+      height: 40px;
+      line-height: 38px;
+      background-color: #f4f4f4;
+      text-align: center;
+      color: #212121;
+      font-size: 14px;
+    }
+
+    .contentTable tbody td {
+      height: 40px;
+      line-height: 38px;
+      text-align: center;
+      color: #212121;
+      font-size: 14px;
+      border-bottom: 1px solid #d2d2d2;
+    }
+
+    .form-view {
+      height: 550px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .contentTable .active {
+      background-color: #1ABC9C;
+    }
+
+    .contentTable .active td {
+      color: #fff;
+    }
+
+    .searchform {
+      margin: 0;
+      padding: 20px 20px 0;
+    }
+
+    .pager {
+      margin: 20px auto;
+    }
+
+    .keywordlist {
+      margin: 20px 0;
+    }
+
+    .signword {
+      position: relative;
+      border: 1px solid #c9c9c9;
+      background-color: #f6f6f6;
+      color: #3c3b3b;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 28px;
+      height: 30px;
+      padding: 0 25px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+      margin-top: 15px;
+    }
+
+    .signword i {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      margin-top: -14px;
+      margin-right: -8px;
+    }
+
+    .form_item_head .checkbox .checkbox-input {
+      position: absolute;
+      left: -999em;
+    }
+
+    .form_item_head .checkbox .text {
+      font-size: 15px;
+      color: #89898E;
+    }
+
+    .checkbox .icon::before {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .cooperationBox {
+      margin: 0 22px;
+      font-size: 14px;
+      width: 90%;
+      background-color: #fff;
+      z-index: 9;
+      border: 1px solid rgba(242, 242, 242, 1);
+      padding: 20px;
+    }
+
+    .cooperation_list {
+      display: inline-block;
+      vertical-align: top;
+      width: 529px;
+    }
+
+    .selectList {
+      display: inline-block;
+      vertical-align: top;
+      width: 309px;
+      border: 1px dashed #000;
+      padding: 10px;
+      color: #666666;
+    }
+
+    .selectList_body {
+      margin-top: 20px;
+    }
+
+    .selectList_body span {
+      cursor: pointer;
+      height: 26px;
+      background: inherit;
+      background-color: rgba(247, 247, 247, 1);
+      box-sizing: border-box;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgba(217, 217, 217, 1);
+      border-radius: 4px;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      font-family: 'Microsoft Tai Le';
+      font-weight: 400;
+      font-style: normal;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.647058823529412);
+      line-height: 22px;
+      padding: 0px 8px;
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .cooperation {
+      margin-top: 10px;
+    }
+
+    .cooperation>label,
+    .cooperation>input,
+    .cooperation>i {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .cooperation>label {
+      width: 70px;
+      padding-right: 10px;
+      text-align: right;
+    }
+
+    .form_table .ipt {
+      width: 100%;
+    }
+
+    .form_table .select {
+      width: 100%;
+    }
+
+    .form_table .select:after {
+      right: 1px;
+    }
+
+    .form_table .ipt .cooperation>input {
+      font-size: 14px;
+      width: 80%;
+    }
+
+    .cooperationOff {
+      text-align: center;
+      padding: 10px 10px 0;
+    }
+
+    .cooperationOff .icon {
+      margin-right: 5px;
+    }
+
+    .cooperationOff .icon,
+    .cooperationOff span {
+      cursor: pointer;
+      color: #00B653;
+    }
+
+
+
+    .form_table .ipt input {
+      font-size: 14px;
+    }
+
+    .icon-create-time {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      cursor: pointer;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 0;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQwIDc5LjE2MDQ1MSwgMjAxNy8wNS8wNi0wMTowODoyMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTg3MTM5QTY2MTc5MTFFOEEwQjJGRkYyQTBDRTM0QjkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkQwM0NGMDQ2MTdBMTFFOEEwQjJGRkYyQTBDRTM0QjkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1ODcxMzlBNDYxNzkxMUU4QTBCMkZGRjJBMENFMzRCOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1ODcxMzlBNTYxNzkxMUU4QTBCMkZGRjJBMENFMzRCOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoVzpMgAAAEPSURBVHjaYmxoaGCAATExyf8w9qtXzxkZsABcapiAEgwwDAKZmWkwDVgxLjVMQP5hIP4PxcjgPw6MTc1hkEE2DJQDGyYGKgHGadNm/qeGQVRzEQvMZRSa85/qLsIJgGlGCBqzDg8ePLTds2ffs9+/f/sTNMjf30dASkrKGci0h2IdUFg+ffqMYc+eve9///6TSVRgb968bfXdu/fWAJm5QKwHUvPkyROG7dt3vAUa4gLknyHKoH///qXt3r334e3bd8D8R48eAw3Z9RpqyDlSwuj+////7ffu3b//1avXilevXnv19+9fkFevkJOOHoIMu3Tp8mGgIQ6EDCEUa4+B2G5AUvYRLMUDqeAoQIABAMKseRwm2ZWgAAAAAElFTkSuQmCC);
+    }
+
+    .inputBox .icon-create-time {
+      right: 6px;
+      top: 6px;
+    }
+
+    .btn-addItem {
+      height: 50px;
+      border: 1px dashed #D9D9D9;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+
+    .btn-link {
+      color: #35A3F7;
+      background-color: #F2F2F2;
+      height: 26px;
+      line-height: 26px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    .checkbox .icon-tianjiajiahaowubiankuang,
+    .btn-addItem .icon-tianjiajiahaowubiankuang {
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      font-size: 25px;
+      font-weight: bold;
+      color: #00B653;
+      height: 25px;
+      margin-right: 10px;
+    }
+
+    .btn-addItem span {
+      line-height: 50px;
+      font-size: 15px;
+      color: #89898E;
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type="conference"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http'></buyer-left>
+        <div class="crumbs">
+          <a href="/activity/index.html">活动中心</a>
+          <a href="index.html?code=001.004.002.001">投票管理</a>
+          <span>创建投票</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="userform active valiform">
+              <div class="form_title"> 系列活动发布 </div>
+              <table border="0" cellpadding="5" cellspacing="5" class="form_table">
+                <tr v-cloak v-if="formData.auditSituation">
+                  <td colspan="3">
+                    <div class="tipsBox">
+                      <div v-if="formData.auditSituation === '02'">
+                        <i class="iconfont icon-cuowu"></i>
+                      </div>
+                      <div v-if="formData.auditSituation === '01'">
+                        <i class="iconfont icon-gou"></i>
+                      </div>
+                      <div class="tips-content">
+                        <div class="title" v-text="formData.auditSituationDisplay"></div>
+                        <div class="titleSmall" v-text="formData.noPassReason || ''"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>主标题：</th>
+                  <td>
+                    <div class="ipt name">
+                      <input maxlength="200" v-model="formData.title" type="text" class="required"
+                        data-valid="isNonEmpty||maxLength:200" data-error='活动名称不能为空||内容过长'>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <th>关键字：</th>
+                  <td>
+                    <div class="ipt name">
+                      <input maxlength="200" v-model="formData.keyWord" type="text">
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>标签：</th>
+                  <td>
+                    <ly-code-mulselect v-model="formData.topicCustomTag" class='select required'
+                      data-valid="custom:bindActiveTagValid" code='topic_custom_tag' index='expslt'>
+                    </ly-code-mulselect>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <th>涉及行业：</th>
+                  <td>
+                    <div class="select" style="border:0">
+                      <ly-select-level class="select level" v-model="formData.industry">
+                      </ly-select-level>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>活动时间：</th>
+                  <td class='required' data-valid="custom:bindActiveTimeValid">
+                    <div class="ipt name" style="width: 48%;">
+                      <input id="time" readonly type="text" placeholder="活动开始时间">
+                      <label for="time" class="icon-create-time"></label>
+                    </div>
+                    <div class="ipt name" style="width: 48%;margin-left: 4%;">
+                      <input id="time1" readonly type="text" placeholder="活动结束时间">
+                      <label for="time1" class="icon-create-time"></label>
+                    </div>
+                  </td>
+                  <td ref="atimeMsg" class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>宣传封面：</th>
+                  <td>
+                    <img-uploader class='required' data-valid="custom:bindActiveImgValid" :option="imgOption"
+                      :title="formData.posterId ? '修改' : '上传'">
+                      <template v-slot:namediv>
+                        <div class="icon-image-add" :class="{on: formData.posterId}" ref="bgImg"></div>
+                      </template>
+                    </img-uploader>
+                    <div style="font-size: 14px;width: 472px;float: right;">
+                      <div style="color: #02B348">温馨提示：</div>
+                      <p style="color: #9A9BBE">1、图片尺寸690*460，.jpg或.png格式，不超过4M</p>
+                      <p style="color: #9A9BBE">2、精美图片有助于增加报名量！</p>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>主办单位：</th>
+                  <td>
+                    <div class="ipt name required" data-valid="custom:bindSponsorValid">
+                      <input maxlength="50" class="expipt" style="width: 70%;margin-right: 5%;" type="text"
+                        v-model='keywordVal'>
+                      <button class="exbtn inputbox-button" @click='handleAddKeywordClick'>增加</button>
+                      <ul class="keywordlist" style="font-size: 14px;">
+                        <li class="signword" v-for='(item,index) in formData.sponsor' v-cloak>
+                          <i class="iconfont icon-shanchuguanbicha2" @click="handleDelKeywordClick(index)"></i>
+                          <span v-text='item'></span>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <th></th>
+                  <td>
+                    <div class="ipt name required" data-valid="custom:bindCooperationValid">
+                      <div class="form_item_head" v-show="!isOpenCooperation"
+                        style="text-align: center;height: 83px; border: 1px solid rgba(242, 242, 242, 1);">
+                        <label class="checkbox" for="isOpenCooperation">
+                          <input class="checkbox-input" id="isOpenCooperation" :true-value="1" :false-value="0"
+                            type="checkbox" v-model="isOpenCooperation">
+                          <i class="icon iconfont icon-tianjiajiahaowubiankuang"></i>
+                          <span class="text" style="line-height: 83px;"
+                            v-text="formData.cooperation.length ? '点击查看合作单位信息' : '如果需要添加合作单位，请添加；若没则跳过'"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <td colspan="3">
+                    <div class="ipt" style="width: 100%;">
+                      <div class="cooperationBox" v-show="isOpenCooperation">
+                        <div class="cooperationBox2">
+                          <div class="cooperation_list">
+                            <div style="color:#AAAAAA;">未设置，可从右侧选择</div>
+                            <template v-for="(opt, index) in formData.cooperation">
+                              <div :key="index" class="cooperation">
+                                <label v-text="opt.cooperationTypeDisplay"></label>
+                                <input type="text" v-model='opt.cooperationName'
+                                  :placeholder="'请填写'+opt.cooperationTypeDisplay+'，可添加多个'">
+                                <i @click="handleDelCooperation(index)" class="iconfont icon-cuowu"></i>
+                              </div>
+                            </template>
+                          </div>
+                          <div class="selectList">
+                            <div class="selectList_title">常用项</div>
+                            <div class="selectList_body">
+                              <template v-for="(opt, index) in options.cooperation_type">
+                                <span :key="opt.id" :data-name="opt.display" :data-type="opt.value"
+                                  @click="handleAddCooperation" v-text="opt.display"></span>
+                              </template>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cooperationOff" @click="isOpenCooperation = false">
+                          <i class="icon iconfont icon-icon--"></i><span>收起表单</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>活动介绍：</th>
+                  <td>
+                    <div class="ipt name required" ref="professionEl" data-valid="custom:bindCustomprofession"
+                      style="width: 100%;">
+                      <vue-ueditor-wrap v-model="formData.activeText" :config="ueditorConfig" class="exptextarea">
+                      </vue-ueditor-wrap>
+                    </div>
+                  </td>
+                  <td ref="professionMsg" class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <th>活动计划：</th>
+                  <td class="plan">
+                    <template v-for="(topic,index) in formData.topicDtls">
+                      <div class="items">
+                        <div class="row">
+                          <div class="inputName"><input class="input required" :readonly="topic.activeId ? true : false"
+                              v-model="topic.activeName" type="text" placeholder="*名称" data-valid="isNonEmpty"
+                              data-error='计划信息不能为空'></div>
+                          <span>--</span>
+                          <div class="inputTime">
+                            <div class="inputBox" v-show="!topic.isNeverExpires">
+                              <input class="input" data-valid="isNonEmpty" data-error='计划信息不能为空' :data-index="index"
+                                :id="'plantime-start-' + index" readonly type="text" :value="topic.activeStartTime"
+                                placeholder="开始活动时间">
+                              <label v-if="!topic.activeId" :for="'plantime-start-' + index"
+                                class="icon-create-time"></label>
+                            </div>
+                            <div class="inputBox" v-show="!topic.isNeverExpires">
+                              <input class="input" data-valid="isNonEmpty" data-error='计划信息不能为空' :data-index="index"
+                                :id="'plantime-end-' + index" readonly type="text" :value="topic.activeEndTime"
+                                placeholder="结束活动时间">
+                              <label v-if="!topic.activeId" :for="'plantime-end-' + index"
+                                class="icon-create-time"></label>
+                            </div>
+                            <span class="plan" v-show="topic.isNeverExpires">随到随学</span>
+                          </div>
+                        </div>
+                        <div class="row"><input class="input required" data-valid="isNonEmpty" data-error='计划信息不能为空'
+                            :readonly="topic.activeId ? true : false" v-model="topic.activeAddress" type="text"
+                            placeholder="活动地址"></div>
+                        <!-- <div class="btn-link" @click.stop="handleOpenDialog(index)">
+                          <i class="icon iconfont icon-icon-link"></i> <span>关联活动</span>
+                        </div> -->
+                        <div class="topicBtns">
+                          <div class="itbtn" @click.stop="handleDelPlan(index)">
+                            <i class="iconfont icon-cuowu"></i>
+                          </div>
+                          <div v-if="index" class="itbtn" @click.stop="handlePrevPlan(index)">
+                            <i class="iconfont icon-shangjia"></i>
+                          </div>
+                          <div v-if="index < topicDtlsLength" class="itbtn" @click.stop="handleNextPlan(index)">
+                            <i class="iconfont icon-xiajia"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                    <div class="btn-addItem" @click.stop="handleAddPlan">
+                      <i class="icon iconfont icon-tianjiajiahaowubiankuang"></i><span>添加活动安排</span>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+              </table>
+            </div>
+            <!--/所有订单-->
+          </div>
+          <div class="btnBox">
+            <button class="btn" type="button" @click="handleBack">取消</button>
+            <button class="btn" type="button" @click="handleInsert"
+              :disabled="isSubmitDisabled || type === 'view'">保存草稿</button>
+            <button class="btn primary" type="button" @click="handleSubmit"
+              :disabled="isSubmitDisabled || type === 'view'">提交审核</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cover " type="confirm2-0" style="z-index: 100000" v-cloak v-show="isShowLinks">
+      <div class="ctr">
+        <div class="cover-box" style="width:900px;max-height: 90%;">
+          <div class="form-title"><span class="active">活动列表</span><span @click.stop="handleCloseDialog"
+              class="close">X</span></div>
+          <!--搜索框-->
+          <div class="searchform">
+            <div class="searchrow normal">
+              <label><span>关键字</span>
+                <div class="ipt" style="width: 292px;"><input type="search" v-model="queryForm.title" placeholder="请输入">
+                </div>
+              </label>
+              <label style="margin: 0 2%;">
+                <span>活动类型</span>
+                <div class="select">
+                  <select v-model="queryForm.activeType" placeholder="请选择">
+                    <option :value="opt.value" v-for="opt in options.active_type" :key="opt.id">{{opt.display}}
+                    </option>
+                  </select>
+                </div>
+              </label>
+              <label style="width: 70%;">
+                <span>活动时间</span>
+                <div class="ipt inputBox" style="width: 40%;">
+                  <input type="text" id="querytime" readonly placeholder="开始时间">
+                  <label for="querytime" class="icon-create-time"></label>
+                </div>
+                <div class="ipt inputBox" style="width: 40%;margin-left: 4%;">
+                  <input type="text" id="querytime1" readonly placeholder="结束时间">
+                  <label for="querytime1" class="icon-create-time"></label>
+                </div>
+              </label>
+              <button type="button"
+                style="background-color: #1890FF;border-color: #1890FF;border-radius: 5px; float: right;"
+                @click="getOrderList">搜索</button>
+            </div>
+          </div>
+          <!--/搜索框-->
+          <div class="form-view">
+            <table class="contentTable">
+              <colgroup>
+                <col v-for="(col, index) in columnHead" :key="index" :width="col.displayWeight">
+              </colgroup>
+              <thead>
+                <th v-for="(col, index) in columnHead" :key="index" :style="{width: col.displayWeight+ 'px'}"
+                  v-text="col.columnName"></th>
+              </thead>
+              <div>
+                <tbody>
+                  <tr v-for="(order, oi) in orderList" :key="oi" :class="{ active: order.checked}">
+                    <td> <input type="checkbox" v-model="selectId" :value="oi">
+                    </td>
+                    <td v-text="order.title"></td>
+                    <td v-text="order.activeTypeDisplay"></td>
+                    <td v-text="order.statusDisplay"></td>
+                    <td v-html="(order.activeStartTime || '') + ' <BR> ' + (order.activeEndTime|| '')"></td>
+                    <td v-text="order.industryNames"></td>
+                  </tr>
+                </tbody>
+              </div>
+            </table>
+            <!--分页-->
+          </div>
+          <div class="pager" v-cloak>
+            <a @click='pageClick(1)'>[首页]</a>
+            <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+            <a @click='pageClick(item)' v-for='item in pages' v-text='item' :class="{active: item == queryForm.pageNum}"
+              v-if='isShowPage(item)'></a>
+            <a v-if='isMore()'>...</a>
+            <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+            <a @click='pageClick(pages)'>[末页]</a>
+            <span>[共<span v-text='pages'></span>页]</span>
+            <span>[共<span v-text='queryForm.total || 0'></span>条]</span>
+          </div>
+          <!--/分页-->
+          <div class="form-view_button btnBox"><button class="btn" @click.stop="handleSelectItem"
+              type="button">确认</button><button class="btn" type="button" @click.stop="handleCloseDialog">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/vote/add.js"></script>
+</body>
+
+</html>

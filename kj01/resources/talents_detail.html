@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源科技人才详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/resources.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <sources-head :breadcrumb="breadcrumb" :bottom-Border="true" :nav-index="3"></sources-head>
+      <div data-talents class="content">
+        <template v-if="detail">
+          <div class="mdiv">
+            <div class="briefBox">
+              <div class="brief">
+                <div class="item-img img" :style="detail.styles"><img v-if="detail.itemImg" :src="detail.itemImg"
+                    :alt="detail.name"><span>{{detail.name|firstWord}}</span></div>
+                <div class="brief-info">
+                  <div class="name">
+                    <div class="name-name">{{detail.name}}</div>
+                    <div class="label">
+                      <div class="green">{{detail.type}}</div>
+                    </div>
+                  </div>
+                  <ul class="list">
+                    <li v-if="detail.org"><span class="vaMiddle iconfont icon-qiye"></span><span
+                        class="vaMiddle line line80" :title="detail.org">{{detail.org}}</span></li>
+                    <li v-if="detail.titles"><span class="vaMiddle iconfont icon-biaoqian1"></span><span
+                        class="vaMiddle line line80" :title="detail.titles">{{detail.titles}}</span></li>
+                    <li v-if="false"><span class="vaMiddle iconfont icon-jingjiren1"></span><span
+                        class="vaMiddle line line80"></span></li>
+                    <li v-if="detail.fields.length"><span class="vaMiddle iconfont icon-hangye1"></span><span
+                        class="vaMiddle line forloop" :title="detail.field"><template v-for="field in detail.fields">
+                          <span>{{field}}</span>
+                        </template></span>
+                    </li>
+                  </ul>
+                </div>
+                <!-- 已关注 添加active-->
+                <div v-if="false" class="attention"><span class="iconfont icon-shoucangdansexian"></span><span>关注</span>
+                </div>
+                <!-- 已关注样式 -->
+                <div v-if="false" class="attention" style="display: none;"><span
+                    class="iconfont icon-shoucangdansexian"></span><span>已关注</span></div>
+              </div>
+              <div class="tag">
+                <div class="label">
+                  <template v-for="(impres, i) in detail.impress">
+                    <div v-if="i<6" :class="{green: i%3 === 0 , blue: i%3 === 1, yellow: i%3 === 2}">{{impres}}</div>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <div data-container class="container">
+              <div class="searchMainkey boxShadow" :class="{fixed: isFixed}">
+                <div>
+                  <template v-for="(hashNav, i) in pageNavs">
+                    <span v-if="hashNav.isShow" @click.stop="handSetPageNavActive(i)" class="mainKey"
+                      :class="{active: hashNav.active}"><a :href="hashNav.hashUrl">{{hashNav.label}}</a></span>
+                  </template>
+                </div>
+              </div>
+              <div class="details">
+                <div class="detail" v-if="false">
+                  <div class="details-title">
+                    <div class="name"><a name="专家介绍"></a>专家介绍</div>
+                  </div>
+                  <div class="text">
+                    <p>简介:结构工程和力学专家,福建金门人,
+                      2007年当选为奥地利科学院外籍院士，2009年当选为中国工程院院土。现任重庆大学土木学院荣誉院长、台大名誉教授、中华工程教育学会(IEET)认证委员会主任委员、 国际SCI
+                      期刊International Journal of Structural Stability and Dynamics (JSSD)主编、 多个SCI期刊的编委、
+                      及两个国际学术组织的主席。现任重庆大学土木学院荣誉院长、台大名誉教授、中华工程教育学会(IEET)认证委员会主任委员、 国际SCI| 期刊International Journal of
+                      Structural
+                      Stability and Dynamics (JSSD)主编、 多个SCI期刊的编委、 及两个国际学术组织的主席。</p>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name"><a name="代表论文"></a>代表论文</div>
+                  </div>
+                  <div class="tablecell">
+                    <ul class="row">
+                      <li class="w940">论文名称</li>
+                      <li class="w140">发表时间</li>
+                    </ul>
+                    <template v-for="(paper, i) in detail.papers">
+                      <ul class="cloumn">
+                        <li class="w940">{{paper.name}}</li>
+                        <li class="w140">{{paper.date}}</li>
+                      </ul>
+                    </template>
+                  </div>
+                </div>
+                <div class="detail" style="margin-top: 2px;">
+                  <div class="details-title">
+                    <div class="name"><a name="科技成果"></a>专利</div>
+                  </div>
+                  <div class="tablecell">
+                    <ul class="row">
+                      <li class="w100">序号</li>
+                      <li class=w380>名称</li>
+                      <li class="w180">专利类型</li>
+                      <li class="w210">公开（公告）号</li>
+                      <li class="w210">公开（公告）日期</li>
+                    </ul>
+                    <template v-for="(patent, i) in detail.patents">
+                      <ul class="cloumn">
+                        <li class="w100">{{i+1}}</li>
+                        <li class=w380>{{patent.name}}</li>
+                        <li class="w180">{{''}}</li>
+                        <li class="w210">{{patent.pub}}</li>
+                        <li class="w210">{{patent.date}}</li>
+                      </ul>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/resources/talents_detail.js"></script>
+</body>
+
+</html>

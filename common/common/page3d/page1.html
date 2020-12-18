@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>全景展示</title>
+<style>
+	body {
+		margin: 0;
+		overflow: hidden;
+	}
+</style>
+
+</head>
+
+<body>
+	<div id="panoramaConianer"></div>
+	<script src="three.js"></script>
+	<script src="tpanorama.js"></script>
+	<script>
+		var opt, tp;
+		window.onload = function () {
+			opt = {
+				container: 'panoramaConianer',//容器
+				url: 'sphere.jpeg',
+				lables: [
+					{position:{ lon: -171.94, lat: -12.19}, logoUrl:'icons/l1.png', text: '空调',uid:0 },
+					{position:{ lon: -153.31, lat: -3.55}, logoUrl:'icons/l2.png', text: '软质内饰',uid:1 },
+					{position:{ lon: 156.9, lat: -6.94}, logoUrl:'icons/l3.png', text: '仪表盘',uid:2 },
+					{position:{ lon: 160.75, lat: -29.75}, logoUrl:'icons/l4.png', text: '座椅',uid:3 }
+				],
+				widthSegments: 60,//水平切段数
+				heightSegments: 40,//垂直切段数（值小粗糙速度快，值大精细速度慢）
+				pRadius: 1024,//全景球的半径，推荐使用默认值
+				minFocalLength: 6,//镜头最小拉近距离
+				maxFocalLength: 100,//镜头最大拉近距离
+				sprite: 'icon',
+				startAngle:3.1415926,//一周为2*PI
+				onClick:onClick
+			}
+			tp = new tpanorama(opt);
+		}
+		function onClick(obj) {
+			window.parent.changeTab(obj.object.uid);
+	}
+	</script>
+</body>
+</html>

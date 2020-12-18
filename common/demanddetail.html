@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>需求详情-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/main.css" rel="stylesheet">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box" v-cloak>
+    <div class="header">
+      <ly-toper :top-class="topClass"></ly-toper>
+      <ly-header :active-index="2" :apend-menu="apendMenu"></ly-header>
+      <!--<menu class="search-menu clear">
+        <li v-for="(column, i) in columns" :class="{active: column.type === 'demand'}">
+          <a :href="column.url" v-text="column.label"></a></li>
+      </menu>-->
+      <div v-show="!issep" class="line-sep"></div>
+      <div class="crumbs">
+        <div class="mdiv"><strong>你现在的位置：</strong>
+          <a :href="searchUrl">
+            需求搜索
+          </a>
+          <span>需求详情</span></div>
+      </div>
+    </div>
+    <div class="mdiv clear" style="margin-top: 21px;">
+      <div class="demandinfo fl">
+        <div class="infoBox">
+          <div class="baseinfo">
+            <h1 class="baseinfo-title"><span v-text="infos.title"></span><small
+                v-text="infos.residueDay > 0 ? '离截止还有' + infos.residueDay + '天' : '已截止'"></small></h1>
+            <ul class="params">
+              <li>预算金额：<span class="font-orange price" v-text="(infos.budget || '')+'元'"></span></li>
+              <li>中标模式：<span v-text="'1人中标'"></span></li>
+            </ul>
+            <ul class="line">
+              <li v-if="infos.demandTypeDisplay"><i class="iconfont icon-4leixing font-orange"></i><span
+                  :title="infos.demandTypeDisplay" v-text="infos.demandTypeDisplay"></span></li>
+              <li v-if="infos.tagNames"><i class="iconfont icon-gongwenbao font-orange"></i><span
+                  :title="infos.tagNames" v-text="infos.tagNames"></span>
+              </li>
+              <li v-if="infos.provinceDisplay"><i class="iconfont icon-dingwei font-orange"></i><span
+                  :title="infos.provinceDisplay + (infos.cityDisplay||'') + (infos.districtDisplay||'')"
+                  v-text="infos.provinceDisplay + (infos.cityDisplay||'') + (infos.districtDisplay||'')"></span>
+              </li>
+              <li v-if="infos.stageDisplay"><i class="iconfont icon-3lishi font-orange"></i><span
+                  :title="infos.stageDisplay" v-text="infos.stageDisplay"></span></li>
+              <li v-if="infos.demandCaseDisplay"><i class="iconfont icon-wenhao font-orange"></i><span
+                  :title="infos.demandCaseDisplay" v-text="infos.demandCaseDisplay"></span>
+              </li>
+              <li v-if="infos.cooperationModeDisplay"><i class="iconfont icon-hezuoqudao font-orange"></i><span
+                  :title="infos.cooperationModeDisplay" v-text="infos.cooperationModeDisplay"></span>
+              </li>
+            </ul>
+            <div class="progress info-progress" :class="{noActive: infos.status === '07' || infos.status === '08'}">
+              <div class="background">
+                <ul>
+                  <li v-for="step in steps" :class="{active: step.selected}">
+                    <div class="background-item">
+                      <div v-text="step.label"></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="btnBox" v-if="!code">
+              <button type="button" @click="handleOpenBid"
+                :disabled="(infos.status !== '01' && infos.status !== '02') || infos.residueDay <= 0">我要投标</button><button
+                type="button" @click="handleOpenAdvisoryBox">在线咨询</button>
+            </div>
+          </div>
+        </div>
+        <div class="infoBox">
+          <div class="cnttab">
+            <span v-for="(tab, i) in tabs" :key="i" @click="selecedTab(i)"
+              :class="{active: tab.selected,hide:!infos.profession && i === 3}" v-text="tab.label"></span>
+          </div>
+          <div class="cnt_itemList">
+            <div class="cnt cnt_item">
+              <template v-if="tabs[0].selected">
+                <div class="article" v-html="infos.comment"></div>
+              </template>
+              <template v-if="tabs[1].selected">
+                <div class="article" v-html="infos.requirement"></div>
+              </template>
+              <template v-if="tabs[2].selected">
+                <div>
+                  <ul class="downlist">
+                    <li class="down" v-for="(file, i) in infos.files" key="i" @click="fileSaveAs(i)">
+                      <span class="fr" style="width: 60px;"><i class="iconfont icon-xiajia fr"></i></span>
+                      <span style="width: 720px;"><i class="iconfont icon-icon-link mr5"></i><span
+                          style="display: inline-block;width: 680px;text-overflow: ellipsis; white-space: nowrap;overflow: hidden;vertical-align: middle;"
+                          :title="file.name" v-html="file.name"></span></span>
+                    </li>
+                  </ul>
+                </div>
+              </template>
+              <template v-if="tabs[3].selected">
+                <div v-if="infos.profession" class="article" v-html="infos.profession"></div>
+              </template>
+            </div>
+          </div>
+        </div>
+        <div class="toubiao">
+          <span>参与投标</span>
+        </div>
+        <div class="infoBox" v-if="infos.bids.length">
+          <!-- <div class="filters">
+            <span class="fr">共<span v-text="infos.bids.length">3</span>人</span>
+            <span class="filter active">投标时间</span>
+            <span class="filter">信誉</span>
+          </div> -->
+          <div class="list">
+            <div class="item" v-for="bidder in infos.bids">
+              <div class="bidder">
+                <i v-if="bidder.bidFlag === '1'" class="iconfont icon-zhong bidder-winbidding"></i>
+                <span class="fr bidder-tag" :class="{'font-orange': bidder.bidFlag === '1', gray: isselectedBid }"
+                  v-text="!isselectedBid ? '待选标' : bidder.bidFlag === '1' ? '恭喜中标' : '未中标'"></span>
+                <div class="bidder-head">
+                  <img :src="bidder.userLogo || '/common/images/defaultImg/default.gif'" :alt="bidder.userName">
+                </div>
+                <div class="bidder-baseInfo">
+                  <h5 v-text="bidder.userName"></h5>
+                  <small v-text="'投标时间：' + bidder.createDate"></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar fr">
+        <div class="bannera">
+          <img src="/common/images/demandbanner.jpg" alt="">
+        </div>
+        <div class="card">
+          <div class="card-title"><span>需求推荐</span> <a href="/searchList.html?type=demand&word=&page=1">更多&gt;</a>
+          </div>
+          <div class="card-body">
+            <ul class="card-list">
+              <li v-for="rec in recommends"><a :href="'/common/demanddetail.html?id=' + rec.id" :title="rec.title"
+                  v-text="rec.title"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+    <div class="cover close" :class="{open: isBid}">
+      <div class="ctr">
+        <div class="form-box">
+          <div class="form-title">
+            <span class="active">发起投标</span>
+          </div>
+          <div class="form-view">
+            <table class="table bidform" style="width: 100%;">
+              <tbody>
+                <tr>
+                  <th>需求标题：</th>
+                  <td v-text="infos.title" :title="infos.title"
+                    style="display: inline-block;width: 157px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">
+                    需求标题xxx</td>
+                  <th>需求类别：</th>
+                  <td v-text="infos.demandTypeDisplay">需求标题xxx</td>
+                  <th>面向地区：</th>
+                  <td
+                    v-text="(infos.provinceDisplay || '') + (infos.cityDisplay || '') + (infos.districtDisplay || '')">
+                    需求标题xxx</td>
+                </tr>
+                <tr>
+                  <th>所属行业：</th>
+                  <td v-text="infos.tagNames" :title="infos.tagNames"
+                    style="display: inline-block;width: 157px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">
+                    需求标题xxx</td>
+                  <th>截止日期：</th>
+                  <td v-text="infos.endDate">需求标题xxx</td>
+                  <th>需求预算：</th>
+                  <td v-text="infos.budget + ' 元'">需求标题xxx</td>
+                </tr>
+                <tr>
+                  <th><label class="must">*</label>竞标金额：</th>
+                  <td colspan="2"><label class="unit">元</label><input class="inputbox-min required"
+                      data-valid="isNonEmpty" maxlength="10" data-error='竞标金额不能为空' v-model="bidData.amount"
+                      type="number" min="0"><span class="vlt form_msg"></span></td>
+                  <th><label class="must">*</label>任务周期：</th>
+                  <td colspan="2"><label class="unit">天</label><input class="inputbox-min required"
+                      data-valid="isNonEmpty" maxlength="10" data-error='任务周期不能为空' v-model="bidData.estimatePeriod"
+                      type="number" min="0"><span class="vlt form_msg"></span></td>
+                </tr>
+                <tr>
+                  <th><label class="must">*</label>技术描述：</th>
+                  <td colspan="5"><textarea class="required"
+                      style="width: 100%; font-family: 'microsoft yahei'; resize: none;" data-valid="isNonEmpty"
+                      maxlength="1000" data-error='技术描述不能为空' v-model="bidData.comment" cols="30"
+                      rows="5"></textarea><span class="vlt form_msg"></span></td>
+                </tr>
+                <tr>
+                  <th>投标人简介：</th>
+                  <td colspan="5"><textarea style="width: 100%; font-family: 'microsoft yahei'; resize: none;"
+                      v-model="bidData.bidderInfo" maxlength="1000" cols="30" rows="5"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th><label class="must">*</label>联系人：</th>
+                  <td colspan="2"><input class="inputbox-min required" data-valid="isNonEmpty" maxlength="20"
+                      data-error='联系人不能为空' v-model="bidData.contacts" type="text"><span class="vlt form_msg"></span>
+                  </td>
+                  <th><label class="must">*</label>联系电话：</th>
+                  <td colspan="2"><input class="inputbox-min required" data-valid="isNonEmpty||isMobile" maxlength="11"
+                      data-error='联系电话不能为空||请填写正确的手机号码' v-model="bidData.phone" type="text"><span
+                      class="vlt form_msg"></span></td>
+                </tr>
+                <!-- <tr>
+                  <th><label class="must">*</label>投标指标：</th>
+                  <td colspan="5">
+                    <table class="table" style="margin-bottom: 0" v-if="bidData.quotaList && bidData.quotaList.length">
+                      <tr v-for="(quota, i) in bidData.quotaList" :key="i">
+                        <th><i class="must">*</i><span v-text="quota.quotaName"></span>：</th>
+                        <td style="width: 500px;">
+                          <input class="inputbox-min required" data-valid="isNonEmpty" maxlength="50"
+                            :data-error="quota.quotaName + '不能为空'" v-model="quota.value" type="text"><span
+                            class="vlt form_msg"></span>
+                        </td>
+                        <td v-text="quota.quotaComment">
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr> -->
+                <tr>
+                  <th>附件上传：</th>
+                  <td colspan="5">
+                    <div class="inputbox">
+                      <label class="exbtn">
+                        <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess'
+                          style="position: absolute;right: 10000px;" type='file' :header='{}' :url='fileUploadUrl'
+                          :data='uploadData'>
+                        </ly-upload>
+                        <span class="exbtn inputbox-button">上传附件</span>
+                      </label>
+                      <span style="color:red; margin-left: 20px;">
+                        附件文件名称最长50个汉字，附件文件大小最大10M
+                      </span>
+                    </div>
+                    <div>
+                      <ul class="filelist">
+                        <li v-for="(item, index) in bidData.fileIds" v-cloak>
+                          <span class="signfile">
+                            <span v-text="item.name"></span>
+                            <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="handleDelFile(index)"></i>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="6" style="text-align: center"><label for="bidDataflag" class="required"
+                      data-valid="custom:customFlag"><input id="bidDataflag" type="checkbox"
+                        v-model="bidData.flag">我已阅读并同意<span @click="handleOpenProtocol">《投标规则》</span></label><span
+                      class="vlt form_msg"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="form-view_button">
+              <button class="form-button_confirm" :disabled="isSubmitDisabled" @click="handleInsertDid">确认</button>
+              <button @click="handleCancel">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/damanddetail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资讯</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/answer.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :nav-index="3" :breadcrumb="breadcrumb" :cms-url="cmsUrl"></sub-head>
+    <div class="answerBox mdiv">
+      <div class="answerDet">
+        <div class="faqbox ask">
+          <div class="qadetail-list_left ask-left">问</div>
+          <div class="ask-right">
+            <div class="ask-right_detail" v-text="detail.ask"></div>
+            <div class="bottom-info ask-right_info">
+              <div class="left-data" v-text="detail.createTime"></div>
+              <div v-text="'访问：'+ detail.visitNumber"></div>
+            </div>
+          </div>
+        </div>
+        <div class="faqbox reply">
+          <div class="qadetail-list_left reply-left">答</div>
+          <div class="reply-right" v-text="detail.answer"></div>
+        </div>
+      </div>
+    </div>
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/answer/qadetail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+.recommend {
+  margin-top: 0;
+}
+.article {
+  width: 870px;
+  background-color: #ffffff;
+  padding: 30px 30px 80px;
+  position: relative;
+}
+
+.article-title{
+	font-size: 20px;
+	line-height: 36px;
+	color: #343334;
+}
+
+.article-source {
+  padding: 30px 0 18px;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0px;
+	color: #999999;
+}
+.article-source .link {
+	color: #018fff;
+}
+.article-source .tag {
+	font-size: 12px;
+	letter-spacing: 0px;
+	height: 18px;
+	padding: 0 4px;
+	border: solid 1px #999999;
+	margin-left: 5px;
+}
+.article-source .iconfont {
+  margin-right: 5px;
+}
+.article-other{
+	background-color: #f5f8fb;
+	border: solid 1px #e6e7f1;
+	padding: 20px;
+	color: #343334;
+}
+.other-row {
+	font-size: 0;
+}
+.other-row .itembox {
+	width: 50%;
+	font-size: 0;
+}
+.other-row .other-label {
+  color: #999999;
+  display: inline-block;
+  line-height: 24px;
+  font-size: 14px;
+  vertical-align: top;
+  min-width: 70px;
+  text-align: right;
+}
+
+.other-row .other-content {
+  width: 690px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 24px;
+  margin-left: 8px;
+  font-size: 14px;
+}
+.other-row .itembox .other-content {
+  width: 293px;
+}
+.article-content {
+	width:100%;
+}
+.unit {
+  margin-right: 10px;
+}
+.article-files {
+  position: relative;
+  margin: 0 -30px 0;
+  padding: 40px 30px 0;
+  border-top: solid 1px #e6e7f1;
+}
+
+.article-files-title .title-text {
+  position: relative;
+  border-left: 4px solid #018fff;
+  font-size: 14px;
+  text-indent: 1em;
+  display: inline-block;
+  line-height: 1.5em;
+}
+
+.article-files-body {
+  padding: 20px;
+}
+.article-file {
+  cursor: pointer;
+}
+.article-file .svg-icon{
+	margin-right:10px;
+	vertical-align: middle;
+}
+.article-file .line{
+	color: #018fff;
+}
+.article-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px 0;
+  display: flex;
+  background-color: #555b76;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.article-bottom.fixed {
+  position: fixed;
+  bottom: 0;
+  width: 870px;
+}
+.article-btns {
+  display: flex
+}
+
+.necessary {
+  background-color: #ffc2c2;
+  cursor: pointer;
+}
+
+.emphasis {
+  cursor: pointer;
+  border-bottom: 1px dashed #ea5a4b;
+}
+
+
+.template {
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.template .list-item {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: solid 1px #e6e7f1;
+}
+
+a.list-item {}
+.template .list-item:first-child {
+  padding-top: 0;
+}
+.template .list-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.template .list-item .list-item-img {
+  width: 90px;
+	height: 60px;
+  background-color: #06060a;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.template .list-item .list-item-text {
+	width: 132px;
+	height: 60px;
+	font-size: 16px;
+	line-height: 20px;
+	color: #343334;
+}
+
+.explain-tips {
+	background-color: #ffffff;
+	box-shadow: 4px 6px 26px 0px 
+		rgba(0, 0, 0, 0.22);
+	border: solid 2px #ea5a4b;
+	padding: 20px;
+	font-size: 14px;
+	line-height: 24px;
+	color: #343334;
+	position: relative;
+}
+.onstate {
+	color: #28c917;
+}
+.printBox {
+  text-align: center;
+  padding: 20px;
+}

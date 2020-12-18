@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>渝快融</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/ykr.css" rel="stylesheet" type="text/css">
+    <style>
+        .listbox-li_img {
+            text-align: center;
+        }
+        .listbox-li_img img {
+            height: auto !important;
+            width: auto !important;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <ly-toper top-class="white" ref="lytoper" :hidenuser='true'></ly-toper>
+    <ly-header :apend-menu="apendMenu"></ly-header>
+    <div class="bannerimg" style="background-image: url(images/background_banner.png)"></div>
+    <div class="mdiv">
+      <div class="container">
+        <!-- <div class="way">
+				<span class="active"><i class="iconfont icon-woyaozhongchou"></i>我要贷款</span>
+				<span><i class="iconfont icon-shoufei"></i>我要贴现</span>
+			</div> -->
+        <div class="sortord">
+          <ul>
+            <template v-for="(item, i) in filters">
+              <li :key="i" @click="handleFilter(i)" :class="{active: item.seleced}"><span v-text="item.label"></span><i
+                  class="iconfont icon-xiala1" :class="{up: item.value}"></i></li>
+            </template>
+          </ul>
+          <template v-if="list.length">
+          <div class="step-div">
+            <div class="step">
+              <div class="step-item">
+                <div>
+                  <img src="images/step1.png">
+                </div>
+                <div>融资需求</div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item">
+                <div>
+                  <img src="images/step2.png">
+                </div>
+                <div>大数据匹配</div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item">
+                <div>
+                  <img src="images/step3.png">
+                </div>
+                <div>在线申请</div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item">
+                <div>
+                  <img src="images/step4.png">
+                </div>
+                <div>对接金融机构</div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item">
+                <div>
+                  <img src="images/step5.png">
+                </div>
+                <div>获得融资</div>
+              </div>
+            </div>
+          </div>
+          </template>
+        </div>
+        <div class="clear listbox">
+          <ul>
+            <template v-if="list.length">
+              <li class="listbox-li" v-for="lists in list">
+                <span class="listbox-li_img">
+                  <img :src="'https://www.datacq.com.cn/ykr_static/bank_logo/' + lists.finCode + '.png'">
+                </span>
+                <span class="listbox-li_cen">
+                  <span class="listbox-li_title" :title="lists.name" v-text="lists.name">至臻贷</span>
+                  <span class="listbox-li_item"><em>• </em>担保方式：<span :title="lists.productTypeName"
+                      v-text="lists.productTypeName"></span></span>
+                  <span class="listbox-li_item"><em>• </em>贷款额度：<span v-if="lists.mSup"
+                      v-text="lists.mSub + '-'+ lists.mSup + '万'"></span></span>
+                  <span class="listbox-li_item"><em>• </em>贷款利率：<span v-if="lists.rSup"
+                      v-text="lists.rSub === lists.rSup ? (lists.rSub + '%') : lists.rSub + '%' + '-' + lists.rSup + '%'"></span></span>
+                  <span class="listbox-li_item"><em>• </em>贷款期限：<span v-if="lists.mtimenumSup"
+                      v-text="lists.mtimenumSub + '-' + lists.mtimenumSup + '个月'"></span></span>
+                  <span class="listbox-li_item"><em>• </em>成功率：
+                    <span class="stars">
+                      <span class="stars-gray">
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                      </span>
+                      <span class="stars-yellow" :title="lists.passRate"
+                        :style="'width:' + Math.round((lists.passRate)*140) + 'px'">
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                        <i class="iconfont icon-guanzhu"></i>
+                      </span>
+                    </span>
+                  </span>
+                </span>
+                <a :href="'detail.html?id=' + lists.id" target="_blank">详情</a>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <div class="pagenumber">
+          <span class="count">共 <span v-text="formData.total"></span> 项产品，当前显示第 <span
+              v-text="(formData.pageNum-1)*8 + 1"></span> - <span
+              v-text="list.length + (formData.pageNum-1) * 8"></span> 项</span>
+          <a @click="pageClick(formData.pageNum - 1)">&lt;</a>
+          <a @click="pageClick(item)" v-for="item in formData.pages" v-text="item"
+            :class="{active: item == formData.pageNum}" v-if="isShowPage(item)">1</a>
+          <a @click="pageClick(formData.pageNum + 1)">&gt;</a>
+          <span class="jump">跳至<input type="text" οninput="value=value.replace(/[^\d]/g,'')"
+              @keyup.enter="pageClick($event)">页</span>
+        </div>
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+.newDetail {
+  margin-top: 30px;
+  background-color: #fff;
+  margin-bottom: 60px;
+}
+.detail-title-Box {
+  padding: 1px 200px 20px;
+  border-bottom: 1px solid #e7e7f1;
+}
+.detail-title-text {
+  font-size: 20px;
+	line-height: 36px;
+	color: #343334;
+}
+.detail-title-other{
+	font-size: 14px;
+	text-align: center;
+	line-height: 34px;
+	color: #999999;
+}
+.detail-title-other .label {
+  margin-right: 20px;
+}
+.detail-contentBox {
+  overflow: hidden;
+  padding: 10px 185px;
+}
+.detail-bottomBox{
+  width: 100%;
+  margin-top: 20;
+  height: 60px;
+  padding: 10px 0;
+  display: flex;
+  background-color: #555b76;
+  color: #fff;
+  justify-content: space-between;
+}

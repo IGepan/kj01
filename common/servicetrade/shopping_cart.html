@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>购物车-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/service.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <div class="header">
+      <ly-toper></ly-toper>
+      <ly-header pagename="购物车" :http="httpCom"></ly-header>
+      <div class="navigation">
+        <div class="mdiv">
+          <span class="nowdz">
+            <i class="iconfont icon-shouye mr10"></i>你现在的位置：购物车 </span>
+        </div>
+      </div>
+    </div>
+    <div class="pb250">
+      <div class="mdiv">
+        <div class="tit">
+          <span>全部商品<i class="titorg" v-text="selecedSumNum"></i></span>
+          <div class="fr">
+            <em class="yxsp mr10">已选商品<i class="titorg" v-text="'￥'+selecedSumPrice"></i></em>
+            <button class="js" type="button" @click="settleAccounts">结算</button>
+          </div>
+        </div>
+        <div class="titheader">
+          <div class="inline w130">
+            <span class="full" @click="selecedFull"><span class="chooseall mr5 inline"
+                :class="{active: isSeletced}"></span><span class="titfl inline">全选</span></span>
+          </div>
+          <div class="inline">
+            <span class="titfl inline w400">商品信息</span>
+          </div>
+          <div class="inline">
+            <span class="titfl inline w190">单价</span>
+          </div>
+          <div class="inline">
+            <span class="titfl inline w160">数量</span>
+          </div>
+          <div class="inline">
+            <span class="titfl inline w120">金额</span>
+          </div>
+          <div class="inline">
+            <span class="titfl inline" style="margin-left: 61px;">操作</span>
+          </div>
+        </div>
+        <template v-for="(shop, i) in cartList" :key="shop.shopId">
+          <div class="school">
+            <div class="inline">
+              <span class="chooseall mr5 inline" :class="{active: shop.isActive}" @click="selecedShopSkus(i)"></span>
+              <span class="schimg inline" v-text="':' + shop.shopName"></span>
+            </div>
+          </div>
+          <ul class="splist">
+            <li v-for="(sku, si) in shop.skus" :key="sku.skuId">
+              <div class="inlinetop">
+                <span class="chooseall mr5 inlinetop" :class="{active: sku.isActive, disabled: !sku.efficacyFlag}"
+                  @click="oneSelecedItem(i, si)"></span>
+                <span class="inlinetop spimg"
+                  :style="'background-image: url(' + (sku.goodsImg.url || 'http://dummyimage.com/94x82') + ')'"></span>
+                <p class="spintro w350 inlinetop" style="display: inline-block; margin: 0">
+                  <a :href="sku.goodsDetailUrl" style="display: inline-block" class="spintro w350 inlinetop"
+                    v-text="sku.goodsName"></a>
+                  <br>
+                  <span style="color:red" v-if="!sku.efficacyFlag">失效</span>
+                </p>
+              </div>
+              <div class="inlinetop w190">
+                <!-- <div class="mtxt textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div> -->
+                <div class="mtxt2 textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div>
+              </div>
+              <div class="inlinetop w190 pl50">
+                <button class="addbtn fl" :disabled="sku.number === 1 || !sku.efficacyFlag"
+                  :class="{low: sku.number === 1}" @click="subtractNumber(i, si)">-</button>
+                <input type="number" class="addnum fl"
+                  onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" :disabled="!sku.efficacyFlag"
+                  v-model="sku.number" value="1">
+                <button class="addbtn fl" :disabled="sku.number === sku.stock || !sku.efficacyFlag"
+                  :class="{low: sku.number === sku.stock}" @click="addNumber(i, si)">+</button>
+              </div>
+              <div class="inlinetop w130 pl20">
+                <div class="titorg"
+                  v-text="'￥' + $options.filters.sumPrice((sku.price !== undefined ? sku.price : sku.minPrice), sku.number)">
+                </div>
+              </div>
+              <div class="inlinetop w130 pl20">
+                <button class="delete lh20 fl pl10" type="button" @click="deleteOne(sku.skuId, i, si)">删除</button>
+              </div>
+              <div class="litips">商品已下架</div>
+            </li>
+          </ul>
+        </template>
+        <div class="titfoot mt25">
+          <div class="inline">
+            <span class="full" @click="selecedFull" style="display: inline-block;"><span class="chooseall mr5 inline"
+                :class="{active: isSeletced}"></span><span class="titfl2 inline">全选</span></span>
+            <button class="titfl2 inline" @click="deleteBatch">批量删除</button>
+          </div>
+          <div class="fr">
+            <span class="titfl2">已选商品<i class="titorg" v-text="selecedSumNum"></i>件</span>
+            <span class="titfl2 ml100">合计:</span>
+            <span class="jg" v-text="'￥' + selecedSumPrice"></span>
+            <button class="jsbtn ml40" type="button" @click="settleAccounts">结算</button>
+          </div>
+        </div>
+<!--        <div class="tit mb20">-->
+<!--          <span>热门推荐</span>-->
+<!--        </div>-->
+<!--        <ul class="hottj">-->
+<!--          <li v-for="item in popularList">-->
+<!--            <a target="_blank" :href="item.goodsDetailUrl" class="skill inline">-->
+<!--              <span class="skillimg"-->
+<!--                :style="'background-image:url(' + (item.goodsImgUrl || 'https://dummyimage.com/218x210') + ')'">-->
+<!--              </span>-->
+<!--              <span class="skilltxt" v-text="item.goodsName"></span>-->
+<!--              <span class="skillbtn">-->
+<!--                <i class="fl skillorg">¥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</i>-->
+<!--                &lt;!&ndash; <i class="focus fr"><span v-text="'(' + item.collectionNum + ')'"></span></i> &ndash;&gt;-->
+<!--              </span>-->
+<!--            </a>-->
+<!--          </li>-->
+<!--        </ul>-->
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+
+</html>

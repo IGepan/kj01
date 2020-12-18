@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>需求详情-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+  <style>
+    p {
+      margin: 0;
+    }
+
+    .noprog li:before,
+    .noprog li:after {
+      display: none !important;
+    }
+
+    .form-view_box {
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a><a
+            href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
+          <span>需求详情</span>
+        </div>
+        <div class="centerbox" style="overflow: hidden;background-color: #fff;display: block;">
+          <!--编辑内容-->
+          <div class="progress" v-if="detailList.logList">
+            <div class="background" :class="{noprog: !detailList.logList[0].opTime}">
+              <ul>
+                <li style="margin-top: -17px" v-for="(log, i) in detailList.logList" :class="{active: log.selected}">
+                  <span v-text="i+1"></span>
+                  <div class="background-item">
+                    <div v-text="log.actionName"></div>
+                    <div class="background-time" v-text="log.opTime"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div style=" background-color: #dcdcdc;padding: 10px 20px;margin: 20px 0;" v-if="detailList.demander === '1'">
+            <span>审核状态：</span>
+            <span style="font-size: 16px;font-weight: 700; color:red;"
+              v-text="detailList.certificationFlagDisplay"></span>
+            <span class="" v-if="detailList.certificationFlag === '04'"
+              v-html="'【未通过原因：' + (detailList.noPassReason ||'') + '】'"></span>
+          </div>
+          <div class="form-view" style="border: 1px solid #bfbfbf;">
+            <!-- <div style="background-color: #dcdcdc;padding: 10px 20px;" v-if="detailList.demander === '1'">
+							<span>审核状态：</span>
+							<span style="font-size: 16px; color:red;" v-text="detailList.certificationFlagDisplay"></span>
+							<span class="" v-html="'【未通过原因：' + (detailList.noPassReason ||'') + '】'"></span>
+							<div class="form-view_box">
+								<h3 class="table-title">审核信息</h3>
+								<div class="" style="padding-left: 150px">
+									<table class="table" style="border-collapse: separate;border-spacing: 15px;font-size: 14px">
+										<tr>
+											<th>审核状态：</th>
+											<td><div style="font-size: 16px; color:red;" v-text="detailList.certificationFlagDisplay"></div></td>
+										</tr>
+										<tr>
+											<th v-if="">未通过原因：</th>
+											<td style="width: 700px">
+												<div v-html="detailList.noPassReason"></div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div> -->
+            <div class="form-view_box">
+              <h3 class="table-title">需求信息</h3>
+              <div class="" style="padding-left: 100px">
+                <table class="table" style="border-collapse: separate;border-spacing: 15px;font-size: 14px">
+                  <tr>
+                    <th>需求标题：</th>
+                    <td v-text="detailList.title"></td>
+                  </tr>
+                  <tr>
+                    <th>需求类型：</th>
+                    <td style="width: 700px">
+                      <div class="inputradio" v-text="detailList.demandTypeDisplay"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>面向地区：</th>
+                    <td>
+                      <div class="selectarea">
+                        <span v-text="detailList.countryDisplay"></span>
+                        <span v-text="detailList.provinceDisplay"></span>
+                        <span v-text="detailList.cityDisplay"></span>
+                        <span v-text="detailList.districtDisplay"></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>需求预算（元）：</th>
+                    <td v-text="(detailList.budget||'')"></td>
+                  </tr>
+                  <tr>
+                    <th>截止日期：</th>
+                    <td v-text="detailList.endDate"></td>
+                  </tr>
+                  <tr>
+                    <th>联系人：</th>
+                    <td v-text="detailList.contacts"></td>
+                  </tr>
+                  <tr>
+                    <th>联系电话：</th>
+                    <td v-text="detailList.phone"></td>
+                  </tr>
+                  <template v-if="detailList.stageDisplay">
+                    <tr>
+                      <th>需求所处阶段：</th>
+                      <td v-text="detailList.stageDisplay"></td>
+                    </tr>
+                    <tr v-if="detailList.demandCaseDisplay">
+                      <th>需求缘由：</th>
+                      <td v-text="detailList.demandCaseDisplay"></td>
+                    </tr>
+                    <tr v-if="detailList.cooperationModeDisplay">
+                      <th>意向合作方式：</th>
+                      <td v-text="detailList.cooperationModeDisplay"></td>
+                    </tr>
+                  </template>
+                  <template v-if="detailList.profession">
+                    <tr>
+                      <th>人才职业描述：</th>
+                      <td>
+                        <div class="inputbox" v-html="detailList.profession"></div>
+                      </td>
+                    </tr>
+                  </template>
+                  <tr>
+                    <th>需求描述：</th>
+                    <td>
+                      <div class="inputbox" v-html="detailList.comment"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>对投标方的要求：</th>
+                    <td>
+                      <div class="inputbox" v-html="detailList.requirement"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style="font-weight: 700">投标指标（自定义）：</th>
+                  </tr>
+                  <tr v-for="quota in detailList.quotaList">
+                    <th v-text="quota.quotaName + '：'"></th>
+                    <td style="display:block;" v-text="quota.quotaComment"></td>
+                  </tr>
+                  <tr>
+                    <th>需求附件：</th>
+                    <td>
+                      <a style="display: block;color: #257bcb" v-for="(file,i) in detailList.fileList" class="inputbox"
+                        v-text="file.name" @click="fileSaveAs(file)"></a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="form-view_box" v-if="!detailList.td10BidUserName == ''">
+              <h3 class="table-title">竞标详情</h3>
+              <div style="padding-left: 100px">
+                <div class="form-padding_item"><b>竞标详情</b></div>
+                <div style="overflow: hidden;display:block">
+                  <table class="table"
+                    style="border-collapse: separate;border-spacing: 15px;font-size: 14px;padding-left: 30px">
+                    <tr>
+                      <th>竞标金额（元）：</th>
+                      <td>
+                        <div v-text="detailList.amount||''"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>解决方案：</th>
+                      <td style="word-wrap: break-word;word-break: break-all;overflow: hidden;"
+                        v-text="detailList.td10Comment"></td>
+                    </tr>
+                    <tr>
+                      <th>任务周期（天）：</th>
+                      <td v-text="detailList.estimatePeriod"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="form-view_box" v-if="!detailList.td10BidUserName == ''">
+              <h3 class="table-title">中标方信息</h3>
+              <div style="padding-left: 100px">
+                <div class="form-padding_item"><b>投标方信息</b></div>
+                <table class="table"
+                  style="border-collapse: separate;border-spacing: 15px;font-size: 14px;padding-left: 7px">
+                  <tr>
+                    <th>投标公司(团队)名称：</th>
+                    <td v-text="detailList.td10BidUserName"></td>
+                  </tr>
+                  <tr>
+                    <th>投标公司(团队)简介：</th>
+                    <td v-text="detailList.bidderInfo"></td>
+                  </tr>
+                  <tr>
+                    <th>投标附件：</th>
+                    <td>
+                      <a style="display: block;color: #257bcb" v-for="(file,k) in detailList.bidFileList"
+                        class="inputbox" v-text="file.name" @click="fileSaveAs(file)"></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>联系人：</th>
+                    <td v-text="detailList.td10Contacts"></td>
+                  </tr>
+                  <tr>
+                    <th>联系方式：</th>
+                    <td v-text="detailList.td10Phone"></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="form-view_box">
+              <h3 class="table-title">其他信息</h3>
+              <div style="padding-left: 100px" v-if="detailList.delayList">
+                <div class="form-padding_item"><b>申请延期（服务商）</b></div>
+                <table class="table"
+                  style="border-collapse: separate;border-spacing: 15px;font-size: 14px;padding-left: 40px"
+                  v-for="(delay,i) in detailList.delayList">
+                  <tr>
+                    <th>延期次数：</th>
+                    <td v-text="'第' + (i+1) +'次'"></td>
+                  </tr>
+                  <tr>
+                    <th>申请延期时间：</th>
+                    <td v-text="delay.delayCreateDate"></td>
+                  </tr>
+                  <tr>
+                    <th>延期天数（天）：</th>
+                    <td v-text="delay.delayPeriod"></td>
+                  </tr>
+                </table>
+              </div>
+              <div style="padding-left: 100px">
+                <div class="form-padding_item"><b>验收信息</b></div>
+                <table class="table"
+                  style="border-collapse: separate;border-spacing: 15px;font-size: 14px;padding-left: 40px">
+                  <tr>
+                    <th>申请验收时间：</th>
+                    <td v-text="detailList.inspectedDate"></td>
+                  </tr>
+                  <tr>
+                    <th>申请验收原因：</th>
+                    <td v-text="detailList.inspectedCase"></td>
+                  </tr>
+                  <tr>
+                    <th>工作成果附件：</th>
+                    <td>
+                      <a style="display: block;color: #257bcb" v-for="(file,b) in detailList.checkFileList"
+                        class="inputbox" v-text="file.name" @click="fileSaveAsCheck(file)"></a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/demand/detail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>我的需求-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a><a
+            href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
+          <span>我的需求</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="active">
+              <!--搜索框-->
+              <div class="searchform">
+                <div class="searchrow normal">
+                  <label><span>关键字：</span>
+                    <div class="ipt"><input type="search" v-model="queryForm.keyWord" placeholder="请输入关键字"></div>
+                  </label>
+                  <label style="margin-left: 20px;">
+                    <span>下单时间：</span>
+                    <div class="ipt" style="width: 165px;">
+                      <input type="text" id="timeStart" readonly>
+                    </div>
+                    <em>至</em>
+                    <div class="ipt" style="width: 165px;">
+                      <input type="text" id="timeEnd" readonly>
+                    </div>
+                  </label>
+                  <label>
+                    <span>需求类型：</span>
+                    <div class="select" style="width: 100px;">
+                      <select v-model="queryForm.demandType">
+                        <option :value="opt.value" v-for="opt in options.demand_type" :key="opt.id"
+                          v-text="opt.display">
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <label style="margin-left: 20px;">
+                    <span>需求状态：</span>
+                    <div class="select" style="width: 120px;">
+                      <select v-model="queryForm.status">
+                        <option :value="opt.value" v-for="opt in options.demand_status" :key="opt.id"
+                          v-text="opt.display">
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <label style="margin-left: 20px;">
+                    <span>需求所处阶段：</span>
+                    <div class="select" style="width: 120px;">
+                      <select v-model="queryForm.stage">
+                        <option :value="opt.value" v-for="opt in options.demand_stage" :key="opt.id"
+                          v-text="opt.display">
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <label style="margin-left: 20px;">
+                    <span>审核结果：</span>
+                    <div class="select" style="width: 100px;">
+                      <select v-model="queryForm.certificationFlag">
+                        <option :value="opt.value" v-for="opt in options.certification_status" :key="opt.id"
+                          v-text="opt.display">
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <button style="margin-left: 20px;" type="button" @click="getOrderList">搜索</button>
+                </div>
+              </div>
+              <!--/搜索框-->
+              <!--订单列表-->
+              <div class="orderbox">
+                <div class="control">
+                  <a class="addtec fs14" target="_blank" href="add.html?code=001.001.002.002"><i
+                      class="iconfont icon-jia"></i>新增 </a>
+                </div>
+                <div class="orderheader">
+                  <div class="orderheader-name">需求名称</div>
+                  <div class="orderheader-type">需求类型</div>
+                  <div class="orderheader-type">预算（元）</div>
+                  <div class="orderheader-type">发布时间</div>
+                  <div class="orderheader-type">截止时间</div>
+                  <div class="orderheader-type">状态</div>
+                  <div class="orderheader-type">操作</div>
+                </div>
+                <div class="orderlist">
+                  <!--订单列表-->
+                  <div class="itembody" v-for="(order, i) in orderList">
+                    <div class="goodslist">
+                      <!--商品列表-->
+                      <a style="cursor: auto" class="borders">
+                        <span class="title" v-text="order.title"></span>
+                        <span class="message" v-text="'编号：' + order.id"></span>
+                      </a>
+                      <div class="type borders" v-text="order.demandTypeDisplay"></div>
+                      <div class="price borders" v-text="order.budget"></div>
+                      <div class="time borders" v-text="order.publicDate"></div>
+                      <div class="time borders" v-text="order.endDate"></div>
+                      <div class="type borders" v-text="order.statusDisplay"></div>
+                      <div class="type borders">
+                        <a target="_blank" :href="'detail.html?code=001.001.002.002&id=' + order.id">查看详情</a>
+                        <div class="select" v-if="order.status !== '06' && order.status !== '07'">
+                          <select v-model="order.operation" @change="handleOrderChange(i)">
+                            <option value="">更多操作</option>
+                            <option :value="opt.value"
+                              v-for="opt in $options.filters.getOperations(options.operations, order.status, order.overdue, order.evaluated)"
+                              :key="opt.id" v-text="opt.display">
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                  <span>[共<span v-text='queryForm.total'></span>条]</span>
+                </div>
+                <!--/分页-->
+              </div>
+              <!--/订单列表-->
+            </div>
+            <!--/所有订单-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/demand/list.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>帐号管理-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="css/form.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <header-bar type='account' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <div class="leftbar">
+            <div class="user_info">
+              <div class="head" style="background-image:url(/common/images/defaultImg/default.gif)"> </div>
+            </div>
+            <div class="group">
+              <div class="name">会员资料</div>
+              <a href="user_information.html?code=001.003.001.001">基本信息</a>
+              <a href="#">偏好设置</a>
+            </div>
+            <div class="group">
+              <div class="name">账号安全</div>
+              <a href="#">登录账号设置</a>
+              <a href="#">当前安全级别</a>
+              <a href="#">修改登录密码</a>
+              <a href="#">手机绑定</a>
+              <a href="#">邮箱绑定</a>
+              <a href="#">第三方账号绑定</a>
+            </div>
+            <div class="group">
+              <div class="name">身份认证</div>
+              <a href="user_authpersonal.html" class="active">个人身份认证</a>
+              <a href="user_authcompany.html">单位身份认证</a>
+            </div>
+          </div>
+        </div>
+        <div class="centerbox">
+          <ul class="usertabs">
+            <li class="active">
+              个人身份认证
+            </li>
+          </ul>
+          <div class="tabbox">
+            <!--个人信息-->
+            <div class="userform active valiform">
+              <div class="form_title"> 认证信息 </div>
+              <table border="0" cellpadding="5" cellspacing="5" class="form_table">
+                <tr class="validate">
+                  <th>认证状态</th>
+                  <td>
+                    <div style="font-size: 14px;" v-text="formData.certificationFlagDisplay">
+
+                    </div>
+                  </td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>真实姓名</th>
+                  <td>
+                    <div class="ipt name">
+                      <input placeholder="请填写与证件上一致的姓名" v-model="formData.realName" type="text" class="required"
+                        data-valid="isNonEmpty||maxLength:20" data-error='真实姓名不能为空||内容过长'>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>性别</th>
+                  <td>
+                    <ly-radio class="radio" code='sex' :http='httpUser' v-model='formData.sex'></ly-radio>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>证件类型</th>
+                  <td>
+                    <ly-select v-model='formData.personalCertificateType' class='select' code='certificate_type'
+                      :http='httpUser'></ly-select>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>证件号码</th>
+                  <td>
+                    <div class="ipt name">
+                      <input maxlength="30" v-model="formData.personalCertificateCode" type="text" class="required"
+                        data-valid="isNonEmpty||maxLength:30" data-error='证件号码不能为空||内容过长'>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>身份证正面</th>
+                  <td>
+                    <div class="head"
+                      :style="{backgroundImage: formData.attachmentIdUrl1?'url('+formData.attachmentIdUrl1+')':'url(http://dummyimage.com/110x110)'}">
+                    </div>
+                    <button class="edithead img1" data-type='01'>
+                      点击上传
+                      <input style="display: none;" />
+                    </button>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>身份证反面</th>
+                  <td>
+                    <div class="head"
+                      :style="{backgroundImage: formData.attachmentIdUrl2?'url('+formData.attachmentIdUrl2+')':'url(http://dummyimage.com/110x110)'}">
+                    </div>
+                    <button class="edithead img2" data-type='02'>
+                      点击上传
+                      <input style="display: none;" />
+                    </button>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="validate form_item">
+                  <th>证件到期时间</th>
+                  <td>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="'radio_time" value="0" checked v-model="formData.alwaysValidFlag" />
+                        <b></b>
+                      </label>
+                    </div>
+                    <div class="radio_date date">
+                      <input class="required" v-model="formData.expireDate" type="text" id="expireDate"
+                        data-valid="custom:expireDateValid" />
+                    </div>
+                    <div class="radio" style="margin-left: 40px;">
+                      <label>
+                        <input type="radio" name="'radio_time" value="1" v-model="formData.alwaysValidFlag" />
+                        <b></b>长期有效
+                      </label>
+                    </div>
+
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+
+                <tr class="validate form_item">
+                  <th style="width: 130px;">家庭或工作地址</th>
+                  <td>
+                    <div class="ipt">
+                      <input v-model="formData.workAddress" type="text" class="required" maxlength="200"
+                        data-valid="isNonEmpty||maxLength:200" data-error='家庭或工作地址不能为空'>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="btns">
+                  <td></td>
+                  <td><button class="btn primary" @click="submitClick">提交审核</button>
+                    <button class="btn">取消</button></td>
+                </tr>
+              </table>
+            </div>
+            <!--/个人信息-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/authpersonal.js"></script>
+</body>
+
+</html>

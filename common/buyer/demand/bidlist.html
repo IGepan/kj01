@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>投标列表-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a><a
+            href="/common/buyer/demand/list.html?code=001.001.002.002">需求列表</a>
+          <span>投标信息</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <div class="userform active">
+              <div class="orderbox">
+                <div class="control orderbox-title">
+                  <h3 style="font-size: 16px;margin: 0;" v-if="bidInfo.length" v-text="bidInfo[0].title"></h3>
+                  <a style="line-height: 42px" v-if="bidInfo.length"
+                    :href="'/common/demanddetail.html?id=' + bidInfo[0].id">浏览需求</a>
+                </div>
+                <div class="orderheader">
+                  <div class="orderheader-uname">投标人</div>
+                  <div class="orderheader-type">报价</div>
+                  <div class="orderheader-type">投标时间</div>
+                  <div class="orderheader-type">周期天数</div>
+                  <div class="orderheader-type">投标状态</div>
+                  <div class="orderheader-type">操作</div>
+                </div>
+                <div class="orderlist">
+                  <div class="itembody" v-for="bid in bidInfo">
+                    <div class="goodslist">
+                      <a style="cursor: default;" class="goodslist-bid borders">
+                        <span class="img" :style="'background-image:url('+ bid.shopLogo +')'"></span>
+                        <span class="title" v-text="bid.shopName"></span>
+                        <span class="message" v-text="'中标次数:' + bid.bigCount +'次'"></span>
+                      </a>
+                      <div class="price borders" v-text="'￥' + (bid.amount||'')"></div>
+                      <div class="time borders" v-text="bid.bidDate"></div>
+                      <div class="time borders" v-text="bid.estimatePeriod"></div>
+                      <div class="type borders" style="vertical-align: middle">
+                        <span v-if="bid.existsBid === '1' && bid.bidFlag === '1'">已中标</span>
+                        <span v-if="bid.existsBid === '1' && bid.bidFlag === '0'">未中标</span>
+                        <span v-if="bid.existsBid === '0'">待选标</span>
+                      </div>
+                      <div class="type borders" style="vertical-align: middle">
+                        <a target="_blank"
+                          :href="'/common/buyer/demand/bidDetail.html?code=001.001.002.002&id=' + bid.bidId"
+                          class="type-a">投标详情</a>
+                        <button v-if="isViewBidBtn" @click="winningBid(bid)">设置中标</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 分页-->
+              <div class="pager" v-cloak>
+                <a @click='pageClick(1)'>[首页]</a>
+                <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                  :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                <a v-if='isMore()'>...</a>
+                <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                <a @click='pageClick(pages)'>[末页]</a>
+                <span>[共<span v-text='pages'></span>页]</span>
+              </div>
+              <!--/分页 -->
+            </div>
+            <!--/订单列表-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/demand/bidlist.js"></script>
+</body>
+
+</html>

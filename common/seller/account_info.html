@@ -1,0 +1,639 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>卖家中心-成渝城市群综合科技服务平台</title>
+	<link href="/common/css/main.css" rel="stylesheet" type="text/css">
+	<link href="css/seller.css" rel="stylesheet" type="text/css">
+	<link href="css/accountinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="box" id='store_box'>
+		<div class="header">
+			<!--顶部-->
+			<ly-toper :http='httpUser'></ly-toper>
+			<ly-header type="seller"></ly-header>
+		</div>
+		<div class="contant">
+			<div class="mdiv">
+			</div>
+			<div class="mdiv mt20">
+				<div class="leftbox">
+					<seller-left :http='http' :jquery='jquery' activecode=''></seller-left>
+				</div>
+				<div class="centerbox">
+					<ul class="usertabs">
+						<li class="active">
+							个人信息
+						</li>
+						<li>
+							单位信息
+						</li>
+					</ul>
+					<div class="tabbox">
+						<!--个人信息-->
+						<div class="userform active valiform">
+							<div class="form_title"> 个人信息 </div>
+							<table border="0" cellpadding="5" cellspacing="5" class="form_table">
+								<tr class="validate form_item">
+									<th>身份类型</th>
+									<td>
+										<ly-radio class="radio" group='1' code='identity_type' :http='httpUser'
+											v-model='formData.identityType'></ly-radio>
+									</td>
+								</tr>
+								<tr>
+									<th>头像</th>
+									<td>
+										<div class="head"
+											:style="{backgroundImage: formData.attachmentIdUrl?'url('+formData.attachmentIdUrl+')':'url(http://dummyimage.com/110x110)'}">
+										</div>
+										<button class="edithead">
+											<input style="display: none;" />
+											修改头像
+										</button>
+									</td>
+									<td></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>用户名</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.userName" type="text" class="required" data-tip=""
+												data-valid="isNonEmpty||maxLength:20||custom:userNameValid" data-error='请输入用户名||用户名过长'>
+										</div>
+									</td>
+									<td class="form_msg">用户名</td>
+								</tr>
+								<tr class="form_item">
+									<th>昵称</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.displayName" type="text" class="required" data-tip=""
+												data-valid="maxLength:100" data-error='昵称过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>真实姓名</th>
+									<td>
+										<div class="ipt realname">
+											<input v-model="formData.realName" type="text" class="required" data-tip=""
+												data-valid="maxLength:20" data-error='姓名过长'>
+										</div>
+										<div class="select showname">
+											<select name="" id="" v-model="formData.visibleFlag">
+												<option value="1">仅自己可见</option>
+												<option value="0">所有可见</option>
+											</select>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr>
+									<th>出生年月</th>
+									<td>
+										<div class="ipt date">
+											<input v-model="formData.birthday" type="text" id="birthday">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>性别</th>
+									<td>
+										<ly-radio class="radio" code='sex' :http='httpUser' v-model='formData.sex'></ly-radio>
+									</td>
+								</tr>
+								<tr class="validate form_item">
+									<th>所在地区</th>
+									<td>
+										<ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+											:http='httpUser'></ly-address-select>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>详细地址</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.location" type="text" data-tip="" data-valid="maxLength:100"
+												data-error='地址过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>所属行业</th>
+									<td>
+										<div class="select mySelect required" id="industrySelect" data-valid="custom:industryValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>服务领域</th>
+									<td>
+										<div class="select mySelect required" id="servicesSelect" data-valid="custom:servicesValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>电子邮件</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.email" type="text" class="required" data-dom="email_msg" data-tip=""
+												data-valid="isEmail" data-error='邮件格式不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>固定电话</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.telephone" type="text" class="required" data-dom="tel_msg" data-tip=""
+												data-valid="isTel" data-error='电话不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>简介</th>
+									<td>
+										<div class="textarea">
+											<textarea v-model="formData.comment" data-tip="" data-valid="maxLength:200"
+												data-error='内容过长'></textarea>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="btns">
+									<td></td>
+									<td><button class="btn primary" @click="submitClick">保存</button>
+										<button class="btn">取消</button></td>
+								</tr>
+							</table>
+						</div>
+						<!--/个人信息-->
+
+						<!--单位信息-->
+						<div class="userform">
+							<div class="form_title"> 单位信息 </div>
+							<div style="margin-top: 20px;" v-if="formData.identityType !='01'">
+								<div class="form_item_title">身份类型：</div>
+								<div class="form_item_content">
+									<ly-radio @change='identityTypeChange' class="radio" group='2' code='identity_type' :http='httpUser'
+										v-model='formData.identityType'></ly-radio>
+								</div>
+							</div>
+							<!--企业 start-->
+							<table v-if="formData.identityType=='02'" border="0" cellpadding="5" cellspacing="5" class="form_table"
+								style="margin-top: 0px;">
+								<tr>
+									<th>头像</th>
+									<td>
+										<div class="head" style="background-image: url('http://dummyimage.com/110x110')"></div>
+										<button class="edithead">修改头像</button>
+									</td>
+									<td></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>用户名</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.userName" type="text" class="required" data-tip=""
+												data-valid="isNonEmpty||maxLength:20||custom:userNameValid" data-error='请输入用户名||用户名过长'>
+										</div>
+									</td>
+									<td class="form_msg">用户名</td>
+								</tr>
+								<tr class="form_item">
+									<th>企业名称</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.organizationName" type="text" data-tip="" data-valid="maxLength:50"
+												data-error='名称过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>所在地区</th>
+									<td>
+										<ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+											:http='httpUser'></ly-address-select>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>详细地址</th>
+									<td>
+										<div class="ipt">
+											<input type="text" v-model="formData.location" data-tip="" data-valid="maxLength:50"
+												data-error='地址过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>所属行业</th>
+									<td>
+										<div class="select mySelect required" id="industrySelect1" data-valid="custom:industryValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>服务领域</th>
+									<td>
+										<div class="select mySelect required" id="servicesSelect1" data-valid="custom:servicesValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate">
+									<th>企业类型</th>
+									<td>
+										<ly-select v-model='formData.organizationType' class='select name' group='1'
+											code='organization_type' :http='httpUser'></ly-select>
+									</td>
+								</tr>
+								<tr class="validate">
+									<th>企业规模</th>
+									<td style="width: 550px;">
+										<ly-radio class="radio" code='scale' :http='httpUser' v-model='formData.scale'></ly-radio>
+									</td>
+								</tr>
+								<tr class="form_item">
+									<th>归属单位</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.parentUnit" type="text" data-valid="maxLength:50" data-error='内容过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>联系人</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contacts" type="text" data-valid="maxLength:20" data-error='内容过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>手机号码</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contactsPhone" maxlength="11" type="text" class="required" data-tip=""
+												data-valid="isMobile" data-error='手机号不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>电子邮箱</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.email" type="text" class="required" data-tip="" data-valid="isEmail"
+												data-error='邮箱不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>固定电话</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.telephone" type="text" class="required" data-tip="" data-valid="isTel"
+												data-error='电话不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>简介</th>
+									<td>
+										<div class="textarea">
+											<textarea v-model="formData.comment" data-tip="" data-valid="maxLength:200"
+												data-error='内容过长'></textarea>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="btns">
+									<td></td>
+									<td><button class="btn primary" @click="updateEnterprise">保存</button>
+										<button class="btn">取消</button></td>
+								</tr>
+							</table>
+							<!--/企业-->
+							<!--高校-->
+							<table v-if="formData.identityType=='03'" border="0" cellpadding="5" cellspacing="5" class="form_table"
+								style="margin-top: 0px;">
+								<tr>
+									<th>头像</th>
+									<td>
+										<div class="head" style="background-image: url('http://dummyimage.com/110x110')"></div>
+										<button class="edithead">修改头像</button>
+									</td>
+									<td></td>
+								</tr>
+								<tr class="validate">
+									<th>用户名</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.userName" type="text" class="required" data-tip=""
+												data-valid="isNonEmpty||maxLength:20||custom:userNameValid" data-error='请输入用户名||用户名过长'>
+										</div>
+									</td>
+									<td class="form_msg">用户名</td>
+								</tr>
+								<tr class="validate">
+									<th>院校名称</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.organizationName" type="text" data-tip="" data-valid="maxLength:50"
+												data-error='名称过长'>
+										</div>
+									</td>
+								</tr>
+								<tr class="validate form_item">
+									<th>所在地区</th>
+									<td>
+										<ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+											:http='httpUser'></ly-address-select>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>详细地址</th>
+									<td>
+										<div class="ipt">
+											<input type="text" v-model="formData.location" data-tip="" data-valid="maxLength:50"
+												data-error='地址过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+
+								<tr class="validate">
+									<th>办学类型</th>
+									<td>
+										<ly-select v-model="formData.organizationType" class='select name' group='2'
+											code='organization_type' :http='httpUser'></ly-select>
+									</td>
+								</tr>
+								<tr class="validate">
+									<th>院校分类</th>
+									<td>
+										<ly-select v-model="formData.academyType" class='select name' code='academy_type' :http='httpUser'>
+										</ly-select>
+									</td>
+								</tr>
+
+								<tr class="validate">
+									<th>所属单位</th>
+									<td>
+										<div class="ipt">
+											<input type="text" v-model="formData.parentUnit">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>成立时间</th>
+									<td>
+										<div class="ipt date">
+											<input type="text" id="establishDate" v-model="formData.establishDate">
+										</div>
+									</td>
+								</tr>
+								<tr class="form_item">
+									<th>联系人</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contacts" type="text" data-valid="maxLength:20" data-error='内容过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>手机号码</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contactsPhone" type="text" class="required" data-tip=""
+												data-valid="isMobile" data-error='手机号不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>电子邮箱</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.email" type="text" class="required" data-tip="" data-valid="isEmail"
+												data-error='手机号不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>固定电话</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.telephone" type="text" class="required" data-dom="tel_msg" data-tip=""
+												data-valid="isTel" data-error='电话不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>简介</th>
+									<td>
+										<div class="textarea">
+											<textarea v-model="formData.comment" data-tip="" data-valid="maxLength:200"
+												data-error='内容过长'></textarea>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="btns">
+									<td></td>
+									<td><button class="btn primary" @click="updateSchool">保存</button>
+										<button class="btn">取消 </button></td>
+								</tr>
+							</table>
+							<!--/高校-->
+							<!--政府部门及社会团体-->
+							<table v-if="formData.identityType=='05'" border="0" cellpadding="5" cellspacing="5" class="form_table"
+								style="margin-top: 0px;">
+								<tr>
+									<th>头像</th>
+									<td>
+										<div class="head" style="background-image: url('http://dummyimage.com/110x110')"></div>
+										<button class="edithead">修改头像</button>
+									</td>
+									<td></td>
+								</tr>
+								<tr class="validate">
+									<th>用户名</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.userName" type="text" v-model="formData." class="required" data-tip=""
+												data-valid="isNonEmpty||maxLength:20||custom:userNameValid" data-error='请输入用户名||用户名过长'>
+										</div>
+									</td>
+									<td class="form_msg">用户名</td>
+								</tr>
+								<tr class="validate">
+									<th>单位名称</th>
+									<td>
+										<div class="ipt">
+											<input type="text">
+										</div>
+									</td>
+								</tr>
+								<tr class="validate form_item">
+									<th>单位类型</th>
+									<td>
+										<div class="ipt">
+											<ly-select v-model='formData.organizationType' data-valid="custom:unitValid"
+												class='select name required' group='3' code='organization_type' :http='httpUser'></ly-select>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>所在地区</th>
+									<td>
+										<ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+											:http='httpUser'></ly-address-select>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>详细地址</th>
+									<td>
+										<div class="ipt">
+											<input type="text" v-model="formData.location" data-tip="" data-valid="maxLength:50"
+												data-error='地址过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate">
+									<th>单位规模</th>
+									<td style="width: 550px;">
+										<ly-radio class="radio" code='scale' :http='httpUser' v-model='formData.scale'></ly-radio>
+									</td>
+								</tr>
+								<tr class="validate form_item">
+									<th>主导产业</th>
+									<td>
+										<div class="select mySelect required" id="industrySelect1" data-valid="custom:industryValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="validate form_item">
+									<th>重点服务领域</th>
+									<td>
+										<div class="select mySelect required" id="servicesSelect1" data-valid="custom:servicesValid">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr>
+									<th>成立时间</th>
+									<td>
+										<div class="ipt date">
+											<input v-model="formData.establishDate" type="text" id="establishDate">
+										</div>
+									</td>
+								</tr>
+								<tr class="">
+									<th>上级管理部门</th>
+									<td>
+										<div class="ipt">
+											<input type="text">
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>联系人</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contacts" type="text" data-valid="maxLength:20" data-error='内容过长'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>手机号码</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.contactsPhone" type="text" class="required" data-tip=""
+												data-valid="isMobile" data-error='手机号不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>电子邮箱</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.email" type="text" class="required" data-tip="" data-valid="isEmail"
+												data-error='手机号不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>固定电话</th>
+									<td>
+										<div class="ipt">
+											<input v-model="formData.telephone" type="text" class="required" data-dom="tel_msg" data-tip=""
+												data-valid="isTel" data-error='电话不正确'>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="form_item">
+									<th>简介</th>
+									<td>
+										<div class="textarea">
+											<textarea v-model="formData.comment" data-tip="" data-valid="maxLength:200"
+												data-error='内容过长'></textarea>
+										</div>
+									</td>
+									<td class="form_msg"></td>
+								</tr>
+								<tr class="btns">
+									<td></td>
+									<td><button class="btn primary" @click="updateDepart">保存</button>
+										<button class="btn">取消</button></td>
+								</tr>
+							</table>
+							<!--/政府部门及社会团体-->
+						</div>
+						<!--/单位信息-->
+					</div>
+				</div>
+			</div>
+		</div>
+    <ly-minifooter></ly-minifooter>
+	</div>
+	<script src="/common/common/js/laydate/laydate.js"></script>
+	<script type="text/javascript" src="/common/js/libs/require.js"></script>
+	<script type="text/javascript" src="js/accountInfo.js"></script>
+	<script>
+	</script>
+</body>
+
+</html>

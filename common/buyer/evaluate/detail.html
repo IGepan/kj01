@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>评价详情-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/evaluate.css" rel="stylesheet" type="text/css">
+  <style>
+    .error {
+      font-size: 12px;
+      color: red;
+    }
+
+    .evaluateBox {
+      border: 0;
+      padding: 20px;
+      margin-top: 0;
+    }
+
+    .evaluateForm {
+      position: relative;
+      border-left: 1px solid #cfcfcf;
+      width: 730px;
+      left: -1px;
+    }
+
+    .evaluate {
+      height: auto;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a><a href="/buyer/evaluate/?code=001.001.004.001">我的评价</a><span>评价详情</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="evaluateBox" v-cloak>
+              <div class="evaluate">
+                <div class="orderinfos">
+                  <img v-if="infos.oimgUrl" :src="infos.oimgUrl || '/images/ad.jpg'" alt=""
+                    style="display: block; width: 116px; height: 116px; margin: 0 auto">
+                  <p class="infotitle" style="max-width: 162px;margin: 0;">
+                    <a :href="infos.detailUrl" target="_blank" v-text="infos.oname || ''"></a>
+                  </p>
+                  <p v-if="infos.price">价格：￥{{infos.negotiableFlag | formatPrice(infos.price, infos.minPrice, infos.maxPrice)}}</p>
+                </div>
+                <div class="evaluateForm" style="display: block">
+                  <div class="form-group">用户评价</div>
+                  <template v-if="infos.resultViewList">
+                    <div class="form-item" v-for="(d, di) in infos.resultViewList">
+                      <label class="form-item__title" v-text="d.evaluateItemDisplay + '：'"></label>
+                      <div class="form-item__contents">
+                        <ly-star v-model="d.evaluateResult" :disabled="true"></ly-star>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="form-item" v-if="infos.tagViewList">
+                    <label class="form-item__title"></label>
+                    <div class="form-item__contents">
+                      <span class="tags"><span v-for="(tag, i) in infos.tagViewList" class="active"
+                          v-text="tag.tagDisplay"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <template v-if="infos.contentDetailsViewList">
+                    <template v-for="(d, di) in infos.contentDetailsViewList">
+                      <div class="form-item">
+                        <label class="form-item__title"></label>
+                        <div class="form-item__contents"
+                          :class="{btdashedline: di < infos.contentDetailsViewList.length-1}">
+                          <p><span v-text="d.evaluateDate + ( di === 0 ? ' 首次评论' : ' 追加评论')"></span></p>
+                          <p v-text="d.comment"></p>
+                          <ul v-if="d.fileList" v-viewer.static class="list horizontal imglist"
+                            style="margin-bottom: 1em;">
+                            <li class="item" v-for="file in d.fileList">
+                              <img :src="file.url" width="69" height="69" :alt="file.name">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </template>
+                    <div v-if="infos.replyDetailsView" class="form-group"
+                      style="border-top: 1px solid #ccc;padding-top: 20px;">
+                      卖家回复
+                    </div>
+                    <template v-if=" infos.replyDetailsView">
+                      <div class="form-item">
+                        <label class="form-item__title"></label>
+                        <div class="form-item__contents" v-text="">
+                          <p><span v-text="infos.replyDetailsView.replyDate + '回复'"></span></p>
+                          <p v-text="infos.replyDetailsView.reply"></p>
+                        </div>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <!--/所有订单-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/evaluate/detail.js"></script>
+</body>
+
+</html>

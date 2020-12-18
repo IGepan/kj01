@@ -1,0 +1,103 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小程序申报助手-附件预览</title>
+    <script type="text/javascript" src="/style/js/libs/pdfjs-dist/build/pdf.js"></script>
+    <style>
+        body {
+            margin: 0;
+            color: #2c2d37;
+            font-size: 16px;
+        }
+
+        template {
+            display: none;
+        }
+        [v-cloak] {
+            display: none !important;
+        }
+        .article {
+            overflow:scroll;
+        }
+
+        .article .article-content {
+            padding: 20px 10px;
+            text-align: center;
+        }
+        /*.article::-webkit-scrollbar {*/
+        /*    !*滚动条整体样式*!*/
+        /*    width : 8px;  !*高宽分别对应横竖滚动条的尺寸*!*/
+        /*    height:8px;*/
+        /*}*/
+        /*.article::-webkit-scrollbar-thumb {*/
+        /*    !*滚动条里面小方块*!*/
+        /*    border-radius: 10px;*/
+        /*    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);*/
+        /*    background   : #535353;*/
+        /*}*/
+        /*.article::-webkit-scrollbar-track {*/
+        /*    !*滚动条里面轨道*!*/
+        /*    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);*/
+        /*    border-radius: 10px;*/
+        /*    background   : #ededed;*/
+        /*}*/
+        .article-bottom {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .bottom-pages{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vaMiddle {
+            font-size: 20px;
+        }
+
+        .pageView {
+            padding: 0 20px;
+        }
+
+        .pagePrevBtn, .pageNextBtn {
+            color: #777777;
+        }
+        .pagePrevBtn>img, .pageNextBtn>img {
+            width:15px;
+            height:15px;
+        }
+    </style>
+</head>
+
+<body>
+<div v-cloak id='index_box'>
+    <div class="article">
+        <div class="article-content" id="article-content">
+            <canvas id="canvas" ref="theCanvas" width="370" height="700"></canvas>
+        </div>
+
+    </div>
+    <div class="article-bottom" v-cloak v-if="countPage&&countPage>0">
+        <div class="bottom-pages">
+            <div class="vaMiddle pagePrevBtn"  @click.stop="handleSetPrevPage"><img src="/image/back.png"></div>
+            <div class="vaMiddle pageView" >
+                    <span class="currentPage">{{currentPage}}</span>
+                    <span>/</span>
+                    <span
+                            class="countPage">{{countPage}}</span>
+                </div>
+            <div  class="vaMiddle pageNextBtn" @click.stop="handleSetNextPage"><img src="/image/next.png"></div>
+        </div>
+    </div>
+    <div v-cloak v-if="isError" class="errorContent"></div>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/preview.js"></script>
+</body>
+
+</html>

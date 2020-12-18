@@ -1,0 +1,61 @@
+.activity-live{
+    color: #343334;
+    margin-bottom:58px;
+}
+.detail-base {
+    font-size: 0;
+    padding: 30px 0 0 0 ;
+    border-bottom: 1px solid #f5f8fb;
+    display:flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.detail-base-info {
+    font-size: 14px;
+    padding:0 0 27px 0;
+}
+.detail-base-info  .iconfont {
+    margin-right: 9px;
+}
+.detail-base-info .time, .detail-base-info .sponsor {
+    line-height: 14px;
+    color: #9496a5;
+}
+.detail-base-info .title {
+    padding: 0;
+    font-size: 20px;
+    line-height: 20px;
+    color: #343334;
+    margin: 0;
+}
+.detail-base-info .title-box{
+    display:flex;
+    margin-bottom:19px;
+    align-items: flex-end;
+}
+.detail-base-info .title-box .title-tips{
+    padding:4px 5px;
+    background-color: #ed5b5c;
+    border: solid 1px #ed5b5c;
+    font-size: 14px;
+    color:#fff;
+    text-align: center;
+    margin-left:13px;
+    line-height: 14px;
+}
+.detail-base-info .sponsor {
+    margin-top: 12px;
+}
+.detail-content{
+    background:#fff;
+}
+.detail-desc{
+    padding:40px;
+    background:#fff;
+}
+.detail-desc .title{
+    font-size: 18px;
+    color: #323647;
+    font-weight: bold;
+    margin-bottom:40px;
+}

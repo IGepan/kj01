@@ -1,0 +1,16 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea/*
+.mvn/*
+*.iws
+*.iml
+*.ipr
+mvnw
+mvnw.cmd
+*/target/*
+logs/*
+**/rebel.xml
+*.rsls
+/common/shop/*

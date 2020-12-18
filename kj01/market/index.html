@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>技术市场</title>
+ <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+ <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+ <div id="index_box" class="box grayBgbox" v-cloak>
+  <ly-toper></ly-toper>
+  <market_header name="技术市场"></market_header>
+  <div class="navBox">
+   <div class="mmdiv">
+    <div class="navs">
+     <div class="cascader">
+      <div class="cascader-title">行业分类</div>
+      <div class="cascader-option">
+       <ul class="cascader-option_stair">
+        <li v-for="cascade in cascadeList" :key="cascade.id" @mouseover.stop="toggleShow(cascade.value)">
+         <div class="current">{{cascade.display}}</div>
+         <div class="cascader-option_second">
+          <a :href="'/service/results_list.html?industryLevel=' + cascade.value + '&industryTypeId=' + tag.id + '&industryTypeIdName=' + tag.name" v-for="tag in tagList" :key="tag.id">{{tag.name}}</a>
+         </div>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="navslist">
+      <a :href="nav.url" :class="{active: nav.selected}" v-for="(nav,index) in navslist">{{nav.label}}</a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="bannerBox" style="background: url(/style/images/market/bannerbgc.png)">
+   <div class="mmdiv">
+    <div class="banner">
+     <div class="banner-left" style="background-image: url(/style/images/market/bgframe.png);">
+      <img class="banner-left_top" src="/style/images/market/let-technology.png" alt="">
+      <img class="moveleft" src="/style/images/market/develop.png" alt="">
+      <img class="moveright" src="/style/images/market/value.png" alt="">
+      <img class="banner-left_btm" src="/style/images/market/banner-lefttext.png" alt="">
+     </div>
+     <div class="banner-right">
+      <div class="top">
+       <div class="top-type">
+        <div class="welcome"><img src="/style/images/market/welcome.png" alt=""></div>
+        <div class="top-type_market"><img src="/style/images/market/market.png" alt=""></div>
+       </div>
+       <div class="top-item">
+        <a @click.stop="handleUrlBtn" :data-url="button.url" v-for="(button, index) in buttons"
+         :key="index">{{button.label}}</a>
+       </div>
+      </div>
+      <div class="bottom">
+       <a @click.stop="handleUrlBtn" :data-url="button.url" v-for="(button, index) in buttons2"
+        :key="index">{{button.label}}</a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="subnavBox">
+   <div class="mmdiv">
+    <div class="subnavList">
+     <a href="http://itt.kj01.cn/" class="subnav" target="_blank">
+      <div class="subnav-left">
+       <span class="subnav-left_top">国际技术转移</span>
+       <span class="subnav-left_btm">布局全球，服务全球</span>
+      </div>
+      <div class="iconfont icon-earth-copy"></div>
+     </a>
+     <a class="subnav" href="/market/technicalBroker.html">
+      <div class="subnav-left">
+       <span class="subnav-left_top">技术经纪人服务</span>
+       <span class="subnav-left_btm">培育 · 认证 · 协同一站式服务</span>
+      </div>
+      <div class="iconfont icon-jingjiren-copy"></div>
+     </a>
+     <a href="/alist.html?type=218340665912723126" class="subnav">
+      <div class="subnav-left">
+       <span class="subnav-left_top">技术对接活动</span>
+       <span class="subnav-left_btm">技术路演，成果对接活动专场</span>
+      </div>
+      <div class="iconfont icon-duijiezhongxin-copy"></div>
+     </a>
+    </div>
+   </div>
+  </div>
+
+  <div class="dynamicBox">
+   <div class="mmdiv">
+    <div class="dynamic">
+     <div class="titleBox">
+      <div class="title">
+       <div class="title-name"><span>市场动态</span></div>
+       <div class="title-text">助力企业科技创新成果转化交易</div>
+      </div>
+     </div>
+     <div class="content">
+      <div class="dynamicListsBox">
+       <div>
+        <div class="content-more dynamic-more" style="background: url(/style/images/market/dynamicgren.png);">
+         <div class="content-more_title">最近成交</div>
+         <a @click="showToast" class="iconfont icon-gengduo"></a>
+        </div>
+        <div class="dynamic-lists listsScroll">
+         <ul>
+          <li v-for="(order,index) in orderList">
+           <a :href="order.goodsDetailUrl ? order.goodsDetailUrl : '/common/demanddetail.html?id=' + order.id" class="dynamic-list">
+            <div class="dynamic-list_name" :title="order.goodsName">{{order.goodsName}}</div>
+            <div class="dynamic-list_text" :title="order.buyer">买方：{{order.buyer}}</div>
+            <div class="dynamic-list_text" :title="order.shopName">卖家：{{order.shopName}}</div>
+           </a>
+          </li>
+         </ul>
+        </div>
+       </div>
+       <div>
+        <div class="content-more dynamic-more" style="background: url(/style/images/market/dynamicyellow.png);">
+         <div class="content-more_title">最新发布</div>
+         <a href="/service/results_list.html" class="iconfont icon-gengduo"></a>
+        </div>
+        <div class="dynamic-lists listsScroll">
+         <ul>
+          <li>
+           <a :href="deal.goodsDetailUrl" class="dynamic-list" v-for="deal in dealList" :key="deal.id">
+            <div class="dynamic-list_name" :title="deal.goodsName">{{deal.goodsName}}</div>
+            <div class="dynamic-right">
+             <div>
+              <div class="dynamic-list_text" :title="deal.industryNames">技术类型：{{deal.industryNames}}</div>
+              <div class="dynamic-list_text">发布日期：{{deal.publishDate}}</div>
+             </div>
+             <div class="dynamic-list_price">
+              <span>￥</span>
+              <span class="number">{{deal.negotiableFlag | formatPrice(deal.price, deal.minPrice, deal.maxPrice)}}</span>
+             </div>
+            </div>
+           </a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="achievementBox">
+   <div class="mmdiv">
+    <div class="achievements">
+     <div class="titleBox">
+      <div class="title">
+       <div class="title-name"><span>技术成果</span></div>
+       <div class="title-text">为您优选前沿技术/行业热点技术成果，快捷搜索一键对接</div>
+      </div>
+     </div>
+     <div class="content">
+      <div class="achievement">
+       <div class="content-more space-between" style="background: url(/style/images/market/achievementsbg.png);">
+        <div class="content-more_top">
+         <div class="content-more_title">新技术，新工艺</div>
+         <div class="content-more_text">优质技术资源，点对点服务</div>
+         <a href="/service/results_list.html" class="iconfont icon-gengduo"></a>
+        </div>
+        <div class="content-more_btm">
+         <a :href="'/service/results_list.html?transactionMode=' + bt3.value" v-for="bt3 in buttons3" :key="bt3.id">{{bt3.display}}</a>
+        </div>
+       </div>
+       <div class="achievement-right">
+        <div class="achievement-tabs">
+         <a :href="'/service/results_list.html?industryLevel=' + tab.industryLevel" :class="{active: tab.selected}" v-for="(tab,index) in tabsList"
+          @mouseover.stop="handleTabsList(index)" :key="index">{{tab.label}}</a>
+        </div>
+        <ul class="lists">
+         <li class="list" v-for="item in viewList" :key="item.id">
+          <div class="top">
+           <div class="list-avatar"><img :src="item.goodsImg.url || ''" alt=""></div>
+           <div class="name" :title="item.goodsName">{{item.goodsName}}</div>
+           <div class="type" :title="item.transactionModeDisplay || ''">转让方式：{{item.transactionModeDisplay || ''}}</div>
+           <div class="type" :title="item.industryNames || ''">行业分类：{{item.industryNames || ''}}</div>
+          </div>
+          <div class="bottom">
+           <div class="price"><span>￥</span><span class="number">{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</span></div>
+           <a :href="item.goodsDetailUrl" class="viewdetails">查看详情</a>
+          </div>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="demandsBox">
+   <div class="mmdiv">
+    <div class="demands">
+     <div class="titleBox">
+      <div class="title">
+       <div class="title-name"><span>技术需求</span></div>
+       <div class="title-text">技术供需信息互联，精准匹配对接</div>
+      </div>
+     </div>
+     <div class="content">
+      <div class="demand">
+       <div class="content-more space-between" style="background: url(/style/images/market/demandbg.png);">
+        <div class="content-more_top">
+         <div class="content-more_title">需求快速对接</div>
+         <div class="content-more_text">快速发布，自主对接</div>
+         <a href="/service/demand_list.html" class="iconfont icon-gengduo"></a>
+        </div>
+        <div class="content-more_btm">
+         <a :href="'/service/demand_list.html?demandType=' + item.value" v-for="item in demand_type" :key="item.id">{{item.display}}</a>
+        </div>
+       </div>
+       <div class="demand-right">
+        <ul class="lists">
+         <li class="list" v-for="demand in demandList" :key="demand.id">
+          <div class="top">
+           <div class="name" :title="demand.title">{{demand.title}}</div>
+           <div class="text" :title="demand.comment">{{demand.comment}}</div>
+           <div class="type"><span class="iconfont icon-hangye"></span><span :title="demand.tagNames">{{demand.tagNames}}</span></div>
+           <div class="type"><span class="iconfont icon-jilirencaipeiyu"
+             style="margin-right: 6px;"></span><span :title="demand.userName">{{demand.userName}}</span></div>
+          </div>
+          <div class="bottom">
+           <div class="price"><span>￥</span><span class="number">{{demand.budget}}</span></div>
+           <div class="green">{{demand.demandTypeDisplay}}</div>
+           <a :href="'/common/demanddetail.html?id=' + demand.id" class="viewdetails">查看详情</a>
+          </div>
+         </li>
+        </ul>
+        <div class="right">
+         <a href="/service/demand_list.html" class="right-title"><span>最新发布</span><span class="iconfont icon-gengduo"></span></a>
+         <div class="issueList">
+          <ul>
+           <li v-for="issue in issueList" :key="issue.id">
+            <a :href="'/common/demanddetail.html?id=' + issue.id" class="right-list">
+             <div class="item"><span class="green">[{{issue.demandTypeDisplay}}]</span><span>{{issue.title}}</span></div>
+             <div class="type">
+              <span class="price">￥{{issue.budget}}</span>
+              <span class="date">{{issue.publicDateDisplay[1]}}</span>
+             </div>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="flowchartBox">
+   <div class="mmdiv">
+    <div class="flowchart"><img src="/style/images/market/flowchart.png" alt=""></div>
+   </div>
+  </div>
+
+  <div class="supplierBox">
+   <div class="mmdiv">
+    <div class="suppliers">
+     <div class="titleBox">
+      <div class="title">
+       <div class="title-name"><span>推荐供应商</span></div>
+       <div class="title-text">云集优质技术供应商，满足您技术创新需求</div>
+      </div>
+     </div>
+     <div class="content">
+      <div class="supplier">
+       <div class="content-more space-between" style="background: url(/style/images/market/supplierbg.png);">
+        <div class="content-more_top">
+         <div class="content-more_title">优质技术供应商</div>
+         <div class="content-more_text">协同创新，产业赋能</div>
+         <a href="/service/organization_list.html" class="iconfont icon-gengduo"></a>
+        </div>
+        <!-- <div class="content-more_btm">
+          <a href="">技术难题</a>
+          <a href="">创新人才</a>
+          <a href="">科技服务</a>
+          <a href="">技术购买</a>
+         </div> -->
+       </div>
+       <div class="supplier-right">
+        <ul class="lists">
+         <li class="list" v-for="shop in shopList" :key="shop.id">
+          <div class="top">
+           <div class="list-avatar"><img :src="shop.shopLogo" alt=""></div>
+           <div class="name" :title="shop.shopName">{{shop.shopName}}</div>
+           <div class="type"><span class="iconfont icon-hangye"></span><span :title="shop.servicesNames">{{shop.servicesNames}}</span></div>
+           <div class="type"><span class="iconfont icon-dingweixian"></span><span
+             v-text="shop.provinceDisplay + shop.cityDisplay + shop.districtDisplay + shop.location"></span></div>
+          </div>
+          <div class="bottom">
+           <a :href="shop.shopIndexUrl" class="viewdetails">查看详情</a>
+          </div>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="serviceBox">
+   <div class="mmdiv">
+    <div class="service">
+     <div class="titleBox">
+      <div class="title">
+       <div class="title-name"><span>推荐服务</span></div>
+       <div class="title-text">成果转化服务，为您的技术转化保驾护航</div>
+      </div>
+     </div>
+     <div class="content">
+      <div class="serve">
+       <div class="content-more serve-more" style="background: url(/style/images/market/servebg.png);">
+        <div class="content-more_top">
+         <div class="content-more_title">成果转化服务</div>
+         <div class="content-more_text">优选服务商，为您服务</div>
+         <a href="/service/resource_list.html?servicesLevel=003" class="iconfont icon-gengduo"></a>
+        </div>
+       </div>
+       <div class="serve-right">
+        <ul class="lists">
+         <li class="list" v-for="serve in serveList" :key="serve.id">
+          <div class="top">
+           <div class="name" :title="serve.goodsName">{{serve.goodsName}}</div>
+           <div class="shop">
+            <div class="shop-avater"><img :src="serve.shopLogoUrl" alt=""></div>
+            <span :title="serve.shopName">{{serve.shopName}}</span>
+           </div>
+           <div class="type"><span class="iconfont icon-hangye"></span><span :title="serve.goodsName">{{serve.goodsName}}</span></div>
+           <div class="type"><span class="iconfont icon-dingweixian"></span><span :title="serve.shopProvinceDisplay">{{serve.shopProvinceDisplay}}</span>
+           </div>
+          </div>
+          <div class="bottom">
+           <div class="price"><span>￥</span><span class="number">{{serve.negotiableFlag | formatPrice(serve.price, serve.minPrice, serve.maxPrice)}}</span></div>
+           <a :href="serve.goodsDetailUrl" class="viewdetails">查看详情</a>
+          </div>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="contentDownBox">
+   <div class="mmdiv">
+    <div class="contentDown">
+     <a :href="count.url" v-for="(count,index) in counts" :key="index">
+      <div class="avater"><img :src="count.imgurl" alt=""></div>
+      <div class="right">
+       <div class="count">
+        <span class="number">{{count.count}}</span><span>{{count.unit}}</span>
+       </div>
+       <div class="text">{{count.label}}</div>
+      </div>
+     </a>
+    </div>
+   </div>
+  </div>
+  <web-footer></web-footer>
+ </div>
+ <script type="text/javascript" src="/common/js/libs/require.js"></script>
+ <script type="text/javascript" src="/style/js/market/index.js"></script>
+</body>
+
+</html>

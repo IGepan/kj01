@@ -1,0 +1,727 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>卖家中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="/common/seller/css/seller.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <style>
+        .rightmainbox {
+            padding-bottom: 120px;
+        }
+
+        .more-ops-link {
+            position: relative;
+            display: inline-block;
+            background-color: #1557b1;
+            color: #fff;
+            padding: 2px 10px;
+            margin-top: 3px;
+        }
+        .more-ops-link:hover{
+            background-color: #1557b1;
+        }
+        .more-ops-link:after {
+            font-family: "iconfont";
+            content: "\e61d";
+            color: #fff;
+            line-height: 1;
+            font-size: 12px;
+        }
+
+        .more-ops {
+            position: absolute;
+            background-color: #1557b1;
+            left: 0;
+            width: 100%;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        .more-ops a:hover {
+            background: #3888f5;
+        }
+
+        .pop-dlg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            top: 0;
+            left: 0;
+        }
+
+        .pop-dlg-bg {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        .pop-dlg-container {
+            position: absolute;
+            width: 800px;
+            background: #fff;
+            top: 20%;
+            left: 50%;
+            margin-left: -400px;
+        }
+
+        .pop-dlg-container.comments {
+            width: 1200px;
+            margin-left: -600px;
+        }
+
+        .upload-btn {
+            background: #1557b1;
+            color: #fff;
+            font-size: 14px;
+            padding: 5px 20px;
+            border-radius: 3px;
+            display: inline-block;
+            cursor: default;
+        }
+
+        .pop-dlg-item {
+            margin: 10px 0;
+        }
+
+        .pop-dlg-item textarea {
+            width: 400px;
+            height: 100px;
+        }
+
+        .pop-dlg-title {
+            font-size: 18px;
+            margin: 15px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 15px;
+        }
+
+        .pop-dlg-item span {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+
+        .pop-dlg-item>span:first-child {
+            width: 200px;
+            text-align: right;
+        }
+
+        .pop-dlg-bottom-btn {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .pop-dlg-bottom-btn span {
+            margin: 0 5px;
+        }
+
+        .pop-dlg-warn {
+            width: 73%;
+            margin: auto;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .pop-dlg-item select {
+            border: 1px solid #ccc;
+        }
+
+        .pop-dlg-inline {
+            display: inline-block;
+            margin-right: 70px;
+            font-size: 14px;
+        }
+
+        .pop-dlg-top {
+            border-bottom: 1px solid #000;
+            padding: 5px;
+        }
+
+        .pop-dlg-comment-tips {
+            background: #d3e6ff;
+            font-size: 12px;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        .pop-dlg-item .icon-wujiaoxing {
+            font-size: 30px;
+            color: #aaa;
+            margin-left: 5px;
+        }
+
+        .one.icon-wujiaoxing {
+            color: #797979;
+        }
+
+        .two.icon-wujiaoxing {
+            color: #f99805;
+        }
+
+        .three.icon-wujiaoxing {
+            color: #fd3e02;
+        }
+
+        .pop-dlg-rightcotainer span {
+            vertical-align: middle;
+        }
+
+        span.pop-dlg-info {
+            font-size: 12px;
+            padding: 0px 5px;
+        }
+
+        .pop-dlg-info.one {
+            color: #79797A;
+            border: 1px solid;
+        }
+
+        .icon-wujiaoxing.one:before {
+            content: "\e628";
+        }
+
+        .icon-wujiaoxing.two:before {
+            content: "\e628";
+        }
+
+        .icon-wujiaoxing.three:before {
+            content: "\e628";
+        }
+
+        .pop-dlg-info.two {
+            color: #f99805;
+            border: 1px solid;
+        }
+
+        .pop-dlg-info.three {
+            color: #fd3e02;
+            border: 1px solid;
+        }
+
+        .pop-dlg-leftcontainer {
+            float: left;
+            margin-right: 50px;
+            width: 425px;
+        }
+
+        .pop-dlg-leftcontainer .pop-dlg-item span:first-child {
+            width: 145px;
+        }
+
+        .pop-dlg-leftcontainer .pop-dlg-item span:last-child {
+            width: 235px;
+        }
+
+        .pop-dlg-rightcotainer {
+            overflow: hidden;
+            border-left: 1px solid #ccc;
+        }
+
+        .pop-dlg-picbtn {
+            border: 1px dashed;
+            width: 62px;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            padding: 5px;
+            cursor: default;
+        }
+
+        .pop-dlg-picbtn .iconfont {
+            font-size: 24px;
+        }
+
+        .more-ops a {
+            display: block;
+            margin: 5px 3px;
+            padding: 2px 3px;
+        }
+
+        .upload-file-container span {
+            vertical-align: middle;
+        }
+
+        .upload-file-container span.iconfont.icon-shanchuguanbicha2 {
+            position: static;
+            font-size: 16px;
+        }
+
+        .upload-img-prev {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border: 1px solid #eee;
+            margin-right: 15px;
+        }
+
+        .upload-img-prev img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .upload-img-prev .icon-shanchuguanbicha2.iconfont {
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            font-size: 16px;
+        }
+
+        .upload-img-prev>span:first-child {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        span.pop-dlg-info:before {
+            content: '';
+            display: inline-block;
+            background: #fff;
+            width: 5px;
+            height: 5px;
+            border-top: 1px solid;
+            border-left: 1px solid;
+            transform: rotate(-45deg);
+            margin-left: -9px;
+            position: relative;
+            top: -2px;
+            color: #fff;
+        }
+
+        .pop-dlg-info.one:before {
+            color: #797979;
+        }
+
+        .pop-dlg-info.two:before {
+            color: #f99805;
+        }
+
+        .pop-dlg-info.three:before {
+            color: #fd3e02;
+        }
+
+        .pop-dlg-item .required {
+            color: red;
+            margin-right: 5px;
+            font-style: normal;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+        i.tips {
+            font-style: normal;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .pop-dlg-fb {
+            width: 220px;
+            display: inline-block;
+            margin: 15px;
+            border: 1px solid #ccc;
+            font-size: 0;
+        }
+        .pop-dlg-fb span {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            margin: 10px 0 0 0;
+        }
+        .pop-dlg-fb.active span {
+            background: #1557b1;
+        }
+        .pop-dlg-fb.active span:after {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 8px;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: translate(-5px, -2px) rotate(45deg);
+        }
+        .pop-dlg-fb.active {
+            border: 1px solid #1557b1;
+        }
+        .pop-dlg-fb img {
+            width: 100px;
+            margin: 10px auto;
+            display: block;
+        }
+        .pop-dlg-fb > div {
+            font-size: 14px;
+            padding: 10px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .subpackage{
+            font-size: 12px;
+            color: #ffffff;
+            background-color: #f57825;
+            padding: 2px 6px;
+            margin-right: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 22;
+        }
+        .demandtit{
+            width: 320px;
+            position: relative;
+            text-align: left;
+        }
+        .demandname{
+            padding: 0 20px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="store_box">
+        <div class="header">
+            <ly-toper :http='http'></ly-toper>
+            <ly-header type="seller" :http="httpCom"></ly-header>
+        </div>
+        <div class="contant">
+            <div class="mdiv">
+                <div class="leftbox">
+                    <seller-left :http='http' :jquery='jquery'></seller-left>
+                </div>
+                <div class="crumbs">
+                    <a href="/common/seller/index.html">卖家中心</a>
+                    <span>我的中标</span>
+                </div>
+                <div class="rightmainbox">
+                    <div class="csearchform-content">
+                        <div class="csearchform">
+                            <label><span>关键字：</span>
+                                <div class="ipt"><input type="search" v-model="searchData.keyWord" placeholder="请输入需求标题"
+                                        style="width:500px"></div>
+                            </label>
+                            <label>
+                                <span>中标时间：</span>
+                                <div class="ipt">
+                                    <input type="text" id="timeStart" readonly v-model="searchData.bidDateFrom">
+                                </div>
+                                <span>至</span>
+                                <div class="ipt">
+                                    <input type="text" id="timeEnd" readonly v-model="searchData.bidDateTo">
+                                </div>
+                            </label>
+                            <label>
+                                <span>需求类型：</span>
+                                <div class="select">
+                                    <select v-model="searchData.demandType">
+                                        <option :value="k.value" v-for="k in options['demand_type']" v-html="k.display">
+                                        </option>
+                                    </select>
+                                </div>
+                            </label>
+                            <label>
+                                <span>需求状态：</span>
+                                <div class="select">
+                                    <select v-model="searchData.status">
+                                        <option :value="k.value" v-for="k in filterDemandStatus" v-html="k.display">
+                                        </option>
+                                    </select>
+                                </div>
+                            </label>
+                            <button class="" type="button" @click="searchPage(1)"
+                                :class="{disabled:searchDisable}">搜索</button>
+                        </div>
+                        <div class="csearchform-table">
+                            <table cellspacing="1" cellpadding="0">
+                                <thead>
+                                    <tr>
+                                        <td width="200">需求标题</td>
+                                        <td>需求类型</td>
+                                        <td>预算（元）</td>
+                                        <td>竞标价格（元）</td>
+                                        <td>中标时间</td>
+                                        <td>任务截止时间</td>
+                                        <td>需求状态</td>
+                                        <td width="150">操作</td>
+                                    </tr>
+                                </thead>
+                                <tbody v-cloak>
+                                    <tr v-if="searchList.length < 1">
+                                        <td colspan="8">无记录</td>
+                                    </tr>
+                                    <tr v-else v-for="k,index in searchList">
+                                        <td class="demandtit"><span class="subpackage" v-if="k.dispatchFlag === true">已分包</span><span class="demandname" v-html="k.title"></span></td>
+                                        <td v-html="k.demandTypeDisplay"></td>
+                                        <td style="width: 90px" v-html="k.budget"></td>
+                                        <td style="width: 109px" v-html="k.amount"></td>
+                                        <td style="width: 95px" v-html="k.bidDate"></td>
+                                        <td style="width: 95px" v-html="calcJZ(k.bidDate, k.actualPeriod)"></td>
+                                        <td v-html="k.statusDisplay"></td>
+                                        <td>
+                                            <a :href="'biddetail.html?id=' + k.id" target="_blank">投标详情</a>
+                                            <div @mouseover="showOps(index)" @mouseout="hideOps(index)"
+                                                class="more-ops-link">
+                                                更多操作
+                                                <div class="more-ops" v-show="moreIndex===index" v-cloak
+                                                    @mouseover="showOps" @mouseout="hideOps(index)">
+                                                    <a :href="'/common/demanddetail.html?id=' + k.demandId"
+                                                        target="_blank">浏览需求</a>
+                                                    <a :href="'logs.html?id=' + k.demandId" target="_blank">查看日志</a>
+                                                    <!--<a :href="'biddetail.html?id=' + k.id" target="_blank">查看投标详情</a>-->
+                                                    <a @click="viewProtocol(k.demandId)">查看协议</a>
+                                                    <a @click="showAccept(k)" v-if="k.status==='03'">申请验收</a>
+                                                    <a @click="showDelay(k)" v-if="k.status==='03'">申请延期</a>
+                                                    <a @click="showFBdlg(k)" v-if="k.status==='03'">{{k.dispatchFlag ? '查看分包' : '需求分包'}}</a>
+                                                    <a @click="showComments(k)" v-if="k.status==='05' && !k.evaluated">评价</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <ly-page :current-page="page" :total-page="totalPage" @handle="searchPage"></ly-page>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--验收框-->
+        <div class="pop-dlg" v-show="m_accept" v-cloak>
+            <div class="pop-dlg-bg"></div>
+            <div class="pop-dlg-container">
+                <div class="pop-dlg-title">申请验收</div>
+                <div class="pop-dlg-content">
+                    <div class="pop-dlg-warn">申请结束任务是指在任务执行过程，由于各方面的因素，需要终止双方服务关系。提交结束申请后，需对方进行确认后，才能生效，同时该任务结束。</div>
+                    <div class="pop-dlg-item">
+                        <span>需求名称：</span><span v-html="acceptInfo.title"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>需求编号：</span><span v-html="acceptInfo.demandId"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>雇主：</span><span v-html="acceptInfo.demandUserName"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>中标者：</span><span v-html="acceptInfo.bidUserName">重庆市科技服务云平台</span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>需求预算：</span><span v-html="acceptInfo.budget+'元'"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>任务截止时间：</span><span v-html="calcJZ(acceptInfo.bidDate, acceptInfo.actualPeriod)"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span><i class="required">*</i>申请验收原因：</span><span><textarea v-model="acceptInfo.reason"
+                                placeholder="200字符以内"></textarea></span>
+                    </div>
+                    <label>
+                        <ly-upload :nopro="true" :header='uploadHeader' :exp="{type:0}" :url='fileUploadUrl'
+                            :data='uploadData' @success="uploadSuccess">
+                            <div class="pop-dlg-item">
+                                <span>工作成果附件：</span>
+                                <span>
+                                    <div class="upload-btn">上传附件</div><i class="tips">附件文件名称最长50个汉字，附件文件大小最大10M</i>
+                                </span>
+                            </div>
+                        </ly-upload>
+                    </label>
+                    <div class="pop-dlg-item" v-for="k,i in acceptInfo.fileName">
+                        <span></span>
+                        <span>
+                            <div class="upload-file-container">
+                                <span class="upload-file-name" v-html="k"></span><span
+                                    @click="delFile(0,i)" class="iconfont icon-shanchuguanbicha2"></span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="pop-dlg-bottom-btn">
+                        <span class="upload-btn" :disabled="isSubmitDisabled" @click="submitAccept">提交申请</span>
+                        <span class="upload-btn" @click="closeAccept">取消</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--延期框-->
+        <div class="pop-dlg" v-show="m_delay" v-cloak>
+            <div class="pop-dlg-bg"></div>
+            <div class="pop-dlg-container">
+                <div class="pop-dlg-title">申请延期</div>
+                <div class="pop-dlg-content">
+                    <div class="pop-dlg-warn">如果在任务截止时间前还未完成任务要求，您可以申请任务延期，得到雇主的同意后，任务截止时间将会顺延。申请延期次数不超过三次，每次延期时长不能超过7天。
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>任务名称：</span><span v-html="delayInfo.title"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>任务编号：</span><span v-html="delayInfo.demandId"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>任务预算：</span><span v-html="delayInfo.budget+'元'"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>任务周期：</span><span
+                            v-html="calcZQ(delayInfo.actualPeriod, delayInfo.delayCount)+'天'"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span>任务截止时间：</span><span v-html="calcJZ(delayInfo.bidDate, delayInfo.actualPeriod)"></span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span><i class="required">*</i>延期天数：</span>
+                        <span>
+                            <select v-model="delayInfo.delay">
+                                <option value="">请选择</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="pop-dlg-item">
+                        <span><i class="required">*</i>申请原因：</span><span><textarea v-model="delayInfo.reason"
+                                placeholder="200字符以内"></textarea></span>
+                    </div>
+                    <div class="pop-dlg-bottom-btn">
+                        <span class="upload-btn" :disabled="isSubmitDisabled" @click="submitDelay">提交申请</span>
+                        <span class="upload-btn" @click="closeDelay">取消</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--评价框-->
+        <div class="pop-dlg" v-show="m_comments" v-cloak>
+            <div class="pop-dlg-bg"></div>
+            <div class="pop-dlg-container comments">
+                <div class="pop-dlg-content">
+                    <div class="pop-dlg-top">
+                        <div class="pop-dlg-inline">
+                            <span>需求编号：</span><span v-html="commentsInfo.demandId"></span>
+                        </div>
+                        <div class="pop-dlg-inline">
+                            <span>中标时间：</span><span v-html="commentsInfo.createDate"></span>
+                        </div>
+                    </div>
+                    <div class="pop-dlg-comment-tips">
+                        请根据本次服务，给予真实、客观、仔细的评价。<BR>
+                        您的评价将作为其他会员的参考，也将影响卖家的信用。累积信用和积分规则：中评不计分，但会影响卖家的好评率，请慎重给予。
+                    </div>
+                    <div>
+                        <div class="pop-dlg-leftcontainer">
+                            <div class="pop-dlg-item">
+                                <span>需求标题：</span><span v-html="commentsInfo.title"></span>
+                            </div>
+                            <div class="pop-dlg-item">
+                                <span>需求编号：</span><span v-html="commentsInfo.demandId"></span>
+                            </div>
+                            <div class="pop-dlg-item">
+                                <span>需求类型：</span><span v-html="commentsInfo.demandTypeDisplay"></span>
+                            </div>
+                            <div class="pop-dlg-item">
+                                <span>需求预算：</span><span v-html="commentsInfo.budget"></span>
+                            </div>
+                        </div>
+                        <div class="pop-dlg-rightcotainer">
+                            <div class="pop-dlg-item" v-for="k,index in options['evaluate_item']">
+                                <span v-html="k.display+'：'"></span>
+                                <span>
+                                    <i :class="{one:k<=evItem[index].index&&evItem[index].index<=1&&evItem[index].index>=0,two:k<=evItem[index].index&&evItem[index].index>1&&evItem[index].index<4,three:evItem[index].index===4}"
+                                        class="iconfont icon-wujiaoxing" v-for="k in [0,1,2,3,4]"
+                                        @mouseover="starUpdate(index,k)" @click="starUpdate(index,k,1)"></i>
+                                </span>
+                                <span class="pop-dlg-info"
+                                    :class="{one:evItem[index].index>=0&&evItem[index].index<=1,two:evItem[index].index>1&&evItem[index].index<4,three:evItem[index].index===4}"
+                                    v-html="evItem[index].txt"></span>
+                            </div>
+
+                            <div class="pop-dlg-item">
+                                <span style="vertical-align: top;">评价内容：</span>
+                                <span>
+                                    <textarea v-model="commentsInfo.reason" placeholder="200字符以内"></textarea>
+                                    <div style="text-align: right">
+                                        <input v-model="commentsInfo.flag" type="checkbox" id="c-noname"><label
+                                            for="c-noname">匿名评价</label>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="pop-dlg-item">
+                                <span></span>
+                                <span>
+                                    <label>
+                                        <ly-upload type="image" :nopro="true" :header='uploadHeader' :exp="{type:1}"
+                                            :url='uploadUrl' :data='uploadData' accept="image/*" @success="uploadSuccess">
+                                            <div class="pop-dlg-picbtn">
+                                                <i class="icon-tupian1 iconfont"></i>
+                                                <div>添加图片</div>
+                                            </div>
+                                        </ly-upload>
+                                    </label>
+                                </span>
+                                <span>
+                                  <ul v-viewer>
+                                    <li class="upload-img-prev" v-for="k,index in commentsInfo.imgprev">
+                                      <span><img :src="k"></span>
+                                      <span class="icon-shanchuguanbicha2 iconfont" @click="delFile(1, index)"></span>
+                                    </li>
+                                  </ul>
+                                </span>
+                                <!--<span>
+                                <label>
+                                    <ly-upload :nopro="true" :header='uploadHeader' :exp="{type:2}" :url='uploadUrl' :data='uploadData' @success="uploadSuccess">
+                                        <div class="pop-dlg-picbtn">
+                                            <i class="icon-xiala iconfont"></i>
+                                            <div>添加视频</div>
+                                        </div>
+                                    </ly-upload>
+                                </label>
+
+                            </span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pop-dlg-bottom-btn">
+                        <span class="upload-btn" :disabled="isSubmitDisabled" @click="submitComments">提交</span>
+                        <span class="upload-btn" @click="closeComments">取消</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--分包框-->
+        <div class="pop-dlg" v-show="m_fb" v-cloak>
+            <div class="pop-dlg-bg"></div>
+            <div class="pop-dlg-container">
+                <div class="pop-dlg-title">选择分包系统</div>
+                <div class="pop-dlg-content">
+                    <div class="pop-dlg-item" style="text-align: center">
+                        <div class="pop-dlg-fb" v-for="(k,i) in fb_list" style="text-align: right" @click="activeFb(k, i)" :class="{active:activeFbIndex===i}">
+                            <img :src="k.logo || '/common/images/seller_bided_'+i+'.png'">
+                            <div v-html="k.name" style="text-align: left"></div>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="pop-dlg-bottom-btn">
+                        <span class="upload-btn" :disabled="isSubmitDisabled" @click="submitFb">确认</span>
+                        <span class="upload-btn" @click="closeFb">关闭</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ly-minifooter></ly-minifooter>
+    </div>
+    <script src="/common/js/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="js/bided.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>用户中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <ly-toper></ly-toper>
+    <header-bar type='buyer' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">
+            用户中心
+          </a>
+          <span>收藏中心</span>
+        </div>
+        <div class="centerbox">
+          <ul class="usertabs">
+            <li v-for="(item, index) in labels" :key="index" :class="{active: item.selected}"> <a :href="item.url"
+                v-text="item.label"></a> </li>
+          </ul>
+          <div class="tabbox">
+            <div class="userform active">
+              <div class="orderbox">
+                <div class="control">
+                  <label>
+                    <input type="checkbox" v-model="isOrderSelectedAll">
+                    <b></b>全选</label>
+                  <button @click="deleteBatch">删除</button>
+                </div>
+                <ul class="clist">
+                  <li v-for="(item, index) in orderList" :key="index">
+                    <div class="tableRow">
+                      <div style="width: 754px">
+                        <span class="spimg fl"
+                          :style="'background-image: url('+(item.shopLogo||'http://dummyimage.com/94x82')+');'"></span>
+                        <div class="ovflh">
+                          <div class="sptit"><a :href="item.shopIndexUrl" target="_blank" v-text="item.storeName"></a>
+                          </div>
+                          <div class="spname" v-text="$options.filters.clearHtmlTag(item.comment)"></div>
+                        </div>
+                      </div>
+                      <div style="width: 234px;
+  vertical-align: middle;" class="textcenter"><button @click="deleteOne(item.storeId)" class="delbtn">删除</button></div>
+                    </div>
+                  </li>
+                </ul>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                  <span>[共<span v-text='total'></span>条]</span>
+                </div>
+                <!--/分页-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/cshop.js"></script>
+</body>
+
+</html>

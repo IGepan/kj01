@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/seller.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="store_box">
+    <div class="header">
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+      </div>
+      <div class="mdiv mt20">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="rightmainbox">
+          <div class="routenav">
+            <a href="/common/seller/index.html">
+              卖家中心&nbsp;&nbsp;&gt;
+            </a>
+            <span>店铺装修</span>
+          </div>
+          <div class="activestore">
+            <div class="storetit"> 店铺装修 </div>
+            <div class="storemodel">
+              <div class="clear">
+                <span class="modeltit">选择模板：</span>
+              </div>
+              <div class="modellist">
+                <div class="mdl" @click="otherTemplateClick(temp, index)" :class="{active: index == tempIndex}"
+                  v-for="(temp, index) in templateList" :style="{backgroundImage: 'url('+temp.sampleImage+')'}">
+                </div>
+
+                <div class="moremodel" @click="otherTemplateClick(templateList[0], 1)">
+                  <i class="iconfont icon-quanbu"></i>
+                  <span>更多模版敬请期待</span>
+                </div>
+              </div>
+            </div>
+            <template v-for="(item, pIndex) in formList">
+              <color-template ref='colorRef' v-if="item.controlType == '01'" :info='item' :http='http'></color-template>
+              <!--<pic-template v-if="item.controlType == '02'" :info='item' :http='http'></pic-template>-->
+              <div class="storemodel">
+                <div class="expitem mt20" v-if="item.controlType == '02' || item.controlType == '03'">
+                  <span class="modeltit fl" v-text="item.propertyName+'：'"></span>
+                  <div class="imglistcs">
+                    <div class="mb20">
+                      <label class="csimg inline">
+                        <span>选择文件</span>
+                        <ly-upload :exp='item' @success='imgUploadSuccess' :nopro='true'
+                          data-valid="custom:userNameValid" class="" accept="image/*" :header='uploadHeader'
+                          :url='uploadUrl' :data='uploadData'>
+                        </ly-upload>
+                      </label>
+                      <span v-if="item.propertyId === '92655806440278140'"
+                        style="color:red;vertical-align: middle;font-size: 14px;">建议上传尺寸为 1920 * 240px,
+                        小于300K的图片</span>
+                      <span v-if="item.propertyId === '92655806264117371'"
+                        style="color:red;vertical-align: middle;font-size: 14px;">建议上传尺寸为 1200 * 560px,
+                        小于300K的图片</span>
+                    </div>
+                    <div class="imglist" v-viewer>
+                      <div class="imgs" v-for="(img, index) in item.defaultValueList">
+                        <i class="iconfont icon-shanchuguanbicha2" @click="delImgClick(pIndex,index)"></i>
+                        <img :src="img.url" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="expitem mt20" v-if="item.controlType == '04'">
+                  <span class="modeltit fl" v-text="item.propertyName+'：'"></span>
+                  <div class="mb20"><input class="expipt" v-model="item.defaultValueList[0].value" /></div>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div class="btmbtn">
+            <button class="btn-submit" :disabled="isSubmitDisabled" @click="saveClick">保存</button>
+            <button class="btn-save" @click="previewClick">效果预览</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/storefitment.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源设备仪器列表</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/resources.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <sources-head :breadcrumb="breadcrumb" :bottom-Border="true" :nav-index="4"></sources-head>
+      <div class="content">
+        <div class="mdiv">
+          <div class="searchListBox">
+            <template v-if="options.searchOpts.length">
+              <template v-for="(optItem, index) in options.searchOpts">
+                <div class="search-row" v-if="!optItem.isTop" :key="index">
+                  <label class="search-label">{{optItem.label}}</label>
+                  <div class="searchkeys" :class="{full: optItem.isMore}">
+                    <template v-if="optItem.operationType === 'select'">
+                      <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                        <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }"
+                          :data-di="sindex" :data-pi="index" :data-value="ducItem.value"
+                          :key="sindex">{{ducItem.label}}</span>
+                      </template>
+                      <div v-show="optItem.isMoreShow" class="unfold" @click.stop="handleSetMoreItem(index)">
+                        <span>{{ optItem.isMore ? '收起' : '更多' }}</span><span class="iconfont"
+                          :class="{'icon-zhankai': !optItem.isMore, 'iconfont icon-shouqi': optItem.isMore}"></span>
+                      </div>
+                    </template>
+                    <template v-if="optItem.operationType=== 'area'">
+                      <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: selected }"
+                        :data-di="-1" :data-pi="index" :data-value="-1">全部</span>
+                      <span class="selectBox">
+                        <select placeholder="省级" v-model="searchForm.area" :data-pi="index"
+                          @change.stop="handleSetSearchForm" class="select" :class="{active: searchForm.area}">
+                          <template v-for="opt in optItem.dictIInfos">
+                            <option :value="opt.code" :key="opt.id">
+                              {{opt.label}}</option>
+                          </template>
+                        </select>
+                      </span>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </div>
+          <div class="containerBox">
+            <div class="listLeft">
+              <div class="searchResult clear">
+                <div class="fl">
+                  <span>已选条件：</span>
+                  <template v-for="(selectOpt, index) in options.selectOpts">
+                    <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i
+                        v-if="selectOpt.code !== 'sort_type'" @click.stop="handleDelSelectOpt" :data-index="index"
+                        class="iconfont icon-delete icon"></i></label>
+                  </template>
+                </div>
+                <div class="fr">已为您查询到 <template v-if="count !== -1">
+                    <span class="total">{{count}}</span>
+                  </template> 条</div>
+              </div>
+              <div class="listsBox">
+                <template v-if="options.searchOpts.length">
+                  <template v-for="(optItem, index) in options.searchOpts">
+                    <div class="searchMainkey boxShadow" :key="index" v-if="optItem.isTop">
+                      <div>
+                        <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+                          <span class="mainKey" @click.stop="handleSetSearchForm"
+                            :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index"
+                            :data-value="topDicItem.value" :key="tindex">{{topDicItem.label}}</span>
+                        </template>
+                      </div>
+                      <div class="header-search"><input placeholder="在结果中搜索" v-model="searchForm.searchWords"
+                          type="text" class="input-search"><span @click.stop="handleSearch"
+                          class="iconfont icon-fangdajing"></span></div>
+                    </div>
+                  </template>
+                </template>
+                <ul data-equipment class="listsBox-lists">
+                  <template v-for="item in dataList">
+                    <li class="list">
+                      <a :href="item.itemUrl" target="_blank" :title="item.name">
+                        <div class="list-up">
+                          <div class="list-up_left">
+                            <div class="item-img img" :style="item.styles"><img v-if="item.itemImg" :src="item.itemImg"
+                                :alt="item.name"><span>{{item.name|firstWord}}</span></div>
+                          </div>
+                          <div class="list-cen">
+                            <div class="name title">{{item.name}}</div>
+                            <div class="list-cen_up">
+                              <span class="name">主要功能：{{item.functionalDescription}}</span>
+                            </div>
+                            <div class="list-cen_down">
+                              <div class="unit">
+                                <span class="iconfont icon-qiye"></span>
+                                <span class="name">所在单位：{{item.org}}</span>
+                              </div>
+                              <div v-if="item.address" class="adress">
+                                <span class="iconfont icon-dingwei"></span>
+                                <span class="name">{{item.address}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+              <div id="pagination-container" class="pages"></div>
+            </div>
+            <div class="listRight">
+              <!-- 详设--广告图暂时写死，用申报助手的几张图 -->
+              <div class="advertising">
+                <img src="/image/poindex/1.jpg" alt="">
+              </div>
+              <div class="advertising">
+                <img src="/image/poindex/2.jpg" alt="">
+              </div>
+              <div class="advertising">
+                <img src="/image/poindex/3.jpg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/resources/equipment_list.js"></script>
+</body>
+
+</html>

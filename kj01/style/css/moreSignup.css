@@ -1,0 +1,155 @@
+.moreSignup {
+  width: 990px;
+  background-color: #fff;
+  margin-bottom: 60px;
+}
+
+.detail-base {
+  font-size: 0;
+  padding: 30px;
+  border-bottom: 1px solid #f5f8fb;
+}
+
+.detail-base-img {
+  width: 180px;
+	height: 120px;
+	background-color: #4295fa;
+}
+.detail-base-info {
+  padding: 0 18px;
+  font-size: 14px;
+  height: 120px;
+}
+.detail-base-info  .iconfont {
+  margin-right: 5px;
+}
+.detail-base-info .time, .detail-base-info .address, .detail-base-info .onLine, .detail-base-info .sponsor {
+  line-height: 14px;
+	color: #9496a5;
+}
+.detail-base-info .title {
+  padding: 0;
+  font-size: 28px;
+  line-height: 28px;
+  color: #343334;
+  margin: 0;
+}
+.time {
+  margin-top: 26px;
+}
+.detail-base-info .address, .detail-base-info .onLine, .detail-base-info .sponsor {
+  margin-top: 10px;
+}
+
+.moreSignup-list {
+  padding: 30px;
+}
+
+.list-item  {
+  padding: 29px 75px 0;
+  border-bottom: 1px dashed #d4d9e6;
+  position: relative;
+  font-size: 0;
+}
+
+.list-item .flag {
+  width: 40px;
+  height: 40px;
+  background-color: #0096ff;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  top: 30px;
+}
+.enroll-item {
+  margin-bottom: 29px;
+    display:flex;
+    align-items: center;
+}
+.enroll-item .label {
+	font-size: 16px;
+	/*line-height: 42px;*/
+	color: #9496a5;
+	width:100px;
+	/*height: 42px;*/
+	text-align: right;
+    display:block;
+}
+.enroll-item .label .isNull {
+  color: red;
+  padding: 5px;
+}
+
+.enroll-item .enroll-input {
+  margin-left: 20px;
+  width: 540px;
+  height: 42px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.enroll-item .enroll-input .input {
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+  border: solid 1px #e6e7f1;
+  font-size: 16px;
+  padding: 0 10px;
+	color: #343334;
+}
+.enroll-item .enroll-input.error .input {
+  border-color: #ff8110;
+}
+.enroll-item .enroll-input .input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #999;
+  font-size: 14px;
+}
+
+.enroll-item .enroll-input .input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 14px;
+}
+
+.enroll-item .enroll-input .input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 14px;
+}
+.tips-text {
+	font-size: 12px;
+	line-height: 42px;
+	color: #ff8110;
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	top: 0;
+}
+
+.delicon {
+  position: absolute;
+  right: -11px;
+  top: -11px;
+  cursor: pointer;
+}
+
+.companyResultList {
+  font-size: 16px;
+  z-index: 999;
+  position: relative;
+  background-color: #fff;
+  margin-top: 3px;
+  border: solid 1px #e6e7f1;
+}
+.company-item {
+  padding: 10px;
+  line-height: 28px;
+  color: #343334;
+  cursor: pointer;
+}
+.company-item:hover {
+  background-color: #4295fa;
+	color: #fff;
+}

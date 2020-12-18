@@ -1,0 +1,259 @@
+.box {
+  background-color: #F5F8FB;
+}
+.imageBox {
+  width: 258px;
+  height: 170px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-item{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0px 7px 65px 0px
+		rgba(4, 85, 185, 0.61);
+}
+.image-item img{
+  max-width: 100%;
+}
+
+.declarationGuide {
+  margin-top: 30px;
+}
+
+.guide {
+  width: 870px;
+  position: relative;
+  background-color: #fff;
+}
+.weixin-box{
+    position:absolute;
+    text-align: center;
+    top: 101px;
+    right: -121px;
+    background:#fff;
+    opacity:0;
+    padding:2px;
+}
+.weixin-box:before{
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    width: 10px;
+    height: 10px;
+    top: 10px;
+    left: -6px;
+    transform: rotateZ(45deg);
+}
+.weixin-box img{
+    width:108px;
+}
+.bannerBlock-small{
+  width: 100%;
+  padding: 22px 23px;
+  margin-bottom: 10px;
+  height: 90px;
+}
+.bannerBlock-small img {
+  max-width: 36px;
+}
+.bannerBlock-small.policy:hover + .weixin-box {
+    opacity:1;
+}
+.bannerBlock {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.guideTitle{
+	z-index: 46;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #ffffff;
+}
+.guideTitle.box-shadow {
+	box-shadow: 0 15px 20px 0 rgba(1, 7, 29, 0.1);
+}
+.guideList {
+  height: 230px;
+  padding: 20px;
+  z-index: 0;
+}
+.guideTitle-text {
+	position:relative;
+	font-size: 18px;
+	line-height: 30px;
+	color: #343334;
+	text-indent: 14px;
+}
+.guideTitle-text::before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 6px;
+  height: 30px;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #018fff;
+  border-radius: 3px;
+}
+.guideItem a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.guideItem-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	border: solid 1px #c0c1d0;
+}
+.guideItem-text {
+  flex: 1;
+  font-size: 16px;
+  line-height: 17px;
+  color: #343334;
+}
+
+.guideItem-time {
+  margin-left: 50px;
+  font-size: 14px;
+  line-height: 32px;
+  color: #999999;
+}
+.guideItem:hover .guideItem-dot  {
+  background-color: #018fff;
+  border-color: #018fff;
+}
+.guideItem:hover .guideItem-text{
+	color: #018fff;
+}
+.apBox {
+  margin: 20px auto;
+}
+.declarationList {
+  margin-bottom: 60px;
+}
+.bgw {
+  background-color: #fff;
+}
+.list {
+  padding: 10px 20px 30px;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+}
+.declarationList .list {
+  padding-bottom: 40px;
+}
+.list-item {
+  max-width: 260px;
+  width: 260px;
+  border: solid 1px #e3eaf1;
+  margin-right: 33px;
+  flex: 1;
+}
+.listItem {
+  background-color: #6c95ff;
+}
+.list-item:hover {
+	border-color: #ff8110;
+}
+
+.list-item:last-child {
+  margin-right: 0
+}
+
+.active-title, .declaration-title {
+  padding: 18px 17px 20px 20px;
+  font-size: 16px;
+  color: #343334;
+}
+.declarationtitle {
+  color: #ffffff;
+}
+.active-other {
+  display: flex;
+  align-items: center;
+  padding: 0 17px 24px 19px;
+}
+.active-other-text {
+	font-size: 12px;
+	line-height: 36px;
+	color: #999999;
+	margin-left: 8px;
+}
+
+.more {
+	font-size: 14px;
+	line-height: 36px;
+  color: #018fff;
+  margin-right: 20px;
+}
+.noColor {
+	color: #343334;
+}
+.tabs {
+	font-size: 16px;
+	line-height: 36px;
+}
+
+.tabs span {
+  padding: 0 20px;
+  border-right: 1px solid #343334;
+  cursor: pointer;
+}
+.tabs span:last-child {
+  border-right: 0
+}
+.tabs span:hover {
+  color: #018fff;
+}
+.policyBox {
+  width: 260px;
+  padding: 20px;
+  height: 290px;
+  overflow: hidden;
+  margin-right: 33px;
+  border: solid 1px #e3eaf1;
+}
+
+.policyBox:hover{
+	border-color: #ff8110
+}
+
+.policyBox .policy-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+	color: #343334;
+}
+.policyBox .policy-desc {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 22px;
+  line-height: 24px;
+  height: 120px;
+  -webkit-line-clamp: 5;
+}
+.policyBox .policy-other {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 33px;
+  font-size: 12px;
+  color: #999999;
+}

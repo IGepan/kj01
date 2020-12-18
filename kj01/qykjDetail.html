@@ -1,0 +1,129 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策汇</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/polist.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/qykjdetail.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+  <style>
+
+    .article-content .selectTdClass {
+      background-color: #edf5fa !important
+    }
+
+    .article-content table.noBorderTable td, .article-content table.noBorderTable th, .article-content table.noBorderTable caption {
+      border: 1px dashed #ddd !important
+    }
+
+    .article-content table {
+      margin-bottom: 10px;
+      border-collapse: collapse;
+      display: table;
+    }
+
+    .article-content td, th {
+      padding: 5px 10px;
+      border: 1px solid #DDD;
+    }
+
+    .article-content caption {
+      border: 1px dashed #DDD;
+      border-bottom: 0;
+      padding: 3px;
+      text-align: center;
+    }
+
+    .article-content th {
+      border-top: 1px solid #BBB;
+      background-color: #F7F7F7;
+    }
+
+    .article-content table tr.firstRow th {
+      border-top-width: 2px;
+    }
+
+    .article-content .ue-table-interlace-color-single {
+      background-color: #fcfcfc;
+    }
+
+    .article-content .ue-table-interlace-color-double {
+      background-color: #f7faff;
+    }
+
+    .article-content td p {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+<div class="box grayBgbox" v-cloak id='index_box'>
+  <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+  <sub-head name="政策资讯" :breadcrumb="breadcrumb"  :nav-index="4"></sub-head>
+
+  <div class="mdiv newDetail">
+      <template v-if="detail">
+
+        <div class="detail-title-Box">
+          <h1 class="detail-title-text">{{detail.title}}</h1>
+          <div class="detail-title-other">
+            <span class="label">发布时间：{{detail.policyPublishDate|formatTime1}} </span>
+            <span class="label">来源：{{detail.srcName}}</span>
+          </div>
+        </div>
+
+        <div class="detail-contentBox">
+          <div @click="handleContent" v-html="!detail.viewType ? detail.content : detail.viewType === 1 ? detail.disassemble : detail.annotationContent"></div>
+          <div class="printBox">
+            <button type="button" @click.stop="handleShowTips" typeName="print"><i class="vaMiddle iconfont icon-dayin"></i><span class="vaMiddle">打印本页</span></button>
+          </div>
+        </div>
+        <template v-if="!detail.viewType && detail.files && detail.files.length">
+          <div class="article-files">
+            <div class="article-files-title"><span class="title-text">附件</span></div>
+            <div class="article-files-body">
+              <template v-for="(tfile, fi) in detail.files">
+                <div class="article-file" @click.stop="handleFileSaveAs(fi)"><svg class="vaMiddle jsicon svg-icon" aria-hidden="true">
+                  <use :xlink:href="'#icon-'+tfile.flieType"></use>
+                </svg><span class="vaMiddle line">{{tfile.name}}</span></div>
+              </template>
+            </div>
+          </div>
+        </template>
+        <div class="article-bottom">
+          <button type="button" typeName="articleBtn" class="shareBtn">
+            <i class="iconfont icon-fenxiang vaMiddle"></i><span  class="vaMiddle">分享</span>
+            <div class="shareBox">
+              <div class="share-item" @click.stop="handleShareToWeixin"><i class="iconfont icon-weixin"></i><span class="text">微信</span></div>
+              <div class="share-item" @click.stop="handleShareToQQ"><i class="iconfont icon-qq"></i><span class="text">QQ</span></div>
+            </div>
+          </button>
+          <a href="/qykj.html"><button type="button" typeName="articleBtn"><i class="iconfont icon-zhengce vaMiddle"></i><span class="vaMiddle">返回列表</span></button></a>
+<!--          <div class="article-btns">-->
+<!--            <button type="button" @click.stop="handleColSelected" typeName="articleBtn" class="borderRight" class="{colSelected: detail.isCollection}"><i class="iconfont vaMiddle" :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i><span class="vaMiddle">{{detail.isCollection ? '已收藏' : '收藏'}}</span></button>-->
+<!--            <button type="button" data-viewtype="1" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType !== 1 && detail.disassemble"><i class="iconfont icon-zhengcejiedu vaMiddle"></i><span class="vaMiddle">查看解读</span></button>-->
+<!--            <button type="button" data-viewtype="2" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType !== 2 && detail.isAnnotation"><i class="iconfont icon-pizhu vaMiddle"></i><span class="vaMiddle">查看批注</span></button>-->
+<!--            <button type="button" data-viewtype="0" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType"><i class="iconfont icon-zhengce vaMiddle"></i><span class="vaMiddle">查看原文</span></button>-->
+<!--            <button type="button" @click.stop="handleShowTips" typeName="articleBtn"><i class="iconfont icon-zixun vaMiddle"></i><span class="vaMiddle">立即咨询</span></button>-->
+<!--          </div>-->
+        </div>
+      </template>
+  </div>
+
+  <web-footer></web-footer>
+</div>
+<script src="/style/css/icon/iconfont.js"></script>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<!--<script type="text/javascript" src="/style/js/podetail.js"></script>-->
+<script type="text/javascript" src="/style/js/qykjDetail.js"></script>
+
+</body>
+
+</html>

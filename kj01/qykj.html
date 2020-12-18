@@ -1,0 +1,87 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策精要</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/qykj.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+</head>
+
+<body>
+<div class="box grayBgbox" v-cloak id='index_box'>
+  <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+  <sub-head name="政策资讯" :breadcrumb="breadcrumb"  :nav-index="4"></sub-head>
+
+  <div class="mdiv commonCententBox">
+    <div class="fl mainBox">
+
+      <div class="list mainPolicyList">
+
+        <template v-for="(policy, ni) in policyList">
+          <div class="list-item" :key="ni">
+            <a class="link" :title="policy.title" :href="policy.itemUrl" target="_blank">
+              <div class="list-item-title">
+                <span class="vaMiddle line list-item-title-text">{{policy.title}}</span>
+              </div>
+
+              <div class="list-item-other">
+                <div class="list-item-other-label">
+                  <label class="label-item">
+                    <i class="iconfont icon-neirongtuisong icon"></i>
+                    <span class="labelText">{{policy.srcName}}</span>
+                  </label>
+<!--                  <label class="label-item">-->
+<!--                      <i class="iconfont icon-lishijilu icon"></i>-->
+<!--                      <span class="labelText">{{policy.publishDate}}</span>-->
+<!--                    </label>-->
+
+                </div>
+                <div class="tags">
+                    <label class="label-item">
+                      <i class="iconfont icon-lishijilu icon"></i>
+                      <span class="labelText">{{policy.publishDate}}</span>
+                    </label>
+                </div>
+              </div>
+            </a>
+          </div>
+        </template>
+        <template v-if="pages">
+          <pages :pages="pages" @changepage="bindPageChange"></pages>
+        </template>
+      </div>
+    </div>
+    <div class="fr sideBar">
+
+      <div class="list recommend">
+        <div class="list-title"><span class="list-title-text">推荐阅读</span></div>
+        <div class="list-body">
+          <template v-for="(item, ni) in recommendList">
+            <div class="list-item" :key="ni">
+              <span class="list-item-circle"></span>
+              <a class="list-item-text line" :title="item.title" :href="item.itemUrl" target="_blank">{{item.title}}</a>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="bannerBlock">
+        <img src="/image/polist/banner1.png" alt="">
+      </div>
+      <div class="bannerBlock">
+        <img src="/image/polist/banner2.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <web-footer></web-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/qykj.js"></script>
+</body>
+
+</html>

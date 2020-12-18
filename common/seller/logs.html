@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/seller/css/seller.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="store_box">
+    <div class="header">
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/seller/index.html">卖家中心</a>
+          <span>需求日志</span>
+        </div>
+        <div class="rightmainbox">
+          <div class="tabbox">
+            <div class="userform active">
+              <div class="orderbox">
+                <div class="control orderbox-title" v-if="logInfo[0]">
+                  <h3 style="font-size: 16px;margin: 0;" v-text="logInfo[0].title"></h3>
+                  <span v-text="'需求编号：' + logInfo[0].id"></span>
+                </div>
+                <div class="orderbox-content">
+                  <div class="orderbox-content_left fl">
+                    <div class="operation-time" v-for="log in logInfo">
+                      <span v-text="log.opTime"></span>
+                    </div>
+                  </div>
+                  <div class="orderbox-content_right">
+                    <div class="operation-task" v-for="log in logInfo"
+                      v-html="log.beforeStatus +'&nbsp;-&nbsp;&nbsp;<i>(' +log.userName+ ')</i>'">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/订单列表-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/logs.js"></script>
+</body>
+
+</html>

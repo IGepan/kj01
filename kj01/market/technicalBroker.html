@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/technicalBroker.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="index_box" class="box grayBgbox" v-cloak>
+    <ly-toper></ly-toper>
+    <market_header name="技术市场"></market_header>
+    <div class="navBox">
+        <div class="mmdiv">
+            <div class="navs">
+                <div class="blue-box"></div>
+                <div class="navslist">
+                    <a :href="nav.url" :class="{active: nav.selected}" v-for="(nav,index) in navslist">{{nav.label}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bannerBox" style="background: url(/style/images/market/broker-banner.jpg)">
+        <div class="banner-desc">根据《中华人民共和国促进科技成果转化法》及其若干规定，按照《国务院关于印发国家技术转移体系建设方案的通知》（国发〔2017〕44 号）要求，创新技术转移人才发展机制，
+            培养高素质、专业化技术转移人才，加快构建国家技术转移人才培养体系，营造科技成果转移转化良好生态，提升科技成果转移转化质量和效益，助力我国经济高质量发展和创新型国家建设。</div>
+    </div>
+
+    <div class="tec-sure-box">
+        <div class="mmdiv container-box">
+            <div class="title-box">
+                <div class="title-name">技术经纪人培育与认定</div>
+                <div class="title-text">一 易智网提供一站式培育认定体系 一</div>
+                <div class="img-box"><img src="/style/images/market/broker-01.png" alt=""></div>
+            </div>
+            <div class="tec-sure-content">
+               <div class="content-left">
+                   <div class="item-box" v-for="(item,i) in tecSureList" @mouseover.stop="handleSwitchover(i)" :class="item.active?'active':''">
+                       <div class="frame-text">{{item.label}}</div>
+                   </div>
+               </div>
+               <div class="content-right-box">
+                  <div v-if="activeIndex===0" class="content-right content-right1">
+                      <div class="left-box">
+                          <div class="title title-out line2">{{tabs1List.tabs_1.title||''}}</div>
+                          <div class="hover-show" v-show="tabs1List.tabs_1.title">
+                              <div class="title line2">{{tabs1List.tabs_1.title||''}}</div>
+                              <div class="desc">{{tabs1List.tabs_1.description||''}}</div>
+                              <div class="detail-btn"><a :href="tabs1List.tabs_1.url||''" target="_blank">查看详情</a></div>
+                          </div>
+                      </div>
+                      <div class="right-box">
+                          <div class="item-box item-box1 left-box">
+                              <div class="title title-out line2">{{tabs1List.tabs_2.title||''}}</div>
+                              <div class="hover-show" v-show="tabs1List.tabs_2.title">
+                                  <div class="title line2">{{tabs1List.tabs_2.title||''}}</div>
+                                  <div class="detail-btn"><a :href="tabs1List.tabs_2.url||''" target="_blank">查看详情</a></div>
+                              </div>
+                          </div>
+                          <div class="item-box item-box2 left-box">
+                              <div class="title title-out line2">{{tabs1List.tabs_3.title||''}}</div>
+                              <div class="hover-show" v-show="tabs1List.tabs_3.title">
+                                  <div class="title line2">{{tabs1List.tabs_3.title||''}}</div>
+                                  <div class="detail-btn"><a :href="tabs1List.tabs_3.url||''" target="_blank">查看详情</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                   <div v-if="activeIndex===1" class="content-right content-right2 content-right4">
+                       <div class="bg-white">
+                           <div class="left-box">
+                               <div class="title">培育课程</div>
+                               <div class="item-box" v-for="item in lessonList">
+                                   <div class="img-box"><img :src="item.img" alt=""></div>
+                                   <div class="desc-box">
+                                       <div class="desc-title">{{item.title}}</div>
+                                       <div class="desc-text">{{item.desc}}</div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="right-box right-box-top" @click="goClasses">
+                               <img src="/style/images/market/broker-10.png" alt="">
+                           </div>
+                           <div class="right-box right-box-bottom">
+                               <img src="/style/images/market/broker-13.png" alt="">
+                           </div>
+                       </div>
+                   </div>
+                  <div v-if="activeIndex===2" class="content-right content-right3">
+                     <div class="content content-top">
+                       <div class="img-box" @click="goActivity"><img src="/style/images/market/broker-4.jpg" alt=""></div>
+                       <div class="desc-box">
+                         <div class="title-arrow">历史活动</div>
+                         <div class="title" @click="goActivity">重庆市技术经理人培训</div>
+                         <div class="summary">为深入落实《重庆市技术转移体系建设实施方案》，加快我市技术转移人才培养，建设重庆市技术经理人队伍,开展“重庆技术经理人培训”。</div>
+                       </div>
+                     </div>
+                      <div class="content content-bottom">
+                          <div class="desc-box">
+                              <div class="title-arrow">线上系统</div>
+                              <div class="title" @click="goTest">技术经纪人培育认定系统</div>
+                              <div class="summary">为进入科技服务行业开展科技成果转化服务的从业者，提供在线培训、资质认证、证书查询、技术经纪人信息发布与展示等服务。</div>
+                          </div>
+                          <div class="img-box" @click="goTest"><img src="/style/images/market/broker-5.jpg" alt=""></div>
+                      </div>
+                  </div>
+                  <div v-if="activeIndex===3" class="content-right content-right4">
+                      <div class="bg-white">
+                          <div class="left-box">
+                              <div class="title">线上</div>
+                              <div class="item-box" v-for="item in onlineList">
+                                  <div class="img-box"><img :src="item.img" alt=""></div>
+                                  <div class="desc-box">
+                                      <div class="desc-title">{{item.title}}</div>
+                                      <div class="desc-text">{{item.desc}}</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="right-box"><img src="/style/images/market/broker-6.jpg" alt=""></div>
+                      </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tec-sure-bottom-box" v-if="trainingList.length>0">
+                <div class="tec-sure-bottom">
+                    <div class="tips">近期培训通知</div>
+                    <div class="item-box">
+                        <div class="item" v-for="item in trainingList" @click="goTraningDetail(item.id)">
+                            <div class="item-line title">
+                                <div class="icon-box"></div>
+                                <div class="text line">{{item.title}}</div>
+                            </div>
+                            <div class="item-line date gray">
+                                <div class="iconfont icon-shijian-copy"></div>
+                                <div class="text">{{item.activeStartTimeDisplay[8]}}&nbsp;&nbsp;{{item.weekday}}</div>
+                            </div>
+                            <div class="item-line address gray">
+                                <div class="iconfont icon-qiye1-copy"></div>
+                                <div class="text line">{{item.sponsor}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-box" @click="bindUrl">
+                    <div class="btn-inner">
+                        <div class="icon-box">
+                            <span class="iconfont icon-jingjiren-copy"></span>
+                        </div>
+                        <div class="text">我想成为<br>技术经纪人</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="service-tools-box">
+        <div class="mmdiv container-box">
+            <div class="title-box">
+                <div class="title-name">技术经纪人协同服务工具</div>
+                <div class="title-text">一 为技术住纪人提供在线服务工作平台 一</div>
+                <div class="img-box"><img src="/style/images/market/broker-02.png" alt=""></div>
+            </div>
+            <div class="service-tools-content">
+               <div class="item-box" v-for="item in serviceToolsList">
+                   <div class="title-box">
+                       <div class="title">
+                           <div class="title-top">{{item.title}}</div>
+                           <div class="title-bottom">{{item.title_desc}}</div>
+                       </div>
+                       <div class="title-btn" @click="fwsClick" v-if="(!userInfo.userId)||(userInfo.userId&&isSeller)">开通店铺</div>
+                   </div>
+                   <div class="desc-box">{{item.desc}}</div>
+                   <div class="img-box"><img :src="item.img" alt=""></div>
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <web-footer></web-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/market/technicalBroker.js"></script>
+</body>
+
+</html>

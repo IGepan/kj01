@@ -1,0 +1,123 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "microsoft yahei";
+	overflow: hidden;
+}
+.container {
+	display: table;
+	padding: 20px 0;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.box {
+	position: relative;
+	float: left;
+	margin-right: 20px;
+}
+.imageBox
+{
+    position: relative;
+	min-width: 300px;
+	min-height: 200px;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+.action {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 40px;
+	background-color: rgba(0,0,0,.5);
+	color: #fff;
+	line-height: 40px;
+}
+.action label {
+	display: block;
+	margin-right: 10px;
+	float: left;
+	margin-top: 3px;
+	margin-left: 3px;
+	padding: 0 15px;
+	height: 34px;
+	line-height: 34px;
+	border-radius: 2px;
+	color: #fff;
+	font-size: 14px;
+	background-color: #5fb870;
+	cursor: pointer;
+}
+.fr {
+	margin-right: 3px;
+	float: right;
+}
+.fr button {
+	margin-top: 3px;
+	padding: 0 15px;
+	height: 34px;
+	line-height: 34px;
+	border-radius: 2px;
+	background-color: #1C2B36;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	border:0;
+	outline: 0;
+	cursor: pointer;
+}
+.fr button:disabled {
+	background-color: #B5B5B5;
+}
+.action .fr button#btnCrop {
+	background-color: #FB3C41;
+}
+.action label input {
+	position: absolute;
+	left: -10000px;
+}
+.clear {
+	clear: both;
+}
+.tips {
+	padding: 0 0 0 10px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #D4D4D4;
+	color: #111;
+}
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
+.cropped {
+	float: left;
+	box-shadow: 0 0 10px rgba(120,120,120,.3);
+	background: url(../images/preview.png) no-repeat center center #d2d2d2;
+}
+.cropped img {
+	display: block;
+}

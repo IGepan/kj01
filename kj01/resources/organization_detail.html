@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源研发机构详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/resources.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <sources-head :breadcrumb="breadcrumb" :bottom-Border="true" :nav-index="2"></sources-head>
+      <div class="content">
+        <template v-if="detail">
+          <div class="mdiv">
+            <div class="brief">
+              <div class="item-img img" :style="detail.styles"><img v-if="detail.itemImg" :src="detail.itemImg"
+                  :alt="detail.researchInfo.baseName"><span>研发</span></div>
+              <div class="brief-info">
+                <div class="name">{{detail.researchInfo.baseName}}</div>
+                <div class="label">
+                  <div class="green">{{detail.researchInfo.baseType}}</div>
+                </div>
+                <ul class="list">
+                  <li><span class="iconfont icon-jingjiren1"></span><span>联系人：{{detail.researchInfo.name}}</span>
+                  </li>
+                  <li><span class="iconfont icon-zuoji"></span><span>{{detail.researchInfo.phone}}</span></li>
+                  <li><span class="iconfont icon-youxiang"></span><span>{{detail.researchInfo.email}}</span></li>
+                  <li><span class="iconfont icon-dingwei"></span><span>{{detail.researchInfo.address}}</span></li>
+                </ul>
+              </div>
+              <!-- 已关注 添加active-->
+              <div v-if="false" class="attention"><span class="iconfont icon-shoucangdansexian"></span><span>关注</span>
+              </div>
+              <!-- 已关注样式 -->
+              <div v-if="false" class="attention" style="display: none;"><span
+                  class="iconfont icon-shoucangdansexian"></span><span>已关注</span>
+              </div>
+            </div>
+            <div data-container class="container">
+              <div class="searchMainkey boxShadow" :class="{fixed: isFixed}">
+                <div>
+                  <template v-for="(hashNav, i) in pageNavs">
+                    <span v-if="hashNav.isShow" @click.stop="handSetPageNavActive(i)" class="mainKey"
+                      :class="{active: hashNav.active}"><a :href="hashNav.hashUrl">{{hashNav.label}}</a></span>
+                  </template>
+                </div>
+              </div>
+              <div class="details">
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name"><a name="基本信息"></a>基本信息</div>
+                  </div>
+                  <div class="table table-two">
+                    <table cellspacing="0">
+                      <tr>
+                        <th>所属技术领域</th>
+                        <td>{{detail.researchInfo.techField}}</td>
+                      </tr>
+                      <tr>
+                        <th>所属科学领域</th>
+                        <td>{{detail.researchInfo.mainfiled}} </td>
+                      </tr>
+                      <tr>
+                        <th>主要服务行业</th>
+                        <td>{{detail.researchInfo.serviceIndustry}}</td>
+                      </tr>
+                      <tr>
+                        <th>场地面积</th>
+                        <td>{{detail.researchInfo.area}}</td>
+                      </tr>
+                      <tr>
+                        <th>研究方向</th>
+                        <td>{{detail.researchInfo.research}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="detail" style="margin-top: 2px;">
+                  <div class="details-title">
+                    <div class="name"><a name="依托单位信息"></a>依托单位信息</div>
+                  </div>
+                  <div class="table table-two">
+                    <table cellspacing="0">
+                      <tr>
+                        <th>主要依托单位</th>
+                        <td class="tdw425">{{detail.dependOrg.orgName}}</td>
+                        <th>办公电话</th>
+                        <td>{{detail.dependOrg.phone}} </td>
+                      </tr>
+                      <tr>
+                        <th>详细地址</th>
+                        <td class="tdw425">{{detail.dependOrg.address}} </td>
+                        <th>传真</th>
+                        <td>{{detail.dependOrg.fax}} </td>
+                      </tr>
+                      <tr>
+                        <th>法人代表</th>
+                        <td class="tdw425">{{detail.dependOrg.legaler}}</td>
+                        <th>E-MAIL</th>
+                        <td>{{detail.dependOrg.email}} </td>
+                      </tr>
+                      <tr>
+                        <th>联系人姓名</th>
+                        <td class="tdw425">{{detail.dependOrg.name}}</td>
+                        <th>邮编</th>
+                        <td>{{detail.dependOrg.emailCode}} </td>
+                      </tr>
+                      <tr>
+                        <th>单位性质</th>
+                        <td class="tdw425">{{detail.dependOrg.orgType}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name"><a name="基地负责人"></a>基地负责人信息</div>
+                  </div>
+                  <div class="table table-two">
+                    <table cellspacing="0">
+                      <tr>
+                        <th>姓名</th>
+                        <td class="tdw425">{{detail.orgLeader.name}}</td>
+                        <th>办公电话</th>
+                        <td>{{detail.orgLeader.phone}}</td>
+                      </tr>
+                      <tr>
+                        <th>传真</th>
+                        <td class="tdw425">{{detail.orgLeader.fax}}</td>
+                        <th>专业</th>
+                        <td>{{detail.orgLeader.major}}</td>
+                      </tr>
+                      <tr>
+                        <th>E-MAIL</th>
+                        <td class="tdw425">{{detail.orgLeader.email}}</td>
+                        <th>职称</th>
+                        <td>{{detail.orgLeader.professionalTitle}}</td>
+                      </tr>
+                      <tr>
+                        <th>工作单位</th>
+                        <td class="tdw425">{{detail.orgLeader.orgName}}</td>
+                        <th>职务</th>
+                        <td>{{detail.orgLeader.position}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name"><a name="人才队伍"></a>人才队伍</div>
+                  </div>
+                  <div class="tablecell">
+                    <ul class="row">
+                      <li class="w120">姓名</li>
+                      <li class="w120">性别</li>
+                      <li class="w120">学历</li>
+                      <li class="w120">职称</li>
+                      <li class="w240">工作单位</li>
+                      <li class="w240">研究范围</li>
+                      <li class="w120">人才类型</li>
+                    </ul>
+                    <template v-for="talent in detail.talentList.list">
+                      <ul class="cloumn">
+                        <li class="w120">{{talent.name}}</li>
+                        <li class="w120">{{talent.sex}}</li>
+                        <li class="w120">{{talent.education}}</li>
+                        <li class="w120">{{talent.profession}}</li>
+                        <li class="w240">{{talent.org}}</li>
+                        <li class="w240">{{talent.research}}</li>
+                        <li class="w120">{{talent.talentType}}</li>
+                      </ul>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/resources/organization_detail.js"></script>
+</body>
+
+</html>

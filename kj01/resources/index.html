@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/resources.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <sources-head></sources-head>
+      <sources-baner-search></sources-baner-search>
+      <div class="counts">
+        <div class="mdiv">
+          <ul class="countsList">
+            <template v-for="(countNum, cni) in countNumbers">
+              <li class="unit" @click="handleClickToCount(countNum)">
+                <div class="unit-number">
+                  <div class="number-grow-box">
+                    <number-grow :value="countNum.num"></number-grow>
+                    <span class="unit-unit">{{countNum.unit}}</span>
+                  </div>
+                </div>
+                <div class="unit-text">{{countNum.label}}</div>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="mdiv">
+          <!-- 优选企业 -->
+          <div class="listBox">
+            <div class="titleBox">
+              <div class="title">科技企业</div>
+            </div>
+            <div data-img="yxqiye" class="infoBox">
+              <div class="infoBox-left">
+                <div class="infoBox-left_title">
+                  <div>推荐产业链优质企业</div>
+                </div>
+                <ul class="infoBox-left_list">
+                  <template v-for="(type, cti) in options.companyType">
+                    <li class="list" @click.stop="handleClickToPage(cti, 'companyType')"
+                      @mouseover.stop="handleSetCompany(cti)" :key="cti" :class="{active: type.active}">
+                      {{type.label}}</li>
+                  </template>
+                </ul>
+              </div>
+              <div class="infoBox-right">
+                <ul class="infoBox-right_list">
+                  <template v-for="(company, ci) in companyList">
+                    <li>
+                      <a :href="company.itemUrl" :title="company.name" target="_blank">
+                        <div class="sign">{{company.label}}</div>
+                        <div class="item">
+                          <div class="item-img logomin"><span>企业</span></div>
+                          <div class="name line" :title="company.name">{{company.name}}</div>
+                          <div class="bottom">
+                            <div class="trade"><span class="vaMiddle iconfont icon-hangye"></span><span
+                                class="vaMiddle line line240" :title="company.industry">{{company.industry}}</span>
+                            </div>
+                            <div class="adress"><span class="vaMiddle iconfont icon-dingweixian"></span>
+                              <span :title="company.registeredAddress"
+                                class="vaMiddle line line240">{{company.registeredAddress}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 精选研发机构 -->
+          <div class="listBox">
+            <div class="titleBox">
+              <div class="title">精选研发机构</div>
+            </div>
+            <div data-img="yfjigou" class="infoBox">
+              <div class="infoBox-left">
+                <div class="infoBox-left_title">
+                  <div>聚集全市优质研发基地</div>
+                </div>
+                <ul class="infoBox-left_list">
+                  <template v-for="(type, oti) in options.organizationType">
+                    <li class="list" @click.stop="handleClickToPage(oti, 'organizationType')"
+                      @mouseover.stop="handleSetOrganization(oti)" :key="oti" :class="{active: type.active}">
+                      {{type.label}}</li>
+                  </template>
+                </ul>
+              </div>
+              <div class="infoBox-right">
+                <ul class="infoBox-right_list">
+                  <template v-for="(organization, ci) in organizationList">
+                    <li>
+                      <a :href="organization.itemUrl" :title="organization.baseName" target="_blank">
+                        <div class="item">
+                          <div class="item-img logomin"><span>研发</span></div>
+                          <div class="name line2" :title="organization.baseName">{{organization.baseName}}</div>
+                        </div>
+                        <div class="bottom">
+                          <div class="adress"><span class="vaMiddle iconfont icon-dingweixian"></span><span
+                              class="vaMiddle line line240"
+                              :title="organization.address">{{organization.address}}</span>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 推荐科技人才 -->
+          <div class="listBox">
+            <div class="titleBox">
+              <div class="title">推荐科技人才</div>
+            </div>
+            <div data-img="kjrencai" class="infoBox">
+              <div class="infoBox-left">
+                <div class="infoBox-left_title">
+                  <div>精选行业精英专家人才为您服务</div>
+                </div>
+                <ul class="infoBox-left_list">
+                  <template v-for="(type, tti) in options.talentsType">
+                    <li class="list" @click.stop="handleClickToPage(tti, 'talentsType')"
+                      @mouseover.stop="handleSetTalents(tti)" :key="tti" :class="{active: type.active}">
+                      {{type.label}}</li>
+                  </template>
+                </ul>
+              </div>
+              <div class="infoBox-right">
+                <ul class="infoBox-right_list">
+                  <template v-for="(talents, ci) in talentsList">
+                    <li>
+                      <a :href="talents.itemUrl" :title="talents.name" target="_blank">
+                        <div class="item">
+                          <div class="item-img logomid"><span>{{talents.name|firstWord}}</span></div>
+                          <div class="name">{{talents.name}}</div>
+                          <div class="skill" v-if="talents.field" :title="talents.field">{{talents.field}}</div>
+                        </div>
+                        <div class="bottom">
+                          <div class="trade"><span class="vaMiddle iconfont icon-gongsi"></span><span
+                              class="vaMiddle line line80" :title="talents.org">{{talents.org}}</span>
+                          </div>
+                          <div class="adress"><span class="vaMiddle iconfont icon-biaoqian"></span><span
+                              class="vaMiddle line line80" :title="talents.type">{{talents.type}}</span>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 仪器设备 -->
+          <div class="listBox">
+            <div class="titleBox">
+              <div class="title">仪器设备</div>
+            </div>
+            <div data-img="yqshebei" class="infoBox">
+              <div class="infoBox-left">
+                <div class="infoBox-left_title">
+                  <div>为您提供高性能仪器设备</div>
+                </div>
+                <ul class="infoBox-left_list">
+                  <template v-for="(type, ati) in options.apparatusType">
+                    <li class="list" @click.stop="handleClickToPage(ati, 'apparatusType')"
+                      @mouseover.stop="handleSetApparatus(ati)" :key="ati" :class="{active: type.active}">
+                      {{type.label}}</li>
+                  </template>
+                </ul>
+              </div>
+              <div class="infoBox-right">
+                <ul class="infoBox-right_list">
+                  <template v-for="(apparatus, ci) in apparatusList">
+                    <li>
+                      <a :href="apparatus.itemUrl" :title="apparatus.name" target="_blank">
+                        <div class="item">
+                          <div class="item-img logomax" :style="apparatus.styles"><img :src="apparatus.itemImg"
+                              :alt="apparatus.name"></div>
+                        </div>
+                        <div class="name line" :title="apparatus.name">{{apparatus.name}}</div>
+                        <div class="bottom">
+                          <div class="trade"><span class="vaMiddle iconfont icon-gongsi"></span><span
+                              class="vaMiddle line line80" :title="apparatus.org">{{apparatus.org}}</span>
+                          </div>
+                          <div class="adress"><span class="vaMiddle iconfont icon-dingweixian"></span><span
+                              class="vaMiddle line line80" :title="apparatus.address">{{apparatus.address}}</span></div>
+                          <div class="classifier"><span class="vaMiddle iconfont classifier-circle"></span><span
+                              class="vaMiddle text line line80"
+                              :title="apparatus.functionalDescription">{{apparatus.functionalDescription}}</span></div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 科技成果 -->
+          <div class="listBox">
+            <div class="titleBox">
+              <div class="title">专利成果</div>
+            </div>
+            <div class="infoBox science">
+              <div class="science-left">
+                <div class="science-left_up">
+                  <div class="info-name" v-text="achievements[achievementIndex].label||''"></div>
+                  <div class="info-text">
+                    <div class="left iconfont icon-fanhui" @click.stop="handlePrevAchievement"></div>
+                    <div class="text" v-text="achievements[achievementIndex].descText||''">
+                    </div>
+                    <div class="right iconfont icon-gengduokuozhe" @click.stop="handleNextAchievement"></div>
+                  </div>
+                </div>
+                <div class="info-partner">
+                  <div class="info-partner_name">合作伙伴</div>
+                  <ul>
+                    <li class="info-partner_list" style="width: 180px;"><a href="http://www.csti.cn"><img
+                          src="/image/resources/patentcloud1.png" alt=""></a></li>
+                    <li class="info-partner_list" style="width: 210px;"><a href="http://www.patentcloud.net/"><img
+                          src="/image/resources/csti1.png" alt=""></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="science-right">
+                <ul>
+                  <template v-for="(achievement, ai) in achievements">
+                    <li @mouseover.stop="handleSetAchievement(ai)"
+                      :class="achievement.active ? achievement.className + ' active' : achievement.className">
+                      {{achievement.label}}</li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/resources/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>附件预览-重庆智能化综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/common/js/libs/pdfjs-dist/build/pdf.js"></script>
+    <style>
+        .article-content{
+            width:700px;
+            margin:0 auto;
+        }
+        .article-bottom {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 60px;
+            display: flex;
+            background-color: #555b76;
+            color: #fff;
+            justify-content: space-between;
+            align-items: stretch;
+            user-select: none;
+        }
+        .article-btns {
+            padding: 10px 0;
+            width:230px;
+            margin:0 auto;
+        }
+        .article-btns button[typeName="articleBtn"] {
+            padding: 0 10px;
+        }
+        .pdfPages {
+            font-size: 14px;
+            line-height: 36px;
+            color: #9fa4ba;
+            padding: 0 10px;
+        }
+        .pageView {
+            font-size: 14px;
+            color: #ffffff;
+        }
+        .currentPage {
+            line-height: 36px;
+            color: #fda322;
+            margin-right: 5px;
+        }
+        .countPage {
+            margin-left: 5px;
+            color: #9fa4ba;
+        }
+        .pagePrevBtn, .pageNextBtn {
+            cursor: pointer;
+        }
+        .pagePrevBtn {
+            margin-right: 5px;
+        }
+        .pageNextBtn {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id='index_box'>
+    <div class="article-content">
+        <canvas ref="theCanvas" width="650" height="891"></canvas>
+    </div>
+    <div class="article-bottom">
+        <div class="article-btns">
+            <div class="vaMiddle pdfPages borderRight">
+                <span class="vaMiddle pagePrevBtn" @click.stop="handleSetPrevPage">上一页</span>
+                <span class="vaMiddle pageView"><span class="currentPage">第{{currentPage}}页</span>/<span class="countPage">共{{countPage}}页</span></span>
+                <span class="vaMiddle pageNextBtn" @click.stop="handleSetNextPage">下一页</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="/common/js/buyer/demand/preview.js"></script>
+</body>
+</html>

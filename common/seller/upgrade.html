@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/seller.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+ .exdetail{
+  height: 38px;
+  line-height: 38px;
+  font-size: 14px;
+  color: #474747;
+ }
+ .certificate{
+  display: flex;
+ }
+ .uploadbox{
+  display: flex;
+  flex-direction: column;
+ }
+ .filelist{
+  display: flex;
+  flex-wrap: wrap;
+ }
+ .signitem{
+  display: flex;
+  width: 260px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  margin-right: 10px;
+  margin-top: 20px;
+ }
+ .signitem img{
+  width: 100%;
+  height: 100%;
+ }
+ .btnSaves{
+   text-align: center;
+   margin-top: 30px;
+ }
+ .btnSaves .btn-submit{
+   background-color: #1154b0;
+   color: #fff;
+   width: 120px;
+   height: 38px;
+   cursor: pointer;
+   font-size: 18px;
+   font-weight: 400;
+   line-height: 38px;
+ }
+</style>
+<body>
+  <div id='store_box'>
+    <div class="header">
+      <!--顶部-->
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+      </div>
+      <div class="mdiv mt20">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="rightmainbox">
+          <div class="routenav">
+            <a href="/common/seller/index.html">
+              卖家中心&nbsp;&nbsp;&gt;
+            </a>
+            <span>店铺升级</span>
+          </div>
+          <div class="activestore">
+            <div class="storetit"> 店铺升级</div>
+            <div class="setform">
+            
+            <div class="expitem form_item">
+             <span class="expname">审核状态：</span>
+             <span class="exdetail" v-text="dataForm.certificationFlagDisPlay || ''"></span>
+            </div>
+            <div class="expitem form_item">
+             <span class="expname">未通过原因：</span>
+             <span class="exdetail" v-text="dataForm.noPassReason || ''"></span>
+            </div>
+            <div class="expitem form_item">
+             <span class="expname"><i>*</i>技术合同编号：</span>
+             <input
+               maxlength="50"
+               type="text"
+               class="expipt required"
+               data-valid="isNonEmpty||maxLength:50"
+               data-error='技术合同编号不能为空||内容长度不能超过50个字符'
+               v-model="dataForm.contractNo"
+             >
+             <span class="vlt form_msg"></span>
+            </div>
+            <div class="expitem form_item certificate">
+             <div class="expname" style="flex-shrink:0">技术经理人证书：</div>
+             <div class="uploadbox">
+             <div class="inputbox">
+              <label class="exbtn">
+                <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess'
+                  style="position: absolute;right: 10000px;" type='file' :header='{}' :url='fileUploadUrl'
+                  :data='uploadData'>
+                </ly-upload>
+                <span class="exbtn inputbox-button">上传附件</span>
+              </label>
+              <span style="color:red; margin-left: 20px;">
+               附件文件大小最大10M
+              </span>
+             </div>
+             <div>
+              <ul class="filelist"  v-viewer>
+                <li v-for="(item, index) in dataForm.files" v-cloak>
+                  <div class="signitem">
+                    <img :src="item.url" alt="">
+                    <!-- <span v-text="item.name"></span> -->
+                    <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="handleDelFile(index)"></i>
+                  </div>
+                </li>
+              </ul>
+             </div>
+            </div>
+            </div>
+            <div class="btnSaves">
+             <button class="btn-submit" :disabled="dataForm.certificationFlag === '02'" @click="saveClick">提交</button>
+           </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hiSNGiYjCDay4EMncAjAUjx5oEblgpsx"></script>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/upgrade.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>

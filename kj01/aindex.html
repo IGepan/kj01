@@ -1,0 +1,258 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>活动</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/aindex.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper ref="lytoper" top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
+    <sub-head name="活动中心" :nav-index="0"></sub-head>
+    <div id="hotImgBox" class="hotImgBox owl-carousel owl-theme">
+      <a href="#"><img src="/style/images/aindex/bannerImg.jpg" alt=""></a>
+      <a href="#"><img src="/style/images/aindex/bannerImg.jpg" alt=""></a>
+      <a href="#"><img src="/style/images/aindex/bannerImg.jpg" alt=""></a>
+    </div>
+    <div class="numbers">
+      <div class="mdiv topNumber">
+        <template v-for="(numberCount, ni) in numberCounts">
+          <div class="countBox" :key="ni">
+            <div class="countBox_text">
+              <div>
+                <i class="iconfont" :class="numberCount.icon"></i>
+              </div>
+              <div>
+                <div class="countBox__number">
+                  <number-grow :color="'#343334'" :value="numberCount.count" :time="1"></number-grow>
+                  <span>{{numberCount.unit}}</span>
+                </div>
+                <div class="countBox__label">{{numberCount.label}}</div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <button type="button" @click.stop="handleUrlBtn" data-url="/activity/add.html?code=001.004.001.001"
+          typeName="activityPublish">
+          <i class="iconfont icon-huodong"></i>
+          <span>发布活动</span>
+        </button>
+      </div>
+    </div>
+    <div class="mdiv bigTitleBox">
+      <span class="bigTitleBox-title">
+        <span>活动动态</span>
+      </span>
+      <div class="bigTitleBox-more"></div>
+    </div>
+    <div class="mdiv hotBox">
+      <div id="hotActivtyList" class="owl-carousel owl-theme owlList">
+        <template v-for="(item, si) in hotActivtyList">
+          <div  class="owlList-item">
+            <div class="item-img owlList-item-img " :style="item.styles">
+              <img :src="item.itemImg" :alt="item.title">
+            </div>
+            <div class="owlList-item-info">
+              <div class="owlList-item-title line2">{{item.title}}</div>
+              <div class="owlList-item-icon"><label class="label"><i class="vaMiddle iconfont icon-zuozhe"></i><span class="vaMiddle">{{item.joinNum||0}}</span></label><label class="label"><i class="vaMiddle iconfont icon-liulanliangmianbiao"></i><span class="vaMiddle">{{item.pageViews||0}}</span></label></div>
+              <div class="line2 owlList-item-desc">{{item.activeAbstract}}</div>
+              <div class="owlList-item-button">
+                <a :href="item.itemUrl" :title="item.title" target="_blank"><button type="button">查看详情</button></a>
+                <button type="button" class="zixun" onclick="window.open('https://kf.kj01.cn/code/client/10113491/1', '_blank', 'height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no')">我要咨询</button>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div class="mdiv biglineTitleBox">
+      <span class="biglineTitleBox-title">
+        <span>企业学堂</span>
+      </span>
+    </div>
+    <div class="mdiv tabnavs">
+      <template v-for="(tabnav, i) in tabNavs0">
+        <span class="tab-item" @click.stop="handleActivtySwitchTo(tabnav.value, 'activtyList', i)" :class="{active: tabnav.selected}"><span class="tab-item-text">{{tabnav.display}}</span></span>
+      </template>
+    </div>
+    <div class="mdiv specialTopicList">
+      <template v-for="(item, si) in activtyList">
+        <div class="vaMiddle topic-item" :key="si">
+          <a :href="item.itemUrl" :title="item.title" target="_blank">
+            <div class="specialTopic-img item-img" :style="item.styles">
+              <img :src="item.itemImg" :alt="item.title">
+              <!-- <div class="topic" :class="{'topic-lubo': !item.liveFlag, 'topic-live': item.liveFlag}"><i class="iconfont" :class="{'icon-lubo': !item.liveFlag, 'icon-zhibobofangshexiangjitianxianxianxing': item.liveFlag}"></i>{{item.liveFlag ? '直播' : '录播'}}</div> -->
+              <div v-if="item.liveFlag" class="topic topic-live"><i class="iconfont icon-zhibobofangshexiangjitianxianxianxing"></i>直播</div>
+            </div>
+            <div class="topic-item-info">
+              <h4 class="topic-item-info-title line">{{item.title}}</h4>
+              <div class="topic-item-info-line line mt"><i class="iconfont icon-lishijilu"></i>{{item.activeStartTimeDisplay[9]}}
+                {{item.weekday}}</div>
+              <div class="topic-item-info-line line" v-if="item.sponsor"><i
+                  class="iconfont icon-neirongtuisong"></i>{{item.sponsor}}</div>
+            </div>
+            <div class="topic-item-tag line">
+              <span class="tag">#{{item.activeTypeDisplay}}</span>
+            </div>
+          </a>
+        </div>
+      </template>
+    </div>
+    <div class="mdiv tabmore">
+      <button type="button" typeName="more"  @click.stop="handleMore(0)">+ 查看更多</button>
+    </div>
+
+    <div style="background-color: #fff;">
+      <div class="mdiv biglineTitleBox">
+        <span class="biglineTitleBox-title">
+          <span>品牌活动</span>
+        </span>
+      </div>
+      <div class="mdiv tabnavs">
+        <template v-for="(tabnav, i) in tabNavs1">
+          <span class="tab-item" @click.stop="handleBrandSwitchTo(tabnav.value, i)" :class="{active: tabnav.selected}"><span class="tab-item-text">{{tabnav.display}}</span></span>
+        </template>
+      </div>
+      <div class="mdiv specialTopicList specialTopic">
+        <template v-for="(item, si) in topicList">
+          <div class="vaMiddle topic-item" v-if="si < 3" :key="si">
+            <a :href="item.itemUrl" :title="item.title" target="_blank">
+              <div class="specialTopic-img item-img" :style="item.styles">
+                <img :src="item.itemImg" :alt="item.title">
+              </div>
+              <div class="topic-item-info">
+                <h4 class="topic-item-info-title line">{{item.title}}</h4>
+                <div class="topic-item-info-line line mt"><i class="iconfont icon-lishijilu"></i>{{item.activeStartTimeDisplay[9]}}
+                  {{item.weekday}}</div>
+                <div class="topic-item-info-line line" v-if="item.sponsor"><i
+                    class="iconfont icon-neirongtuisong"></i>{{item.sponsor}}</div>
+              </div>
+            </a>
+          </div>
+        </template>
+      </div>
+      <div class="mdiv tabmore">
+        <button type="button" @click.stop="handleMore(1)" typeName="more">+ 查看更多</button>
+      </div>
+    </div>
+
+    <div class="mdiv biglineTitleBox">
+      <span class="biglineTitleBox-title">
+        <span>主题活动</span>
+      </span>
+    </div>
+    <div class="mdiv tabnavs">
+      <template v-for="(tabnav, i) in tabNavs2">
+        <span class="tab-item" @click.stop="handleActivtySwitchTo(tabnav.value, 'activtyList1', i)" :class="{active: tabnav.selected}"><span class="tab-item-text">{{tabnav.display}}</span></span>
+      </template>
+    </div>
+    <div class="mdiv specialTopicList theme">
+      <template v-for="(item, si) in activtyList1">
+        <div class="vaMiddle topic-item" v-if="si < 3" :key="si">
+          <a :href="item.itemUrl" :title="item.title" target="_blank">
+            <div class="specialTopic-img item-img" :style="item.styles">
+              <img :src="item.itemImg" :alt="item.title">
+            </div>
+            <div class="topic-item-info">
+              <h4 class="topic-item-info-title line">{{item.title}}</h4>
+              <div class="topic-item-info-line line mt"><i class="iconfont icon-lishijilu"></i>{{item.activeStartTimeDisplay[9]}}
+                {{item.weekday}}</div>
+              <div class="topic-item-info-line line" v-if="item.sponsor"><i
+                  class="iconfont icon-neirongtuisong"></i>{{item.sponsor}}</div>
+            </div>
+            <div class="topic-item-tag line">
+              <span class="tag">#{{item.activeTypeDisplay}}</span>
+            </div>
+          </a>
+        </div>
+      </template>
+    </div>
+    <div class="mdiv tabmore">
+      <button type="button" typeName="more" @click.stop="handleMore(2)">+ 查看更多</button>
+    </div>
+
+    <div class="mdiv mb60">
+      <div class="fl excellenceUser">
+        <div class="mdiv bigTitleBox">
+          <span class="bigTitleBox-title">
+            <span>优秀主办方</span><i class="iconfont icon-renzheng1"></i>
+          </span>
+          <div class="bigTitleBox-more">
+            <button type="button" typeName="refresh" @click.stop="handleRefresh"><i
+                class="iconfont icon-shuaxin"></i>换一换</button>
+          </div>
+        </div>
+        <div class="userList">
+          <template v-for="(item, mi) in excellenceUserList">
+            <div class="user-item" :key="mi">
+              <a :title="item.userName" target="_blank">
+                <div class="user-head-box">
+                  <div class="user-head-img item-img" :style="item.styles">
+                    <img :src="item.itemImg" :alt="item.userName">
+                  </div>
+                  <div v-if="item.certificationFlag" class="vaMiddle identification">
+                    <i class="vaMiddle iconfont icon-renzheng identification-icon"></i>
+                    <span class="vaMiddle identification-text">已认证</span>
+                  </div>
+                </div>
+                <div class="line user-item-name">{{item.userName}}</div>
+                <div class="user-item-button">
+                  <button v-if="!item.collectFlag" @click.stop="handleColSelected(mi, item.id, item.collectFlag)"
+                    type="button" typeName="cancel"><i class="iconfont icon-lishijilu vaMiddle"></i><span
+                      class="vaMiddle">关注</span></button>
+                  <button v-else type="button" @click.stop="handleColSelected(mi, item.id,item.collectFlag)"
+                    typeName="cancel"><i class="iconfont icon-lishijilu vaMiddle"></i><span
+                      class="vaMiddle">取消关注</span></button>
+                </div>
+              </a>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="fr monthlyFocus">
+        <div class="mdiv bigTitleBox">
+          <span class="bigTitleBox-title">
+            <span>人气榜单</span><i class="iconfont icon-bangdan"></i>
+          </span>
+          <div class="bigTitleBox-more">
+            <a class="more">
+              更多
+              <i class="iconfont icon-gengduo"></i>
+            </a>
+          </div>
+        </div>
+        <div class="monthlyFocus">
+          <template v-for="(item, mi) in monthlyFocusList">
+            <div class="monthlyFocus-item" :key="mi">
+              <a :href="item.itemUrl" :title="item.title" target="_blank">
+                <label class="vaMiddle monthlyFocus-item-label" :class="'flag' + mi">{{mi+1}}</label>
+                <div class="vaMiddle monthlyFocus-item-info">
+                  <div class="line monthlyFocus-item-info-title">{{item.title}}</div>
+                  <div class="monthlyFocus-item-info-other">
+                    <span><i class="iconfont icon-liulanliang"></i>{{item.visitNumber||0}}</span>
+                    <span><i class="iconfont icon-yonghu"></i>{{item.joinNum||0}}</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/aindex.js"></script>
+</body>
+
+</html>

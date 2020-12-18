@@ -1,0 +1,320 @@
+
+.listMain {
+  width: 870px;
+}
+.weixin-box{
+    position:absolute;
+    text-align: center;
+    top: 86px;
+    right: -121px;
+    background:#fff;
+    opacity:0;
+    padding:2px;
+}
+.weixin-box:before{
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    width: 10px;
+    height: 10px;
+    top: 10px;
+    left: -6px;
+    transform: rotateZ(45deg);
+}
+.weixin-box img{
+    width:108px;
+}
+.bannerBlock-small{
+  width: 100%;
+  padding: 22px 23px;
+  margin-bottom: 5px;
+  height: 80px;
+}
+
+.bannerBlock-small img {
+  max-width: 36px;
+}
+.bannerBlock-small.policy:hover + .weixin-box {
+    opacity:1;
+}
+.mainBox {
+	background-color: transparent;
+}
+.searchListBox {
+  font-size: 14px;
+  color: #343334;
+  background-color: #fff;
+  padding-bottom: 12px;
+  user-select: none;
+}
+.searchMainkey {
+	height: 60px;
+	padding: 0 40px;
+}
+.searchMainkey.noP {
+	padding: 0 0;
+}
+.boxShadow {
+	margin-bottom: 20px;
+	box-shadow: 6px 6px 35px 0px rgba(1, 20, 91, 0.1);
+}
+.boxBorderBottom {
+  border-bottom: 1px solid #e9eff5;
+}
+.checkbox {
+  margin-left: 30px;
+  line-height: 60px;
+}
+.checkbox input {
+  width: 18px;
+	height: 18px;
+	border-radius: 4px;
+	border: solid 1px #9496a5;
+}
+.select {
+  border: solid 1px #e6e7f1;
+  display: inline-block;
+  vertical-align: middle;
+  width: 134px;
+  height: 24px;
+  margin-bottom: 2px;
+}
+.datetime {
+  border: solid 1px #e6e7f1;
+  display: inline-block;
+  height: 24px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  position: relative;
+}
+.timeRange {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 17px;
+  line-height:24px;
+}
+.datetime .icon-rili {
+  position: absolute;
+  right: 5px;
+  font-size: 12px;
+  top:50%;
+  transform: translateY(-50%);
+  color: #bec0d1;
+}
+.mainKey {
+  line-height: 60px;
+  font-size: 18px;
+  color: #343334;
+  cursor: pointer;
+  margin-left: 20px;
+  position: relative;
+}
+.mainKey:first-child {
+  margin-left: 0;
+}
+.searchListBox .active, .searchkey:hover {
+  color: #fff;
+  background-color: #ff8a00;
+}
+.noP .mainKey, .noP .mainKey:first-child {
+  margin-left: 30px;
+  line-height: 26px;
+}
+.searchMainkey .active {
+  font-weight: bold;
+  color: #018fff;
+  background-color: transparent;
+}
+.mainKey:hover {
+  font-weight: bold;
+  color: #018fff;
+}
+.mainKey.active::after,.mainKey:hover::after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 6px;
+  background-color: #018fff;
+  border-radius: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -17px;
+}
+.search-row {
+    padding: 0 20px;
+}
+.search-label {
+  display: inline-block;
+  vertical-align: top;
+  color: #999999;
+  text-align: right;
+  line-height: 48px;
+  width: 56px;
+}
+.searchkeys {
+  display: inline-block;
+  vertical-align: top;
+  padding: 11px 0 0;
+  border-bottom: 1px dashed #d4d9e6;
+  width: 747px;
+  margin-left: 16px;
+}
+.searchkey {
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+  line-height: 23px;
+  height: 24px;
+  margin-bottom: 12px;
+  color: #999999;
+  padding: 0 5px;
+}
+.noP .mainKey.active::after, .noP .mainKey:hover::after {
+  left: 0;
+  transform: translateX(0);
+}
+.searchkey:first-child {
+  margin-left: 0;
+}
+.search-row:last-child .searchkeys {
+  border-bottom: 0;
+}
+.searchResult {
+  width: 100%;
+  font-size: 14px;
+  color: #999999;
+  margin: 23px 0 13px;
+}
+.result-item {
+	background-color: #ffffff;
+	border: solid 1px #e6e7f1;
+	color: #343334;
+	display: inline-block;
+	vertical-align: middle;
+	height: 24px;
+	line-height: 15px;
+	padding: 3px 5px;
+	margin-left: 4px;
+}
+.result-value {
+	color: #f44239;
+}
+.result-item .icon {
+  line-height: 0px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 5px;
+  color: #f44239;
+}
+.searchResult .total {
+	font-size: 16px;
+	color: #018fff;
+}
+.mainPolicyList {background-color: #fff;}
+.mainPolicyList .list-item {
+  border-bottom: 1px solid #e3eaf1;
+}
+.mainPolicyList .list-item .link {
+	color: #343334;
+	padding: 30px 20px;
+	display: inline-block;
+	width: 100%;
+}
+.list-item-title-text {
+    position: relative;
+    margin-left: -20px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 34px;
+    color: #343334;
+    border-left: 4px solid #018fff;
+    text-indent: 16px;
+}
+.mainPolicyList .list-item-title {
+	font-size: 16px;
+	color: #343334;
+}
+.mainPolicyList .list-item .list-item-apply {
+  font-size: 14px;
+  margin-top: 13px;
+}
+.mainPolicyList .list-item:hover {
+	border: 1px solid #ff8a00;
+}
+.list-item-apply-days {
+  display: inline-block;
+  vertical-align: middle;
+  height: 24px;
+  background-color: #87c63a;
+  color: #fff;
+  line-height: 22px;
+  padding: 0 8px;
+}
+.list-item-apply-days.end {
+  background-color: #8D8FA4;
+}
+.list-item-apply-time {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.mainPolicyList .list-item-other {
+	font-size: 12px;
+	margin-top: 20px;
+	color: #999999;
+	display: flex;
+	justify-content: space-between;
+}
+.list-item-other-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.list-item-other-label .label-item {
+  margin-right: 30px;
+}
+.label-item .icon {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0px;
+}
+.label-item .labelText {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 17px;
+  height: 17px;
+  margin-left: 4px;
+}
+.list-item-other .tags {
+  display: inline-block;
+  vertical-align: middle;
+}
+.list-item-other .tags .tag {
+  display: inline-block;
+	height: 20px;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 2px;
+  border: solid 1px #999999;
+  margin-left: 4px;
+}
+.jiedu {
+	font-size: 16px;
+	padding: 0 5px 1px;
+	color: #ec4619;
+	margin-right: 8px;
+	border: solid 1px #ec4619;
+}
+
+.commonCententBox {
+  background: url(../images/newBanner2.png) no-repeat top center;
+  padding-top: 80px;
+}
+
+.recommend {
+  margin: 0px 0;
+  padding: 15px 20px 20px;
+  background-color: #fff;
+}

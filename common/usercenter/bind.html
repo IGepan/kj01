@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>帐号管理-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/common/css/forgotpwd.css">
+  <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
+  <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="css/form.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type='account' :http="httpCom"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <auth-left :http='http' :jquery='jquery'></auth-left>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--个人信息-->
+            <phone v-if="code === '001.003.002.002'"></phone>
+            <email v-if="code === '001.003.002.003'"></email>
+            <!--/个人信息-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/bind.js"></script>
+</body>
+
+</html>

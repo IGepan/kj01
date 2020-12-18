@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>服务案例-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/seller/css/seller.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+  .orderlist .orderitem{
+    margin-top:0;
+    border-right:0;
+  }
+  .itembody,
+  .orderheader {
+    width: 100%;
+    display: table;
+  }
+  .orderheader .thead-th,
+  .itembody .tbody-td{
+    width: 12.5%;
+    vertical-align: middle;
+    display: table-cell;
+    float: none;
+    padding: 10px 0;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .itembody .tbody-td{
+   border-right:1px solid #dcdcdc;
+  }
+  .operation-service a{
+    color: #212121;
+    /*line-height: 24px;*/
+    font-size: 14px;
+    padding:0!important;
+  }
+  .operation-service>div{
+    cursor: pointer;
+  }
+  .operation-service>div:hover,.operation-service>a:hover{
+    color:#f60;
+  }
+  .inputbox-date {
+    position: relative;
+    cursor: pointer;
+  }
+  .inputbox-date:after {
+    position: absolute;
+    content: "\e611";
+    font-family: "iconfont";
+    color: #bfbfbf;
+    font-size: 16px;
+    line-height: 20px;
+    pointer-events: none;
+    top: 4px;
+    right: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+</style>
+<body>
+<div class="box" id='index_box'>
+  <div class="header">
+    <ly-toper :http='http'></ly-toper>
+    <ly-header type="seller" :http="httpCom"></ly-header>
+  </div>
+  <div class="contant">
+    <div class="mdiv">
+      <seller-left :http='http' :jquery='jquery'></seller-left>
+      <div class="routenav">
+        <a href="/common/seller/index.html">卖家中心&nbsp;&gt;</a>
+        <a href="/common/seller/index.html">订单&nbsp;&gt;</a>
+        <span>服务案例</span>
+      </div>
+      <div class="rightmainbox">
+        <div class="tabbox">
+          <!--所有订单-->
+          <div class="active">
+            <!--搜索框-->
+            <div class="searchform">
+              <div class="searchrow">
+                <label>
+                  <span>关键字：</span>
+                  <div class="ipt"><input type="search" v-model="queryForm.keyWord" placeholder=""></div>
+                </label>
+                <label>
+                  <span>交易方式：</span>
+                  <div class="select">
+                    <select v-model="queryForm.transactionMode">
+                      <option value="">请选择</option>
+                      <option :value="opt.value" v-for="opt in options.transaction_mode" :key="opt.id">{{opt.display}}
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label>
+                  <span>专利类型：</span>
+                  <div class="select">
+                    <select v-model="queryForm.patentType">
+                      <option value="">请选择</option>
+                      <option :value="opt.value" v-for="opt in options.patent_type" :key="opt.id">{{opt.display}}
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label>
+                  <span>审核状态：</span>
+                  <div class="select">
+                    <select v-model="queryForm.certificationFlag">
+                      <option value="">请选择</option>
+                      <option :value="opt.value" v-for="opt in options.certification_status" :key="opt.id">{{opt.display}}
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label>
+                  <span>开始时间：</span>
+                  <div class="ipt inputbox-date" style="width: 165px;">
+                    <input type="text" id="timeStart" readonly v-model="queryForm.startTime">
+                  </div>
+                </label>
+                <label>
+                  <span>结束时间：</span>
+                  <div class="ipt inputbox-date" style="width: 165px;">
+                    <input type="text" id="timeEnd" readonly v-model="queryForm.endTime">
+                  </div>
+                </label>
+                <button class="fr" type="button" @click="getServiceCaseList">搜索</button>
+              </div>
+            </div>
+            <!--/搜索框-->
+            <!--订单列表-->
+            <div class="orderbox">
+              <div class="control">
+                <a href="/common/seller/addservice_case.html" class="addtec fs14"><i class="iconfont icon-jia"></i>新增</a>
+                <!-- <label><input type="checkbox" v-model="isOrderSelectedAll"><b></b>全选</label><button type="button"
+                  @click="deleteBatch">删除</button> -->
+              </div>
+              <div class="orderheader">
+                <div class="thead-th">项目名称</div>
+                <div class="thead-th">委托机构</div>
+                <div class="thead-th">成果持有方</div>
+                <div class="thead-th">交易时间</div>
+                <div class="thead-th">交易金额（元）</div>
+                <div class="thead-th">交易方式</div>
+                <div class="thead-th">审核状态</div>
+                <div class="thead-th operation-service">操作</div>
+              </div>
+              <div class="orderlist">
+                <!--订单列表-->
+                <div class="orderitem" v-for="item in serviceList">
+                  <div class="itembody">
+                    <div class="goodslist">
+                      <!--商品列表-->
+                      <div class="tbody-td" v-text="item.title"></div>
+                      <div class="tbody-td" v-text="item.commission"></div>
+                      <div class="tbody-td" v-text="item.achievementHolder"></div>
+                      <div class="tbody-td" v-text="item.transactionTime"></div>
+                      <div class="tbody-td" v-text="item.transactionAmount"></div>
+                      <div class="tbody-td" v-text="item.transactionModeDisplay"></div>
+                      <div class="tbody-td" v-text="item.certificationFlagDisplay"></div>
+                      <div class="tbody-td operation-service">
+                        <a v-if="item.certificationFlag!=='02'" :href="'/common/seller/addservice_case.html?code='+code+'&id=' + item.id">编辑</a>
+<!--                        <div @click="handleEdit">编辑</div>-->
+                        <div @click="handleDelete(item.id,item.version)">删除</div>
+
+<!--                        <a v-if="item.orderStatus !== '001' && item.orderStatus !== '008'" target="_blank"-->
+<!--                           :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>-->
+<!--                        <button v-if="order.orderStatus === '001'" class="acceptance"-->
+<!--                                @click="setCancelInfo(order.id, order.version)">取消订单</button>-->
+<!--                        <template v-if="order.orderType === '001' || order.orderType === '002'">-->
+<!--                          <button v-if="order.orderStatus === '002' || order.orderStatus === '003'"-->
+<!--                                  @click="setAcceptOrderInfo(order)" class="acceptance">申请验收</button>-->
+<!--                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="contract"-->
+<!--                                  @click="notFun">签订合同</button>-->
+<!--                        </template>-->
+<!--                        <template v-if="order.orderType === '003'">-->
+<!--                          <button v-if="order.orderStatus === '003'" @click="shipments(order.id)"-->
+<!--                                  class="acceptance">发货</button>-->
+<!--                          <button v-if="order.orderStatus === '003'" @click="notFun" class="acceptance">退款</button>-->
+<!--                        </template>-->
+<!--                        <button v-if="order.orderStatus === '007' && !order.evaluated" class="evaluate"-->
+<!--                                @click="evaluate(order.id)">评价</button>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--分页-->
+              <div class="pager">
+                <a @click='pageClick(1)'>[首页]</a>
+                <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                   :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                <a v-if='isMore()'>...</a>
+                <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                <a @click='pageClick(pages)'>[末页]</a>
+                <span>[共<span v-text='pages'></span>页]</span>
+              </div>
+              <!--/分页-->
+            </div>
+            <!--/订单列表-->
+          </div>
+          <!--/所有订单-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <ly-minifooter></ly-minifooter>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="/common/seller/js/service_case.js"></script>
+</body>
+
+</html>

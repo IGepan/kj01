@@ -1,0 +1,125 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>项目申报</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/declaration.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :breadcrumb="breadcrumb" :nav-index="2"></sub-head>
+
+    <div class="mdiv declarationGuide">
+      <div class="fl guide">
+        <div class="guideTitle box-shadow"><span class="vaMiddle guideTitle-text">申报指南</span> <a href="/polist.html?fileType=01" class="more">更多</a></div>
+        <div class="guideList">
+          <template v-for="(policyg, pgi) in policyGuideList">
+            <div class="guideItem" :key="pgi">
+              <a :href="policyg.itemUrl" target="_blank" :title="policyg.title">
+                <span class="vaMiddle guideItem-dot"></span>
+                <span class="vaMiddle guideItem-text line">【{{policyg.policyFileTypeDisplay}}】{{policyg.title}}</span>
+                <span class="vaMiddle guideItem-time">{{policyg.publishDate}}</span>
+              </a>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="fr sideBar">
+        <div class="bannerBlock-small">
+          <div><img src="/style/images/poindex/sb.jpg" alt=""></div>
+          <div class="bannerBlock-info">
+            <div class="bannerBlock-title" @click="handleViewHelper">申报助手</div>
+            <div class="bannerBlock-desc">政策申报服务工具</div>
+          </div>
+        </div>
+        <div class="bannerBlock-small policy">
+          <div><img src="/style/images/poindex/zp.jpg" alt=""></div>
+          <div class="bannerBlock-info">
+            <div class="bannerBlock-title">政策智配</div>
+            <div class="bannerBlock-desc">一键匹配政策红利</div>
+          </div>
+        </div>
+          <div class="weixin-box">
+              <img src="/style/images/footerCode1.jpg" alt="">
+              <div>政策惠</div>
+          </div>
+        <div class="bannerBlock-small" @click="handleAnswer">
+          <div><img src="/style/images/poindex/wd.jpg" alt=""></div>
+          <div class="bannerBlock-info">
+            <div class="bannerBlock-title">百问百答</div>
+            <div class="bannerBlock-desc">读懂需求智能问答</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdiv bgw apBox">
+      <div class="guideTitle"><span class="vaMiddle guideTitle-text">申报解读</span> <div class="more tabs"><span @click.stop="handleSetViewType(0)" :class="{noColor: viewType}">政策直播间</span> <span  @click.stop="handleSetViewType(1)" :class="{noColor: !viewType}">解读评论</span></div></div>
+      <div class="list" v-if="!viewType">
+        <template v-for="(active, ai) in activeList">
+          <div class="vaMiddle list-item" :key="ai">
+            <a :href="active.itemUrl" target="_blank" :title="active.title">
+              <div class="imageBox" :style="{backgroundImage: 'url(' + active.imgUrl + ')'}">
+                <img :src="active.imgUrl" alt="">
+              </div>
+              <div class="active-title line">{{active.title}}</div>
+              <div class="active-other">
+                <user-heads :heads="activeList[0].headers"></user-heads>
+                <span class="active-other-text">{{active.joinNum}}人正在观看</span>
+              </div>
+              </div>
+            </a>
+          </div>
+        </template>
+      </div>
+      <div class="list" v-else>
+        <scroll v-model="policyList">
+          <template v-slot:item="policy">
+            <div class="policyBox">
+              <a :href="policy.item.itemUrl" target="_blank" :title="policy.item.title">
+                  <div class="line2 policy-title">{{policy.item.title}}</div>
+                  <div class="line2 policy-desc">{{policy.item.summary}}</div>
+                  <div class="policy-other">
+                    <div>{{policy.item.publishDate}}</div>
+                    <div class="detailMark">查看 <i class="iconfont icon-gengduo"></i></div>
+                  </div>
+              </a>
+            </div>
+          </template>
+        </scroll>
+      </div>
+    </div>
+
+    <div class="mdiv bgw declarationList">
+      <div class="guideTitle"><span class="vaMiddle guideTitle-text">申报助手</span></div>
+      <div class="list">
+        <template v-for="(declaration, di) in declarationList">
+          <div class="vaMiddle list-item listItem" :key="di">
+            <a :href="declaration.itemUrl" target="_blank" :title="declaration.title">
+              <div class="imageBox">
+                <div class="image-item">
+                  <img :src="declaration.path" alt="">
+                </div>
+              </div>
+              <div class="declaration-title line declarationtitle">{{declaration.title}}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/declaration.js"></script>
+</body>
+
+</html>

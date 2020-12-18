@@ -1,0 +1,288 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策解读</title>
+  <style>
+    body {
+      margin: 0;
+      color: "#2c2d37";
+      font-size: 16px;
+    }
+    template {
+      display: none;
+    }
+
+    /*  */
+    .detailBase {
+      background-color: #008fe0;
+      padding: 0 15px;
+    }
+
+    .detailBase-title {
+      padding: 20px 5px;
+      color: #ffffff;
+      border-bottom: 1px solid #7ecbf7;
+    }
+
+    .detailBase-title_text {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 600;
+    }
+
+    .detailBase-title_other {
+      padding: 0 15px;
+      height: 40px;
+      background-color: #e9eff5;
+      line-height: 39px;
+      font-size: 12px;
+      display: flex;
+    }
+
+    .detailBase-title_other span {
+      display: inline-block;
+    }
+
+    .detailBase-title_other span:first-child {
+      flex: 1;
+    }
+
+    .detailBase-title_other span:last-child {
+      width: 150rpx;
+    }
+
+    .detailBase-other {
+      font-size: 14px;
+      margin-top: 10px;
+      padding: 0 5px;
+      color: #9596a5;
+      box-sizing: border-box;
+      display: flex;
+      align-items: flex-start;
+      height: 30px;
+      overflow: hidden;
+    }
+
+    .detailBase-other.full {
+      height: auto;
+      align-items: center;
+    }
+
+    .detailBase-other .texts {
+      flex: 1;
+      color: #fff;
+      font-size: 12px;
+      line-height: 26px;
+    }
+
+    .texts_item {
+      display: flex;
+    }
+
+    .texts_item_label {
+      display: inline-block;
+      text-align: right;
+      padding-right: 5px;
+      box-sizing: border-box;
+      width: 65px;
+    }
+
+    .texts_item_content {
+      flex: 1;
+    }
+
+    .detailBase-other .otherBtn {
+      width: 90px;
+    }
+
+    .fullBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 45px;
+    }
+
+    .fullBox span {
+      color: #008fe0;
+      font-size: 14px;
+      margin-left: 5px;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 12px;
+      height: 9px;
+      background-size: 100%;
+    }
+
+    .icon-xiala {
+      background-image: url(/style/images/b.png);
+    }
+
+    .icon-shangla {
+      background-image: url(/style/images/a.png);
+    }
+
+    .colorWhite span {
+      color: #fff;
+    }
+
+    .content {
+      line-height: 36px;
+      padding: 8px;
+    }
+
+    .necessary {
+      background-color: #FFB1C9;
+    }
+
+    .emphasis {
+      background-color: #B1DFFF;
+    }
+
+    .tips {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, .7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      line-height: 25px;
+      height: 100%;
+      width: 100%;
+    }
+
+    .tips-content {
+      width: 92%;
+      max-height: 60%;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .tips-content__title {
+      font-weight: 600;
+    }
+
+    .tips-content__body {
+      margin-top: 10px;
+    }
+
+    .tips-close {
+      margin-top: 30px;
+      background-color: transparent;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border: 2px solid #fff;
+    }
+
+    .tips-close::after,
+    .tips-close::before {
+      content: '';
+      display: inline-block;
+      width: 36px;
+      height: 2px;
+      background-color: #fff;
+      transform-origin: center;
+      position: absolute;
+    }
+
+    .tips-close::after {
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .tips-close::before {
+      left: 50%;
+      transform: translateX(-50%) rotate(-45deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div v-cloak id='index_box'>
+    <div v-if="info" class="detailBase">
+      <div class="detailBase-title">
+        <div class="detailBase-title_text">
+          <span v-text="info.title"></span>
+        </div>
+      </div>
+      <div class="detailBase-other" :class="{full: isBaseOtherFull}">
+        <div class="texts">
+          <div class="texts_item">
+            <span class="texts_item_label">发文时间：</span>
+            <div class="texts_item_content" v-text="info.policyPublishDate"></div>
+          </div>
+          <div class="texts_item">
+            <span class="texts_item_label">发文字号：</span>
+            <div class="texts_item_content" v-text="info.issuedNumber"></div>
+          </div>
+          <div class="texts_item">
+            <span class="texts_item_label">发文单位：</span>
+            <div class="texts_item_content">
+              <template v-cloak v-for="(item,index) in info.writtenDepartment">
+                <div :key="index" v-text="item"></div>
+              </template>
+            </div>
+          </div>
+          <div class="texts_item" v-if="info.applyStatusDisplay">
+            <span class="texts_item_label">申报时间：</span>
+            <template>
+            <div class="texts_item_content" v-text="info.issuedNumber">{{info.onlineStartDate|formatTime1}}{{info.onlineEndDate|formatTime1(1)}}</div>
+            </template>
+          </div>
+          <div class="texts_item" v-if="info.applyStatusDisplay">
+            <span class="texts_item_label">申报状态：</span>
+            <div class="texts_item_content" v-text="info.applyStatusDisplay === 1 ? '正在申报' : '已截止'"></div>
+          </div>
+          <div class="texts_item">
+            <span class="texts_item_label">有效期：</span>
+            <template>
+              <div class="texts_item_content">{{info.executionStartDate|formatTime2(info.executionEndDate)}}</div>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="fullBox colorWhite" @click="handleBaseOtherFull">
+        <span class="icon" :class="isBaseOtherFull ? 'icon-xiala' : 'icon-shangla'"></span><span
+          v-text="isBaseOtherFull ? '收起' : '展开'"></span>
+      </div>
+    </div>
+    <div class="detailBase-title_other"><span v-text="'来源： ' + (info.srcName||'')"></span> <span
+        v-text="'浏览： ' + (info.visitNum||0)"></span></div>
+    <div v-cloak v-if="id && info" class="content">
+      <div v-cloak @click="handleContent" v-html="info.content">
+      </div>
+    </div>
+    <!-- <div><button @click="handleShare">分享</button><button @click="handleContact">联系客服</button></div> -->
+    <template v-cloak v-if="info && info.annotation">
+      <div v-for="(tip,index) in info.annotation" :key="index" v-if="tip.isOpen" class="tips">
+        <div class="tips-content">
+          <div class="tips-content__title" v-text="tip.type === '1' ? '必须：' : '重点：'"></div>
+          <div class="tips-content__body" v-html="tip.text"></div>
+        </div>
+        <div class="tips-close" @click="handleTips(index)"></div>
+      </div>
+    </template>
+    <div v-cloak v-if="isError" class="errorContent"></div>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/explain.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>活动详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/moreSignup.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
+    <sub-head name="活动中心" :bottom-border="true" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
+
+    <template v-if="detail">
+      <div class="mdiv moreSignup">
+        <div class="detail-base">
+          <div class="vaMiddle item-img detail-base-img" :style="detail.styles">
+            <img :src="detail.posterUrl" :alt="detail.title">
+          </div>
+          <div class="vaMiddle detail-base-info">
+            <h1 class="line title" :title="detail.title">{{detail.title}}</h1>
+            <div class="time"><i class="iconfont icon-lishijilu"></i>{{detail.activeStartShowTime2}} {{detail.weekday}}
+            </div>
+            <div class="address" v-if="!detail.onLineFlag || detail.onLineFlag === '0'"><i
+                class="iconfont icon-dingweixian"></i>{{detail.provinceDisplay||''}}{{detail.cityDisplay||''}}{{detail.districtDisplay||''}}{{detail.location||''}}
+            </div>
+            <div class="onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动</div>
+            <div class="sponsor"><i class="iconfont icon-neirongtuisong"></i>发布方：{{detail.userName}}</div>
+          </div>
+        </div>
+        <div class="moreSignup-list">
+          <div class="list-item">
+            <template v-if="companyRow">
+            <div class="vaTop enroll-list">
+              <div class="enroll-item">
+                <label class="vaMiddle label" for="company"><span
+                    class="isNull">{{companyRow.isNull ? '*' : ''}}</span>公司名称</label>
+                <div class="vaMiddle enroll-input" :class="{error: companyRow.message}">
+                  <input class="input" id="company" @input="bindcompanyInput" @blur="bindcompanyInputBlur" @focus="bindcompanyInputFocus" v-model="company" type="text" placeholder="公司名称">
+                  <span class="tips-text">{{companyRow.message}}</span>
+                  <div v-show="companyList.length" class="companyResultList" @click.stop="handleCompany">
+                    <template v-for="company in companyList">
+                      <div class="company-item">{{company.name}}</div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </template>
+          </div>
+          <template v-for="(signupItem, sindex) in formData.groupEnrollList">
+            <div class="list-item" :key="sindex">
+              <span class="vaTop flag">{{sindex + 1}} 
+                <svg v-if="sindex" @click.stop="handleDelPerson" :data-index="sindex" class="jsicon svg-icon delicon" aria-hidden="true">
+                  <use xlink:href="#icon-shanchu"></use>
+                </svg>
+              </span>
+              <div class="vaTop enroll-list">
+                <template v-for="(enroll, eindex) in signupItem">
+                  <div class="enroll-item" :key="sindex+'_index_'+eindex" v-if="enroll.columnType !== '01'">
+                    <label class="vaMiddle label" :for="sindex+'_index_'+eindex"><span
+                        class="isNull">{{enroll.isNull ? '*' : ''}}</span>{{enroll.columnName}}</label>
+                    <div class="vaMiddle enroll-input" :class="{error: enroll.message}">
+                      <input class="input" :id="sindex+'_index_'+eindex" :data-di="eindex" :data-pi="sindex"
+                        @blur="bindInputBlur" @focus="bindInputFocus" v-model="enroll.value" type="text" :placeholder="enroll.tips">
+                      <span class="tips-text">{{enroll.message}}</span>
+                    </div>
+                  </div>
+                </template>
+                <div class="enroll-item" v-show="sindex === rows - 1">
+                  <label class="vaMiddle label"> </label>
+                  <div class="vaMiddle enroll-input">
+                    <button @click.stop="handleAddPerson" type="button" typeName="addPerson">+ 添加人员</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="list-item">
+            <div class="enroll-list">
+              <div class="enroll-item">
+                <label class="vaMiddle label"> </label>
+                <div class="vaMiddle enroll-input">
+                  <button @click.stop="handleFormSubmit" type="button" typeName="moreSignup">提交报名</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <web-footer></web-footer>
+  </div>
+  <script src="/style/css/icon/iconfont.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/moreSignup.js"></script>
+</body>
+
+</html>

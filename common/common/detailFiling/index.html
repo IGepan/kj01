@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>备案信息详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/servicetrade/css/service.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      font-family: "Microsoft YaHei";
+    }
+
+    .box {
+      position: relative;
+      background: url(../images/box_bg.jpg) no-repeat center 189px #fff;
+      background-size: 100%;
+    }
+
+    i {
+      font-style: normal;
+    }
+
+    .brief {
+      color: #000000;
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 23px;
+    }
+
+    .title {
+      color: #010101;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .content {
+      position: relative;
+      color: #010101;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      width: 714px;
+      height: 995px;
+      /* background-color: #fff; */
+      margin: 0 auto 0;
+    }
+
+    .bgImage {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      user-select: none;
+      user-drag: none;
+      -webkit-user-drag: none;
+      background-color: #fff;
+    }
+
+    .contentbox {
+      padding: 85px 65px;
+      z-index: 1;
+      position: absolute;
+    }
+
+    .table-input {
+      text-align: left;
+    }
+
+    .table-input input {
+      width: 14px;
+      height: 14px;
+      vertical-align: middle;
+    }
+
+    .table-input span {
+      margin-right: 8px;
+      line-height: 32px;
+    }
+
+    .table-input span span {
+      margin-left: 5px;
+    }
+
+    .table td {
+      padding: 5px;
+    }
+
+    .table {
+      margin-top: 20px;
+      margin: 0 auto;
+      vertical-align: middle;
+    }
+
+    .careful {
+      line-height: 40px;
+      text-align: left;
+    }
+
+    .table-inscribe {
+      float: right;
+      padding: 0 30px;
+    }
+
+    .spacing {
+      margin-top: 20px;
+    }
+
+    .table .code {
+      padding: 0;
+      width: 66px;
+      height: 65px;
+    }
+
+    .code {
+      width: 66px;
+      height: 65px;
+      float: right;
+    }
+
+    .code img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .table-inscribe .name {
+      margin-bottom: 20px;
+      width: 219px;
+      height: 29px;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .c-tips {
+      font-size: 20px;
+      width: 714px;
+      margin: 20px auto 20px;
+      text-align: center;
+    }
+
+    .storecontent {
+      padding-bottom: 0;
+      user-select: none;
+    }
+
+    .main_footer {
+      position: relative;
+      height: 100px;
+      margin-top: 20px;
+    }
+
+    @media print {
+
+      .header,
+      .c-tips,
+      .main_footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <!-- <div class="header">
+      <ly-toper></ly-toper>
+      <ly-header pagename="备案信息"></ly-header>
+      <div class="crumbs">
+        <div class="mdiv"><strong>你现在的位置：</strong>
+          <span>备案信息</span></div>
+      </div>
+    </div> -->
+    <div class="storecontent">
+      <h1 class="c-tips" v-text="'此备案证书由成渝城市群综合科技服务平台为'+ detailInfo.name +'颁发'"></h1>
+      <div class="content">
+        <img class="bgImage" src="/common/images/backdrop.png" alt="">
+        <div class="contentbox">
+          <div class="contentbox-form">
+            <div class="title">单位(个人)用户入驻备案信息表</div>
+            <div class="table">
+              <table width="586" height="336" border="1" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div style="width: 77px">单位(个人)名称</div>
+                    </td>
+                    <td colspan="6" v-text="detailInfo.name">
+                    </td>
+                    <td width="65">
+                      <div style="width: 65px;" class="code"><img :src="detailInfo.qrFileName" alt=""></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>单位类型</td>
+                    <td colspan="7">
+                      <div class="table-input">
+                        <div class="table-input">
+                          <span v-for="item in detailInfo.identityTypes"><input disabled="disabled" type="checkbox"
+                              :checked="item.selected"> <span v-text="item.display"></span></span>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>单位人数</td>
+                    <td colspan="7">
+                      <div class="table-input">
+                        <span v-for="item in detailInfo.scales"><input disabled="disabled" type="checkbox"
+                            :checked="item.selected"><span v-text="item.display"></span></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>地址</td>
+                    <td colspan="4">
+                      <div>
+                        <i v-text="detailInfo.countryDisplay || ''"></i>
+                        &nbsp;
+                        <i v-text="detailInfo.provinceDisplay || ''"></i>
+                        &nbsp;
+                        <i v-text="detailInfo.cityDisplay || ''"></i>
+                        &nbsp;
+                        <i v-text="detailInfo.districtDisplay || ''"></i>
+                      </div>
+                    </td>
+                    <td width="55">
+                      <div>邮编</div>
+                    </td>
+                    <td colspan="2">
+                      <div style="width: 94px">&nbsp;</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2">联系人</td>
+                    <td width="54">姓名</td>
+                    <td>
+                      <div v-text="detailInfo.contacts || ''">&nbsp;</div>
+                    </td>
+                    <td width="54">手机</td>
+                    <td>
+                      <div v-text="detailInfo.contactsPhone || ''">&nbsp;</div>
+                    </td>
+                    <td width="54">座机</td>
+                    <td colspan="2">
+                      <div v-text="detailInfo.landline || ''">&nbsp;</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="55">QQ</td>
+                    <td width="106">&nbsp;</td>
+                    <td width="55">邮箱</td>
+                    <td colspan="4" v-text="detailInfo.email || ''">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>统一社会信息代码</td>
+                    <td colspan="3" v-text="detailInfo.unifiedCode">&nbsp;</td>
+                    <td width="106">成立时间</td>
+                    <td colspan="3">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="careful">*单位类型为*企业*时请补充以下内容</div>
+          <div class="contentbox-form">
+            <div class="table">
+              <table width="586" border="1" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div style="width: 77px">企业资质认定</div>
+                    </td>
+                    <td width="311">
+                      <div class="table-input">
+                        <span v-for="item in detailInfo.qualificationList"><input disabled="disabled" type="checkbox"
+                            :checked="item.selected"><span v-text="item.display"></span></span>
+                      </div>
+                    </td>
+                    <td width="60">
+                      <div>企业规模</div>
+                    </td>
+                    <td>
+                      <div class="table-input">
+                        <span v-for="item in detailInfo.scaleTypes" style="display: block"><input disabled="disabled"
+                            type="checkbox" :checked="item.selected"><span v-text="item.display"></span></span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="contentbox-form spacing">
+            <div class="table">
+              <table width="586" border="1" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div style="width: 77px">所属行业</div>
+                    </td>
+                    <td width="494">
+                      <div class="table-input">
+                        <span v-for="item in detailInfo.industryList"><input disabled="disabled" type="checkbox"
+                            :checked="item.selected"><span v-text="item.display"></span></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>服务领域</td>
+                    <td width="494">
+                      <div class="table-input">
+                        <span v-for="item in detailInfo.fieldList"><input disabled="disabled" type="checkbox"
+                            :checked="item.selected"> <span v-text="item.display"></span></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>证书颁发机构</td>
+                    <td width="494" height="118">
+                      <div class="table-inscribe">
+                        <div class="name" style="background-image:url(/images/cy.png);border: 0"></div>
+                        <div class="time" v-text="detailInfo.publicDate"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <ly-footer></ly-footer> -->
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/detailFiling.js"></script>
+</body>
+
+</html>

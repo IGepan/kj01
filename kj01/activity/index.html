@@ -1,0 +1,44 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>活动管理</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+</head>
+
+<body>
+  <style>
+    .contant {
+      padding-bottom: 20px;
+    }
+  </style>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type="conference"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http'></buyer-left>
+        <div class="crumbs">
+          <a href="/activity/?code=001.004.001.003">活动中心</a>
+          <span>活动看板</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <div class="active">
+              <activity-graph :data-api="activityApi"></activity-graph>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/activity/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <title>卖家中心-成渝城市群综合科技服务平台</title>
+ <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+ <link href="css/seller.css" rel="stylesheet" type="text/css">
+ <style>
+  .fixed {
+   position: fixed;
+   top: 0;
+   background-color: #fff;
+   width: 960px;
+   z-index: 1002;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+  }
+
+  input[type="number"] {
+   -moz-appearance: textfield;
+  }
+
+  .mleft {
+   margin-left: -78px;
+  }
+
+  .line {
+   margin: 50px 0;
+  }
+  .w344{
+   width: 344px;
+  }
+  .valiform .inputbox {
+      position: relative;
+  }
+  .inputbox-date {
+      position: relative;
+      cursor: pointer;
+  }
+  .inputbox-date:after {
+      position: absolute;
+      content: "\e611";
+      font-family: "iconfont";
+      color: #bfbfbf;
+      font-size: 16px;
+      line-height: 33px;
+      pointer-events: none;
+      top: 3px;
+      right: 416px;
+      background-color: #ffffff;
+      cursor: pointer;
+  }
+     .select select{
+       background:#fff;
+     }
+ </style>
+</head>
+
+<body>
+ <div class="box" id='index_box' style="overflow: hidden">
+  <div class="header">
+   <!--顶部-->
+   <ly-toper :http='http'></ly-toper>
+   <ly-header type="seller" :http="httpCom"></ly-header>
+  </div>
+  <div class="contant">
+   <div class="mdiv">
+   </div>
+   <div class="mdiv mt20">
+    <div class="leftbox">
+     <seller-left :http='http' :jquery='jquery' ref='menuRef'></seller-left>
+    </div>
+    <div class="rightmainbox">
+     <div class="routenav">
+      <a href="/common/seller/index.html">
+       卖家中心&nbsp;&nbsp;&gt;
+      </a>
+     <a href="/common/seller/index.html">
+         订单&nbsp;&nbsp;&gt;
+     </a>
+      <span>服务案例</span>
+     </div>
+     <div class="activestore">
+<!--      <div class="storetit" v-text="keyName.subTitle"></div>-->
+      <div class="auditstatus">
+       <div>
+        <span v-cloak>审核状态： {{formData.certificationFlagDisplay}}</span>
+        <!--审核状态:未认证/审核中/已认证/审核不通过-->
+        <span class="red mr10" ></span>
+       </div>
+       <div>
+        <span  v-cloak>未通过原因：{{formData.noPassReason}}</span>
+       </div>
+       <!-- <span v-if='formData.noPassReason'>[<span v-text='formData.noPassReason||""'></span>]</span> -->
+      </div>
+      <div class="setform">
+       <div class="setbar clear" :class="{fixed: isFixed}">
+        <span class="active"><a href="#baseinfo">基本信息</a></span>
+        <span><a href="#zsinfo">知识产权</a></span>
+        <span><a href="#jsinfo">技术合同</a></span>
+       </div>
+       <div class="setcontent active valiform">
+        <div class="addexperience" id='baseinfo'>
+         <span class="experience"><i class="iconfont icon-gongzuojingli"></i>基本信息</span>
+        </div>
+        <div class="exexperienceform active">
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>项目名称：</span>
+          <input type="text" class="expipt required" v-model="formData.title"
+           data-valid="isNonEmpty" data-error='项目名称不能为空'>
+             <span class="vlt form_msg"></span>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>委托机构：</span>
+          <input type="text" class="expipt required" v-model="formData.commission"
+           data-valid="isNonEmpty" data-error='委托机构不能为空'>
+             <span class="vlt form_msg"></span>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>成果持有方：</span>
+          <input type="text" class="expipt required" v-model="formData.achievementHolder"
+           data-valid="isNonEmpty" data-error='成果持有方不能为空'>
+             <span class="vlt form_msg"></span>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>交易时间：</span>
+             <div class="inputbox inputbox-date">
+                 <input type="text" readonly class="expipt required" id="timetransaction" data-valid="isNonEmpty" data-error='交易时间不能为空' v-model="formData.transactionTime">
+                 <span class="vlt form_msg"></span>
+             </div>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>交易金额(元)：</span>
+          <input type="text" class="expipt required" v-model="formData.transactionAmount"
+           data-valid="isNonEmpty||minNum:1" data-error='交易金额不能为空||交易金额为数字值，且大于0'>
+             <span class="vlt form_msg"></span>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>交易方式：</span>
+          <div class="iptbox">
+           <label class="inline expsltlb w344">
+           <ly-select ref="transactionEl" v-model="formData.transactionMode" class='expslt required' code='transaction_mode'
+                      data-valid="custom:transactionValid"  @input="handleTransactionInput">
+           </ly-select>
+           </label>
+              <span ref="transactionMsg" class="vlt form_msg"></span>
+          </div>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname"><i>*</i>服务领域：</span>
+          <div>
+           <label class="inline expsltlb w344">
+            <ly-select-level ref="servicesEl" type="service"
+                             class="select required level" v-model="formData.field" data-valid="custom:fieldValid" @input="handleServicesInput">
+            </ly-select-level>
+           </label>
+              <span ref="servicesMsg" class="vlt form_msg"></span>
+          </div>
+         </div>
+         <!-- 知识产权 -->
+         <div class="line" id="zsinfo"></div>
+         <div class="addexperience">
+          <span class="experience"><i class="iconfont icon-gongzuojingli"></i>知识产权</span>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname">专利名称：</span>
+          <input type="text" class="expipt" v-model="formData.patentTitle" >
+         </div>
+         <div class="expitem form_item">
+          <span class="expname">专利类型：</span>
+             <div class="iptbox">
+                 <label class="inline expsltlb w344">
+                     <ly-select v-model="formData.patentType" class='select name' code='patent_type' :http='httpUser'>
+                     </ly-select>
+                 </label>
+             </div>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname">专利权人：</span>
+          <input type="text" class="expipt" v-model="formData.patentee">
+         </div>
+         <div class="expitem form_item">
+          <span class="expname">专利号：</span>
+          <input type="text" class="expipt" v-model="formData.patentNo">
+         </div>
+         <div class="expitem form_item">
+          <span class="expname">有效期限：</span>
+             <div class="inputbox inputbox-date">
+                 <input type="text" class="expipt" id="timeEnd" readonly v-model="formData.validityPeriod">
+             </div>
+         </div>
+         <div class="line" id='jsinfo'></div>
+         <div class="addexperience">
+          <span class="experience"><i class="iconfont icon-gongzuojingli"></i>技术合同</span>
+         </div>
+         <div class="expitem form_item">
+          <span class="expname">合同登记编号：</span>
+          <input type="text" class="expipt" v-model="formData.contractRegistrationNo">
+         </div>
+            <div class="expitem form_item">
+                <span class="expname"><span>证明材料：</span></span>
+                <div class="iptbox">
+                    <img-uploader class="exbtn" :title="imgBtnTitle" :option="imgOption"></img-uploader>
+                    <ul class="keywordlist" v-viewer>
+                        <li v-cloak class="signimg" v-for='(item,index) in provesPhotoList'
+                            :style="{backgroundImage: 'url('+item.url+')'}">
+                            <img :src="item.url" alt="">
+                            <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="delProvesPhotoClick(index)"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="expitem form_item">
+                <span class="expname"><i>*</i><span>服务合同：</span></span>
+                <div class="iptbox">
+                    <div class="required" data-valid="custom:contractValid">
+                        <img-uploader class="exbtn" :title="imgBtnTitle" :option="imgOptionContract"></img-uploader>
+                        <span class="vlt form_msg"></span>
+                        <ul class="keywordlist" v-viewer>
+                            <li v-cloak class="signimg" v-for='(item,index) in contractPhotoList'
+                                :style="{backgroundImage: 'url('+item.url+')'}">
+                                <img :src="item.url" alt="">
+                                <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="delContractPhotoClick(index)"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+         <div class="expitem form_item richtext-item">
+          <span class="expname"><i>*</i>项目简介：</span>
+          <div class="iptbox">
+           <div class="exptext textarea_box required" data-valid="custom:introductionValid">
+            <!--富文本-->
+            <vue-ueditor-wrap v-model="formData.introduction" class="exptextarea" data-valid="custom:introductionValid" style="border:none">
+            </vue-ueditor-wrap>
+           </div>
+           <span class="vlt form_msg"></span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="expitem form_item prt">
+        <span class="expname"></span>
+        <div class="iptbox">
+         <label for="protocol">
+          <input type="checkbox" v-model="protocol" id=protocol>
+          我承诺以上图文信息不涉及侵权，如若侵权，发生知识产权纠纷，与<span v-text="platform"></span>服务平台无关，并同意<span style="color: #1052b3"
+           @click.stop="handleOpenProtocol">《<span v-text="platform"></span>服务平台供应发布规范》</span>
+         </label>
+        </div>
+       </div>
+      </div>
+      <div class="btmbtn">
+       <button class="btn-save" :disabled="isSubmitDisabled" @click='saveClick'>保存</button>
+       <button class="btn-submit" :disabled="isSubmitDisabled" @click='submitClick'>提交</button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <ly-minifooter></ly-minifooter>
+  </div>
+ </div>
+ <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+ <script src="/common/js/laydate/laydate.js"></script>
+ <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+ <script type="text/javascript" src="/common/js/libs/require.js"></script>
+ <script type="text/javascript" src="js/addservice_case.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>上传图片</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/cropbox.js"></script>
+  <div class="container">
+    <div class="box">
+      <div class="imageBox">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+      </div>
+      <div class="action">
+        <label>
+          <input type="file" id="file">
+          选择图片</label>
+        <div class="fr">
+          <button type="button" id="btnZoomOut">-</button>
+          <button type="button" id="btnZoomIn">+</button>
+          <button type="button" id="btnCrop">剪裁</button>
+        </div>
+      </div>
+    </div>
+    <div class="cropped">
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="tips">拖动鼠标或使用滚轮调整图片至最佳位置
+    <div class="fr">
+      <button id="submit" disabled>确定上传</button>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var getUrlParam = function (name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
+    }
+    $(window).load(function () {
+      var options =
+      {
+        thumbBox: '.thumbBox',
+        spinner: '.spinner',
+        imgSrc: 'images/avatar.png'
+      }
+      var wa = getUrlParam("w"),
+        ha = getUrlParam("h");
+      pr = getUrlParam("b");
+      url = getUrlParam("url");
+      sys = getUrlParam("sys");
+      type = getUrlParam("type");
+      prev = getUrlParam("prev");
+      if (wa < 500) {
+        $('.imageBox').css({ "width": wa * 1.5, "height": ha * 1.5 });
+      }
+      else {
+        $('.imageBox').css({ "width": wa, "height": ha });
+      }
+      $('.thumbBox').css({ "width": wa, "height": ha, "margin-left": -wa / 2, "margin-top": -ha / 2 });
+      $('.cropped').css({ "width": wa, "height": ha });
+      var cropper = $('.imageBox').cropbox(options);
+      $('#file').on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          options.imgSrc = e.target.result;
+          cropper = $('.imageBox').cropbox(options);
+        }
+        reader.readAsDataURL(this.files[0]);
+        //this.files = [];
+      })
+      var img;
+      $('#btnCrop').on('click', function () {
+        img = cropper.getDataURL();
+        $('#submit').prop("disabled", false).text("确定上传");
+        $('.cropped').html('<img src="' + img + '">');
+      })
+      $('#btnZoomIn').on('click', function () {
+        cropper.zoomIn();
+      })
+      $('#btnZoomOut').on('click', function () {
+        cropper.zoomOut();
+      })
+      $('#submit').on('click', function () {
+        $('#submit').prop("disabled", true).text("正在提交");
+        var userJson = localStorage.getItem('USER_INFO');
+        var token = '';
+        if (userJson) {
+          token = JSON.parse(userJson).access_token
+        }
+        $.ajax({
+          'headers': {
+            'access-token': token
+          },
+          'url': url,
+          'data': { file: img, system: sys },
+          'type': 'post',
+          'contentType': 'application/x-www-form-urlencoded;charset=UTF-8',
+          'dataType': 'json',
+          'async': true,
+          'success': function (e) {
+            if (e.code == "rest.success") {
+              $('#submit').prop("disabled", false).text("确定上传");
+              $('#submit').prop("disabled", true).text("裁剪图片");
+              if (window.parent.$dialog) {
+                window.parent.$dialog.showToast('上传成功');
+              }
+              if (window.parent.vueDom) {
+                window.parent.vueDom.imgUploadSuccess(e.result.id, e.result.url, type,prev, e.result)
+              }
+              window.parent.$("." + pr).find("input").val(e.result.filePath).attr(
+                {
+                  "url": e.result.url,
+                  "id": e.result.id,
+                  "fileType": "1"
+                });
+              window.parent.boolean = true;
+              window.parent.$("." + pr).find("input").blur();
+              window.parent.$("." + pr).find("input").change();
+              window.parent.$("." + pr).css("background-image:url(" + img + ")")
+              window.parent.$("." + pr).addClass("active");
+              window.parent.$("." + pr).next(".cover").hide();
+              window.parent.$("." + pr).nextAll(".cover").hide();
+              window.parent.$("body").css("overflow", "auto");
+            }
+            else {
+              window.parent.$dialog.showToast(e.desc);
+            }
+          },
+          'error': function (error) {
+            window.parent.$dialog.showToast('上传失败');
+          },
+          'jsonpCallback': 'jsonp' + (new Date()).valueOf().toString().substr(-4),
+          'beforeSend': function () { },
+        });
+
+      });
+    });
+  </script>
+</body>
+
+</html>

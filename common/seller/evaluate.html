@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="css/seller.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/evaluate.css" rel="stylesheet" type="text/css">
+  <style>
+    .searchrow label> :first-child {
+      display: inline-block;
+      width: 80px;
+      text-align: right;
+    }
+
+    .searchrow .ainline {
+      border: 1px solid #838383;
+      background-color: transparent;
+      line-height: 30px;
+      color: #838383;
+    }
+
+    .box {
+      padding-bottom: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="store_box">
+    <div class="header">
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+      </div>
+      <div class="mdiv mt20">
+        <div class="leftbox">
+          <seller-left ref="menuRef" :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="rightmainbox">
+          <div class="routenav">
+            <a href="/common/seller/index.html">
+              卖家中心&nbsp;&nbsp;&gt;
+            </a>
+            <span>我的评价</span>
+          </div>
+          <div class="activestore">
+            <!--搜索框-->
+            <div class="searchform">
+              <div class="searchrow normal">
+                <label><span>关键字：</span>
+                  <div class="ipt" style="width: 200px;"><input type="search" v-model="formData.keyWord"
+                      placeholder="请输入关键字"></div>
+                </label>
+                <label style="margin-left: 10px">
+                  <span>评价类型：</span>
+                  <div class="select" style="width: 200px;">
+                    <select v-model="formData.evaluateType">
+                      <option v-for="opt in options.evaluate2" :key="opt.id" :value="opt.value" v-text="opt.display">
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label style="margin-left: 10px">
+                  <span>是否回复：</span>
+                  <div class="select" style="width: 200px;">
+                    <select v-model="formData.replyFlag">
+                      <option v-for="opt in options.yes_no" :key="opt.id" :value="opt.value" v-text="opt.display">
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label>
+                  <span>追加评价：</span>
+                  <div class="select" style="width: 200px;">
+                    <select v-model="formData.addCntFlag">
+                      <option v-for="opt in options.yes_no" :key="opt.id" :value="opt.value" v-text="opt.display">
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label style="margin-left: 10px">
+                  <span>评价内容：</span>
+                  <div class="select" style="width: 200px;">
+                    <select v-model="formData.cntEmptyFlag">
+                      <option v-for="opt in options.yes_no" :key="opt.id" :value="opt.value" v-text="opt.display">
+                      </option>
+                    </select>
+                  </div>
+                </label>
+                <label>
+                  <span>评论时间：</span>
+                  <div class="ipt" style="width: 200px;">
+                    <input type="text" id="timeStart" readonly v-model="formData.startDate">
+                  </div>
+                  <em>至</em>
+                  <div class="ipt" style="width: 200px;">
+                    <input type="text" id="timeEnd" readonly v-model="formData.endDate">
+                  </div>
+                </label>
+                <button type="button" style="margin-left: 10px" @click="handleSearchList">搜索</button>
+                <button type="button" class="ainline" style="margin-left: 10px" @click="handleResetSearch">重置</button>
+              </div>
+            </div>
+            <table class="infosTable" v-for="(eitem, ei) in eList">
+              <colgroup>
+                <col width="229">
+                <col width="280">
+                <col>
+              </colgroup>
+
+              <tbody class="thead">
+                <tr>
+                  <td v-text="'评价类型：' + eitem.evaluateTypeDisplay"></td>
+                  <td v-text="'评论时间：' + eitem.fristEvaluateDate"></td>
+                  <td v-text="'评价对象：' + eitem.oname"></td>
+                </tr>
+                <tr>
+                  <td v-text="'评论人：' + eitem.evaluater"></td>
+                  <td v-text="'单据编号：' + eitem.bid"></td>
+                  <td>
+                    <template v-if="eitem.resultViewList">
+                      <div class="rvItem" v-for="rvItem in eitem.resultViewList">
+                        <label v-text="rvItem.evaluateItemDisplay + '：'"></label><span class="num orange"
+                          v-text="rvItem.evaluateResult"></span>
+                      </div>
+                    </template>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <template v-if="eitem.contentDetailsViewList">
+                      <div class="form-item" v-for="(cdv, index) in eitem.contentDetailsViewList">
+                        <label class="form-item__title" v-text="index ? '追评内容：' : '评论内容：'"></label>
+                        <div class="form-content"
+                          :class="{btdashedline: index < eitem.contentDetailsViewList.length-1}">
+                          <p style="margin: 0" v-text="cdv.comment || '此用户没有留下任何内容'"></p>
+                          <ul class="list horizontal imglist" v-viewer v-if="cdv.fileList" style="margin-bottom: 1em;">
+                            <li class="item" v-for="file in cdv.fileList">
+                              <img :src="file.url" width="69" height="69" :alt="file.name">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </template>
+                    <template v-else>
+                      <div class="form-item">
+                        <label class="form-item__title">评论内容：</label>
+                        <div class="form-content">
+                          <p style="margin: 0">此用户没有留下任何内容</p>
+                        </div>
+                      </div>
+                    </template>
+                    <template v-if="eitem.replyDetailsView">
+                      <div class="form-item">
+                        <label for="" class="form-item__title"></label>
+                        <div class="form-content" style="width: 820px;">
+                          <div class="reply" style="margin-top: 20px;width: 100%;">
+                            <p><label for="">回复：</label><span v-text="eitem.replyDetailsView.reply"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                    <template v-if="!eitem.replyDetailsView && eitem.evaluateType !== '002'">
+                      <div class="form-item">
+                        <label for="" class="form-item__title"></label>
+                        <div class="form-content">
+                          <div class="replyForm" style="margin-top: 20px;">
+                            <input class="replyInput" maxlength="500" v-model="eitem.reply" type="text" />
+                            <button class="replyBtn" :disabled="isSubmitDisabled"
+                              @click="handleReplySubmit(ei)">回复评价</button>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--分页-->
+            <div class="pager" v-cloak>
+              <a @click='pageClick(1)'>[首页]</a>
+              <a @click='pageClick(formData.pageNum-1)'>[上一页]</a>
+              <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                :class="{active: item == formData.pageNum}" v-if='isShowPage(item)'></a>
+              <a v-if='isMore()'>...</a>
+              <a @click='pageClick(formData.pageNum+1)'>[下一页]</a>
+              <a @click='pageClick(pages)'>[末页]</a>
+              <span>[共<span v-text='pages'></span>页]</span>
+              <span>[共<span v-text='total'></span>条]</span>
+            </div>
+            <!--分页-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/evaluate.js"></script>
+</body>
+
+</html>

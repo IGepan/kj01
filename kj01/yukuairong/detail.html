@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>渝快融</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/ykr.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <ly-toper top-class="white" ref="lytoper" :hidenuser='true'></ly-toper>
+    <ly-header :apend-menu="apendMenu"></ly-header>
+    <div class="mdiv">
+      <div class="content">
+        <div class="content-header">
+          <img :src="'https://www.datacq.com.cn/ykr_static/bank_logo/' + list.finCode + '.png'" alt="">
+          <span v-text="list.name"></span>
+        </div>
+        <div class="content-list">
+          <div class="content-list_row">
+            <span><em>• </em>贷款额度：<i v-if="list.mSup" v-text="list.mSub + '-' + list.mSup + '万元'"></i></span>
+            <span><em>• </em>贷款利率：<i v-if="list.rSup" v-text="list.rSub + '%' + '-' + list.rSup + '%'"></i><i
+                v-if="list.rateDesc" :title="list.rateDesc" class="iconfont icon-jinggao"></i></span>
+            <span><em>• </em>贷款期限：<i v-text="list.mtimenumSub + '-' + list.mtimenumSup + '个月'"></i></span>
+          </div>
+          <div class="content-list_row">
+            <span><em>• </em>担保方式：<i v-text="list.productTypeName"></i></span>
+            <span class="row66"><em>• </em>还款方式：<i v-text="list.repmode"></i></span>
+          </div>
+        </div>
+        <div class="content-feature">
+          <div v-if="list.introduction" class="content-feature_inserted">
+            <div class="title">产品介绍</div>
+            <div class="detail" v-html="list.introduction"></div>
+          </div>
+          <div v-if="list.applyobj" class="content-feature_inserted">
+            <div class="title">适用对象</div>
+            <div class="detail" v-html="list.applyobj"></div>
+          </div>
+          <div v-if="list.precondition" class="content-feature_inserted">
+            <div class="title">申请条件</div>
+            <div class="detail" v-html="list.precondition"></div>
+          </div>
+          <div v-if="list.applycationMaterial" class="content-feature_inserted">
+            <div class="title">所需材料</div>
+            <div class="detail" v-html="list.applycationMaterial"></div>
+          </div>
+        </div>
+        <div class="content-btn">
+          <button @click="viewInfos()">申请</button>
+        </div>
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+
+    <div class="popupbox close" :class="{open: isopen}">
+      <div class="popup">
+        <div class="popup-header"><span>申请确认</span><i class="iconfont icon-cuowu" @click="isopen = false"></i></div>
+        <div class="popup-content">
+          <div class="popup-content_type">
+            <div class="title">您申请的产品是：</div>
+            <div class="item mt30">
+              <div class="item-row">
+                <span v-text="list.finName"></span>
+                <span v-text="list.name"></span>
+              </div>
+              <div class="item-row">
+                <span>额度：<span v-if="list.mSup" v-text="list.mSub + '-' + list.mSup + '万元'"></span></span>
+                <span>期限：<span v-text="list.mtimenumSub + '-' + list.mtimenumSup + '个月'"></span></span>
+                <span>利率：<span v-if="list.rSup" v-text="list.rSub + '%' + '-' + list.rSup + '%'"></span></span>
+                <span>担保方式：<span v-text="list.productTypeName"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="popup-content_type">
+            <div class="title">请确认数据授权：</div>
+            <div class="item">
+              <div class="item-agree"><label><input id="protocol" type="checkbox"><span
+                    class="show-box"></span></label>我同意《<a id="protocolView" @click="agreementInfos()">数据授权协议</a>》</div>
+              <div class="item-hint">温馨提示：如果同意授权，将有助于缩短办理周期，提高成功率；若不同意授权，则需要由您向金融机构提供相关材料。</div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-btn">
+          <button @click="getloancheckApply()" :disabled="isDisable">提交申请</button>
+        </div>
+      </div>
+    </div>
+    <div class="protocolbox close" :class="{opens: isopens}">
+      <div class="protocol">
+        <div class="title"><span>数据授权协议</span><i class="iconfont icon-cuowu" @click="isopens = false"></i></div>
+        <div class="protocol-content">
+          <div class="iagree">我同意平台想提供该产品的金融机构提供本企业的：</div>
+          <a v-for="(list,i) in listmini" href=""><span v-text="list.name"></span><span
+              v-for="lists in listmini[i].list" v-text="'-'+lists.name"></span></a>
+        </div>
+        <div class="attention">
+          <div>用于本次申请所需进行的企业信用评价。</div>
+          <div>在金融服务存续期间，我同意相应金融机构可以继续在渝快融平台</div>
+          <div>查询本企业的数据;金融服务结束后，自动取消对金融机构的授权。</div>
+          <div>用户注意事项:</div>
+          <div>
+            “渝快融”平台有权根据客观情况的变化随时对本协议中的数据资源项进行单方面的变更，变更后以网站公告的方式提前予以公布，无需另行单独通知用户;若用户在本协议内容公告变更生效后继续使用渝快融平台相关服务的，表示已充分阅读、理解并接受变更修改后的协议内容，也将遵循变更修改后的协议内容使用渝快融平台相关服务;若用户不同意变更修改后的协议内容，用户应在变更生效前停止使用渝快融平台相关服务。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+
+</html>

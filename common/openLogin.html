@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>绑定手机</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/login.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
+  <style>
+    .alert .content {
+      min-height: auto;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+</head>
+
+<body>
+  <div class="box" id="reg_box" v-cloak>
+    <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
+    </validate-dialog>
+    <div class="login_header">
+      <div class="mdiv">
+        <div class="logo"><a href="/index.html"><img src="/style/images/logos/blue.png" alt="" /></a></div>
+        <div class="l_title"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="tips">
+        依据《网络安全法》，为保障您相关功能的正常使用，会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！
+      </div>
+    </div>
+    <div class="mdiv center">
+      <div class="login_box">
+        <ul class="tabs">
+          <li class="active">绑定手机</li>
+        </ul>
+        <form class="login_form" id="reg_form">
+          <div class="form_item active">
+            <div class="input phone">
+              <input name="phone" @change="phoneChange" v-model="form.phone" type="text" placeholder="请输入常用手机号">
+              <span v-text="phoneErrorMsg" class="form_error"></span>
+            </div>
+            <div class="clear"></div>
+            <div class="input vercode">
+              <input name='validateContent' v-model="form.validateContent" placeholder="请输入验证码" maxlength="16">
+            </div>
+            <button :disabled="isDisabled" class="sendcode" @click="sendClick($event)" v-text="codeBtnText"></button>
+            <div class="clear"></div>
+            <div class="input password" v-if="isShowPwd">
+              <input maxlength="16" name='password' v-model="form.password" type="password" placeholder="请输入6-16位密码"
+                maxlength="16">
+            </div>
+          </div>
+          <div id="msg"></div>
+          <!--<div class="types">
+						<label><input type="radio" checked name="regtype"><b></b>我有需求发布</label>
+						<label><input type="radio" name="regtype"><b></b>我要入驻成为服务商</label>
+					</div>-->
+          <button class="btn reg" :disabled="isSubmitDisabled" @click='regClick($event)'>绑定手机</button>
+          <!--<div class="agree">
+            <input type="checkbox" id="protocolReadFlag" name="protocolReadFlag" v-model="form.protocolReadFlag"><label
+              for="protocolReadFlag">我已阅读</label>
+            <span class="agreetype" @click="agreeClick(0)">注册协议</span><span class="agreetype"
+              @click="agreeClick(1)">隐私保护协议</span></div>
+          <div class="links">已有账号？
+            <a href="/common/login.html" class="reg">登录</a>
+          </div>-->
+        </form>
+      </div>
+    </div>
+    <div class="cover" style='display: none;'>
+      <div class="covtr">
+        <div class="agreebox">
+          <div class="cls" @click="clsClick"></div>
+          <div class="title" v-text="protocol[protocolType].title">服务协议详情</div>
+          <div class="content" v-html="protocol[protocolType].content">
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script src="js/openLogin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/seller.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='store_box'>
+    <div class="header">
+      <!--顶部-->
+      <ly-toper :http='http'></ly-toper>
+      <ly-header type="seller" :http="httpCom"></ly-header>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+      </div>
+      <div class="mdiv mt20">
+        <div class="leftbox">
+          <seller-left :http='http' :jquery='jquery'></seller-left>
+        </div>
+        <div class="rightmainbox">
+          <div class="routenav">
+            <a href="/common/seller/index.html">
+              卖家中心&nbsp;&nbsp;&gt;
+            </a>
+            <span>店铺信息设置</span>
+          </div>
+          <div class="activestore">
+            <div class="storetit"> 店铺信息设置 </div>
+            <!-- <div class="auditstatus">
+								<span>审核状态：</span>
+								<span class="red mr10" v-text="certificationFlagDisplay||'未认证'"></span>
+								<span v-text='noPassReason||""'></span>
+							</div> -->
+            <div class="setform">
+              <div class="setbar clear">
+                <span class="active">店铺基本信息</span>
+                <span>资质证书</span>
+                <span>个人经历</span>
+                <span>特殊经营许可</span>
+              </div>
+              <!--店铺基本信息-->
+              <base-info @selmap='isShowMap = true' class="setcontent active valiform" v-if="activeIndex == 0"
+                ref="content"></base-info>
+              <!--资质证书-->
+              <certificate class="setcontent active valiform" v-if="activeIndex == 1" ref="content"></certificate>
+              <!--个人经历-->
+              <experience class="setcontent active" v-if="activeIndex == 2" ref="content"></experience>
+              <!--特殊经营许可-->
+              <license class="setcontent active valiform" v-if="activeIndex == 3" ref="content"></license>
+              <address-map v-if='isShowMap' @cel="isShowMap = false" @success='mapClick'></address-map>
+            </div>
+          </div>
+          <!--<div class="btmbtn">
+          <button class="btn-save">保存</button>
+          <button class="btn-submit">提交</button>
+        </div>-->
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hiSNGiYjCDay4EMncAjAUjx5oEblgpsx"></script>
+  <script src="/common/js/laydate/laydate.js"></script>
+  <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="js/storeSet.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>

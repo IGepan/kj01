@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源设备仪器详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/resources.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <sources-head :breadcrumb="breadcrumb" :bottom-Border="true" :nav-index="4"></sources-head>
+      <div data-equipment class="content">
+        <template v-if="detail">
+          <div class="mdiv">
+            <div class="brief">
+              <div class="item-img img" :style="detail.styles"><img v-if="detail.itemImg" :src="detail.itemImg"
+                  :alt="detail.name"><span>设备</span></div>
+              <div class="brief-info">
+                <div class="name">{{detail.name}}</div>
+                <ul class="list">
+                  <li><span class="iconfont icon-guige"></span><span>规格型号：{{detail.deviceModel}}</span></li>
+                  <li><span class="iconfont icon-hangye1"></span><span>学科领域：{{detail.mainDiscipline}}</span></li>
+                  <li><span class="iconfont icon-qiye"></span><span>{{detail.manufacturer}}</span></li>
+                  <li><span class="iconfont icon-dingwei"></span><span>{{detail.address}}</span></li>
+                  <li><span class="iconfont icon-jingjiren1"></span><span>联系人：{{detail.cname}}</span></li>
+                  <li v-if="detail.cname"><span class="iconfont icon-zuoji"></span><span>{{detail.cname}}</span></li>
+                </ul>
+              </div>
+              <!-- 已关注 添加active-->
+              <div v-if="false" class="attention"><span class="iconfont icon-shoucangdansexian"></span><span>关注</span>
+              </div>
+              <!-- 已关注样式 -->
+              <div v-if="false" class="attention" style="display: none;"><span
+                  class="iconfont icon-shoucangdansexian"></span><span>已关注</span>
+              </div>
+            </div>
+            <div class="container">
+              <div class="details">
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name">设备详情</div>
+                  </div>
+                  <div class="table table-two">
+                    <table cellspacing="0">
+                      <tr>
+                        <th>设备名称</th>
+                        <td>{{detail.name}}</td>
+                        <th>规格型号</th>
+                        <td>{{detail.deviceModel}}</td>
+                      </tr>
+                      <tr>
+                        <th>产地</th>
+                        <td>{{detail.madeIn}}</td>
+                        <th>仪器价值</th>
+                        <td>{{detail.orginValue}}</td>
+                      </tr>
+                      <tr>
+                        <th>生产制造商</th>
+                        <td>{{detail.manufacturer}}</td>
+                        <th>年有效工作机时</th>
+                        <td>{{detail.runTimePerYear}}</td>
+                      </tr>
+                      <tr>
+                        <th>启用日期</th>
+                        <td>{{detail.firstUseDate}}</td>
+                        <th>学科领域</th>
+                        <td>{{detail.mainDiscipline}}</td>
+                      </tr>
+                      <tr>
+                        <th>仪器所在地</th>
+                        <td>{{detail.address}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name">技术参数</div>
+                  </div>
+                  <div class="detail-text">
+                    <p>{{detail.technicalParameters}}</p>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name">功能描述</div>
+                  </div>
+                  <div class="detail-text">
+                    <p>
+                      {{detail.functionalDescription}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/resources/equipment_detail.js"></script>
+</body>
+
+</html>

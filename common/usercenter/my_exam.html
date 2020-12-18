@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>帐号管理-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+
+    <style>
+        button.jg {
+            height: 40px !important;
+            position: absolute;
+            white-space: nowrap;
+        }
+        .itembody,
+        .orderheader {
+            width: 100%;
+            display: table;
+        }
+
+        .itembody {
+            border-bottom: 1px solid #d2d2d2;
+        }
+        .orderheader .th-item,
+        .itembody .td-item{
+            width: 16%;
+            vertical-align: middle;
+            display: table-cell;
+            float: none;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .orderheader .index,
+        .itembody .index{
+            width: 4%;
+        }
+        .itembody .operation a {
+            display: inline-block;
+            color: #1890FF;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type='account' :http="httpCom"></header-bar>
+    <div class="contant">
+        <div class="mdiv">
+            <div class="leftbox">
+                <auth-left :http='http' :jquery='jquery'></auth-left>
+            </div>
+            <div class="centerbox">
+                <ul class="usertabs">
+                    <li class="active">
+                        <span>我的考试</span>
+                    </li>
+                </ul>
+                <div class="tabbox">
+                    <div class="userform active valiform">
+                        <div class="searchform">
+                            <div class="searchrow normal">
+                                <label>
+                                    <span class="label">考试结果：</span>
+                                    <div class="select">
+                                        <select v-model="queryForm.examResult" placeholder="请选择">
+                                            <option value="">请选择</option>
+                                            <option value="01">通过</option>
+                                            <option value="02">未通过</option>
+                                        </select>
+                                    </div>
+                                </label>
+                                <button type="button"
+                                        style="background-color: #1890FF;border-color: #1890FF;border-radius: 5px; float: right;"
+                                        @click="getList">搜索
+                                </button>
+                            </div>
+                        </div>
+                        <div class="orderbox">
+                        <div class="orderheader">
+                            <div class="th-item index">序号</div>
+                            <div class="th-item">考试开始时间</div>
+                            <div class="th-item">考试结束时间</div>
+                            <div class="th-item">认证级别</div>
+                            <div class="th-item">考试结果</div>
+                            <div class="th-item">操作</div>
+                        </div>
+                        <div class="orderlist">
+                            <div class="itembody" v-for="(item,index) in tableList">
+                                <div class="td-item index" v-text="index+1"></div>
+                                <div class="td-item" v-text="item.startTime"></div>
+                                <div class="td-item" v-text="item.endTime"></div>
+                                <div class="td-item" v-text="item.levelDisplay"></div>
+                                <div class="td-item" v-text="item.examResultDisplay"></div>
+                                <div class="td-item operation">
+                                    <a target="_blank" v-if="item.examResult==='01'"
+                                       :href="fileUrl + item.id" data-name="技术经纪人证书" @click.stop.prevent="savefile">下载证书</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--分页-->
+                        <div class="pager" v-cloak>
+                            <a @click='pageClick(1)'>[首页]</a>
+                            <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                            <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                               :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                            <a v-if='isMore()'>...</a>
+                            <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                            <a @click='pageClick(pages)'>[末页]</a>
+                            <span>[共<span v-text='pages'></span>页]</span>
+                            <span>[共<span v-text='queryForm.total || 0'></span>条]</span>
+                        </div>
+                        <!--/分页-->
+                    </div>
+                    </div>
+                    <!--/个人信息-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="js/myExam.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源研发机构列表</title>
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/service.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <service-head :breadcrumb="breadcrumb" :bottom-Border="true" :nav-index="4" @search="bindChangeSearchTitle">
+      </service-head>
+      <div class="content">
+        <div class="mdiv">
+          <div class="searchListBox">
+            <template v-if="options.searchOpts.length">
+              <template v-for="(optItem, index) in options.searchOpts">
+                <div class="search-row" v-if="!optItem.isTop" :key="index">
+                  <label class="search-label">{{optItem.label}}</label>
+                  <div class="searchkeys" :class="{full: optItem.isMore}">
+                    <template v-if="optItem.operationType === 'select'">
+                      <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                        <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }"
+                          :data-di="sindex" :data-pi="index" :data-value="ducItem.value"
+                          :key="sindex">{{ducItem.display}}</span>
+                      </template>
+                      <div class="searchkey-second"
+                        v-if="optItem.childIndex !== -1 && optItem.dictIInfos[optItem.childIndex].children.length">
+                        <template v-for="(childItem, childindex) in optItem.dictIInfos[optItem.childIndex].children">
+                          <span class="searchkey childkey" @click.stop="handleSetSearchForm"
+                            :class="{ current: childItem.selected }" :data-ci="childindex" :data-di="optItem.childIndex"
+                            :data-pi="index" :data-value="childItem.value"
+                            :key="childindex">{{childItem.display}}</span>
+                        </template>
+                      </div>
+                      <div v-show="optItem.isMoreShow" class="unfold" @click.stop="handleSetMoreItem(index)">
+                        <span>{{ optItem.isMore ? '收起' : '更多' }}</span><span class="iconfont"
+                          :class="{'icon-zhankai': !optItem.isMore, 'iconfont icon-shouqi': optItem.isMore}"></span>
+                      </div>
+                    </template>
+                    <template v-if="optItem.operationType=== 'area'">
+                      <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: selected }"
+                        :data-di="-1" :data-pi="index" :data-value="-1">全部</span>
+                      <span class="selectBox">
+                        <select placeholder="省级" v-model="searchForm.area" :data-pi="index"
+                          @change.stop="handleSetSearchForm" class="select" :class="{active: searchForm.area}">
+                          <template v-for="opt in optItem.dictIInfos">
+                            <option :value="opt.code" :key="opt.id">
+                              {{opt.display}}</option>
+                          </template>
+                        </select>
+                      </span>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </div>
+          <div class="containerBox">
+            <div class="listLeft">
+              <div class="searchResult clear">
+                <div class="fl">
+                  <span>已选条件：</span>
+                  <template v-for="(selectOpt, index) in options.selectOpts">
+                    <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i
+                        v-if="selectOpt.code !== 'sort_type'" @click.stop="handleDelSelectOpt" :data-index="index"
+                        class="iconfont icon-delete icon"></i></label>
+                  </template>
+                </div>
+                <div class="fr">已为您查询到 <template v-if="count !== -1">
+                    <span class="total">{{count}}</span>
+                  </template> 条</div>
+              </div>
+              <div class="listsBox">
+                <template v-if="options.searchOpts.length">
+                  <template v-for="(optItem, index) in options.searchOpts">
+                    <div class="searchMainkey boxShadow" :key="index" v-if="optItem.isTop">
+                      <div>
+                        <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+                          <span class="mainKey" @click.stop="handleSetSearchForm"
+                            :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index"
+                            :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i
+                              v-if="topDicItem.values.length" class="iconfont icon-shengxu"
+                              :class="{current: !topDicItem.selectedIndex}"></i></span>
+                        </template>
+                      </div>
+                      <div class="headerSearchBox">
+                        <template v-if="provinceOptions.length">
+                          <div class="adress">
+                            <div><i class="iconfont icon-dingwei"></i>{{provinceDisplay}}</div>
+                            <div class="selectsBox">
+                              <ul class="main-item">
+                                <li v-for="(popt, i) in provinceOptions" :class="{active: popt.selected}"
+                                  @click="bindChangeProvince(i, popt.display)" v-text="popt.display"></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </template>
+                        <!-- hide隐藏输入框 -->
+                        <div class="header-search">
+                          <input placeholder="在结果中搜索" type="text" class="input-search" v-model="searchForm.shopName">
+                          <span @click.stop="handleSearch" class="iconfont
+                            icon-fangdajing"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </template>
+                <ul data-organization class="listsBox-lists">
+                  <template v-for="item in dataList">
+                    <li class="list">
+                      <a class="vertical" :href="item.itemUrl" target="_blank">
+                        <div class="list-up">
+                          <div class="list-up_left">
+                            <div class="item-img img" :style="item.styles"><img :src="item.itemImg" alt=""></div>
+                            <div class="name">{{item.title}}</div>
+                            <div class="ticket" v-if="item.quan"><img src="/image/service/quan.png" alt=""></div>
+                          </div>
+                        </div>
+                        <div class="list-down transversely">
+                          <ul class="list-down_left">
+                            <li>
+                              <span class="iconfont icon-qiye"></span>
+                              <!-- 当前选中的筛选条件，对应的标签要变成黄色  current -->
+                              <span :title="item.identityTypeDisplay" class="name"
+                                :class="{current: item.isIdentityTypeMatched}">{{item.identityTypeDisplay}}</span>
+                            </li>
+                            <li>
+                              <span class="iconfont icon-dingwei"></span>
+                              <span :title="item.cityShow" class="name"
+                                :class="{current: item.isCityMatched}">{{item.cityShow}}</span>
+                            </li>
+                            <li>
+                              <span class="iconfont icon-hangye1"></span>
+                              <span :title="item.industryNames" class="name" :class="{current: item.isIndustryMatched}">
+                                <template v-for="industry in item.industryNames">
+                                  <span>{{industry}}</span>
+                                </template></span>
+                            </li>
+                            <li>
+                              <span class="iconfont icon-biaoqian1"></span>
+                              <span :title="item.servicesNames" class="name"
+                                :class="{current: item.isServicesMatched}"><template
+                                  v-for="service in item.servicesNames">
+                                  <span>{{service}}</span>
+                                </template></span>
+                            </li>
+                          </ul>
+                          <div class="list-down_right">
+                            <div class="number">{{item.evaluateResult}}</div>
+                            <div class="stars">
+                              <div class="stars-empty">
+                                <span class="iconfont icon-xingxingxian"></span>
+                                <span class="iconfont icon-xingxingxian"></span>
+                                <span class="iconfont icon-xingxingxian"></span>
+                                <span class="iconfont icon-xingxingxian"></span>
+                                <span class="iconfont icon-xingxingxian"></span>
+                              </div>
+                              <div class="stars-fill" :style="item.evaluateStyle">
+                                <span class="iconfont icon-xingxing"></span>
+                                <span class="iconfont icon-xingxing"></span>
+                                <span class="iconfont icon-xingxing"></span>
+                                <span class="iconfont icon-xingxing"></span>
+                                <span class="iconfont icon-xingxing"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+              <div id="pagination-container" class="pages"></div>
+            </div>
+            <div class="listRight">
+              <!-- 其他的服务领域，此部分隐藏  加hide隐藏 -->
+              <template v-if="hotList.length">
+                <div class="listRight-banner">
+                  <div class="title line">{{hotName}}</div>
+                  <div id="theHer" class="theHerImgBox owl-carousel owl-theme"><template v-for="(item, ti) in hotList">
+                      <div class="advertisingbox">
+                        <a :href="item.itemUrl" :title="item.title" target="_blank">
+                          <div class="advertising">
+                            <div class="item-img img" :style="item.styles">
+                              <img :src="item.itemImg" :alt="item.title">
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div :title="item.title" class="item-title">{{item.title}}</div>
+                            <div :title="item.viewtag" class="item-name">{{item.viewtag}}</div>
+                          </div>
+                        </a>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </template>
+              <div class="listRight-list" v-if="recommendList.length">
+                <div class="title">热门服务资源</div>
+                <ul class="lists">
+                  <template v-for="item in recommendList">
+                    <li class="list">
+                      <a :href="item.itemUrl" target="_blank">
+                        <div class="item-img img" :style="item.styles"><img :src="item.itemImg" alt="">
+                        </div>
+                        <div>
+                          <div :title="item.title" class="name">{{item.title}}</div>
+                          <div :title="item.viewtag" class="trade">{{item.viewtag}}</div>
+                        </div>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/service/organization_list.js"></script>
+</body>
+
+</html>

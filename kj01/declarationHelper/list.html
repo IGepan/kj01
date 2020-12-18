@@ -1,0 +1,59 @@
+<html lang="zh">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>项目申报</title>
+ <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/declarationHelper.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+ <div class="box grayBgbox" v-cloak id='index_box'>
+  <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+  <sub-head name="政策资讯" :breadcrumb="breadcrumb" :nav-index="2"></sub-head>
+
+  <div class="mb60">
+
+   <div class="classifyBox mdiv">
+    <div class="classify">
+     <span>分类：</span>
+     <span class="classify-tab" v-for="(item,i) in tabList" :key="item.id" :class="{active:item.selected}" v-text="item.display" @click.stop="tabChange(item.value,i)"></span>
+    </div>
+   </div>
+
+   <div class="helperListBox mdiv">
+    <div class="helperList">
+     <ul>
+      <li class="helperList-item" v-for="list in helperList" :key="list.id">
+       <div class="item-header">
+        <div class="item-header_img">
+         <img :src="list.path" alt="">
+        </div>
+        <div class="item-header_title" v-text="list.title"></div>
+       </div>
+       <div class="item-body">
+        <div class="item-body_left" v-text="list.summary"></div>
+        <a :href="'./detail.html?id=' + list.id" class="item-body_rigth">查看详情</a>
+       </div>
+      </li>
+     </ul>
+    </div>
+    <template v-if="pages">
+     <pages :pages="pages" @changepage="bindPageChange"></pages>
+    </template>
+   </div>
+  </div>
+
+  <web-footer></web-footer>
+ </div>
+
+ <script type="text/javascript" src="/common/js/libs/require.js"></script>
+ <script type="text/javascript" src="/style/js/declarationHelper/list.js"></script>
+</body>
+
+</html>

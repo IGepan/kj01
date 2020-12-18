@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>我的评价</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/evaluate.css" rel="stylesheet" type="text/css">
+  <style>
+    .error {
+      font-size: 12px;
+      color: red;
+    }
+
+    .evaluateForm {
+      padding: 0;
+      width: auto;
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="crumbs">
+          <a href="/common/buyer/index.html">用户中心</a><span>我的评价</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="active">
+              <!--搜索框-->
+              <div class="searchform">
+                <div class="searchrow normal">
+                  <label><span>关键字：</span>
+                    <div class="ipt"><input type="search" v-model="queryForm.keyWord" placeholder="请输入关键字"></div>
+                  </label>
+                  <label style="margin-left: 20px;">
+                    <span>评价类型：</span>
+                    <div class="select" style="width: 100px;">
+                      <select v-model="queryForm.evaluateType">
+                        <option :value="opt.value" v-for="opt in options.evaluate" :key="opt.id" v-text="opt.display">
+                        </option>
+                      </select>
+                    </div>
+                  </label>
+                  <button style="margin-left: 20px;" type="button" @click="handleGetOrderList">搜索</button>
+                  <button style="margin-left: 20px;" class="btnline" type="button" @click="handleReset">重置</button>
+                </div>
+              </div>
+              <!--/搜索框-->
+              <!--订单列表-->
+              <div class="orderbox">
+                <div class="orderheader">
+                  <div class="orderheader-name" style="width: 540px;">评价对象</div>
+                  <div class="orderheader-type">评价类型</div>
+                  <div class="orderheader-type" style="width: 150px;">评价时间</div>
+                  <div class="orderheader-type">状态</div>
+                  <div class="orderheader-type" style="width: 110px;">操作</div>
+                </div>
+                <div class="orderlist">
+                  <!--订单列表-->
+                  <div class="itembody" v-for="(order, i) in orderList">
+                    <div class="goodslist">
+                      <!--商品列表-->
+                      <a :href="order.detailUrl" target="_blank" style="width: 540px;" class="borders">
+                        <span class="img"
+                          :style="'background-image: url(' + (order.oimgUrl || 'http://dummyimage.com/62x62') + ');margin-top: 0;'"></span>
+                        <span class="title" v-text="order.oname"></span>
+                      </a>
+                      <div class="type borders" v-text="order.evaluateTypeDisplay"></div>
+                      <div class="time borders" style="width: 150px;" v-text="order.evaluateDate"></div>
+                      <div class="type borders" v-text="order.status"></div>
+                      <div class="type borders" style="width: 110px;">
+                        <a target="_blank" :href="'detail.html?code=001.001.004.001&id=' + order.evaluateId">查看详情</a>
+                        <div class="select"
+                          v-if="(order.updateEvaFlag === '1' || order.addEvaFlag === '1') && order.evaluateType !== '005'">
+                          <select v-model="order.operation" @change="handleOrderChange(i)">
+                            <option value="">更多操作</option>
+                            <option :value="opt.value"
+                              v-for="opt in $options.filters.getOperations(options.operations, order.updateEvaFlag, order.addEvaFlag)"
+                              :key="opt.id" v-text="opt.display">
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--分页-->
+                <div class="pager">
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                  <span>[共<span v-text='queryForm.total'></span>条]</span>
+                </div>
+                <!--/分页-->
+              </div>
+              <!--/订单列表-->
+            </div>
+            <!--/所有订单-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+    <div class="cover close" type="confirm2-0" style="z-index: 90000" :class="{ open: isOpenUpdateDialog }">
+      <div class="ctr">
+        <div class="cover-box" style="min-width:600px">
+          <div class="form-title"><span class="active">修改评论</span></div>
+          <div class="form-view">
+            <table class="table">
+              <tbody>
+                <tr v-for="(result, index) in updateForm.resultDetailVoList" :key="result.evaluateItem">
+                  <th v-text="result.evaluateItemDisplay"></th>
+                  <td>
+                    <ly-star v-model="result.evaluateResult" @input="handleChangeVal($event, index)"></ly-star>
+                  </td>
+                  <td>
+                    <span class="error" v-text="result.errorMsg"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td>
+                    <span class="tags"><span v-for="(tag, i) in updateForm.tagVoList" :class="{active:tag.selected}"
+                        v-text="tag.display" @click="handleTagUpdate(i)"></span>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-view_button">
+            <button class="form-button_confirm" :disabled="isSubmitDisabled" @click="handleUpdateSubmit">确认</button>
+            <button @click="isOpenUpdateDialog = false">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cover close" type="confirm2-0" style="z-index: 90000" :class="{open: isOpenAppendDialog}">
+      <div class="ctr">
+        <div class="cover-box" style="width:700px">
+          <div class="form-title"><span class="active">追加评论</span></div>
+          <div class="form-view">
+            <div class="evaluateForm">
+              <div class="form-item">
+                <label class="form-item__title">追加内容：</label>
+                <div class="form-item__contents">
+                  <textarea v-model="apendForm.comment" class="etextarea" maxlength="500" cols="60" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="form-item">
+                <label class="form-item__title"></label>
+                <div class="form-item__contents" style="font-size: 0">
+                  <ul class="list horizontal imglist" v-viewer="{zIndex:91000}" v-if="apendForm.fileIds.length"
+                    style="margin-bottom: 0">
+                    <li class="item" v-for="(file, i) in apendForm.fileIds">
+                      <img :src="file.url" width="69" height="69" :alt="file.name">
+                      <span class="iconfont icon-cuowu" @click="handleRemoveImg(i)"></span>
+                    </li>
+                  </ul>
+                  <label class="upload-btn" v-show="5 > apendForm.fileIds.length">
+                    <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess'
+                      style="position: absolute;right: 10000px;" accept="image/*" type='file' :header='{}'
+                      :url='fileUploadUrl' :data='uploadData'>
+                    </ly-upload>
+                    <i class="iconfont icon-tupian upload-btn__icon"></i>
+                    <br>
+                    <span class="upload-btn__text">添加图片</span>
+                  </label>
+                  <label class="upload-btn" v-show="false">
+                    <i class="iconfont icon-shipin upload-btn__icon"></i>
+                    <br>
+                    <span class="upload-btn__text">添加视频</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-view_button">
+            <button class="form-button_confirm" :disabled="isSubmitDisabled" @click="handleAppendSubmit">确认</button>
+            <button @click="isOpenAppendDialog = false">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/evaluate/index.js"></script>
+</body>
+
+</html>

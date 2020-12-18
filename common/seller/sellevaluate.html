@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>卖家中心-订单评价</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/servicetrade/css/service.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/evaluate.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <div class="header">
+      <ly-toper></ly-toper>
+      <ly-header type="seller" pagename="订单评价"></ly-header>
+      <div class="crumbs">
+        <div class="mdiv"><strong>你现在的位置：</strong>
+          <a href="/common/seller/index.html">
+            卖家中心
+          </a>
+          <span>订单评价</span></div>
+      </div>
+    </div>
+    <div class="storecontent">
+      <div class="mdiv evtitle">
+        <span v-text="'订单编号：' + detailInfo.orderId"></span>
+        <span v-text="'下单时间：' + detailInfo.orderCreateTime"></span>
+      </div>
+      <div class="mdiv tips">
+        <p>请根据本次服务，给与真实、客观、仔细的评价。</p>
+        <p>您的评价讲师其他会员的参考，也将影响卖家的信用。累积信用和积分规则：中评不计分，但会影响卖家的好评率，请慎重给予。</p>
+      </div>
+      <div class="mdiv">
+        <div class="evaluateBox">
+          <div class="evaluate">
+            <div class="orderinfos">
+              <p v-text="'订单买家：' + (detailInfo.userName || '')"></p>
+              <p v-text="'订单编号：' + (detailInfo.orderId || '')"></p>
+              <p v-text="'下单时间：' + (detailInfo.orderCreateTime || '')"></p>
+              <p v-text="'成交时间：' + (detailInfo.dealTime || '')"></p>
+            </div>
+            <div class="evaluateForm" v-if="evaluateData.evaluateList.length">
+              <div class="form-item" v-for="(d, di) in evaluateData.evaluateList[0].resultVoList">
+                <label class="form-item__title" v-text="d.display + '：'"></label>
+                <div class="form-item__contents">
+                  <ly-star v-model="d.evaluateResult"></ly-star>
+                </div>
+              </div>
+              <div class="form-item">
+                <label class="form-item__title">评价内容：</label>
+                <div class="form-item__contents">
+                  <textarea v-model="evaluateData.evaluateList[0].comment" class="etextarea" maxlength="500" cols="60"
+                    rows="5"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="textcenter ptb45">
+          <button class="paybtn" :disabled="isSubmitDisabled" @click="submitUpdate" style="width: 156px;">提交</button>
+          <button class="paybtn plain" @click="routerBack" style="width: 156px;">取消</button>
+        </div>
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/sevaluate.js"></script>
+</body>
+
+</html>

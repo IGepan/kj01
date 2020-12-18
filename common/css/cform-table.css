@@ -1,0 +1,129 @@
+.csearchform-content {
+    background: #fff;
+    padding: 10px;
+}
+.csearchform {
+    background: #f4f4f4;
+    padding: 10px;
+}
+.csearchform .ipt {
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+.csearchform .select {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #ccc;
+}
+.csearchform .select:after {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    font-family: "iconfont";
+    content: "\e61d";
+    color: #d2d2d2;
+    background-color: #fff;
+    text-align: center;
+    line-height: 28px;
+    pointer-events: none;
+    font-size: 9px;
+}
+.csearchform input {
+    padding: 5px;
+}
+.csearchform select {
+    padding: 5px;
+    width: 120px;
+}
+.csearchform label {
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-top: 20px;
+    display: inline-block;
+}
+.csearchform button {
+    padding: 0 15px;
+    height: 30px;
+    background-color: #1557b1;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top: 20px;
+}
+.csearchform-table {
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+.csearchform-table table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+.csearchform-table table td {
+    font-size: 14px;
+}
+.csearchform-table table thead tr {
+    border-top: 3px solid #c7ddfb;
+    background: #e8e8e8;
+}
+.csearchform-table table thead td{
+    padding: 10px 5px;
+    border: 1px solid #e8e8e8;
+}
+.csearchform-table table tbody td {
+    padding: 15px 5px;
+    border: 1px solid #e8e8e8;
+}
+.csearchform-table table tbody tr td:first-child {
+    color: #1154b0;
+}
+/*.csearchform-table table tbody tr {
+    background: #eee;
+}
+.csearchform-table table tbody tr:nth-child(odd) {
+    background: #e4e4e4;
+}*/
+.csearchform-table table tbody td a {
+    color: #212121;
+    margin: 3px 0;
+}
+.csearchform-table table tbody td a:hover{
+    color: #f60;
+}
+.csearchform-pagation > div {
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+    padding: 2px 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.csearchform-pagation .disabled {
+    cursor: not-allowed;
+    color: #888;
+}
+.csearchform-pagation .pagenum {
+    color: #333;
+    margin: 0 3px;
+}
+.csearchform button.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+.pagenum.active {
+    background: #1052b3;
+    color: #fff;
+}
+.csearchform-table table tbody td .more-ops a {
+    color: #fff;
+}
+.csearchform-pagation {
+    text-align: center;
+}

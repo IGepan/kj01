@@ -1,0 +1,42 @@
+<html lang="zh">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>资讯</title>
+ <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/answer.css" rel="stylesheet" type="text/css">
+ <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+ <div class="box grayBgbox" v-cloak id='index_box'>
+  <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+  <sub-head name="政策资讯" :nav-index="3" :breadcrumb="breadcrumb"></sub-head>
+
+  <div class="answerBox mdiv">
+   <ul class="answerIndex">
+    <li class="answerIndex-list" v-for="(answer,i) in answerList" :key="i">
+     <div class="answerIndex-list_title">
+      <span class="title-left" v-text="answer.typeDisplay"></span>
+      <a :href="'/answer/detail.html?type=' + answer.type" class="title-right">更多&gt;&gt;</a>
+     </div>
+     <a :href="'/answer/qadetail.html?id=' + questione.id" class="answerIndex-list_content"
+      v-for="questione in answer.questiones" :key="questione.id" :title="questione.ask"><i></i>{{questione.ask}}</a>
+    </li>
+   </ul>
+  </div>
+
+  <template v-if="pages">
+   <pages :pages="pages" @changepage="bindPageChange"></pages>
+  </template>
+  <web-footer></web-footer>
+ </div>
+ <script type="text/javascript" src="/common/js/libs/require.js"></script>
+ <script type="text/javascript" src="/style/js/answer/index.js"></script>
+</body>
+
+</html>

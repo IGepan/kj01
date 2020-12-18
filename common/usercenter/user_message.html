@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>消息中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+  <link href="css/form.css" rel="stylesheet" type="text/css">
+  <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+  <style>
+    .box {
+      min-height: 100%;
+      padding-bottom: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type='message' :http="httpCom"></header-bar>
+    <div class="contant" v-cloak>
+      <div class="mdiv">
+        <div class="leftbox">
+          <div class="leftbar usermessage">
+            <div class="links" @click="getInfo(0)">
+              <a :class="{active:activeIndex===0}">系统消息<span v-html="sysUnread" v-if="sysUnread"></span></a>
+            </div>
+            <!--<div class="links" @click="getInfo(1)">
+                    <a :class="{active:activeIndex===1}">业务办理消息<span v-html="busUnread" v-if="busUnread"></span></a>
+                </div>-->
+          </div>
+          <div class="umess-ad">
+            <a href="/demand.html"><img src="/common/images/umess-ad.jpg"></a>
+          </div>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <div class="userform active valiform">
+              <div class="umess-container">
+                <div class="umess-head">
+                  <div class="control bline">
+                    <span @click="selAll($event)"><input type="checkbox" v-model="isAll"
+                        id="ck_vvv"><b></b><label>全选</label></span>
+                    <button style="margin-right: 10px" @click="delAll">删除</button>
+                    <button @click="setReaded">设置为已读</button>
+                    <div class="fr" style="font-size:14px;">
+                      共<span>{{list.length}}</span>条消息
+                    </div>
+                  </div>
+                </div>
+                <div class="umess-content">
+                  <div class="umess-list" v-for="k in list" :class="{active:k.picked}" @click="pick(k)">
+                    <div class="umess-icon">
+                      <span :class="{readed:k.readFlag==='1'}" v-html="k.readFlag==='1'?'已读':'未读'"></span>
+                    </div>
+                    <div class="umess-text">
+                      <div class="umess-time" v-html="k.createTime"></div>
+                      <div class="umess-txt" v-html="k.msgContent" :class="{hidden:!k.isHidden,expand:k.expanded}"
+                        ref="txt"></div>
+                      <div :class="{pdown:!k.expanded}" class="umess-expand" @click.stop="expand(k)" v-if="k.isExpand"
+                        v-html="k.expanded?'展开':'收起'"></div>
+                    </div>
+                    <div class="umess-ops control">
+                      <button @click.stop="delMess(k)">删除</button>
+                    </div>
+                  </div>
+                  <div v-if="list.length===0" style="text-align: center;font-size: 14px;padding: 10px 0">暂无消息</div>
+                  <ly-page :current-page="page" :total-page="totalPage" @handle="getMessageApi"></ly-page>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="js/userMessage.js"></script>
+</body>
+
+</html>

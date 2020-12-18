@@ -1,0 +1,84 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策汇</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/polist.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/ddetail.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+  <script type="text/javascript" src="/style/js/libs/pdfjs-dist/build/pdf.js"></script>
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :breadcrumb="breadcrumb" :cms-url="cmsUrl" :nav-index="2"></sub-head>
+
+    <div class="mdiv commonCententBox">
+      <div class="fl article">
+        <template v-if="detail">
+          <div class="article-title-box">
+            <h1 class="article-title">{{detail.title}}</h1>
+            <div class="article-other">
+              <label><i class="iconfont icon-lishijilu"></i> 发布时间：<span>{{detail.publishDate|formatTime}}</span></label>
+              <label><i class="iconfont icon-liulanliang"></i> 浏览量：<span>{{detail.visitCount||0}}</span></label>
+              <label><i class="iconfont icon-xiazai"></i> 下载量：<span>{{detail.downloadCount||0}}</span></label>
+            </div>
+            <img class="hotimg" src="/image/ddetail/rm.png" alt="">
+            <img class="jpimg" src="/image/ddetail/jp.png" alt="">
+          </div>
+          <div class="article-content">
+            <canvas ref="theCanvas" width="595" height="891"></canvas>
+          </div>
+          <div class="article-bottom">
+            <div class="article-btns">
+              <button type="button" @click.stop="handleSetZoomInPage" typeName="articleBtn" class="borderRight vaMiddle" ><i class="iconfont icon-fangda vaMiddle"></i><span class="vaMiddle">放大</span></button>
+              <button type="button" @click.stop="handleSetZoomOutPage" typeName="articleBtn" class="borderRight vaMiddle" ><i class="iconfont icon-suoxiao vaMiddle"></i><span class="vaMiddle">缩小</span></button>
+              <div class="vaMiddle pdfPages borderRight">
+                <span class="vaMiddle pagePrevBtn" @click.stop="handleSetPrevPage">上一页</span>
+                <span class="vaMiddle pageView"><span class="currentPage">第{{currentPage}}页</span>/<span class="countPage">共{{countPage}}页</span></span>
+                <span class="vaMiddle pageNextBtn" @click.stop="handleSetNextPage">下一页</span>
+              </div>
+              <button type="button" typeName="articleBtn" class="vaMiddle shareBtn borderRight">
+                <i class="iconfont icon-fenxiang vaMiddle"></i><span  class="vaMiddle">分享</span>
+                <div class="shareBox">
+                  <div class="share-item" @click.stop="handleShowTips"><i class="iconfont icon-weixin"></i><span class="text">微信</span></div>
+                  <div class="share-item" @click.stop="handleShareToQQ"><i class="iconfont icon-qq"></i><span class="text">QQ</span></div>
+                </div>
+              </button>
+              <button type="button" @click.stop="handleColSelected" class="vaMiddle" typeName="articleBtn"><i class="iconfont vaMiddle" :class="{'icon-shoucangdansexian': detail.collectionFlag === '0','icon-shoucangdansemian': detail.collectionFlag === '1'}"></i><span class="vaMiddle">收藏</span></button>
+            </div>
+            <button type="button" @click.stop="handleFileSaveAs" typeName="articleBtn download" :disabled="detail.canDownload === '0'"><i class="iconfont icon-xiazai vaMiddle"></i><span class="vaMiddle">下载文档</span></button>
+          </div>
+        </template>
+      </div>
+      <div class="fr sideBar">
+        <div class="list recommend">
+          <div class="list-title"><span class="list-title-text">相关政策</span></div>
+          <div class="list-body">
+          <template v-for="(item, ni) in recommendList">
+            <div class="list-item" :key="ni">
+              <span class="list-item-circle"></span>
+              <a class="list-item-text line" :title="item.title" :href="item.itemUrl" target="_blank">{{item.title}}</a>
+            </div>
+          </template>
+          </div>
+        </div>
+        <div class="bannerBlock">
+          <img src="/image/podetail/banner1.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/ddetail.js"></script>
+</body>
+
+</html>

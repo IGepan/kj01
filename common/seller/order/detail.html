@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>我的订单详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/servicetrade/css/service.css" rel="stylesheet" type="text/css">
+  <style>
+    .files {
+      cursor: pointer;
+      color: #1154b0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="index_box">
+    <div class="header">
+      <ly-toper></ly-toper>
+      <ly-header type="seller" pagename="订单详情" :http="httpCom"></ly-header>
+      <div class="crumbs">
+        <div class="mdiv"><strong>你现在的位置：</strong>
+          <a href="/common/seller/index.html">
+            卖家中心
+          </a><a href="/common/seller/order/?orderStatusFilter=01&code=order-seller-my">
+            我的订单
+          </a>
+          <span>订单详情</span></div>
+      </div>
+    </div>
+    <div class="storecontent">
+      <div class="mdiv progress" :class="{noActive: !detailInfo.notimei}">
+        <div class="background">
+          <ul>
+            <li v-for="(log, index) in detailInfo.logList" :key="index"
+              :class="{active: detailInfo.notimei - 1 === index}" style="margin-top: -17px;">
+              <span v-text="index + 1"></span>
+              <div class="background-item">
+                <div v-text="log.actionName"></div>
+                <div class="background-time" v-text="log.opTime || ''"></div>
+              </div>
+              <span v-if="detailInfo.notimei === 0 || (detailInfo.notimei - 1 === index && !detailInfo.logfull)"
+                class="porlitips" v-text="detailInfo.orderStatusDisplay"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mdiv orderbox">
+        <div class="infohead">
+          <span v-text="'订单编号：' + detailInfo.id"></span><span v-text="'下单时间：' + detailInfo.orderCreateTime"></span><span
+            v-text="'买家：' + detailInfo.buyerName">
+          </span>
+        </div>
+        <div class="infotable">
+          <div class="title">联系人信息</div>
+          <div class="tbody">
+            <div class="row">
+              <div class="item" v-text="'联系人: ' + (detailInfo.contactsName || '')"></div>
+              <div class="item" v-text="'联系电话：' + (detailInfo.mobile || '')"></div>
+              <div class="item" v-text="'Email：' + (detailInfo.email || '')"></div>
+            </div>
+            <div class="row">
+              <div class="item" v-text="'联系地址：' + (detailInfo.locationAll || '')"></div>
+            </div>
+            <div class="row">
+              <div class="item" v-text="'留言：' + (detailInfo.comment || '')"></div>
+            </div>
+          </div>
+          <div
+            v-if="detailInfo.orderStatus !== '001' && detailInfo.orderStatus !== '002' && detailInfo.orderStatus !== '003'">
+            <div class="title" style="margin-top: 30px;color: #000;
+          font-weight: 700;">验收信息</div>
+            <div class="tbody">
+              <div class="row">
+                <div class="item" v-text="'验收说明：' + (detailInfo.inspectedInfo || '')"></div>
+              </div>
+              <div class="row" v-if="detailInfo.atts && detailInfo.atts.length > 0">
+                <span style="color: #404040;display: block;float: left;"
+                  v-text="detailInfo.atts[0].orderAttachmentTypeDisplay + '：'">
+                </span>
+                <span v-for="(att,k) in detailInfo.atts" style="display: block;margin-left: 80px">
+                  <span style="display: block;" class="files" v-text="att.file.name"
+                    @click="fileSaveAs(att.file.path,att.file.name)"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="orderitem">
+            <div class="orderheader">
+              <div class="goods">商品详情</div>
+              <div class="price">单价</div>
+              <div class="number">数量</div>
+              <div class="message">服务需求信息</div>
+              <div class="state">交易状态</div>
+              <div class="total">金额</div>
+            </div>
+            <div class="orderbody">
+              <div class="goodslist">
+                <!--商品列表-->
+                <div class="goodsitem" v-if="detailInfo.details" v-for="(sku, si) in detailInfo.details">
+                  <!--商品项-->
+                  <a href="#">
+                    <span class="img"
+                      :style="'background-image: url(' + (sku.goodsImg && sku.goodsImg.url ? sku.goodsImg.url : 'http://dummyimage.com/62x62') + ')'"></span><span
+                      class="title" v-text="sku.goodsName"></span>
+                  </a>
+                  <div class="price">￥ <span v-text="sku.protocolPrice"></span> <i
+                      v-if="detailInfo.orderStatus === '001'" class="iconfont icon-bianji" @click="showUpdate(si)"></i>
+                    <div class="updateBox" v-if="detailInfo.orderStatus === '001'" :class="{show: sku.show}"><input
+                        type="text" class="priceInput" type="number" v-model="sku.updatePrice">
+                      <button type="button" class="priceBtn" @click="priceBulr(si)">修改</button>
+                      <button type="button" class="priceBtn cancel" @click="sku.show = false">取消</button>
+                    </div>
+                  </div>
+                  <div class="number" v-text="sku.number">1</div>
+                  <div class="message">
+                    <p v-text="'服务名称：' + sku.goodsName"></p>
+                    <p v-text="'服务需求描述：' + sku.requirement"></p>
+                    <p v-text="'协议价格：' + sku.protocolPrice"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="state" v-text="detailInfo.orderStatusDisplay"></div>
+              <div class="total" v-text="'￥' + sumGoodsPrices"></div>
+            </div>
+            <div class="orderfooter"><span>配送方式：卖家配送</span><span
+                v-text="'付款方式：' + detailInfo.payModeDisplay"></span><span v-text="'总金额（含运费）：￥' + sumGoodsPrices"></span>
+            </div>
+          </div>
+        </div>
+        <div class="textcenter ptb45" v-if="detailInfo.orderStatus === '001'">
+          <button class="paybtn" @click="submitUpdate">提交</button>
+        </div>
+      </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/servicetrade/js/sellerDetail.js"></script>
+</body>
+
+</html>

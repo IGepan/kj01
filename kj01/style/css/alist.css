@@ -1,0 +1,246 @@
+/* 搜索 */
+.searchListBox {
+  font-size: 14px;
+  color: #343334;
+  background-color: #fff;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  user-select: none;
+}
+.select {
+  border: solid 1px #e6e7f1;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+.datetime {
+  border: solid 1px #e6e7f1;
+  display: inline-block;
+  height: 24px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  position: relative;
+}
+.datetime .icon-rili {
+  position: absolute;
+  right: 5px;
+  font-size: 12px;
+  top:50%;
+  transform: translateY(-50%);
+  color: #bec0d1;
+}
+.timeRange {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 17px;
+}
+.sortBox {
+  background-color: #fff;
+  border-top: 1px solid #e6e7f1;
+  margin-bottom: 30px;
+}
+
+.searchMainkey {
+	height: 60px;
+	clear: both;
+	padding: 0 20px;
+}
+.mainKey {
+  line-height: 60px;
+  font-size: 18px;
+  color: #343334;
+  cursor: pointer;
+  margin-left: 20px;
+  position: relative;
+}
+.mainKey:first-child {
+  margin-left: 0;
+}
+.mainKey.active, .mainKey:hover{
+  font-weight: bold;
+	color: #018fff;
+}
+.mainKey.active::after, .mainKey:hover::after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 6px;
+  background-color: #018fff;
+  border-radius: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -17px;
+}
+
+/* 查询行 */
+.search-row {
+  padding: 0 20px;
+}
+.search-label {
+  display: inline-block;
+  vertical-align: top;
+  color: #999999;
+  text-align: right;
+  line-height: 48px;
+  width: 56px;
+}
+.searchkeys {
+  display: inline-block;
+  vertical-align: top;
+  padding: 11px 0 0;
+  border-bottom: 1px dashed #d4d9e6;
+  width: 1050px;
+  margin-left: 16px;
+}
+.searchkey {
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: solid 1px transparent;
+  padding: 0 5px;
+  line-height: 24px;
+}
+.searchkey:first-child {
+  margin-left: 0;
+}
+.search-row:last-child .searchkeys {
+  border-bottom: 0;
+}
+.searchkey.active, .searchkey:hover {
+  color: #fff;
+  background-color: #ff8a00;
+  border-color: #ff8a00;
+}
+
+.childkey {
+  color: #9496a5;
+}
+.childkey.active, .childkey:hover {
+  color: #ff8a00;
+  background-color: transparent;
+}
+
+/* 查询结果 */
+.searchResult {
+  font-size: 14px;
+  color: #999999;
+  padding: 8px 20px;
+  margin-top: 20px;
+  background-color: #fff;
+}
+.result-item {
+  background-color: #ffffff;
+  border: solid 1px #e6e7f1;
+  color: #343334;
+  display: inline-block;
+  vertical-align: middle;
+  height: 24px;
+  line-height: 15px;
+  padding: 3px 5px;
+  margin-left: 4px;
+}
+.result-value {
+  color: #f44239;
+}
+.result-item .icon {
+  line-height: 0px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.searchResult .total {
+  font-size: 16px;
+  color: #018fff;
+}
+/* 列表 */
+.list {
+  font-size: 0;
+}
+.listBox {
+  font-size: 0;
+  width: 100%;
+}
+.topic-item {
+  width: 270px;
+  margin-right: 33px;
+  height: 360px;
+  font-size: 14px;
+  background-color: #fff;
+  position: relative;
+}
+.topic-item:nth-child(4n+0) {
+  margin-right: 0;
+}
+.topic-item:nth-child(n+5) {
+  margin-top: 30px;
+}
+
+.specialTopic-img {
+  width: 270px;
+	height: 180px;
+	background-color: #52bcb6;
+}
+
+.topic-item-info {
+  height: 126px;
+  padding: 14px 20px 0;
+  width: 100%;
+}
+.topic-item-info-title {
+	font-size: 16px;
+	line-height: 24px;
+	margin: 0;
+	padding: 0;
+	color: #343334;
+}
+.topic-item-info-line {
+	font-size: 12px;
+	line-height: 24px;
+	color: #9496a5;
+}
+.topic-item-info-line.mt {
+  margin-top: 8px;
+}
+.topic-item-info-line.state {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topic-item-info-line.onLine {
+	color: #00ccad;
+}
+.topic-item-tag {
+  border-top: 1px solid #e6e7f1;
+  padding: 19px 20px 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.topic-item-tag .tag {
+	font-size: 12px;
+	line-height: 24px;
+	color: #0096ff;
+	padding-right: 10px;
+}
+.topic-item-tag .viewTag {
+	font-size: 12px;
+	line-height: 24px;
+	color: #9496a5;
+}
+.topic-item .iconfont {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.topic-item:hover {
+  position: relative;
+  margin-top: -10px;
+  border: solid 1px #ff8a00;
+  box-shadow: 0px 0px 24px 0px rgba(22, 37, 87, 0.3);
+  padding: 1px;
+}
+
+.topic-item:hover .specialTopic-img{
+  width: 266px;
+}

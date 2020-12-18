@@ -1,0 +1,224 @@
+.mdiv {
+    width: 1440px;
+}
+.headerBox {
+    border-bottom: solid 1px #01c8f2;
+}
+.content .mdiv {
+    padding: 40px 0;
+    min-height:calc(100% - 540px);
+}
+.right {
+
+}
+.title {
+    background-color: #e3faff;
+    height: 72px;
+    box-sizing: border-box;
+    border-left: 6px solid #01c8f2;
+    color: #30a9ee;
+    font-size: 22px;
+    padding-left: 24px;
+    line-height: 72px;
+}
+.sub-title {
+    font-size: 18px;
+    color: #222327;
+    line-height: 72px;
+    margin-top: 10px;
+}
+.gov-lists {
+    display: flex;
+    justify-content: space-between;
+}
+.gov-lists li {
+    width: 260px;
+    height: 140px;
+    background-color: #ffffff;
+    border: solid 1px #99cdff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    cursor: pointer;
+}
+.gov-lists .active, .gov-lists li:hover{
+    background-color: #99cdff;
+    color: #ffffff;
+}
+.name {
+    font-size: 18px;
+    color: #222327;
+    line-height: 36px;
+    margin-bottom: 10px;
+}
+.text {
+    font-size: 14px;
+    color: #6a6e7d;
+    line-height: 24px;
+}
+.gov-lists .active div, .gov-lists li:hover div {
+    color: #ffffff;
+}
+.enterprise {
+    display: flex;
+    margin-bottom: 20px;
+}
+.enterprise-title {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    font-size: 18px;
+    letter-spacing: 15px;
+    color: #ffffff;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3b530;
+}
+.enterprise-title.green {
+    background-color: #bdd805;
+}
+.enterprise-lists {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+}
+.enterprise-lists li {
+    box-sizing: border-box;
+    width: 190px;
+    height: 140px;
+    background-color: #ffffff;
+    border: solid 1px #ecab1f;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 20px 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.enterprise-lists.green li {
+    border: solid 1px #bdd805;
+}
+.enterprise-lists li:hover {
+    background-color: #ecab1f;
+}
+.enterprise-lists.green li:hover {
+    background-color: #bdd805;
+}
+.enterprise-lists li:hover div {
+    color: #ffffff;
+}
+.enterprise-lists li:nth-child(-n+5) {
+    margin-top: 0;
+}
+.enterprise-lists li .text span{
+    margin-right: 10px;
+}
+.brief {
+    width: 960px;
+}
+.synopsis {
+    color: #222327;
+    font-size: 16px;
+    line-height: 36px;
+    margin-top: 20px;
+}
+.avatar {
+    margin-top: 30px;
+    height: 360px;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+}
+.avatar-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #222327;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+.imagesBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.info-img {
+    width: 75px;
+    height: 75px;
+}
+.info-img_text {
+    font-size: 14px;
+    color: #6a6e7d;
+    line-height: 24px;
+}
+.info-text {
+    color: #222327;
+    font-size: 16px;
+    line-height: 30px;
+}
+.info-text .iconfont {
+    color: #01c8f2;
+    font-size: 18px;
+    margin-right: 5px;
+}
+.number {
+    margin-right: 40px;
+}
+.map {
+    height: 420px;
+    margin-top: 20px;
+    margin-bottom: 200px;
+}
+.platform-box .ul-list{
+    color: #343334;
+}
+.platform-box .ul-list .ul-li{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.platform-box .ul-list .ul-li:hover{
+    color:#ff8110;
+}
+.platform-box .ul-list .ul-li .li-left{
+    line-height: 48px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:800px;
+}
+.platform-box .ul-list .ul-li i{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: solid 1px #aaacbb;
+    margin-right: 8px;
+}
+.detail-box{
+    margin-top:20px;
+    padding: 0 50px;
+}
+.detail-box>.detail-title{
+    font-size: 20px;
+    line-height: 36px;
+    color: #343334;
+    text-align: center;
+}
+.detail-box .sub-title{
+    font-size: 14px;
+    text-align: center;
+    line-height: 34px;
+    color: #999999;
+}
+.detail-box .sub-title>span{
+    margin-right:20px;
+}

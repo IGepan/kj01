@@ -1,0 +1,84 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策汇</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/news.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :breadcrumb="breadcrumb" :nav-index="3"></sub-head>
+
+    <div class="mdiv commonCententBox">
+      <div class="fl mainBox">
+        <div class="list newsList">
+          <template v-for="(news, ni) in newsList">
+            <div class="list-item" :key="ni">
+              <a class="link" :title="news.title" :href="news.itemUrl" target="_blank">
+                <div class="list-item-title"><span class="vaMiddle line list-item-title-text">{{news.title}}</span></div>
+                <div class="line2 list-item-desc">{{news.description}}</div>
+                <div class="list-item-other">
+                  <div class="list-item-other-label">
+                    <label class="label-item">
+                      <i class="iconfont icon-neirongtuisong icon"></i>
+                      <span class="labelText">{{news.siteName}}</span>
+                    </label>
+                    <label class="label-item">
+                      <i class="iconfont icon-lishijilu icon"></i>
+                      <span class="labelText">{{news.releaseDate|formatTime}}</span>
+                    </label>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </template>
+          <template v-if="pages">
+            <ul class="pages" @click.stop="handlePageChange">
+              <li class="page-item" v-if="pages.hasPreviousPage"><span class="link" :data-num="pages.prePage">上一页</span></li>
+              <template v-for="(page, pi) in pages.navigatepageNums">
+                <li v-if="page === pages.pageNum" :key="pi" class="page-item current-item"><span class="link" :data-num="0">{{page}}</span></li>
+                <li v-else :key="pi" class="page-item" ><span class="link" :data-num="page">{{page}}</span></li>
+              </template>
+              <li class="page-item" v-if="pages.isview && !pages.isLastPage && pages.navigatePages < pages.pages"><span class="link" data-num="0">...</span></li>
+              <li class="page-item" v-if="pages.isview && !pages.isLastPage && pages.navigatePages < pages.pages"><span class="link" :data-num="pages.pages">{{pages.pages}}</span></li>
+              <li class="page-item" v-if="pages.hasNextPage"><span class="link" :data-num="pages.nextPage" >下一页</span></li>
+            </ul>
+          </template>
+        </div>
+      </div>
+      <div class="fr sideBar">
+        <div class="list recommend">
+          <div class="list-title"><span class="list-title-text">推荐阅读</span><span class="list-title-small">每日最新最热的政策榜单</span></div>
+          <div class="list-body">
+          <template v-for="(item, ni) in recommendList">
+            <div class="list-item" :key="ni">
+              <span class="list-item-circle"></span>
+              <a class="list-item-text line" :title="item.title" :href="item.itemUrl" target="_blank">{{item.title}}</a>
+            </div>
+          </template>
+          </div>
+        </div>
+        <div class="bannerBlock">
+          <img src="/image/polist/banner1.png" alt="">
+        </div>
+        <div class="bannerBlock">
+          <img src="/image/polist/banner2.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/news.js"></script>
+</body>
+
+</html>

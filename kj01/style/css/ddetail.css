@@ -1,0 +1,95 @@
+.recommend {
+  margin-top: 0;
+}
+.article {
+  width: 870px;
+  background-color: #ffffff;
+  padding: 0 0 60px;
+  position: relative;
+}
+.article-title-box{
+	box-shadow: 6px 6px 35px 0px rgba(1, 20, 91, 0.15);
+  padding: 30px 40px 0px;
+  position: relative;
+}
+.article-title-box h1 {
+  margin: 0;
+  padding-bottom: 10px;
+  padding-right: 100px;
+  font-size: 20px;
+  line-height: 36px;
+  color: #018fff;
+}
+.article-other{
+	font-size: 14px;
+	line-height: 34px;
+	color: #999999;
+}
+.article-other label {
+  margin-right: 20px;
+}
+.article-other label .iconfont {
+  margin-right: 5px;
+}
+
+.hotimg {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+}
+.jpimg {
+  position: absolute;
+  top: 65px;
+  right: -10px;
+}
+.article-content {text-align: center;overflow: auto;height: 843px;width: 100%;}
+.article-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 60px;
+  display: flex;
+  background-color: #555b76;
+  color: #fff;
+  justify-content: space-between;
+  align-items: stretch;
+  user-select: none;
+}
+.article-btns {
+  padding: 10px 0;
+}
+.article-btns button[typeName="articleBtn"] {
+  padding: 0 10px;
+}
+.pdfPages {
+	font-size: 14px;
+	line-height: 36px;
+	color: #9fa4ba;
+	padding: 0 10px;
+}
+.pageView {
+	font-size: 14px;
+	color: #ffffff;
+}
+.currentPage {
+	line-height: 36px;
+	color: #fda322;
+	margin-right: 5px;
+}
+.countPage {
+  margin-left: 5px;
+  color: #9fa4ba;
+}
+.pagePrevBtn, .pageNextBtn {
+  cursor: pointer;
+}
+.pagePrevBtn {
+	margin-right: 5px;
+}
+.pageNextBtn {
+  margin-left: 5px;
+}
+button:disabled {
+   background:#999;
+}

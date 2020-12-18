@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>用户中心-成渝城市群综合科技服务平台</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="box" id='index_box'>
+    <div class="header">
+      <ly-toper></ly-toper>
+      <header-bar type='buyer' :http="httpCom"></header-bar>
+    </div>
+    <div class="contant">
+      <div class="mdiv">
+        <div class="leftbox">
+          <buyer-left :http='http' :jquery='jquery'></buyer-left>
+        </div>
+        <div class="centerbox">
+          <div class="worklink clear">
+            <a class="violet" href="/common/buyer/demand/add.html?code=001.001.002.002">
+              <i class="iconfont icon-icon_xuqiu"></i>
+              <span>我的需求</span>
+              <strong>发需求</strong>
+            </a>
+            <a class="red" v-if="isConference" @click.stop="handleShowTips">
+              <i class="iconfont icon-tool"></i>
+              <span>我的技术</span>
+              <strong>找技术</strong>
+            </a>
+            <a v-else class="red"
+              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=technology'">
+              <i class="iconfont icon-tool"></i>
+              <span>我的技术</span>
+              <strong>找技术</strong>
+            </a>
+
+            <a class="blue" v-if="isConference" @click.stop="handleShowTips">
+              <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
+              <span>我的需求</span>
+              <strong>找服务</strong>
+            </a>
+            <a v-else class="blue" href="/searchList.html?type=service">
+              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
+              <span>我的需求</span>
+              <strong>找服务</strong>
+            </a>
+
+            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">
+              <i class="iconfont icon-chanpin"></i>
+              <span>我的产品</span>
+              <strong>找产品</strong>
+            </a>
+            <a v-else class="aqua"
+              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=product'">
+              <i class="iconfont icon-chanpin"></i>
+              <span>我的产品</span>
+              <strong>找产品</strong>
+            </a>
+            <a class="steelblue" @click.stop="handleShowTips">
+              <i class="iconfont icon-ziyuanjk"></i>
+              <span>我的资源</span> <strong>找资源</strong>
+            </a>
+          </div>
+          <div class="cards">
+            <div class="card ordercard mt20">
+              <div class="title">我的订单分类</div>
+              <div class="orderlinks">
+                <a class="orderclick active" @click.stop.prevent="handleOrdertabs('01')"><i
+                    class="iconfont icon-quanbu"></i>最新</a>
+                <a class="orderclick" @click.stop.prevent="handleOrdertabs('02')"><i
+                    class="iconfont icon-daifukuan"></i>待付款</a>
+                <a class="orderclick" @click.stop.prevent="handleOrdertabs('04')"><i
+                    class="iconfont icon-success"></i>已完成</a>
+                <a class="orderclick" @click.stop.prevent="handleOrdertabs('05')"><i
+                    class="iconfont icon-daipingjia"></i>待评价</a>
+                <a class="orderclick" href="/common/buyer/order/?orderStatusFilter=01"><i
+                    class="iconfont icon-ai222"></i>更多订单</a>
+              </div>
+              <ul class="orderlist">
+                <li v-for="order in orderList">
+                  <div class="img"
+                    :style="'background-image: url('+ (order.details[0].goodsImg && order.details[0].goodsImg.url || 'http://dummyimage.com/58x58') +')'">
+                  </div>
+                  <div class="info">
+                    <a target="_blank" :href="'/common/buyer/order/detail.html?id=' + order.id">查看详情</a>
+                    <div class="tips" v-text="$options.filters.filtersTips(order.orderStatus, order.evaluated)">
+                      您的订单正在处理中，请耐心等待...</div>
+                    <div class="time" v-text="order.orderCreateTime"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="card focuscard mt20">
+              <div class="title">行业都在关注
+                <ul class="tabs">
+                  <li :class="{active: selectedAmount === '010'}" @click="getAmountList('010')">产品</li>
+                  <li :class="{active: selectedAmount === '009'}" @click="getAmountList('009')">服务</li>
+                  <li :class="{active: selectedAmount === '001'}" @click="getAmountList('001')">技术</li>
+                </ul>
+              </div>
+              <div class="pdlist clear">
+                <div class="item active">
+                  <a target="_blank" v-for="item in attentionList" :href="item.goodsDetailUrl">
+                    <span class="img"
+                      :style="'background-image: url('+ (item.goodsImgUrl || 'http://dummyimage.com/128x128') +')'"></span>
+                    <span class="tit" v-text="item.storeName"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card focuscard mt20">
+              <div class="title">为您推荐
+                <ul class="tabs">
+                  <li :class="{active: hotType === '105'}" @click="getSelectShopByPage('105')">服务机构</li>
+                  <li :class="{active: hotType === '106'}" @click="getSelectShopByPage('106')">专家</li>
+                </ul>
+              </div>
+              <div class="pdlist clear">
+                <div class="item active">
+                  <a target="_blank" v-for="hot in hotList" :href="hot.shopIndexUrl">
+                    <span class="img"
+                      :style="'background-image: url('+ (hot.shopLogo || '/common/images/defaultImg/default.gif') +')'"></span>
+                    <span class="tit" v-text="hot.shopName"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rightbox">
+            <div class="card mt20 adlink">
+              <a v-if="isConference" @click.stop="handleShowTips"
+                style="background-image: url('/common/images/userCenterAd.jpg')"></a>
+              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>
+            </div>
+            <div class="card partner mt20">
+              <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
+              <div class="parlist">
+                <a target="_blank" :href="shop.shopIndexUrl" :title="shop.storeName"
+                  :style="'background-image: url('+shop.shopLogo+')'" v-for="shop in shopList">
+                </a>
+              </div>
+            </div>
+            <div class="card servicecard mt20">
+              <div class="title">快捷服务</div>
+              <div class="servicelist clear">
+                <a target="_blank" href="http://ip.kjy01.com"><i class="iconfont icon-zhishichanquan"></i>知识产权质押融资服务</a>
+                <a target="_blank" href="http://gis.kjy01.com/"><i
+                    class="iconfont icon-zhongchuangkongjian-"></i>创新创业互动</a>
+                <a target="_blank" href="http://zc.kjy01.com/"><i class="iconfont icon-woyaozhongchou"></i>知识产权服务</a>
+                <a target="_blank" href="http://pgpx.kj01.cn/"><i class="iconfont icon-guanli"></i>创新活动</a>
+                <a target="_blank" href="#"><i class="iconfont icon-peixunfazhan"></i>科技人才服务</a>
+                <a target="_blank" href="http://www.kjy01.com/index/default/zscq.html"><i
+                    class="iconfont icon-gengduo"></i>更多服务</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script src="/common/js/buyer/index.js"></script>
+</body>
+
+</html>

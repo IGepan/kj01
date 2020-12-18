@@ -1,0 +1,261 @@
+/* CSS Document */
+
+.userform {
+	display: none;
+	padding: 0 10px;
+	background-color: #fff;
+	min-height: 300px;
+}
+.form_title {
+	padding: 0 30px;
+	height: 60px;
+	line-height: 60px;
+	color: #222121;
+	font-size: 18px;
+	font-weight: 700;
+	border-bottom: 1px solid #eee;
+}
+.form_table {
+	margin: 20px 0 0;
+	width: 100%;
+}
+.form_table{
+	font-size: 0;
+}
+.form_table th, .form_item_title {
+	padding: 17px 0 13px;
+	width: 110px;
+	text-align: right;
+	color: #474747;
+	font-size: 14px;
+	font-weight: 400;
+	vertical-align: top;
+}
+.form_table th:after {
+	content: "："
+}
+.form_table td {
+	font-size: 0;
+}
+.form_table td:nth-child(2) {
+	width: 480px;
+}
+.form_table td:nth-child(3) {
+	font-size: 14px;
+}
+.form_table .ipt {
+	position: relative;
+	display: inline-block;
+	width: 400px;
+	vertical-align: middle;
+}
+.form_table .ipt input, .form_table .radio_date input {
+	padding: 0 15px;
+	width: 100%;
+	height: 40px;
+	border:1px solid #c9c9c9;
+	font-size: 16px;
+}
+.form_table .head {
+	width: 110px;
+	height: 110px;
+	background: no-repeat center center;
+	background-size: cover;
+	border:1px solid #c9c9c9;
+}
+.form_table .label {
+	font-size: 14px;
+}
+.validate th:before, .form_item_title:before {
+	margin-right: 5px;
+	content: "*";
+	color: #f00;
+}
+.form_table .head {
+	float: left;
+	margin-right: 10px;
+}
+.edithead {
+	width: 90px;
+	height: 30px;
+	border:1px solid #1154b0;
+	background: #fff;
+	color: #1154b0;
+	cursor: pointer;
+}
+.edithead:hover {
+	border-color: #f60;
+	color: #f60;
+}
+.radio {
+	display: inline-block;
+	vertical-align: middle;
+	height: 21px;;
+}
+.radio label {
+	padding: 0 5px;
+	color: #505050;
+	margin-right: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	font-size: 16px;
+}
+.radio label input {
+	position: absolute;
+	left: -999em;
+}
+.radio label b {
+	position: relative;
+	display: inline-block;
+	margin-right: 5px;
+	width: 15px;
+	height: 15px;
+	border:1px solid #999;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.radio label input:checked + b:after {
+	content: "";
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	display: block;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background-color: #999;
+}
+.form_table .date:after {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-size: 20px;
+	color: #c5c5c5;
+	font-family: "iconfont";
+	content: "\e611"
+}
+.form_table .select {
+	position: relative;
+	display: inline-block;
+	width: 400px;
+	vertical-align: middle;
+	min-height: 40px;
+	border:1px solid #c9c9c9;
+}
+.form_table .select:after {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 38px;
+	height: 38px;
+	font-family: "iconfont";
+	content: "\e61d";
+	color: #d2d2d2;
+	background-color: #fff;
+	text-align: center;
+	line-height: 38px;
+	pointer-events: none;
+	font-size: 14px;
+}
+.form_table .select select {
+	width: 100%;
+	border: 0;
+	padding: 0 10px;
+	height: 40px;
+	line-height: 40px;
+	background-color: transparent;
+	font-size: 14px;
+	color: #505050;
+	font-family: "Microsoft YaHei";
+	outline: 0;
+}
+.form_table .textarea textarea {
+	padding: 10px 15px;
+	width: 400px;
+	min-height: 120px;
+	border:1px solid #c9c9c9;
+	outline: 0;
+	font-size: 16px;
+	font-family: "microsoft yahei";
+}
+.form_table .btns td {
+	padding-bottom: 100px;
+}
+.form_table .btn {
+	margin-right: 20px;
+	padding: 0 40px;
+	height: 40px;
+	background-color: #d0d0d0;
+	font-size: 18px;
+	cursor: pointer;
+}
+.form_table .btn.primary {
+	background-color: #1154b0;
+	color: #fff;
+}
+.form_table .btn:hover {
+	background-color: #C0C0C0
+}
+.form_table .btn.primary:hover {
+	background-color: #0A4596
+}
+.form_table .radio_date {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+}
+.usertabs {
+	height: 48px;
+}
+.usertabs li {
+	float: left;
+	padding: 0 20px;
+	margin-top: 3px;
+	height: 45px;
+	line-height: 45px;
+	background-color: #e2e1e1;
+	margin-right: 2px;
+	cursor: pointer;
+	color: #232323;
+}
+.usertabs li:hover {
+	background-color: #dddddd;
+}
+.usertabs li.active {
+	margin-top: 0;
+	height: 49px;
+	font-weight: 400;
+	background-color: #fff;
+	border:1px solid #d2d2d2;
+	border-bottom: 0;
+}
+.tabbox {
+	border:1px solid #d2d2d2;
+}
+/* .tabbox .userform {
+	display: none;
+} */
+.tabbox .userform.active {
+	display: block;
+}
+.select.address {
+	margin-right: 5.5px;
+	width: 96px;
+}
+.address:nth-last-of-type(1){
+	margin-right: 0;
+}
+.ipt.realname {
+	width: 265px;
+}
+.select.showname {
+	margin-left: 5px;
+	width: 130px;
+}
+.select.showname select {
+	width: 100%;
+}
+.form_item_title, .form_item_content{
+	display: inline-block;
+	vertical-align: middle;
+}

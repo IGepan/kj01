@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资源优选企业详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="/style/css/resources.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="index_box" class="box grayBgbox">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="container">
+      <sources-head :breadcrumb="breadcrumb" :bottom-Border="true" :nav-index="1"></sources-head>
+      <div class="content">
+        <template v-if="detail">
+          <div class="mdiv">
+            <div class="brief">
+              <div class="item-img img"><span>企业</span></div>
+              <div class="brief-info">
+                <div class="name">{{detail.enterpriseInfo.name}}</div>
+                <div class="label">
+                  <div class="green">{{detail.enterpriseInfo.firmStatus}}</div>
+                  <div class="blue">{{detail.enterpriseInfo.taglabel}}</div>
+                </div>
+                <ul class="list">
+                  <li v-if="detail.enterpriseInfo.phone"><span
+                      class="iconfont icon-zuoji"></span><span>{{detail.enterpriseInfo.phone}}</span></li>
+                  <li v-if="detail.enterpriseInfo.email"><span
+                      class="iconfont icon-youxiang"></span><span>{{detail.enterpriseInfo.email}}</span>
+                  </li>
+                  <li v-if="detail.enterpriseInfo.industry"><span
+                      class="iconfont icon-hangye1"></span><span>{{detail.enterpriseInfo.industry}}</span>
+                  </li>
+                  <li v-if="detail.enterpriseInfo.registeredAddress"><span
+                      class="iconfont icon-dingwei"></span><span>{{detail.enterpriseInfo.registeredAddress}}</span></li>
+                </ul>
+              </div>
+              <!-- 已关注 添加active-->
+              <div v-if="false" class="attention"><span class="iconfont icon-shoucangdansexian"></span><span>关注</span>
+              </div>
+              <!-- 已关注样式 -->
+              <div v-if="false" class="attention" style="display: none;"><span
+                  class="iconfont icon-shoucangdansexian"></span><span>已关注</span>
+              </div>
+            </div>
+            <div data-container class="container">
+              <div class="searchMainkey boxShadow" :class="{fixed: isFixed}">
+                <div>
+                  <template v-for="(hashNav, i) in pageNavs">
+                    <span v-if="hashNav.isShow" @click.stop="handSetPageNavActive(i)" class="mainKey"
+                      :class="{active: hashNav.active}"><a :href="hashNav.hashUrl">{{hashNav.label}}</a></span>
+                  </template>
+                </div>
+              </div>
+              <div class="details">
+                <div class="detail" v-if="false">
+                  <div class="details-title">
+                    <div class="name">企业简介</div>
+                  </div>
+                  <div class="text">
+                    <p>
+
+                    </p>
+                    <!-- 收起--div添加class="toggle" -->
+                    <div class="details-unfold"><span class="iconfont icon-zhankai"></span><span>展开</span></div>
+                    <!-- 收起的样式 -->
+                    <div class="details-unfold" style="display: none;"><span
+                        class="iconfont icon-shouqi"></span><span>收起</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name"><a name="工商信息"></a>工商信息</div>
+                  </div>
+                  <div class="table">
+                    <table cellspacing="0">
+                      <tr>
+                        <th>法定代表人</th>
+                        <td>{{detail.enterpriseInfo.legalPerson}}</td>
+                        <th>注册资本</th>
+                        <td>{{detail.enterpriseInfo.registeredCapital}}</td>
+                      </tr>
+                      <tr>
+                        <th>存续状态</th>
+                        <td>{{detail.enterpriseInfo.firmStatus}}</td>
+                        <th>成立日期</th>
+                        <td>{{detail.enterpriseInfo.registeredDate}}</td>
+                      </tr>
+                      <tr>
+                        <th>统一社会信用代码</th>
+                        <td>{{detail.enterpriseInfo.normalCreditCode}}</td>
+                        <th>纳税人识别号</th>
+                        <td>{{detail.enterpriseInfo.taxPayerCode}}</td>
+                      </tr>
+                      <tr>
+                        <th>工商注册号</th>
+                        <td>{{detail.enterpriseInfo.registeredCode}}</td>
+                        <th>组织机构代码</th>
+                        <td>{{detail.enterpriseInfo.organizationCode}}</td>
+                      </tr>
+                      <tr>
+                        <th>企业类型</th>
+                        <td>{{detail.enterpriseInfo.firmType}}</td>
+                        <th>所属行业</th>
+                        <td>{{detail.enterpriseInfo.industry}}</td>
+                      </tr>
+                      <tr>
+                        <th>核准日期</th>
+                        <td>{{detail.enterpriseInfo.approvedDate}}</td>
+                        <th>登记机关</th>
+                        <td>{{detail.enterpriseInfo.registrationOrgan}}</td>
+                      </tr>
+                      <tr>
+                        <th>人员规模</th>
+                        <td>-</td>
+                        <th>营业期限</th>
+                        <td><span v-if="detail.enterpriseInfo.businessStartDate === '未公开'">未公开</span><span
+                            v-else>{{detail.enterpriseInfo.businessStartDate}}
+                            至
+                            {{detail.enterpriseInfo.businessEndDate|| '-'}}</span></td>
+                      </tr>
+                      <tr>
+                        <th>注册地址</th>
+                        <td colspan="3">{{detail.enterpriseInfo.registeredAddress}}</td>
+                      </tr>
+                      <tr>
+                        <th>经营范围</th>
+                        <td colspan="3" class="table-padding">
+                          {{detail.enterpriseInfo.business}}
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="detail">
+                  <div class="details-title">
+                    <div class="name"><a name="知识产权"></a>知识产权</div>
+                    <div class="details-title_right" v-if="false"><span
+                        class="active">专利</span><span>商标</span><span>软著</span></div>
+                  </div>
+                  <div class="tablecell">
+                    <ul class="row">
+                      <li class="w100">序号</li>
+                      <li class="w380">名称</li>
+                      <li class="w180">专利类型</li>
+                      <li class="w210">公开（公告）号</li>
+                      <li class="w210">公开（公告）日期</li>
+                    </ul>
+                    <template v-for="(item, i) in detail.intellectual">
+                      <ul class="cloumn">
+                        <li class="w100">{{i+1}}</li>
+                        <li class="w380">{{item.name}}</li>
+                        <li class="w180">{{item.type}}</li>
+                        <li class="w210">{{item.pub}}</li>
+                        <li class="w210">{{item.date}}</li>
+                      </ul>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/resources/enterprise_detail.js"></script>
+</body>
+
+</html>

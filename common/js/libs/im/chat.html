@@ -1,0 +1,105 @@
+<div class="c-chat-dlg" v-show="show">
+    <div class="c-chat-container" ref="container">
+        <div :class="{anis:anis}" class="c-chat-title" @mousedown="mouseDown"><span class="chat_logo"><img :src="chat_logo"></span><span v-html="chat_title"></span><span class="iconfont icon-shanchuguanbicha2" @click="close"></span></div>
+        <div class="c-chat-inner">
+            <div class="c-chat-left" :class="{full:!businfo.isShop}">
+                <div class="c-chat-record" ref="record">
+                    <div ref="viewchat">
+                        <div v-for="k in list">
+                            <div class="c-chat-item"v-if="k.type===1">
+                                <div class="c-chat-item-title">
+                                    <span class="c-chat-user" v-html="k.userName"></span>
+                                    <span class="c-chat-time" v-html="k.datetime"></span>
+                                </div>
+                                <div class="c-chat-content">
+                                    <span v-html="gifConvert(k.message)" @dblclick="pickText"></span>
+                                </div>
+                            </div>
+                            <div class="c-chat-item right" v-else>
+                                <div class="c-chat-item-title">
+                                    <span class="c-chat-user" v-html="k.userName"></span>
+                                    <span class="c-chat-time" v-html="k.datetime"></span>
+                                </div>
+                                <div class="c-chat-content">
+                                    <span v-html="gifConvert(k.message)" @dblclick="pickText" :class="{rot:k.anis}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <iframe name="tmp_ifr" style="display:none;"></iframe>
+                <form method="post" ref="form" target="tmp_ifr">
+                    <input name="file" type="file" accept="*/*" ref="file" style="display: none">
+                </form>
+                <div class="c-chat-ops">
+                    <span class="iconfont icon-biaoqing" @click="showEmoji"></span>
+                    <span class="iconfont icon-wenjian" @click="fileSelect(0)"></span>
+                    <span class="iconfont icon-tupian" @click="fileSelect(1)"></span>
+                    <div class="c-chat-face" v-show="emoji">
+                        <span v-for="k,index in gifs" @click="selectGif(index)"><img :src="getGif(k)"></span>
+                    </div>
+                </div>
+                <div class="c-chat-message">
+                    <textarea @keydown="sendByEnter" v-model="m_message" ref="textarea" @click="hideGif"></textarea>
+                    <label>Ctrl + Enter</label><button @click="send">发送</button>
+                    <transition name="fade" v-on:after-enter="hideError">
+                        <div class="c-chat-error" v-show="err_msg">消息不能为空</div>
+                    </transition>
+                </div>
+            </div>
+            <div class="c-chat-right" v-if="businfo.isShop">
+                <div class="c-chat-info">
+                    <div class="c-chat-info-title" v-html="businfo.name"></div>
+                    <div class="c-chat-line" v-if="businfo.name">
+                        <span class="icon iconfont icon-shouye"></span><span class="icon-txt" v-html="businfo.name"></span>
+                    </div>
+                    <div class="c-chat-line" v-if="businfo.time">
+                        <span class="icon iconfont icon-3lishi"></span><span class="icon-txt" v-html="businfo.time"></span>
+                    </div>
+                    <!--<div class="c-chat-line">
+                        <span class="icon iconfont icon-fangke" style="font-size: 15px"></span><span class="icon-txt" v-html="businfo.scale"></span>
+                    </div>-->
+                    <div class="c-chat-line" v-if="businfo.addr">
+                        <span class="icon iconfont icon-dingwei"></span><span class="icon-txt" v-html="businfo.addr"></span>
+                    </div>
+                    <div class="c-chat-line"></div>
+                    <!--评分-->
+                    <!--<div class="c-chat-line">
+                        <div class="c-chat-rank">
+                            <span class="c-chat-rank-score" v-html="businfo.serve_score"></span>
+                            <span>服务</span>
+                        </div>
+                        <div class="c-chat-rank">
+                            <span class="c-chat-rank-score" v-html="businfo.speed_score"></span>
+                            <span>速度</span>
+                        </div>
+                        <div class="c-chat-rank">
+                            <span class="c-chat-rank-score" v-html="businfo.quality_score"></span>
+                            <span>质量</span>
+                        </div>
+                    </div>-->
+                </div>
+                <!--<div class="c-chat-recommend">
+                    <div class="c-chat-info-title">店铺推荐</div>
+                    <div class="c-chat-line" v-for="k in recommend">
+                        <a :href="k.link">
+                            <div class="c-chat-logo">
+                                <img :src="k.logo">
+                            </div>
+                            <div class="c-chat-recommend-txt">
+                                <div v-html="k.name" class="c-chat-storename"></div>
+                                <div>
+                                    <span class="c-chat-price" v-html="'￥:' + k.price"></span>
+                                    <span class="c-chat-fav">
+                                    <span class="iconfont icon-wujiaoxing"></span>
+                                    <span v-html="'(' + k.fav + ')'"></span>
+                                </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

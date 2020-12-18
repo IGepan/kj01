@@ -1,0 +1,166 @@
+/* CSS Document */
+
+.box {
+	background-image: none;
+	background: #f2f2f2;
+}
+.header {
+	height: 150px;
+}
+
+.userbanner {
+	height: 120px;
+	background-color: #fff;
+	padding-top: 28px;
+}
+.logo {
+	display: block;
+	padding-top: 0;
+	margin-right: 20px;
+}
+
+.openstore {
+	overflow: hidden;
+	padding-left: 40px;
+	height: 67px;
+	border-left: 1px solid #c6c6c6;
+	color: #7a7a7a;
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 65px;
+}
+
+.notice {
+	height: 30px;
+	background-color: #cdd9ed;
+	text-align: center;
+	color: #2b6197;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 30px;
+}
+
+.cnt {
+	height: 650px;
+	background-color: #fff;
+	margin-top: 20px;
+	padding: 60px 180px 130px;
+}
+.cnt2 {
+	min-height: 650px;
+	background-color: #fff;
+	margin-top: 20px;
+	padding: 50px 70px;
+}
+
+.cnt_item {
+	width: 360px;
+	height: 460px;
+	background-color: #fff;
+}
+
+.cnt_circle {
+	width: 134px;
+	height: 134px;
+	border-radius: 50%;
+	background-color: #ababab;
+	text-align: center;
+	margin: 65px auto 0;
+}
+.cnt_circle .iconfont{
+	font-size: 77px;
+	color: #fff;
+	line-height: 134px;
+}
+
+.cnt_txt span{
+	font-weight: 400;
+	line-height: 32px;
+	color: #202020;
+	font-size: 18px;
+	display: block;
+	text-align: center;
+}
+.cnt_txt i{
+	display: block;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 32px;
+	color: #747474;
+	font-size: 14px;
+	text-align: center;
+}
+
+.cnt_txt {
+	padding-top: 25px;
+}
+
+.cnt_btn {
+	display: block;
+	width: 266px;
+	height: 40px;
+	background-color: #ababab;
+	margin: auto;
+	margin-top: 60px;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+}
+.cnt_item{
+	display: block;
+}
+.cnt_item.active{
+	box-shadow: 0px 0px 18px 0px rgba(7, 0, 2, 0.31);
+}
+.cnt_item.active .cnt_btn,.cnt_item.active .cnt_circle{	
+	background-color: #1154b0;
+}
+.cnt_item:hover .cnt_btn,
+.cnt_item:hover .cnt_circle{
+	background-color: #1154b0;
+}
+.cnt_item:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 18px 0px rgba(7, 0, 2, 0.31);
+}
+
+.cnt_box {
+	padding: 30px 10px 0;
+	border: 1px solid #c9c9c9;
+	min-height: 465px;
+}
+
+.xytit {
+	color: #202020;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: center;
+	display: block;
+}
+
+.xycont {
+	color: #202020;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 26px;
+	text-indent: 2em;
+	letter-spacing: 1px;
+}
+
+.xybtn {
+	display: block;
+	width: 280px;
+	height: 40px;
+	background-color: #1154b0;
+	margin: auto;
+	text-align: center;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 40px;
+	margin-top: 30px;
+}
