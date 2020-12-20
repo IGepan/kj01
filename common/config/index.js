@@ -4,7 +4,7 @@ define(function () {
   var configs = [
     {
 
-      正式环境
+      // 正式环境
       authUrl: 'http://fapi.kj01.cn/tsOauth2',  // ts zuul
       baseUrl: 'http://fapi.kj01.cn/tsAdmin',// ts zuul
       assisUrl: 'http://fapi.kj01.cn/tsAssistant', // ts zuul
