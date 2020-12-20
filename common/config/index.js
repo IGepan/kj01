@@ -17,6 +17,7 @@ define(function () {
       datacq: 'https://www.datacq.com.cn/'
 
 
+
       //本地环境
       // authUrl: 'http://127.0.0.1:9769/tsOauth2',
       // baseUrl: 'http://127.0.0.1:9769/tsAdmin',
