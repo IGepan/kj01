@@ -40,6 +40,7 @@ define(function () {
       companyApi: 'http://47.108.80.38:8304',
       bigData: 'http://47.105.63.195:801/',
       datacq: 'https://www.datacq.com.cn/'
+
     }
 
   ];
