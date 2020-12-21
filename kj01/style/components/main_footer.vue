@@ -16,7 +16,7 @@ module.exports = {
   },
   created: function () {
     // document.title = this.isConference ? (document.title? document.title.split('-')[0] + '-科技创新综合服务平台' :'易智网-科技创新综合服务平台') : document.title.split('-')[0] + '-成渝城市群综合科技服务平台'
-    document.title = "易智网-科技创新综合服务平台";
+    document.title = "易智网";
 
   }
 }
