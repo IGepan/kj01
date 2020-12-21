@@ -69,7 +69,7 @@ module.exports = {
     // } else {
     //   document.title = document.title.split('-')[0] + '-易智网';
     // }
-    document.title = '易智网'
+    document.title = '易智网-科技创新综合服务平台'
   },
 }
 </script>
