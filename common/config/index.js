@@ -5,15 +5,15 @@ define(function () {
     {
 
       //正式环境
-      // authUrl: 'http://fapi.kj01.cn/tsOauth2',  // ts zuul
-      // baseUrl: 'http://fapi.kj01.cn/tsAdmin',// ts zuul
-      // assisUrl: 'http://fapi.kj01.cn/tsAssistant', // ts zuul
-      // statisticsUrl: 'http://sts.kj01.cn', // 统计地址
-      // imgUploadUrl: 'http://fileup.kj01.cn', // 文件上传服务
-      // imgVerify: 'http://ver.kj01.cn/', // 滑块验证码
+      // authUrl: 'https://fapi.kj01.cn/tsOauth2',  // ts zuul
+      // baseUrl: 'https://fapi.kj01.cn/tsAdmin',// ts zuul
+      // assisUrl: 'https://fapi.kj01.cn/tsAssistant', // ts zuul
+      // statisticsUrl: 'https://sts.kj01.cn', // 统计地址
+      // imgUploadUrl: 'https://fileup.kj01.cn', // 文件上传服务
+      // imgVerify: 'https://ver.kj01.cn/', // 滑块验证码
       // cmsUrl: 'https://cynews.liyantech.cn',
       // companyApi: 'https://www.dsjscpx.com',
-      // bigData: 'http://47.105.63.195:801/',
+      // bigData: 'https://47.105.63.195:801/',
       // datacq: 'https://www.datacq.com.cn/'
 
       //本地环境
