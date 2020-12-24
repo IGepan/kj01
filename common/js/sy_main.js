@@ -106,7 +106,7 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
               } else {
                 refreshTokenFlag=false;
                 dialog.showToast(res.desc);
-                window.location.href = '/login.html'
+                window.location.href = '/common/login.html'
               }
             }).catch(()=>{
                 refreshTokenFlag=false;

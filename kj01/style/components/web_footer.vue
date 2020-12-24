@@ -51,7 +51,7 @@
         <a href="#">联系客服</a>
       </div>
       <div class="main_copyright"> Copyright © 2019 易智网 版权所有 <a
-          href="http://www.beian.miit.gov.cn/"
+          href="https://beian.miit.gov.cn/"
           target="_blank"
         >渝ICP备09050127号-36</a>
       </div>

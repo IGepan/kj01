@@ -46,7 +46,7 @@ module.exports = {
         },
         {
           label: '政策资讯',
-          url: '/poindex.html'
+          url: '/polist.html'
         },
         {
           label: '活动中心',

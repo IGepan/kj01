@@ -37,7 +37,9 @@
     </div>
     <nav class="menus">
       <li class="active"><span>首页</span></li>
-      <li><a href="/poindex.html"><span>资讯</span></a></li>
+<!--      <li><a href="/poindex.html"><span>资讯</span></a></li>-->
+      <li><a href="/polist.html"><span>资讯</span></a></li>
+
       <li><a href="/aindex.html"><span>活动</span></a></li>
       <li><a href="/service"><span>服务</span></a></li>
       <li><a href="/resources"><span>资源</span></a></li>
