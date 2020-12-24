@@ -176,21 +176,12 @@ require(['/common/js/require.config.js'], function () {
                     getTabs1List: function () {
                         var vm = this
                         let params={
-                            format:0,
-                            channelIds:116,
-                            count:3,
-                            first:0,
-                            isApi:true,
-                            orderBy:4
+                            pageSize:3,
                         };
                         indexApi.tabs1SelectByPage(params).then(function (res) {
-                            if (res.code === '200') {
-                                if(res.body.length>0){
-                                    vm.tabs1List.tabs_1 = res.body.length>=1?res.body[0]:''
-                                    vm.tabs1List.tabs_2 = res.body.length>=2?res.body[1]:''
-                                    vm.tabs1List.tabs_3 = res.body.length>=3?res.body[2]:''
-                                }
-                            }
+                            vm.tabs1List.tabs_1 = res.result.list.length>=1?res.result.list[0]:''
+                            vm.tabs1List.tabs_2 = res.result.list.length>=2?res.result.list[1]:''
+                            vm.tabs1List.tabs_3 = res.result.list.length>=3?res.result.list[2]:''
                         })
                     },
                     fwsClick: function() {
