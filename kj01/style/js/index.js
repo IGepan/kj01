@@ -971,7 +971,7 @@ require(['/common/js/require.config.js'], function () {
 							orderBy: "publishDate-desc"
 						}).then(function (res) {
 							res.result.list && res.result.list.forEach(function (item) {
-								item.itemUrl='/qykjDetail.html?id='+item.id
+								item.itemUrl='/podetail.html?id='+item.id
 								item.policyFileTypeDisplay=''
 							});
 							vm.policyList = res.result.list
