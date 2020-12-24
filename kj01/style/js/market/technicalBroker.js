@@ -177,6 +177,7 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         let params={
                             pageSize:3,
+                            type:2
                         };
                         indexApi.tabs1SelectByPage(params).then(function (res) {
                             vm.tabs1List.tabs_1 = res.result.list.length>=1?res.result.list[0]:''
