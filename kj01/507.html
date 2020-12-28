@@ -1,0 +1,109 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>政策惠</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/polist.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/podetail.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
+  <style>
+
+    .article-content .selectTdClass {
+      background-color: #edf5fa !important
+    }
+
+    .article-content table.noBorderTable td, .article-content table.noBorderTable th, .article-content table.noBorderTable caption {
+      border: 1px dashed #ddd !important
+    }
+
+    .article-content table {
+      margin-bottom: 10px;
+      border-collapse: collapse;
+      display: table;
+    }
+
+    .article-content td, th {
+      padding: 5px 10px;
+      border: 1px solid #DDD;
+    }
+
+    .article-content caption {
+      border: 1px dashed #DDD;
+      border-bottom: 0;
+      padding: 3px;
+      text-align: center;
+    }
+
+    .article-content th {
+      border-top: 1px solid #BBB;
+      background-color: #F7F7F7;
+    }
+
+    .article-content table tr.firstRow th {
+      border-top-width: 2px;
+    }
+
+    .article-content .ue-table-interlace-color-single {
+      background-color: #fcfcfc;
+    }
+
+    .article-content .ue-table-interlace-color-double {
+      background-color: #f7faff;
+    }
+
+    .article-content td p {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
+    <sub-head name="政策资讯" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
+
+    <div class="mdiv commonCententBox">
+      <div class="fl article">
+          <h1 class="article-title">国家技术转移专业人员能力等级培训大纲（试行）</h1>
+          <div class="article-source clear">
+            <label class="fl">来源：<a class="link" :href="detail.srcUrl" target="_blank">科技部火炬中心</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发文时间：2020.07.14 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<template v-for="(tag, ti) in detail.policySelfTagDisplay">
+              <span v-if="ti < 3" :key="ti" class="tag">{{tag}}</span>
+            </template>
+            </label>
+          </div>
+          <div class="article-content">
+            <div @click="handleContent">
+              <p><img src="image/www/14165710ex9p.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_01.jpg"/></p><p><img src="image/www/14165711iwmw.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_02.jpg"/></p><p><img src="image/www/14165711knya.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_03.jpg"/></p><p><img src="image/www/14165711ismd.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_04.jpg"/></p><p><img src="image/www/1416571190ox.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_05.jpg"/></p><p><img src="image/www/141657116zv4.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_06.jpg"/></p><p><img src="image/www/14165711dnj6.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_07.jpg"/></p><p><img src="image/www/14165711wn9l.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_08.jpg"/></p><p><img src="image/www/14165712ayp5.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_09.jpg"/></p><p><img src="image/www/141657124z8s.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_10.jpg"/></p><p><img src="image/www/1416571228lu.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_11.jpg"/></p><p><img src="image/www/14165712mvmy.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_12.jpg"/></p><p><img src="image/www/14165712jrrb.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_13.jpg"/></p><p><img src="image/www/14165712hcv8.jpg" style="" title="854a7003e8634db09c1876fa80640770_页面_14.jpg"/></p><p><br/></p>
+
+            </div>
+            <div class="printBox">
+              <button type="button" @click.stop="handleShowTips" typeName="print"><i class="vaMiddle iconfont icon-dayin"></i><span class="vaMiddle">打印本页</span></button>
+            </div>
+          </div>
+
+          <div class="article-bottom" :class="{fixed : isFixed}" :style="styles">
+            <button type="button" typeName="articleBtn" class="shareBtn">
+              <i class="iconfont icon-fenxiang vaMiddle"></i><span  class="vaMiddle">分享</span>
+              <div class="shareBox">
+                <div class="share-item" @click.stop="handleShareToWeixin"><i class="iconfont icon-weixin"></i><span class="text">微信</span></div>
+                <div class="share-item" @click.stop="handleShareToQQ"><i class="iconfont icon-qq"></i><span class="text">QQ</span></div>
+              </div>
+            </button>
+          </div>
+      </div>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script src="/style/css/icon/iconfont.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/podetail.js"></script>
+</body>
+
+</html>
