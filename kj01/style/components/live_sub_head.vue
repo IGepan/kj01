@@ -97,7 +97,7 @@ module.exports = {
   },
   created: function () {
     this.searchtitle && (this.searchValue = this.searchtitle)
-    this.navs[this.navIndex].active = 1
+    // this.navs[this.navIndex].active = 1
   },
   data: function () {
     return {
