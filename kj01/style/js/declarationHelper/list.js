@@ -5,8 +5,8 @@ require(['/common/js/require.config.js'], function () {
    data: {
     breadcrumb: [
      {
-      label: '资讯',
-      url: '/poindex.html'
+      label: '政策资讯',
+      url: '/polist.html'
      },
      {
       label: '项目申报',
