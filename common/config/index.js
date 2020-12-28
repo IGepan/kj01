@@ -24,7 +24,7 @@ define(function () {
       // imgUploadUrl: 'http://127.0.0.1:8710', // 文件上传服务 配置域名
       // imgVerify: 'http://127.0.0.1:8720/', // 滑块验证码 配置域名
       // cmsUrl: 'https://cynews.liyantech.cn',
-      // companyApi: 'http://47.108.80.38:8304',
+      // companyApi: 'https://www.dsjscpx.com',
       // bigData: 'http://47.105.63.195:801/',
       // datacq: 'https://www.datacq.com.cn/'
 
@@ -37,7 +37,7 @@ define(function () {
       imgUploadUrl: 'http://222.180.163.230:8710', // 文件上传服务 配置域名
       imgVerify: 'http://222.180.163.242:8720/', // 滑块验证码 配置域名
       // cmsUrl: 'https://cynews.liyantech.cn',
-      companyApi: 'http://47.108.80.38:8304',
+      companyApi: 'https://www.dsjscpx.com',
       bigData: 'http://47.105.63.195:801/',
       datacq: 'https://www.datacq.com.cn/'
     }
