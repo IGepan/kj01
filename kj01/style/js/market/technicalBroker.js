@@ -205,7 +205,7 @@ require(['/common/js/require.config.js'], function () {
                         window.open("http://183.230.166.95:50007");
                     },
                     goClasses(){
-                        window.open("https://news.kj01.cn/kj01/jsjjr/20200714/507.html");
+                        window.location.href="/507.html";
                     }
                 },
             })
