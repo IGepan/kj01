@@ -198,7 +198,8 @@ require(['/common/js/require.config.js'], function () {
                         window.location.href = "/atdetail.html?id="+id;
                     },
                     goActivity(){
-                        window.open("https://www.kj01.cn/adetail.html?id=194467379300323328");
+                        // window.open("https://www.kj01.cn/adetail.html?id=194467379300323328");
+                        window.location.href ="/adetail.html?id=194467379300323328"
                     },
                     goTest(){
                         window.open("http://183.230.166.95:50007");
