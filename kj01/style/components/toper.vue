@@ -119,8 +119,8 @@
                   @click="action('message')"
           >
               <div class="c-hover-icon">
-                  <span class="icon-buoumaotubiao14 iconfont"></span>
-                  <span
+                <span class=""><img src="/style/images/index/toper_1.png" alt=""></span>
+                <span
                           v-if="menuInfo.messageCount"
                           class="c-hover-count"
                           v-html="menuInfo.messageCount"
@@ -135,7 +135,7 @@
                   @click="action('cart')"
           >
               <div class="c-hover-icon">
-                  <span class="icon-daohanggouwuche iconfont"></span>
+                <span class=""><img src="/style/images/index/toper_3.png" alt=""></span>
                   <span
                           v-if="menuInfo.cartCount"
                           class="c-hover-count"
@@ -162,7 +162,7 @@
                   @click="action('top')"
           >
               <div class="c-hover-icon">
-                  <span class="icon-huidaodingbu iconfont"></span>
+                <span class=""><img src="/style/images/index/toper_4.png" alt=""></span>
               </div>
               <div class="c-hover-txt">
                   <span>回到顶部</span>
