@@ -560,7 +560,6 @@ module.exports = {
   }
 };
 </script>
-
 <style scoped>
 .toper {
   height: 40px;
@@ -573,7 +572,7 @@ module.exports = {
   height: 40px;
 }
 .toper-left a{
-    color:#01c8f2;
+  color:#01c8f2;
 }
 .toper-left .iconfont {
   color: #01c8f2;
@@ -672,48 +671,49 @@ module.exports = {
   border-right: 1px solid rgb(106, 110, 125);
 }
 .c-hover-menu {
-    position: fixed;
-    right: 0;
-    top: 50%;
-    margin-top: -170px;
-    z-index: 99;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  margin-top: -170px;
+  z-index: 99;
 }
 .c-hover-item {
-    background: rgba(0, 0, 0, 0.75);
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    text-align: center;
-    margin: 1px 0;
-    padding: 8px 5px;
-    cursor: pointer;
-    user-select: none;
+  background: rgba(0, 0, 0, 0.75);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  text-align: center;
+  margin: 1px 0;
+  padding: 8px 5px;
+  cursor: pointer;
+  user-select: none;
+  color:#ffffff;
 }
 .c-hover-icon {
-    position: relative;
+  position: relative;
 }
 .c-hover-item:hover {
-    background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.65);
 }
 .c-hover-item > div {
-    line-height: 20px;
+  line-height: 20px;
 }
 .c-hover-item .iconfont {
-    font-size: 18px;
+  font-size: 18px;
 }
 .c-hover-count {
-    position: absolute;
-    background: #fe0000;
-    display: inline-block;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 12px;
-    width: 16px;
-    height: 16px;
-    line-height: 15px;
-    right: 0;
-    top: -3px;
+  position: absolute;
+  background: #fe0000;
+  display: inline-block;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  line-height: 15px;
+  right: 0;
+  top: -3px;
 }
 .c-hover-item span {
-    font-size: 12px;
+  font-size: 12px;
 }
 </style>
