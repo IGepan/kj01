@@ -278,7 +278,7 @@ require(['/common/js/require.config.js'], function () {
             dic.selected && (dict = dic)
           })
           if (dict.id==='218340665870780082'){
-            location.href='/alist.html?type=' + dict.value
+            location.href='/livelist.html?type=' + dict.value
           }else {
             location.href = dict.name ? '/alist.html?type=' + dict.value : '/atList.html?type=' + dict.value
           }
