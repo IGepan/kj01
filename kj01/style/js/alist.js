@@ -165,11 +165,6 @@ require(['/common/js/require.config.js'], function () {
                       value: "03"
                     };
                     var selecedIndex = -1
-                    //"218340665870780082"
-                    res.result[0]=res.result[0].children[0].filter(function (s) {
-                             return s.id!='218340665870780082';
-                    });
-
                     res.result[0].unshift({ id: "-1", id: -1, name: '全部', selected: true })
 
                     res.result[0].forEach(function (item, i) {
