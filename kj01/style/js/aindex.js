@@ -130,7 +130,13 @@ require(['/common/js/require.config.js'], function () {
           this.activtySearchForm.pageSize = key === 'activtyList' ? '4' : '3'
           indexApi.selectIssuePage(this.activtySearchForm).then(function (res) {
             res.result && res.result.list.forEach(function (item) {
-              item.itemUrl = '/adetail.html?id=' + item.id
+              //政策直播间单独提出来
+              if(key === 'activtyList'){
+                item.itemUrl = '/livedetail.html?id=' + item.id
+              }else{
+                item.itemUrl = '/adetail.html?id=' + item.id
+              }
+
               item.styles = {
                 backgroundImage: 'url(' + item.posterUrl + ')'
               }
@@ -271,7 +277,11 @@ require(['/common/js/require.config.js'], function () {
           this['tabNavs' + index].forEach(function (dic, di) {
             dic.selected && (dict = dic)
           })
-          location.href = dict.name ? '/alist.html?type=' + dict.value : '/atList.html?type=' + dict.value
+          if (dict.id==='218340665870780082'){
+            location.href='/alist.html?type=' + dict.value
+          }else {
+            location.href = dict.name ? '/alist.html?type=' + dict.value : '/atList.html?type=' + dict.value
+          }
         },
         handleRefresh: function () {
           if (this.userMaxPages > this.currentUserPage) {
