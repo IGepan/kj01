@@ -66,7 +66,7 @@ module.exports = {
         },
         {
           label: '全景数据',
-          url: 'http://47.108.80.38:8309'
+          url: 'http://datamap.kj01.cn/'
         },
         {
          label:"平台动态",
