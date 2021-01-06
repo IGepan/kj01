@@ -8,9 +8,9 @@ define(function () {
       authUrl: 'https://ts-zuul.kj01.cn/tsOauth2',  // ts zuul
       baseUrl: 'https://ts-zuul.kj01.cn/tsAdmin',// ts zuul
       assisUrl: 'https://ts-zuul.kj01.cn/tsAssistant', // ts zuul
-      statisticsUrl: 'https://sts.kj01.cn', // 统计地址
-      imgUploadUrl: 'https://fileup.kj01.cn', // 文件上传服务
-      imgVerify: 'https://ver.kj01.cn/', // 滑块验证码
+      statisticsUrl: 'https://as.kj01.cn', // 统计地址
+      imgUploadUrl: 'https://fs.kj01.cn', // 文件上传服务
+      imgVerify: 'https://captcha.kj01.cn/', // 滑块验证码
       cmsUrl: 'https://cms.kj01.cn/',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'https://47.105.63.195:801/',
