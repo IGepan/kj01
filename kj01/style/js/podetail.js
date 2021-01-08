@@ -10,7 +10,7 @@ require(['/common/js/require.config.js'], function () {
         breadcrumb: [
           {
             label: '政策资讯',
-            url: '/poindex.html'
+            url: '/polist.html'
           },
           {
             label: '政策惠',
