@@ -131,7 +131,7 @@ require(['/common/js/require.config.js'], function () {
           indexApi.selectIssuePage(this.activtySearchForm).then(function (res) {
             res.result && res.result.list.forEach(function (item) {
               //政策直播间单独提出来
-              if(key === 'activtyList'){
+              if(item.activeType === '218340665870780082'){
                 item.itemUrl = '/livedetail.html?id=' + item.id
               }else{
                 item.itemUrl = '/adetail.html?id=' + item.id
