@@ -1,7 +1,7 @@
 // JavaScript Document
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policymatch.js',], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policyMatch.js',], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy) {
 
     new Vue({
       el: '#index_box',
