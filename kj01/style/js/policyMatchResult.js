@@ -5,7 +5,7 @@ require(['/common/js/require.config.js'], function () {
     '/style/js/libs/swiper-5.4.1/js/swiper.min.js',
     '/style/js/libs/swiper-5.4.1/js/swiper.animate.min.js',
     '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js',
-    'httpUrl', '/common/js/libs/jquery.SuperSlide.2.1.3.js','/style/js/api/policymatch.js',],
+    'httpUrl', '/common/js/libs/jquery.SuperSlide.2.1.3.js','/style/js/api/policyMatch.js',],
     function ($, Vue, dic, httpVueLoader, indexApi, scroll, Swiper, animate, owlCarousel, httpUrl, superSlide, httpPolicy) {
       new Vue({
         el: '#matchLogin_box',
