@@ -1,0 +1,84 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/policyMatchResult.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/js/libs/swiper-5.4.1/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style/js/libs/swiper-5.4.1/css/animate.min.css">
+
+</head>
+<body>
+  <div class="box" id='matchLogin_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <policymatch-head current-step="3"></policymatch-head>
+    <div class="matchContent mdiv">
+      <div class="">
+        <div class="mp_con mp_con3 mainWidth">
+          <div class="ppjg_t"></div>
+          <p class="ppjg_t_t" id="companyPolicyId">{{params.name}}</p>
+          <p class="ppjg_t_s">
+              <span>共匹配政策<i class="totalCount">{{pages.total}}</i>项</span>
+              <span>最高获得奖励资金<i>{{list[0].money}}</i>万元</span>
+          </p>
+          <div class="ppjg_c">
+              <ul class="ppjg_c_t">
+                  <li :class="{current: searchForm.type == 1}" @click="changeType(1)">匹配度<i class="showI"></i></li>
+                  <li :class="{current: searchForm.type == 2}" @click="changeType(2)">奖励金额<i class="hideI"></i></li>
+                  <li :class="{current: searchForm.type == 3}" @click="changeType(3)">申报时间<i class="hideI"></i></li>
+              </ul>
+              <div>
+                  <div class="mould-list">
+                    <ul>
+                      <a v-for="item in list" :key="item.id" :href="'/podetail.html?id='+item.id + '&viewType=1'" target="_blank">
+                        <!-- ppjg_c_s3 -->
+                        <li class="ppjg_c_s ">    
+                          <p class="ppjg_c_s_t">{{item.title}}</p>    
+                          <p class="ppjg_c_s_c">{{item.summary}}</p>    
+                          <div class="ppjg_c_s_d">       
+                            <div class="ppjg_c_s_d_l">          
+                              <!-- <p>归口部门：<span>科技部门 </span></p>       -->
+                              <p>申报奖励：<span class="orange">{{item.moneyType}}{{item.money}}万元</span></p>
+                              <p v-if="item.executionStartDate">申报时间：<span>{{item.executionStartDate}}至{{item.executionEndDate}}</span></p>       
+                            </div>     
+                            <div class="ppjg_c_s_d_r">          
+                              <div style="display:inline;width:80px;height:80px;">
+                                <canvas width="80" height="80"></canvas>
+                                <input class="knob" :value="item.num" style="display: none; width: 0px; visibility: hidden;">
+                              </div>          
+                              <div class="con">             
+                                <p>匹配度<br>-</p>             
+                                <div class="percent">{{item.num}}%</div>          
+                              </div>        
+                            </div>    
+                          </div>
+                        </li>
+                      </a>                      
+                    </ul>
+                  </div>
+              </div>             
+          </div>
+        </div>        
+      </div>
+      <template v-if="pages">
+        <pages :pages="pages" @changepage="bindPageChange"></pages>
+      </template>       
+    </div>
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="./style/js/policyMatchResult.js"></script>
+</body>
+
+</html>    

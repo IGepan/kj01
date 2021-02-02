@@ -173,32 +173,38 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="policy-right">
-                            <div class="helper">
-                                <div class="policy-title">申报助手<a href="/declarationHelper/list.html"
-                                        class="iconfont icon-gengduo" target="_blank"></a></div>
-                                <div class="helper-lists">
-                                    <a :href="'/declarationHelper/detail.html?id=' + item.id" v-for="item in helperList"
-                                        :key="item.id">
-                                        <span class="iconfont" :class="item.icon"></span>
-                                        <span :title="item.title" class="helper-lists_title">{{item.title}}</span>
-                                    </a>
+                        <!--  2021.01.12 -->
+                        <div class="policy-right">          
+                            <a v-if="userInfo && userInfo.userName" href="/common/buyer/index.html" class="item item1">
+                                <div>
+                                    <div class="line1"></div>
+                                     政策速递  
+                               </div>                                                              
+                            </a>
+                            <a v-else href="/common/login.html" class="item item1">
+                                <div>
+                                    <div class="line1"></div>
+                                     政策速递  
+                               </div>                                                              
+                            </a>                            
+                            <a href="/policyMatchLogin.html" class="item item2">
+                                <div>
+                                    <div class="line1"></div>
+                                    政策智配
                                 </div>
-                            </div>
-                            <div class="answer">
-                                <div class="policy-title">政策答人<a href="/answer/index.html" class="iconfont icon-gengduo"
-                                        target="_blank"></a></div>
-                                <div class="answer-lists listsScroll">
-                                    <ul class="lists">
-                                        <template v-for="(answer,index) in answerList">
-                                            <li class="list">
-                                                <a :href="'/answer/qadetail.html?id=' + answer.id"
-                                                    :title="answer.ask">【问】{{answer.ask}}</a>
-                                            </li>
-                                        </template>
-                                    </ul>
+                            </a>
+                            <a href="/answer/autoanswer.html" target="_blank" class="item item3">
+                                <div>
+                                    <div class="line1"></div>
+                                    政策答人
+                               </div>
+                            </a>
+                            <a href="/declarationHelper/list.html" class="item item4">
+                                <div>
+                                    <div class="line1"></div>
+                                    申报助手
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

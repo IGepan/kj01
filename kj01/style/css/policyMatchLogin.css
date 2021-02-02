@@ -1,0 +1,56 @@
+
+html, body {
+	min-width: 1180px;
+}
+body {
+  background: #f8f8f8;
+}
+.matchContent {
+  margin-top: -20px;
+  margin-bottom: 30px;
+	border-radius: 8px;
+	background: #fff;
+  padding: 20px 15px;
+  min-height: calc(100vh - 600px);
+}
+
+.matchContent .title {
+  font-size: 18px;
+  color: #018FFF;
+}
+.matchContent .companyList {
+  margin-top: 30px;
+}
+.matchContent .companyList .item {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #018FFF;
+  border-radius: 4px;
+  padding: 0 1.5em;
+  height: 46px;
+  line-height: 46px;
+  cursor: pointer;
+}
+.matchContent .companyList .item .check {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+  background: #018FFF;
+  color: #fff;
+}
+.matchContent .btn {
+  display: block;
+  margin: 30px auto;
+  border-radius: 4px;
+  width: 180px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  background: #018FFF;
+  color: #fff;  
+}

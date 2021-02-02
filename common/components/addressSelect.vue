@@ -127,6 +127,7 @@ module.exports = {
               vm.countryList = [{ display: '中国', id: 0, value: 100 }];
             }
             var isReset = true;
+            console.log(vm.values[0], vm.values[0] != '', vm.values[0] && vm.values[0] != '')
             // 初始化赋值
             if (vm.values[0] && vm.values[0] != '') {
               for (var index in vm.countryList) {
@@ -138,6 +139,7 @@ module.exports = {
                 }
               }
             }
+            console.log('🍊',vm.country, vm.values)
             if (res.result[0] && isReset) {
               vm.getDic(1, vm.countryList[0].id);
             }
@@ -157,6 +159,7 @@ module.exports = {
                 }
               }
             }
+            console.log('🍊',vm.values)
             if (res.result[0] && isReset) {
               vm.getDic(2, vm.provinceList[0].id);
             }
@@ -176,6 +179,7 @@ module.exports = {
                 }
               }
             }
+            console.log('🍊',vm.values)
             if (res.result[0] && isReset) {
               vm.getDic(3, vm.cityList[0].id);
             }

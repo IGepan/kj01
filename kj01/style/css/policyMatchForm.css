@@ -1,0 +1,145 @@
+html, body {
+	min-width: 1180px;
+}
+body {
+  background: #f8f8f8;
+}
+.matchContent {
+  margin-top: -20px;
+  margin-bottom: 30px;
+	border-radius: 8px;
+	background: #fff;
+	padding: 20px 15px;
+}
+
+.cxnl_a {
+  background: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+
+.cxnl_aa {
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  color: #38cbf2;
+}
+
+.cxnl_a table {
+  border: 0;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.cxnl_a table tr td {
+  border: 0;
+  padding: 10px 5px;
+  line-height: 2em;
+  font-size: 14px;
+  color: #666;
+}
+.cxnl_a table .td2 .select {
+  position: relative;
+  display: inline-block;
+  padding-right: 5px;
+  width: 100%;
+  vertical-align: middle;
+  min-height: 34px;
+  border: 1px solid #e6e6e6;
+}
+.cxnl_a table .selectWraper {
+  display: flex;
+  width: 600px;
+}
+.cxnl_a table .td2.width_600 .select {
+  width: 600px;
+}
+.cxnl_a table .td2.width_600 .select_box {
+  border: 1px solid #e6e6e6;
+  width: 600px;
+}
+.cxnl_a table .select.address {
+  padding-right: 5px;
+  margin-right: 10px;
+  width: 140px;
+}
+.cxnl_a table .td2 .select select {
+  display: inline-block;
+  width: 100%;
+  border: 0;
+  padding: 0 10px;
+  height: 34px;
+  line-height: 34px;
+  background-color: transparent;
+  font-size: 14px;
+  color: #505050;
+  font-family: "Microsoft YaHei";
+  outline: 0;
+}
+.cxnl_a table tr td.layui-input-block {
+  margin: 0;
+}
+
+.cxnl_a table tr td .table_a {
+  display: inline-block;
+  width: 290px;
+  margin-bottom: 10px;
+}
+.red {
+  margin-right: .3em;
+  color: red;
+}
+.width_300 {
+  width: 300px;
+}
+.width_600 {
+  width: 600px;
+}
+.width_600 .select {
+  width: 600px;
+}
+.cxnl_btn {
+  padding: 30px 100px 30px 0;
+  text-align: center;
+}
+.cxnl_btn .layui-btn {
+  border-radius: 4px;
+  width: 150px;
+}
+.layui-input, .layui-select, .layui-textarea {
+  height: 34px;
+  line-height: 34px;
+}
+.layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select {
+  display: inline-block;
+}
+.radio label {
+  padding: 0 5px;
+  margin-right: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.mySelect .inputWrap {
+  width: 100%;
+  min-height: 40px;
+  /* border: 1px solid #ccc; */
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+.select:after {
+  position: absolute;
+  right: 0;
+  top: 1px;
+  width: 32px;
+  height: 32px;
+  font-family: "iconfont";
+  content: "\25bc";
+  color: #d2d2d2;
+  background-color: #fff;
+  text-align: center;
+  line-height: 34px;
+  pointer-events: none;
+  font-size: 14px;
+}

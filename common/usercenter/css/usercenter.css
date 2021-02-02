@@ -2327,3 +2327,28 @@
 .clist .delbtn:hover{
 	color: #f60;
 }
+
+/*  2021.01.14 */
+.policylist .item {
+	display: block;
+	padding: 10px 20px;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #000;
+}
+.policylist .item .line {
+	margin-right: .5em;
+	display: inline-block;
+	width: 4px;
+	height: .8em;
+	background: #ddd;
+	vertical-align: baseline;
+}
+.policylist .item:hover {
+	color: #fc7f10;
+}
+.policylist .item:hover .line{
+	background: #fc7f10;
+}

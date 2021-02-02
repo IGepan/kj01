@@ -26,6 +26,13 @@
                 <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" data-pi="0" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}}</span>
               </template>
             </div>
+            <!--  2021.01.12 -->
+            <div class="search-key">
+                <input class="input" v-model="searchForm.title" type="text" placeholder="输入关键字查询">
+                <div class="btn">
+                  <i class="iconfont fangdajing"></i>搜索
+                </div>     
+            </div>
             <template v-for="(optItem, index) in options.searchOpts">
               <div class="search-row" v-if="index && optItem.operationType !== 'switchover'" :key="index">
                 <label class="search-label">{{optItem.label}}</label>
@@ -73,10 +80,11 @@
               <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
                 <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i class="iconfont icon-paixu"></i></span>
               </template>
-              <label class="checkbox" for="analyzingFlag">
+              <!--  2021.01.12 -->
+              <!-- <label class="checkbox" for="analyzingFlag">
                 <input id="analyzingFlag" class="vaMiddle" type="checkbox" v-model="searchForm.analyzingFlag" :true-value="1" :false-value="''">
                 <span class="vaMiddle checkbox-text">解读</span>
-              </label>
+              </label> -->
             </div>
           </template>
         </template>
