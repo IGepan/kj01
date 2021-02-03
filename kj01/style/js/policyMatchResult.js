@@ -47,7 +47,7 @@ require(['/common/js/require.config.js'], function () {
               startRow: 1,
               total: 2692,
             },
-            list: [],
+            list: [{money: 0}],
           }
         },
         created() {

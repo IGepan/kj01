@@ -28,8 +28,8 @@
             </div>
             <!--  2021.01.12 -->
             <div class="search-key">
-                <input class="input" v-model="searchForm.title" type="text" placeholder="输入关键字查询">
-                <div class="btn">
+                <input class="input" v-model="searchForm.title" type="text" placeholder="输入关键字查询" @keyup.enter="getSearchList">
+                <div class="btn" @click="getSearchList">
                   <i class="iconfont fangdajing"></i>搜索
                 </div>     
             </div>

@@ -186,8 +186,14 @@
                                     <div class="line1"></div>
                                      政策速递  
                                </div>                                                              
-                            </a>                            
-                            <a href="/policyMatchLogin.html" class="item item2">
+                            </a>        
+                            <a v-if="userInfo && userInfo.userName" href="/policyMatchForm.html" class="item item2">
+                                <div>
+                                    <div class="line1"></div>
+                                    政策智配
+                                </div>
+                            </a>                    
+                            <a v-else href="/common/login.html" class="item item2">
                                 <div>
                                     <div class="line1"></div>
                                     政策智配
