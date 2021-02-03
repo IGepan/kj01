@@ -1,5 +1,7 @@
 /* CSS Document */
 @import url(iconfont/iconfont.css);
+@import url(element.css);
+
 * {
 	box-sizing: border-box;
 }
