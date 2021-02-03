@@ -199,12 +199,18 @@
                                     政策智配
                                 </div>
                             </a>
-                            <a href="/answer/autoanswer.html" target="_blank" class="item item3">
+                            <a v-if="userInfo && userInfo.userName" href="/answer/autoanswer.html" target="_blank" class="item item3">
                                 <div>
                                     <div class="line1"></div>
                                     政策答人
                                </div>
                             </a>
+                            <a v-else href="/common/login.html" target="_blank" class="item item3">
+                                <div>
+                                    <div class="line1"></div>
+                                    政策答人
+                               </div>
+                            </a>                            
                             <a href="/declarationHelper/list.html" class="item item4">
                                 <div>
                                     <div class="line1"></div>
