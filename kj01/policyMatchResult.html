@@ -30,7 +30,7 @@
           <p class="ppjg_t_t" id="companyPolicyId">{{params.name}}</p>
           <p class="ppjg_t_s">
               <span>共匹配政策<i class="totalCount">{{pages.total}}</i>项</span>
-              <span>最高获得奖励资金<i>{{list[0].money}}</i>万元</span>
+              <span>最高获得奖励资金<i v-if="list[0]">{{list[0].money}}</i>万元</span>
           </p>
           <div class="ppjg_c">
               <ul class="ppjg_c_t">
