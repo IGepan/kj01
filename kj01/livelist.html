@@ -1,0 +1,121 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>活动列表</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/alist.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
+    <live_sub_head name="政策直播间" :bottom-border="true" :searchtitle="searchtitle" :breadcrumb="breadcrumb"
+      @search="bindSearchValue" :nav-index="navIndex"></live_sub_head>
+
+
+    <div class="mdiv searchListBox">
+      <template v-if="options.searchOpts.length">
+        <template v-for="(optItem, index) in options.searchOpts">
+          <div class="search-row" v-if="!optItem.isTop" :key="index">
+<!--            <label class="search-label">{{optItem.label}}</label>-->
+            <div class="searchkeys">
+              <template v-if="optItem.operationType === 'select'">
+                <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                  <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }"
+                    :data-di="sindex" :data-pi="index" :data-value="ducItem.value"
+                    :key="sindex">{{ducItem.display}}</span>
+                </template>
+                <span v-if="optItem.code === 'time_type'" class="datetime"><input type="text" placeholder="开始时间"
+                    readonly id="stime"><i class="iconfont icon-rili"></i></span>
+                <span v-if="optItem.code === 'time_type'" class="timeRange">至</span>
+                <span v-if="optItem.code === 'time_type'" class="datetime"><input type="text" placeholder="结束时间"
+                    readonly id="etime"><i class="iconfont icon-rili"></i></span>
+                <div class="childrenBox"
+                  v-if="optItem.selecedIndex !== -1 && optItem.dictIInfos[optItem.selecedIndex].children">
+                  <template v-for="(childItem, childindex) in optItem.dictIInfos[optItem.selecedIndex].children">
+                    <span class="searchkey childkey" @click.stop="handleSetSearchForm"
+                      :class="{ active: childItem.selected }" :data-ci="childindex" :data-di="optItem.selecedIndex"
+                      :data-pi="index" :data-value="childItem.value" :key="childindex">{{childItem.display}}</span>
+                  </template>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+      </template>
+    </div>
+    <div class="mdiv searchResult">
+      <div class="fl">
+        <span>已选条件：</span>
+        <template v-for="(selectOpt, index) in options.selectOpts">
+          <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i
+              v-if="selectOpt.code !== 'sort_type'" @click.stop="handleDelSelectOpt" :data-index="index"
+              class="iconfont icon-delete icon"></i></label>
+        </template>
+      </div>
+      <div class="fr">已为您查询到 <span class="total" v-text="pages.total || 0"></span> 条</div>
+    </div>
+    <div class="mdiv sortBox">
+      <template v-if="options.searchOpts.length">
+        <template v-for="(optItem, index) in options.searchOpts">
+          <div class="searchMainkey" :key="index" v-if="optItem.isTop">
+            <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+              <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }"
+                :data-di="tindex" :data-pi="index" :data-value="topDicItem.value"
+                :key="tindex">{{topDicItem.display}}</span>
+            </template>
+          </div>
+        </template>
+      </template>
+    </div>
+    <div class="mdiv list">
+      <div class="listBox">
+        <template v-for="(item, di) in dataList">
+          <div class="vaMiddle topic-item" :key="di">
+            <a :href="item.itemUrl" :title="item.title" target="_blank">
+              <div class="specialTopic-img item-img" :style="item.styles">
+                <img :src="item.itemImg" :alt="item.title">
+                <div v-if="item.isTopic" class="topic">品牌</div>
+              </div>
+              <div class="topic-item-info">
+                <h4 class="topic-item-info-title line">{{item.title}}</h4>
+                <div class="topic-item-info-line line mt state"><span><i
+                      class="iconfont icon-lishijilu"></i>{{item.activeStartTime}} {{item.weekday}}</span> <span
+                    class="activity-info-state" :type="item.statusCode">{{item.statusDisplay}}</span></div>
+                <div class="topic-item-info-line line address" v-if="item.onLineFlag === '0' && item.cityShow"><i
+                    class="iconfont icon-dingweixian"></i>{{item.cityShow|formatCity('')}}</div>
+                <div class="topic-item-info-line line onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动
+                </div>
+                <div class="topic-item-info-line line" v-if="item.sponsor"><i
+                    class="iconfont icon-neirongtuisong"></i>{{item.sponsor}}</div>
+              </div>
+              <div class="topic-item-tag line">
+                <span>
+                  <span class="tag">{{item.activeTypeDisplay}}</span>
+                </span>
+                <span class="viewTag"><i class="iconfont icon-liulanliang"></i>{{item.pageViews}}</span>
+              </div>
+            </a>
+          </div>
+        </template>
+      </div>
+      <template v-if="pages">
+        <pages :pages="pages" @changepage="bindPageChange"></pages>
+      </template>
+    </div>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/style/js/livelist.js"></script>
+</body>
+
+</html>

@@ -126,6 +126,7 @@ require(['/common/js/require.config.js'], function () {
                   })
                   res.result.cooperation = cooperations
                 }
+                let visitNumTotal=0;
                 if (res.result.topicDtls.length) {
                   res.result.topicDtls.forEach(function (item) {
                     item.itemUrl = '/adetail.html?id=' + item.activeId
@@ -133,9 +134,11 @@ require(['/common/js/require.config.js'], function () {
                       backgroundImage: 'url(' + item.posterUrl + ')'
                     }
                     item.itemImg = item.posterUrl
+                    visitNumTotal+= Number(item.visitNum);
                   });
                 }
                 vm.$data.detail = res.result && res.result || ''
+                vm.$data.detail.visitNum=visitNumTotal==0?res.result.visitNum:visitNumTotal
               }
             });
             return 1;

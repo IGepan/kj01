@@ -9,11 +9,11 @@ require(['/common/js/require.config.js'], function () {
           saasId: '',
           breadcrumb: [
             {
-              label: '资讯',
-              url: '/poindex.html'
+              label: '政策资讯',
+              url: '/polist.html'
             },
             {
-              label: '政策汇'
+              label: '政策惠'
             }
           ],
           recommendList: [],
@@ -186,12 +186,12 @@ require(['/common/js/require.config.js'], function () {
                     dic.selected = false
                   })
 
-               //排除7，8 政策精要，平台动态
-                  if (codes.code === 'policy_file_type'){
-                    codes.dictIInfos=codes.dictIInfos.filter(function (s) {
-                      return s.value<=6;
-                    });
-                  }
+               // //排除7，8 政策精要，平台动态
+               //    if (codes.code === 'policy_file_type'){
+               //      codes.dictIInfos=codes.dictIInfos.filter(function (s) {
+               //        return s.value<=6;
+               //      });
+               //    }
 
                   codes.dictIInfos.unshift({ id: "-1", value: -1, display: codes.code === 'policy_file_type' ? '全部政策' : '全部', selected: true })
                   if (value) {

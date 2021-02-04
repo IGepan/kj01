@@ -35,7 +35,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
   },
   //技术经纪人认定体系
   tabs1SelectByPage: function (param) {
-   return Http.get(httpUrl.cmsUrl + '/api/front/content/list?', param);
+   return Http.post(httpUrl.baseUrl + '/content/selectByPage', param);
   },
  }
 })

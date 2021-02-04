@@ -511,9 +511,9 @@ require(['/common/js/require.config.js'], function () {
           // 特殊处理 主图
           if (data) {
             this.mainPhotoList.push({
-              id: data.id,
+              id: successInfo,
               fileName: data.fileName,
-              url: data.url
+              url: a
             });
           }
         },

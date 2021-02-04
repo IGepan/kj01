@@ -8,7 +8,7 @@
         <div class="subhead-up">
           <div class="logobox">
             <a
-              href="/"
+              href="/aindex.html"
               class="sublogo"
             >
               <img
@@ -105,7 +105,7 @@ module.exports = {
       navs: [
         {
           label: '首页',
-          url: '/aindex.html'
+          url: '/'
         },
         {
           label: '企业学堂',

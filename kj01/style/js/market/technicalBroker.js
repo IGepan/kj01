@@ -28,7 +28,7 @@ require(['/common/js/require.config.js'], function () {
                     navslist: [
                         {
                             label: '首页',
-                            url: '/market/index.html',
+                            url: '/',
                         },
                         {
                             label: '找技术',
@@ -176,21 +176,13 @@ require(['/common/js/require.config.js'], function () {
                     getTabs1List: function () {
                         var vm = this
                         let params={
-                            format:0,
-                            channelIds:116,
-                            count:3,
-                            first:0,
-                            isApi:true,
-                            orderBy:4
+                            pageSize:3,
+                            type:2
                         };
                         indexApi.tabs1SelectByPage(params).then(function (res) {
-                            if (res.code === '200') {
-                                if(res.body.length>0){
-                                    vm.tabs1List.tabs_1 = res.body.length>=1?res.body[0]:''
-                                    vm.tabs1List.tabs_2 = res.body.length>=2?res.body[1]:''
-                                    vm.tabs1List.tabs_3 = res.body.length>=3?res.body[2]:''
-                                }
-                            }
+                            vm.tabs1List.tabs_1 = res.result.list.length>=1?res.result.list[0]:''
+                            vm.tabs1List.tabs_2 = res.result.list.length>=2?res.result.list[1]:''
+                            vm.tabs1List.tabs_3 = res.result.list.length>=3?res.result.list[2]:''
                         })
                     },
                     fwsClick: function() {
@@ -206,13 +198,14 @@ require(['/common/js/require.config.js'], function () {
                         window.location.href = "/atdetail.html?id="+id;
                     },
                     goActivity(){
-                        window.open("https://www.kj01.cn/adetail.html?id=194467379300323328");
+                        // window.open("https://www.kj01.cn/adetail.html?id=194467379300323328");
+                        window.location.href ="/adetail.html?id=194467379300323328"
                     },
                     goTest(){
                         window.open("http://183.230.166.95:50007");
                     },
                     goClasses(){
-                        window.open("https://news.kj01.cn/kj01/jsjjr/20200714/507.html");
+                        window.location.href="/507.html";
                     }
                 },
             })

@@ -3,16 +3,19 @@
    <div class="mdiv">
     <div class="headers">
      <div class="header-logo">
-      <a href="/index.html">
+      <a href="">
        <img src="./style/images/logos/bsublogo.png" alt="">
       </a>
       <div class="header-text" v-if="navIndex === 0">
        <div>科技创新</div>
        <div>综合服务平台</div>
       </div>
-      <div class="header-text" v-else>
-       <div style="font-size: 42px;font-weight: bold;">关于我们</div>
+      <div class="header-text" v-else-if="navIndex===7">
+       <div style="font-size: 42px;font-weight: bold;">平台动态</div>
       </div>
+       <div class="header-text" v-else>
+         <div style="font-size: 42px;font-weight: bold;">关于我们</div>
+       </div>
      </div>
      <div class="searchBox">
        <a :href="nav.url" :class="{active: nav.active}" v-for="(nav,index) in navs" :key="index">{{ nav.label }}</a>
@@ -46,7 +49,7 @@ module.exports = {
         },
         {
           label: '政策资讯',
-          url: '/poindex.html'
+          url: '/polist.html'
         },
         {
           label: '活动中心',
@@ -66,7 +69,7 @@ module.exports = {
         },
         {
           label: '全景数据',
-          url: 'http://47.108.80.38:8309'
+          url: 'http://datamap.kj01.cn/'
         },
         {
          label:"平台动态",

@@ -119,8 +119,8 @@
                   @click="action('message')"
           >
               <div class="c-hover-icon">
-                  <span class="icon-buoumaotubiao14 iconfont"></span>
-                  <span
+                <span class=""><img src="/style/images/index/toper_1.png" alt=""></span>
+                <span
                           v-if="menuInfo.messageCount"
                           class="c-hover-count"
                           v-html="menuInfo.messageCount"
@@ -135,7 +135,7 @@
                   @click="action('cart')"
           >
               <div class="c-hover-icon">
-                  <span class="icon-daohanggouwuche iconfont"></span>
+                <span class=""><img src="/style/images/index/toper_3.png" alt=""></span>
                   <span
                           v-if="menuInfo.cartCount"
                           class="c-hover-count"
@@ -147,11 +147,22 @@
               </div>
           </div>
           <div
+              class="c-hover-item"
+              onclick="window.open('http://www5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"
+          >
+            <div class="c-hover-icon">
+              <span class="icon-fuwu iconfont"></span>
+            </div>
+            <div class="c-hover-txt">
+              <span>客服</span>
+            </div>
+          </div>
+          <div
                   class="c-hover-item"
                   @click="action('top')"
           >
               <div class="c-hover-icon">
-                  <span class="icon-huidaodingbu iconfont"></span>
+                <span class=""><img src="/style/images/index/toper_4.png" alt=""></span>
               </div>
               <div class="c-hover-txt">
                   <span>回到顶部</span>
@@ -549,7 +560,6 @@ module.exports = {
   }
 };
 </script>
-
 <style scoped>
 .toper {
   height: 40px;
@@ -562,7 +572,7 @@ module.exports = {
   height: 40px;
 }
 .toper-left a{
-    color:#01c8f2;
+  color:#01c8f2;
 }
 .toper-left .iconfont {
   color: #01c8f2;
@@ -661,48 +671,49 @@ module.exports = {
   border-right: 1px solid rgb(106, 110, 125);
 }
 .c-hover-menu {
-    position: fixed;
-    right: 0;
-    top: 50%;
-    margin-top: -170px;
-    z-index: 99;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  margin-top: -170px;
+  z-index: 99;
 }
 .c-hover-item {
-    background: rgba(0, 0, 0, 0.75);
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    text-align: center;
-    margin: 1px 0;
-    padding: 8px 5px;
-    cursor: pointer;
-    user-select: none;
+  background: rgba(0, 0, 0, 0.75);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  text-align: center;
+  margin: 1px 0;
+  padding: 8px 5px;
+  cursor: pointer;
+  user-select: none;
+  color:#ffffff;
 }
 .c-hover-icon {
-    position: relative;
+  position: relative;
 }
 .c-hover-item:hover {
-    background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.65);
 }
 .c-hover-item > div {
-    line-height: 20px;
+  line-height: 20px;
 }
 .c-hover-item .iconfont {
-    font-size: 18px;
+  font-size: 18px;
 }
 .c-hover-count {
-    position: absolute;
-    background: #fe0000;
-    display: inline-block;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 12px;
-    width: 16px;
-    height: 16px;
-    line-height: 15px;
-    right: 0;
-    top: -3px;
+  position: absolute;
+  background: #fe0000;
+  display: inline-block;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  line-height: 15px;
+  right: 0;
+  top: -3px;
 }
 .c-hover-item span {
-    font-size: 12px;
+  font-size: 12px;
 }
 </style>

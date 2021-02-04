@@ -62,15 +62,16 @@ require(['/common/js/require.config.js'], function () {
 					activeHot: [],
 					// activeList:[],
 					ptabsNavs: [
+						// {
+						// 	label: '政策速递',
+						// 	active: 1,
+						// 	url: '/polist.html'
+						// },
 						{
-							label: '政策速递',
+							label: '政策惠',
 							active: 1,
 							url: '/polist.html'
-						}, {
-							label: '政策精要',
-							active: 0,
-							url: '/qykj.html'
-						},
+						}
 						//平台动态-暂时隐藏
 						/*{
 							label: '平台动态',
@@ -729,7 +730,7 @@ require(['/common/js/require.config.js'], function () {
 					this.getAList('005')
 					this.getPList('004')
 					this.getcmsList(115)//政策精要
-					this.getcmsList(128)//平台动态
+					// this.getcmsList(128)//平台动态
 					this.getShops('022', 4) // 知识产权
 					this.getShops('023', 3) // 检验检测
 					this.getShops('024', 2) // 研发设计
@@ -790,7 +791,8 @@ require(['/common/js/require.config.js'], function () {
 										if (items.sponsor.indexOf('ぶんかつ') !== -1) {
 											items.sponsor = (items.sponsor.split('ぶんかつ'))[0]
 										}
-										items.joinNumTotal=(items.joinNum?items.joinNum:0)+(items.pageViews?parseInt(items.pageViews):0)
+										// item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
+										items.joinNumTotal=items.totalViews
 									})
 								})
 							}
@@ -802,7 +804,8 @@ require(['/common/js/require.config.js'], function () {
 							if (res.code === 'rest.success') {
                                 vm.activeLists = res.result.list
                                 vm.activeLists.forEach((item)=>{
-                                    item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
+									// item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
+									item.joinNumTotal=(item.pageViews?parseInt(item.pageViews):0)
                                 })
 							}
 						})
@@ -917,7 +920,7 @@ require(['/common/js/require.config.js'], function () {
 							columnId: id,
 						}).then(function (res) {
 							res.result && res.result.forEach(function (item) {
-								item.itemUrl = '/adetail.html?id=' + item.contentId
+								item.itemUrl = '/livedetail.html?id=' + item.contentId
 								item.itemImg = item.poster.url
 							})
 							vm.activeHot = res.result.slice(0, 3)
@@ -936,6 +939,20 @@ require(['/common/js/require.config.js'], function () {
 							})
 						})
 					},
+					//2020-12-23 政策速递 政策精要 改为政策惠
+					// getPList: function (id) {
+					// 	var vm = this;
+					// 	indexApi.selectPolicyByPage({
+					// 		columnId: id,
+					// 	}).then(function (res) {
+					// 		res.result && res.result.forEach(function (item) {
+					// 			item.itemUrl = '/podetail.html?id=' + item.contentId
+					// 			item.policyFileType = item.policyFileType && item.policyFileType.split(',')[0]
+					// 			item.policyFileTypeDisplay = item.policyFileTypeDisplay && item.policyFileTypeDisplay[0]
+					// 		})
+					// 		vm.policyList = vm.expressList = res.result
+					// 	})
+					// },
 					getPList: function (id) {
 						var vm = this;
 						indexApi.selectPolicyByPage({
@@ -946,7 +963,7 @@ require(['/common/js/require.config.js'], function () {
 								item.policyFileType = item.policyFileType && item.policyFileType.split(',')[0]
 								item.policyFileTypeDisplay = item.policyFileTypeDisplay && item.policyFileTypeDisplay[0]
 							})
-							vm.policyList = vm.expressList = res.result
+							 vm.expressList = res.result
 						})
 					},
 					getcmsList: function (channelId) {
@@ -956,10 +973,10 @@ require(['/common/js/require.config.js'], function () {
 							orderBy: "publishDate-desc"
 						}).then(function (res) {
 							res.result.list && res.result.list.forEach(function (item) {
-								item.itemUrl='/qykjDetail.html?id='+item.id
+								item.itemUrl='/podetail.html?id='+item.id
 								item.policyFileTypeDisplay=''
 							});
-							vm.$data.newsList_policy = res.result.list
+							vm.policyList = res.result.list
 							// if(channelId===115){
 							// 	vm.$data.newsList_policy = res.body
 							// }else if(channelId===128){
@@ -967,6 +984,25 @@ require(['/common/js/require.config.js'], function () {
 							// }
 						})
 					},
+					//2020-12-23 政策速递 政策精要 改为政策惠
+					// getcmsList: function (channelId) {
+					// 	var vm = this;
+					// 	indexApi.contentList({
+					// 		pageNum: 1, pageSize: 10 ,limit:10, policyFileType: ["07"],
+					// 		orderBy: "publishDate-desc"
+					// 	}).then(function (res) {
+					// 		res.result.list && res.result.list.forEach(function (item) {
+					// 			item.itemUrl='/qykjDetail.html?id='+item.id
+					// 			item.policyFileTypeDisplay=''
+					// 		});
+					// 		vm.$data.newsList_policy = res.result.list
+					// 		// if(channelId===115){
+					// 		// 	vm.$data.newsList_policy = res.body
+					// 		// }else if(channelId===128){
+					// 		// 	vm.$data.newsList_platform = res.body
+					// 		// }
+					// 	})
+					// },
 					getNumbers2: function () {
 						var vm = this;
 						indexApi.getActiveStatistics({}).then(function (res) {

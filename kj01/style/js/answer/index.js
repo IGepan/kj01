@@ -6,8 +6,8 @@ require(['/common/js/require.config.js'], function () {
     cmsUrl: httpUrl.cmsUrl,
     breadcrumb: [
      {
-      label: '资讯',
-      url: '/poindex.html'
+      label: '政策资讯',
+      url: '/polist.html'
      },
      {
       label: '政策问答'

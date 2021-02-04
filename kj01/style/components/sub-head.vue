@@ -22,7 +22,7 @@
     </template>
     </nav>
     <div class="mdiv" v-if="breadcrumb.length">
-      <div class="breadcrumb">当前位置：<span class="breadcrumb__item"><a href="/">首页</a></span> <template v-for="(item, i) in breadcrumb">
+      <div class="breadcrumb">当前位置： <template v-for="(item, i) in breadcrumb">
         <span class="breadcrumb__item" :key="i"><a v-if="item.url" :href="item.url">{{item.label}}</a><template v-else>{{item.label}}</template></span>
       </template> </div>
     </div>
@@ -63,12 +63,12 @@ module.exports = {
     return {
       searchValue: '',
       navs: [
+        // {
+        //   label: '首页',
+        //   url: '/poindex.html'
+        // },
         {
-          label: '首页',
-          url: '/poindex.html'
-        },
-        {
-          label: '政策汇',
+          label: '政策惠',
           url: '/polist.html'
         },
         {
@@ -83,10 +83,10 @@ module.exports = {
         //   label: '政策精要',
         //   url: 'https://kj01news.liyantech.cn/qykj/'
         // }
-        {
-          label: '政策精要',
-          url: '/qykj.html'
-        }
+        // {
+        //   label: '政策精要',
+        //   url: '/qykj.html'
+        // }
       ]
     }
   },
