@@ -38,5 +38,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     cancel: function (param) {
       return Http.get(httpUrl.baseUrl + '/collection/cancel', param)
     },
+      /**
+       * 品牌活动---相关活动
+       * @param param
+       * @returns {*}
+       */
+      selectRelatedActive: function (param) {
+          return Http.get(httpUrl.baseUrl + '/topic/selectRelatedActive', param);
+      },
   }
 })

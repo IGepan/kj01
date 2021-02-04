@@ -150,6 +150,7 @@ require(['/common/js/require.config.js'], function () {
           }
           this.$data.searchForm.pageNum = 1
           this.getTopicList()
+          this.getRecommendList()
         },
         handleDelSelectOpt: function (e) {
           var dataset = this.getAttributeData(e.target, ['index']);
@@ -178,9 +179,13 @@ require(['/common/js/require.config.js'], function () {
         },
         getRecommendList: function () {
           var vm = this;
-          indexApi.selectIssuePage({pageNum: 1, pageSize: 8, sortType: "02"}).then(function (res) {
+          //品牌相关活动
+          indexApi.selectRelatedActive({
+            topicCustomTag: vm.searchForm.topicCustomTag,
+            pageSize: 8
+          }).then(function (res) {
             if (res.code === 'rest.success') {
-              res.result && res.result.list && res.result.list.forEach(function (item) {
+              res.result  && res.result.forEach(function (item) {
                 var a = [];
                 if (item.onLineFlag === '0') {
                   item.cityShow && a.push(item.cityShow);
@@ -189,9 +194,23 @@ require(['/common/js/require.config.js'], function () {
                 item.cityShow = a.join('');
                 item.itemUrl = '/adetail.html?id=' + item.id
               })
-              vm.$data.recommendList = res.result && res.result.list || []
+              vm.$data.recommendList = res.result || []
             }
           })
+          // indexApi.selectIssuePage({pageNum: 1, pageSize: 8, sortType: "02"}).then(function (res) {
+          //   if (res.code === 'rest.success') {
+          //     res.result && res.result.list && res.result.list.forEach(function (item) {
+          //       var a = [];
+          //       if (item.onLineFlag === '0') {
+          //         item.cityShow && a.push(item.cityShow);
+          //         item.location && a.push(item.location);
+          //       }
+          //       item.cityShow = a.join('');
+          //       item.itemUrl = '/adetail.html?id=' + item.id
+          //     })
+          //     vm.$data.recommendList = res.result && res.result.list || []
+          //   }
+          // })
         },
         getTopicList: function () {
           var vm = this;

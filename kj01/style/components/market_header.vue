@@ -4,7 +4,7 @@
       <div class="headers">
         <div class="header-logo">
           <a
-            href="/index.html"
+            href="/market/index.html"
             class="header-logo_box"
           ><img
               src="/style/images/logos/bsublogo.png"

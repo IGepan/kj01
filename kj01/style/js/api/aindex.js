@@ -17,7 +17,7 @@ define(['jquery', 'httpUrl', 'http'], function ($, httpUrl, Http) {
     },
     // 活动首页-人气榜单
     selectPopularity: function (param) {
-      return Http.post(httpUrl.baseUrl + '/active/selectPopularity', param);
+      return Http.post(httpUrl.baseUrl + '/active/selectPopularityPc', param);
     },
     // 活动首页-专题精选
     selectTopic: function (param) {

@@ -7,7 +7,7 @@
       <div class="mdiv">
         <div class="headers">
           <div class="header-logo"><a
-              href="/"
+              href="/resources/"
               class="header-logo_sublogo"
             ><img
                 src="/style/images/logos/bsublogo.png"
@@ -121,7 +121,7 @@ module.exports = {
       navs: [
         {
           label: '首页',
-          url: '/resources'
+          url: '/'
         },
         {
           label: '科技企业',
