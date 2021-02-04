@@ -46,7 +46,7 @@ require(['/common/js/require.config.js'], function () {
      navslist: [
       {
        label: '首页',
-       url: '',
+       url: '/',
        selected: true
       },
       {

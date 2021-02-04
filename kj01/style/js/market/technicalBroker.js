@@ -28,7 +28,7 @@ require(['/common/js/require.config.js'], function () {
                     navslist: [
                         {
                             label: '首页',
-                            url: '/market/index.html',
+                            url: '/',
                         },
                         {
                             label: '找技术',
