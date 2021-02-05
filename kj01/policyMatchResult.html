@@ -46,13 +46,13 @@
                     <ul>
                       <a v-for="item in list" :key="item.id" :href="'/podetail.html?id='+item.id + '&viewType=1'" target="_blank">
                         <!-- ppjg_c_s3 -->
-                        <li class="ppjg_c_s ">    
-                          <p class="ppjg_c_s_t">{{item.title}}</p>    
+                        <li :class="'ppjg_c_s ppjg_c_s' + item.status">    
+                          <p class="ppjg_c_s_t">{{item.title}}{{item.status}}</p>    
                           <p class="ppjg_c_s_c">{{item.summary}}</p>    
                           <div class="ppjg_c_s_d">       
                             <div class="ppjg_c_s_d_l">          
-                              <!-- <p>归口部门：<span>科技部门 </span></p>       -->
-                              <p>申报奖励：<span class="orange">{{item.moneyType}}{{item.money}}万元</span></p>
+                              <p v-if="item.display">归口部门：<span>{{item.display}} </span></p>      
+                              <p>申报奖励：<span class="orange">{{item.moneyType}}{{item.money ? item.money + '万元' : ''}}</span></p>
                               <p v-if="item.executionStartDate">申报时间：<span>{{item.executionStartDate}}至{{item.executionEndDate}}</span></p>       
                             </div>     
                             <div class="ppjg_c_s_d_r">          

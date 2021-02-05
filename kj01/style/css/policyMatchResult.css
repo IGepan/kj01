@@ -124,7 +124,7 @@ p {
 	background-image: url('../images/v2/result_ing.png');
 }
 .ppjg_c_s2:after {
-	background-image: url('../../image/zcy/state2.png');
+	background-image: url('../images/v2/result_notbegin.png');
 }
 .ppjg_c_s3:after {
 	background-image: url('../images/v2/result_done.png');
@@ -161,6 +161,7 @@ p {
 .ppjg_c_s_d>.ppjg_c_s_d_l {
 	color: #676767;
 	float: left;
+	width: calc(100% - 80px);
 }
 .ppjg_c_s_d>.ppjg_c_s_d_r {
 	position: absolute;

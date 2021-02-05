@@ -64,6 +64,24 @@ require(['/common/js/require.config.js'], function () {
             this.searchForm.pageNum = val;
             this.getPolicyNoticeList();
           },
+          getStatus(beginDate, endDate) {
+            var currenttime = new Date().getTime();
+            var status = 0;
+            if(beginDate && endDate) {
+              var begintime = new Date(beginDate).getTime();
+              var endtime = new Date(endDate).getTime();   
+              if(currenttime > begintime && currenttime < endtime) {
+                status = 1; // 进行中
+              }
+              if(begintime > currenttime) {
+                status = 2; // 未开始
+              }
+              if(endtime < currenttime) {
+                status = 3; // 已结束
+              }
+            }
+            return status;
+          },
           getPolicyNoticeList: function() {
             var params = JSON.parse(localStorage.getItem('policyMatchParams'));
             params = Object.assign({}, params, this.searchForm);
@@ -71,8 +89,11 @@ require(['/common/js/require.config.js'], function () {
             console.log('-----',params)
             var _this = this;
             httpPolicy.getPolicyNoticeList(params).then(function(res) {
-              console.log(res.result)
-              _this.list = res.result.list;
+             
+              _this.list = res.result.list.map(item => {
+                return Object.assign({}, item, {status: _this.getStatus(item.executionStartDate, item.executionEndDate)})
+              });
+              console.log(_this.list)
               _this.pages = res.result
             })
           }
