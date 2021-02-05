@@ -28,11 +28,14 @@
         <div class="mp_con mp_con3 mainWidth">
           <div class="ppjg_t"></div>
           <p class="ppjg_t_t" id="companyPolicyId">{{params.name}}</p>
-          <p class="ppjg_t_s">
+          <p class="ppjg_t_s" v-if="pages.total == 0">
+            <span>共匹配政策<i class="totalCount">{{pages.total}}</i>项</span>           
+          </p>
+          <p class="ppjg_t_s" v-if="pages.total > 0">
               <span>共匹配政策<i class="totalCount">{{pages.total}}</i>项</span>
               <span>最高获得奖励资金<i v-if="list[0]">{{list[0].money}}</i>万元</span>
           </p>
-          <div class="ppjg_c">
+          <div class="ppjg_c" v-if="pages.total > 0">
               <ul class="ppjg_c_t">
                   <li :class="{current: searchForm.type == 1}" @click="changeType(1)">匹配度<i class="showI"></i></li>
                   <li :class="{current: searchForm.type == 2}" @click="changeType(2)">奖励金额<i class="hideI"></i></li>
@@ -71,7 +74,7 @@
           </div>
         </div>        
       </div>
-      <template v-if="pages">
+      <template v-if="pages && pages.total > 0">
         <pages :pages="pages" @changepage="bindPageChange"></pages>
       </template>       
     </div>

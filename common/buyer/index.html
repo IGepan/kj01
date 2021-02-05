@@ -100,6 +100,7 @@
               <div class="policylist">
                 <a class="item" :href="'/podetail.html?id='+item.id" target="_blank" v-for="item in policyList" :key="item.id"><span class="line"></span>{{item.title}}</a>
               </div>
+              <div class="policylist"  v-if="policyList.length == 0" style="padding: 1em 20px;">暂未匹配到相关信息</div>
             </div>
             <div class="card focuscard mt20">
               <div class="title">行业都在关注
