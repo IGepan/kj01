@@ -42,9 +42,9 @@
         </div>
         <div class="sendbox">
           <div class="sendtext">
-            <textarea class="textarea" v-model="msg" placeholder="请输入您的问题" cols="30" rows="8"></textarea>
+            <textarea class="textarea" v-model="msg" placeholder="请输入您的问题" cols="30" rows="8" @keyup.enter="sendMsg"></textarea>
           </div>
-          <div class="sendbtn"><div class="btn" @click="sendMsg">发送按钮</div> </div>
+          <div class="sendbtn"><div class="btn" @click="sendMsg" >发送按钮</div> </div>
         </div>
       </div>
       <div class="right">
