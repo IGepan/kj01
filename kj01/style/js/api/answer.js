@@ -20,5 +20,9 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     console.log(param)
     return Http.post(httpUrl.baseUrl + '/questionRecord/getAnswer', param)
   },   
+  getQuestionRecordKeys: function (param) {
+    console.log(param)
+    return Http.post(httpUrl.baseUrl + '/questionRecord/getKeys', param)
+  }, 
  }
 })

@@ -317,7 +317,7 @@ require(['/common/js/require.config.js'], function () {
             params.socialCreditCode = '';
             params.registeredTime = data.establishDate;
             params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
-            params.city = data.country + ','+ data.city;
+            params.city = data.country + ','+ data.province + ',' + data.city + ','+ data.district;
             var qualificationtext = [];
             if(data.qualifications.length > 0) {
               this.qualification.forEach(item => {

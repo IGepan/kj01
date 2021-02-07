@@ -9,10 +9,7 @@ require(['/common/js/require.config.js'], function () {
           //   {
           //   title: '2020年重大项目服务咨询研究课题研究单位的公告',
           //   key: '咨询研究'
-          // },{
-          //   title: '2020年度重庆市技术预见与制度创新专项人才工作研究课题',
-          //   key: '研究'
-          // }
+          // },
          ],
           messageList: [
           //   {
@@ -24,7 +21,9 @@ require(['/common/js/require.config.js'], function () {
           //   content: '重庆市2020年度粮食安全行政 首长责任制考核内容',
           //   from: 'yi'
           // }
-        ]
+        ],
+        timer: '',
+
         },
         filters: {
           formatShowTime(time) {
@@ -50,19 +49,36 @@ require(['/common/js/require.config.js'], function () {
         },
         methods: {
           sendMsg() {
-            console.log(this.msg);
-            var obj = {
-              content: this.msg,
-              from: 'user',
-              time: new Date().getTime()
+            console.log(this.msg, this.timer);
+            if(this.timer) {
+              return;
             }
-            this.messageList.push(obj);           
-            this.getAnswer();
-            this.msg = '';
+            this.timer = setTimeout(() => {
+              this.getConnectionList();
+            }, 1000)        
+          },
+          getConnectionList() {
+            indexApi.getQuestionRecordKeys({questions: this.msg}).then(res => {
+              console.log(this.timer)
+              clearTimeout(this.timer)
+              this.timer = null;
+              console.log(this.timer)
+              if(!res.result) {
+                return;
+              }
+              this.connectionList = res.result.map(title => {
+                return {
+                  title: title,
+                  otitle: title,
+                  key: this.msg
+                }
+              })
+              this.resetConnection();
+            })
           },
           // 获取答案
-          getAnswer() {
-            indexApi.getQuestionRecordAnswer({questions: this.msg}).then(res => {
+          getAnswer(key) {
+            indexApi.getQuestionRecordAnswer({questions: key}).then(res => {
               console.log(res)
               var obj = {
                 content: '',
@@ -78,15 +94,23 @@ require(['/common/js/require.config.js'], function () {
               console.log(this.messageList)
             })
           },
-          chooseMsg() {
-           
+          chooseMsg(item) {
+            var obj = {
+              content: item.title,
+              from: 'user',
+              time: new Date().getTime()
+            }
+            this.messageList.push(obj);  
+            this.msg = '';     
+            this.connectionList = [];
+            this.getAnswer(item.otitle);
           },
           resetConnection() {
             this.connectionList = this.connectionList.map(item => {
               let replaceReg = new RegExp(item.key, 'g')// 匹配关键字正则
               let replaceString = '<span class="highlights-text">' + item.key + '</span>' // 高亮替换v-html值
               item.title = item.title.replace(replaceReg, replaceString) // 开始替换           
-              return item
+              return item;
             })
           },                   
         }

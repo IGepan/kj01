@@ -40,11 +40,14 @@
         <div class="connectQustion">
           <div class="text" v-for="(item, index) in connectionList" :key="index" v-html="item.title" @click="chooseMsg(item)"></div>
         </div>
+        <div class="connectQustion" v-if="msg && connectionList.length == 0">
+          <div class="text">暂无内容，换个关键词试试看</div>
+        </div>
         <div class="sendbox">
           <div class="sendtext">
-            <textarea class="textarea" v-model="msg" placeholder="请输入您的问题" cols="30" rows="8" @keyup.enter="sendMsg"></textarea>
+            <textarea class="textarea" v-model="msg" placeholder="请输入您的问题" cols="30" rows="8" @input="sendMsg" ></textarea>
           </div>
-          <div class="sendbtn"><div class="btn" @click="sendMsg" >发送按钮</div> </div>
+          <!-- <div class="sendbtn"><div class="btn" @click="sendMsg" >发送</div> </div> -->
         </div>
       </div>
       <div class="right">
