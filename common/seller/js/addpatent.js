@@ -441,11 +441,12 @@ require(['/common/js/require.config.js'], function () {
             }
           }
         },
-				/**
-				 * 初始化服务数据
-				 */
+        /**
+         * 初始化服务数据
+         */
         initFwData: function () {
           var vm = this;
+          //发布服务不显示行业和原分类
           vm.categoryChangeShow=false;
           vm.industryChangeShow=false;
           httpStore.mailTypeSelect().then(function (res) {
