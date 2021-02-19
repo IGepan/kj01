@@ -92,7 +92,8 @@
           <div class="list-item" :key="ni">
             <a class="link" :title="policy.title" :href="policy.itemUrl" target="_blank">
               <div class="line list-item-title">
-                <span v-if="policy.dismantleFlag === '1' || policy.tearFlag === '1'" class="jiedu">解读</span>
+                
+                <!-- <span v-if="policy.dismantleFlag === '1' || policy.tearFlag === '1'" class="jiedu">解读</span> -->
                 <span v-if="policy.policyFileType">【{{policy.policyFileTypeDisplay[0]}}】</span>
                 <span class="list-item-title-text">{{policy.title}}</span>
               </div>
@@ -106,6 +107,7 @@
               </div>
               <div class="list-item-other">
                 <div class="list-item-other-label">
+                  <span class="jiedu" v-if="policy.supportAmount">最高{{policy.supportAmount}}万元</span>
                   <label class="label-item">
                     <i class="iconfont icon-neirongtuisong icon"></i>
                     <span class="labelText">{{policy.publishDepartmentDisplays && policy.publishDepartmentDisplays[0]}}</span>
@@ -134,6 +136,8 @@
         </div>
       </div>
       <div class="fr sideBar">
+        <right-navs></right-navs>  
+        <!-- 
         <div class="bannerBlock-small">
           <div><img src="/style/images/poindex/sb.jpg" alt=""></div>
           <div class="bannerBlock-info">
@@ -175,7 +179,7 @@
         </div>
         <div class="bannerBlock">
           <img src="/image/polist/banner2.png" alt="">
-        </div>
+        </div> -->
       </div>
     </div>
 

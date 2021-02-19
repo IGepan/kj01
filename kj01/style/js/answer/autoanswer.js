@@ -47,22 +47,33 @@ require(['/common/js/require.config.js'], function () {
         created() {
           // this.resetConnection();
         },
+        mounted() {
+          this.$refs.messagebox.scrollTop = this.$refs.messagebox.scrollHeight
+        },
         methods: {
           sendMsg() {
             console.log(this.msg, this.timer);
+            if(!this.msg) {
+              this.connectionList = [];
+            }
             if(this.timer) {
               return;
             }
             this.timer = setTimeout(() => {
               this.getConnectionList();
-            }, 1000)        
+            }, 1000)    
           },
           getConnectionList() {
+            if(!this.msg) {
+              clearTimeout(this.timer)
+              this.timer = null;
+              return;
+            }
             indexApi.getQuestionRecordKeys({questions: this.msg}).then(res => {
               console.log(this.timer)
               clearTimeout(this.timer)
               this.timer = null;
-              console.log(this.timer)
+              console.log(this.timer, this.msg)
               if(!res.result) {
                 return;
               }
@@ -92,6 +103,11 @@ require(['/common/js/require.config.js'], function () {
               }
               this.messageList.push(obj);
               console.log(this.messageList)
+              console.log(this.$refs.messagebox.scrollTop, this.$refs.messagebox.scrollHeight)
+              this.$nextTick(() => {
+                this.$refs.messagebox.scrollTop = this.$refs.messagebox.scrollHeight + 400;
+                console.log(this.$refs.messagebox.scrollTop, this.$refs.messagebox.scrollHeight)
+              })        
             })
           },
           chooseMsg(item) {

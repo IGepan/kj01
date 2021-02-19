@@ -16,11 +16,11 @@
         </div>
       </div>
     </div>
-    <nav class="menus">
+    <!-- <nav class="menus">
     <template v-for="(nav, ni) in navs">
       <li :class="{active: nav.active}" :key="ni"><a :href="nav.url"><span>{{nav.label}}</span></a></li>
     </template>
-    </nav>
+    </nav> -->
     <div class="mdiv" v-if="breadcrumb.length">
       <div class="breadcrumb">当前位置： <template v-for="(item, i) in breadcrumb">
         <span class="breadcrumb__item" :key="i"><a v-if="item.url" :href="item.url">{{item.label}}</a><template v-else>{{item.label}}</template></span>

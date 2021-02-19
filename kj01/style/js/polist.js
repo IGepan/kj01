@@ -85,7 +85,8 @@ require(['/common/js/require.config.js'], function () {
           'ly-toper': httpVueLoader('/style/components/toper.vue'),
           'sub-head': httpVueLoader('/style/components/sub-head.vue'),
           'pages': httpVueLoader('/style/components/pages.vue'),
-          'web-footer': httpVueLoader('/style/components/web_footer.vue')
+          'web-footer': httpVueLoader('/style/components/web_footer.vue'),
+          'right-navs': httpVueLoader('/style/components/right_navs.vue'),
         },
         created: function () {
           var title = this.$utils.getReqStr('title')

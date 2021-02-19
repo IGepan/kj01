@@ -7,9 +7,10 @@ require(['/common/js/require.config.js'], function () {
     '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js',
     'httpUrl', '/common/js/libs/jquery.SuperSlide.2.1.3.js',
     '/style/js/policyMatchData.js',
-    'jqSelect'
+    'jqSelect',
+    'dialog'
     ],
-    function ($, Vue, dic, httpVueLoader, httpUser, indexApi, scroll, Swiper, animate, owlCarousel, httpUrl, superSlide, industryData, jqSelect) {
+    function ($, Vue, dic, httpVueLoader, httpUser, indexApi, scroll, Swiper, animate, owlCarousel, httpUrl, superSlide, industryData, jqSelect, dialog) {
       new Vue({
         el: '#matchForm_box',
 				components: {
@@ -314,7 +315,7 @@ require(['/common/js/require.config.js'], function () {
             var params = {};
             var data = this.formData;
             params.name = data.organizationName;
-            params.socialCreditCode = '';
+            params.socialCreditCode = data.creditCode;
             params.registeredTime = data.establishDate;
             params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
             params.city = data.country + ','+ data.province + ',' + data.city + ','+ data.district;
@@ -351,6 +352,19 @@ require(['/common/js/require.config.js'], function () {
             
             return params;
           },   
+          verifyRequired(params) {
+           var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification', 'enterpriseType', 'researchMoney', 'employeesNum', 'twoIncome', 'area'];
+           var flag = false;
+           for (const key in params) {
+            for (let index = 0; index < keys.length; index++) {
+              if(key == keys[index] && !params[key]) {
+                console.log(key, params[key])
+                flag = true;
+              }              
+            }
+           }
+           return flag;
+          },
           saveParams() {
             localStorage.setItem('developmentInfo', JSON.stringify(this.developmentInfo))
             localStorage.setItem('operatingInfo', JSON.stringify(this.operatingInfo))
@@ -364,6 +378,12 @@ require(['/common/js/require.config.js'], function () {
             this.saveAllData();
             this.saveParams();
             var params = this.getPlocyParams();
+            var flag = this.verifyRequired(params);
+            console.log('flag', flag)
+            if(flag) {
+              this.$dialog.showToast('请填写必填信息');
+              return;
+            }
             localStorage.setItem('policyMatchParams', JSON.stringify(params));
             location.href = '/policyMatchResult.html'
           },                     

@@ -92,10 +92,12 @@
 .windowbox  .messagebox .textwraper {
   display: flex;
 }
+.windowbox  .message_q .textwraper {
+  justify-content: flex-end;
+}
 .windowbox  .message .textwraper .text {
   margin-bottom: 10px;
   padding: .5em 1em;
-  flex: 1;
 }
 .windowbox  .message_q .textwraper .text {
   margin-right: 10px;

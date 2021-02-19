@@ -66,7 +66,7 @@
                         </td>
                       </tr>   
                       <tr>
-                        <td align="right"><em class="red">*</em>企业规模</td>
+                        <td align="right">企业规模</td>
                         <td class="td2">
                             <ly-radio class="radio" code='scale' v-model='formData.scale'></ly-radio>                                                     
                         </td>
@@ -120,7 +120,7 @@
                         </td>
                       </tr>     
                       <tr>
-                        <td align="right"><em class="red">*</em>服务领域</td>
+                        <td align="right">服务领域</td>
                         <td class="td2 width_600">
                             <label class="select" style="line-height: normal;">
                                 <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
@@ -145,35 +145,35 @@
                   <p class="cxnl_aa">研发情况</p>
                   <table>
                       <tr>
-                          <td align="right" width="160"><em class="red">*</em>一类知识产权总数</td>
+                          <td align="right" width="160">一类知识产权总数</td>
                           <td>
                               <div class="layui-input-inline">
                                 <input type="text" v-model="developmentInfo.property1" class="layui-input" id="firstIntellNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;个<em class="red">（含发明专利、植物新品种、国家新药、国家一级重要和集成电路布图设计）</em>
                           </td>
                       </tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>二类知识产权总数</td>
+                          <td align="right">二类知识产权总数</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text"v-model="developmentInfo.property2"  class="layui-input" id="secondIntellNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;个<em class="red">（含实用新型专利、外观专利和软件著作权）</em>
                           </td>
                       </tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>研发人员数量</td>
+                          <td align="right">研发人员数量</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="developmentInfo.userNum" class="layui-input" id="developerNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;人
                           </td>
                       </tr>
                       <tr>
-                          <td align="right"><em class="red">*</em><span class="year">{{currentYear}}</span>年研发费用</td>
+                          <td align="right"><em class="red">*</em><span class="year">{{lastYear}}</span>年研发费用</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="developmentInfo.developFee" class="layui-input" id="developPriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                           </td>
                       </tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>研发设备投入</td>
+                          <td align="right">研发设备投入</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="developmentInfo.equipmentFee" class="layui-input" id="deviceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元<em class="red">（含合作开发、委外开发、技术购买及技术授权许可费支出）</em>
@@ -192,12 +192,12 @@
                           <td></td>
                       </tr>
                       <tr>
-                          <td align="right"><em class="red">*</em><span class="yearThree">{{beforeLastYear}}</span>年主营业务收入</td>
+                          <td align="right"><span class="yearThree">{{beforeLastYear}}</span>年主营业务收入</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="operatingInfo.income1" class="layui-input" id="mainServicePriceThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                           </td>
-                          <td align="right"><em class="red">*</em><span class="yearThree">{{beforeLastYear}}</span>年净资产</td>
+                          <td align="right"><span class="yearThree">{{beforeLastYear}}</span>年净资产</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="operatingInfo.netWorth1" class="layui-input" id="pureAssetsThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
@@ -209,19 +209,19 @@
                               <div class="layui-input-inline">
                                   <input type="text" v-model="operatingInfo.income2" class="layui-input" id="mainServicePriceTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                           </td>
-                          <td align="right"><em class="red">*</em><span class="yearTwo">{{lastYear}}</span>年净资产</td>
+                          <td align="right"><span class="yearTwo">{{lastYear}}</span>年净资产</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="operatingInfo.netWorth2" class="layui-input" id="pureAssetsTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                           </td>
                       </tr>
                       <tr>
-                          <td align="right"><em class="red">*</em><span class="year">{{currentYear}}</span>年主营业务收入</td>
+                          <td align="right"><span class="year">{{currentYear}}</span>年主营业务收入</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="operatingInfo.income3" class="layui-input" id="mainServicePriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                           </td>
-                          <td align="right"><em class="red">*</em><span class="year">{{currentYear}}</span>年净资产</td>
+                          <td align="right"><span class="year">{{currentYear}}</span>年净资产</td>
                           <td>
                               <div class="layui-input-inline">
                                   <input type="text" v-model="operatingInfo.netWorth3"  class="layui-input" id="pureAssetsU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元

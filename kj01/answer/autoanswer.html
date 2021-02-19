@@ -21,7 +21,7 @@
     </div>
     <div class="content"> 
       <div class="left">
-        <div class="messagebox">
+        <div class="messagebox" ref="messagebox">
           <div class="message" v-for="item in messageList" :class="{message_q: item.from != 'yi', message_a: item.from == 'yi'}"  :key="item.time">
             <div class="time">{{item.time | formatShowTime}}</div>
             <div class="textwraper">
@@ -37,6 +37,7 @@
             </div>
           </div>           -->
         </div>
+        <div >22</div>
         <div class="connectQustion">
           <div class="text" v-for="(item, index) in connectionList" :key="index" v-html="item.title" @click="chooseMsg(item)"></div>
         </div>
