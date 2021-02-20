@@ -720,7 +720,8 @@ require(['/common/js/require.config.js'], function () {
 					'ly-toper': httpVueLoader('/style/components/toper.vue'),
 					'number-grow': httpVueLoader('/style/components/number2.vue'),
 					'index-head': httpVueLoader('/style/components/index_head2.vue'),
-					'web-footer': httpVueLoader('/style/components/web_footer.vue')
+					'web-footer': httpVueLoader('/style/components/web_footer.vue'),
+					'right-navs': httpVueLoader('/style/components/right_navs.vue'),
 				},
 				created: function () {
 					this.startMove();

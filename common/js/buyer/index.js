@@ -1,7 +1,7 @@
 // JavaScript Document
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policyMatch.js',], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy) {
 
     new Vue({
       el: '#index_box',
@@ -24,7 +24,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         selectedAmount: '010',
         attentionList: [],
         hotList: [],
-        hotType: '105'
+        hotType: '105',
+        policyList: []
       },
       filters: {
         filtersTips: function (v, evaluated) {
@@ -72,6 +73,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.getSelectByPage()
         this.getAmountList('010')
         this.getSelectShopByPage('105')
+        this.getUserInfo();
       },
       methods: {
         // 订单信息
@@ -134,6 +136,36 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         handleShowTips: function () {
           this.$dialog.showToast('敬请期待');
+        },
+        // 获取用户信息
+        getUserInfo: function(){
+          var _this = this;
+          httpUser.detail().then(function (res) {
+            console.log('res',res.result)
+            var params = _this.getPlocyParams(res.result);
+            _this.getPolicyNoticeList(params);
+          });
+        },
+        getPlocyParams: function(data) {
+          var params = {};
+          params.name = data.organizationName;
+          params.socialCreditCode = '';
+          params.registeredTime = data.establishDate;
+          params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
+          params.city = data.country + ','+ data.city;
+          params.enterpriseQualification = '';
+          params.enterpriseType = data.organizationTypeDisplay;
+          params.pageNum = 1;
+          params.pageSize = 10;
+          return params;
+        },
+        // 获取速配接口
+        getPolicyNoticeList: function(params) {
+          console.log('-----',params)
+          var _this = this;
+          httpPolicy.getPolicyNoticeList(params).then(function(res) {
+            _this.policyList = res.result.list;
+          })
         }
       }
     });

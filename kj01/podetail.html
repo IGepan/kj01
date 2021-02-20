@@ -89,14 +89,14 @@
                 <label class="vaMiddle other-label">适用范围：</label><div class="vaMiddle other-content">{{detail.address}}</div>
               </div>
             </div>
-            <div class="other-row">
+            <!-- <div class="other-row">
               <div class="vaTop itembox">
                 <label class="vaMiddle other-label">有效期：</label><div class="vaMiddle other-content">{{detail.executionStartDate|formatTime2(detail.executionEndDate)}}</div>
               </div>
               <div class="vaTop itembox">
                 <label class="vaMiddle other-label">归口部门：</label><div class="vaMiddle other-content">{{detail.publishDepartmentDisplays}}</div>
               </div>
-            </div>
+            </div> -->
             <div class="other-row" v-if="detail.applyStatusDisplay">
               <div class="vaTop itembox">
                 <label class="vaMiddle other-label">申报时间：</label><div class="vaMiddle other-content">{{detail.startDate|formatTime1}}{{detail.endDate|formatTime1(1)}}</div>
@@ -142,7 +142,7 @@
             </button>
             <div class="article-btns">
               <button type="button" @click.stop="handleColSelected" typeName="articleBtn" class="borderRight" class="{colSelected: detail.isCollection}"><i class="iconfont vaMiddle" :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i><span class="vaMiddle">{{detail.isCollection ? '已收藏' : '收藏'}}</span></button>
-              <button type="button" data-viewtype="1" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType !== 1 && detail.disassemble"><i class="iconfont icon-zhengcejiedu vaMiddle"></i><span class="vaMiddle">查看解读</span></button>
+              <!-- <button type="button" data-viewtype="1" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType !== 1 && detail.disassemble && !detail.policyFileTypeDisplay.includes('申报通知')"><i class="iconfont icon-zhengcejiedu vaMiddle"></i><span class="vaMiddle">查看解读</span></button> -->
               <button type="button" data-viewtype="2" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType !== 2 && detail.isAnnotation"><i class="iconfont icon-pizhu vaMiddle"></i><span class="vaMiddle">查看批注</span></button>
               <button type="button" data-viewtype="0" @click.stop="handleSetViewType" typeName="articleBtn" class="borderRight" v-if="detail.viewType"><i class="iconfont icon-zhengce vaMiddle"></i><span class="vaMiddle">查看原文</span></button>
               <button type="button" @click.stop="handleShowTips" typeName="articleBtn"><i class="iconfont icon-zixun vaMiddle"></i><span class="vaMiddle">立即咨询</span></button>

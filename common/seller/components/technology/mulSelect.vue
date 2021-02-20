@@ -36,6 +36,7 @@ module.exports = {
         item.name = item.value;
       })
       var vm = this;
+      console.log($("#mulSelect" + this.index))
       vm.mulSelect = $("#mulSelect" + this.index).mySelect({
         mult: true, //true为多选,false为单选
         option: this.mulSelectList,

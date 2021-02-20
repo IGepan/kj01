@@ -87,11 +87,11 @@
                     </a>
                     <a href="/answer/index.html" target="_blank">
                         <div class="navlist-title">政策答人</div>
-                        <div>科技政策为您详细分析解答</div>
+                        <div>小易为您答疑解惑</div>
                     </a>
                     <a href="/declarationHelper/list.html" target="_blank">
                         <div class="navlist-title">申报助手</div>
-                        <div>政策/项目/资质辅助申报</div>
+                        <div>项目/资质/资金辅助申报</div>
                     </a>
                     <a href="/alist.html?type=218340665862391473" target="_blank">
                         <div class="navlist-title">企业学堂</div>
@@ -174,33 +174,8 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="policy-right">
-                            <div class="helper">
-                                <div class="policy-title">申报助手<a href="/declarationHelper/list.html"
-                                        class="iconfont icon-gengduo" target="_blank"></a></div>
-                                <div class="helper-lists">
-                                    <a :href="'/declarationHelper/detail.html?id=' + item.id" v-for="item in helperList"
-                                        :key="item.id">
-                                        <span class="iconfont" :class="item.icon"></span>
-                                        <span :title="item.title" class="helper-lists_title">{{item.title}}</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="answer">
-                                <div class="policy-title">政策答人<a href="/answer/index.html" class="iconfont icon-gengduo"
-                                        target="_blank"></a></div>
-                                <div class="answer-lists listsScroll">
-                                    <ul class="lists">
-                                        <template v-for="(answer,index) in answerList">
-                                            <li class="list">
-                                                <a :href="'/answer/qadetail.html?id=' + answer.id"
-                                                    :title="answer.ask">【问】{{answer.ask}}</a>
-                                            </li>
-                                        </template>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <!--  2021.01.12 -->
+                        <right-navs></right-navs>                       
                     </div>
                 </div>
             </div>
