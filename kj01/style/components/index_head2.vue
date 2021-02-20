@@ -78,6 +78,10 @@ module.exports = {
         {
           label: '关于我们',
           url: '/about.html'
+        },
+        {
+          label: '易智商城',
+          url: '/mail/index.html'
         }
       ]
     }
