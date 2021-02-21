@@ -3,10 +3,12 @@
  */
 require.config({
   baseUrl: '/common/',//'http://www.cqmall.com:81/',
+
   paths: {
     jquery: 'js/libs/jquery-3.2.1.min',
     validate: 'js/libs/jquery.validate.min',
     vue: 'js/libs/vue', //
+    ELEMENT: "js/libs/element",
     base64: 'js/libs/jq.base64',
     polyfill: 'js/libs/polyfill.min',
     promise: 'js/libs/es6-promise.min', // 转码
@@ -58,6 +60,9 @@ require.config({
     'img_captcha': {
       exports: 'captcha' //exports的值为js提供的 对外接口的名称
     },
+    // "ELEMENT": {
+    //   "deps": ["vue", "css!/common/css/element.css"]
+    // },
     'httpVueLoader': {
       exports: 'httpVueLoader'
     },
@@ -71,13 +76,14 @@ require.config({
   }
 });
 // 转码
-define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUrl', 'http', 'im', 'viewerjs', 'VueViewer'], function (Promise, Vue, dialog, utils, httpCom, ZeroClipboard, httpUrl, http, im, viewerjs, VueViewer) {
+define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUrl', 'http', 'im', 'viewerjs', 'VueViewer','ELEMENT'], function (Promise, Vue, dialog, utils, httpCom, ZeroClipboard, httpUrl, http, im, viewerjs, VueViewer,ELEMENT) {
   Vue.prototype.$utils = utils;
   Vue.prototype.$httpCom = httpCom;
   Vue.prototype.$dialog = dialog;
   Vue.prototype.$http = http;
   Vue.use(im);
   Vue.use(VueViewer.default)
+  Vue.use(ELEMENT)
   window.Promise = Promise;
   window.$httpCom = httpCom;
   window.$dialog = dialog;

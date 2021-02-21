@@ -792,7 +792,8 @@ require(['/common/js/require.config.js'], function () {
 										if (items.sponsor.indexOf('ぶんかつ') !== -1) {
 											items.sponsor = (items.sponsor.split('ぶんかつ'))[0]
 										}
-										items.joinNumTotal=(items.joinNum?items.joinNum:0)+(items.pageViews?parseInt(items.pageViews):0)
+										// item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
+										items.joinNumTotal=items.totalViews
 									})
 								})
 							}
@@ -804,7 +805,8 @@ require(['/common/js/require.config.js'], function () {
 							if (res.code === 'rest.success') {
                                 vm.activeLists = res.result.list
                                 vm.activeLists.forEach((item)=>{
-                                    item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
+									// item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
+									item.joinNumTotal=(item.pageViews?parseInt(item.pageViews):0)
                                 })
 							}
 						})
