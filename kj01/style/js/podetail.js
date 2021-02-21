@@ -200,7 +200,7 @@ require(['/common/js/require.config.js'], function () {
         },
         getPolicyRelated: function(id, word) {
           var vm = this;
-          indexApi.getPolicyRelated({ id: id, keyWord: word }).then(function (res) {
+          indexApi.getPolicyRelated({ id: id, policyFileType1: this.$data.detail.policyFileType, keyWord: word }).then(function (res) {
             res.result && res.result.forEach(function (item) {
               item.itemUrl = '/podetail.html?id='+item.id
             })

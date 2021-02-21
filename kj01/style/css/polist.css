@@ -322,3 +322,10 @@
 	margin-right: 8px;
 	border: solid 1px #ec4619;
 }
+.amount {
+  margin-right: 1em;
+}
+.amount .strong {
+  color: #ec4619;
+  font-size: 20px;
+}

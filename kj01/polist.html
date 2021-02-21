@@ -107,7 +107,7 @@
               </div>
               <div class="list-item-other">
                 <div class="list-item-other-label">
-                  <span class="jiedu" v-if="policy.supportAmount">最高{{policy.supportAmount}}万元</span>
+                  <span class="amount" v-if="policy.supportAmount">最高 <strong class="strong">{{policy.supportAmount}}万元</strong></span>
                   <label class="label-item">
                     <i class="iconfont icon-neirongtuisong icon"></i>
                     <span class="labelText">{{policy.publishDepartmentDisplays && policy.publishDepartmentDisplays[0]}}</span>
