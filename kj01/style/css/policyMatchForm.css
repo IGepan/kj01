@@ -131,7 +131,7 @@ body {
 .select:after {
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   width: 32px;
   height: 32px;
   font-family: "iconfont";
@@ -142,4 +142,44 @@ body {
   line-height: 34px;
   pointer-events: none;
   font-size: 14px;
+}
+
+/* 多选 */
+.mulSelect {
+  position: relative;
+}
+.mulSelect .selectBox {
+  min-height: 34px;
+}
+.mulSelect .selectList {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -202px;
+  border: 1px solid rgb(201, 201, 201);
+  z-index: 1001;
+  height: 200px;
+  background: #fff;
+  overflow-y: auto;
+}
+.mulSelect .selectList .item {
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid #e7e7e7;
+}
+.mulSelect .selectList .item:hover {
+  color: #9ec6ff;
+  border-bottom: 1px solid #9ec6ff;
+}
+.mulSelect .selectList .item.checked {
+  background: #237eff;
+  color: #fff;
+}
+.selectBox .select_content {
+  font-size: 14px;
+  float: left;
+  margin: 7px 6px 4px;
+  background: rgb(234, 234, 234);
+  padding: 2px 4px;
+  border-radius: 4px;
 }

@@ -139,6 +139,7 @@ require(['/common/js/require.config.js'], function () {
               netWorth3: null,  
               area: null,                          
             },
+            isQualificationShow: false,
             honerList: [{
               name: '国家高新技术企业',
               value: 1,
@@ -178,14 +179,16 @@ require(['/common/js/require.config.js'], function () {
             }]
           }
         },
+        
         created() {
           this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
           this.$httpCom.dict({ code: 'qualification' }).then(function (res) {
             if (res.code === 'rest.success') {
+              console.log('请求qualification',res.result)
               this.qualification = res.result.map(function (i) {
-                i.value = i.display
-                return i
+                return Object.assign({}, i, {value: i.display, checked: false})        
               })
+              this.setDefaultQualication();
             }
           }.bind(this));  
           this.industryData_l2List = this.industryData[0].children;    
@@ -200,6 +203,13 @@ require(['/common/js/require.config.js'], function () {
             this.operatingInfo = JSON.parse(localStorage.getItem('operatingInfo'))
           }          
         },
+
+        mounted: function () {
+          document.getElementsByTagName('body')[0].addEventListener('click', this.bodyClick, false);
+        },
+        beforeDestroy: function () {
+          document.getElementsByTagName('body')[0].removeEventListener('click', this.bodyClick, false);
+        },
         methods: {
           initData: function (flag) {
             var vm = this;
@@ -207,15 +217,41 @@ require(['/common/js/require.config.js'], function () {
               var formData = $.extend({}, vm.formData, res.result);
               formData.attachmentIdUrl = formData.headImg.url;
               if(formData.qualifications) {
-                formData.qualifications.length && (formData.qualifications = formData.qualifications.map(function (t) { return t.tagId }))
+                formData.qualifications.length && (formData.qualifications = formData.qualifications.map(function (t) { return t.name }))
               }
               formData.headImg = formData.headImg.id;
               vm.initIdentityType = formData.identityType = formData.identityType || '01'
               vm.formData = formData
               vm.initFormData = JSON.parse(JSON.stringify(formData));
-              vm.setDefaultValue()
+              vm.setDefaultValue();
+              vm.setDefaultQualication();
             });
-          },          
+          },   
+          setDefaultQualication() {
+            var vm = this;
+            vm.qualification.forEach(function(item){
+              vm.formData.qualifications.forEach(function(item1){
+                if(item.value == item1) {
+                  item.checked = true;
+                }
+              })
+            })
+          },   
+          checkQualification(item) {
+            item.checked = !item.checked;
+            this.formData.qualifications = this.qualification.filter(item => item.checked).map(item => item.value)
+          },   
+          removeQualification(index, name) {
+            this.qualification.forEach(item => {
+              if(item.value == name) {
+                item.checked = false;
+              }
+            })
+            this.formData.qualifications = this.qualification.filter(item => item.checked).map(item => item.value)
+          },
+          bodyClick(e) {
+            this.isQualificationShow = false;
+          },
           addressValid: function (v, o, callback) {
             var vm = this;
             setTimeout(function () {
@@ -319,15 +355,15 @@ require(['/common/js/require.config.js'], function () {
             params.registeredTime = data.establishDate;
             params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
             params.city = data.country + ','+ data.province + ',' + data.city + ','+ data.district;
-            var qualificationtext = [];
+            var qualificationtext = data.qualifications;
             if(data.qualifications.length > 0) {
-              this.qualification.forEach(item => {
-                data.qualifications.forEach(citem => {
-                  if(item.id == citem) {
-                    qualificationtext.push(item.display)
-                  }
-                })
-              })
+              // this.qualification.forEach(item => {
+              //   data.qualifications.forEach(citem => {
+              //     if(item.id == citem) {
+              //       qualificationtext.push(item.display)
+              //     }
+              //   })
+              // })
               console.log(qualificationtext)
               params.enterpriseQualification = qualificationtext.join();
             }else {

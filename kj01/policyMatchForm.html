@@ -132,10 +132,18 @@
                       <tr >
                         <td align="right"><em class="red">*</em>企业资质</td>
                         <td class="td2 width_600">
-                          <div class="select name">
-                            <ly-mulselect v-model='formData.qualifications' ref='idmulSelect' index='qua'
+                          <div class="select name mulSelect">                 
+                            <div class="selectBox" @click.stop="isQualificationShow = !isQualificationShow">
+                                <div class="select_content" v-for="(item, index) in formData.qualifications" :key="index">
+                                   <span> {{item}} <i aria-hidden="true" class="iconfont icon-cuowu" @click.stop="removeQualification(index, item)"></i></span>
+                                </div>
+                            </div> 
+                            <div class="selectList" v-show="isQualificationShow">
+                                <div v-for="item in qualification" :key="item.id" @click.stop="checkQualification(item)" class="item" :class="{checked: item.checked}">{{item.display}}</div>
+                            </div>
+                            <!-- <ly-mulselect v-model='formData.qualifications' ref='idmulSelect' index='qua'
                               :mul-select-list='qualification'>
-                            </ly-mulselect>
+                            </ly-mulselect> -->
                           </div>
                         </td>
                       </tr>                      
