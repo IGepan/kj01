@@ -14,6 +14,15 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
   //通过id获取faq信息
   getFaqById: function (param) {
    return Http.get(httpUrl.assisUrl + '/faq/getFaqById', param)
-  }
+  },
+  // 智能回答
+  getQuestionRecordAnswer: function (param) {
+    console.log(param)
+    return Http.post(httpUrl.baseUrl + '/questionRecord/getAnswer', param)
+  },   
+  getQuestionRecordKeys: function (param) {
+    console.log(param)
+    return Http.post(httpUrl.baseUrl + '/questionRecord/getKeys', param)
+  }, 
  }
 })

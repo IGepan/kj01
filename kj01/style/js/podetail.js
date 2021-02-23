@@ -10,7 +10,7 @@ require(['/common/js/require.config.js'], function () {
         breadcrumb: [
           {
             label: '政策资讯',
-            url: '/polist.html'
+            url: '/poindex.html'
           },
           {
             label: '政策惠',
@@ -29,7 +29,8 @@ require(['/common/js/require.config.js'], function () {
         clientHeight: 0,
         styles: {
           left: 0
-        }
+        },
+        viewType: ''
       },
       filters: {
         formatTime: function (v) {
@@ -84,6 +85,8 @@ require(['/common/js/require.config.js'], function () {
       },
       created: function () {
         var id = this.$utils.getReqStr('id')
+        this.viewType = this.$utils.getReqStr('viewType')
+        console.log('viewType',this.viewType)
         var shortCode = this.$utils.getReqStr('shortCode')?this.$utils.getReqStr('shortCode'):''
         this.saasId = localStorage.getItem('saasId');
         id && this.getDetail(id,shortCode)
@@ -167,7 +170,7 @@ require(['/common/js/require.config.js'], function () {
         setDetailInfo: function (res, id) {
           var a = [];
           var vm = this
-          res.result.viewType = 0
+          res.result.viewType = this.viewType ? this.viewType - 0 : 0
           res.result.isCollection = res.result.isCollection ? 1 : 0;
           res.result.countryDisplay && a.push(res.result.countryDisplay);
           res.result.provinceDisplay && a.push(res.result.provinceDisplay);
@@ -197,7 +200,7 @@ require(['/common/js/require.config.js'], function () {
         },
         getPolicyRelated: function(id, word) {
           var vm = this;
-          indexApi.getPolicyRelated({ id: id, keyWord: word }).then(function (res) {
+          indexApi.getPolicyRelated({ id: id, policyFileType1: this.$data.detail.policyFileType, keyWord: word }).then(function (res) {
             res.result && res.result.forEach(function (item) {
               item.itemUrl = '/podetail.html?id='+item.id
             })

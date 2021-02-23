@@ -299,7 +299,8 @@
 }
 
 .nav {
-    margin-top: -60px;
+    margin-top: 10px;
+    /*margin-top: -60px;*/
     position: relative;
     z-index: 10;
 }
@@ -766,9 +767,6 @@
     margin-right: 10px;
 }
 
-.policy-right {
-    flex: 1;
-}
 
 .helper {
     padding: 0 15px;

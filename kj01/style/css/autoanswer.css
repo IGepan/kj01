@@ -1,0 +1,178 @@
+.autobox {
+  background: #1f1e7b;
+  height: 100%;
+}
+.windowbox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 720px;
+  height: 600px;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+}
+.windowbox .content {
+  font-size: 0;
+}
+.windowbox .messagebox {
+ background: #f5f8fb;
+ overflow-y: auto;
+}
+.windowbox .title {
+  padding: 0 15px;
+  border-bottom: 1px solid #eee;
+  height: 60px;
+}
+.windowbox .title img {
+  margin-top: 10px;
+  height: 40px;
+}
+.windowbox .title .subname {
+  display: inline-block;
+  font-family: XinYeNianTi;
+  font-size: 22px;
+  color: #01c8f2;
+  vertical-align: super;
+}
+.windowbox .left {
+  position: relative;
+  display: inline-block;
+  width: 75%;
+  height: 540px;
+}
+.windowbox .right {
+  display: inline-block;
+  border-left: 1px solid #e5e5e5;
+  width: 25%;
+  height: 540px;
+  background: #f5f8fb;
+  vertical-align: top;
+  font-size: 14px;
+}
+.windowbox .right .title {
+  padding: 0 1em;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #666;
+}
+.windowbox .right img {
+  display: block;
+  margin: 20px auto 0;
+  width: 80%;
+}
+.windowbox .right .text {
+  margin-top: 10px;
+  text-align: center;
+  color: #666;
+}
+.windowbox a {
+  color: #11CBF2;
+}
+.windowbox a:hover {
+  text-decoration: underline;
+}
+.windowbox .right .address {
+  margin: 20px 1em 0;
+  font-size: 13px;
+  color: #666;
+}
+.windowbox  .messagebox {
+  padding: 10px 20px;
+  height: 400px;
+  font-size: 13px;
+  color: #666;
+}
+.windowbox  .messagebox .time {
+  padding: 5px 0;
+  text-align: center;
+  color: #999;
+}
+.windowbox  .messagebox .textwraper {
+  display: flex;
+}
+.windowbox  .message_q .textwraper {
+  justify-content: flex-end;
+}
+.windowbox  .message .textwraper .text {
+  margin-bottom: 10px;
+  padding: .5em 1em;
+}
+.windowbox  .message_q .textwraper .text {
+  margin-right: 10px;
+  background: #007AFF;
+  border-radius: 15px 3px 15px 15px;
+  color: #fff;
+}
+.windowbox  .message_a .textwraper .text {
+  order: 1;
+  margin-left: 10px;
+  background: #FFFFFF;
+  border-radius: 3px 15px 15px 15px;
+}  
+.windowbox  .messagebox .img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background: #007AFF;
+  color: #fff;
+}
+.windowbox .connectQustion {
+  position: absolute;
+  bottom: 140px;
+  left: 0;
+  right: 0;
+  font-size: 13px;
+  background: #fff;
+  box-shadow: 0px 0px 7px 1px rgba(0, 122, 255, 0.18);
+}
+.windowbox .connectQustion .highlights-text {
+  color: #FF8110;
+}
+.windowbox .connectQustion .text {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+.windowbox  .sendbox {
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+  overflow: hidden;
+}
+.windowbox .sendtext {
+  border-top: 1px solid #eee;
+  flex: 1;
+  overflow: hidden;
+}
+.windowbox .sendtext .textarea {
+  border: none;
+  outline:none;
+  resize:none;
+  padding: 1em;
+  width: 100%;
+  height: 100%;
+}
+.windowbox .sendbtn {
+  margin: 5px 20px;
+  text-align: right;
+}
+.windowbox .sendbtn .btn {
+  display: inline-block;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  height: 30px;
+  width: 68px;
+  text-align: center;
+  line-height: 30px;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+.windowbox .sendbtn .btn:hover {
+  background: cornflowerblue;
+  color: #fff;
+}

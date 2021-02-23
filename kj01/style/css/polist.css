@@ -55,6 +55,30 @@
 .searchMainkey.noP {
 	padding: 0 0;
 }
+
+/*   2021.01.12 */
+.search-key {
+  margin: 0 20px 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #018FFF;
+  border-radius: 4px;
+  height: 30px;
+}
+.search-key .input {
+  padding: 0 1em;
+  flex: 1;
+}
+.search-key .btn {
+  display: inline-flex;
+  border-radius: 0 4px 4px 0;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100%;
+  color: #fff;
+  background: #018FFF;
+}
 .boxShadow {
 	margin-bottom: 20px;
 	box-shadow: 6px 6px 35px 0px rgba(1, 20, 91, 0.1);
@@ -297,4 +321,11 @@
 	color: #ec4619;
 	margin-right: 8px;
 	border: solid 1px #ec4619;
+}
+.amount {
+  margin-right: 1em;
+}
+.amount .strong {
+  color: #ec4619;
+  font-size: 20px;
 }

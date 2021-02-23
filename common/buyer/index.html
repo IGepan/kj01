@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="box" id='index_box'>
+  <div class="box" id='index_box' v-cloak>
     <div class="header">
       <ly-toper></ly-toper>
       <header-bar type='buyer' :http="httpCom"></header-bar>
@@ -93,6 +93,14 @@
                   </div>
                 </li>
               </ul>
+            </div>
+            <!--  2021.01.14 -->
+            <div class="card focuscard mt20">
+              <div class="title">政策速递</div>
+              <div class="policylist">
+                <a class="item" :href="'/podetail.html?id='+item.id" target="_blank" v-for="item in policyList" :key="item.id"><span class="line"></span>{{item.title}}</a>
+              </div>
+              <div class="policylist"  v-if="policyList.length == 0" style="padding: 1em 20px;">暂未匹配到相关信息</div>
             </div>
             <div class="card focuscard mt20">
               <div class="title">行业都在关注

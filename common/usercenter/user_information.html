@@ -178,7 +178,7 @@
                     </label>
                   </td>
                   <td ref="servicesMsg" class="form_msg"></td>
-                </tr>
+                </tr>           
                 <tr class="form_item" v-if="formData.identityType === '02'">
                   <th>企业资质：</th>
                   <td>
@@ -213,6 +213,7 @@
                     <div class="ipt">
                       <input v-model="formData.contacts" type="text" data-valid="maxLength:20" data-error='内容过长'>
                     </div>
+                    <div v-if="!formData.contactsPhone" style="height: 30px;line-height:30px;font-size:12px;color:red;">提示：没有联系人将影响政策推送消息接收</div>
                   </td>
                   <td class="form_msg"></td>
                 </tr>
@@ -221,8 +222,9 @@
                   <td>
                     <div class="ipt">
                       <input v-model="formData.contactsPhone" maxlength="11" type="text" class="required"
-                        data-valid="isMobile" data-error='手机号不正确'>
+                        data-valid="isMobile" data-error='手机号不正确'>                       
                     </div>
+                    <div v-if="!formData.contactsPhone" style="height: 30px;line-height:30px;font-size:12px;color:red;">提示：没有手机号码将影响政策推送消息接收</div>
                   </td>
                   <td class="form_msg"></td>
                 </tr>
