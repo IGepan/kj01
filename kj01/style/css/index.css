@@ -299,7 +299,8 @@
 }
 
 .nav {
-    margin-top: -60px;
+    margin-top: 10px;
+    /*margin-top: -60px;*/
     position: relative;
     z-index: 10;
 }
