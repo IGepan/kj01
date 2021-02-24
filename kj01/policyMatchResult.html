@@ -33,7 +33,7 @@
           </p>
           <p class="ppjg_t_s" v-if="pages.total > 0">
               <span>共匹配政策<i class="totalCount">{{pages.total}}</i>项</span>
-              <span>最高获得奖励资金<i v-if="list[0]">{{list[0].money}}</i>万元</span>
+              <span>最高获得奖励资金<i>{{maxMoney}}</i>万元</span>
           </p>
           <div class="ppjg_c" v-if="pages.total > 0">
               <ul class="ppjg_c_t">
@@ -60,8 +60,9 @@
                                 <canvas width="80" height="80"></canvas>
                                 <input class="knob" :value="item.num" style="display: none; width: 0px; visibility: hidden;">
                               </div>          
-                              <div class="con">             
-                                <p>匹配度<br>-</p>             
+                              <div class="con">                                           
+                                <p v-if="item.num >= 80">高度匹配<br/>-</p>      
+                                <p v-if="item.num < 80 && item.num >= 30">中度匹配<br/>-</p>          
                                 <div class="percent">{{item.num}}%</div>          
                               </div>        
                             </div>    

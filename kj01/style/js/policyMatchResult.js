@@ -48,21 +48,23 @@ require(['/common/js/require.config.js'], function () {
               total: 0,
             },
             list: [],
+            maxMoney: 0,
           }
         },
         created() {
           this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
-          this.getPolicyNoticeList();
+          this.getPolicyNoticeList(1);
+          this.getPolicyNoticeList(2);
         },
         methods: {
           changeType(type) {
             this.searchForm.type = type;
-            this.getPolicyNoticeList();
+            this.getPolicyNoticeList(this.searchForm.type);
           },
           bindPageChange(val) {
             console.log(val)
             this.searchForm.pageNum = val;
-            this.getPolicyNoticeList();
+            this.getPolicyNoticeList(this.searchForm.type);
           },
           getStatus(beginDate, endDate) {
             var currenttime = new Date().getTime();
@@ -82,9 +84,10 @@ require(['/common/js/require.config.js'], function () {
             }
             return status;
           },
-          getPolicyNoticeList: function() {
+          getPolicyNoticeList: function(type) {
             var params = JSON.parse(localStorage.getItem('policyMatchParams'));
             params = Object.assign({}, params, this.searchForm);
+            params.type = type;
             this.params = params;
             console.log('-----',params)
             var _this = this;
@@ -93,6 +96,9 @@ require(['/common/js/require.config.js'], function () {
               _this.list = res.result.list.map(item => {
                 return Object.assign({}, item, {status: _this.getStatus(item.executionStartDate, item.executionEndDate)})
               });
+              if(type == 2) {
+                _this.maxMoney = _this.list[0].money;
+              }
               console.log(_this.list)
               _this.pages = res.result
             })
