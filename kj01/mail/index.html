@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>易智网首页</title>
     <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
@@ -23,7 +24,10 @@
 <body>
 
 <div class="box" id='index_box' v-cloak>
+
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
+    </validate-dialog>
     <header id="page-header">
         <div class="container">
             <div class="row align-items-center justify-content-between">
@@ -87,185 +91,13 @@
                             </div>
                         </li>
 
-                        <!--                    <li class="has-sub-menu">-->
-                        <!--                        <a class="main-link" href="#">创业孵化</a>-->
-                        <!--                        <a class="sub-link tint" href="#">创业咨询</a>-->
-                        <!--                        <a class="sub-link" href="#">创业培训</a>-->
-                        <!--                        <div class="sub-menu">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                        <li class="list-group-item">创业咨询</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </li>-->
-                        <!--                    <li class="has-sub-menu">-->
-                        <!--                        <a class="main-link" href="#">研发设计</a>-->
-                        <!--                        <a class="sub-link tint" href="#">网站建设</a>-->
-                        <!--                        <a class="sub-link tint" href="#">工业设计</a>-->
-                        <!--                        <div class="sub-menu">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子菜单标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                        <li class="list-group-item">研发设计</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </li>-->
-                        <!--                    <li class="has-sub-menu">-->
-                        <!--                        <a class="main-link" href="#">检验检测</a>-->
-                        <!--                        <a class="sub-link tint" href="#">工程分析</a>-->
-                        <!--                        <a class="sub-link" href="#">金属材料分析</a>-->
-                        <!--                        <div class="sub-menu">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子菜单标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                        <li class="list-group-item">检验检测</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </li>-->
-                        <!--                    <li class="has-sub-menu">-->
-                        <!--                        <a class="main-link" href="#">知识产权</a>-->
-                        <!--                        <a class="sub-link" href="#">知识运营</a>-->
-                        <!--                        <a class="sub-link tint" href="#">专利服务</a>-->
-                        <!--                        <div class="sub-menu">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子菜单标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                        <li class="list-group-item">知识产权</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </li>-->
-                        <!--                    <li class="has-sub-menu">-->
-                        <!--                        <a class="main-link" href="#">科技咨询</a>-->
-                        <!--                        <a class="sub-link" href="#">工程技术咨询</a>-->
-                        <!--                        <a class="sub-link" href="#">战略规划</a>-->
-                        <!--                        <div class="sub-menu">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子菜单标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                        <li class="list-group-item">科技咨询</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </li>-->
-                        <!--                    <li class="has-sub-menu">-->
-                        <!--                        <a class="main-link" href="#">技术转移</a>-->
-                        <!--                        <a class="sub-link tint" href="#">技术推广</a>-->
-                        <!--                        <a class="sub-link" href="#">科技中介</a>-->
-                        <!--                        <div class="sub-menu">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col">-->
-                        <!--                                    <div class="title">子菜单标题(如果有)</div>-->
-                        <!--                                    <ul class="list-group list-group-flush">-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                        <li class="list-group-item">技术转移</li>-->
-                        <!--                                    </ul>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </li>-->
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">首页</a>
+                    <a class="nav-link active" aria-current="page" href="/">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">找服务</a>
+                    <a class="nav-link" href="sub1.html">找服务</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">入驻商城</a>
@@ -279,9 +111,12 @@
     <div class="container" id="slideshow">
         <div class="swiper-container" id="home-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>
-                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>
-                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>
+                <template v-for="idx_banner in indexBanner">
+                <div class="swiper-slide"><img  :src="idx_banner.path" ></div>
+<!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
+<!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
+<!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
+                </template>
             </div>
 
 
@@ -304,15 +139,19 @@
                     签约项目 <strong>{{mailSite.projectCount ||0 }}项</strong>
                 </div>
             </div>
-            <div class="settle_in-form d-flex">
-                <input type="email" class="form-control demand-txt" id="" placeholder="请输入需求名称">
-                <div class="input-group phoneVerification">
-                    <input type="text" aria-label="mobile" class="form-control mobile" placeholder="手机号">
-                    <input type="text" aria-label="verificationCode" class="form-control verificationCode" placeholder="验证码">
-                    <button class="btn btn-light" type="button">获取验证码</button>
+            <form id="sub_form">
+                <div class="settle_in-form d-flex">
+                        <input type="text" class="form-control demand-txt"  v-model="form.content" name="content" placeholder="请输入需求名称">
+                        <div class="input-group phoneVerification">
+                            <input type="text" name="phone" v-model="form.phone" aria-label="mobile" class="form-control mobile" placeholder="手机号">
+                            <span v-text="phoneErrorMsg" class="form_error"></span>
+                            <input type="text" name="code" v-model="form.code" aria-label="verificationCode" class="form-control verificationCode" placeholder="验证码">
+                            <button class="btn btn-light" type="button" @click="sendClick($event)">获取验证码</button>
+                        </div>
+                        <button class="btn btn-primary btn-publish" @click="subClick($event)" :disabled="isSubmitDisabled">快速发布需求</button>
                 </div>
-                <button type="button" class="btn btn-primary btn-publish">快速发布需求</button>
-            </div>
+            </form>
+
         </div>
     </div>
     <div id="service-box">
@@ -324,96 +163,24 @@
                 <div class="sub-title">易智商城, 品牌优选</div>
                 <div class="swiper-container service-list">
                     <div class="swiper-wrapper">
+                        <template  v-for="(good,index) in chooseGoods">
                         <div class="swiper-slide">
                             <div class="card card-item">
-                                <img src="demo/img.jpg" class="" alt="...">
+                                <img :src="good.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
+                                    <h5 class="card-title"><a :href="good.goodsDetailUrl">{{good.goodsName}}</a></h5>
                                     <div class="d-flex justify-content-between addition">
                                         <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                            <p><i class="iconfont icon-tag"></i>  {{good.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good.shopName}}</p>
                                         </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                        <div class="quoted-price"><span>￥</span>{{good.negotiableFlag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.negotiableFlag==='0'">万</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="card card-item">
-                                <img src="demo/img.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
-                                    <div class="d-flex justify-content-between addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card card-item">
-                                <img src="demo/img.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
-                                    <div class="d-flex justify-content-between addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card card-item">
-                                <img src="demo/img.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
-                                    <div class="d-flex justify-content-between addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card card-item">
-                                <img src="demo/img.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
-                                    <div class="d-flex justify-content-between addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card card-item">
-                                <img src="demo/img.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
-                                    <div class="d-flex justify-content-between addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </template>
+
                     </div>
                 </div>
                 <div class="item-next"><i class="iconfont icon-arrow-right"></i></div>
@@ -421,31 +188,17 @@
             </div>
         </div>
     </div>
+
     <!--企业孵化-->
     <div class="container">
         <div class="main-block block-tabs">
             <div class="main-title">
-                <span>创业孵化</span>
+                <span>{{incubationType.name}}</span>
             </div>
             <div class="sub-title">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">创业咨询</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">创业培训</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">创业活动</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">创业项目策划</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">孵化场地</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">创业资金对接</a>
+                    <li class="nav-item" v-for="incubation in incubationType.children">
+                        <a class="nav-link" href="#">{{incubation.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -458,126 +211,24 @@
                     <a class="btn btn-outline-light" href="#">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
                 </div>
                 <div class="row row-cols-4">
-                    <div class="col">
+
+                    <div class="col" v-for="good_incubation in incubationTypeList">
                         <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
+                            <img :src="good_incubation.goodsImg.url" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><a href="#">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</a></h5>
+                                <h5 class="card-title"><a :href="good_incubation.goodsDetailUrl">{{good_incubation.goodsName}}</a></h5>
                                 <div class="addition">
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                        <p><i class="iconfont icon-tag"></i>  {{good_incubation.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>
                                     </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                    <div class="quoted-price"><span>￥</span>{{good_incubation.negotiableFlag | formatPrice2(good_incubation.price, good_incubation.minPrice, good_incubation.maxPrice)}}<span v-if="good_incubation.negotiableFlag==='0'">万</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -587,24 +238,12 @@
         <div class="container">
             <div class="main-block block-tabs design-tabs">
                 <div class="main-title">
-                    <span>研发设计</span>
+                    <span>{{designType.name}}</span>
                 </div>
                 <div class="sub-title">
                     <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">网站设计</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">工业设计</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">硬件开发</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">软件开发</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">其他研发设计</a>
+                        <li class="nav-item" v-for="designType in designType.children">
+                            <a class="nav-link" href="#">{{designType.name}}</a>
                         </li>
                     </ul>
                 </div>
@@ -617,131 +256,30 @@
                         <a class="btn btn-outline-light" href="#">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
                     </div>
                     <div class="row row-cols-4">
-                        <div class="col">
+
+                        <div class="col" v-for="good_design in designTypeList">
                             <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
+                                <img :src="good_design.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
+                                    <h5 class="card-title"><a  :href="good_design.goodsDetailUrl">{{good_design.goodsName}}</a></h5>
                                     <div class="addition">
                                         <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                            <p><i class="iconfont icon-tag"></i>  {{good_design.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_design.shopName}}</p>
                                         </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                        <div class="quoted-price"><span>￥</span>{{good_design.negotiableFlag | formatPrice2(good_design.price, good_design.minPrice, good_design.maxPrice)}}<span v-if="good_design.negotiableFlag==='0'">万</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <!--首页通栏广告-->
                 <div class="page-banner">
-                    <a href="#"><img class="img-fluid" src="images/banner1.jpg" alt=""></a>
+                    <template v-for="idx_banner2 in indexBanner02">
+                        <a href="#"><img class="img-fluid" :src="idx_banner2.path" alt=""></a>
+                    </template>
                 </div>
             </div>
 
@@ -751,26 +289,13 @@
     <div class="container">
         <div class="main-block block-tabs test-tabs">
             <div class="main-title">
-                <span>检验检测</span>
+                <span>{{checkType.name}}</span>
             </div>
             <div class="sub-title">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">工程分析</a>
+                    <li class="nav-item" v-for="checkType in checkType.children">
+                        <a class="nav-link" href="#">{{checkType.name}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">食品检测</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">金属材料检测</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">标准认证</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">中式熟化</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="tab-content">
@@ -782,128 +307,23 @@
                     <a class="btn btn-outline-light" href="#">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
                 </div>
                 <div class="row row-cols-4">
-                    <div class="col">
+
+                    <div class="col" v-for="good_checkType in checkTypeList">
                         <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
+                            <img :src="good_checkType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
+                                <h5 class="card-title"><a :href="good_checkType.goodsDetailUrl">{{good_checkType.goodsName}}</a></h5>
                                 <div class="addition">
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                        <p><i class="iconfont icon-tag"></i>  {{good_checkType.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_checkType.shopName}}</p>
                                     </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                    <div class="quoted-price"><span>￥</span>{{good_checkType.negotiableFlag | formatPrice2(good_checkType.price, good_checkType.minPrice, good_checkType.maxPrice)}}<span v-if="good_checkType.negotiableFlag==='0'">万</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -912,24 +332,13 @@
         <div class="container">
             <div class="main-block block-tabs property-tabs">
                 <div class="main-title">
-                    <span>知识产权</span>
+                    <span>{{propertyType.name}}</span>
                 </div>
+
                 <div class="sub-title">
                     <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">知产运营</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">知产运维</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">专利服务</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">商标服务</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">版权知识</a>
+                        <li class="nav-item" v-for="propertyType in propertyType.children">
+                            <a class="nav-link" href="#">{{propertyType.name}}</a>
                         </li>
                     </ul>
                 </div>
@@ -942,126 +351,23 @@
                         <a class="btn btn-outline-light" href="#">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
                     </div>
                     <div class="row row-cols-4">
-                        <div class="col">
+
+                        <div class="col" v-for="good_propertyType in propertyTypeList">
                             <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
+                                <img :src="good_propertyType.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
+                                    <h5 class="card-title"><a :href="good_propertyType.goodsDetailUrl">{{good_propertyType.goodsName}}</a></h5>
                                     <div class="addition">
                                         <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                            <p><i class="iconfont icon-tag"></i>  {{good_propertyType.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_propertyType.shopName}}</p>
                                         </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                        <div class="quoted-price"><span>￥</span>{{good_propertyType.negotiableFlag | formatPrice2(good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}<span v-if="good_propertyType.negotiableFlag==='0'">万</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                 </div>
@@ -1073,26 +379,14 @@
     <div class="container">
         <div class="main-block block-tabs technology-tabs">
             <div class="main-title">
-                <span>科技咨询</span>
+                <span>{{technologyType.name}}</span>
             </div>
+
             <div class="sub-title">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link">战略规划</a>
+                    <li class="nav-item" v-for="technologyType in technologyType.children">
+                        <a class="nav-link" href="#">{{technologyType.name}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">工程技术咨询</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">可行性研究</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">科技法律</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">科技公证</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="tab-content">
@@ -1104,126 +398,23 @@
                     <a class="btn btn-outline-light" href="#">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
                 </div>
                 <div class="row row-cols-4">
-                    <div class="col">
+
+                    <div class="col" v-for="good_technologyType in technologyTypeList">
                         <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
+                            <img :src="good_technologyType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
+                                <h5 class="card-title"><a :href="good_technologyType.goodsDetailUrl">{{good_technologyType.goodsName}}</a></h5>
                                 <div class="addition">
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                        <p><i class="iconfont icon-tag"></i>  {{good_technologyType.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_technologyType.shopName}}</p>
                                     </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                    <div class="quoted-price"><span>￥</span>{{good_technologyType.negotiableFlag | formatPrice2(good_technologyType.price, good_technologyType.minPrice, good_technologyType.maxPrice)}}<span v-if="good_technologyType.negotiableFlag==='0'">万</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-item">
-                            <img src="demo/img1.jpg" class="" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                <div class="addition">
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                        <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                    </div>
-                                    <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -1233,24 +424,13 @@
         <div class="container">
             <div class="main-block block-tabs migrate-tabs">
                 <div class="main-title">
-                    <span>技术转移</span>
+                    <span>{{transferType.name}}</span>
                 </div>
+
                 <div class="sub-title">
                     <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">技术推广</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">科技中介</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">挂牌拍卖</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">技术评估</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">需求对接</a>
+                        <li class="nav-item" v-for="transferType in transferType.children">
+                            <a class="nav-link" href="#">{{transferType.name}}</a>
                         </li>
                     </ul>
                 </div>
@@ -1263,126 +443,23 @@
                         <a class="btn btn-outline-light" href="#">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
                     </div>
                     <div class="row row-cols-4">
-                        <div class="col">
+
+                        <div class="col" v-for="good_transferType in transferTypeList">
                             <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
+                                <img :src="good_transferType.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
+                                    <h5 class="card-title"><a :href="good_transferType.goodsDetailUrl">{{good_transferType.goodsName}}</a></h5>
                                     <div class="addition">
                                         <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
+                                            <p><i class="iconfont icon-tag"></i>  {{good_transferType.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_transferType.shopName}}</p>
                                         </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
+                                        <div class="quoted-price"><span>￥</span>{{good_transferType.negotiableFlag | formatPrice2(good_transferType.price, good_transferType.minPrice, good_transferType.maxPrice)}}<span v-if="good_transferType.negotiableFlag==='0'">万</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-item">
-                                <img src="demo/img1.jpg" class="" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">精选服务标题,第一观察｜春节前总书记进超市传递民生关切</h5>
-                                    <div class="addition">
-                                        <div class="short-text">
-                                            <p><i class="iconfont icon-tag"></i> 服务类型</p>
-                                            <p><i class="iconfont icon-city"></i> 重庆易智网络有限责任公司</p>
-                                        </div>
-                                        <div class="quoted-price"><span>￥</span>3.0 万</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1431,46 +508,11 @@
             </div>
         </div>
     </div>
-    <footer id="page-footer">
-        <div class="container">
-            <div class="friend-links">
-                <div class="linkTilte">友情链接：</div>
-                <div class="link-desc"><a href="http://kjj.cq.gov.cn" target="_blank">重庆市科学技术局</a> <a
-                        href="http://www.liangjiang.gov.cn" target="_blank">重庆市两江新区管委会</a> <a href="http://dsjj.cq.gov.cn"
-                                                                                              target="_blank">重庆市大数据应用发展管理局</a>
-                    <a href="http://dsjj.cq.gov.cn" target="_blank">重庆市大数据应用发展管理局</a> <a href="http://www.cqast.cn"
-                                                                                         target="_blank">重庆市科学技术协会</a> <a
-                            href="http://www.cast.org.cn" target="_blank">重庆市科学技术研究院</a> <a
-                            href="http://www.cqhte.com/index.php" target="_blank">重庆市高新技术企业协会</a> <a
-                            href="http://www.cqsczt.com/scsite/index/index.html" target="_blank">重庆孵化器协会</a> <a
-                            href="http://www.cqhitech.com/" target="_blank">重庆创新方法网</a></div>
-            </div>
-            <div class="webBaseInfo">
-                <div class="bottomLogo"><img src="images/footer-logo.png" alt=""></div>
-                <div class="bottomCode">
-                    <div class="imgBox"><img src="images/footerCode1.jpg" alt="">
-                        <div class="code-text">政策惠小程序</div>
-                    </div>
-                    <div class="imgBox"><img src="images/footerCode2.jpg" alt="">
-                        <div class="code-text">易智动小程序</div>
-                    </div>
-                </div>
-                <div class="bottomTelInfo">
-                    <div class="bottomTel">023-68065626</div>
-                    <div class="bottomWorker">全国免费服务热线(工作日：09:00-17:30)</div>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="link-desc"><a href="#">关于易智网</a> <a href="#">免责声明</a> <a href="#">隐私政策</a> <a href="#">平台协议</a> <a
-                        href="#">联系客服</a></div>
-                <div class="main_copyright"> Copyright © 2019 易智网 版权所有 <a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备09050127号-36</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <web-footer></web-footer>
+
     <div class="tools-right position-fixed">
         <div class="d-flex flex-column">
-            <a href="#">
+            <a href="sub4-footprint.html">
                 <i class="iconfont icon-time"></i>
                 足迹
             </a>
@@ -1478,7 +520,7 @@
                 <i class="iconfont icon-service"></i>
                 客服
             </a>
-            <a href="#">帮助 <br> 中心</a>
+            <a href="sub2-help.html">帮助 <br> 中心</a>
             <a href="#">投诉 <br> 中心</a>
             <a href="#header-bar">
                 <i class="iconfont icon-arrow-up"></i>
@@ -1489,25 +531,5 @@
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="/style/js/mail/index.js"></script>
-<script>
-    var swiper = new Swiper('#home-slider', {
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
-    var swiper = new Swiper('.service-list', {
-        slidesPerView: 4,
-        spaceBetween: 30,
-        navigation: {
-            nextEl: '.item-next',
-            prevEl: '.item-prev',
-        },
-    });
-</script>
 </body>
 </html>

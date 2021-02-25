@@ -118,5 +118,9 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     visitselectShopNum: function (param) {
       return Http.get(httpUrl.baseUrl + '/visit/selectShopNum', param)
     },
+  //    保存足迹
+  saveFootprint: function (param) {
+      return Http.post(httpUrl.baseUrl + '/mailGoodsPrint/save', param)
+  },
   }
 })

@@ -121,6 +121,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               vm.getGoodsStatistics()
               vm.getEvaluateSelectpByPage()
               vm.getorderSelectpByPage()
+              vm.saveFootprint(vm.formData.goodsId)
             } else if (res.code === "msg.shop.info.frozened") {
               vm.$data.isShow = 2;
               vm.selectpByPage()
@@ -490,6 +491,14 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               vm.shopInfo.collectionFlag = '0';
               vm.$dialog.showToast("取消成功")
             }
+          })
+        },
+        /**
+         * 保存足迹
+         */
+        saveFootprint: function (storeId) {
+          this.http.saveFootprint({
+            id: storeId
           })
         }
       }

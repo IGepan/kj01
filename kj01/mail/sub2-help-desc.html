@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>易智网 - 找服务</title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script src="js/swiper-bundle.min.js"></script>
+</head>
+<body class="page-question-details">
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <header id="page-header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col">
+                    <a class="logo" href="./"><img class="img-fluid" src="images/logo.png" alt=""></a>
+                </div>
+                <div class="col-6">
+                    <div class="input-group search-top">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">创业孵化
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">创业孵化</a></li>
+                            <li><a class="dropdown-item" href="#">创业孵化</a></li>
+                            <li><a class="dropdown-item" href="#">创业孵化</a></li>
+                            <li><a class="dropdown-item" href="#">创业孵化</a></li>
+                        </ul>
+                        <input type="text" class="form-control" aria-label="">
+                        <button class="btn btn-link btn-search"><i class="iconfont icon-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="shopping-cart">
+                        <i class="iconfont icon-cart"></i>
+                        购物车
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="help-breadcrumbs help-main">
+        <span>易智商城帮助中心</span>
+    </div>
+    <div class="container">
+        <div class="page-main">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+                 aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="iconfont icon-location"></i> 首页</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="#">易智商城</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="#">帮助中心</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">具体问题文本</li>
+                </ol>
+            </nav>
+            <div class="body-question">
+                <h1>{{detail.title}}</h1>
+                <div class="question-meta-info">最后更新时间: {{detail.updateTime}}</div>
+                <div class="question-body" v-html="detail.content">
+                </div>
+            </div>
+            <div class="question-footer">
+                对答案不满意? 您还可以咨询<a href="#">在线客服</a>, 或者来电咨询<strong>023-68065626</strong>, 小易将竭诚为您服务^_^
+
+            </div>
+        </div>
+
+    </div>
+    <web-footer></web-footer>
+
+    <div class="tools-right position-fixed">
+        <div class="d-flex flex-column">
+            <a href="#">
+                <i class="iconfont icon-time"></i>
+                足迹
+            </a>
+            <a href="#">
+                <i class="iconfont icon-service"></i>
+                客服
+            </a>
+            <a href="#">帮助 <br> 中心</a>
+            <a href="#">投诉 <br> 中心</a>
+            <a href="#header-bar">
+                <i class="iconfont icon-arrow-up"></i>
+                顶部
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/mail/sub2Desc.js"></script>
+</html>
