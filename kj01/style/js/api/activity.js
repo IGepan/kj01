@@ -105,7 +105,7 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     },
     // 获取通用多级树(鉴权)
     getTree: function (param) {
-      return Http.post(httpUrl.baseUrl + '/treeMap/getTree', param);
+      return Http.post(httpUrl.baseUrl + '/treeMapSaas/getTree', param);
     },
     // 统计查询(鉴权)
     statisticsGraph: function (param) {
