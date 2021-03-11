@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>易智网商城 - 服务列表</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/iconfont.css" >
+</head>
+<body class="shop-page">
+<div class="box" id='index_box'>
+
+<ly-toper ref="topbar"></ly-toper>
+
+<header id="page-header" class="shop-header">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col">
+                <a class="logo" href="/mail/index.html"><img class="img-fluid" src="../images/logo.png" alt=""></a>
+            </div>
+            <div class="col-7 d-flex">
+                <div class="input-group search-top">
+                    <input type="text" class="form-control" aria-label="">
+                </div>
+                <button class="btn btn-txt btn-full_site">搜全站</button>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="additional-menu">
+        <div class="container">
+            <div class="store-info d-flex">
+                <span class="store-name">{{shopInfo.shopName}}</span>
+                <span class="icon-item icon-users">
+                <i class="iconfont icon-user"></i>
+            </span>
+                <span class="icon-item icon-safety">
+                <i class="iconfont icon-anquan"></i>
+            </span>
+                <span class="icon-img"></span>
+                <div class="store-mark d-flex">
+                    <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
+                    <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
+                    <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
+                </div>
+                <a class="collection-shop" href="#"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
+            </div>
+        </div>
+    </div>
+<nav class="main-menu shop-menu">
+    <div class="container">
+        <ul class="navbar-nav navbar-dark">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">店铺首页</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">服务列表</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">服务案例</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container shop-main-page">
+    <div class="product-list-wrapper mt-3 pb-3">
+        <div class="toolbar d-flex justify-content-between">
+                <div class="sort">
+                    <ul class="list-inline m-0">
+                        <li class="list-inline-item"><a class="active" href="#">综合排序</a></li>
+                        <!-- "createTime asc"-->
+                        <li class="list-inline-item"><a href="#">时间排序</a></li>
+                        <!--  price asc, minPrice asc-->
+                        <li class="list-inline-item"><a href="#">价格排序</a></li>
+                    </ul>
+                    
+                </div>
+                <div class="filter">已为您筛选 <span>{{total}}</span> 条数据</div>
+            </div>
+        
+        <div class="product-list">
+            <div class="list-item" v-for="(item, i) in goodsList">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="head-image" >
+                            <img class="img-fluid" :src="item.goodsImg.url" alt="" style="width: 180px;height: 179px">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="list-item-body">
+                            <h2 class="name"><a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode">{{item.goodsName}}</a></h2>
+                            <div class="price-box">
+                                <span>价格:</span>
+                                <span class="price">{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</span>
+                            </div>
+                            <ul class="list-inline extra-info">
+                                <li class="list-inline-item">服务类型：<span>{{item.typeName}}</span></li>
+                                <li class="list-inline-item">服务单位：<span>{{item.shopName}}</span></li>
+                                <li class="list-inline-item">更新时间：<span>{{item.publishDate}}</span></li>
+                            </ul>
+                            <a class="follow" href="#"><i class="iconfont icon-favorite"></i> ({{item.collectCount}})</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="pager" v-cloak>
+            <a @click='pageClick(1)'>[首页]</a>
+            <a @click='pageClick(formData.pageNum - 1)'>[上一页]</a>
+            <a @click='pageClick(item)' v-for='item in pages' v-text='item' :class="{active: item == formData.pageNum}"
+               v-if='isShowPage(item)'></a>
+            <a v-if='isMore()'>...</a>
+            <a @click='pageClick(formData.pageNum + 1)'>[下一页]</a>
+            <a @click='pageClick(pages)'>[末页]</a>
+            <span>[共<span v-text='pages'></span>页]</span>
+        </div>
+    </div>
+</div>
+<footer id="shop-footer">
+    <div class="container">
+        <div class="links d-flex justify-content-center">
+            <a href="#">联系方式</a>
+            <a href="#">网站地图</a>
+            <a href="#">隐私政策</a>
+            <a href="#">法律声明</a>
+            <a href="#">知识产权</a>
+        </div>
+        <div class="copyright text-center text-muted">
+            Copyright 2017 - 2019 易智网 版权所有 渝ICP备09050127号-36
+        </div>
+        <div class="footer-bottom d-flex justify-content-center">
+            <img src="images/footer-img1.png" alt="">
+            <img class="" src="images/footer-img2.png" alt="">
+        </div>
+    </div>
+</footer>
+
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/mail/shop/storeList.js"></script>
+</body>
+</html>

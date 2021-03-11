@@ -3,7 +3,7 @@
  */
 define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, httpUrl, Http) {
     return {
-        //商城统计基本信息
+        //商城统计,基本信息
         mailSiteDetail: function () {
             return Http.get(httpUrl.baseUrl + '/mailSite/selectMailSite');
         },
@@ -35,10 +35,13 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
         selectMailGoodsPrint: function (param) {
             return Http.post(httpUrl.baseUrl + '/mailGoodsPrint/selectByPage', param);
         },
-        //
+        //删除足迹
         deleteGoodsPrint: function (param) {
             return Http.post(httpUrl.baseUrl + '/mailGoodsPrint/delete', param);
         },
-
+        //提交投诉
+        saveMailFeedback: function (param) {
+            return Http.post(httpUrl.baseUrl + '/mailFeedback/save', param);
+        },
     }
 })

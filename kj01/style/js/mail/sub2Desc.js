@@ -16,7 +16,8 @@ require(['/common/js/require.config.js'], function () {
                 mounted: function () {
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
+                    'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'index-head': httpVueLoader('/style/components/index_head.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),

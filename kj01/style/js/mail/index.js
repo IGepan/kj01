@@ -2,7 +2,7 @@
 require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate','img_captcha','httpLogin'],
         function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl,validate,captcha,httpLogin) {
-            new Vue({
+            window.vueDom= new Vue({
                 el: '#index_box',
                 data: {
                     saasId: '',
@@ -36,13 +36,17 @@ require(['/common/js/require.config.js'], function () {
                     isPhoneError: false,
                     isShowDialog: false,
                     isSubmitDisabled: false,
+                    isDisabled: false,
+                    codeTime: 60,
+                    codeBtnText: '发送验证码',
                     form: {
                         phone: '',
                         content:'',
                         token: '',
                         code: '',
                     },
-                },
+                    title:''
+                    },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
                         if(flag === '1') {
@@ -61,12 +65,14 @@ require(['/common/js/require.config.js'], function () {
                 mounted: function () {
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
-                    'index-head': httpVueLoader('/style/components/index_head.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
+                    'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
+                    'index-head': httpVueLoader('/style/components/index_head.vue'),
+                    'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
                 },
                 created: function () {
+
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
                     this.getMailSiteDetail();
@@ -103,7 +109,7 @@ require(['/common/js/require.config.js'], function () {
                 methods: {
                     getMailSiteDetail: function () {
                         var vm = this
-                        indexApi.mailSiteDetail().then(function (res) {
+                        vm.$httpCom.mailSiteDetail().then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.mailSite = res.result
                             }
@@ -218,40 +224,26 @@ require(['/common/js/require.config.js'], function () {
                                 }
                             },
                             submitHandler: function (form, event) {
-                                debugger
                                 event.preventDefault() //阻止form表单默认提交
                                 vm.demandSubmit();
                             }
                         })
                     },
                     /**
-                     * 校验手机
-                     */
-                    validatePhone: function () {
-                        var phone = this.form.phone;
-                        this.isPhoneError = false;
-                        this.phoneErrorMsg = ''
-                        // 空校验
-                        if (phone == '') {
-                            this.isPhoneError = true;
-                            this.phoneErrorMsg = '请输入手机号';
-                        }
-                        // 格式校验
-                        if (!(/^1[345678]\d{9}$/.test(phone))) {
-                            this.isPhoneError = true;
-                            this.phoneErrorMsg = '请输入正确的手机号';
-                        } else {
-
-                        }
-                    },
-                    /**
                      * 发送短信
                      */
                     sendClick: function (event) {
                         event.preventDefault() //阻止form表单默认提交
-                        this.validatePhone();
-                        if (this.isPhoneError) {
-                            return;
+                        var phone = this.form.phone;
+
+                        if (phone == '') {
+                            this.$message.error('请输入正确的手机号');
+                            return
+                        }
+                        // 格式校验
+                        if (!(/^1[345678]\d{9}$/.test(phone))) {
+                            this.$message.error('请输入正确的手机号');
+                            return
                         }
                         this.isShowDialog = true;
                         var vm = this;
@@ -314,19 +306,33 @@ require(['/common/js/require.config.js'], function () {
                         var param = JSON.parse(JSON.stringify(vm.form));
                         !vm.isSubmitDisabled && (this.isSubmitDisabled = true,
                                 indexApi.saveMailDemand(param).then(function (data) {
-                                    debugger
                                     if (data.code == 'rest.success') {
-                                        vm.$dialog.showToast('发布成功');
+                                        vm.$message({
+                                            message: '发布成功',
+                                            type: 'success'
+                                        });
                                         vm.form={}
                                         vm.isSubmitDisabled = false
                                     } else {
                                         vm.isSubmitDisabled = false
-                                        vm.$dialog.showToast(data.desc);
+                                        vm.$message.error(data.desc);
+
                                     }
                                 }).catch(function () {
                                     vm.isSubmitDisabled = false
                                 })
                         )
+                    },
+                    handelSearch:function () {
+                        location.href='/mail/sub1.html?title='+this.title
+                    },
+                    goCart:function () {
+                        location.href='/common/servicetrade/shopping_cart.html'
+                    },
+                    toLink:function (url){
+                        if (url){
+                            location.href=url
+                        }
                     }
                 }
             });

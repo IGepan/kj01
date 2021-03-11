@@ -54,6 +54,14 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     selectpByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/goods/selectpByPage', param)
     },
+      /**
+       * 易智商城店铺商品列表
+       * @param param
+       * @returns {*|void}
+       */
+    selectByMailShopPage: function (param) {
+        return Http.post(httpUrl.baseUrl + '/mailGoods/selectByShopPage', param)
+    },
 		/**
 		 * 根据模板主键取得模板可动态变更属性及【用户已经设定的默认值】(鉴权)
 		 */

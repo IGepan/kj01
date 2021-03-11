@@ -11,6 +11,8 @@ require(['/common/js/require.config.js'], function () {
                         pageNum:1
                     },
                     footList:[],
+                    show:false,
+                    pages: ''
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -30,10 +32,12 @@ require(['/common/js/require.config.js'], function () {
                 mounted: function () {
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
+                    'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'index-head': httpVueLoader('/style/components/index_head.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
+                    'pages': httpVueLoader('/style/components/pages.vue')
                 },
                 created: function () {
                     //查询足迹
@@ -44,36 +48,67 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         indexApi.selectMailGoodsPrint(this.formData).then(function (res) {
                             if (res.code === 'rest.success') {
-                                vm.footList=res.result
+                                vm.footList = res.result
+                                vm.$data.pages = res.result.pageInfo || ''
                             }
                         })
                     },
                     handelRemove: function (id) {
                         var vm = this
-                        var ids=new Array(id);
-                        indexApi.deleteGoodsPrint({id:ids}).then(function (res) {
-                            if (res.code === 'rest.success') {
-                                //TODO 移除动画
+                        var ids = new Array(id);
+                        for (var i = 0; i < vm.footList.list.length; i++) {
+                            for (var j = 0; j < vm.footList.list[i].datalist.length; j++) {
+                                var data = vm.footList.list[i].datalist[j]
+                                if (data.id === id) {
+                                    vm.footList.list[i].datalist.splice(j, 1)
+                                    if (vm.footList.list[i].datalist.length == 0) {
+                                        vm.footList.list.splice(i, 1)
+                                    }
+                                }
                             }
-                        })
+                        }
                     },
-                    handelMore:function (){
+                    handelMore: function () {
                         var vm = this
-                        if (vm.footList.hasNextPage){
-                            this.formData.pageNum=++this.formData.pageNum
+                        if (vm.footList.hasNextPage) {
+
                             indexApi.selectMailGoodsPrint(this.formData).then(function (res) {
                                 if (res.code === 'rest.success') {
-                                    //TODO 优化 时间相同的合并
                                     for (var i = 0; i < res.result.list.length; i++) {
-                                        vm.footList.list.push(res.result.list[i])
+                                        if (vm.footList.list.length == 0) {
+                                            vm.footList.list.push(res.result.list[i])
+                                            return;
+                                        }
+                                        var group = res.result.list[i].date
+                                        var last = vm.footList.list[vm.footList.list.length - 1].date
+                                        if (group === last) {
+                                            for (var j = 0; j < res.result.list[i].datalist.length; j++) {
+                                                vm.footList.list[vm.footList.list.length - 1].datalist.push(res.result.list[i].datalist[j])
+                                            }
+                                        } else {
+                                            vm.footList.list.push(res.result.list[i])
+                                        }
                                     }
+                                    vm.$data.pages = res.result.pageInfo || ''
                                     vm.footList.hasNextPage = res.result.hasNextPage
 
                                 }
                             })
                         }
 
-                    }
+                    },
+                    // 移入
+                    mouseOver() {
+                        this.show = true
+                    },
+                    // 移出
+                    mouseLeave() {
+                        this.show = false
+                    },
+                    bindPageChange: function (e) {
+                        this.formData.pageNum = e
+                        this.handelMore()
+                    },
                 }
             });
         })
