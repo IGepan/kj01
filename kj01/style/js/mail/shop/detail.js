@@ -289,6 +289,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             if (res.code === 'rest.success') {
                                 vm.$dialog.showToast("加入购物车成功")
                                 vm.updateCartInfo();
+                            }else {
+                                vm.$dialog.showToast(res.desc)
                             }
                         })
                     } else {
