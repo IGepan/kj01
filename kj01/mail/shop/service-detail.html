@@ -6,14 +6,12 @@
     <meta name="renderer" content="webkit">
     <title>易智网商城 - 案例</title>
 
-
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/iconfont.css">
     <link href="/common/css/main.css" rel="stylesheet" type="text/css">
-
 </head>
 <body class="shop-page">
 <div class="box" id='index_box'>
@@ -21,11 +19,10 @@
     <header id="page-header" class="shop-header">
         <ly-header :http="httpCom"></ly-header>
     </header>
-
     <div class="additional-menu">
         <div class="container">
             <div class="store-info d-flex">
-                <span class="store-name">重庆科技服务大市场有限公司</span>
+                <span class="store-name">{{shopInfo.shopName}}</span>
                 <span class="icon-item icon-users">
                 <i class="iconfont icon-user"></i>
             </span>
@@ -34,9 +31,9 @@
             </span>
                 <span class="icon-img"></span>
                 <div class="store-mark d-flex">
-                    <div class="star">服务 <span>4.9</span></div>
-                    <div class="star">速度 <span>4.9</span></div>
-                    <div class="star">质量 <span>4.9</span></div>
+                    <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
+                    <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
+                    <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
                 </div>
                 <a class="collection-shop" href="#"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
             </div>
