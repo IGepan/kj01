@@ -86,6 +86,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     orderSelectpByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/order/selectpByPage', param)
     },
+      // 当前店铺成交明细单个详情
+      selectOrderDetail: function (param) {
+          return Http.post(httpUrl.baseUrl + '/order/selectOrderDetail', param)
+      },
     // 店铺评论
     commentSelectpByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/evaluate/shop/selectpByPage', param)

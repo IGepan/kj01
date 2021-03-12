@@ -22,19 +22,7 @@
 <div class="box" id='index_box'>
     <ly-toper ref="topbar"></ly-toper>
     <header id="page-header" class="shop-header">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col">
-                    <a class="logo" href="/mail/index.html"><img class="img-fluid" src="../images/logo.png" alt=""></a>
-                </div>
-                <div class="col-7 d-flex">
-                    <div class="input-group search-top">
-                        <input type="text" class="form-control" aria-label="">
-                    </div>
-                    <button class="btn btn-txt btn-full_site">搜全站</button>
-                </div>
-            </div>
-        </div>
+        <ly-header  :http="httpCom"></ly-header>
     </header>
     <div class="additional-menu">
         <div class="container">
@@ -66,7 +54,7 @@
                     <a class="nav-link active" :href="'list.html?code='+shopCode">服务列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">服务案例</a>
+                    <a class="nav-link":href="'/mail/shop/service.html?code='+shopCode">服务案例</a>
                 </li>
             </ul>
         </div>

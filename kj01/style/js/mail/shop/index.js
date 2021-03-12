@@ -231,7 +231,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           })
         },
         toList (code) {
-          var url = 'list.html?id=' + this.getType(code);
+          debugger
+          var url = 'list.html?code='+this.shopCode
           this.$utils.openNewTable(url);
         },
         jumpTo (o) {
