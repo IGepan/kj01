@@ -41,6 +41,19 @@
                       <li><a :href="'sub2-help-desc.html?id='+ helpBuy.id">{{helpBuy.title}}</a></li>
                     </template>
                 </ul>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                    <a @click='pageClick(1)'>[首页]</a>
+                    <a @click='pageClick(formBuyData.pageNum - 1)'>[上一页]</a>
+                    <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                       :class="{active: item == formBuyData.pageNum}" v-if='isShowPage(item)'></a>
+                    <a v-if='isMore()'>...</a>
+                    <a @click='pageClick(formBuyData.pageNum + 1)'>[下一页]</a>
+                    <a @click='pageClick(pages)'>[末页]</a>
+                    <span>[共<span v-text='pages'></span>页]</span>
+                    <span>[共<span v-text='sumEv'></span>条]</span>
+                </div>
+                <!--/分页-->
             </div>
             <div class="tab-pane fade" id="seller" role="tabpanel" aria-labelledby="seller-tab">
                 <ul class="list-unstyled">
@@ -48,6 +61,19 @@
                         <li><a :href="'sub2-help-desc.html?id='+ helpSell.id">{{helpSell.title}}</a></li>
                     </template>
                 </ul>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                    <a @click='pageClickSell(1)'>[首页]</a>
+                    <a @click='pageClickSell(formSellData.pageNum - 1)'>[上一页]</a>
+                    <a @click='pageClickSell(item)' v-for='item in pagesSell' v-text='item'
+                       :class="{active: item == formSellData.pageNum}" v-if='isShowPageSell(item)'></a>
+                    <a v-if='isMoreSell()'>...</a>
+                    <a @click='pageClickSell(formBuyData.pageNum + 1)'>[下一页]</a>
+                    <a @click='pageClickSell(pagesSell)'>[末页]</a>
+                    <span>[共<span v-text='pagesSell'></span>页]</span>
+                    <span>[共<span v-text='sumEvSell'></span>条]</span>
+                </div>
+                <!--/分页-->
             </div>
         </div>
     </div>

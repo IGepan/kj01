@@ -39,20 +39,19 @@
     <div class="container" >
         <div class="recording service-list">
 
-                <div v-for="foot in footList.list"
-                    >
+                <div v-for="foot in footList.list">
                     <div class="title"><span>{{foot.date}}</span></div>
                     <div class="row row-cols-5">
                         <div :class="'col_'+fo.id"  v-for="(fo,index) in foot.datalist"  @mouseover="mouseOver"  @mouseleave="mouseLeave">
                             <div class="card card-item" v-bind:class="{'offShelf': fo.upperShelfflag==='0' }">
                                 <img :src="fo.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="#">{{fo.goodsName}}</a></h5>
+                                    <h5 class="card-title"><a :href="'/mail/shop/detail.html?id='+fo.goodId+'&code='+fo.shopCode">{{fo.goodsName}}</a></h5>
                                     <div class="addition">
                                         <div class="quoted-price"><span>￥</span>{{fo.negotiableFlag | formatPrice2(fo.price, fo.minPrice, fo.maxPrice)}}<span v-if="fo.negotiableFlag==='0'">万</span></div>
                                     </div>
                                 </div>
-                                <a v-show="show" class="btn-del" href="#" @click="handelRemove(fo.id)"><i class="iconfont icon-delete"></i></a>
+                                <a v-show="show" class="btn-del"  @click="handelRemove(fo.id)"><i class="iconfont icon-delete"></i></a>
                                 <template v-if="fo.upperShelfflag==='0'" >
                                     <div class="off-tag">商品已下架</div>
                                 </template>

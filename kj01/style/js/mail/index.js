@@ -1,8 +1,8 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate','img_captcha','httpLogin'],
-        function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl,validate,captcha,httpLogin) {
-            window.vueDom= new Vue({
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
+        function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
+            window.vueDom = new Vue({
                 el: '#index_box',
                 data: {
                     saasId: '',
@@ -10,24 +10,24 @@ require(['/common/js/require.config.js'], function () {
                     mailServiceTypeList: [],
                     incubationTypeList: [],
                     designTypeList: [],
-                    checkTypeList:[],
-                    propertyTypeList:[],
-                    technologyTypeList:[],
-                    transferTypeList:[],
+                    checkTypeList: [],
+                    propertyTypeList: [],
+                    technologyTypeList: [],
+                    transferTypeList: [],
                     incubationType: {},
                     designType: [],
-                    checkType:[],
-                    propertyType:[],
-                    technologyType:[],
-                    transferType:[],
+                    checkType: [],
+                    propertyType: [],
+                    technologyType: [],
+                    transferType: [],
                     indexBanner: [],
-                    indexBanner02:[],
+                    indexBanner02: [],
                     //精选服务
                     chooseGoods: [],
                     goodFormData: {
                         chosenFlag: '',
                         pageSize: '',
-                        type:''
+                        type: ''
                     },
                     contentErrorMsg: '',
                     phoneErrorMsg: '',
@@ -41,20 +41,21 @@ require(['/common/js/require.config.js'], function () {
                     codeBtnText: '发送验证码',
                     form: {
                         phone: '',
-                        content:'',
+                        content: '',
                         token: '',
                         code: '',
                     },
-                    title:''
-                    },
+                    title: '',
+                    userInfo: {},
+                },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
-                        if(flag === '1') {
+                        if (flag === '1') {
                             return '面议'
                         } else {
-                            if(typeof v !== 'undefined') {
+                            if (typeof v !== 'undefined') {
                                 return (v / 10000).toFixed(2)
-                            } else if(!v && !m) {
+                            } else if (!v && !m) {
                                 return (n / 10000).toFixed(2)
                             } else {
                                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
@@ -78,33 +79,37 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailSiteDetail();
                     this.getMailServiceType();
                     //首页banner
-                    this.getBanner('01', 'indexBanner',10);
+                    this.getBanner('01', 'indexBanner', 10);
                     //广告2
-                    this.getBanner('02', 'indexBanner02',1);
+                    this.getBanner('02', 'indexBanner02', 1);
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
                     this.goodFormData.pageSize = 10;
                     this.getMailGoods('chooseGoods')
                     //创业孵化
-                    this.goodFormData={}
+                    this.goodFormData = {}
                     this.goodFormData.pageSize = 8;
-                    this.goodFormData.type='341963394375553024';
+                    this.goodFormData.type = '341963394375553024';
                     this.getMailGoods('incubationTypeList')
                     //研发设计
-                    this.goodFormData.type='342997980492664832';
+                    this.goodFormData.type = '342997980492664832';
                     this.getMailGoods('designTypeList')
                     //技术转移
-                    this.goodFormData.type='351006313468203008';
+                    this.goodFormData.type = '351006313468203008';
                     this.getMailGoods('transferTypeList')
                     //检验检测
-                    this.goodFormData.type='351006150943117312';
+                    this.goodFormData.type = '351006150943117312';
                     this.getMailGoods('checkTypeList')
                     //知识产权
-                    this.goodFormData.type='351006229049446400';
+                    this.goodFormData.type = '351006229049446400';
                     this.getMailGoods('propertyTypeList')
                     //科技咨询
-                    this.goodFormData.type='351006275161624576';
-                    this.getMailGoods('technologyTypeList')
+                    this.goodFormData.type = '351006275161624576';
+                    this.getMailGoods('technologyTypeList');
+                    // cookie用户信息
+                    (this.userInfo = JSON.parse(
+                        this.$utils.getCookie("USER_INFO")
+                    ));
                 },
                 methods: {
                     getMailSiteDetail: function () {
@@ -121,11 +126,11 @@ require(['/common/js/require.config.js'], function () {
                             if (res.code === 'rest.success') {
                                 vm.mailServiceTypeList = res.result
                                 //创业孵化
-                                vm.incubationType=res.result.filter(function (s) {
-                                        return s.id == '341963394375553024';
+                                vm.incubationType = res.result.filter(function (s) {
+                                    return s.id == '341963394375553024';
                                 })[0];
                                 //研发设计
-                                vm.designType =  res.result.filter(function (s) {
+                                vm.designType = res.result.filter(function (s) {
                                     return s.id == '342997980492664832';
                                 })[0];
                                 //检验检测
@@ -147,7 +152,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
-                    getBanner: function (bannerType, key,pageSize) {
+                    getBanner: function (bannerType, key, pageSize) {
                         var vm = this
                         indexApi.selectBanner({bannerType: bannerType, pageSize: pageSize}).then(function (res) {
                             if (res.code === 'rest.success') {
@@ -187,13 +192,12 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     //取出指定类型
-                    getSomeType: function (id, dataKey,typeList) {
-                        debugger
+                    getSomeType: function (id, dataKey, typeList) {
                         var vm = this
-                       let filter = typeList.filter(function (s) {
+                        let filter = typeList.filter(function (s) {
                             return s.id == id;
                         });
-                        vm.$data[dataKey] =filter;
+                        vm.$data[dataKey] = filter;
                     },
                     /**
                      * 点击发布
@@ -273,7 +277,7 @@ require(['/common/js/require.config.js'], function () {
                         vm.isShowDialog = false;
                         vm.isDisabled = true
                         this.captchaData = captchaData;
-                    // 发短信滑块验证
+                        // 发短信滑块验证
                         httpLogin.sendCaptchaCode({
                             validateSrc: this.form.phone,
                             businessType: dic.businessType.BUSINESS_TYPE_010,
@@ -311,7 +315,7 @@ require(['/common/js/require.config.js'], function () {
                                             message: '发布成功',
                                             type: 'success'
                                         });
-                                        vm.form={}
+                                        vm.form = {}
                                         vm.isSubmitDisabled = false
                                     } else {
                                         vm.isSubmitDisabled = false
@@ -323,17 +327,37 @@ require(['/common/js/require.config.js'], function () {
                                 })
                         )
                     },
-                    handelSearch:function () {
-                        location.href='/mail/sub1.html?title='+this.title
+                    handelSearch: function () {
+                        location.href = '/mail/sub1.html?title=' + this.title
                     },
-                    goCart:function () {
-                        location.href='/common/servicetrade/shopping_cart.html'
+                    goCart: function () {
+                        location.href = '/common/servicetrade/shopping_cart.html'
                     },
-                    toLink:function (url){
-                        if (url){
-                            location.href=url
+                    toLink: function (url) {
+                        if (url) {
+                            location.href = url
                         }
-                    }
+                    },
+                    fwsClic2: function () {
+
+                        if (this.userInfo.userTypes) {
+                            for (var it of this.userInfo.userTypes) {
+                                if (it === "002") {
+                                    this.isSeller = true;
+                                }
+                            }
+                        }
+
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html";
+                            return;
+                        }
+                        if (this.isSeller) {
+                            window.location.href = "/common/seller/index.html";
+                        } else {
+                            window.location.href = "/common/seller/store_agreement.html";
+                        }
+                    },
                 }
             });
         })

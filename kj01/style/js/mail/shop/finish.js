@@ -130,6 +130,45 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           })
         },
+        /**
+         * 收藏点击
+         */
+        colSelectedClick: function (info) {
+          if (info.collectionFlag === '1') {
+            this.collectionCancel(info.shopId);
+          } else {
+            this.colSelected(info.shopId);
+          }
+        },
+        /**
+         * 收藏
+         */
+        colSelected: function (storeId) {
+          var vm = this;
+          this.http.selected({
+            storeId: storeId,
+            type: '02'
+          }).then(function (res) {
+            if (res.code == 'rest.success') {
+              vm.shopInfo.collectionFlag = '1';
+              vm.$dialog.showToast("收藏成功")
+            }
+          })
+        },
+        /**
+         * 取消收藏
+         */
+        collectionCancel: function (storeId) {
+          var vm = this;
+          this.http.cancel({
+            goodsId: storeId
+          }).then(function (res) {
+            if (res.code == 'rest.success') {
+              vm.shopInfo.collectionFlag = '0';
+              vm.$dialog.showToast("取消成功")
+            }
+          })
+        },
       }
     })
   })

@@ -54,11 +54,15 @@ require(['/common/js/require.config.js'], function () {
                     var title = this.$utils.getReqStr('title');
                     var type = this.$utils.getReqStr('type');
 
-                    this.searchForm.title=title
-                    this.searchForm.type=type
-                    this.getMailGoods()
-                    this.getDicList(this.dicOptsSet)
-                    this.getMailServiceType()
+                    this.searchForm.title=title;
+                    this.searchForm.type=type;
+                    this.getMailGoods();
+                    this.getDicList(this.dicOptsSet);
+                    this.getMailServiceType();
+                        // cookie用户信息
+                        this.userInfo = JSON.parse(
+                            this.$utils.getCookie("USER_INFO")
+                        );
                 },
                 methods: {
                     handleSearchForm: function (e){
@@ -171,7 +175,26 @@ require(['/common/js/require.config.js'], function () {
                                 vm.$data.pages = res.result || ''
                             }
                         })
-                    }
+                    },
+                    fwsClick2: function () {
+                        if (this.userInfo.userTypes) {
+                            for (var it of this.userInfo.userTypes) {
+                                if (it === "002") {
+                                    this.isSeller = true;
+                                }
+                            }
+                        }
+
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html";
+                            return;
+                        }
+                        if (this.isSeller) {
+                            window.location.href = "/common/seller/index.html";
+                        } else {
+                            window.location.href = "/common/seller/store_agreement.html";
+                        }
+                    },
                 }
             });
         })
