@@ -55,30 +55,66 @@
     <div class="shop-banner" :style="'background-image: url('+shopInfo.banner+');'">
         <!--<img class="img-fluid" src="demo/banner.jpg" alt="">-->
     </div>
+        <div class="container product-off-shelf" v-if="isShow === 0">
+            <div class="content">
+                <div class="d-flex justify-content-center off-block">
+                    <i class="iconfont icon-sad"></i>
+                    <div class="text">
+                        <h2>很抱歉，您查看的商品已下架。</h2>
+                        <p>您可以：</p>
+                        <p>1、联系卖家找找商品。</p>
+                        <p>2、在顶部搜索框重新输入关键词进行搜索。</p>
+                    </div>
+                </div>
+                <div class="block block-product">
+                    <div class="main-title"><span>相似推荐</span></div>
+                    <div class="block-content">
+                        <div class="row row-cols-5">
+                            <div class="col"  v-for="(item, i) in fullList">
+                                <div class="card card-item">
+                                    <a class="img" :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><img :src="item.goodsImgUrl" class="" alt="..."></a>
+                                    <div class="card-body">
+                                        <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
+                                        <div class="quoted-price"><span>￥</span>{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
-<!--    <div class="wids" v-if="detailInfo.imgList && detailInfo.imgList.length">-->
-<!--        <div class="imglist owl-carousel">-->
-<!--            <div v-if="detailInfo.imgList[selectImgIndex].type" class="itemimg">-->
-<!--                <img :src="detailInfo.imgList[selectImgIndex].url" alt="">-->
-<!--                <div class="itemimg-icon" v-if="detailInfo.innovationVouchersList"  v-for="k in detailInfo.innovationVouchersList">-->
-<!--                    <div :title="k.tagValueDisplay"><img-->
-<!--                            :src="k.tagValueLogo || ''" style="height:20px"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div v-else class="itemimg">-->
-<!--                <video controls="" class="mianVideo" autoplay="" name="media">-->
-<!--                    <source :src="detailInfo.imgList[selectImgIndex].url" type="video/mp4">-->
-<!--                </video>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="imgs">-->
-<!--            <img @click="handleImgClick(index)" v-for="(img, index) in detailInfo.imgList" :key="index" :src="img.url"-->
-<!--                 class="sgimg" alt="">-->
-<!--        </div>-->
-<!--    </div>-->
+    </div>
 
-
-    <div class="container shop-main-page">
+    <div class="container product-off-shelf" v-if="isShow === 2">
+        <div class="content">
+            <div class="d-flex justify-content-center off-block">
+                <i class="iconfont icon-sad"></i>
+                <div class="text">
+                    <h2>很抱歉，您查看的店铺被冻结。</h2>
+                    <p>您可以：</p>
+                    <p>1、联系卖家找找商品。</p>
+                    <p>2、在顶部搜索框重新输入关键词进行搜索。</p>
+                </div>
+            </div>
+            <div class="block block-product">
+                <div class="main-title"><span>相似推荐</span></div>
+                <div class="block-content">
+                    <div class="row row-cols-5">
+                        <div class="col"  v-for="(item, i) in fullList">
+                            <div class="card card-item">
+                                <a class="img" :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><img :src="item.goodsImgUrl" class="" alt="..."></a>
+                                <div class="card-body">
+                                    <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
+                                    <div class="quoted-price"><span>￥</span>{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container shop-main-page"  v-if="isShow === 1">
         <div class="product-main-content">
             <div class="row">
                 <div class="col-auto">
