@@ -7,8 +7,8 @@
         </div>
         <div class="col-6">
           <div class="input-group search-top">
-            <el-select v-model="type"  >
-              <el-option
+            <el-select v-model="type" >
+              <el-option class="el-same"
                   v-for="item in mailServiceTypeList"
                   :key="item.id"
                   :label="item.name"

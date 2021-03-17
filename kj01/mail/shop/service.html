@@ -74,6 +74,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+		.star_1{position:inherit;line-height:normal;}
     </style>
 </head>
 <body class="shop-page">
@@ -93,11 +94,11 @@
                 <span class="icon-item icon-safety">
                 <i class="iconfont icon-anquan"></i>
             </span>
-                <span class="icon-img"></span>
+                <!-- <span class="icon-img"></span> -->
                 <div class="store-mark d-flex">
-                    <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
-                    <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
-                    <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
+                    <div class="star star_1">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
+                    <div class="star star_1">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
+                    <div class="star star_1">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
                 </div>
                 <a class="collection-shop" href="#"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
             </div>

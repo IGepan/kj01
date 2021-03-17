@@ -265,6 +265,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                 location.href = '/common/servicetrade/order.html'
                                 vm.$data.shopList = res.result
                             } else {
+								debugger
                                 vm.$dialog.showToast(res.desc)
                             }
                         })
