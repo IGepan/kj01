@@ -28,6 +28,7 @@
         <div class="container">
             <div class="store-info d-flex">
                 <span class="store-name">{{shopInfo.shopName}}</span>
+<<<<<<< HEAD
                 <span class="icon-item icon-users">
                 <i class="iconfont icon-user"></i>
             </span>
@@ -35,12 +36,14 @@
                 <i class="iconfont icon-anquan"></i>
             </span>
                 <!-- <span class="icon-img"></span> -->
+=======
+>>>>>>> 1c3c113e673e7211c000041cc7bae2f90834206a
                 <div class="store-mark d-flex">
                     <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
                     <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
                     <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
                 </div>
-                <a class="collection-shop" href="#"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
+                <a class="collection-shop"  v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'" @click="colSelectedClick(shopInfo)"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
             </div>
         </div>
     </div>
@@ -91,20 +94,18 @@
                 <div class="col-auto">
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="../demo/demo2.jpg" alt=""></div>
-                            <div class="swiper-slide"><img src="../demo/demo2.jpg" alt=""></div>
-                            <div class="swiper-slide"><img src="../demo/demo2.jpg" alt=""></div>
-                            <div class="swiper-slide"><img src="../demo/demo2.jpg" alt=""></div>
+                            <template v-for="(img, index) in detailInfo.imgList" >
+                             <div class="swiper-slide"><img :src="img.url" alt=""></div>
+                            </template>
                         </div>
                         <div class="swiper-button-next swiper-button-white"></div>
                         <div class="swiper-button-prev swiper-button-white"></div>
                     </div>
                     <div class="swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img class="img-fluid" src="../demo/demo2.jpg" alt=""></div>
-                            <div class="swiper-slide"><img class="img-fluid" src="../demo/demo2.jpg" alt=""></div>
-                            <div class="swiper-slide"><img class="img-fluid" src="../demo/demo2.jpg" alt=""></div>
-                            <div class="swiper-slide"><img class="img-fluid" src="../demo/demo2.jpg" alt=""></div>
+                            <template v-for="(imgs, index) in detailInfo.imgList" >
+                             <div class="swiper-slide"><img class="img-fluid" :src="imgs.url" alt="" style="height: 84px;width: 99px"></div>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -128,11 +129,21 @@
                         <div class="num-box d-flex">
                             <span class="txt">购买数量:</span>
                             <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm" type="button" id="min"> -</button>
+                                <button class="btn btn-outline-secondary btn-sm addbtn fl" type="button"  :class="{low: carForm.number === 1}" @click="addNum"> -</button>
                                 <input type="text" id="text_box" class="form-control form-control-sm" placeholder=""
-                                       aria-label="" value="1">
-                                <button class="btn btn-outline-secondary btn-sm" type="button" id="add"> +</button>
+                                       aria-label="" value="1" v-model.number="carForm.number"
+                                       onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" value="1">
+                                <button class="btn btn-outline-secondary btn-sm addnum fl" type="button" id="add" @click="subtractNum"> +</button>
                             </div>
+
+<!--<!                       <div class="input-group">-->
+<!--                            <button class="btn btn-outline-secondary btn-sm addbtn fl" type="button"  :class="{low: carForm.number === 1}" @click="addNum"> -</button>-->
+<!--                            <input type="text"-->
+<!--                                   v-model.number="carForm.number"-->
+<!--                                   onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))">-->
+<!--                            <button class="btn btn-outline-secondary btn-sm addnum fl" type="button" id="add" @click="subtractNum" :class="{low: carForm.number === detailInfo.stock || detailInfo.stock === 0}"> +</button>-->
+<!--                        </div>-->
+
                             <span class="ms-2">件</span>
                         </div>
                         <div class="btn-groups d-flex">
@@ -401,6 +412,8 @@
     </footer>
 
 </div>
+<script src="/common/js/jquery-3.2.1.min.js"></script>
+<script src="/common/js/owl.carousel.2.2.1/owl.carousel.min.js"></script>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="/style/js/mail/shop/detail.js"></script>
 
@@ -437,27 +450,6 @@
         thumbs: {
             swiper: galleryThumbs
         }
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        var t = $("#text_box");
-        $('#min').attr('disabled', true);
-        $("#add").click(function () {
-            t.val(Math.abs(parseInt(t.val())) + 1);
-            if (parseInt(t.val()) != 1) {
-                $('#min').attr('disabled', false);
-            }
-            ;
-        })
-        $("#min").click(function () {
-            t.val(Math.abs(parseInt(t.val())) - 1);
-            if (parseInt(t.val()) == 1) {
-                $('#min').attr('disabled', true);
-            }
-            ;
-        })
-
     });
 </script>
 </body>

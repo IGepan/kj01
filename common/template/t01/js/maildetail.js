@@ -14,7 +14,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     detailType: '',
                     fullList: [],
                     shopCode: '',
-                    serviceType:{},
                     detailInfo: {
                         // upperShelfflag: -1
                     }, // 店铺基本信息
@@ -75,7 +74,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     pages: 1,
                     pageCount: 4,
                     msgInfo: '',
-                    userInfo: null
+                    userInfo: null,
+                    serviceType:[],
                 },
                 watch: {
                     'evaluateForm.hasContentFlag': function () {
@@ -92,7 +92,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 created: function () {
                     this.formData.goodsId = this.evaluateForm.goodsId = this.pid = this.$utils.getReqStr('id');
                     this.shopCode = this.$utils.getReqStr('code');
-                    this.shortCode = this.$utils.getReqStr('shortCode');
                     this.userInfo = JSON.parse(this.$utils.getCookie(dic.locaKey.USER_INFO));
                     this.shopAccess()
                 },
@@ -128,7 +127,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                 vm.$data.isShow = 2;
                                 vm.selectpByPage()
                             } else {
-								debugger
                                 vm.$dialog.showToast(res.desc)
                             }
                         })
@@ -162,39 +160,19 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                             break;
                                     }
                                 })
+                                debugger
                                 res.result.stock = res.result.stock ? res.result.stock : 0
                                 res.result.collectionNum = parseInt(res.result.collectionNum)
                                 res.result.imgList = imgList
                                 res.result.videoList = videoList
                                 res.result.adjunctList = adjunctList
                                 vm.$data.detailInfo = res.result
+                                vm.serviceType=res.result.serviceTypeVo.name.split(',')
                                 vm.carForm.skuId = res.result.skuId
                                 vm.carForm.number = res.result.number ? res.result.number : 1
                                 vm.carForm.goodsId = res.result.id
                                 vm.selectpByPage()
                                 vm.$data.isShow = 1;
-                                vm.serviceType=res.result.serviceTypeVo.name.split(',')
-                                vm.$nextTick(function () {
-                                    var galleryThumbs = new Swiper('.gallery-thumbs', {
-                                        spaceBetween: 10,
-                                        slidesPerView: 4,
-                                        freeMode: true,
-                                        watchSlidesVisibility: true,
-                                        watchSlidesProgress: true,
-                                    });
-                                    var galleryTop = new Swiper('.gallery-top', {
-                                        spaceBetween: 10,
-                                        navigation: {
-                                            nextEl: '.swiper-button-next',
-                                            prevEl: '.swiper-button-prev',
-                                        },
-                                        thumbs: {
-                                            swiper: galleryThumbs
-                                        }
-                                    });
-                                })
-
-
                             } else {
                                 vm.$data.isShow = 0;
                                 if (res.code === 'msg.goods.noUp') {
@@ -252,6 +230,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         })
                     },
                     onLineConsult: function () {
+                        debugger
                         if (this.shopInfo.shopId) {
                             this.$root.$chat_im.connect(this.shopInfo.userId);
                         }
@@ -313,6 +292,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                 if (res.code === 'rest.success') {
                                     vm.$dialog.showToast("加入购物车成功")
                                     vm.updateCartInfo();
+                                }else {
+                                    vm.$dialog.showToast(res.desc)
                                 }
                             })
                         } else {

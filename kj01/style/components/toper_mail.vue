@@ -96,7 +96,7 @@
           </span></div>
       </div>
     </div>
-
+    <chat-im :userinfo="userInfo"></chat-im>
     <div class="c-hover-menu" v-if="userInfo && userInfo.userId">
 
       <div

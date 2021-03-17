@@ -15,16 +15,16 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         filters: [
           {
             value: false,
-            label: '默认排序',
+            label: '综合排序',
             seleced: true
           },
           {
             value: false,
-            label: '发布时间'
+            label: '时间排序'
           },
           {
             value: false,
-            label: '人气'
+            label: '价格排序'
           }
         ],
         categoryCode: '',
@@ -111,16 +111,13 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
           if (i) {
             if (i === 1) {
-              this.formData.order = this.filters[i].value ? '02' : '01'
-              this.formData.orderSales = ''
+              this.formData.orderBy= 'createTime asc'
             }
             if (i === 2) {
-              this.formData.orderSales = this.filters[i].value ? '02' : '01'
-              this.formData.order = ''
+              this.formData.orderBy= 'minPrice asc,price asc'
             }
           } else {
-            this.formData.order = ''
-            this.formData.orderSales = ''
+            this.formData.orderBy =''
           }
           this.selectpByPage()
         },
@@ -211,6 +208,45 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }).then(function (res) {
             if (res.code === 'rest.success') {
               vm.shopInfo = res.result;
+            }
+          })
+        },
+        /**
+         * 收藏点击
+         */
+        colSelectedClick: function (info) {
+          if (info.collectionFlag === '1') {
+            this.collectionCancel(info.shopId);
+          } else {
+            this.colSelected(info.shopId);
+          }
+        },
+        /**
+         * 收藏
+         */
+        colSelected: function (storeId) {
+          var vm = this;
+          this.http.selected({
+            storeId: storeId,
+            type: '02'
+          }).then(function (res) {
+            if (res.code == 'rest.success') {
+              vm.shopInfo.collectionFlag = '1';
+              vm.$dialog.showToast("收藏成功")
+            }
+          })
+        },
+        /**
+         * 取消收藏
+         */
+        collectionCancel: function (storeId) {
+          var vm = this;
+          this.http.cancel({
+            goodsId: storeId
+          }).then(function (res) {
+            if (res.code == 'rest.success') {
+              vm.shopInfo.collectionFlag = '0';
+              vm.$dialog.showToast("取消成功")
             }
           })
         },

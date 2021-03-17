@@ -7,7 +7,7 @@ require(['/common/js/require.config.js'], function () {
                 data: {
                     saasId: '',
                     formData: {
-                        pageSize: 3,
+                        pageSize: 20,
                         pageNum:1
                     },
                     footList:[],
