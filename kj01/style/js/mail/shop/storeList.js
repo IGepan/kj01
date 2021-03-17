@@ -15,16 +15,16 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         filters: [
           {
             value: false,
-            label: '默认排序',
+            label: '综合排序',
             seleced: true
           },
           {
             value: false,
-            label: '发布时间'
+            label: '时间排序'
           },
           {
             value: false,
-            label: '人气'
+            label: '价格排序'
           }
         ],
         categoryCode: '',
@@ -111,16 +111,13 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
           if (i) {
             if (i === 1) {
-              this.formData.order = this.filters[i].value ? '02' : '01'
-              this.formData.orderSales = ''
+              this.formData.orderBy= 'createTime asc'
             }
             if (i === 2) {
-              this.formData.orderSales = this.filters[i].value ? '02' : '01'
-              this.formData.order = ''
+              this.formData.orderBy= 'minPrice asc,price asc'
             }
           } else {
-            this.formData.order = ''
-            this.formData.orderSales = ''
+            this.formData.orderBy =''
           }
           this.selectpByPage()
         },

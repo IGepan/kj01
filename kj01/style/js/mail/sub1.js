@@ -17,6 +17,21 @@ require(['/common/js/require.config.js'], function () {
                     dicOptsSet: [
                         { code: 'price', label: '服务价格', operationType: 'select', childIndex: -1, valueKey: 'price', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
                     ],
+                    filters: [
+                        {
+                            value: false,
+                            label: '综合排序',
+                            seleced: true
+                        },
+                        {
+                            value: false,
+                            label: '时间排序'
+                        },
+                        {
+                            value: false,
+                            label: '价格排序'
+                        }
+                    ],
                     options: {
                         selectOpts: [],
                         searchOpts: [],
@@ -65,9 +80,40 @@ require(['/common/js/require.config.js'], function () {
                         );
                 },
                 methods: {
+                    handleFilter: function (i) {
+                        if (this.filters[i].seleced) {
+                            if (!this.filters[i].value) {
+                                this.filters[i].value = true
+                            } else {
+                                this.filters[i].value = false
+                            }
+                        } else {
+                            this.filters = this.filters.map(function (item, index) {
+                                if (index === i) {
+                                    item.seleced = true
+                                    item.value = true
+                                } else {
+                                    item.seleced = false
+                                    item.value = false
+                                }
+                                return item
+                            })
+                        }
+                        if (i) {
+                            if (i === 1) {
+                                this.searchForm.orderBy= 'createTime asc'
+                            }
+                            if (i === 2) {
+                                this.searchForm.orderBy= 'minPrice asc,price asc'
+                            }
+                        } else {
+                            this.searchForm.orderBy =''
+                        }
+                        this.getMailGoods()
+                    },
                     handleSearchForm: function (e){
                         var vm = this
-                        var dataset = this.getAttributeData(e.target, ['typeid','price','order_by_1','order_by_2','order_by_3']);
+                        var dataset = this.getAttributeData(e.target, ['typeid','price']);
 
                         if (dataset.typeid){
                             this.searchForm.type=dataset.typeid
@@ -76,15 +122,6 @@ require(['/common/js/require.config.js'], function () {
                         if (dataset.price) {
                             this.searchForm.price = dataset.price
                             this.options.selectOpts.price=dataset.price
-                        }
-                        if (dataset.order_by_1) {
-                            this.searchForm.orderBy=dataset.order_by_1
-                        }
-                        if (dataset.order_by_2) {
-                            this.searchForm.orderBy=dataset.order_by_2
-                        }
-                        if (dataset.order_by_3) {
-                            this.searchForm.orderBy=dataset.order_by_3
                         }
 
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
@@ -142,6 +179,20 @@ require(['/common/js/require.config.js'], function () {
                                 vm.options.searchOpts = opts;
                             }
                         })
+                    },
+                    addSelectOpts: function (dataset) {
+                        let flag = -1;
+                        this.options.selectOpts.some(function (item, i) {
+                            if (item.code === dataset.code) {
+                                flag = i;
+                                return true
+                            }
+                        });
+                        if (dataset.value === '-1') {
+                            this.options.selectOpts.splice(flag, 1)
+                        } else {
+                            flag === -1 ? this.options.selectOpts.push(dataset) : (this.options.selectOpts[flag] = dataset)
+                        }
                     },
                     bindPageChange: function (e) {
                         this.$data.searchForm.pageNum = e;

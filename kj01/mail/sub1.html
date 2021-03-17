@@ -79,13 +79,11 @@
                         <template v-for="(optItem, index) in options.searchOpts">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link"  data-bs-toggle="pill"  role="tab"
-                                   aria-controls="tabs-all" aria-selected="false"  :data-price="-1" @click.stop="handleSearchForm">全部</a>
+                                   aria-controls="tabs-all" aria-selected="false"  :data-price="''" @click.stop="handleSearchForm">全部</a>
                             </li>
                             <template v-for="(ducItem, sindex) in optItem.dictIInfos">
                                 <li class="nav-item">
-                                    <a class="nav-link"  @click.stop="handleSearchForm"
-                                      :data-price="ducItem.value"
-                                       href="#">{{ducItem.display}}</a>
+                                    <a class="nav-link"  @click.stop="handleSearchForm" :data-price="ducItem.value" href="#">{{ducItem.display}}</a>
                                 </li>
                             </template>
                         </template>
@@ -95,15 +93,13 @@
             <div class="toolbar d-flex justify-content-between">
                 <div class="filter-current">
                     <span>已选条件:</span>
-                    <a class="cur-item" href="#">企业孵化 <i class="iconfont icon-close"></i></a>
-                    <a class="cur-item" href="#">企业孵化 <i class="iconfont icon-close"></i></a>
-                    <a class="cur-item" href="#">企业孵化 <i class="iconfont icon-close"></i></a>
+<!--                    <a class="cur-item" href="#">企业孵化 <i class="iconfont icon-close"></i></a>-->
                 </div>
                 <div class="sort">
                     <ul class="list-inline m-0">
-                        <li class="list-inline-item"><a href="#" @click.stop="handleSearchForm" data-order_by_1="createTime desc">综合排序</a></li>
-                        <li class="list-inline-item"><a href="#" @click.stop="handleSearchForm" data-order_by_2="createTime asc">时间排序</a></li>
-                        <li class="list-inline-item"><a href="#" @click.stop="handleSearchForm" data-order_by_3="price asc, minPrice asc">价格排序</a></li>
+
+                        <li class="list-inline-item"v-for="(item, i) in filters" :key="i" @click="handleFilter(i)" ><a :class="{active: item.seleced}" href="#" v-text="item.label"></a></li>
+
                         <li class="list-inline-item">已为您筛选 <span v-text="pages.total || 0" ></span> 条数据</li>
                     </ul>
                 </div>
