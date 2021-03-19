@@ -4886,7 +4886,7 @@ textarea.form-control-lg {
         animation: none
     }
 }
-
+.sub-menu .list-group{flex-direction:inherit;}
 .list-group {
     display: flex;
     flex-direction: column;
@@ -4916,10 +4916,10 @@ textarea.form-control-lg {
 .list-group-item {
     position: relative;
     display: block;
-    padding: .5rem 1rem;
+    padding: .5rem .5rem;
     text-decoration: none;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, .125)
+    /*border: 1px solid rgba(0, 0, 0, .125)*/
 }
 
 .list-group-item:first-child {

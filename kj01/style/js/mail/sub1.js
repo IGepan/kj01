@@ -38,7 +38,9 @@ require(['/common/js/require.config.js'], function () {
                         mailServiceTypeList: [],
                     },
                     title:'',
-                    pages: ''
+                    pages: '',
+                    nameList:[],
+                    result: []
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -113,23 +115,39 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handleSearchForm: function (e){
                         var vm = this
-                        var dataset = this.getAttributeData(e.target, ['typeid','price']);
-
-                        if (dataset.typeid){
+                        // const attributeData = this.getAttributeData(e.target, ['typeid','price','name']);
+                        // var dataset = attributeData;
+                        if (e.typeid){
                             this.searchForm.type=dataset.typeid
                             this.options.selectOpts.type=dataset.typeid
                         }
-                        if (dataset.price) {
+                        if (e.price) {
                             this.searchForm.price = dataset.price
                             this.options.selectOpts.price=dataset.price
                         }
-
+                        if(e.name || e.display) {
+                            this.nameList.push(e.name || e.display)
+                            if(this.nameList.length > 0) {vm.uniq(this.nameList)}
+                        }
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.goodList = res.result.list
                                 vm.$data.pages = res.result || ''
                             }
                         })
+                    },
+                    uniq:function(nameList) {
+                        if (nameList.length <= 1) return this.result = nameList
+                        nameList.sort()
+                        this.result = [nameList[0]]
+                        for (let i = 1, len = nameList.length; i < len; i++) {
+                            if (nameList[i] !== nameList[i-1]) this.result.push(nameList[i])
+                        }
+                        // return this.result
+                    },
+                    remove: function (index) {
+                        this.result.splice(index, 1)
+                        this.nameList.splice(index, 1)
                     },
                     getMailGoods: function () {
                         var vm = this
