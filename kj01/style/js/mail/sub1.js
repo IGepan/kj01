@@ -117,16 +117,14 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         // const attributeData = this.getAttributeData(e.target, ['typeid','price','name']);
                         // var dataset = attributeData;
-                        if (e.typeid){
-                            this.searchForm.type=dataset.typeid
-                            this.options.selectOpts.type=dataset.typeid
+                        if (e.value) {
+                            this.searchForm.price = e.value
+                        }else {
+                            this.searchForm.type=e.id
                         }
-                        if (e.price) {
-                            this.searchForm.price = dataset.price
-                            this.options.selectOpts.price=dataset.price
-                        }
+
                         if(e.name || e.display) {
-                            this.nameList.push(e.name || e.display)
+                            this.nameList.push(e)
                             if(this.nameList.length > 0) {vm.uniq(this.nameList)}
                         }
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
@@ -146,8 +144,14 @@ require(['/common/js/require.config.js'], function () {
                         // return this.result
                     },
                     remove: function (index) {
-                        this.result.splice(index, 1)
-                        this.nameList.splice(index, 1)
+                        this.result.splice(index.name||index.display, 1)
+                        this.nameList.splice(index.name||index.display, 1)
+                        if (index.value) {
+                            this.searchForm.price =null
+                        }else {
+                            this.searchForm.type=null
+                        }
+                        this.getMailGoods();
                     },
                     getMailGoods: function () {
                         var vm = this

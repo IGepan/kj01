@@ -93,7 +93,7 @@
                 <div class="filter-current">
                     <span>已选条件:</span>
                     <a v-for="(type,index) in result" :key = "index"
-                       class="cur-item" href="#">{{type}}<i class="iconfont icon-close" @click.stop="remove(index)"></i></a>
+                       class="cur-item" href="#">{{type.name||type.display}}<i class="iconfont icon-close" @click.stop="remove(type)"></i></a>
 
                 </div>
                 <div class="sort">
