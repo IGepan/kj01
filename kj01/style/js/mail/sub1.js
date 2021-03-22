@@ -40,7 +40,9 @@ require(['/common/js/require.config.js'], function () {
                     title:'',
                     pages: '',
                     nameList:[],
-                    result: []
+                    result: [],
+                    ser: [],
+                    pr: []
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -113,19 +115,34 @@ require(['/common/js/require.config.js'], function () {
                         }
                         this.getMailGoods()
                     },
-                    handleSearchForm: function (e){
+                    handleSearchForm: function (e,is){
                         var vm = this
                         // const attributeData = this.getAttributeData(e.target, ['typeid','price','name']);
                         // var dataset = attributeData;
+                        // console.log(e)
                         if (e.value) {
                             this.searchForm.price = e.value
                         }else {
                             this.searchForm.type=e.id
                         }
-
+                        // console.log(this.nameList)
                         if(e.name || e.display) {
-                            this.nameList.push(e)
-                            if(this.nameList.length > 0) {vm.uniq(this.nameList)}
+                            var ser = []
+                            var pr = []
+                            if(is == 'server') {
+                                let list = e
+                                if(this.ser.length>=1) {this.ser = []}
+                                this.ser.push(list)
+                            }
+                            if(is == 'price') {
+                                let list = e
+                                if(this.pr.length>=1) {this.pr = []}
+                                this.pr.push(list)
+                            }
+                            this.result = [...this.ser,...this.pr]
+                            console.log(this.result)
+                        }else {
+                            this.result = []
                         }
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
                             if (res.code === 'rest.success') {
@@ -134,18 +151,11 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
-                    uniq:function(nameList) {
-                        if (nameList.length <= 1) return this.result = nameList
-                        nameList.sort()
-                        this.result = [nameList[0]]
-                        for (let i = 1, len = nameList.length; i < len; i++) {
-                            if (nameList[i] !== nameList[i-1]) this.result.push(nameList[i])
-                        }
-                        // return this.result
-                    },
                     remove: function (index) {
-                        this.result.splice(index.name||index.display, 1)
-                        this.nameList.splice(index.name||index.display, 1)
+                        console.log(index)
+                        this.result.splice(index, 1)
+                        if(index.parentId) {this.ser = []} else {this.pr = []}
+                        // this.nameList.splice(index.name||index.display, 1)
                         if (index.value) {
                             this.searchForm.price =null
                         }else {

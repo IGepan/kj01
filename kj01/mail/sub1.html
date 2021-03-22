@@ -56,9 +56,10 @@
                         <template v-for="(type,index) in options.mailServiceTypeList">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link"  data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
-                                   aria-controls="tabs-1" aria-selected="false"  :data-typeid="type.id"  @click.stop="handleSearchForm(type)" >{{type.name}}</a>
+                                   aria-controls="tabs-1" aria-selected="false"  :data-typeid="type.id"  @click.stop="handleSearchForm(type,'server')" >{{type.name}}</a>
                             </li>
                         </template>
+
                     </ul>
                 </div>
                 <div class="tab-content" id="pills-tabContent">
@@ -66,7 +67,7 @@
                         <div class="tab-pane fade" :id="'tabs-'+type.id" role="tabpanel" aria-labelledby="tabs-1-tab">
                             <ul class="list-inline m-0">
                                 <template v-for="child in type.children">
-                                    <li class="list-inline-item"><a href="#"  :data-typeid="child.id" @click.stop="handleSearchForm(child)" >{{child.name}}</a></li>
+                                    <li class="list-inline-item"><a href="#"  :data-typeid="child.id" @click.stop="handleSearchForm(child,'server')" >{{child.name}}</a></li>
                                 </template>
                             </ul>
                         </div>
@@ -82,7 +83,7 @@
                             </li>
                             <template v-for="(ducItem, index) in optItem.dictIInfos">
                                 <li class="nav-item">
-                                    <a class="nav-link"  @click.stop="handleSearchForm(ducItem)" :data-price="ducItem.value" href="#">{{ducItem.display}}</a>
+                                    <a class="nav-link"  @click.stop="handleSearchForm(ducItem,'price')" :data-price="ducItem.value" href="#">{{ducItem.display}}</a>
                                 </li>
                             </template>
                         </template>
