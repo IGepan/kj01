@@ -289,7 +289,7 @@ require(['/common/js/require.config.js'], function () {
                                 vm.codeBtnText = vm.codeTime;
                                 var interval = setInterval(function () {
                                     vm.codeBtnText--;
-                                    if (vm.codeBtnText == 0) {
+                                    if (vm.codeBtnText <= 0) {
                                         clearInterval(interval);
                                         vm.isDisabled = false
                                         vm.codeBtnText = '发送验证码'
@@ -317,6 +317,7 @@ require(['/common/js/require.config.js'], function () {
                                         });
                                         vm.form = {}
                                         vm.isSubmitDisabled = false
+                                        vm.codeBtnText=0;
                                     } else {
                                         vm.isSubmitDisabled = false
                                         vm.$message.error(data.desc);
