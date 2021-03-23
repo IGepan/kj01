@@ -117,15 +117,11 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handleSearchForm: function (e,is){
                         var vm = this
-                        // const attributeData = this.getAttributeData(e.target, ['typeid','price','name']);
-                        // var dataset = attributeData;
-                        // console.log(e)
                         if (e.value) {
                             this.searchForm.price = e.value
                         }else {
                             this.searchForm.type=e.id
                         }
-                        // console.log(this.nameList)
                         if(e.name || e.display) {
                             var ser = []
                             var pr = []
@@ -140,9 +136,10 @@ require(['/common/js/require.config.js'], function () {
                                 this.pr.push(list)
                             }
                             this.result = [...this.ser,...this.pr]
-                            console.log(this.result)
-                        }else {
-                            this.result = []
+                        }else if (e==='server') {
+                            this.result = [...this.ser=[],...this.pr]
+                        }else if (e==='price'){
+                            this.result = [...this.ser,...this.pr=[]]
                         }
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
                             if (res.code === 'rest.success') {
@@ -153,7 +150,11 @@ require(['/common/js/require.config.js'], function () {
                     },
                     remove: function (index) {
                         console.log(index)
-                        this.result.splice(index, 1)
+                        // this.result.splice(index, 1)
+                        this.result = this.result.filter(function(el) {
+                            return el.id !== index.id;
+                        });
+
                         if(index.parentId) {this.ser = []} else {this.pr = []}
                         // this.nameList.splice(index.name||index.display, 1)
                         if (index.value) {
