@@ -7,7 +7,7 @@ require(['/common/js/require.config.js'], function () {
                 data: {
                     saasId: '',
                     formBuyData: {
-                        pageSize: '20',
+                        pageSize: '21',
                         type:'1',
                         pageNum: 1
                     },
