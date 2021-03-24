@@ -111,7 +111,7 @@
                       </label>
                     </div>
                   </div>
-                  <div class="expitem form_item" v-show="industryChangeShow">
+                  <div class="expitem form_item" v-if="industryChangeShow">
                     <span class="expname"><i>*</i>行业类别：</span>
                     <div>
                       <label class="inline expsltlb" style="line-height: normal;width: 478px;">
@@ -296,13 +296,8 @@
                     </div>
                     <div class="expitem form_item mleft" v-if='isFw'>
                       <span class="expname w218"><i>*</i>服务分类：</span>
-                      <div>
+                      <div class="required" data-valid="custom:typeValid">
                         <label style="line-height: normal;width: 400px;">
-                          <!-- <div class="expslt mySelect" id="field">
-                          </div> -->
-<!--                          <ly-select-level ref="servicesEl" type="service" data-valid="custom:fieldValid"-->
-<!--                            class="select required level" v-model="formData.field" @input="handleServicesInput">-->
-<!--                          </ly-select-level>-->
                           <el-cascader
                                   class="form-item"
                                   clearable
@@ -312,8 +307,8 @@
                                   v-model="formData.typeList"
                           >
                           </el-cascader>
+                          <span ref="servicesMsg" class="vlt form_msg"></span>
                         </label>
-                        <span ref="servicesMsg" class="vlt form_msg"></span>
                       </div>
                     </div>
                     <div class="expitem form_item mleft" v-if='isFw'>

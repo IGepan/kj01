@@ -811,6 +811,16 @@ require(['/common/js/require.config.js'], function () {
             }
           }, 1000)
         },
+        typeValid: function (v, o, callback) {
+          var vm = this
+          setTimeout(function () {
+            if (vm.formData.typeList.length == 0) {
+              callback(o, '服务分类不能为空')
+            } else {
+              callback(o)
+            }
+          }, 1000)
+        },
         goodsSampleValid: function (v, o, callback) {
           if (!this.isCd) {
             callback(o);
