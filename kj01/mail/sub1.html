@@ -71,7 +71,7 @@
                 </div>
                 <div class="tab-content" id="pills-tabContent">
                     <template v-for="(type,index) in options.mailServiceTypeList">
-                        <div class="tab-pane fade" :id="'tabs-'+type.id" role="tabpanel" aria-labelledby="tabs-1-tab">
+                        <div class="tab-pane fade" :class="{active:type.id==parentId,show:type.id==parentId}" :id="'tabs-'+type.id" role="tabpanel" aria-labelledby="tabs-1-tab">
                             <ul class="nav filter-list" >
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link active"  data-bs-toggle="pill"

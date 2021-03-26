@@ -55,8 +55,8 @@ require(['/common/js/require.config.js'], function () {
                     pr: [],
                     active: false,
                     activeAll: true,
-                    activePriceAll:true
-
+                    activePriceAll:true,
+                    parentId:null
 
                 },
                 filters: {
@@ -156,6 +156,7 @@ require(['/common/js/require.config.js'], function () {
                                 this.options.mailServiceTypeList.forEach(function (item, dici) {
                                     if (e.id == item.id) {
                                         item.selected = true
+                                        vm.parentId=e.id;
                                     }
                                     item.children.forEach(function (item2, dici) {
                                         if (e.id == item2.id) {
@@ -182,6 +183,8 @@ require(['/common/js/require.config.js'], function () {
                         } else if (e === 'server') {
                             this.result = [...this.ser = [], ...this.pr]
                             this.isActive = e
+                            vm.parentId=null;
+
                         } else if (e === 'price') {
                             this.result = [...this.ser, ...this.pr = []]
                         }
@@ -215,8 +218,6 @@ require(['/common/js/require.config.js'], function () {
                             vm.activePriceAll = true
 
                         } else {
-
-
                             this.options.mailServiceTypeList.forEach(function (item, dici) {
                                 item.selected = false
                                 item.children.forEach(function (item2, dici) {
@@ -226,7 +227,7 @@ require(['/common/js/require.config.js'], function () {
 
                             })
                             this.searchForm.type = null
-
+                            this.parentId=null
                         }
                         this.getMailGoods();
                     },
@@ -306,6 +307,7 @@ require(['/common/js/require.config.js'], function () {
                                     });
                                     types[0].selected = true
                                     vm.activeAll = false
+                                    vm.parentId=vm.searchForm.type;
                                     vm.result = types
                                 }
                             }
