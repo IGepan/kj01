@@ -55,17 +55,21 @@ module.exports = {
           label: '活动中心',
           url: '/aindex.html'
         },
+        // {
+        //   label: '技术市场',
+        //   url: '/market/index.html'
+        // },
+        // {
+        //   label: '科技服务',
+        //   url: '/service'
+        // },
+        // {
+        //   label: '创新资源',
+        //   url: '/resources'
+        // },
         {
-          label: '技术市场',
-          url: '/market/index.html'
-        },
-        {
-          label: '科技服务',
-          url: '/service'
-        },
-        {
-          label: '创新资源',
-          url: '/resources'
+          label: '易智商城',
+          url: '/mail/index.html'
         },
         {
           label: '全景数据',
@@ -78,11 +82,8 @@ module.exports = {
         {
           label: '关于我们',
           url: '/about.html'
-        },
-        {
-          label: '易智商城',
-          url: '/mail/index.html'
         }
+
       ]
     }
   },
