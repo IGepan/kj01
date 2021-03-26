@@ -1,7 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate','img_captcha','httpLogin'],
-        function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl,validate,captcha,httpLogin) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
+        function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
             new Vue({
                 el: '#index_box',
                 data: {
@@ -10,12 +10,22 @@ require(['/common/js/require.config.js'], function () {
                     goodList: [],
                     searchForm: {
                         pageSize: 10,
-                        type:'',
-                        price:'',
-                        sort:''
+                        type: '',
+                        price: '',
+                        sort: ''
                     },
                     dicOptsSet: [
-                        { code: 'price', label: '服务价格', operationType: 'select', childIndex: -1, valueKey: 'price', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
+                        {
+                            code: 'price',
+                            label: '服务价格',
+                            operationType: 'select',
+                            childIndex: -1,
+                            valueKey: 'price',
+                            valueType: 'string',
+                            isMoreShow: 0,
+                            isMore: 0,
+                            isTop: 0
+                        },
                     ],
                     filters: [
                         {
@@ -37,24 +47,26 @@ require(['/common/js/require.config.js'], function () {
                         searchOpts: [],
                         mailServiceTypeList: [],
                     },
-                    title:'',
+                    title: '',
                     pages: '',
-                    nameList:[],
+                    nameList: [],
                     result: [],
                     ser: [],
                     pr: [],
-
+                    active: false,
+                    activeAll: true,
+                    activePriceAll:true
 
 
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
-                        if(flag === '1') {
+                        if (flag === '1') {
                             return '面议'
                         } else {
-                            if(typeof v !== 'undefined') {
+                            if (typeof v !== 'undefined') {
                                 return (v / 10000).toFixed(2)
-                            } else if(!v && !m) {
+                            } else if (!v && !m) {
                                 return (n / 10000).toFixed(2)
                             } else {
                                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
@@ -72,20 +84,23 @@ require(['/common/js/require.config.js'], function () {
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
                     'pages': httpVueLoader('/style/components/pages.vue')
 
-        },
+                },
                 created: function () {
                     var title = this.$utils.getReqStr('title');
                     var type = this.$utils.getReqStr('type');
 
-                    this.searchForm.title=title;
-                    this.searchForm.type=type;
+
+                    this.searchForm.title = title;
+                    this.searchForm.type = type;
                     this.getMailGoods();
                     this.getDicList(this.dicOptsSet);
                     this.getMailServiceType();
-                        // cookie用户信息
-                        this.userInfo = JSON.parse(
-                            this.$utils.getCookie("USER_INFO")
-                        );
+                    // cookie用户信息
+                    this.userInfo = JSON.parse(
+                        this.$utils.getCookie("USER_INFO")
+                    );
+
+
                 },
                 methods: {
                     handleFilter: function (i) {
@@ -109,45 +124,66 @@ require(['/common/js/require.config.js'], function () {
                         }
                         if (i) {
                             if (i === 1) {
-                                this.searchForm.orderBy= 'createTime asc'
+                                this.searchForm.orderBy = 'createTime asc'
                             }
                             if (i === 2) {
-                                this.searchForm.orderBy= 'minPrice asc,price asc'
+                                this.searchForm.orderBy = 'minPrice asc,price asc'
                             }
                         } else {
-                            this.searchForm.orderBy =''
+                            this.searchForm.orderBy = ''
                         }
                         this.getMailGoods()
                     },
-                    handleSearchForm: function (e,is){
+                    handleSearchForm: function (e, is) {
                         var vm = this
 
 
                         if (e.value) {
                             this.searchForm.price = e.value
-                        }else {
-                            this.searchForm.type=e.id
+                        } else {
+                            this.searchForm.type = e.id
                         }
-                        if(e.name || e.display) {
+                        if (e.name || e.display) {
                             var ser = []
                             var pr = []
-                            if(is == 'server') {
+                            if (is == 'server') {
                                 let list = e
-                                if(this.ser.length>=1) {this.ser = []}
+                                if (this.ser.length >= 1) {
+                                    this.ser = []
+                                }
+                                this.activeAll = false
                                 this.ser.push(list)
-
+                                this.options.mailServiceTypeList.forEach(function (item, dici) {
+                                    if (e.id == item.id) {
+                                        item.selected = true
+                                    }
+                                    item.children.forEach(function (item2, dici) {
+                                        if (e.id == item2.id) {
+                                            item2.selected = true
+                                        }
+                                    });
+                                })
                             }
-                            if(is == 'price') {
+                            if (is == 'price') {
                                 let list = e
-                                if(this.pr.length>=1) {this.pr = []}
+                                if (this.pr.length >= 1) {
+                                    this.pr = []
+                                }
+
+                                vm.options.searchOpts[0].dictIInfos.forEach(function (item, dici) {
+                                    if (e.id == item.id) {
+                                        item.selected = true
+                                    }
+                                })
+                                this.activePriceAll=false
                                 this.pr.push(list)
                             }
-                            this.result = [...this.ser,...this.pr]
-                        }else if (e==='server') {
-                            this.result = [...this.ser=[],...this.pr]
-                            this.isActive=e
-                        }else if (e==='price'){
-                            this.result = [...this.ser,...this.pr=[]]
+                            this.result = [...this.ser, ...this.pr]
+                        } else if (e === 'server') {
+                            this.result = [...this.ser = [], ...this.pr]
+                            this.isActive = e
+                        } else if (e === 'price') {
+                            this.result = [...this.ser, ...this.pr = []]
                         }
 
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
@@ -158,19 +194,38 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     remove: function (index) {
-                        console.log(index)
                         // this.result.splice(index, 1)
-                        this.result = this.result.filter(function(el) {
+                        var vm = this;
+
+                        this.result = this.result.filter(function (el) {
                             return el.id !== index.id;
                         });
 
-                        if(index.parentId) {this.ser = []} else {this.pr = []}
+                        if (index.parentId) {
+                            this.ser = []
+                        } else {
+                            this.pr = []
+                        }
                         // this.nameList.splice(index.name||index.display, 1)
                         if (index.value) {
-                            this.searchForm.price =null
+                            this.searchForm.price = null
+                            vm.options.searchOpts[0].dictIInfos.forEach(function (item, dici) {
+                                    item.selected = false
+                            })
+                            vm.activePriceAll = true
 
-                        }else {
-                            this.searchForm.type=null
+                        } else {
+
+
+                            this.options.mailServiceTypeList.forEach(function (item, dici) {
+                                item.selected = false
+                                item.children.forEach(function (item2, dici) {
+                                    item2.selected = false
+                                });
+                                vm.activeAll = true
+
+                            })
+                            this.searchForm.type = null
 
                         }
                         this.getMailGoods();
@@ -186,7 +241,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getDicList: function (keys) {
                         var vm = this
-                        this.$httpCom.dictList({ dictInfos: keys }).then(function (res) {
+                        this.$httpCom.dictList({dictInfos: keys}).then(function (res) {
                             if (res.code === 'rest.success') {
                                 var opts = []
                                 opts = res.result.map(function (codes, i) {
@@ -196,11 +251,6 @@ require(['/common/js/require.config.js'], function () {
                                     var index = -1
                                     codes.dictIInfos.forEach(function (dic, dici) {
                                         dic.children = []
-                                        if (value) {
-                                            dic.selected = value === dic.value
-                                        } else {
-                                            dic.selected = !dici
-                                        }
                                     })
                                     codes.valueType = keys[i].valueType
                                     codes.label = keys[i].label
@@ -247,6 +297,17 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.mailServiceType().then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.options.mailServiceTypeList = res.result
+                                vm.options.mailServiceTypeList.forEach(function (item, si) {
+                                    item.selected = false
+                                });
+                                if (vm.searchForm.type) {
+                                    var types = vm.options.mailServiceTypeList.filter(function (el) {
+                                        return el.id == vm.searchForm.type;
+                                    });
+                                    types[0].selected = true
+                                    vm.activeAll = false
+                                    vm.result = types
+                                }
                             }
                         })
                     },
@@ -261,9 +322,9 @@ require(['/common/js/require.config.js'], function () {
                         }
                         return dataset
                     },
-                    handelSearch:function (){
+                    handelSearch: function () {
                         var vm = this
-                        vm.searchForm.title=vm.title
+                        vm.searchForm.title = vm.title
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.goodList = res.result.list

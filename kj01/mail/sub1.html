@@ -55,13 +55,13 @@
                     <div class="filter-title">服务类型:</div>
                     <ul class="nav filter-list" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="tabs-all-tab" data-bs-toggle="pill"  role="tab"
+                            <a class="nav-link" :class="{active: activeAll}"  id="tabs-all-tab" data-bs-toggle="pill"  role="tab"
                                aria-controls="tabs-all" aria-selected="false"
                                @click.stop="handleSearchForm('server')">全部</a>
                         </li>
                         <template v-for="(type,index) in options.mailServiceTypeList" >
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link"  data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
+                                <a class="nav-link" :class="{active: type.selected}" data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
                                    aria-controls="tabs-1" aria-selected="false"  :data-typeid="type.id"  @click.stop="handleSearchForm(type,'server')" >{{type.name}}</a>
                             </li>
 
@@ -81,7 +81,7 @@
                                 </li>
                                 <template v-for="child in type.children" >
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link"  data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
+                                        <a class="nav-link" :class="{active: child.selected}" data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
                                            aria-controls="tabs-1" aria-selected="false":data-typeid="child.id" @click.stop="handleSearchForm(child,'server')" >{{child.name}}</a></li>
                                 </template>
                             </ul>
@@ -94,13 +94,13 @@
                     <ul class="nav filter-list" role="tablist">
                         <template v-for="(optItem, index) in options.searchOpts">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active"  data-bs-toggle="pill"  role="tab"
+                                <a class="nav-link"  :class="{active: activePriceAll}" data-bs-toggle="pill"  role="tab"
                                    aria-controls="tabs-all" aria-selected="false" :data-price="''"
                                    @click.stop="handleSearchForm('price')">全部</a>
                             </li>
                             <template v-for="(ducItem, index) in optItem.dictIInfos" >
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link"
+                                    <a class="nav-link" :class="{active: ducItem.selected}"
                                        data-bs-toggle="pill" :href="'#tabs-'+ducItem.id" role="tab"
                                        aria-controls="tabs-1" aria-selected="false":data-price="ducItem.value" @click.stop="handleSearchForm(ducItem,'price')" >{{ducItem.display}}</a>
                                 </li>
