@@ -141,7 +141,12 @@ require(['/common/js/require.config.js'], function () {
                         if (e.value) {
                             this.searchForm.price = e.value
                         } else {
-                            this.searchForm.type = e.id
+                            if (e.id==-1){
+                                this.searchForm.type = null
+                            }else {
+                                this.searchForm.type = e.id
+
+                            }
                         }
                         if (e.name || e.display) {
                             var ser = []
@@ -158,6 +163,9 @@ require(['/common/js/require.config.js'], function () {
                                         item.selected = true
                                         vm.parentId=e.id;
                                     }
+                                    item.children.forEach(function (item2, dici) {
+                                        item2.selected=false
+                                    });
                                     item.children.forEach(function (item2, dici) {
                                         if (e.id == item2.id) {
                                             item2.selected = true
