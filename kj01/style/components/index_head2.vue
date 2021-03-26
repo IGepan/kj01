@@ -55,10 +55,10 @@ module.exports = {
           label: '活动中心',
           url: '/aindex.html'
         },
-        // {
-        //   label: '技术市场',
-        //   url: '/market/index.html'
-        // },
+         {
+           label: '技术市场',
+         url: '/market/index.html'
+        },
         // {
         //   label: '科技服务',
         //   url: '/service'
@@ -144,6 +144,7 @@ module.exports = {
 .searchBox {
  display: flex;
  align-items: center;
+  margin-right: 100px;
 }
 .searchBox a {
  font-size: 18px;
