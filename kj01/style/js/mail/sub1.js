@@ -161,6 +161,12 @@ require(['/common/js/require.config.js'], function () {
                                     item.children.forEach(function (item2, dici) {
                                         if (e.id == item2.id) {
                                             item2.selected = true
+                                        }else if (e.parentId=='0'){
+                                           if (item2.id==-1){
+                                               item2.selected=true
+                                           }else {
+                                               item2.selected=false
+                                           }
                                         }
                                     });
                                 })
@@ -224,7 +230,6 @@ require(['/common/js/require.config.js'], function () {
                                     item2.selected = false
                                 });
                                 vm.activeAll = true
-
                             })
                             this.searchForm.type = null
                             this.parentId=null
@@ -299,8 +304,10 @@ require(['/common/js/require.config.js'], function () {
                             if (res.code === 'rest.success') {
                                 vm.options.mailServiceTypeList = res.result
                                 vm.options.mailServiceTypeList.forEach(function (item, si) {
+                                    item.children.unshift({ id: "-1", id: -1, parentId:item.id,name: '不限', selected: true })
                                     item.selected = false
                                 });
+
                                 if (vm.searchForm.type) {
                                     var types = vm.options.mailServiceTypeList.filter(function (el) {
                                         return el.id == vm.searchForm.type;

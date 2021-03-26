@@ -73,16 +73,11 @@
                     <template v-for="(type,index) in options.mailServiceTypeList">
                         <div class="tab-pane fade" :class="{active:type.id==parentId,show:type.id==parentId}" :id="'tabs-'+type.id" role="tabpanel" aria-labelledby="tabs-1-tab">
                             <ul class="nav filter-list" >
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active"  data-bs-toggle="pill"
-                                       :href="'#tabs-'+type.id" role="tab"
-                                       aria-controls="tabs-1" aria-selected="false"
-                                       @click.stop="handleSearchForm(type,'server')">不限</a>
-                                </li>
+
                                 <template v-for="child in type.children" >
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link" :class="{active: child.selected}" data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
-                                           aria-controls="tabs-1" aria-selected="false":data-typeid="child.id" @click.stop="handleSearchForm(child,'server')" >{{child.name}}</a></li>
+                                           aria-controls="tabs-1" aria-selected="false" :data-typeid="child.id" @click.stop="handleSearchForm(child,'server')" >{{child.name}}</a></li>
                                 </template>
                             </ul>
                         </div>
