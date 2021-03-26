@@ -43,6 +43,5 @@ define(function () {
 
   ];
   isConfigIndex === -1 && (isConfigIndex = 0);
-  debugger
   return configs[isConfigIndex]
 })
