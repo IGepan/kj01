@@ -77,7 +77,7 @@
                                     <a class="nav-link active"  data-bs-toggle="pill"
                                        :href="'#tabs-'+type.id" role="tab"
                                        aria-controls="tabs-1" aria-selected="false"
-                                       @click.stop="handleSearchForm('server')">不限</a>
+                                       @click.stop="handleSearchForm(type,'server')">不限</a>
                                 </li>
                                 <template v-for="child in type.children" >
                                     <li class="nav-item" role="presentation">
