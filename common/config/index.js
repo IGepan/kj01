@@ -1,5 +1,5 @@
 define(function () {
-  var isConfigIndex = ['main.liyantech.cn:8081', 'kj01.liyantech.cn:8080', 'intell.liyantech.cn:8083','kjzx.liyantech.cn:8082','testweb.kj01.cn'].indexOf(location.host);
+  var isConfigIndex = ['main.liyantech.cn:8081', 'kj01.liyantech.cn:8080', 'intell.liyantech.cn:8083','kjzx.liyantech.cn:8082','testweb.kj01.cn','www.kj01.cn'].indexOf(location.host);
   var configs = [
     {
       // authUrl: 'http://ts-zuul.liyantech.cn/tsOauth2',
@@ -66,6 +66,19 @@ define(function () {
       // cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'http://47.105.63.195:801/',
+      datacq: 'https://www.datacq.com.cn/'
+    },
+    {
+      //正式环境
+      authUrl: 'https://ts-zuul.kj01.cn/tsOauth2',  // ts zuul
+      baseUrl: 'https://ts-zuul.kj01.cn/tsAdmin',// ts zuul
+      assisUrl: 'https://ts-zuul.kj01.cn/tsAssistant', // ts zuul
+      statisticsUrl: 'https://www.kj01.cn/asapi', // 统计地址
+      imgUploadUrl: 'https://fs.kj01.cn', // 文件上传服务
+      imgVerify: 'https://captcha.kj01.cn/', // 滑块验证码
+      cmsUrl: 'https://cms.kj01.cn/',
+      companyApi: 'https://www.dsjscpx.com',
+      bigData: 'https://47.105.63.195:801/',
       datacq: 'https://www.datacq.com.cn/'
     }
   ];
