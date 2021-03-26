@@ -7,7 +7,7 @@
         </div>
         <div class="col-6">
           <div class="input-group search-top">
-            <el-select v-model="type" >
+            <el-select v-model="type">
               <el-option class="el-same"
                   v-for="item in mailServiceTypeList"
                   :key="item.id"
@@ -16,7 +16,7 @@
               </el-option>
             </el-select>
             <input type="text" v-model="title" class="form-control" aria-label="">
-            <button class="btn btn-link btn-search" @click="handelSearch"><i class="iconfont icon-search"></i></button>
+            <button class="btn btn-link btn-search" @click="handelSearch()"><i class="iconfont icon-search"></i></button>
           </div>
         </div>
         <div class="col-2">
@@ -39,7 +39,8 @@ module.exports = {
       title:'',
       type:'',
       mailServiceTypeList:[],
-      mailSite:{}
+      mailSite:{},
+      eActive:false
     };
   },
   created: function() {
@@ -52,6 +53,11 @@ module.exports = {
     handelSearch:function () {
       var vm=this;
       location.href='/mail/sub1.html?title='+vm.title+'&type='+vm.type
+      // if(this.props.value==this.searchForm.type.name){
+      //   this.eActive=index
+      // }
+
+
     },
     goCart:function () {
       location.href='/common/servicetrade/shopping_cart.html'

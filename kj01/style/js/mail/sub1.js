@@ -42,7 +42,10 @@ require(['/common/js/require.config.js'], function () {
                     nameList:[],
                     result: [],
                     ser: [],
-                    pr: []
+                    pr: [],
+
+
+
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -68,6 +71,7 @@ require(['/common/js/require.config.js'], function () {
                     'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
                     'pages': httpVueLoader('/style/components/pages.vue')
+
         },
                 created: function () {
                     var title = this.$utils.getReqStr('title');
@@ -117,6 +121,8 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handleSearchForm: function (e,is){
                         var vm = this
+
+
                         if (e.value) {
                             this.searchForm.price = e.value
                         }else {
@@ -129,6 +135,7 @@ require(['/common/js/require.config.js'], function () {
                                 let list = e
                                 if(this.ser.length>=1) {this.ser = []}
                                 this.ser.push(list)
+
                             }
                             if(is == 'price') {
                                 let list = e
@@ -138,9 +145,11 @@ require(['/common/js/require.config.js'], function () {
                             this.result = [...this.ser,...this.pr]
                         }else if (e==='server') {
                             this.result = [...this.ser=[],...this.pr]
+                            this.isActive=e
                         }else if (e==='price'){
                             this.result = [...this.ser,...this.pr=[]]
                         }
+
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.goodList = res.result.list
@@ -159,8 +168,10 @@ require(['/common/js/require.config.js'], function () {
                         // this.nameList.splice(index.name||index.display, 1)
                         if (index.value) {
                             this.searchForm.price =null
+
                         }else {
                             this.searchForm.type=null
+
                         }
                         this.getMailGoods();
                     },
@@ -279,7 +290,8 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/common/seller/store_agreement.html";
                         }
                     },
-                }
+                },
+
             });
         })
 });

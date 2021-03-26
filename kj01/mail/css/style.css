@@ -214,6 +214,10 @@ a {
     margin: 0 1.25rem;
     font-weight: 700;
     color: #101010; }
+.main-menu .navbar-nav .nav-item .active{
+  color: #008df4;!important;
+
+}
     .main-menu .navbar-nav .nav-link:hover {
       color: #008df4; }
 .main-menu.bg-primary ul {
@@ -642,10 +646,11 @@ a {
   .filter-box .filter-list {
     margin: 0;
     font-size: 1rem; }
-    .filter-box .filter-list .nav-item .nav-link {
+    .filter-box .filter-list .nav-item .nav-link{
       color: #292929; }
       .filter-box .filter-list .nav-item .nav-link.active, .filter-box .filter-list .nav-item .nav-link:hover {
-        color: #f1671b; }
+      color: #f1671b; }
+
   .filter-box .price {
     position: relative;
     margin-top: 1rem;
@@ -661,12 +666,12 @@ a {
   .filter-box .tab-content {
     margin-left: 6.28625rem;
     background: #ebeef5; }
-    .filter-box .tab-content .active {
-      padding: 0.625rem;
-      margin: 0.625rem 0 1.25rem; }
+
+
     .filter-box .tab-content .list-inline .list-inline-item {
       margin: 0 0.625rem;
       font-size: 1rem; }
+.filter-box .tab-content .list-inline .list-inline-item .nav-link{padding: 0!important;}
 
 .toolbar {
   background: #ededed;
