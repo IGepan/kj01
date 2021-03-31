@@ -1339,10 +1339,10 @@ i{
 }
 .card-box{width: 33.3%;padding: 10px;border-bottom: 1px solid #f6f6f6;border-right: 1px solid #f6f6f6}
 .card-box:nth-child(1){background: url(../images/service/card1.png) no-repeat 100%}
-.card-box:nth-child(2){background: url(../images/service/card1.png) no-repeat 100%}
-.card-box:nth-child(3){background: url(../images/service/card1.png) no-repeat 100%;border-right:0}
-.card-box:nth-child(4){background: url(../images/service/card1.png) no-repeat 100%}
-.card-box:nth-child(5){background: url(../images/service/card1.png) no-repeat 100%}
+.card-box:nth-child(2){background: url(../images/service/card2.png) no-repeat 100%}
+.card-box:nth-child(3){background: url(../images/service/card3.png) no-repeat 100%;border-right:0}
+.card-box:nth-child(4){background: url(../images/service/card4.png) no-repeat 100%}
+.card-box:nth-child(5){background: url(../images/service/card5.png) no-repeat 100%}
 .card-box:nth-child(6){background: url(../images/service/card6.png) no-repeat 100%;border-right: 0}
 .card-box h4{font-size: 18px;font-weight: normal;padding-bottom: 10px;border-bottom: 3px solid #f66c19;display: inline-block;}
 .card-box ul li{font-size: 12px;line-height: 24px}
