@@ -32,7 +32,10 @@ require(['/common/js/require.config.js'], function () {
           birthday: '', // 出生年月
           sex: '1', // 性别(字典表：sex)
           scale: '', // 单位规模
-          version: '' // 版本号
+          version: '', // 版本号
+          code: '',// 统一社会信用代码
+          focusPolicy: '', //关注的政策
+          focusPolicyName: '', // 
         },
         alias: {
           organizationNames: {
@@ -110,7 +113,8 @@ require(['/common/js/require.config.js'], function () {
         isCertificationed: false,
         timeEl: {},
         isSubmitDisabled: false,
-        isinitData: false
+        isinitData: false,
+        focusList: []
       },
       watch: {
         'formData': {
@@ -131,6 +135,7 @@ require(['/common/js/require.config.js'], function () {
           }
         }.bind(this))
         this.initData();
+        this.getFocusPolicy();
       },
       mounted: function () {
         var vm = this;
@@ -146,6 +151,7 @@ require(['/common/js/require.config.js'], function () {
         'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
         'address-map': httpVueLoader('/common/components/addressMap.vue'),
         'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
+        'ly-select-level2': httpVueLoader('/common/components/select2level.vue'),
         'ly-mulselect': httpVueLoader('/common/seller/components/technology/mulSelect.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
@@ -157,11 +163,20 @@ require(['/common/js/require.config.js'], function () {
             formData.attachmentIdUrl = formData.headImg.url;
             formData.qualifications.length && (formData.qualifications = formData.qualifications.map(function (t) { return t.tagId }))
             formData.headImg = formData.headImg.id;
+            formData.focusPolicy = formData.focusPolicyList ? formData.focusPolicyList : [];
             vm.initIdentityType = formData.identityType = formData.identityType || '01'
             vm.formData = formData
             vm.initFormData = JSON.parse(JSON.stringify(formData));
             vm.setDefaultValue()
           });
+        },
+        // 获取政策列表
+        getFocusPolicy: function() {
+          var vm = this;
+          httpUser.getFocusPolicy().then(function(res) {
+            console.log(res)
+            vm.focusList = res.result;
+          })
         },
 				/**
 				 * 数据校验自定义方法
@@ -252,6 +267,10 @@ require(['/common/js/require.config.js'], function () {
               vm.alias.subDatas[data.identityType].map(function (key) {
                 formData[key] = data[key] !== undefined ? data[key] : ''
               })
+              formData.focusPolicy = data.focusPolicy ? data.focusPolicy.map(item => item.tagId).join(',') : '';
+              formData.focusPolicyName = data.focusPolicy ? data.focusPolicy.map(item => item.name).join(',') : '';
+              formData.code = data.code;
+              console.log(formData, formData.code)
               httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
                 if (resp.code == 'rest.success') {
                   vm.$dialog.showToast('保存成功');
