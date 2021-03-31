@@ -1,0 +1,503 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/index.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/js/libs/swiper-5.4.1/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style/js/libs/swiper-5.4.1/css/animate.min.css">
+
+</head>
+
+<body>
+    <div class="box" id='index_box' v-cloak>
+        <ly-toper ref="lytoper" top-class="white"></ly-toper>
+        <index-head :isfixed="isFixed"></index-head>
+        <div class="slideshow">
+            <div class="bannerBox swiper-container" style="width:100%;height: 420px;" id="swiper-containerIndex">
+                <div class="swiper-wrapper">
+                    <div class="banner up-down swiper-slide" style="background-image: url(/image/newbanner1.png);">
+                        <div class="banner-text">
+                            <div class="top ani" swiper-animate-effect="mySecond" swiper-animate-duration="1.3s"
+                                swiper-animate-delay="0.3s">
+                                <div class="left">
+                                    <span class="one">技</span>
+                                    <span class="two">术</span>
+                                </div>
+                                <span class="three">成果</span>
+                            </div>
+                            <div class="btm ani" swiper-animate-effect="myThree" swiper-animate-duration="1.3s"
+                                swiper-animate-delay="0.3s">摆渡人</div>
+                        </div>
+                        <div class="avater ani" swiper-animate-effect="myfirst" swiper-animate-duration="1.3s"
+                            swiper-animate-delay="0.3s">
+                            <img src="/style/images/index/house1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="banner middle swiper-slide" style="background-image: url(/image/newbanner2.png);">
+                        <div class="banner-text ani" swiper-animate-effect="myFour" swiper-animate-duration="1.3s"
+                            swiper-animate-delay="0.3s">技术成果摆渡人</div>
+                    </div>
+                    <!-- <div class="banner right swiper-slide" style="background-image: url(/image/newbanner3.png);">
+                        <div class="banner-text ani" swiper-animate-effect="myFive" swiper-animate-duration="1.3s"
+                            swiper-animate-delay="0.3s">技术转化的摆渡人</div>
+                        <div class="avater ani" swiper-animate-effect="myfirst" swiper-animate-duration="1.3s"
+                            swiper-animate-delay="0.3s">
+                            <img src="/style/images/index/house3.png" alt="">
+                        </div>
+                    </div> -->
+                    <div class="banner middle swiper-slide" style="background-image: url(/image/newbanner5.png);">
+                        <div class="newbanner5-top ani" swiper-animate-effect="mySix" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s">
+                            <img src="/style/images/index/left-right.png" alt="">
+                        </div>
+                        <div class="banner-text ani newbanner5-cen" swiper-animate-effect="myFive" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s"><span>技术成果</span><span class="yellow">摆渡人</span></div>
+                        <div class="newbanner5-down ani" swiper-animate-effect="mySeven" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s">
+                            <img src="/style/images/index/right-left.png" alt="">
+                        </div>
+                    </div>
+                    <!-- <div class="banner right swiper-slide" style="background-image: url(/image/newbanner4.png);">
+                        <div class="newbanner4" style="background: url(/style/images/index/newbanner4-frame.png)">
+                            <div class="newbanner4-top ani" swiper-animate-effect="mySix" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s">
+                                <img src="/style/images/index/newbanner4-up.png" alt="">
+                            </div>
+                            <div class="newbanner4-down ani" swiper-animate-effect="mySeven" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s">
+                                <img src="/style/images/index/newbanner4-down.png" alt="">
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="nav">
+<!--                <div class="mdiv navlist">-->
+<!--                    <a href="/polist.html" target="_blank">-->
+<!--                        <div class="navlist-title">政策智配</div>-->
+<!--                        <div>大数据为您一键匹配惠企政策</div>-->
+<!--                    </a>-->
+<!--                    <a href="/answer/index.html" target="_blank">-->
+<!--                        <div class="navlist-title">政策答人</div>-->
+<!--                        <div>小易为您答疑解惑</div>-->
+<!--                    </a>-->
+<!--                    <a href="/declarationHelper/list.html" target="_blank">-->
+<!--                        <div class="navlist-title">申报助手</div>-->
+<!--                        <div>项目/资质/资金辅助申报</div>-->
+<!--                    </a>-->
+<!--                    <a href="/alist.html?type=218340665862391473" target="_blank">-->
+<!--                        <div class="navlist-title">企业学堂</div>-->
+<!--                        <div>企业科技创新，知识分享交流</div>-->
+<!--                    </a>-->
+<!--                    <a href="/atList.html" target="_blank">-->
+<!--                        <div class="navlist-title">智汇两江云课堂</div>-->
+<!--                        <div>两江新区科技品牌活动专区</div>-->
+<!--                    </a>-->
+<!--                    <a href="/market/technicalBroker.html">-->
+<!--                        <div class="navlist-title">技术经纪人</div>-->
+<!--                        <div>一站式技术经纪人培训、认证服务</div>-->
+<!--                    </a>-->
+<!--                </div>-->
+                <div class="mdiv recent-news">
+                    <div class="desc">最<span>新</span>动态:</div>
+                    <div class="bd">
+                        <ul class="infoList">
+                            <li v-for="(item,index) in recentNews" :key="index">
+                                <a :href="item.itemUrl">{{index>2?'【活动】':'【政策】'}}{{item.title}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-top">
+            <div class="policyBox">
+                <div class="mmdiv">
+                    <div class="title">
+                        <div class="title-left">政策资讯<span>政策动态速递，科技热点跟进</span></div>
+                        <div class="title-right">
+                            <img src="/style/images/index/policytitle.png" alt="">
+                            <div class="slideTxtBox">
+                                <div class="bd">
+                                    <ul>
+                                        <li v-for="honor in honorList" :key="honor.id" v-text="honor.name"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="policy">
+                        <div class="policy-left">
+                            <div class="policy-title">政策直播间<a href="/livelist.html?type=218340665870780082"
+                                    class="iconfont icon-gengduo"></a></div>
+                            <div id="activeHots" class="studioBox owl-carousel owl-theme">
+                                <a :href="item.itemUrl" class="studio" :key="index" v-for="(item,index) in activeHot">
+                                    <img :src="item.itemImg" alt="">
+                                    <div class="studio-info">
+                                        <div class="studio-info_left">
+                                            <div class="infoImg"><img src="/style/images/index/play.png" alt=""></div>
+                                            <div class="infoBox">
+                                                <div class="infoname" v-text="item.title" :title="item.title"></div>
+                                                <div class="infodate">活动时间：{{item.activeStartTime|formatTime1}}</div>
+                                            </div>
+                                        </div>
+                                        <div class=""></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="studio-lists">
+                                <a :href="active.itemUrl" :title="active.title" v-for="(active,index) in activeList"
+                                    :key="index" v-text="active.title"></a>
+                            </div>
+                        </div>
+                        <div class="policy-center">
+                            <div class="policy-title">
+<!--                                <span :class="{active: tab.active}" v-for="(tab,index) in ptabsNavs" :key="'tab'+index"-->
+<!--                                    @mouseover.stop="handlePTabsNav(index)" @click="handlePTabsNavMore(tab.url)">{{tab.label}}</span>-->
+                                <span :class="{active: tab.active}" v-for="(tab,index) in ptabsNavs" :key="'tab'+index"
+                                     @click="handlePTabsNavMore(tab.url)">{{tab.label}}</span>
+                            </div>
+                            <div class="policy-center_lists">
+                                <a :title="policy.title" v-for="(policy,index) in policyList"
+                                    :href="policy.itemUrl" :key="'list'+index">
+                                    <span v-if="policy.policyFileTypeDisplay"
+                                        style="margin-left: -5px;">【{{policy.policyFileTypeDisplay}}】</span>
+                                    <span>{{policy.title}}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!--  2021.01.12 -->
+                        <right-navs></right-navs>                       
+                    </div>
+                </div>
+            </div>
+            <div class="activityBox">
+                <div class="mmdiv">
+                    <div class="title">
+                        <div class="title-left">活动中心<span>互联网+科技创新活动</span></div>
+                        <div class="title-center">
+                            <span :class="{active: item.active}" v-for="(item,index) in activityTabs"
+                                @mouseover.stop="handleactivityTabs(item,index)"
+                                @click="handleactivity(item)">{{item.label}}</span>
+                        </div>
+                        <div class="issue">
+                            <a @click.stop="handleUrlBtn" data-url="/activity/add.html?code=001.004.001.001">发布活动</a>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <a :href="item.tagName ? '/atdetail.html?id=' + item.id : '/adetail.html?id=' + item.id"
+                            class="activity-list" v-for="(item,index) in activeLists" :key="index">
+                            <div class="activity-img">
+                                <img :src="item.posterUrl" alt="">
+                                <div class="activity-imgitem" v-if="item.liveFlag === 1">直播</div>
+                            </div>
+                            <div class="activity-info">
+                                <div class="activity-name" :title="item.title">{{item.title}}</div>
+                                <div class="activity-type activity-date"><span
+                                        class="iconfont icon-lishijilu"></span><span>{{item.activeStartTimeDisplay[9]}}
+                                        {{item.weekday}}</span>
+                                </div>
+                                <div class="activity-type"><span
+                                        class="iconfont icon-neirongtuisong"></span><span>{{item.sponsor}}</span></div>
+                                <div class="activity-count">
+                                    <div class="count-type" v-if="item.activeTypeDisplay">
+                                        {{item.activeTypeDisplay?item.activeTypeDisplay[0].name:''}}</div>
+                                    <div class="count-num"><span class="people">{{item.joinNumTotal}}人浏览</span>
+                                        <span class="avatar" v-for="items in item.headers"><img :src="items" alt=""></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="technologyBox">
+            <div class="mmdiv">
+                <div class="title">
+                    <div class="title-left">技术市场<span>助力企业创新能力提升与变现</span>
+                    </div>
+                </div>
+                <div class="technology">
+                    <div class="technology-left">
+                        <div class="achievement">
+                            <div class="technology-title">
+                                <div class="policy-title">技术成果<a href="/service/results_list.html"
+                                        class="iconfont icon-gengduo"></a></div>
+                                <div class="technology-lable">
+                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"
+                                        :key="index"
+                                        @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="technology-lists">
+                            <a :href="good.goodsDetailUrl" v-for="(good,index) in goodsList" :key="index">
+                                <div class="technology-avatar">
+                                    <img :src="good.goodsImg.url" alt="">
+                                </div>
+                                <div class="technology-name" :title="good.goodsName">{{good.goodsName}}</div>
+                                <div class="technology-type">
+                                    <div>交易价格：<span
+                                            class="price-red">￥{{good.negotiableFlag | formatPrice(good.price, good.minPrice, good.maxPrice)}}</span>
+                                    </div>
+                                    <div>转让方式：{{good.transactionModeDisplay}}</div>
+                                    <div class="technology-type_classify" :title="good.industryNames">
+                                        行业分类：{{good.industryNames}}</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="title-border">
+                            <div class="policy-title">技术市场需求<a href="/service/demand_list.html"
+                                    class="iconfont icon-gengduo"></a></div>
+                        </div>
+                        <div class="technology-lists market-demand">
+                            <a :href="'/common/demanddetail.html?id='+ demand.id" v-for="(demand,index) in demandList">
+                                <div class="technology-name" :title="demand.title">{{demand.title}}</div>
+                                <div>
+                                    <div class="technology-adress"><span
+                                            class="iconfont icon-dingweixian"></span>{{demand.provinceDisplay}}{{demand.cityDisplay}}
+                                    </div>
+                                    <div class="prcie-yellow"><span>￥</span><span
+                                            class="number">{{demand.budget}}</span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="technology-right">
+                        <div class="technology-serve">
+                            <div class="technology-serve_list">
+                                <a href="/market/technicalBroker.html">
+                                    <div class="iconfont icon-xianshanghuodong"></div>
+                                    <div class="serve-right">
+                                        <div class="serve-name">技术经纪人协同服务</div>
+                                        <div class="serve-type">一站式服务，为成果转化保驾护航</div>
+                                    </div>
+                                </a>
+                                <a href="http://www.chttc.com" target="_blank">
+                                    <div class="iconfont icon-xianshanghuodong"></div>
+                                    <div class="serve-right">
+                                        <div class="serve-name">国际技术转移服务</div>
+                                        <div class="serve-type">面向全球，服务世界</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="technology-info">
+                                <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"
+                                    :data-url="button.url"><span class="iconfont"
+                                        :class="button.icon"></span><span>{{button.label}}</span></a>
+                            </div>
+                        </div>
+                        <div class="supplier">
+                            <div class="policy-title">技术供应商<a href="/service/organization_list.html"
+                                    class="iconfont icon-gengduo"></a></div>
+                            <div class="supplier-list">
+                                <a :href="shop.shopIndexUrl" v-for="(shop,index) in shopList" :key="index">
+                                    <div class="supplier-avatar"><img :src="shop.shopLogo" alt=""></div>
+                                    <div class="supplier-name" :title="shop.shopName">{{shop.shopName}}</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grayBgBox pinpai-fuwu">
+            <div class="mdiv boxtitle">
+                <div class="boxtitle-text">品牌服务</div>
+                <div class="boxtitle-subtext">助力企业创新能力提升与变现</div>
+            </div>
+            <div class="mdiv pinpai-top">
+                <div class="left-box">
+                    <div class="img-box"><img src="/style/images/index/pinpai_1.png" alt=""></div>
+                    <div class="text1">科技金融</div>
+                    <div class="text2">
+                        <div>提升融资便捷性，助力</div>
+                        <div>企业创新</div>
+                        <div class="more"><a href="https://www.kj01.cn/yukuairong/index.html" target="_blank"><i
+                                    class="iconfont icon-gengduo"></i></a></div>
+                    </div>
+                    <div class="text3" @click="handleTips">
+                        科技金融小顾问<br />
+                        点我咨询
+                    </div>
+                </div>
+                <div class="middle-box">
+                    <div class="item-box" v-cloak v-for="(item,index) in pinpai_list">
+                        <div class="item" :class="'item'+index">
+                            <div class="details-text">
+                                <div class="titles">{{item.name}}</div>
+                                <div class="title-desc">
+                                    <div>{{item.productTypeName}}</div>
+                                    <div v-if="item.mtimenumSup">{{item.mtimenumSub}}-{{item.mtimenumSup}}个月</div>
+                                    <div v-if="item.mSup">{{item.mSub}}-{{item.mSup}}万</div>
+                                </div>
+                                <div class="details-link"><a
+                                        :href="'https://www.kj01.cn/yukuairong/detail.html?id='+item.id"
+                                        target="_blank">查看详情&nbsp;></a></div>
+                            </div>
+                            <div class="img-box">
+                                <img :src="'/style/images/index/pinpai_0'+(index+1)+'.png'" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box">
+                    <div class="title-box">
+                        <div class="titles">合作机构</div>
+                        <div class="title-desc">大牌机构为您服务</div>
+                    </div>
+                    <div class="img-box"><a href="https://www.cqljrzfw.com" target="_blank"><img
+                                src="/style/images/index/pinpai_3.png" alt=""></a></div>
+                    <div class="img-box"><a href="https://www.datacq.com.cn" target="_blank"><img
+                                src="/style/images/index/pinpai_4.png" alt=""></a></div>
+                    <div class="img-box"><a href="https://www.cqcxcyct.com" target="_blank"><img
+                                src="/style/images/index/pinpai_2.png" alt=""></a></div>
+                </div>
+            </div>
+            <div class="mdiv pinpai-bottom server">
+                <template v-for="(item,index) in server">
+                    <div class="serverItem" :class="{in: item.tj}" :key="index">
+                        <div class="serverItem-imgBox">
+                            <img :src="item.img" :alt="item.name" srcset="">
+                            <span class="serverItem-imgBox-title animation" v-text="item.name"></span>
+                            <a class="serverItem-imgBox-url animation">{{item.subName}} >></a>
+                            <div class="serverItem-imgBox-shade animation">
+                                <a style="color:#fff;" :href="item.url" target="_blank">{{item.subName}}<i
+                                        class="iconfont icon-gengduo"></i></a>
+                                <div class="serverItem-shopBox animation">
+                                    <template v-for="(iitem, ii) in item.infoItems">
+                                        <a target="_blank" :key="iitem.id" :href="iitem.shopIndexUrl"
+                                            :title="iitem.shopName" class="vaMiddle shop-item"
+                                            :style="{backgroundImage: 'url(' + iitem.shopLogo + ')'}">
+                                            <div class="shop-title animation">
+                                                <span class="vaMiddle line2 line3">{{iitem.shopName}}</span>
+                                            </div>
+                                        </a>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="serverItem-infoBox">
+                            <div class="serverItem-infoBox-base">
+                                <div class="serverItem-infoBox-base-text" v-text="item.name"></div>
+                                <div class="serverItem-infoBox-base-tips" v-text="item.subTips"></div>
+                            </div>
+                            <ul class="serverItem-infoBox-list">
+                                <template v-for="(sitem, si) in item.subItems">
+                                    <li class="animation" @click="handleUrlBtn" :data-url="sitem.url">
+                                        <span class="iconfont serverItem-infoBox-list-iconfont"
+                                            :class="sitem.icon"></span>
+                                        <span class="serverItem-infoBox-list-text" v-text="sitem.name"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                        <div class="serverItem-inimg"></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="jingxuan">
+            <div class="mdiv boxtitle">
+                <div class="boxtitle-text">精选资源</div>
+                <div class="boxtitle-subtext">汇聚科技资源，协同创造价值</div>
+            </div>
+            <div class="mdiv jingxuan-top">
+                <div class="item-box" :class="'item-box'+index" v-for="(item,index) in sources">
+                    <div class="title-box">
+                        <div class="titles">{{item.name}}</div>
+                        <div class="title-desc">{{item.subName}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-item" v-for="items in item.list">
+                            <div class="info-item-title">
+                                <a v-if="items.url" :href="items.url">
+                                    <i class="iconfont icon-gengduo"></i>
+                                    <span>{{items.name}}</span>
+                                </a>
+                                <a v-else @click="handleTips">
+                                    <i class="iconfont icon-gengduo"></i>
+                                    <span>{{items.name}}</span>
+                                </a>
+                            </div>
+                            <div class="info-item-number" v-if="items.number">{{items.number}}</div>
+                            <div class="info-item-desc" v-if="items.desc.length>0">
+                                <div v-for="itemss in items.desc">{{itemss}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdiv jingxuan-bottom">
+                <a class="nav-box" href="https://www.qiyekexie.com" target="_blank">
+                    <div>
+                        <div class="titles">科创中国</div>
+                        <div class="title-desc">创新资源共享平台</div>
+                    </div>
+                </a>
+                <div class="btn-box">
+                    <div v-for="item in lvmengList" class="btn-item" @click="handleUrlBtn" :data-url="item.url">
+                        <div class="icon-box"><span class="iconfont" :class="item.icon"></span></div>
+                        <div class="btn-desc">{{item.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="friend-link">
+            <div class="mdiv boxtitle">
+                <div class="boxtitle-text">友情链接</div>
+                <div class="boxtitle-subtext">汇聚科技资源，协同创造价值</div>
+            </div>
+            <div class="mdiv info-box">
+                <div class="info-item" v-for="item in friendLink"><a :href="item.href" target="_blank"><img
+                            :src="item.img" :alt="item.alt_tip"></a></div>
+            </div>
+        </div>
+        <div class="content-bottom-down">
+            <div class="mdiv content-box">
+                <div class="item-box">
+                    <div class="img-box"><img src="style/images/index/bottom_1.png" alt=""></div>
+                    <div class="text-box">
+                        <div class="title">国际技术转移中心</div>
+                        <div class="title-desc">全球合作网络，推动成果转化</div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <div class="img-box"><img src="style/images/index/bottom_2.png" alt=""></div>
+                    <div class="text-box">
+                        <div class="title">国际科技合作基地</div>
+                        <div class="title-desc">汇聚全球科技资源，促进科技创新</div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <div class="img-box"><img src="style/images/index/bottom_3.png" alt=""></div>
+                    <div class="text-box">
+                        <div class="title">国家技术转移移示范机构</div>
+                        <div class="title-desc">集成创新，构建技术转移全流程服务体系</div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <div class="img-box"><img src="style/images/index/bottom_4.png" alt=""></div>
+                    <div class="text-box">
+                        <div class="title">国家专利技术展示交易中心</div>
+                        <div class="title-desc">依托平台优势，服务专利交易</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="./style/js/index.js"></script>
+</body>
+
+</html>
