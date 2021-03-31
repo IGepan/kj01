@@ -1121,11 +1121,15 @@
                   <tr class="form_item">
                     <th>报名审核设置：</th>
                     <td>
-                      <label class="checkbox" for="">
+                      <label class="checkbox" >
                         <input class="checkbox-input" :true-value="1" :false-value="0" type="checkbox"
                           data-key1="enrollRule" data-key2="auditFlag" @click="handEnrollCheckbox"
                           v-model="formData.enrollRule.auditFlag">
-                        <span class="text">凡报名需要我审核</span>
+                        <span class="text">凡报名需要我审核</span>&nbsp;
+                        <input class="checkbox-input" :true-value="1" :false-value="0" type="checkbox"
+                          data-key1="enrollRule" data-key2="auditFlag" @click="handEnrollCheckbox"
+                          v-model="formData.enrollRule.isIgnoreEndTime" checked>
+                        <span class="text">无视报名结束时间</span><!--todo-->
                       </label>
                     </td>
                     <td class="form_msg"></td>
@@ -1415,7 +1419,7 @@
   <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=hiSNGiYjCDay4EMncAjAUjx5oEblgpsx"></script>
   <script type="text/javascript" src="/common/js/libs/progress.js"></script>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script type="text/javascript" src="/style/js/activity/add.js"></script>
+  <script type="text/javascript" src="../style/js/activity/add.js"></script>
 </body>
 
 </html>

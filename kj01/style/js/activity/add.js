@@ -119,6 +119,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               enrollStartTime: '', // 报名开始时间
               enrollEndTime: '', // 报名结束时间
               comment: '', // 报名说明
+              isIgnoreEndTime: '' //是否无视报名结束时间，默认无视
             },
             enrollColumn: [],
             signRule: { // Av04SignRuleEntity
@@ -167,7 +168,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       watch: {
         'formData.enrollFlag': function (n, o) {
           n && this.$nextTick(function () {
-            this.type !== 'view' && this.formData.isUpdateEnroll && (this.$nrollTime = laydate.render({
+            this.type !== 'view'  && (this.$nrollTime = laydate.render({
               elem: '#nrollTime',
               type: 'datetime',
               value: '',
@@ -181,7 +182,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 this.vm.formData.enrollRule[this.startkey] = value;
               }
             }));
-            this.type !== 'view' && this.formData.isUpdateEnroll && (this.$nrollTime1 = laydate.render({
+            this.type !== 'view'  && (this.$nrollTime1 = laydate.render({
               elem: '#nrollTime1',
               type: 'datetime',
               value: '',
@@ -523,10 +524,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         handEnrollCheckbox: function (e) {
           if (!this.formData.isUpdateEnroll) {
-            this.$dialog.showToast('当前已有人员报名，不允许修改报名内容！');
-            e.stopPropagation()
-            e.preventDefault()
-            return false
+            // this.$dialog.showToast('当前已有人员报名，不允许修改报名内容！');
+            // e.stopPropagation()
+            // e.preventDefault()
+            // return false
           }
         },
         handleAddKeywordClick: function () {
