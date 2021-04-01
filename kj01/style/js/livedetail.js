@@ -133,6 +133,12 @@ require(['/common/js/require.config.js'], function () {
               }
               res.result.evaluateResult = res.result.averageResult && res.result.averageResult[0] && res.result.averageResult[0].evaluateResult || 0
               vm.detail = res.result ? res.result : {}
+              if (vm.detail.isIgnoreEndTime === 1&&vm.detail.statusCode==='0304') {
+                //如果已结束且活动可无视报名时间,则修改
+                vm.detail.statusCode='0302'
+                vm.detail.statusDisplay='立即报名'
+              }
+
               res.result.longitude && vm.$nextTick(function () {
                 this.initMap()
               })
