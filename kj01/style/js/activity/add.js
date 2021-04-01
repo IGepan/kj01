@@ -119,7 +119,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               enrollStartTime: '', // 报名开始时间
               enrollEndTime: '', // 报名结束时间
               comment: '', // 报名说明
-              isIgnoreEndTime: '' //是否无视报名结束时间，默认无视
+              isIgnoreEndTime: 1 //是否无视报名结束时间，默认无视
             },
             enrollColumn: [],
             signRule: { // Av04SignRuleEntity
