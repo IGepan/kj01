@@ -2,568 +2,673 @@
 <html lang="zh">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>服务首页</title>
-  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
-  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
-  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
-  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
-  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
-  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
-  <link href="/style/css/service.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>服务首页</title>
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/service.css" rel="stylesheet" type="text/css">
 </head>
 <style>
-  .mdiv {
-    width: 1440px;
-  }
+    .mdiv {
+        width: 1440px;
+    }
 </style>
 
 <body>
-  <div id="index_box" class="box grayBgbox">
+<div class="box grayBgbox" id="index_box">
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
     <div class="">
-      <service-head :nav-index="0">
-      </service-head>
-      <!-- <div class="counts">
-        <div class="mdiv">
-          <ul>
-            <template v-for="(count, ci) in counts">
-              <li class="count" :key="ci" @click.stop="handleToUrl" :data-url="count.url">
-                <div class="left">
-                  <span class="iconfont" :class="count.icon"></span>
-                </div>
-                <div class="right">
-                  <div class="number">
-                    <number-grow :value="count.count" :time="1"></number-grow><span>{{count.unit}}</span>
+        <service-head :nav-index="0">
+        </service-head>
+        <!-- <div class="counts">
+          <div class="mdiv">
+            <ul>
+              <template v-for="(count, ci) in counts">
+                <li class="count" :key="ci" @click.stop="handleToUrl" :data-url="count.url">
+                  <div class="left">
+                    <span class="iconfont" :class="count.icon"></span>
                   </div>
-                  <div class="text">{{count.label}}</div>
-                </div>
-              </li>
-            </template>
-          </ul>
-        </div>
-      </div> -->
-      <div class="content">
-        <div class="mdiv">
-          <div class="infos">
-            <div class="dynamic">
-              <div class="title"><span @click="handleToUrl" data-url="/service/demand_list.html"
-                  class="text">服务动态</span><span @click="handleToUrl" data-url="/service/demand_list.html"
-                  class="iconfont icon-gengduo"></span></div>
-              <div class="listsScroll">
-                <ul class="lists">
-                  <template v-for="(item, i) in demandList">
-                    <li class="list">
-                      <a :href="item.itemUrl">
-                        <div class="left">
-                          <span class="circle"></span>
-                          <span :title="item.title" class="name">{{item.title}}</span>
-                        </div>
-                        <div class="right">
-                          <span>{{item.demandTypeDisplay}}</span>
-                        </div>
-                      </a>
-                    </li>
-                  </template>
-                </ul>
-              </div>
-            </div>
-            <div class="release">
-              <a class="top" @click="showToast">
-                <div class="iconfont icon-zhenduan1"></div>
-                <div class="right">
-                  <div class="type">有难题，找服务</div>
-                  <div class="item">平台为您提供个性化对接</div>
-                </div>
-              </a>
-              <a class="cen" href="/common/buyer/demand/add.html?code=001.001.002.002" @click.stop="handleToUrlAuth">
-                <div class="iconfont icon-zhenduan2"></div>
-                <div class="right">
-                  <div class="type">发布需求</div>
-                  <div class="item">我是服务需求方</div>
-                </div>
-              </a>
-              <a class="down" href="/common/seller/addpatent.html?code=001.002.002.002&categoryId=82779310439534200"
-                @click.stop="handleToUrlAuth">
-                <div class="iconfont icon-pinggu"></div>
-                <div class="right">
-                  <div class="type">发布服务</div>
-                  <div class="item">我是服务提供方</div>
-                </div>
-              </a>
-            </div>
-        </div>
-        <div class="finance">
-          <div class="finance-up">
-            <div class="left brief">
-              <div class="title" @click="handleToUrl" data-url="/service/resource_list.html?stype=004">科技金融</div>
-              <div class="item">助力企业创新，帮助企业更快成长</div>
-              <a href="/service/resource_list.html?stype=004" class="loadmore iconfont icon-gengduo"></a>
-              <template v-for="(item, i) in financialNavs">
-                <div class="tab" @mouseover.stop="handleSwitchoverFinancial(i)"><span :class="{active: item.active}"
-                    @click="handleToUrl" :data-url="item.url">{{item.label}}</span></div>
-              </template>
-            </div>
-            <div class="right">
-              <ul v-if="secondList" class="up">
-                <template v-for="item in serviceList004">
-                  <li class="up-list">
-                    <a :href="item.itemUrl" target="_blank">
-                      <div :title="item.title" class="name">{{item.title}}</div>
-                      <div class="type">
-                        <div><span class="vaMiddle"><span class="iconfont icon-hangye1"></span></span><span
-                            :title="item.industryNames" class="vaMiddle item line">{{item.industryNames}}</span></div>
-                        <div><span class="vaMiddle"><span class="iconfont icon-biaoqian1"></span></span><span
-                            :title="item.servicesNames" class="vaMiddle item line">{{item.servicesNames}}</span>
-                        </div>
-                      </div>
-                      <div class="type"><span>￥</span><span
-                          class="price">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></div>
-                    </a>
-                  </li>
-                </template>
-              </ul>
-              <ul v-else class="up">
-                <template v-if="ykrlist.length">
-                  <template v-for="item in ykrlist">
-                    <li>
-                      <a :href="item.itemUrl" target="_blank">
-                        <div :title="item.title" class="name">{{item.title}}</div>
-                        <div class="type">
-                          <div><span>担保方式</span><template v-for="tag in item.viewtag"><span
-                                class="item">{{tag}}</span></template></div>
-                          <div><span>贷款期限</span><span class="item">{{item.month}}个月</span></div>
-                        </div>
-                        <div class="type"><span>贷款额度</span><span class="price">{{item.price}}<i>万</i></span></div>
-                      </a>
-                    </li>
-                  </template>
-                </template>
-              </ul>
-              <ul class="down">
-                <li>
-                  <a href="https://www.cqcxcyct.com/">
-                    <div class="img"><img src="/image/service/sanchuang.png" alt=""></div>
-                    <div class="text">
-                      <div class="name">三创平台</div>
-                      <div class="intro">重庆·创新创业创投服务平台</div>
+                  <div class="right">
+                    <div class="number">
+                      <number-grow :value="count.count" :time="1"></number-grow><span>{{count.unit}}</span>
                     </div>
-                  </a>
+                    <div class="text">{{count.label}}</div>
+                  </div>
                 </li>
-                <li>
-                  <a href="/yukuairong/">
-                    <div class="img"><img src="/image/service/yukuairong.png" alt=""></div>
-                    <div class="text">
-                      <div class="name">渝快融</div>
-                      <div class="intro">重庆市企业融资大数据服务平台</div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="http://www.liangjiang.gov.cn/">
-                    <div class="img"><img src="/image/service/cqlj.png" alt=""></div>
-                    <div class="text">
-                      <div class="name">两江新区</div>
-                      <div class="intro">融资服务</div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="finance-down">
-            <div class="img"><img src="/image/service/advertising1.png" @click="handleToUrl"
-                data-url="https://cqcxcyct.com/credit.html" alt=""></div>
-            <div class="img"><img src="/image/service/advertising2.png" @click="handleToUrl"
-                data-url="https://cqcxcyct.com/seedfund.html" alt=""></div>
-          </div>
-        </div>
-      </div>
-      <div class="hatchBox">
-        <div class="mdiv">
-          <div class="hatchs">
-            <div class="left brief">
-              <div class="title" @click="handleToUrl" data-url="/service/resource_list.html?stype=010">孵化服务</div>
-              <div class="item">精准对接双创资源，解决双创需求</div>
-              <a href="/service/resource_list.html?stype=006" class="loadmore iconfont icon-gengduo"></a>
-              <template v-for="(item, i) in hatchsNavs">
-                <div class="tab" @mouseover.stop="handleSwitchoverHatchs(i)"><span :class="{active: item.active}"
-                    @click="handleToUrl" :data-url="item.url">{{item.label}}</span></div>
               </template>
-            </div>
-            <div class="hatchs-listbox">
-            <div class="hatchs-list">
-              <template  v-if="switchover === 0">
-                <a :href="brand.url" class="list" v-for="(brand,index) in brandList" target="_blank" :key="index">
-                  <div class="icon"><img :src="brand.itemImg" alt=""></div>
-                  <div class="item">
-                    <div class="item-name">{{brand.name}}</div>
-                    <div class="item-text">{{brand.text}}</div>
-                  </div>
-                </a>
-              </template>
-              <template  v-if="switchover === 1">
-                <a :href="item.itemUrl" class="list2" v-for="(item,index) in serviceList006" :key="index">
-                  <div class="avater">
-                    <img :src="item.itemImg" alt="">
-                  </div>
-                  <div class="item">
-                    <div class="item-name">{{item.title}}</div>
-                    <div class="item-text"><span class="iconfont icon-jingjiren1"></span>{{item.shopName}}<span></span></div>
-                    <div class="item-text"><span class="iconfont icon-biaoqian1"></span>{{item.servicesNames}}<span></span></div>
-                  </div>
-                </a>
-              </template>
-            </div>
-            <ul class="hatchs-down">
-              <li>
-                <a href="http://www.cqsczt.com/scsite/index/index.html">
-                  <div class="img"><img src="/image/service/cloudhatchlogo.png" alt=""></div>
-                  <div class="text">
-                    <div class="name">重庆孵化云平台</div>
-                    <div class="intro"></div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="http://www.csti.cn/">
-                  <div class="img"><img src="/image/service/sharelogo.png" alt=""></div>
-                  <div class="text">
-                    <div class="name">重庆资源共享平台</div>
-                    <div class="intro"></div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.cqcxcyct.com/">
-                  <div class="img"><img src="/image/service/sanchuang.png" alt=""></div>
-                  <div class="text">
-                    <div class="name">三创平台</div>
-                    <div class="intro">重庆·创新创业创投服务平台</div>
-                  </div>
-                </a>
-              </li>
             </ul>
           </div>
-          </div>
-        </div>
-      </div>
-        <div class="mdiv">
-          <div class="deal design">
-            <div class="left brief">
-              <div class="title" @click="handleToUrl" data-url="/service/resource_list.html?stype=010">研发设计</div>
-              <div class="item">助力企业创新，帮助企业更快成长</div>
-              <a href="/service/resource_list.html?stype=010" class="loadmore iconfont icon-gengduo"></a>
-            </div>
-            <div class="right">
-              <ul class="up">
-                <template v-for="item in serviceList010A">
-                  <li class="up-list">
-                    <a :href="item.itemUrl" target="_blank">
-                      <div class="item-img img" :style="item.styles">
-                        <img :src="item.itemImg" :alt="item.title">
-                      </div>
-                      <div class="detail">
-                        <div :title="item.title" class="detail-name">{{item.title}}</div>
-                        <div class="detail-item">
-                          <div class="detail-item_up">
-                            <div class="item-img left-img" :style="item.shopStyles"><img :src="item.shopItemImg" alt="">
-                            </div>
-                            <div :title="item.shopName" class="left-name">{{item.shopName}}</div>
-                          </div>
-                          <div class="detail-item_down">
-                            <div class="adress">
-                              <span class="iconfont icon-biaoqian1"></span>
-                              <span :title="item.servicesNames||item.services"
-                                class="line">{{item.servicesNames || item.services}}</span>
-                            </div>
-                            <div class="price">
-                              <span>￥ <span class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
-                            </div>
-                          </div>
+        </div> -->
+        <div class="content">
+            <div class="mdiv">
+                <div class="infos">
+                    <div class="dynamic">
+                        <div class="title"><span @click="handleToUrl" class="text"
+                                                 data-url="/service/demand_list.html">服务动态</span><span @click="handleToUrl"
+                                                                               class="iconfont icon-gengduo"
+                                                                               data-url="/service/demand_list.html"></span>
                         </div>
-                      </div>
-                    </a>
-                    <img class="fenghetao" src="../image/service/fenghetao.png" alt="">
-                  </li>
-                </template>
-                <template v-for="item in serviceList010">
-                  <li class="up-list">
-                    <a :href="item.itemUrl" target="_blank">
-                      <div class="item-img img" :style="item.styles">
-                        <img :src="item.itemImg" :alt="item.title">
-                      </div>
-                      <div class="detail">
-                        <div :title="item.title" class="detail-name">{{item.title}}</div>
-                        <div class="detail-item">
-                          <div class="detail-item_up">
-                            <div class="item-img left-img" :style="item.shopStyles"><img :src="item.shopItemImg" alt="">
+                        <div class="listsScroll">
+                            <ul class="lists">
+                                <template v-for="(item, i) in demandList">
+                                    <li class="list">
+                                        <a :href="item.itemUrl">
+                                            <div class="left">
+                                                <span class="circle"></span>
+                                                <span :title="item.title" class="name">{{item.title}}</span>
+                                            </div>
+                                            <div class="right">
+                                                <span>{{item.demandTypeDisplay}}</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="release">
+                        <a @click="showToast" class="top">
+                            <div class="iconfont icon-zhenduan1"></div>
+                            <div class="right">
+                                <div class="type">有难题，找服务</div>
+                                <div class="item">平台为您提供个性化对接</div>
                             </div>
-                            <div :title="item.shopName" class="left-name">{{item.shopName}}</div>
-                          </div>
-                          <div class="detail-item_down">
-                            <div class="adress">
-                              <span class="iconfont icon-biaoqian1"></span>
-                              <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
+                        </a>
+                        <a @click.stop="handleToUrlAuth" class="cen"
+                           href="/common/buyer/demand/add.html?code=001.001.002.002">
+                            <div class="iconfont icon-zhenduan2"></div>
+                            <div class="right">
+                                <div class="type">发布需求</div>
+                                <div class="item">我是服务需求方</div>
                             </div>
-                            <div class="price">
+                        </a>
+                        <a @click.stop="handleToUrlAuth"
+                           class="down"
+                           href="/common/seller/addpatent.html?code=001.002.002.002&categoryId=82779310439534200">
+                            <div class="iconfont icon-pinggu"></div>
+                            <div class="right">
+                                <div class="type">发布服务</div>
+                                <div class="item">我是服务提供方</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="finance">
+                    <div class="finance-up">
+                        <div class="left brief">
+                            <div @click="handleToUrl" class="title" data-url="/service/resource_list.html?stype=004">
+                                科技金融
+                            </div>
+                            <div class="item">助力企业创新，帮助企业更快成长</div>
+                            <a class="loadmore iconfont icon-gengduo" href="/service/resource_list.html?stype=004"></a>
+                            <template v-for="(item, i) in financialNavs">
+                                <div @mouseover.stop="handleSwitchoverFinancial(i)" class="tab"><span
+                                        :class="{active: item.active}"
+                                        :data-url="item.url" @click="handleToUrl">{{item.label}}</span></div>
+                            </template>
+                        </div>
+                        <div class="right">
+                            <ul class="up" v-if="secondList">
+                                <template v-for="item in serviceList004">
+                                    <li class="up-list">
+                                        <a :href="item.itemUrl" target="_blank">
+                                            <div :title="item.title" class="name">{{item.title}}</div>
+                                            <div class="type">
+                                                <div><span class="vaMiddle"><span class="iconfont icon-hangye1"></span></span><span
+                                                        :title="item.industryNames" class="vaMiddle item line">{{item.industryNames}}</span>
+                                                </div>
+                                                <div><span class="vaMiddle"><span
+                                                        class="iconfont icon-biaoqian1"></span></span><span
+                                                        :title="item.servicesNames" class="vaMiddle item line">{{item.servicesNames}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="type"><span>￥</span><span
+                                                    class="price">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                            <div class="up">
+                                <div class="card-box">
+                                    <ul>
+                                        <li><h4>高新贷-科创企业专属定制</h4>
+                                        </li>
+                                        <li>信用最高额度800万，增信最高额度1500万</li>
+                                        <li>担保灵活，个人担保或政府风险基金补偿增信</li>
+                                        <li>500万以内自主支付</li>
+                                        <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-box">
+                                    <ul>
+                                        <li><h4>政采贷-政府采购供应商专享
+
+                                        </h4>
+                                        </li>
+                                        <li>订单融资，担保灵活，额度最高3000万
+
+                                        </li>
+                                        <li>基于政府采购中标总额和采购合同办理融资</li>
+                                        <li>线上+线下服务模式结合，线上随借随还，线下专业团队</li>
+                                        <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-box">
+                                    <ul>
+                                        <li><h4>投标贷-投标企业量身定制
+                                        </h4>
+                                        </li>
+                                        <li> 信用额度最高1000万元，无需抵押担保
+
+                                        </li>
+                                        <li>客户准入灵活、授信额度大、融资成本低、操作流程简便</li>
+                                        <li>线上自助提款，定向支付，随借随还</li>
+                                        <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-box">
+                                    <ul>
+                                        <li><h4>抵押贷</h4>
+                                        </li>
+                                        <li>品种多样-流贷、固贷、贸易融资
+
+                                        </li>
+                                        <li>用途广泛-经营周转、资产购置、装修改造</li>
+                                        <li>期限宽松-额度最长5～10年</li>
+                                        <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-box">
+                                    <ul>
+                                        <li><h4>投联贷</h4>
+                                        </li>
+                                        <li>担保灵活
+
+                                        </li>
+                                        <li>信用最高500万</li>
+                                        <li>自主支付</li>
+                                        <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-box">
+                                    <ul>
+                                        <li><h4>供应链自助贷
+                                        </h4>
+                                        </li>
+                                        <li>信用方式上游模式最高额度800万，下游模式最高额度500万
+
+                                        </li>
+                                        <li>增信提额，最高2000万</li>
+                                        <li>交易场景适配，担保灵活</li>
+                                        <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <ul class="down">
+                                <li>
+                                    <a href="https://www.cqcxcyct.com/">
+                                        <div class="img"><img alt="" src="/image/service/sanchuang.png"></div>
+                                        <div class="text">
+                                            <div class="name">三创平台</div>
+                                            <div class="intro">重庆·创新创业创投服务平台</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/yukuairong/">
+                                        <div class="img"><img alt="" src="/image/service/yukuairong.png"></div>
+                                        <div class="text">
+                                            <div class="name">渝快融</div>
+                                            <div class="intro">重庆市企业融资大数据服务平台</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://www.liangjiang.gov.cn/">
+                                        <div class="img"><img alt="" src="/image/service/cqlj.png"></div>
+                                        <div class="text">
+                                            <div class="name">两江新区</div>
+                                            <div class="intro">融资服务</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="finance-down">
+                        <div class="img"><img @click="handleToUrl" alt=""
+                                              data-url="https://cqcxcyct.com/credit.html" src="/image/service/advertising1.png"></div>
+                        <div class="img"><img @click="handleToUrl" alt=""
+                                              data-url="https://cqcxcyct.com/seedfund.html" src="/image/service/advertising2.png"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hatchBox">
+                <div class="mdiv">
+                    <div class="hatchs">
+                        <div class="left brief">
+                            <div @click="handleToUrl" class="title" data-url="/service/resource_list.html?stype=010">
+                                孵化服务
+                            </div>
+                            <div class="item">精准对接双创资源，解决双创需求</div>
+                            <a class="loadmore iconfont icon-gengduo" href="/service/resource_list.html?stype=006"></a>
+                            <template v-for="(item, i) in hatchsNavs">
+                                <div @mouseover.stop="handleSwitchoverHatchs(i)" class="tab"><span
+                                        :class="{active: item.active}"
+                                        :data-url="item.url" @click="handleToUrl">{{item.label}}</span></div>
+                            </template>
+                        </div>
+                        <div class="hatchs-listbox">
+                            <div class="hatchs-list">
+                                <template v-if="switchover === 0">
+                                    <a :href="brand.url" :key="index" class="list" target="_blank"
+                                       v-for="(brand,index) in brandList">
+                                        <div class="icon"><img :src="brand.itemImg" alt=""></div>
+                                        <div class="item">
+                                            <div class="item-name">{{brand.name}}</div>
+                                            <div class="item-text">{{brand.text}}</div>
+                                        </div>
+                                    </a>
+                                </template>
+                                <template v-if="switchover === 1">
+                                    <a :href="item.itemUrl" :key="index" class="list2"
+                                       v-for="(item,index) in serviceList006">
+                                        <div class="avater">
+                                            <img :src="item.itemImg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <div class="item-name">{{item.title}}</div>
+                                            <div class="item-text"><span class="iconfont icon-jingjiren1"></span>{{item.shopName}}<span></span>
+                                            </div>
+                                            <div class="item-text"><span class="iconfont icon-biaoqian1"></span>{{item.servicesNames}}<span></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </template>
+                            </div>
+                            <ul class="hatchs-down">
+                                <li>
+                                    <a href="http://www.cqsczt.com/scsite/index/index.html">
+                                        <div class="img"><img alt="" src="/image/service/cloudhatchlogo.png"></div>
+                                        <div class="text">
+                                            <div class="name">重庆孵化云平台</div>
+                                            <div class="intro"></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://www.csti.cn/">
+                                        <div class="img"><img alt="" src="/image/service/sharelogo.png"></div>
+                                        <div class="text">
+                                            <div class="name">重庆资源共享平台</div>
+                                            <div class="intro"></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.cqcxcyct.com/">
+                                        <div class="img"><img alt="" src="/image/service/sanchuang.png"></div>
+                                        <div class="text">
+                                            <div class="name">三创平台</div>
+                                            <div class="intro">重庆·创新创业创投服务平台</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdiv">
+                <div class="deal design">
+                    <div class="left brief">
+                        <div @click="handleToUrl" class="title" data-url="/service/resource_list.html?stype=010">研发设计
+                        </div>
+                        <div class="item">助力企业创新，帮助企业更快成长</div>
+                        <a class="loadmore iconfont icon-gengduo" href="/service/resource_list.html?stype=010"></a>
+                    </div>
+                    <div class="right">
+                        <ul class="up">
+                            <template v-for="item in serviceList010A">
+                                <li class="up-list">
+                                    <a :href="item.itemUrl" target="_blank">
+                                        <div :style="item.styles" class="item-img img">
+                                            <img :alt="item.title" :src="item.itemImg">
+                                        </div>
+                                        <div class="detail">
+                                            <div :title="item.title" class="detail-name">{{item.title}}</div>
+                                            <div class="detail-item">
+                                                <div class="detail-item_up">
+                                                    <div :style="item.shopStyles" class="item-img left-img"><img
+                                                            :src="item.shopItemImg" alt="">
+                                                    </div>
+                                                    <div :title="item.shopName" class="left-name">{{item.shopName}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item_down">
+                                                    <div class="adress">
+                                                        <span class="iconfont icon-biaoqian1"></span>
+                                                        <span :title="item.servicesNames||item.services"
+                                                              class="line">{{item.servicesNames || item.services}}</span>
+                                                    </div>
+                                                    <div class="price">
+                                                        <span>￥ <span class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <img alt="" class="fenghetao" src="../image/service/fenghetao.png">
+                                </li>
+                            </template>
+                            <template v-for="item in serviceList010">
+                                <li class="up-list">
+                                    <a :href="item.itemUrl" target="_blank">
+                                        <div :style="item.styles" class="item-img img">
+                                            <img :alt="item.title" :src="item.itemImg">
+                                        </div>
+                                        <div class="detail">
+                                            <div :title="item.title" class="detail-name">{{item.title}}</div>
+                                            <div class="detail-item">
+                                                <div class="detail-item_up">
+                                                    <div :style="item.shopStyles" class="item-img left-img"><img
+                                                            :src="item.shopItemImg" alt="">
+                                                    </div>
+                                                    <div :title="item.shopName" class="left-name">{{item.shopName}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item_down">
+                                                    <div class="adress">
+                                                        <span class="iconfont icon-biaoqian1"></span>
+                                                        <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
+                                                    </div>
+                                                    <div class="price">
                               <span>￥ <span
-                                  class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
-                            </div>
-                          </div>
+                                      class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
+                        <ul class="down">
+                            <template v-for="item in organizationList010">
+                                <li>
+                                    <a :href="item.itemUrl" target="_blank">
+                                        <div :style="item.styles" class="item-img img">
+                                            <img :alt="item.title" :src="item.itemImg"></div>
+                                        <div :title="item.title" class="name">{{item.title}}</div>
+                                        <div class="adress">
+                                            <div><span
+                                                    class="iconfont icon-dingwei"></span><span>{{item.cityShow}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </template>
+                            <li class="more">
+                                <a href="/service/organization_list.html?stype=010">
+                                    <div><span class="iconfont icon-jingjiren1"></span></div>
+                                    <div class="more-name">更多服务商</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="deal detection">
+                    <div class="left brief">
+                        <div @click="handleToUrl" class="title" data-url="/service/resource_list.html?stype=009">检验检测
                         </div>
-                      </div>
-                    </a>
-                  </li>
-                </template>
-              </ul>
-              <ul class="down">
-                <template v-for="item in organizationList010">
-                  <li>
-                    <a :href="item.itemUrl" target="_blank">
-                      <div class="item-img img" :style="item.styles">
-                        <img :src="item.itemImg" :alt="item.title"></div>
-                      <div :title="item.title" class="name">{{item.title}}</div>
-                      <div class="adress">
-                        <div><span class="iconfont icon-dingwei"></span><span>{{item.cityShow}}</span></div>
-                      </div>
-                    </a>
-                  </li>
-                </template>
-                <li class="more">
-                  <a href="/service/organization_list.html?stype=010">
-                    <div><span class="iconfont icon-jingjiren1"></span></div>
-                    <div class="more-name">更多服务商</div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="deal detection">
-            <div class="left brief">
-              <div class="title" @click="handleToUrl" data-url="/service/resource_list.html?stype=009">检验检测</div>
-              <div class="item">线上+线下，助力成果转化</div>
-              <a href="/service/resource_list.html?stype=009" class="loadmore iconfont icon-gengduo"></a>
-            </div>
-            <div class="right">
-              <ul class="up">
-                <template v-for="item in serviceList009">
-                  <li class="up-list">
-                    <a :href="item.itemUrl" target="_blank">
-                      <div class="item-img img" :style="item.styles">
-                        <img :src="item.itemImg" :alt="item.title">
-                      </div>
-                      <div class="detail">
-                        <div :title="item.title" class="detail-name">{{item.title}}</div>
-                        <div class="detail-item">
-                          <div class="detail-item_up">
-                            <div class="item-img left-img" :style="item.shopStyles"><img :src="item.shopItemImg" alt="">
-                            </div>
-                            <div :title="item.shopName" class="left-name">{{item.shopName}}</div>
-                          </div>
-                          <div class="detail-item_down">
-                            <div class="adress">
-                              <span class="iconfont icon-biaoqian1"></span>
-                              <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
-                            </div>
-                            <div class="price">
+                        <div class="item">线上+线下，助力成果转化</div>
+                        <a class="loadmore iconfont icon-gengduo" href="/service/resource_list.html?stype=009"></a>
+                    </div>
+                    <div class="right">
+                        <ul class="up">
+                            <template v-for="item in serviceList009">
+                                <li class="up-list">
+                                    <a :href="item.itemUrl" target="_blank">
+                                        <div :style="item.styles" class="item-img img">
+                                            <img :alt="item.title" :src="item.itemImg">
+                                        </div>
+                                        <div class="detail">
+                                            <div :title="item.title" class="detail-name">{{item.title}}</div>
+                                            <div class="detail-item">
+                                                <div class="detail-item_up">
+                                                    <div :style="item.shopStyles" class="item-img left-img"><img
+                                                            :src="item.shopItemImg" alt="">
+                                                    </div>
+                                                    <div :title="item.shopName" class="left-name">{{item.shopName}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item_down">
+                                                    <div class="adress">
+                                                        <span class="iconfont icon-biaoqian1"></span>
+                                                        <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
+                                                    </div>
+                                                    <div class="price">
                               <span>￥ <span
-                                  class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </template>
-              </ul>
-              <ul class="down">
-                <template v-for="item in organizationList009">
-                  <li>
-                    <a :href="item.itemUrl" target="_blank">
-                      <div class="item-img img" :style="item.styles">
-                        <img :src="item.itemImg" :alt="item.title"></div>
-                      <div :title="item.title" class="name">{{item.title}}</div>
-                      <div class="adress">
-                        <div><span class="iconfont icon-dingwei"></span><span>{{item.cityShow}}</span></div>
-                      </div>
-                    </a>
-                  </li>
-                </template>
-                <li class="more">
-                  <a href="/service/organization_list.html?stype=009">
-                    <div><span class="iconfont icon-jingjiren1"></span></div>
-                    <div class="more-name">更多服务商</div>
-                  </a>
-                </li>
-              </ul>
+                                      class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
+                        <ul class="down">
+                            <template v-for="item in organizationList009">
+                                <li>
+                                    <a :href="item.itemUrl" target="_blank">
+                                        <div :style="item.styles" class="item-img img">
+                                            <img :alt="item.title" :src="item.itemImg"></div>
+                                        <div :title="item.title" class="name">{{item.title}}</div>
+                                        <div class="adress">
+                                            <div><span
+                                                    class="iconfont icon-dingwei"></span><span>{{item.cityShow}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </template>
+                            <li class="more">
+                                <a href="/service/organization_list.html?stype=009">
+                                    <div><span class="iconfont icon-jingjiren1"></span></div>
+                                    <div class="more-name">更多服务商</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="bgbox">
-          <div class="mdiv">
-            <div class="deal property">
-              <div class="left brief">
-                <div class="title" @click="handleToUrl" data-url="/service/resource_list.html?stype=002">知识产权</div>
-                <div class="item">线上+线下，助力成果转化</div>
-                <a href="/service/resource_list.html?stype=002" class="loadmore iconfont icon-gengduo"></a>
-              </div>
-              <div class="right">
-                <ul class="up">
-                  <template v-for="item in serviceList002">
-                    <li class="up-list">
-                      <a :href="item.itemUrl" target="_blank">
-                        <div class="item-img img" :style="item.styles">
-                          <img :src="item.itemImg" :alt="item.title">
-                        </div>
-                        <div class="detail">
-                          <div :title="item.title" class="detail-name">{{item.title}}</div>
-                          <div class="detail-item">
-                            <div class="detail-item_up">
-                              <div class="item-img left-img" :style="item.shopStyles"><img :src="item.shopItemImg"
-                                  alt="">
-                              </div>
-                              <div :title="item.shopName" class="left-name">{{item.shopName}}</div>
+            <div class="bgbox">
+                <div class="mdiv">
+                    <div class="deal property">
+                        <div class="left brief">
+                            <div @click="handleToUrl" class="title" data-url="/service/resource_list.html?stype=002">
+                                知识产权
                             </div>
-                            <div class="detail-item_down">
-                              <div class="adress">
-                                <span class="iconfont icon-biaoqian1"></span>
-                                <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
-                              </div>
-                              <div class="price">
+                            <div class="item">线上+线下，助力成果转化</div>
+                            <a class="loadmore iconfont icon-gengduo" href="/service/resource_list.html?stype=002"></a>
+                        </div>
+                        <div class="right">
+                            <ul class="up">
+                                <template v-for="item in serviceList002">
+                                    <li class="up-list">
+                                        <a :href="item.itemUrl" target="_blank">
+                                            <div :style="item.styles" class="item-img img">
+                                                <img :alt="item.title" :src="item.itemImg">
+                                            </div>
+                                            <div class="detail">
+                                                <div :title="item.title" class="detail-name">{{item.title}}</div>
+                                                <div class="detail-item">
+                                                    <div class="detail-item_up">
+                                                        <div :style="item.shopStyles" class="item-img left-img"><img
+                                                                :src="item.shopItemImg"
+                                                                alt="">
+                                                        </div>
+                                                        <div :title="item.shopName" class="left-name">
+                                                            {{item.shopName}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="detail-item_down">
+                                                        <div class="adress">
+                                                            <span class="iconfont icon-biaoqian1"></span>
+                                                            <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
+                                                        </div>
+                                                        <div class="price">
                                 <span>￥ <span
-                                    class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
-                              </div>
+                                        class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                            <ul class="down">
+                                <template v-for="item in organizationList002">
+                                    <li>
+                                        <a :href="item.itemUrl" target="_blank">
+                                            <div :style="item.styles" class="item-img img">
+                                                <img :alt="item.title" :src="item.itemImg"></div>
+                                            <div :title="item.title" class="name">{{item.title}}</div>
+                                            <div class="adress">
+                                                <div><span
+                                                        class="iconfont icon-dingwei"></span><span>{{item.cityShow}}</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </template>
+                                <li class="more">
+                                    <a href="/service/organization_list.html?stype=002">
+                                        <div><span class="iconfont icon-jingjiren1"></span></div>
+                                        <div class="more-name">更多服务商</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="deal policy">
+                        <div class="left brief">
+                            <div @click="handleToUrl" class="title" data-url="/service/resource_list.html?stype=001">
+                                科技智库
                             </div>
-                          </div>
+                            <div class="item">线上+线下，助力成果转化</div>
+                            <a class="loadmore iconfont icon-gengduo" href="/service/resource_list.html?stype=001"></a>
                         </div>
-                      </a>
-                    </li>
-                  </template>
-                </ul>
-                <ul class="down">
-                  <template v-for="item in organizationList002">
-                    <li>
-                      <a :href="item.itemUrl" target="_blank">
-                        <div class="item-img img" :style="item.styles">
-                          <img :src="item.itemImg" :alt="item.title"></div>
-                        <div :title="item.title" class="name">{{item.title}}</div>
-                        <div class="adress">
-                          <div><span class="iconfont icon-dingwei"></span><span>{{item.cityShow}}</span></div>
-                        </div>
-                      </a>
-                    </li>
-                  </template>
-                  <li class="more">
-                    <a href="/service/organization_list.html?stype=002">
-                      <div><span class="iconfont icon-jingjiren1"></span></div>
-                      <div class="more-name">更多服务商</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="deal policy">
-              <div class="left brief">
-                <div class="title" @click="handleToUrl" data-url="/service/resource_list.html?stype=001">科技智库</div>
-                <div class="item">线上+线下，助力成果转化</div>
-                <a href="/service/resource_list.html?stype=001" class="loadmore iconfont icon-gengduo"></a>
-              </div>
-              <div class="right">
-                <ul class="up">
-                  <template v-for="item in serviceList001">
-                    <li class="up-list">
-                      <a :href="item.itemUrl" target="_blank">
-                        <div class="item-img img" :style="item.styles">
-                          <img :src="item.itemImg" :alt="item.title">
-                        </div>
-                        <div class="detail">
-                          <div :title="item.title" class="detail-name">{{item.title}}</div>
-                          <div class="detail-item">
-                            <div class="detail-item_up">
-                              <div class="item-img left-img" :style="item.shopStyles"><img :src="item.shopItemImg"
-                                  alt="">
-                              </div>
-                              <div :title="item.shopName" class="left-name">{{item.shopName}}</div>
-                            </div>
-                            <div class="detail-item_down">
-                              <div class="adress">
-                                <span class="iconfont icon-biaoqian1"></span>
-                                <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
-                              </div>
-                              <div class="price">
+                        <div class="right">
+                            <ul class="up">
+                                <template v-for="item in serviceList001">
+                                    <li class="up-list">
+                                        <a :href="item.itemUrl" target="_blank">
+                                            <div :style="item.styles" class="item-img img">
+                                                <img :alt="item.title" :src="item.itemImg">
+                                            </div>
+                                            <div class="detail">
+                                                <div :title="item.title" class="detail-name">{{item.title}}</div>
+                                                <div class="detail-item">
+                                                    <div class="detail-item_up">
+                                                        <div :style="item.shopStyles" class="item-img left-img"><img
+                                                                :src="item.shopItemImg"
+                                                                alt="">
+                                                        </div>
+                                                        <div :title="item.shopName" class="left-name">
+                                                            {{item.shopName}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="detail-item_down">
+                                                        <div class="adress">
+                                                            <span class="iconfont icon-biaoqian1"></span>
+                                                            <span :title="item.servicesNames" class="line">{{item.servicesNames}}</span>
+                                                        </div>
+                                                        <div class="price">
                                 <span>￥ <span
-                                    class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
-                              </div>
-                            </div>
-                          </div>
+                                        class="number">{{item.negotiableFlag|formatPrice2(item.price, item.minPrice, item.maxPrice)}}<i>万</i></span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
                         </div>
-                      </a>
-                    </li>
-                  </template>
-                </ul>
-              </div>
+                    </div>
+                    <div class="others">
+                        <div class="title">其他服务</div>
+                        <ul class="tab">
+                            <template v-for="(item, i) in serviceNavs">
+                                <li :class="{active: item.active}" @click="handleMore(item.url)"
+                                    @mouseover.stop="handleSwitchoverServer(i)">{{item.label}}
+                                </li>
+                            </template>
+                        </ul>
+                        <ul class="lists">
+                            <template v-for="(item, i) in lastList">
+                                <li>
+                                    <a :href="item.itemUrl" target="_blank">
+                                        <div class="up">
+                                            <div :style="item.styles" class="item-img up-left">
+                                                <img :alt="item.title" :src="item.itemImg"></div>
+                                            <div class="up-right">
+                                                <div class="name"><span :title="item.title">{{item.title}}</span></div>
+                                                <div class="text">
+                                                    <span class="iconfont icon-biaoqian1"></span><span
+                                                        :title="item.servicesNames">{{item.servicesNames}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="down">
+                                            <div class="item">
+                                                <div :style="item.shopStyles" class="item-img img"><img
+                                                        :src="item.shopItemImg" alt=""></div>
+                                                <div :title="item.shopName" class="name">{{item.shopName}}</div>
+                                            </div>
+                                            <div @click.stop.prevent="handleOnLineConsult(i)" class="consult">
+                                                <span>立即咨询</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="others">
-              <div class="title">其他服务</div>
-              <ul class="tab">
-                <template v-for="(item, i) in serviceNavs">
-                  <li @mouseover.stop="handleSwitchoverServer(i)" :class="{active: item.active}" @click="handleMore(item.url)">{{item.label}}</li>
-                </template>
-              </ul>
-              <ul class="lists">
-                <template v-for="(item, i) in lastList">
-                  <li>
-                    <a :href="item.itemUrl" target="_blank">
-                      <div class="up">
-                        <div class="item-img up-left" :style="item.styles">
-                          <img :src="item.itemImg" :alt="item.title"></div>
-                        <div class="up-right">
-                          <div class="name"><span :title="item.title">{{item.title}}</span></div>
-                          <div class="text">
-                            <span class="iconfont icon-biaoqian1"></span><span
-                              :title="item.servicesNames">{{item.servicesNames}}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="down">
-                        <div class="item">
-                          <div class="item-img img" :style="item.shopStyles"><img :src="item.shopItemImg" alt=""></div>
-                          <div class="name" :title="item.shopName">{{item.shopName}}</div>
-                        </div>
-                        <div class="consult" @click.stop.prevent="handleOnLineConsult(i)"><span>立即咨询</span></div>
-                      </div>
-                    </a>
-                  </li>
-                </template>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
     <div class="contentDownBox">
-      <div class="mdiv">
-        <div class="contentDown">
-        <a :href="count.url" v-for="(count,index) in counts" :key="index">
-          <div class="avater"><img :src="count.imgurl" alt=""></div>
-          <div class="right">
-          <div class="count">
-            <span class="number">{{count.count}}</span><span>{{count.unit}}</span>
-          </div>
-          <div class="text">{{count.label}}</div>
-          </div>
-        </a>
+        <div class="mdiv">
+            <div class="contentDown">
+                <a :href="count.url" :key="index" v-for="(count,index) in counts">
+                    <div class="avater"><img :src="count.imgurl" alt=""></div>
+                    <div class="right">
+                        <div class="count">
+                            <span class="number">{{count.count}}</span><span>{{count.unit}}</span>
+                        </div>
+                        <div class="text">{{count.label}}</div>
+                    </div>
+                </a>
+            </div>
         </div>
-      </div>
     </div>
     <web-footer></web-footer>
-  </div>
-  <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script type="text/javascript" src="/style/js/service/index.js"></script>
+</div>
+<script src="/common/js/libs/require.js" type="text/javascript"></script>
+<script src="/style/js/service/index.js" type="text/javascript"></script>
 </body>
 
 </html>
