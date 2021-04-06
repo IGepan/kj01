@@ -1,0 +1,492 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>易智网首页</title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script src="js/swiper-bundle.min.js"></script>
+    <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<div class="box" id='index_box'>
+
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
+    </validate-dialog>
+    <header-mail ref="header_mail"></header-mail>
+
+    <nav class="main-menu">
+        <div class="container">
+            <ul class="navbar-nav">
+                <li class="nav-item brand home">
+                    <a class="nav-link" href="#" id="main-down-first">
+                        服务分类
+                    </a>
+                    <ul class="dropdown-menu-main list-unstyled">
+
+                        <li class="has-sub-menu"  v-for="(serviceType,index) in mailServiceTypeList" v-if="index < 6" :key="serviceType.id">
+
+                            <a class="main-link" :href="'sub1.html?type='+serviceType.id">{{serviceType.name}}</a>
+
+                            <a class="sub-link" :href="'sub1.html?type='+children.id" v-for="children in serviceType.children.slice(0,2)" :key="children.id">{{children.name}}</a>
+
+                            <div class="sub-menu">
+                                <div class="row">
+                                    <div class="col">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"  v-for="ch in serviceType.children" :key="ch.id"><a :href="'sub1.html?type='+ch.id">{{ch.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sub1.html">找服务</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" @click="fwsClic2()">入驻商城</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">关于商城</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="slideshow">
+        <div class="swiper-container" id="home-slider">
+            <div class="swiper-wrapper">
+                <template v-for="idx_banner in indexBanner">
+                <div class="swiper-slide"><img  :src="idx_banner.path" @click="toLink(idx_banner.link)"  ></div>
+<!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
+<!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
+<!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
+                </template>
+            </div>
+
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div class="container" id="settle_in_apply">
+        <div class="settle_in-box">
+            <div class="block-title d-flex justify-content-around">
+                <div class="title">
+                    入驻企业 <strong>{{mailSite.organizationCount ||0 }}家</strong>
+                </div>
+                <div class="title">
+                    服务企业 <strong>{{mailSite.enterpriseCount ||0 }}家</strong>
+                </div>
+                <div class="title">
+                    服务产品 <strong>{{mailSite.productCount ||0 }}项</strong>
+                </div>
+                <div class="title">
+                    签约项目 <strong>{{mailSite.projectCount ||0 }}项</strong>
+                </div>
+            </div>
+            <el-form id="sub_form">
+<!--                <div class="settle_in-form d-flex">-->
+<!--                    <div class="input-group">-->
+<!--                         <input type="text" class="form-control demand-txt"  v-model="form.content" name="content"  placeholder="请输入需求名称">-->
+<!--                    </div>-->
+<!--                        <div class="input-group">-->
+<!--                            <input type="text" name="phone" v-model="form.phone" aria-label="mobile" class="form-control mobile" placeholder="手机号">-->
+<!--                            <input type="text" name="code" v-model="form.code" aria-label="verificationCode" class="form-control verificationCode" placeholder="验证码">-->
+<!--                            <button class="btn btn-light" type="button" v-text="codeBtnText"  :disabled="isDisabled" @click="sendClick($event)"></button>-->
+<!--                        </div>-->
+<!--                        <button class="btn btn-primary btn-publish" @click="subClick($event)"  :disabled="isSubmitDisabled">快速发布需求</button>-->
+<!--                </div>-->
+
+                <div class="settle_in-form d-flex">
+                    <div class="input-group">
+                         <input type="text" class="form-control demand-txt"  v-model="form.content" name="content"  placeholder="请输入需求名称">
+                    </div>
+                    <div class="input-group phoneVerification">
+                            <input type="text" name="phone" v-model="form.phone" aria-label="mobile" class="form-control mobile" placeholder="手机号">
+                            <input type="text" name="code" v-model="form.code" aria-label="verificationCode" class="form-control verificationCode" placeholder="验证码">
+                            <button class="btn btn-light" type="button" v-text="codeBtnText"  :disabled="isDisabled" @click="sendClick($event)"></button>
+                    </div>
+                    <button class="btn btn-primary btn-publish" @click="subClick($event)"  :disabled="isSubmitDisabled">快速发布需求</button>
+                </div>
+            </el-form>
+
+        </div>
+    </div>
+    <div id="service-box">
+        <div class="container">
+            <div class="main-block block-service">
+                <div class="main-title">
+                    <span>精选服务</span>
+                </div>
+                <div class="sub-title">易智商城, 品牌优选</div>
+                <div class="swiper-container service-list">
+                    <div class="swiper-wrapper">
+                        <template  v-for="(good,index) in chooseGoods">
+                        <div class="swiper-slide">
+                            <div class="card card-item">
+                                <img :src="good.goodsImg.url" class="" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode">{{good.goodsName}}</a></h5>
+                                    <div class="d-flex justify-content-between addition">
+                                        <div class="short-text">
+                                            <p><i class="iconfont icon-tag"></i>  {{good.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good.shopName}}</p>
+                                        </div>
+                                        <div class="quoted-price"><span>￥</span>{{good.negotiableFlag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.negotiableFlag==='0'">万</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
+
+                    </div>
+                </div>
+                <div class="item-next"><i class="iconfont icon-arrow-right"></i></div>
+                <div class="item-prev"><i class="iconfont icon-arrow-left"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!--企业孵化-->
+    <div class="container">
+        <div class="main-block block-tabs">
+            <div class="main-title">
+                <span>{{incubationType.name}}</span>
+            </div>
+            <div class="sub-title">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item" v-for="incubation in incubationType.children">
+                        <a class="nav-link" href="#">{{incubation.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="left-banner">
+                    <h4>企业孵化</h4>
+                    <div class="text">
+                        为创业者帮, 为有志者谋
+                    </div>
+                    <a class="btn btn-outline-light" href="sub1.html?type=341963394375553024">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                </div>
+                <div class="row row-cols-4">
+
+                    <div class="col" v-for="good_incubation in incubationTypeList">
+                        <div class="card card-item">
+                            <img :src="good_incubation.goodsImg.url" class="" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><a :href="'shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">{{good_incubation.goodsName}}</a></h5>
+                                <div class="addition">
+                                    <div class="short-text">
+                                        <p><i class="iconfont icon-tag"></i>  {{good_incubation.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>
+                                    </div>
+                                    <div class="quoted-price"><span>￥</span>{{good_incubation.negotiableFlag | formatPrice2(good_incubation.price, good_incubation.minPrice, good_incubation.maxPrice)}}<span v-if="good_incubation.negotiableFlag==='0'">万</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--研发设计-->
+    <div class="full-block">
+        <div class="container">
+            <div class="main-block block-tabs design-tabs">
+                <div class="main-title">
+                    <span>{{designType.name}}</span>
+                </div>
+                <div class="sub-title">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item" v-for="designType in designType.children">
+                            <a class="nav-link" href="#">{{designType.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="left-banner">
+                        <h4>研发设计</h4>
+                        <div class="text">
+                            研究新产品, 发展新技术
+                        </div>
+                        <a class="btn btn-outline-light" href="sub1.html?type=342997980492664832">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                    </div>
+                    <div class="row row-cols-4">
+
+                        <div class="col" v-for="good_design in designTypeList">
+                            <div class="card card-item">
+                                <img :src="good_design.goodsImg.url" class="" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a  :href="'shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">{{good_design.goodsName}}</a></h5>
+                                    <div class="addition">
+                                        <div class="short-text">
+                                            <p><i class="iconfont icon-tag"></i>  {{good_design.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_design.shopName}}</p>
+                                        </div>
+                                        <div class="quoted-price"><span>￥</span>{{good_design.negotiableFlag | formatPrice2(good_design.price, good_design.minPrice, good_design.maxPrice)}}<span v-if="good_design.negotiableFlag==='0'">万</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--首页通栏广告-->
+                <div class="page-banner">
+                    <template v-for="idx_banner2 in indexBanner02">
+                        <a href="#"><img class="img-fluid" :src="idx_banner2.path" alt=""></a>
+                    </template>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--检验检测-->
+    <div class="container">
+        <div class="main-block block-tabs test-tabs">
+            <div class="main-title">
+                <span>{{checkType.name}}</span>
+            </div>
+            <div class="sub-title">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item" v-for="checkType in checkType.children">
+                        <a class="nav-link" href="#">{{checkType.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="left-banner">
+                    <h4>检验检测</h4>
+                    <div class="text">
+                        细心,精心,用心,放心
+                    </div>
+                    <a class="btn btn-outline-light" href="sub1.html?type=351006150943117312">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                </div>
+                <div class="row row-cols-4">
+
+                    <div class="col" v-for="good_checkType in checkTypeList">
+                        <div class="card card-item">
+                            <img :src="good_checkType.goodsImg.url" class="" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><a :href="'shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">{{good_checkType.goodsName}}</a></h5>
+                                <div class="addition">
+                                    <div class="short-text">
+                                        <p><i class="iconfont icon-tag"></i>  {{good_checkType.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_checkType.shopName}}</p>
+                                    </div>
+                                    <div class="quoted-price"><span>￥</span>{{good_checkType.negotiableFlag | formatPrice2(good_checkType.price, good_checkType.minPrice, good_checkType.maxPrice)}}<span v-if="good_checkType.negotiableFlag==='0'">万</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--知识产权-->
+    <div class="full-block">
+        <div class="container">
+            <div class="main-block block-tabs property-tabs">
+                <div class="main-title">
+                    <span>{{propertyType.name}}</span>
+                </div>
+
+                <div class="sub-title">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item" v-for="propertyType in propertyType.children">
+                            <a class="nav-link" href="#">{{propertyType.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" >
+                    <div class="left-banner">
+                        <h4>知识产权</h4>
+                        <div class="text">
+                            知识引导创新 <br> 产权创造财富
+                        </div>
+                        <a class="btn btn-outline-light" href="sub1.html?type=351006229049446400">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                    </div>
+                    <div class="row row-cols-4">
+
+                        <div class="col" v-for="good_propertyType in propertyTypeList">
+                            <div class="card card-item">
+                                <img :src="good_propertyType.goodsImg.url" class="" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a :href="'shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">{{good_propertyType.goodsName}}</a></h5>
+                                    <div class="addition">
+                                        <div class="short-text">
+                                            <p><i class="iconfont icon-tag"></i>  {{good_propertyType.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_propertyType.shopName}}</p>
+                                        </div>
+                                        <div class="quoted-price"><span>￥</span>{{good_propertyType.negotiableFlag | formatPrice2(good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}<span v-if="good_propertyType.negotiableFlag==='0'">万</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--科技咨询-->
+    <div class="container">
+        <div class="main-block block-tabs technology-tabs">
+            <div class="main-title">
+                <span>{{technologyType.name}}</span>
+            </div>
+
+            <div class="sub-title">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item" v-for="technologyType in technologyType.children">
+                        <a class="nav-link" href="#">{{technologyType.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="left-banner">
+                    <h4>科技咨询</h4>
+                    <div class="text">
+                        独享视角,给你专属价值
+                    </div>
+                    <a class="btn btn-outline-light" href="sub1.html?type=351006275161624576">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                </div>
+                <div class="row row-cols-4">
+
+                    <div class="col" v-for="good_technologyType in technologyTypeList">
+                        <div class="card card-item">
+                            <img :src="good_technologyType.goodsImg.url" class="" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><a :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">{{good_technologyType.goodsName}}</a></h5>
+                                <div class="addition">
+                                    <div class="short-text">
+                                        <p><i class="iconfont icon-tag"></i>  {{good_technologyType.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_technologyType.shopName}}</p>
+                                    </div>
+                                    <div class="quoted-price"><span>￥</span>{{good_technologyType.negotiableFlag | formatPrice2(good_technologyType.price, good_technologyType.minPrice, good_technologyType.maxPrice)}}<span v-if="good_technologyType.negotiableFlag==='0'">万</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--技术转移-->
+    <div class="full-block">
+        <div class="container">
+            <div class="main-block block-tabs migrate-tabs">
+                <div class="main-title">
+                    <span>{{transferType.name}}</span>
+                </div>
+
+                <div class="sub-title">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item" v-for="transferType in transferType.children">
+                            <a class="nav-link" href="#">{{transferType.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="left-banner">
+                        <h4>技术转移</h4>
+                        <div class="text">
+                            让技术转移变得简单
+                        </div>
+                        <a class="btn btn-outline-light" href="sub1.html?type=351006313468203008">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                    </div>
+                    <div class="row row-cols-4">
+
+                        <div class="col" v-for="good_transferType in transferTypeList">
+                            <div class="card card-item">
+                                <img :src="good_transferType.goodsImg.url" class="" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">{{good_transferType.goodsName}}</a></h5>
+                                    <div class="addition">
+                                        <div class="short-text">
+                                            <p><i class="iconfont icon-tag"></i>  {{good_transferType.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_transferType.shopName}}</p>
+                                        </div>
+                                        <div class="quoted-price"><span>￥</span>{{good_transferType.negotiableFlag | formatPrice2(good_transferType.price, good_transferType.minPrice, good_transferType.maxPrice)}}<span v-if="good_transferType.negotiableFlag==='0'">万</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="slogan-tree">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="text-area">
+                        <span class="icon-font">专</span>
+                        <div class="text-box">
+                            <h4>专注企业服务14年</h4>
+                            <p class="text">服务2200万用户,涵盖150+企业</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-area">
+                        <span class="icon-font">保</span>
+                        <div class="text-box">
+                            <h4>资金安全</h4>
+                            <p class="text">交易资金托管平台,保障资金安全,确认完成再付款</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-area">
+                        <span class="icon-font">实</span>
+                        <div class="text-box">
+                            <h4>商家实名</h4>
+                            <p class="text">服务商100%实名认证，官方把关，核实身份</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-area last">
+                        <span class="icon-font">官</span>
+                        <div class="text-box">
+                            <h4>全程监管</h4>
+                            <p class="text">交易过程中产生纠纷，官方100%介入</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <web-footer></web-footer>
+
+
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/mail/index.js"></script>
+
+</body>
+</html>
