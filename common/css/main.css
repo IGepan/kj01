@@ -1,5 +1,7 @@
 /* CSS Document */
 @import url(iconfont/iconfont.css);
+@import url(element.css);
+
 * {
 	box-sizing: border-box;
 }
@@ -822,7 +824,7 @@ li {
 	line-height: 36px;
 	font-size: 16px;
 	background-color: #fff;
-	vertical-align: middle;
+	vertical-align: bottom;
 	position: relative;
 /*	margin-top: 1px;*/
 }

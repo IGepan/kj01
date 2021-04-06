@@ -297,6 +297,12 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     categorytplSelect: function (param) {
       return Http.get(httpUrl.baseUrl + '/categorytpl/select', param)
     },
+      /**
+       * 易智商城类型
+       */
+    mailTypeSelect: function (param) {
+      return Http.get(httpUrl.baseUrl + '/mailServiceType/tree', param)
+      },
 		/**
 		 * 商品详情(鉴权)
 		 */

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>易智网商城 - 店铺详情</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lightgallery.css">
+
+    <script src="../js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <script src="../js/swiper-bundle.min.js"></script>
+    <script src="../js/lightgallery.js"></script>
+</head>
+<body class="shop-page">
+<div class="box" id='index_box'>
+    <ly-toper ref="topbar"></ly-toper>
+    <header id="page-header" class="shop-header">
+        <ly-header :http="httpCom"></ly-header>
+    </header>
+    <div class="additional-menu">
+        <div class="container">
+            <div class="store-info d-flex">
+                <span class="store-name">{{shopInfo.shopName}}</span>
+                <div class="store-mark d-flex">
+                    <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
+                    <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
+                    <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
+                </div>
+                <a class="collection-shop" v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'"
+                   @click="colSelectedClick(shopInfo)"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
+            </div>
+        </div>
+    </div>
+    <nav class="main-menu shop-menu">
+        <div class="container">
+            <ul class="navbar-nav navbar-dark">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" :href="'index.html?code='+shopCode">店铺首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" :href="'list.html?code='+shopCode">服务列表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="'/mail/shop/service.html?code='+shopCode">服务案例</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="shop-banner" :style="'background-image: url('+shopInfo.banner+');'">
+        <!--<img class="img-fluid" src="demo/banner.jpg" alt="">-->
+    </div>
+    <div class="container product-off-shelf" v-if="isShow === 0">
+        <div class="content">
+            <div class="d-flex justify-content-center off-block">
+                <i class="iconfont icon-sad"></i>
+                <div class="text">
+                    <h2>很抱歉，您查看的商品已下架。</h2>
+                    <p>您可以：</p>
+                    <p>1、联系卖家找找商品。</p>
+                    <p>2、在顶部搜索框重新输入关键词进行搜索。</p>
+                </div>
+            </div>
+            <div class="block block-product">
+                <div class="main-title"><span>相似推荐</span></div>
+                <div class="block-content">
+                    <div class="row row-cols-5">
+                        <div class="col" v-for="(item, i) in fullList">
+                            <div class="card card-item">
+                                <a class="img" :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><img
+                                        :src="item.goodsImgUrl" class="" alt="..."></a>
+                                <div class="card-body">
+                                    <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
+                                    <div class="quoted-price"><span>￥</span>{{item.negotiableFlag |
+                                        formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container product-off-shelf" v-if="isShow === 2">
+        <div class="content">
+            <div class="d-flex justify-content-center off-block">
+                <i class="iconfont icon-sad"></i>
+                <div class="text">
+                    <h2>很抱歉，您查看的店铺被冻结。</h2>
+                    <p>您可以：</p>
+                    <p>1、联系卖家找找商品。</p>
+                    <p>2、在顶部搜索框重新输入关键词进行搜索。</p>
+                </div>
+            </div>
+            <div class="block block-product">
+                <div class="main-title"><span>相似推荐</span></div>
+                <div class="block-content">
+                    <div class="row row-cols-5">
+                        <div class="col" v-for="(item, i) in fullList">
+                            <div class="card card-item">
+                                <a class="img" :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><img
+                                        :src="item.goodsImgUrl" class="" alt="..."></a>
+                                <div class="card-body">
+                                    <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
+                                    <div class="quoted-price"><span>￥</span>{{item.negotiableFlag |
+                                        formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container shop-main-page" v-if="isShow === 1">
+        <div class="product-main-content">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="swiper-container gallery-top">
+                        <div class="swiper-wrapper">
+                            <template v-for="(img, index) in detailInfo.imgList">
+                                <div class="swiper-slide"><img :src="img.url" alt=""></div>
+                            </template>
+                        </div>
+                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                    </div>
+                    <div class="swiper-container gallery-thumbs">
+                        <div class="swiper-wrapper">
+                            <template v-for="(imgs, index) in detailInfo.imgList">
+                                <div class="swiper-slide"><img class="img-fluid" :src="imgs.url" alt="" style="height: 84px;width: 99px"></div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-info-main">
+                        <div class="page-title-wrapper">
+                            <h1>{{detailInfo.goodsName||''}}</h1>
+                        </div>
+                        <div class="price-box">
+                            <span class="txt">服务售价:</span> <span class="price"><small>￥</small>{{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}</span>
+                        </div>
+                        <div class="service-tags">
+                            <span class="txt">服务领域:</span>
+                            <span class="badge rounded-pill" v-for="item in serviceType">{{item}}</span>
+
+                        </div>
+                        <div class="info-txt">
+                            <span class="attention">关注度 ({{detailInfo.collectionNum || 0}})</span>
+                            <span class="scan">浏览次数 ({{detailInfo.visitNum || 0}})</span>
+                        </div>
+                        <div class="num-box d-flex">
+                            <span class="txt">购买数量:</span>
+                            <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm addbtn fl" type="button"
+                                        :class="{low: carForm.number === 1}" @click="addNum"> -
+                                </button>
+                                <input type="text" id="text_box" class="form-control form-control-sm" placeholder=""
+                                       aria-label="" value="1" v-model.number="carForm.number"
+                                       onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" value="1">
+                                <button class="btn btn-outline-secondary btn-sm addnum fl" type="button" id="add"
+                                        @click="subtractNum"> +
+                                </button>
+                            </div>
+                            <span class="ms-2">件</span>
+                        </div>
+                        <div class="btn-groups d-flex">
+                            <button class="btn btn-buy" type="button" @click="buyNow">立即购买</button>
+                            <button class="btn btn-add-cart" type="button" @click="buyCart">加入购物车</button>
+                            <div class="share"><a href="#"><i class="iconfont icon-share"></i> 分享</a></div>
+                        </div>
+                        <div class="assure-box">
+                            <span class="txt">服务承诺:</span>
+                            <span class="icon-item safety" v-for="additional in detailInfo.additionalList"
+                                  :key="additional.id"
+                                  :title="additional.serviceCodeDisplay" v-text="additional.serviceCodeDisplay"
+                                  class="seritem">认证店铺</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto left-sidebar">
+                <div class="store-head">
+                    <div class="head-avatar text-center">
+                        <img :src="shopInfo.shopLogo || '/common/images/defaultImg/default.gif'" alt="">
+                    </div>
+                    <div class="name">{{shopInfo.shopName}}</div>
+                    <div class="info">
+                        <ul class="list-unstyled">
+                            <li><i class="iconfont icon-time"></i> {{shopInfo.createTime || ''}}</li>
+                            <li><i class="iconfont icon-usergroup"></i> {{shopInfo.scaleDisplay}}</li>
+                            <li><i class="iconfont icon-location"></i> {{shopInfo.location || ''}}</li>
+                        </ul>
+                    </div>
+                    <div class="btn-groups d-flex justify-content-between">
+                        <button @click="onLineConsult" type="button" class="btn btn-outline-primary btn-sm"><i
+                                class="iconfont icon-advisory"></i> 咨询店铺
+                        </button>
+                        <button :class="{flagtrue:shopInfo.collectionFlag==='1'}" @click="colSelectedClick(shopInfo)"
+                                type="button" class="btn btn-outline-primary btn-sm">
+                            <i class="iconfont icon-favorite" v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'">
+                                收藏店铺</i>
+                        </button>
+                    </div>
+                    <div class="operating-hours">
+                        工作日 {{shopInfo.propertyDay}} <br>
+                        {{shopInfo.propertyTime}}
+                    </div>
+                </div>
+                <div class="block block-trend" v-if="latestGoodsList&&latestGoodsList.length">
+                    <div class="block-title"><span>店铺动态</span></div>
+                    <div class="block-content">
+                        <ul class="list-unstyled">
+                            <li v-for="item in latestGoodsList">
+                                <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title"
+                                                                                                        :title="item.goodsName"
+                                                                                                        v-text="item.goodsName||''"></span><i
+                                        class="money">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice,
+                                    item.maxPrice)}}</i></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="block block-trend visitors" v-if="whoConcernList&&whoConcernList.length">
+                    <div class="block-title"><span>最近访客</span></div>
+                    <div class="block-content">
+                        <ul class="list-unstyled">
+
+                            <li v-for="item in whoConcernList">
+                                <a href="#"><img :src="item.userPhoto||'/common/images/defaultImg/default.gif'"
+                                                 alt=""><span
+                                        class="title">{{item.userName}}</span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="block block-statistics">
+                    <div class="block-title"><span>统计数据</span></div>
+                    <div class="row row-cols-3">
+                        <div class="col">
+                            <span class="value">{{statisticsInfo.serviceCount||0}}</span>
+                            商品数量
+                        </div>
+                        <div class="col">
+                            <span class="value">{{statisticsInfo.complexEvaluateResult||0}}</span>
+                            综合评分
+                        </div>
+                        <div class="col">
+                            <span class="value">{{statisticsInfo.nearlyYearCount||0}}</span>
+                            近一年评价
+                        </div>
+                        <div class="col">
+                            <span class="value">{{statisticsInfo.orderCount||0}}</span>
+                            成效次数
+                        </div>
+                        <div class="col">
+                            <span class="value"
+                                  v-text="( statisticsInfo.turnover ? (statisticsInfo.turnover/10000).toFixed(2) : 0)+'万'"></span>
+                            成效金额
+                        </div>
+                        <div class="col">
+                            <span class="value">{{statisticsInfo.views||0}}</span>
+                            访问量
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="product-data">
+                    <ul class="nav nav-tabs" id="productTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="service-introduction-tab" data-bs-toggle="tab"
+                               data-bs-target="#service-introduction" type="button" role="tab"
+                               aria-controls="service-introduction" aria-selected="true">服务介绍</a>
+                        </li>
+
+                        <li class="nav-item" role="presentation" v-if="detailInfo.goodsSample">
+                            <a class="nav-link" id="service-video-tab" data-bs-toggle="tab"
+                               data-bs-target="#service-video" type="button" role="tab"
+                               aria-controls="service-video" aria-selected="false">服务视频</a>
+                        </li>
+
+                        <li class="nav-item" role="presentation"  v-if="detailInfo.videoList.length">
+                            <a class="nav-link " id="service-Sample-tab" data-bs-toggle="tab"
+                               data-bs-target="#service-Sample" type="button" role="tab"
+                               aria-controls="service-Sample" aria-selected="false">服务案列</a>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="cumulative-comments-tab" data-bs-toggle="tab"
+                               data-bs-target="#cumulative-comments" type="button" role="tab"
+                               aria-controls="cumulative-comments" aria-selected="false">累计评论 ({{sumEv}})</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="productTabContent">
+                        <div class="tab-pane fade show active" id="service-introduction" role="tabpanel"
+                             aria-labelledby="service-introduction-tab">
+                            <div class="extra-information">
+                                <div class="row row-cols-2">
+                                    <div class="col" v-for="iv in detailInfo.valueList" :key="iv.specId"
+                                         v-text="(iv.specName||'') + '：' + (iv.specValue||'') + (iv.specNameSuffix||'')">
+                                        <span></span></div>
+                                    <!--                                    <div class="col"><span>服务区域：</span>中国</div>-->
+                                    <div class="col" v-for="iv in detailInfo.customValueList" :key="iv.customSpecId"
+                                         v-text="(iv.customSpecName||'') + '：' + (iv.customSpecValue||'')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detailed" v-html="detailInfo.goodsIntroduce||''">
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade " id="service-video" role="tabpanel"
+                             aria-labelledby="service-video-tab">
+                            <div class="extra-information">
+                                <div class="row row-cols-2">
+                                    <div class="col">
+                                        <div class="videoList">
+                                            <div class="signvdo" v-for="(video, index) in detailInfo.videoList"
+                                                 :key="index">
+                                                <video controls="" class="vdo" autoplay="" name="media">
+                                                    <source :src="video" type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="service-Sample" role="tabpanel"
+                             aria-labelledby="service-Sample-tab">
+                            <div class="extra-information">
+                                <div class="row row-cols-2">
+                                    <div class="col">
+                                        <div class="richtext" v-html="detailInfo.goodsSample"> 富文本内容</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="tab-pane fade" id="cumulative-comments" role="tabpanel"
+                         aria-labelledby="cumulative-comments-tab">
+                        <div class="block block-assess">
+                            <div class="content">
+                                <div class="overall-rating row">
+                                    <div class="col-auto">
+                                        <div class="total-review">
+                                            <p class="sub-total">综合得分</p>
+                                            <p class="num-summary">{{evaluateInfo.avgEvaluateResult}}</p>
+                                            <div class="rating-summary">
+                                                <div class="starlist clear">
+                                                    <i class="iconfont icon-star_full" v-for="i in avgEvaluateResult"
+                                                       v-for="i"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="review-progress">
+                                            <ul class="list-unstyled">
+                                                <li>服务态度： <span class="rating">{{statisticsInfo.evaluateResult}}</span>分
+                                                    <span
+                                                            class="text-muted"></span></li>
+                                                <li>工作速度： <span
+                                                        class="rating">{{statisticsInfo.shopEvaluateSpeed}}</span>分
+                                                    <span
+                                                            class="text-muted"></span></li>
+                                                <li>完成质量： <span
+                                                        class="rating">{{statisticsInfo.shopEvaluateQuality}}</span>分
+                                                    <span
+                                                            class="text-muted"></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-toolbar d-flex justify-content-between">
+                                    <div class="all-review-filter">
+                                        <a class="active" href="#">全部评价 ({{sumEv}})</a>
+
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                               id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            有内容的评价
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="review-list">
+                                    <div class="review-item row" v-if="evaluateList.length"
+                                         v-for="evaluate in evaluateList">
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <img :src="evaluate.userLogo || '/common/images/defaultImg/default.gif'"
+                                                     alt="">
+                                                <div class="name">{{evaluate.userName}}</div>
+                                                <div class="add-time">{{evaluate.fristEvaluateDate}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="comment-title">
+                                                <span v-text="evaluate.oname"></span>
+                                            </div>
+                                            <div class="comment-body">
+                                                {{evaluate.comment}}
+                                                <div id="fixed-size" class="comment-pic d-flex">
+                                                    <a v-for="img in evaluate.fileList">
+                                                        <img :src="img.url" class="img-thumbnail">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div v-if="evaluate.replyList">
+                                                <div v-for="reply in evaluate.replyList" :key="reply.id" class="reply">
+                                                    <span>[卖家回复]</span> <span v-text="reply.reply"></span></div>
+                                            </div>
+                                            <div v-if="evaluate.addContentList"
+                                                 v-for="addContent in evaluate.addContentList"
+                                                 :key="addContent.evaluateContentId">
+                                                <div class="pltext">
+                                                    <span class="zjpl">追加评价：</span><span
+                                                        v-text="addContent.comment"></span></div>
+                                                <ul v-if="addContent.fileList" class="plimglist clear" v-viewer>
+                                                    <li v-for="img in addContent.fileList" :key="img.id" class="everimg"
+                                                        :style="'background-image: url('+img.url+')'">
+                                                        <img :src="img.url" class="opacityZero">
+                                                    </li>
+                                                </ul>
+                                                <div v-for="reply in addContent.replyList" :key="reply.id"
+                                                     class="recall">
+                                                    <span>[卖家回复]</span> <span v-text="reply.reply"></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div>
+                            </div>
+                            <!--分页-->
+                            <div class="pager" v-cloak>
+                                <a @click='pageClick(1)'>[首页]</a>
+                                <a @click='pageClick(evaluateForm.pageNum - 1)'>[上一页]</a>
+                                <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                                   :class="{active: item == evaluateForm.pageNum}" v-if='isShowPage(item)'></a>
+                                <a v-if='isMore()'>...</a>
+                                <a @click='pageClick(evaluateForm.pageNum + 1)'>[下一页]</a>
+                                <a @click='pageClick(pages)'>[末页]</a>
+                                <span>[共<span v-text='pages'></span>页]</span>
+                                <span>[共<span v-text='sumEv'></span>条]</span>
+                            </div>
+                            <!--/分页-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="shop-footer">
+    <div class="container">
+        <div class="links d-flex justify-content-center">
+            <a href="#">联系方式</a>
+            <a href="#">网站地图</a>
+            <a href="#">隐私政策</a>
+            <a href="#">法律声明</a>
+            <a href="#">知识产权</a>
+        </div>
+        <div class="copyright text-center text-muted">
+            Copyright 2017 - 2019 易智网 版权所有 渝ICP备09050127号-36
+        </div>
+        <div class="footer-bottom d-flex justify-content-center">
+            <img src="../images/footer-img1.png" alt="">
+            <img class="" src="../images/footer-img2.png" alt="">
+        </div>
+    </div>
+</footer>
+<script src="/common/js/jquery-3.2.1.min.js"></script>
+<script src="/common/js/owl.carousel.2.2.1/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/mail/shop/detail.js"></script>
+
+
+</body>
+</html>
