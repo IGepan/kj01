@@ -4,12 +4,12 @@ define(function () {
   var configs = [
     {
       // 本地环境
-      authUrl: 'http://192.168.0.200:9769/tsOauth2',
-      baseUrl: 'http://192.168.0.200:9769/tsAdmin',
-      assisUrl: 'http://192.168.0.200:9769/tsAssistant',
-      statisticsUrl: 'http://192.168.0.200/as', // 统计地址 配置域名
-      imgUploadUrl: 'http://192.168.0.200:8710', // 文件上传服务 配置域名
-      imgVerify: 'http://192.168.0.200:8720/', // 滑块验证码 配置域名
+      authUrl: 'http://127.0.0.1:9769/tsOauth2',
+      baseUrl: 'http://127.0.0.1:9769/tsAdmin',
+      assisUrl: 'http://127.0.0.1:9769/tsAssistant',
+      statisticsUrl: 'http://127.0.0.1/as', // 统计地址 配置域名
+      imgUploadUrl: 'http://127.0.0.1:8710', // 文件上传服务 配置域名
+      imgVerify: 'http://127.0.0.1:8720/', // 滑块验证码 配置域名
       cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'http://47.105.63.195:801/',
@@ -17,12 +17,12 @@ define(function () {
     },
     {
       //测试环境
-      authUrl: 'http://222.180.163.242:9769/tsOauth2',
-      baseUrl: 'http://222.180.163.242:9769/tsAdmin',
-      assisUrl: 'http://222.180.163.242:9769/tsAssistant',
+      authUrl: 'http://222.180.163.230:9769/tsOauth2',
+      baseUrl: 'http://222.180.163.230:9769/tsAdmin',
+      assisUrl: 'http://222.180.163.230:9769/tsAssistant',
       statisticsUrl: 'http://testweb.kj01.cn/as', // 统计地址 配置域名
       imgUploadUrl: 'http://222.180.163.230:8710', // 文件上传服务 配置域名
-      imgVerify: 'http://222.180.163.242:8720/', // 滑块验证码 配置域名
+      imgVerify: 'http://222.180.163.230:8720/', // 滑块验证码 配置域名
       // cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'http://47.105.63.195:801/',
