@@ -56,7 +56,7 @@ require(['/common/js/require.config.js'], function () {
                 id: 'select_type_3',
                 value: 'searchList',
                 selected: false,
-                display: '服务资源'
+                display: '易智商城'
               },
               {
                 id: 'select_type_4',

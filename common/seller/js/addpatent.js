@@ -1,10 +1,19 @@
 require(['/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'httpStore', 'httpUrl', 'httpLogin', 'dic', 'jqValidate', 'httpVueLoader', 'seller', 'jqSelect', 'addpatentKey', 'httpCom'], function ($, Vue, httpStore, httpUrl, httpLogin, dic, jqValidate, httpVueLoader, seller, jqSelect, addpatentKey, httpCom) {
+  require(['jquery', 'vue', 'httpStore', 'httpUrl', 'httpLogin', 'dic', 'jqValidate', 'httpVueLoader', 'seller', 'jqSelect', 'addpatentKey', 'httpCom','ELEMENT'], function ($, Vue, httpStore, httpUrl, httpLogin, dic, jqValidate, httpVueLoader, seller, jqSelect, addpatentKey, httpCom,ELEMENT) {
 
     Vue.component('vue-ueditor-wrap', VueUeditorWrap)
+    ELEMENT.install(Vue);//注意element-ui暴露出来的外部全局变量是ELEMENT，并且并没有绑定到Vue上，需要手动绑定
     window.vueDom = new Vue({
+
       el: '#store_box',
       data: {
+        props: {
+          value: 'id',
+          label: 'name',
+        },
+        typeTree:[],
+        categoryChangeShow:true,
+        industryChangeShow:true,
         isConference: true,
         platform: '',
         activeIndex: 0,
@@ -44,6 +53,7 @@ require(['/common/js/require.config.js'], function () {
           goodsSample: '', // 案例
           aptitude: '', // 资质
           minus_stock: '001',
+          typeList:[] //商城服务分类
         },
         afterSaleServiceList: [], // 售后服务
         controlType: dic.controlType,
@@ -431,24 +441,30 @@ require(['/common/js/require.config.js'], function () {
             }
           }
         },
-				/**
-				 * 初始化服务数据
-				 */
+        /**
+         * 初始化服务数据
+         */
         initFwData: function () {
           var vm = this;
-          httpStore.servicesSelect().then(function (res) {
-            vm.fieldList = res.result;
-            setTimeout(function () {
-              vm.fieldSel = $("#field").mySelect({
-                mult: true, //true为多选,false为单选
-                option: vm.fieldList,
-                onChange: function (vals) { //选择框值变化返回结果
-                  vm.formData.field = vals;
-                }
-              })
-              vm.fieldSel.setResult(vm.formData.field);
-            }, 200)
+          //发布服务不显示行业和原分类
+          vm.categoryChangeShow=false;
+          vm.industryChangeShow=false;
+          httpStore.mailTypeSelect().then(function (res) {
+            vm.typeTree = res.result;
           })
+                  // httpStore.servicesSelect().then(function (res) {
+          //   vm.fieldList = res.result;
+          //   setTimeout(function () {
+          //     vm.fieldSel = $("#field").mySelect({
+          //       mult: true, //true为多选,false为单选
+          //       option: vm.fieldList,
+          //       onChange: function (vals) { //选择框值变化返回结果
+          //         vm.formData.field = vals;
+          //       }
+          //     })
+          //     vm.fieldSel.setResult(vm.formData.field);
+          //   }, 200)
+          // })
           vm.$httpCom.dict({
             code: 'service_promise',
           }).then(function (res) {
@@ -790,6 +806,16 @@ require(['/common/js/require.config.js'], function () {
           setTimeout(function () {
             if (vm.formData.industry.length == 0) {
               callback(o, '行业类型不能为空')
+            } else {
+              callback(o)
+            }
+          }, 1000)
+        },
+        typeValid: function (v, o, callback) {
+          var vm = this
+          setTimeout(function () {
+            if (vm.formData.typeList.length == 0) {
+              callback(o, '服务分类不能为空')
             } else {
               callback(o)
             }

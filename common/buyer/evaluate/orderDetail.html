@@ -1,122 +1,207 @@
 <!doctype html>
-<html>
-
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>订单评价详情</title>
-  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
-  <link href="/common/servicetrade/css/service.css" rel="stylesheet" type="text/css">
-  <link href="/common/css/evaluate.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>易智网商城 - 评价</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/mail/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/mail/css/style.css">
+    <link rel="stylesheet" href="/mail/css/jquery.rateyo.min.css">
+
+    <script src="/mail/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/mail/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/mail/css/iconfont.css">
+    <script src="/mail/js/jquery.rateyo.min.js"></script>
+    <link href="/common/servicetrade/css/service.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/evaluate.css" rel="stylesheet" type="text/css">
 </head>
-
-<body>
-  <div class="box" id="index_box">
-    <div class="header">
-      <ly-toper></ly-toper>
-      <ly-header pagename="订单评价"></ly-header>
-      <div class="crumbs">
-        <div class="mdiv"><strong>你现在的位置：</strong>
-          <a href="/common/seller/index.html">
-            卖家中心
-          </a>
-          <span>订单评价</span></div>
-      </div>
+<body class="order-process">
+<div class="box" id="index_box">
+    <div id="header-bar">
+        <ly-toper></ly-toper>
     </div>
-    <div class="storecontent">
-      <div class="mdiv evtitle" v-cloak>
-        <span v-text="'订单编号：' + (detailInfo.orderId || '')"></span>
-        <span v-text="'下单时间：' + (detailInfo.orderCreateTime|| '')"></span>
-      </div>
-      <div class="mdiv">
-        <div class="evaluateBox" v-cloak>
-          <div class="evaluate">
-            <div class="orderinfos">
-              <img :src="detailInfo.shopLogo || '/images/ad.jpg'" alt="" style="float:left; width: 45px; height: 45px;">
-              <p style="overflow: hidden; margin: 0;padding-left: 20px;">
-                <span class="infotitle" v-text="detailInfo.shopName"></span><br>
-                <span>综合评分：<span class="orange" v-text="detailInfo.shopGeneralScore"></span></span>
-              </p>
-            </div>
-            <div class="evaluateForm" v-if="evaluateData.evaluateList.length">
-              <div class="form-item" v-for="(d, di) in evaluateData.evaluateList[0].resultVoList">
-                <label class="form-item__title" v-text="d.display + '：'"></label>
-                <div class="form-item__contents">
-                  <ly-star v-model="d.evaluateResult"></ly-star>
+    <header id="page-header" class="">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col">
+                    <a class="logo" href="./"><img class="img-fluid" src="/style/images/logos/shopLogo.png" alt=""></a>
+                    <span class="subtitle">评价</span>
                 </div>
-              </div>
-              <div class="form-item">
-                <label class="form-item__title"></label>
-                <div class="form-item__contents">
+
+            </div>
+        </div>
+    </header>
+    <nav class="main-menu shop-menu">
+        <div class="container">
+            <ul class="navbar-nav navbar-dark">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container order-main-page">
+        <div class="order-top-bar d-flex justify-content-between">
+            <div class="merchant">
+                商家: <strong>{{detailInfo.shopName}}</strong>
+            </div>
+            <div class="order-time">下单时间:{{detailInfo.orderCreateTime}}</div>
+        </div>
+        <div class="alert-primary rounded-0" role="alert" style="margin-bottom: 1rem;">
+            请根据本次服务，给与真实、客观、仔细的评价。<br>
+            您的评价讲师其他会员的参考，也将影响卖家的信用。累积信用和积分规则：中评不计分，但会影响卖家的好评率，请慎重给予。
+        </div>
+        <div class="mdiv">
+            <div class="evaluateBox" v-cloak>
+                <div class="evaluate">
+                    <div class="orderinfos">
+                        <img :src="detailInfo.shopLogo || '/images/ad.jpg'" alt="" style="float:left; width: 45px; height: 45px;">
+                        <p style="overflow: hidden; margin: 0;padding-left: 20px;">
+                            <span class="infotitle" v-text="detailInfo.shopName"></span><br>
+                            <span>综合评分：<span class="orange" v-text="detailInfo.shopGeneralScore"></span></span>
+                        </p>
+                    </div>
+                    <div class="evaluateForm" v-if="evaluateData.evaluateList.length">
+                        <div class="form-item" v-for="(d, di) in evaluateData.evaluateList[0].resultVoList">
+                            <label class="form-item__title" v-text="d.display + '：'"></label>
+                            <div class="form-item__contents">
+                                <ly-star v-model="d.evaluateResult"></ly-star>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="form-item__title"></label>
+                            <div class="form-item__contents">
                   <span class="tags"><span v-for="(tag, i) in evaluateData.evaluateList[0].tagVoList"
-                      :class="{active:tag.selected}" v-text="tag.display" @click="handleTagUpdate(i)"></span>
+                                           :class="{active:tag.selected}" v-text="tag.display" @click="handleTagUpdate(i)"></span>
                   </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="evaluate" v-for="(sku, si) in detailInfo.orderDetailList">
-            <div class="orderinfos">
-              <img :src="sku.goodsImgFst || '/images/ad.jpg'" alt=""
-                style="display: block; width: 116px; height: 116px; margin: 0 auto">
-              <p class="infotitle" style="max-width: 162px;" v-text="sku.goodsName || ''"></p>
-              <p v-text="'数量：' + sku.num"></p>
-              <p v-text="'价格：￥' + sku.protocolPrice"></p>
-            </div>
-            <div class="evaluateForm">
-              <div class="form-item" v-for="(d, di) in evaluateData.evaluateList[si+1].resultVoList">
-                <label class="form-item__title" v-text="d.display + '：'"></label>
-                <div class="form-item__contents">
-                  <ly-star v-model="d.evaluateResult"></ly-star>
-                </div>
-              </div>
-              <div class="form-item">
-                <label class="form-item__title">评价内容：</label>
-                <div class="form-item__contents">
+                <div class="evaluate" v-for="(sku, si) in detailInfo.orderDetailList">
+                    <div class="orderinfos">
+                        <img :src="sku.goodsImgFst || '/images/ad.jpg'" alt=""
+                             style="display: block; width: 116px; height: 116px; margin: 0 auto">
+                        <p class="infotitle" style="max-width: 162px;" v-text="sku.goodsName || ''"></p>
+                        <p v-text="'数量：' + sku.num"></p>
+                        <p v-text="'价格：￥' + sku.protocolPrice"></p>
+                    </div>
+                    <div class="evaluateForm">
+                        <div class="form-item" v-for="(d, di) in evaluateData.evaluateList[si+1].resultVoList">
+                            <label class="form-item__title" v-text="d.display + '：'"></label>
+                            <div class="form-item__contents">
+                                <ly-star v-model="d.evaluateResult"></ly-star>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="form-item__title">评价内容：</label>
+                            <div class="form-item__contents">
                   <textarea v-model="evaluateData.evaluateList[si+1].comment" class="etextarea" maxlength="500"
-                    cols="60" rows="4"></textarea>
+                            cols="60" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="form-item__title"></label>
+                            <div class="form-item__contents" style="font-size: 0">
+                                <ul class="list horizontal imglist" v-if="evaluateData.evaluateList[si+1].fileIds.length" v-viewer>
+                                    <li class="item" v-for="(file, i) in evaluateData.evaluateList[si+1].fileIds">
+                                        <img :src="file.url" width="69" height="69" :alt="file.name">
+                                        <span class="iconfont icon-cuowu" @click="handleRemoveImg(si+1 ,i)"></span>
+                                    </li>
+                                </ul>
+                                <label class="upload-btn" v-show="5 > evaluateData.evaluateList[si+1].fileIds.length">
+                                    <ly-upload :exp="{type: 'secrecy', index: si}" @success='handleUploadSuccess'
+                                               style="position: absolute;right: 10000px;" type='file' accept="image/*" :header='{}'
+                                               :url='fileUploadUrl' :data='uploadData'>
+                                    </ly-upload>
+                                    <i class="iconfont icon-tupian upload-btn__icon"></i>
+                                    <br>
+                                    <span class="upload-btn__text">添加图片</span>
+                                </label>
+                                <label class="upload-btn" v-show="false">
+                                    <i class="iconfont icon-shipin upload-btn__icon"></i>
+                                    <br>
+                                    <span class="upload-btn__text">添加视频</span>
+                                </label>
+                                <ly-checkbox v-model="evaluateData.evaluateList[si+1].anonymityFlag" class="fr" label="匿名评价"
+                                             :true-value="1" :false-value="0"></ly-checkbox>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="form-item">
-                <label class="form-item__title"></label>
-                <div class="form-item__contents" style="font-size: 0">
-                  <ul class="list horizontal imglist" v-if="evaluateData.evaluateList[si+1].fileIds.length" v-viewer>
-                    <li class="item" v-for="(file, i) in evaluateData.evaluateList[si+1].fileIds">
-                      <img :src="file.url" width="69" height="69" :alt="file.name">
-                      <span class="iconfont icon-cuowu" @click="handleRemoveImg(si+1 ,i)"></span>
-                    </li>
-                  </ul>
-                  <label class="upload-btn" v-show="5 > evaluateData.evaluateList[si+1].fileIds.length">
-                    <ly-upload :exp="{type: 'secrecy', index: si}" @success='handleUploadSuccess'
-                      style="position: absolute;right: 10000px;" type='file' accept="image/*" :header='{}'
-                      :url='fileUploadUrl' :data='uploadData'>
-                    </ly-upload>
-                    <i class="iconfont icon-tupian upload-btn__icon"></i>
-                    <br>
-                    <span class="upload-btn__text">添加图片</span>
-                  </label>
-                  <label class="upload-btn" v-show="false">
-                    <i class="iconfont icon-shipin upload-btn__icon"></i>
-                    <br>
-                    <span class="upload-btn__text">添加视频</span>
-                  </label>
-                  <ly-checkbox v-model="evaluateData.evaluateList[si+1].anonymityFlag" class="fr" label="匿名评价"
-                    :true-value="1" :false-value="0"></ly-checkbox>
-                </div>
-              </div>
             </div>
-          </div>
+            <div class="textcenter ptb45">
+                <button class="paybtn btn btn-primary btn-lg border-0 rounded-0" :disabled="isSubmitDisabled" @click="submitUpdate" style="width: 156px;">提交</button>
+                <button class="btn btn-secondary btn-lg border-0 rounded-0" @click="routerBack" style="width: 156px;">取消</button>
+            </div>
         </div>
-        <div class="textcenter ptb45">
-          <button class="paybtn" :disabled="isSubmitDisabled" @click="submitUpdate" style="width: 156px;">提交</button>
-          <button class="paybtn plain" @click="routerBack" style="width: 156px;">取消</button>
-        </div>
-      </div>
     </div>
-    <ly-footer></ly-footer>
-  </div>
-  <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
-  <script src="/common/js/buyer/evaluate/bevaluate.js"></script>
-</body>
+    <footer id="shop-footer">
+        <div class="container">
+            <div class="links d-flex justify-content-center">
+                <a href="#">联系方式</a>
+                <a href="#">网站地图</a>
+                <a href="#">隐私政策</a>
+                <a href="#">法律声明</a>
+                <a href="#">知识产权</a>
+            </div>
+            <div class="copyright text-center text-muted">
+                Copyright 2017 - 2019 易智网 版权所有 渝ICP备09050127号-36
+            </div>
+            <div class="footer-bottom d-flex justify-content-center">
+                <img src="images/footer-img1.png" alt="">
+                <img class="" src="images/footer-img2.png" alt="">
+            </div>
+        </div>
+    </footer>
 
+</div>
+<script>
+    $(function () {
+        $("#rateYo1").rateYo({
+            rating: 2,
+            spacing: "5px",
+            fullStar: true,
+            multiColor: {
+                "startColor": "#cccccc",
+                "endColor": "#ff3c00"
+            },
+            onChange: function (rating, rateYoInstance) {
+                $(this).next().text(rating + "分 满意");
+            }
+        });
+        $("#rateYo2").rateYo({
+            rating: 4,
+            spacing: "5px",
+            fullStar: true,
+            multiColor: {
+                "startColor": "#cccccc",
+                "endColor": "#ff3c00"
+            },
+            onChange: function (rating, rateYoInstance) {
+                $(this).next().text(rating + "分 满意");
+            }
+        });
+        $("#rateYo3").rateYo({
+            rating: 5,
+            spacing: "5px",
+            fullStar: true,
+            multiColor: {
+                "startColor": "#cccccc",
+                "endColor": "#ff3c00"
+            },
+            onChange: function (rating, rateYoInstance) {
+                $(this).next().text(rating + "分 满意");
+            }
+        });
+    })
+</script>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/common/js/libs/progress.js"></script>
+<script src="/common/js/buyer/evaluate/bevaluate.js"></script>
+</body>
 </html>

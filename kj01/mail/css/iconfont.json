@@ -1,0 +1,156 @@
+{
+  "id": "2364061",
+  "name": "kj01",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "18311262",
+      "name": "删 除",
+      "font_class": "delete",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "4485664",
+      "name": "时间",
+      "font_class": "time",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "10043617",
+      "name": "客服",
+      "font_class": "service",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "15838565",
+      "name": "minus-bold",
+      "font_class": "minus",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "15838566",
+      "name": "arrow-right-bold",
+      "font_class": "arrow-right",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "15838567",
+      "name": "select-bold",
+      "font_class": "select",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "400083",
+      "name": "定位",
+      "font_class": "location",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "1089767",
+      "name": "三角",
+      "font_class": "triangle",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "9512647",
+      "name": "标签",
+      "font_class": "tag",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "15726749",
+      "name": "城市",
+      "font_class": "city",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "18393889",
+      "name": "购物",
+      "font_class": "cart",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "9512624",
+      "name": "菜单",
+      "font_class": "menu",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "13409717",
+      "name": "返回",
+      "font_class": "back",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "14311989",
+      "name": "搜索",
+      "font_class": "search",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "15838535",
+      "name": "setting",
+      "font_class": "setting",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "15838545",
+      "name": "top",
+      "font_class": "top",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "15838560",
+      "name": "add-bold",
+      "font_class": "add",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "15838561",
+      "name": "arrow-left-bold",
+      "font_class": "arrow-left",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "15838562",
+      "name": "arrow-up-bold",
+      "font_class": "arrow-up",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "15838563",
+      "name": "close-bold",
+      "font_class": "close",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "15838564",
+      "name": "arrow-down-bold",
+      "font_class": "arrow-down",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    }
+  ]
+}

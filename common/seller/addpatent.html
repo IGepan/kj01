@@ -6,6 +6,8 @@
   <title>卖家中心-成渝城市群综合科技服务平台</title>
   <link href="/common/css/main.css" rel="stylesheet" type="text/css">
   <link href="css/seller.css" rel="stylesheet" type="text/css">
+<!--  <link href="/common/css/element.css" rel="stylesheet" type="text/css">-->
+
   <style>
     .fixed {
       position: fixed;
@@ -97,7 +99,7 @@
                       data-valid="isNonEmpty||maxLength:50" data-error='名称不能为空||内容过长'>
                     <span class="vlt form_msg">温馨提示：名称需要和当前行业类目属性一致，否则会被下架</span>
                   </div>
-                  <div class="expitem form_item">
+                  <div class="expitem form_item" v-show="categoryChangeShow">
                     <span class="expname"><i>*</i>成果类型：</span>
                     <!-- <span class="defvalue">专利</span> -->
                     <div class="iptbox">
@@ -109,7 +111,7 @@
                       </label>
                     </div>
                   </div>
-                  <div class="expitem form_item">
+                  <div class="expitem form_item" v-if="industryChangeShow">
                     <span class="expname"><i>*</i>行业类别：</span>
                     <div>
                       <label class="inline expsltlb" style="line-height: normal;width: 478px;">
@@ -294,15 +296,19 @@
                     </div>
                     <div class="expitem form_item mleft" v-if='isFw'>
                       <span class="expname w218"><i>*</i>服务分类：</span>
-                      <div>
-                        <label class="inline expsltlb" style="line-height: normal;width: 400px;">
-                          <!-- <div class="expslt mySelect" id="field">
-                          </div> -->
-                          <ly-select-level ref="servicesEl" type="service" data-valid="custom:fieldValid"
-                            class="select required level" v-model="formData.field" @input="handleServicesInput">
-                          </ly-select-level>
+                      <div class="required" data-valid="custom:typeValid">
+                        <label style="line-height: normal;width: 400px;">
+                          <el-cascader
+                                  class="form-item"
+                                  clearable
+                                  change-on-select
+                                  :props="props"
+                                  :options="typeTree"
+                                  v-model="formData.typeList"
+                          >
+                          </el-cascader>
+                          <span ref="servicesMsg" class="vlt form_msg"></span>
                         </label>
-                        <span ref="servicesMsg" class="vlt form_msg"></span>
                       </div>
                     </div>
                     <div class="expitem form_item mleft" v-if='isFw'>
@@ -409,7 +415,12 @@
                     </div>
                   </div>
                   <div class="expitem form_item richtext-item">
-                    <span class="expname"><i v-if="isCd">*</i><span v-text="isCd?'使用要求：':'合作案例：'"></span></span>
+                    <span class="expname"><i v-if="isCd">*</i>
+                      <span v-if="isCd">使用要求</span>
+                      <span v-else-if="isFw">服务案例</span>
+                      <span v-else>合作案例</span>
+
+                    </span>
                     <div class="iptbox" style="margin-bottom: 10px;">
                       <div class="exptext textarea_box required" data-valid="custom:goodsSampleValid">
                         <!--富文本-->
@@ -419,17 +430,17 @@
                       <span class="vlt form_msg"></span>
                     </div>
                   </div>
-                  <div class="expitem form_item richtext-item" v-if='isFw'>
-                    <span class="expname">资质：</span>
-                    <div class="iptbox" style="margin-bottom: 10px;">
-                      <div class="exptext textarea_box">
-                        <!--富文本-->
-                        <vue-ueditor-wrap v-model="formData.aptitude" class="exptextarea" style="border:none">
-                        </vue-ueditor-wrap>
-                      </div>
-                      <span class="vlt form_msg w100"></span>
-                    </div>
-                  </div>
+<!--                  <div class="expitem form_item richtext-item" v-if='isFw'>-->
+<!--                    <span class="expname">资质：</span>-->
+<!--                    <div class="iptbox" style="margin-bottom: 10px;">-->
+<!--                      <div class="exptext textarea_box">-->
+<!--                        &lt;!&ndash;富文本&ndash;&gt;-->
+<!--                        <vue-ueditor-wrap v-model="formData.aptitude" class="exptextarea" style="border:none">-->
+<!--                        </vue-ueditor-wrap>-->
+<!--                      </div>-->
+<!--                      <span class="vlt form_msg w100"></span>-->
+<!--                    </div>-->
+<!--                  </div>-->
                   <div class="expitem form_item" v-if="isZl ||isJs">
                     <span class="expname">成熟度证明材料：</span>
                     <div class="iptbox">
@@ -451,7 +462,7 @@
                     </div>
                   </div>
                   <div class="expitem form_item"
-                    v-if="isFw || isJs || isRz || isZz || isSb || isCp || isCd || isEquipment">
+                    v-if="isJs || isRz || isZz || isSb || isCp || isCd || isEquipment">
                     <span class="expname">资料附件：</span>
                     <div class="iptbox">
                       <label class="exbtn">
@@ -532,6 +543,7 @@
   <script type="text/javascript" src="/common/js/libs/progress.js"></script>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
   <script type="text/javascript" src="js/addpatent.js"></script>
+  <!-- import JavaScript -->
 </body>
 
 </html>
