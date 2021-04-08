@@ -22,7 +22,8 @@ require(['/common/js/require.config.js'], function () {
           'ly-radio': httpVueLoader('/common/components/radio.vue'),     
           'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
           'ly-mulselect': httpVueLoader('/common/seller/components/technology/mulSelect.vue'),    
-          'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),           
+          'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),   
+          'ly-select-level2': httpVueLoader('/common/components/select2level.vue'),        
 				},        
 				data() {
           return {
@@ -56,6 +57,8 @@ require(['/common/js/require.config.js'], function () {
               creditCode: '', // 统一社会信用代码
               industryData_l1: '',
               industryData_l2: '',
+              focusPolicy: [],
+              focusPolicyName: '',
             }, 
             alias: {
               organizationNames: {
@@ -176,7 +179,8 @@ require(['/common/js/require.config.js'], function () {
               name: '众创空间/孵化器',
               value: 9,
               checked: false,
-            }]
+            }],
+            focusList: [],
           }
         },
         
@@ -201,7 +205,8 @@ require(['/common/js/require.config.js'], function () {
           }
           if(localStorage.getItem('operatingInfo')){
             this.operatingInfo = JSON.parse(localStorage.getItem('operatingInfo'))
-          }          
+          } 
+          this.getFocusPolicy();         
         },
 
         mounted: function () {
@@ -220,13 +225,23 @@ require(['/common/js/require.config.js'], function () {
                 formData.qualifications.length && (formData.qualifications = formData.qualifications.map(function (t) { return t.name }))
               }
               formData.headImg = formData.headImg.id;
+              formData.creditCode = res.result.code;
+              formData.focusPolicy = res.result.focusPolicyList ? res.result.focusPolicyList : [];
               vm.initIdentityType = formData.identityType = formData.identityType || '01'
               vm.formData = formData
               vm.initFormData = JSON.parse(JSON.stringify(formData));
               vm.setDefaultValue();
               vm.setDefaultQualication();
             });
-          },   
+          },  
+          // 获取政策列表
+          getFocusPolicy: function() {
+            var vm = this;
+            httpUser.getFocusPolicy().then(function(res) {
+              console.log(res)
+              vm.focusList = res.result;
+            })
+          },           
           setDefaultQualication() {
             var vm = this;
             vm.qualification.forEach(function(item){
@@ -355,6 +370,7 @@ require(['/common/js/require.config.js'], function () {
             params.registeredTime = data.establishDate;
             params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
             params.city = data.country + ','+ data.province + ',' + data.city + ','+ data.district;
+            params.focusPolicy = data.focusPolicy ? data.focusPolicy.map(item => item.name).join(',') : '';
             var qualificationtext = data.qualifications;
             if(data.qualifications.length > 0) {
               // this.qualification.forEach(item => {
