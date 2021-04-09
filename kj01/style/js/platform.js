@@ -49,7 +49,8 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.contentListByPage({
                             pageNum:this.queryForm.pageNum,
                             pageSize:this.queryForm.pageSize,
-                            type:1
+                            type:1,
+                            // nowIndex:this.nowIndex
                         }).then(function (res) {
                             vm.$data.newsList = res.result.list;
                             vm.$data.queryForm.total=res.result.total;
