@@ -82,6 +82,17 @@
                   </td>
                   <td class="form_msg"></td>
                 </tr>
+                <!-- 统一信用吗 -->
+                <tr class="validate form_item" v-if="formData.identityType !== '01'">
+                  <th>统一社会信用代码</th>
+                  <td>
+                    <div class="ipt">
+                      <input class="required" v-model="formData.code"
+                        type="text" data-valid="isNonEmpty" data-error='不能为空'>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>                
                 <tr class="form_item" v-if="formData.identityType === '01'">
                   <th>真实姓名：</th>
                   <td>
@@ -199,6 +210,17 @@
                   </td>
                   <td class="form_msg"></td>
                 </tr>
+                <!-- 关注的政策 -->
+                <tr class="form_item" v-if="formData.identityType !== '01'">
+                  <th>关注的政策：</th>
+                  <td>
+                    <label class="select" style="line-height: normal;">
+                      <ly-select-level2 :list="focusList" :value="formData.focusPolicy"></ly-select-level2>
+                      <!-- <input type="text" v-model="formData.focusPolicy"> -->
+                    </label>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>                
                 <tr v-if="formData.identityType === '03' || formData.identityType === '05'">
                   <th>成立时间：</th>
                   <td>

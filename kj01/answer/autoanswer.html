@@ -16,17 +16,34 @@
  <div class="box autobox" v-cloak id='autoanswer_box'>
   <div class="windowbox">   
     <div class="title">     
-      <img src="/style/images/logos/bsublogo.png" alt="" srcset="">
-      <span class="subname">在线智能问答系统</span>
+      <span class="subname">易智网</span>
+      <span class="tips">智能问答</span>
+      <!-- <img src="/style/images/logos/bsublogo.png" alt="" srcset=""> -->
     </div>
-    <div class="content"> 
-      <div class="left">
+    <div class="content">
+      <div class="common-problem" :style="{height: show ? '246px' : '96px'}">
+        <div class="problem-title">
+          <div class="problem-title-left">
+            <h1>常见问题</h1>
+            <span class="line" v-for="(item,index) in problemList.top" :key="index" @click="onProblem(item.questionKey)">{{item.questionKey}}</span>
+          </div>
+          <div class="problem-title-right" @click="show = !show">
+            <img :style="{transform: show ? 'rotate(0deg)' : 'rotate(180deg)'}" src="/style/images/topjiantou.png" alt="">
+          </div>
+        </div>
+        <ul class="problem-list" v-show="show">
+          <li class="line" v-for="(item,index) in problemList.after" :key="index" @click="onProblem(item.questionKey)">{{item.questionKey}}</li>
+        </ul>
+      </div>
+      <div class="left" >
         <div class="messagebox" ref="messagebox">
           <div class="message" v-for="item in messageList" :class="{message_q: item.from != 'yi', message_a: item.from == 'yi'}"  :key="item.time">
-            <div class="time">{{item.time | formatShowTime}}</div>
+            <div class="time">
+              <span>{{item.time | formatShowTime}}</span>
+            </div>
             <div class="textwraper">
               <div class="text" v-html="item.content"></div>
-              <div class="img">{{item.from == 'yi' ? '易智网' : '您'}}</div>
+              <div class="img">{{item.from == 'yi' ? ' ' : '您'}}</div>
             </div>
           </div>
           <!-- <div class="message message_a">
@@ -37,7 +54,6 @@
             </div>
           </div>           -->
         </div>
-        <div >22</div>
         <div class="connectQustion">
           <div class="text" v-for="(item, index) in connectionList" :key="index" v-html="item.title" @click="chooseMsg(item)"></div>
         </div>
@@ -46,12 +62,15 @@
         </div>
         <div class="sendbox">
           <div class="sendtext">
-            <textarea class="textarea" v-model="msg" placeholder="请输入您的问题" cols="30" rows="8" @input="sendMsg" ></textarea>
+            <textarea class="textarea" v-model="msg" maxlength="100" placeholder="请输入您的问题" cols="30" rows="8" @input="sendMsg" ></textarea>
           </div>
-          <!-- <div class="sendbtn"><div class="btn" @click="sendMsg" >发送</div> </div> -->
+          <div class="sendbtn">
+            <div class="sizeNum">还可输入 <span>{{100 - msg.length}}</span> 字</div>
+            <div class="btn" @click="sendMsg" >发送</div> 
+          </div>
         </div>
       </div>
-      <div class="right">
+      <!-- <div class="right">
         <div class="title">企业信息</div>
         <div class="qrcode">
           <img src="/style/images/index/qrcode.jpg" alt="">
@@ -62,7 +81,7 @@
           电话：023-61365808 </br>
           网址：<a href="https://www.kj01.cn">https://www.kj01.cn</a>    
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
  </div>

@@ -129,7 +129,26 @@
                         </td>
                         <td ref="servicesMsg" class="form_msg"></td>   
                       </tr>                                                            
-                      <tr >
+                      <tr>
+                        <td align="right">关注的政策</td>
+                        <td class="td2 width_600">
+                            <label class="select" style="line-height: normal;">
+                              <ly-select-level2 :list="focusList" :value="formData.focusPolicy"></ly-select-level2>
+                            </label>     
+                        </td>
+                        <td ref="servicesMsg" class="form_msg"></td>   
+                      </tr>             
+                      <tr>
+                        <td align="right">服务领域</td>
+                        <td class="td2 width_600">
+                            <label class="select" style="line-height: normal;">
+                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
+                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>
+                            </label>     
+                        </td>
+                        <td ref="servicesMsg" class="form_msg"></td>   
+                      </tr>                                                            
+                      <tr >                          
                         <td align="right"><em class="red">*</em>企业资质</td>
                         <td class="td2 width_600">
                           <div class="select name mulSelect">                 

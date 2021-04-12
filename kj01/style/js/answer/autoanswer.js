@@ -5,6 +5,8 @@ require(['/common/js/require.config.js'], function () {
         el: '#autoanswer_box',
         data: {
           msg: '',
+          show:false,
+          problemList:{},
           connectionList: [
           //   {
           //   title: '2020年重大项目服务咨询研究课题研究单位的公告',
@@ -16,11 +18,12 @@ require(['/common/js/require.config.js'], function () {
           //   time: '2021-01-19 10:00',
           //   content: '重庆市2020年度粮食安全行政 首长责任制考核内容',
           //   from: 'user'
-          // },{
-          //   time: '2021-01-19 14:00',
-          //   content: '重庆市2020年度粮食安全行政 首长责任制考核内容',
-          //   from: 'yi'
-          // }
+          // },
+          {
+            time: 'start',
+            content: '您好,请问您想要咨询什么问题呢？',
+            from: 'yi'
+          }
         ],
         timer: '',
 
@@ -39,18 +42,28 @@ require(['/common/js/require.config.js'], function () {
               return Math.ceil(diff / 3600) + '小时前'
             } else if (diff < 3600 * 24 * 2) {
               return '1天前'
+            }else if (time === 'start'){
+              return '开始对话'
             }else {
               return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
             }
           }
         },
         created() {
+          this.getProblemList()
           // this.resetConnection();
         },
         mounted() {
           this.$refs.messagebox.scrollTop = this.$refs.messagebox.scrollHeight
         },
         methods: {
+          onProblem(val){
+            this.msg = val
+            this.sendMsg()
+          },
+          getProblemList(){
+              indexApi.queryProblemList().then(res => this.problemList = res.result)
+          },
           sendMsg() {
             console.log(this.msg, this.timer);
             if(!this.msg) {
@@ -70,7 +83,6 @@ require(['/common/js/require.config.js'], function () {
               return;
             }
             indexApi.getQuestionRecordKeys({questions: this.msg}).then(res => {
-              console.log(this.timer)
               clearTimeout(this.timer)
               this.timer = null;
               console.log(this.timer, this.msg)
