@@ -54,6 +54,14 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     selectpByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/goods/selectpByPage', param)
     },
+      /**
+       * 易智商城店铺商品列表
+       * @param param
+       * @returns {*|void}
+       */
+    selectByMailShopPage: function (param) {
+        return Http.post(httpUrl.baseUrl + '/mailGoods/selectByShopPage', param)
+    },
 		/**
 		 * 根据模板主键取得模板可动态变更属性及【用户已经设定的默认值】(鉴权)
 		 */
@@ -78,6 +86,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     orderSelectpByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/order/selectpByPage', param)
     },
+      // 当前店铺成交明细单个详情
+      selectOrderDetail: function (param) {
+          return Http.post(httpUrl.baseUrl + '/order/selectOrderDetail', param)
+      },
     // 店铺评论
     commentSelectpByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/evaluate/shop/selectpByPage', param)
@@ -118,5 +130,9 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     visitselectShopNum: function (param) {
       return Http.get(httpUrl.baseUrl + '/visit/selectShopNum', param)
     },
+  //    保存足迹
+  saveFootprint: function (param) {
+      return Http.post(httpUrl.baseUrl + '/mailGoodsPrint/save', param)
+  },
   }
 })

@@ -17,6 +17,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             url: '/common/buyer/order?orderStatusFilter=01&code=001.001.001.001',
             label: '所有订单'
           },
+          '011': {
+            url: '/common/buyer/order?orderStatusFilter=011&code=001.001.001.001',
+            label: '待卖家确认'
+          },
           '02': {
             url: '/common/buyer/order?orderStatusFilter=02&code=001.001.001.001',
             label: '待付款'

@@ -201,6 +201,14 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
 		 */
     cancel: function (param) {
       return Http.get(httpUrl.baseUrl + '/collection/cancel', param)
-    }
+    },
+    //服务分类
+    mailServiceType: function () {
+      return Http.get(httpUrl.baseUrl + '/mailServiceType/tree');
+    },
+    //商城统计,基本信息
+    mailSiteDetail: function () {
+      return Http.get(httpUrl.baseUrl + '/mailSite/selectMailSite');
+    },
   }
 })

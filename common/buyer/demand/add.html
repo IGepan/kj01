@@ -141,6 +141,9 @@
                       <input class="inputbox-max required" data-valid="isNonEmpty||positiveNum"
                         data-error='预算不能为空||请填写正数' v-model="dataForm.budget" type="number">
                       <span class="vlt form_msg"></span>
+                      <a @click="handleSetNegotiation"
+                         style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
+                         v-text="isNegotiation === true? '详细预算' : '面议'"></a>
                     </div>
                   </td>
                 </tr>
@@ -174,8 +177,8 @@
                   <th><i>*</i>联系电话：</th>
                   <td>
                     <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty||isTelAndMobile" maxlength="11"
-                        data-error='联系电话不能为空||请填写正确的手机号码或不带区号的座机' v-model="dataForm.phone" type="text"><span
+                      <input class="inputbox-max required" data-valid="isNonEmpty||isMobile" maxlength="11"
+                        data-error='联系电话不能为空||请填写正确的手机号码' v-model="dataForm.phone" type="text"><span
                         class="vlt form_msg"></span>
                     </div>
                   </td>
