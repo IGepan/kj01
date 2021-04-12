@@ -16,13 +16,28 @@ require(['/common/js/require.config.js'], function () {
         btn_code_disabled: true,
         isShowDialog: false,
         codeTime: 60,
-        codeBtnText: '发送验证码'
+        codeBtnText: '发送验证码',
+        webInfo:'',
       },
       components: {
         'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
+      mounted(){
+        if(location.href.indexOf('/site/')>-1){
+          this.getPublicDetail()
+        }
+      },
       methods: {
+        getPublicDetail(){
+          let vm=this;
+          this.$httpCom.publicDetail().then(function(res) {
+            if (res.code === "rest.success") {
+              vm.webInfo = res.result;
+              vm.monitorSetItem('webInfo', JSON.stringify(vm.webInfo));
+            }
+          });
+        },
         toService: function () {
           window.open('http://www.kj01.cn/service.htm?arg=10113491&amp;style=4&amp;kflist=off&amp;kf=edwinzuo&amp;zdkf_type=1&amp;lnk_overflow=0&amp;callback_id6ds=10152438&amp;language=zh-cn&amp;charset=gbk&amp;referer={hz6d_referer}&amp;keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&amp;tfrom=1&amp;tpl=crystal_blue', '_blank', 'height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no');
         },
@@ -183,7 +198,7 @@ require(['/common/js/require.config.js'], function () {
                   $this.btn_disabled = false;
                   $dialog.showToast('修改密码成功，正在跳转至登录页...');
                   setTimeout(function () {
-                    window.location.href = '/common/login.html';
+                    window.location.href = this.$pathPrefix+'/common/login.html';
                   }, 2000);
                 } else {
                   $dialog.showToast('修改密码失败，正在刷新页面...');

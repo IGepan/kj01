@@ -18,7 +18,7 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a>
           <span>众包需求</span>
         </div>
         <div class="centerbox">
@@ -90,7 +90,7 @@
                       <div class="state" v-text="order.periodDisplay"></div>
                       <div class="operation">
                         <a target="_blank"
-                          :href="'/common/buyer/order/?orderStatusFilter=01&code=001.001.001.001&diagnosisId=' + order.id">订单详情</a>
+                          :href="$pathPrefix+'/common/buyer/order/?orderStatusFilter=01&code=001.001.001.001&diagnosisId=' + order.id">订单详情</a>
                       </div>
                     </div>
                   </div>

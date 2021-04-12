@@ -1,0 +1,124 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/css/main.css" rel="stylesheet">
+    <link href="./style/css/science/result_list.css" rel="stylesheet">
+    <link href="./style/css/science/service_list.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="boxs gray-bg" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <index-head :nav-index="4" :search-types="'服务'" :location-names="'scienceService.html'" @search="bindSearchValue"></index-head>
+    <div class="container-box">
+        <div class="top-bg">
+            <div class="mmdiv">科技服务</div>
+        </div>
+        <div class="content-box mmdiv">
+            <div class="searchListBox">
+                <template v-if="options.searchOpts.length">
+                    <template v-for="(optItem, index) in options.searchOpts">
+                        <div class="search-row" v-if="!optItem.isTop" :key="index">
+                            <label class="search-label">{{optItem.label}}</label>
+                            <div class="searchkeys" :class="{full: optItem.isMore}">
+                                <template v-if="optItem.operationType === 'select'">
+                                    <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                        <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }"
+                              :data-di="sindex" :data-pi="index" :data-value="ducItem.value"
+                              :key="sindex">{{ducItem.display}}</span>
+                                    </template>
+                                    <div class="searchkey-second"
+                                         v-if="optItem.childIndex !== -1 && optItem.dictIInfos[optItem.childIndex].children.length">
+                                        <template v-for="(childItem, childindex) in optItem.dictIInfos[optItem.childIndex].children">
+                          <span class="searchkey childkey" @click.stop="handleSetSearchForm"
+                                :class="{ current: childItem.selected }" :data-ci="childindex" :data-di="optItem.childIndex"
+                                :data-pi="index" :data-value="childItem.value"
+                                :key="childindex">{{childItem.display}}</span>
+                                        </template>
+                                    </div>
+                                    <div v-show="optItem.isMoreShow" class="unfold" @click.stop="handleSetMoreItem(index)">
+                                        <span>{{ optItem.isMore ? '收起' : '更多' }}</span><span class="iconfont"
+                                                                                             :class="{'icon-zhankai': !optItem.isMore, 'iconfont icon-shouqi': optItem.isMore}"></span>
+                                    </div>
+                                </template>
+                                <template v-if="optItem.operationType=== 'area'">
+                      <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: selected }"
+                            :data-di="-1" :data-pi="index" :data-value="-1">全部</span>
+                                    <span class="selectBox">
+                        <select placeholder="省级" v-model="searchForm.area" :data-pi="index"
+                                @change.stop="handleSetSearchForm" class="select" :class="{active: searchForm.area}">
+                          <template v-for="opt in optItem.dictIInfos">
+                            <option :value="opt.code" :key="opt.id">
+                              {{opt.display}}</option>
+                          </template>
+                        </select>
+                      </span>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+            <div class="searchResult">
+                <div class="result-left">
+                    <span class="label">已选条件：</span>
+                    <template v-for="(selectOpt, index) in options.selectOpts">
+                        <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i @click.stop="handleDelSelectOpt" :data-index="index" class="iconfont-template icon-delete icon"></i></label>
+                    </template>
+                </div>
+                <div class="result-right">
+                    <template v-if="options.searchOpts.length">
+                        <template v-for="(optItem, index) in options.searchOpts">
+                            <div class="searchMainkey boxBorderBottom noP" v-if="optItem.isTop">
+                                <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+                                    <span class="mainKey" @click.stop="handleSetSearchForm"
+                                          :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index"
+                                          :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i
+                                            v-if="topDicItem.values.length" class="iconfont-template icon-shengxu"
+                                            :class="{current: !topDicItem.selectedIndex}"></i></span>
+<!--                                    <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i class="iconfont-template icon-paixu"></i></span>-->
+                                </template>
+                                <!-- <label class="checkbox" for="analyzingFlag">
+                                     <input id="analyzingFlag" class="vaMiddle" type="checkbox" v-model="searchForm.analyzingFlag" :true-value="1" :false-value="''">
+                                     <span class="vaMiddle checkbox-text">解读</span>
+                                 </label>-->
+                            </div>
+                        </template>
+                    </template>
+                    <div class="page-info">
+                        已为您筛选 <span class="total" v-text="count || 0" ></span> 条
+                    </div>
+                </div>
+            </div>
+            <div class="list-box mainPolicyList">
+                <div class="list">
+                    <div class="list-item" v-for="item in dataList">
+                        <a :href="$pathPrefix+item.goodsDetailUrl">
+                            <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
+                            <div class="title line2">{{item.goodsName}}</div>
+                            <div class="money line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">{{item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
+                            <div class="icon-text icon-text1 line" :title="item.industryNames"><i class="iconfont-template icon-biaoqian1"></i>{{item.industryNames}}</div>
+                            <div class="icon-text icon-text2 line" :title="item.shopName"><i class="iconfont-template icon-jigou"></i>{{item.shopName}}</div>
+                        </a>
+                    </div>
+                </div>
+                <div id="pagination-container" class="pages" v-if="count>0"></div>
+            </div>
+        </div>
+    </div>
+    <com-footer></com-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="./style/js/science/service_list.js"></script>
+</body>
+
+</html>

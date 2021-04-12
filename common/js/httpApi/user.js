@@ -123,6 +123,18 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     selectShopByPage: function (param) {
       return Http.get(httpUrl.baseUrl + '/colcont/selectShopByPage', param)
     },
+      /**
+       * 为您推荐-服务机构
+       */
+      selectShopRecommend: function (param) {
+          return Http.get(httpUrl.baseUrl + '/shop/recommend', param)
+      },
+      /**
+       * 为您推荐-专家
+       */
+      selectShopExpert: function (param) {
+          return Http.get(httpUrl.baseUrl + '/shop/recommendExpert', param)
+      },
 		/**
 		 * 条件搜索当前登录用户指定分类及所有下级分类的所有收藏
 		 */

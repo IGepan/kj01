@@ -16,7 +16,7 @@
       <div class="mdiv">
         <buyer-left :http='http' :jquery='jquery'></buyer-left>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">
+          <a :href="$pathPrefix+'/common/buyer/index.html'">
             用户中心
           </a>
           <span>收藏中心</span>
@@ -42,7 +42,7 @@
                         <span class="spimg fl"
                           :style="'background-image: url('+(item.shopLogo||'http://dummyimage.com/94x82')+');'"></span>
                         <div class="ovflh">
-                          <div class="sptit"><a :href="item.shopIndexUrl" target="_blank" v-text="item.storeName"></a>
+                          <div class="sptit"><a :href="$pathPrefix+item.shopIndexUrl" target="_blank" v-text="item.storeName"></a>
                           </div>
                           <div class="spname" v-text="$options.filters.clearHtmlTag(item.comment)"></div>
                         </div>

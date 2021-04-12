@@ -226,8 +226,8 @@ module.exports = {
       "/common/seller/",
       "/common/buyer",
       "/common/usercenter/",
-      "/activity/",
-      "/activityTopic/",
+      "/common/activity/",
+      "/common/activityTopic/",
       "/common/servicetrade/",
       "/demand"
     ].some(function(text) {
@@ -247,8 +247,8 @@ module.exports = {
     this.urlIsCheckBuyer = [
       "/common/usercenter",
       "/common/buyer",
-      "/activity/",
-      "/activityTopic/",
+      "/common/activity/",
+      "/common/activityTopic/",
       "/common/servicetrade/",
       "/demand"
     ].some(function(text) {

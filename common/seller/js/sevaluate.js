@@ -14,7 +14,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         }
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-star': httpVueLoader('/common/components/starts.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
@@ -67,7 +67,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             if (this.evaluateData.evaluateList[0].comment.length > 0) {
               !vm.isSubmitDisabled && (vm.isSubmitDisabled = true, evaluate.sellerinsertFst(this.evaluateData).then(function (res) {
                 if (res.code == 'rest.success') {
-                  location = '/common/seller/order/?orderStatusFilter=01&code=001.002.003.001'
+                  location = this.$pathPrefix+'/common/seller/order/?orderStatusFilter=01&code=001.002.003.001'
                 }
                 vm.isSubmitDisabled = false
               }).catch(function () {
@@ -82,7 +82,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
         },
         routerBack: function () {
-          location = '/common/seller/order/?orderStatusFilter=01&code=001.002.003.001'
+          location = this.$pathPrefix+'/common/seller/order/?orderStatusFilter=01&code=001.002.003.001'
         }
       }
     })

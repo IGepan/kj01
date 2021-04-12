@@ -1,0 +1,431 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>活动回顾</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <style>
+    .checkbox {
+      display: inline-block;
+    }
+
+    .checkbox-input {
+      display: inline-block;
+      vertical-align: middle;
+      height: 18px;
+      width: 18px;
+      margin-right: 5px;
+    }
+
+    .text {
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .checkbox-group {
+      width: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .checkbox-group .checkbox {
+      margin-right: 20px;
+    }
+
+    .checkbox-group .checkbox:last-child {
+      margin-right: 0;
+    }
+
+    .btnBox {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .btn {
+      border-radius: 5px;
+      padding: 10px 30px;
+      font-size: 14px;
+      border: 1px solid #D7DDE4;
+      background-color: #F7F7F7;
+      color: #999999;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      border: 1px solid #1ABC9C;
+      background-color: #1ABC9C;
+      color: #fff;
+    }
+
+    .contant {
+      background: #fff;
+      padding-top: 20px;
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    .leftbar {
+      border: 1px solid #d2d2d2;
+    }
+
+    .edithead {
+      height: 104px;
+      width: 104px;
+      border: 0;
+      position: relative;
+    }
+
+    .icon-image-add {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border: 2px dashed #D9D9D9;
+      border-radius: 5px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .icon-image-add::after,
+    .icon-image-add::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 18px;
+      height: 2px;
+      background-color: #B7B7B7;
+      left: 50%;
+      top: 50%;
+      margin-left: -9px;
+      margin-top: -1px;
+    }
+
+    .icon-image-add::before {
+      transform: rotateZ(90deg);
+    }
+
+    .icon-image-add+span {
+      position: absolute;
+      left: 0;
+      bottom: 10px;
+      right: 0;
+      text-align: center;
+      color: #999999;
+    }
+
+    .icon-image-add.on {
+      border-color: transparent;
+    }
+
+    .icon-image-add.on::after,
+    .icon-image-add.on::before {
+      background-color: transparent;
+    }
+
+    .filelist {
+      font-size: 14px;
+      color: #9D9D9D;
+    }
+
+    .icon_del {
+      cursor: pointer;
+    }
+
+    .form_table .exbtn {
+      background-color: transparent !important;
+      width: auto !important;
+      height: auto !important;
+    }
+
+    .form_table .exbtn.imgup {
+      line-height: inherit;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .form_table .inputbox-button {
+      border: 1px solid #D9D9D9;
+      border-radius: 5px;
+      padding: 0 20px;
+      color: #5A5A5A;
+
+    }
+
+    .inputbox-button i {
+      color: #ADADAD;
+    }
+
+    .footer {
+      position: initial;
+    }
+
+    .liline {
+      display: inline-block;
+      width: 100%;
+      height: 40px;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    .liline span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .litext {
+      height: 40px;
+      width: 60px;
+      line-height: 38px;
+      text-align: right;
+    }
+
+    .liline input[type="text"] {
+      display: inline-block;
+      border: 1px solid #c9c9c9;
+      vertical-align: middle;
+      height: 30px;
+      padding: 0 5px;
+    }
+
+    .liline .checkbox-group {
+      width: auto;
+    }
+
+    .textarea {
+      resize: none;
+      border: 1px solid #c9c9c9;
+      width: 100%;
+      padding: 5px;
+    }
+
+    /* 谷歌 */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+
+    /* 火狐 */
+    input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .form-view {
+      padding: 20px;
+    }
+
+    .imglist {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .imgbox {
+      display: inline-block;
+      width: 104px;
+      height: 104px;
+      border-radius: 5px;
+      border: 2px dashed #D9D9D9;
+      margin-right: 10px;
+      vertical-align: middle;
+      padding: 5px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .imgbox img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    .imgAlt {
+      font-size: 12px;
+      color: #fff;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      left: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 5px 5px;
+      display: inline-block;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .tipsBox {
+      background-color: #FFF1F0;
+      border: 1px solid #FFA39E;
+      border-radius: 5px;
+      padding: 20px;
+      display: flex;
+      font-size: 14px;
+      line-height: 32px;
+    }
+
+    .tipsBox .iconfont {
+      color: #F5222D;
+      font-size: 25px;
+    }
+
+    .tips-content {
+      margin-left: 10px;
+    }
+
+    .tipsBox .title {
+      font-size: 16px;
+      color: rgba(0, 0, 0, .65);
+      line-height: 26px;
+    }
+
+    .tipsBox .titleSmall {
+      color: rgba(0, 0, 0, .43);
+    }
+
+    .imgDel {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      background-color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    .image {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  </style>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type="conference"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http'></buyer-left>
+        <div class="crumbs">
+          <a href="./index.html?code=001.004.001.003">活动中心</a>
+          <a href="./list.html?code=001.004.001.001">我的活动</a>
+          <span>活动回顾</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="userform active valiform">
+              <div class="form_title"> 活动回顾 </div>
+              <table border="0" cellpadding="5" cellspacing="5" class="form_table">
+                <tr v-cloak v-if="formData.auditSituation">
+                  <td colspan="3">
+                    <div class="tipsBox">
+                      <div v-if="formData.auditSituation === '02'">
+                        <i class="iconfont icon-cuowu"></i>
+                      </div>
+                      <div v-if="formData.auditSituation === '01'">
+                        <i class="iconfont icon-gou"></i>
+                      </div>
+                      <div class="tips-content">
+                        <div class="title" v-text="formData.auditSituationDisplay || ''"></div>
+                        <div class="titleSmall" v-text="formData.noPassReason || ''"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="form_item">
+                  <th>活动回顾：</th>
+                  <td>
+                    <div class="ipt name" ref="professionEl" data-valid="custom:customprofession" style="width: 100%;">
+                      <vue-ueditor-wrap v-model="formData.summary" :config="ueditorConfig" class="exptextarea">
+                      </vue-ueditor-wrap>
+                    </div>
+                  </td>
+                  <td ref="professionMsg" class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <th>附件：</th>
+                  <td>
+                    <label class="exbtn">
+                      <ly-upload :exp="{value: '02', display: '活动附件'}" @success='uploadSuccess'
+                        style="position: absolute;right: 10000px;" type='file' :header='{}' :url='fileUploadUrl'
+                        :data="{system: 'ts'}">
+                      </ly-upload>
+                      <span class="exbtn inputbox-button"><i class="icon iconfont icon-shangjia"></i>上传附件</span>
+                    </label>
+                    <!--<div class="filelist">支持扩展名：.pdf</div>-->
+                    <ul class="filelist" v-cloak>
+                      <li v-for="(item, index) in formData.attachments" v-if="item.summaryAttachmentType === '02'">
+                        <span class="signfile">
+                          <span v-text="item.name"></span>
+                          <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="handleDelFile(index)"></i>
+                        </span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="form_item">
+                  <th>活动图片：</th>
+                  <td>
+                    <ul class="imglist" v-viewer v-cloak>
+                      <li class="imgBox" style="padding: 0; border: 0;">
+                        <label class="exbtn imgup">
+                          <ly-upload :exp="{value: '01', display: '活动图片'}" @success='uploadSuccess'
+                            style="position: absolute;right: 10000px;" :accept="'image/*'" type='file' :header='{}'
+                            :url='rsfileUploadUrl' :data="{system: 'ts'}">
+                          </ly-upload>
+                          <div class="edithead">
+                            <div class="icon-image-add"></div>
+                            <span>上传</span>
+                          </div>
+                        </label>
+                      </li>
+                      <li class="imgBox" v-for="(item, index) in formData.attachments"
+                        v-if="item.summaryAttachmentType === '01'">
+                        <img :src="item.url" class="opacityZero">
+                        <span class="image" :style="{'background-image': 'url('+item.url+')'}"></span>
+                        <span class="imgAlt" :title="item.name" v-text="item.name"></span>
+                        <span class="imgDel">
+                          <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="handleDelFile(index)"></i>
+                        </span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+              </table>
+            </div>
+            <!--/所有订单-->
+          </div>
+          <div class="btnBox">
+            <button class="btn" type="button" @click="handleBack">取消</button>
+            <button class="btn primary" type="button" @click="handleInsert" :disabled="isSubmitDisabled">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/progress.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/common/js/activity/report.js"></script>
+</body>
+
+</html>

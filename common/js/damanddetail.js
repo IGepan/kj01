@@ -2,7 +2,7 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCom', 'httpDemandApi', 'dialog', 'fileSaver', 'httpUrl', 'jqValidate', 'httpLogin'], function ($, Vue, dic, httpVueLoader, httpCom, httpDemandApi, dialog, fileSaver, httpUrl, jqValidate, httpLogin) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     window.vueDom = new Vue({
       el: '#index_box',
       data: {
@@ -134,9 +134,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.initData();
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
-        'ly-header': httpVueLoader('/style/components/header.vue'),
+        'ly-header': httpVueLoader(this.$pathPrefix+'/style/components/header.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
@@ -267,7 +267,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               this.$dialog.showToast('您还不是服务商，请先入驻成为服务商！')
             }
           } else {
-            window.location.href = '/common/login.html';
+            window.location.href = this.$pathPrefix+'/common/login.html';
           }
         },
         handleInsertDid: function () {
@@ -288,7 +288,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           if (this.userInfo) {
             this.$root.$chat_im.connect(this.infos.userId)
           } else {
-            window.location.href = '/common/login.html';
+            window.location.href = this.$pathPrefix+'/common/login.html';
           }
         },
         handleOpenProtocol: function () {

@@ -335,7 +335,7 @@ require(['/common/js/require.config.js'], function () {
               soi.children && soi.children.length && soi.children.forEach(function (child, ci) {
                 child.selected = !ci
               })
-              soi.children && !soi.children.length && soi.value !== -1 && (oitem.code === 'services_level1_type_kj01' || oitem.code === 'industry_level1_type') && vm.getSetChild(dataset.pi, '' + i, oitem.code === 'services_level1_type_kj01', soi.value)
+              soi.children && !soi.children.length && soi.value !== -1 && (oitem.code === 'services_level1_type' || oitem.code === 'industry_level1_type') && vm.getSetChild(dataset.pi, '' + i, oitem.code === 'services_level1_type', soi.value)
               // 子选项选择
               soi.children && soi.children.length && dataset.ci && i == dataset.di && soi.children.forEach(function (child, ci) {
                 child.selected = ci == dataset.ci
@@ -365,7 +365,7 @@ require(['/common/js/require.config.js'], function () {
               } else {
                 this.$data.searchForm[oitem.valueKey] = dataset.value === '-1' ? '' : oitem.valueType === 'array' ? [dataset.value] : dataset.value
                   if(!t.children.length){
-                      let key=oitem.code === 'services_level1_type_kj01'? 'servicesTypeId' : 'industryTypeId';
+                      let key=oitem.code === 'services_level1_type'? 'servicesTypeId' : 'industryTypeId';
                       this.$data.searchForm[key]='';
                       this.$data.searchForm[key + 'Name'] = ''
                   }
@@ -395,7 +395,7 @@ require(['/common/js/require.config.js'], function () {
             } else {
               flag === -1 ? this.options.selectOpts.push(dataset) : (this.options.selectOpts[flag] = dataset)
             }
-            dataset.code === 'services_level1_type_kj01' && this.setHotView(dataset.value)
+            dataset.code === 'services_level1_type' && this.setHotView(dataset.value)
             this.$data.searchForm.pageNum = 1
             this.getList()
           },

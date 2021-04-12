@@ -23,7 +23,7 @@ require(['/common/js/require.config.js'], function () {
       mixins: [seller],
       components: {
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'color-template': httpVueLoader('./components/colorTemplate.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),

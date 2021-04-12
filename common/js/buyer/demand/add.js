@@ -102,7 +102,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         })
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-address-select': httpVueLoader('/common/seller/components/technology/addressSelect1.vue'),
@@ -277,7 +277,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 label: '返回网站首页',
                 class: 'back-blue',
                 fun: function () {
-                  vm.$utils.openNewTable('/', '_self')
+                  vm.$utils.openNewTable(this.$pathPrefix+'/', '_self')
                   return 1
                 }
               },
@@ -293,7 +293,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 label: '查看我已发布的需求',
                 class: 'see-yellow',
                 fun: function () {
-                  vm.$utils.openNewTable('/common/buyer/demand/list.html?code=001.001.002.002', '_self')
+                  vm.$utils.openNewTable(vm.$pathPrefix+'/common/buyer/demand/list.html?code=001.001.002.002', '_self')
                   return 1
                 }
               }

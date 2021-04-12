@@ -1,7 +1,7 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['httpUrl', 'jquery', 'vue', 'dic', 'httpVueLoader', 'httpStoret01', 'dialog', 'fileSaver', 'httpCom', 'httpCartApi'], function (httpUrl, $, Vue, dic, httpVueLoader, httpStoret01, dialog, fileSaver, httpCom, httpCartApi) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     new Vue({
       el: '#index_box',
       data: {
@@ -81,7 +81,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         }
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/template/t01/components/defaultHeader.vue'),
         'ly-store-info': httpVueLoader('/common/template/t01/components/defaultStoreInfo.vue'),
         'ly-menu-nav': httpVueLoader('/common/template/t01/components/defaultMenuNav.vue'),
@@ -259,7 +259,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                   shop.comment = ''
                   shop.payMode = '001'
                 })
-                location.href = '/common/servicetrade/order.html'
+                location.href = vm.$pathPrefix+'/common/servicetrade/order.html'
                 vm.$data.shopList = res.result
               } else {
                 vm.$dialog.showToast(res.desc)

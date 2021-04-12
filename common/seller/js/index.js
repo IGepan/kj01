@@ -32,7 +32,7 @@ require(['/common/js/require.config.js'], function () {
       mixins: [seller],
       components: {
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
@@ -134,7 +134,7 @@ require(['/common/js/require.config.js'], function () {
           })
         },
         handlePushArticle: function () {
-          location.href = this.selectedAmount === '010' ? '/common/seller/addpatent.html?code=001.002.002.003&categoryId=82779310439534201' : this.selectedAmount === '009' ? '/common/seller/addpatent.html?code=001.002.002.002&categoryId=82779310439534200' : '/common/seller/addpatent.html?code=001.002.002.001.001&categoryId=82515756322918000'
+          location.href = this.selectedAmount === '010' ? this.$pathPrefix+'/common/seller/addpatent.html?code=001.002.002.003&categoryId=82779310439534201' : this.selectedAmount === '009' ? this.$pathPrefix+'/common/seller/addpatent.html?code=001.002.002.002&categoryId=82779310439534200' : this.$pathPrefix+'/common/seller/addpatent.html?code=001.002.002.001.001&categoryId=82515756322918000'
         },
         handleOrdertabs: function (type) {
           this.queryForm.orderStatusFilter = type
@@ -142,7 +142,7 @@ require(['/common/js/require.config.js'], function () {
         },
         getselectDemandByPage: function () {
           var vm = this
-          httpStore.selectDemandByPage({ columnId: '162' }).then(function (res) {
+          httpStore.selectDemandByPage().then(function (res) {
             if (res.code === 'rest.success') {
               vm.demandlist = res.result
             }

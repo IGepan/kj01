@@ -71,8 +71,8 @@
     <div class="mdiv">
       <seller-left :http='http' :jquery='jquery'></seller-left>
       <div class="routenav">
-        <a href="/common/seller/index.html">卖家中心&nbsp;&gt;</a>
-        <a href="/common/seller/index.html">订单&nbsp;&gt;</a>
+        <a :href="$pathPrefix+'/common/seller/index.html'">卖家中心&nbsp;&gt;</a>
+        <a :href="$pathPrefix+'/common/seller/index.html'">订单&nbsp;&gt;</a>
         <span>服务案例</span>
       </div>
       <div class="rightmainbox">
@@ -135,7 +135,7 @@
             <!--订单列表-->
             <div class="orderbox">
               <div class="control">
-                <a href="/common/seller/addservice_case.html" class="addtec fs14"><i class="iconfont icon-jia"></i>新增</a>
+                <a :href="$pathPrefix+'/common/seller/addservice_case.html'" class="addtec fs14"><i class="iconfont icon-jia"></i>新增</a>
                 <!-- <label><input type="checkbox" v-model="isOrderSelectedAll"><b></b>全选</label><button type="button"
                   @click="deleteBatch">删除</button> -->
               </div>
@@ -163,7 +163,7 @@
                       <div class="tbody-td" v-text="item.transactionModeDisplay"></div>
                       <div class="tbody-td" v-text="item.certificationFlagDisplay"></div>
                       <div class="tbody-td operation-service">
-                        <a v-if="item.certificationFlag!=='02'" :href="'/common/seller/addservice_case.html?code='+code+'&id=' + item.id">编辑</a>
+                        <a v-if="item.certificationFlag!=='02'" :href="$pathPrefix+'/common/seller/addservice_case.html?code='+code+'&id=' + item.id">编辑</a>
 <!--                        <div @click="handleEdit">编辑</div>-->
                         <div @click="handleDelete(item.id,item.version)">删除</div>
 

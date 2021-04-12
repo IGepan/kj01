@@ -19,7 +19,7 @@ define(function () {
       baseUrl: 'http://ts-zuul.liyantech.cn/tsAdmin',
       assisUrl: 'http://ts-zuul.liyantech.cn/tsAssistant',
       statisticsUrl: 'http://as.liyantech.cn', // 统计地址
-      imgUploadUrl: 'http://fs.liyantech.cn', // 文件上传服务
+      imgUploadUrl: 'http://fskj012.liyantech.cn', // 文件上传服务
       imgVerify: 'http://captcha.liyantech.cn/', // 滑块验证码
       cmsUrl: 'https://kj01news.liyantech.cn',
       companyApi: 'http://47.108.80.38:8304',

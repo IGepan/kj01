@@ -28,7 +28,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         pageCount: 4
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')

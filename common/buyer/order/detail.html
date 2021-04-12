@@ -21,9 +21,9 @@
       <ly-header pagename="订单详情" :http="httpCom"></ly-header>
       <div class="crumbs">
         <div class="mdiv"><strong>你现在的位置：</strong>
-          <a href="/common/buyer/index.html">
+          <a :href="$pathPrefix+'/common/buyer/index.html'">
             用户中心
-          </a><a href="/common/buyer/order/?orderStatusFilter=01">
+          </a><a :href="$pathPrefix+'/common/buyer/order/?orderStatusFilter=01'">
             我的订单
           </a>
           <span>订单详情</span></div>

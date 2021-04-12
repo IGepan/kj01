@@ -1,0 +1,227 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/css/button.css" rel="stylesheet">
+    <link href="./style/css/activity/brandDetail.css" rel="stylesheet">
+    <link href="./style/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="boxs gray-bg" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <index-head :nav-index="2" :search-types="'政策'" :location-names="'policyList.html'"></index-head>
+    <div class="container-box">
+        <div class="top-bg">
+            <div class="mmdiv">活动中心</div>
+        </div>
+        <div class="content-box mmdiv">
+            <div class="breadcrumb">
+                <span class="iconfont-template icon-dingweixian"></span>
+                <span class="breadcrumb__item"><a :href="$pathPrefix">首页</a></span>
+                <template v-for="(item, i) in breadcrumb">
+                    <span class="breadcrumb__item" :key="i">
+                        <a v-if="item.url" :href="item.url">{{item.label}}</a>
+                        <template v-else>{{item.label}}</template>
+                    </span>
+                </template>
+            </div>
+            <template v-if="detail">
+                <div class="base-info">
+                    <div class="vaMiddle item-img base-img" :style="detail.styles">
+                        <img :src="detail.posterUrl" :alt="detail.title">
+                    </div>
+                    <div class="vaMiddle base-inofs">
+                        <h1 class="line2 title" :title="detail.title">{{detail.title}}</h1>
+                        <div class="small">
+                            <label class="vaTop label"><i class="iconfont-template icon-neirongtuisong"></i>主办单位: </label>
+                            <div class="vaTop mainSponsor">{{detail.sponsor}}</div>
+                        </div>
+                        <div class="small">
+                            <label class="vaTop label"><i class="iconfont-template icon-lishijilu"></i>活动时间: </label>
+                            <div class="vaTop">{{detail.activeStartTimeDisplay&&detail.activeStartTimeDisplay[8]}} {{detail.activeStartTimeDisplay&&detail.activeStartTimeDisplay[3]}} {{detail.weekDay}}</div>
+                        </div>
+                        <div class="tag">
+                            <template v-if="detail.topicCustomTag.length">
+                                <template v-for="tag in detail.topicCustomTag">
+                                    <label class="vaTop text">#{{tag.name}}</label>
+                                </template>
+                            </template>
+                            <template v-else>
+                                <template v-for="tag in detail.industry">
+                                    <label class="vaTop text">#{{tag.display}}</label>
+                                </template>
+                            </template>
+                        </div>
+                        <div class="other">
+                            <div>
+                                <label class="vaMiddle"><i class="iconfont-template icon-liulanliang"></i>浏览 {{detail.visitNum||0}}</label>
+                                <label class="vaMiddle share">
+                                    <span class="vaMiddle text">分享到</span>
+                                    <span class="vaMiddle icon" @click.stop="handleShareToWeixin"><i class="iconfont-template icon-weixin"></i></span>
+                                    <span class="vaMiddle icon" @click.stop="handleShareToQQ"><i class="iconfont-template icon-qq"></i></span>
+                                </label>
+                            </div>
+                            <div class="other-btns">
+                                <button type="button" typeName="collection" class="vaMiddle" :class="{colSelected: detail.isCollection}" @click.stop="handleColSelected"><i class="iconfont-template vaMiddle" :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i><span class="vaMiddle">{{!detail.isCollection?'收藏':'已收藏'}}</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <span class="tagTips">系列专题</span> -->
+                </div>
+                <div class="infoBox">
+                    <div class="mainInfoBox">
+                        <div class="tabs" :class="{fixed: isFixed}">
+                            <template v-for="(nav, ni) in tabsNav">
+                                <div class="vaMiddle tabs-item" @click.stop="handleSetTabsIndex(ni)" :class="{active: nav.active}">{{nav.label}}</div>
+                            </template>
+                        </div>
+                        <template v-if="tabsIndex === 0">
+                            <div class="content-box" v-html="detail.activeText"></div>
+                        </template>
+                        <template v-if="tabsIndex === 1">
+                            <div class="planList">
+                                <template v-for="(plan, pi) in detail.topicDtls">
+                                    <div class="plan-item">
+                                        <a :href="plan.itemUrl" :title="plan.activeName" target="_blank">
+                                            <div class="vaTop datetime">
+                                                <div>{{plan.activeStartTimeDisplay[8]}}</div>
+                                                <div>{{plan.activeStartTimeDisplay[3]}} {{plan.weekday}}</div>
+                                            </div>
+                                            <div class="vaTop infos">
+                                                <div class="vaMiddle item-img infos-img" :style="plan.styles">
+                                                    <img :src="plan.itemImg" :alt="plan.activeName">
+                                                </div>
+                                                <div class="vaMiddle infos-box">
+                                                    <h4 class="line2 plan-title">{{plan.activeName}}</h4>
+                                                    <div class="address" v-if="!plan.onLineFlag"><i
+                                                            class="iconfont-template icon-dingweixian"></i>{{plan.provinceDisplay||''}}{{plan.cityDisplay||''}}{{plan.districtDisplay||''}}{{plan.location||''}}
+                                                    </div>
+                                                    <div class="onLine" v-else><i class="iconfont-template icon-xianshanghuodong"></i>线上活动</div>
+                                                    <div class="sponsor"><i class="iconfont-template icon-neirongtuisong"></i>发布方：{{plan.userName}}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template v-if="recommendList.length">
+                            <div class="linebox">
+                                <div class="lineTitleBox">
+                                    <span class="lineTitleBox-text">您可能感兴趣</span>
+                                </div>
+                                <div class="linebox-body">
+                                    <scroll v-model="recommendList" :auto-play="true">
+                                        <template v-slot:item="recommend">
+                                            <a class="recommend-item" :href="recommend.item.itemUrl" :title="recommend.item.title" target="_blank">
+                                                <div class="border-box"></div>
+                                                <div class="item-img itemimg" :style="recommend.item.styles">
+                                                    <img :src="recommend.item.itemImg" :alt="recommend.item.title">
+                                                </div>
+                                                <h4 class="line title">{{recommend.item.title}}</h4>
+                                            </a>
+                                        </template>
+                                    </scroll>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="asideBox">
+                        <div class="dotbox">
+                            <div class="dotTileBox">
+                                <span class="dotTileBox-text">活动相关</span>
+                            </div>
+                            <div class="dotTileBox-body">
+                                <div class="unit-box">
+                                    <template v-for="(cooperation, ci) in detail.cooperation">
+                                        <div class="unit-row" :key="ci">
+                                            <div class="vaTop unit-label">{{cooperation[0].cooperationTypeDisplay}}：</div>
+                                            <div class="vaTop unit-units">
+                                                <template v-for="(coop, sci) in cooperation">
+                                                    <div class="line unit" :title="coop.cooperationName" :key="sci">{{coop.cooperationName}}</div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template v-if="detail.userName">
+                                        <div class="unit-row">
+                                            <div class="vaTop unit-label">活动发布：</div>
+                                            <div class="vaTop unit-units">
+                                                <div class="line unit" :title="detail.userName">{{detail.userName}}</div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dotbox">
+                            <div class="dotTileBox">
+                                <span class="dotTileBox-text">TA 举办的活动</span>
+                            </div>
+                            <div class="dotTileBox-body">
+                                <div id="theHer" class="theHerImgBox owl-carousel owl-theme">
+                                    <template v-for="(theHer, ti) in theHerList">
+                                        <a class="theherbox" :href="theHer.itemUrl" :title="theHer.title" target="_blank">
+                                            <div class="item-img theimg" :style="theHer.styles">
+                                                <img :src="theHer.itemImg" :alt="theHer.title">
+                                            </div>
+                                            <h4 class="line title">{{theHer.title}}</h4>
+                                            <div class="other">{{theHer.activeStartTimeDisplay[9]}} {{theHer.activeStartTimeDisplay[3]}} {{theHer.weekday}}</div>
+                                        </a>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calendarBox">
+                            <div class="calendartop">
+                                <div class="vaMiddle prev" @click.stop="handlePrevMonth"><i class="iconfont-template icon-fanhui"></i></div>
+                                <div class="vaMiddle viewDisplay">活动日历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{calendar.month + 1}}月</div>
+                                <div class="vaMiddle next" @click.stop="handleNextMonth"><i class="iconfont-template icon-gengduokuozhe"></i></div>
+                            </div>
+                            <div class="calendarweek">
+                                <span class="vaMiddle week">日</span>
+                                <span class="vaMiddle week">一</span>
+                                <span class="vaMiddle week">二</span>
+                                <span class="vaMiddle week">三</span>
+                                <span class="vaMiddle week">四</span>
+                                <span class="vaMiddle week">五</span>
+                                <span class="vaMiddle week">六</span>
+                            </div>
+                            <div class="calendarDays" v-if="calendar.days.length">
+                                <template v-for="(day, di) in calendar.days">
+                <span class="vaMiddle day" @click.stop="handleSetDay" :data-click="day.click" :data-index="di"
+                      :data-value="day.label"
+                      :class="{none: !day.click, dot: day.activeNum, default: day.isSelect, active: selectIndex === di }">
+                  {{day.label||''}}
+                </span>
+                                </template>
+                            </div>
+                            <template v-if="dayResultList.length">
+                                <aside-today box-title="当天活动" :data-list="dayResultList"></aside-today>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+    <com-footer></com-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="./style/css/iconfont/iconfont.js"></script>
+<script type="text/javascript" src="./style/js/activity/brandDetail.js"></script>
+</body>
+
+</html>

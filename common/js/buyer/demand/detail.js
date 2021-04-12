@@ -15,7 +15,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       },
       mounted: function () { },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -45,7 +45,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         //验收信息-附件
         fileSaveAsCheck: function (file) {
           if(file.name.indexOf('.pdf')>-1){
-            this.$utils.openNewTable('/common/buyer/demand/preview.html?id='+file.id);
+            this.$utils.openNewTable(this.$pathPrefix+'/common/buyer/demand/preview.html?id='+file.id);
           }else{
             var url = httpUrl.imgUploadUrl + '/file/download?filePath=' + file.path;
             saveAs(url, file.name)

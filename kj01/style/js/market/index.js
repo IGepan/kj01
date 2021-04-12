@@ -290,7 +290,7 @@ require(['/common/js/require.config.js'], function () {
         res.result && res.result.length && res.result.forEach(function (item, index) {
          if (item.code === 'industry_level1_type') {
           var list = res.result[index].dictIInfos
-          list.splice(list.length-2,2)
+          // list.splice(list.length-2,2)
           vm.cascadeList = list
          } else if (item.code === 'demand_type') {
           res.result[index].dictIInfos.forEach(function (item) {

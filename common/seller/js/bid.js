@@ -23,7 +23,7 @@ require(['/common/js/require.config.js'], function () {
       },
       mixins: [seller, addpatentKey],
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-page': httpVueLoader('/common/components/pages.vue'),
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),

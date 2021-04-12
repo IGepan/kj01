@@ -1,15 +1,7 @@
 <template>
 <div class="mdiv">
   <div class="shopdiv">
-    <a
-      href="/"
-      class="logo"
-    >
-      <img
-        src="/style/images/logos/shopLogo.png"
-        alt=""
-      >
-    </a>
+    <a class="logo" :href=$pathPrefix+"/index.html"><img :src="webInfo.logoUrl?webInfo.logoUrl:'/style/images/logos/blue-h66.png'" alt="" /></a>
     <ly-searchbox
       :is-input-line="true"
       :is-search-shop="true"
@@ -26,9 +18,18 @@
 module.exports = {
   props: ['type', 'http', 'defaultValue'],
   data: function () {
-    return {}
+    return {
+      webInfo:''
+    }
   },
-  created: function () { },
+  mounted: function () {
+    window.addEventListener("setItem", (e) => {
+      if(e.key==='webInfo'){
+        let info=JSON.parse(e.newValue)
+        this.webInfo=info?info:'';
+      }
+    });
+  },
   methods: {
     eventSearchFull: function (d) {
       if (d.type !== 'resource' && d.type !== 'ticket') {

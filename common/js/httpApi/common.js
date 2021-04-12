@@ -201,6 +201,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
 		 */
     cancel: function (param) {
       return Http.get(httpUrl.baseUrl + '/collection/cancel', param)
-    }
+    },
+    //获取网站的公共信息
+    publicDetail: function (param) {
+      return Http.get(httpUrl.baseUrl + '/saasInfoExt/detail', param);
+    },
   }
 })

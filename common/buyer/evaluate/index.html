@@ -34,7 +34,7 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><span>我的评价</span>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a><span>我的评价</span>
         </div>
         <div class="centerbox">
           <div class="tabbox">
@@ -83,7 +83,7 @@
                       <div class="time borders" style="width: 150px;" v-text="order.evaluateDate"></div>
                       <div class="type borders" v-text="order.status"></div>
                       <div class="type borders" style="width: 110px;">
-                        <a target="_blank" :href="'detail.html?code=001.001.004.001&id=' + order.evaluateId">查看详情</a>
+                        <a target="_blank" :href="$pathPrefix+'/common/buyer/evaluate/detail.html?code=001.001.004.001&id=' + order.evaluateId">查看详情</a>
                         <div class="select"
                           v-if="(order.updateEvaFlag === '1' || order.addEvaFlag === '1') && order.evaluateType !== '005'">
                           <select v-model="order.operation" @change="handleOrderChange(i)">

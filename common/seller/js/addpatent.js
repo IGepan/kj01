@@ -146,7 +146,7 @@ require(['/common/js/require.config.js'], function () {
       components: {
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-select': httpVueLoader('/common/components/select.vue'),
         'ly-form-time': httpVueLoader('./components/technology/formTime.vue'),

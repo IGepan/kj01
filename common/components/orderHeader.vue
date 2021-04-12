@@ -1,15 +1,7 @@
 <template>
   <div class="detailbanner">
     <div class="mdiv">
-      <a
-        href="/index.html"
-        class="logo"
-      >
-        <img
-          src="/style/images/logos/blue.png"
-          alt=""
-        >
-      </a>
+      <a :href="$pathPrefix+'/index.html'" class="logo"><img :src="webInfo.logoUrl?webInfo.logoUrl:'/style/images/logos/blue-h66.png'" alt="" /></a>
       <div
         v-if="pagename"
         class="pagename"
@@ -18,7 +10,7 @@
       <ly-searchbox
         :isborder="true"
         @search-full="eventSearchFull"
-      >
+      ></ly-searchbox>
     </div>
   </div>
 </template>
@@ -27,9 +19,18 @@
 module.exports = {
   props: ['pagename', 'http'],
   data: function () {
-    return {}
+    return {
+      webInfo:''
+    }
   },
-  created: function () { },
+  created: function () {
+     window.addEventListener("setItem", (e) => {
+                if(e.key==='webInfo'){
+                    let info=JSON.parse(e.newValue)
+                    this.webInfo=info?info:'';
+                }
+            });
+  },
   methods: {
     eventSearchFull: function (d) {
       if (d.type !== 'resource' && d.type !== 'ticket') {

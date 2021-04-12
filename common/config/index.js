@@ -17,13 +17,13 @@ define(function () {
       resourceUrl:'http://city-service.cykj01.com/',//资源中心的数据接口
     },
     {
-      authUrl: 'http://ts-zuul.liyantech.cn/tsOauth2',
-      // authUrl: 'http://172.16.9.34:9769/tsOauth2',
-      baseUrl: 'http://ts-zuul.liyantech.cn/tsAdmin',
-      // baseUrl: 'http://172.16.9.34:9769/tsAdmin',
+      // authUrl: 'http://ts-zuul.liyantech.cn/tsOauth2',
+      authUrl: 'http://172.16.9.34:9769/tsOauth2',
+      // baseUrl: 'http://ts-zuul.liyantech.cn/tsAdmin',
+      baseUrl: 'http://172.16.9.34:9769/tsAdmin',
       assisUrl: 'http://ts-zuul.liyantech.cn/tsAssistant',
       statisticsUrl: 'http://as.liyantech.cn', // 统计地址
-      imgUploadUrl: 'http://fs.liyantech.cn', // 文件上传服务
+      imgUploadUrl: 'http://fskj012.liyantech.cn', // 文件上传服务
       imgVerify: 'http://captcha.liyantech.cn/', // 滑块验证码
        // imgVerify: 'http://172.16.9.34:8720/', // 滑块验证码
       cmsUrl: 'http://kj01news.liyantech.cn',
