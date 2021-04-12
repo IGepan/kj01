@@ -934,11 +934,16 @@
                                                    maxlength="100"
                                                    type="text"
                                                    style="width: 300px;vertical-align: middle; font-size: 14px;">
-                                            <a @click="handleSetOnLine"
-                                               style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 20px;color: blue;cursor: pointer;"
-                                               v-text="formData.onLineFlag === '0' ? '这是线上活动' : '举办线下活动'"></a>
+
                                             <span v-show="formData.onLineFlag === '0'"
-                                                  style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 20px;color: blue;cursor: pointer;"
+                                                  style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
+                                                  @click="handleActivity">&nbsp;&nbsp;举办线上+线下活动</span>
+                                            <a @click="handleSetOnLine"
+                                               style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
+                                               v-text="formData.onLineFlag === '0' ? '举办线上活动' : '举办线下活动'"></a>
+
+                                            <span v-show="formData.onLineFlag === '0'"
+                                                  style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
                                                   @click="handleOpenMap">地图选择</span>
                                         </div>
                                     </div>
@@ -1235,7 +1240,7 @@
                                             <br>
                                             <template v-if="item.options">
                                                 <template v-for="(opt,index) in item.voptions">
-                                                    <span class="lineTitle" :key="index"
+                                                        <span class="lineTitle" :key="index"
                                                           style="width: 60px;"></span><span class="opt"
                                                                                             v-text="opt"></span><br>
                                                 </template>

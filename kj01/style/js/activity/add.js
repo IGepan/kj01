@@ -763,6 +763,24 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           }
         },
+        handleActivity: function (){
+          if (!this.formData.isUpdateSign) {
+            this.$dialog.showToast('当前已有人员签到，不允切换模式！');
+            return false
+          }else {
+            if (this.formData.onLineFlag === '1') {
+              this.formData.onLineFlag = '0'
+              var addressArr = this.$refs.addressRef;
+              if (addressArr) {
+                this.formData.country = '100'
+                this.formData.province = '500000'
+                this.formData.city = '500100'
+                this.formData.district = ''
+                addressArr.setValues([this.formData.country, this.formData.province, this.formData.city, this.formData.district]);
+              }
+            }
+          }
+        },
         addressValid: function (v, o, callback) {
           var vm = this;
           setTimeout(function () {

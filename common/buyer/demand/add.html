@@ -2,319 +2,355 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>添加需求-成渝城市群综合科技服务平台</title>
-  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
-  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
-  <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
-  <style>
-    .inputbox-max {
-      width: 435px;
-    }
+    <meta charset="utf-8">
+    <title>添加需求-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/demandcom.css" rel="stylesheet" type="text/css">
+    <style>
+        .inputbox-max {
+            width: 435px;
+        }
 
-    .inputbox-well {
-      width: 350px;
-      margin-right: 13px;
-    }
+        .inputbox-well {
+            width: 350px;
+            margin-right: 13px;
+        }
 
-    .selectarea select {
-      margin-right: 8px;
-    }
+        .selectarea select {
+            margin-right: 8px;
+        }
 
-    .selectarea .expsltlb:after,
-    .selectbox:after {
-      right: 8px;
-    }
+        .selectarea .expsltlb:after,
+        .selectbox:after {
+            right: 8px;
+        }
 
-    .inputbox-date:after {
-      right: 345px;
-    }
+        .inputbox-date:after {
+            right: 345px;
+        }
 
-    .form .inputbox-add {
-      width: 765px;
-    }
+        .form .inputbox-add {
+            width: 765px;
+        }
 
-    .form .inputbox-add span {
-      display: inline-block;
-      margin-bottom: 5px;
-    }
+        .form .inputbox-add span {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
 
-    .selectbox-max {
-      width: 435px;
-      padding-right: 25px;
-    }
+        .selectbox-max {
+            width: 435px;
+            padding-right: 25px;
+        }
 
-    .selectbox.ptrt:after {
-      top: 2px;
-      width: 30px;
-      height: 20px;
-      background-color: #ffffff;
-      right: -32px;
-    }
+        .selectbox.ptrt:after {
+            top: 2px;
+            width: 30px;
+            height: 20px;
+            background-color: #ffffff;
+            right: -32px;
+        }
 
-    .ainline {
-      border: 1px solid #ccc;
-      width: 435px;
-    }
-  </style>
+        .ainline {
+            border: 1px solid #ccc;
+            width: 435px;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="box" id='index_box'>
+<div class="box" id='index_box'>
     <div class="header">
-      <ly-toper></ly-toper>
-      <header-bar type='buyer' :http="httpCom"></header-bar>
+        <ly-toper></ly-toper>
+        <header-bar type='buyer' :http="httpCom"></header-bar>
     </div>
     <div class="contant">
-      <div class="mdiv">
-        <div class="leftbox">
-          <buyer-left :http='http' :jquery='jquery'></buyer-left>
-        </div>
-        <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><a
-            href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
-          <span>添加需求</span>
-        </div>
-        <div class="centerbox">
-          <!--编辑内容-->
-          <div class="form">
-            <div class="form-view form-padding">
-              <table class="table dataform">
-                <tr>
-                  <th><i>*</i>需求标题：</th>
-                  <td>
-                    <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty||maxLength:200" maxlength="200"
-                        data-error='标题不能为空||内容过长' type="text" v-model="dataForm.title" placeholder="需求标题"><span
-                        class="vlt form_msg"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>所属行业：</th>
-                  <td>
-                    <div ref="industryEl" class="selectbox required ainline" data-valid="custom:customindustryList">
-                      <ly-select-level class="select level" style="margin-top: -6px;" @input="handleIndustryInput"
-                        v-model="dataForm.industryList">
-                      </ly-select-level>
-                    </div><span ref="industryMsg" class="vlt form_msg"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>需求类型：</th>
-                  <td>
-                    <div class="inputradio required" data-valid="custom:customdemandType">
+        <div class="mdiv">
+            <div class="leftbox">
+                <buyer-left :http='http' :jquery='jquery'></buyer-left>
+            </div>
+            <div class="crumbs">
+                <a href="/common/buyer/index.html">用户中心</a><a
+                    href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
+                <span>添加需求</span>
+            </div>
+            <div class="centerbox">
+                <!--编辑内容-->
+                <div class="form">
+                    <div class="form-view form-padding">
+                        <table class="table dataform">
+                            <tr>
+                                <th><i>*</i>需求标题：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <input class="inputbox-max required" data-valid="isNonEmpty||maxLength:200"
+                                               maxlength="200"
+                                               data-error='标题不能为空||内容过长' type="text" v-model="dataForm.title"
+                                               placeholder="需求标题"><span
+                                            class="vlt form_msg"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>所属行业：</th>
+                                <td>
+                                    <div ref="industryEl" class="selectbox required ainline"
+                                         data-valid="custom:customindustryList">
+                                        <ly-select-level class="select level" style="margin-top: -6px;"
+                                                         @input="handleIndustryInput"
+                                                         v-model="dataForm.industryList">
+                                        </ly-select-level>
+                                    </div>
+                                    <span ref="industryMsg" class="vlt form_msg"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>需求类型：</th>
+                                <td>
+                                    <div class="inputradio required" data-valid="custom:customdemandType">
                       <span v-for="(opt, i) in options.demand_type" :key="opt.id"><input :id="'demandType' + i"
-                          name="demandType" v-model="dataForm.demandType" :value="opt.value" type="radio"><label
-                          :for="'demandType' + i" v-text="opt.display"></label></span>
-                    </div><span class="vlt form_msg"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>标签：</th>
-                  <td>
-                    <div class="inputbox">
-                      <input class="inputbox-well" maxlength="15" type="text" v-model="word">
-                      <input class="inputbox-button" type="button" @click="handleAddTag" value="增加">
-                    </div>
-                    <div class="inputbox inputbox-add">
+                                                                                         name="demandType"
+                                                                                         v-model="dataForm.demandType"
+                                                                                         :value="opt.value"
+                                                                                         type="radio"><label
+                              :for="'demandType' + i" v-text="opt.display"></label></span>
+                                    </div>
+                                    <span class="vlt form_msg"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>标签：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <input class="inputbox-well" maxlength="15" type="text" v-model="word">
+                                        <input class="inputbox-button" type="button" @click="handleAddTag" value="增加">
+                                    </div>
+                                    <div class="inputbox inputbox-add">
                       <span v-for="(tag, i) in dataForm.keyWord">
                         <tag v-text="tag"></tag><i @click="handleDelTag(i)" class="iconfont icon-shanchuguanbicha2"></i>
                       </span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>面向地区：</th>
-                  <td>
-                    <div class="selectarea required" data-valid="custom:customarea">
-                      <ly-address-select ref='addressRef' :ismap="false">
-                      </ly-address-select>
-                    </div>
-                    <span class="vlt form_msg"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>需求预算（元）：</th>
-                  <td>
-                    <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty||positiveNum"
-                        data-error='预算不能为空||请填写正数' v-model="dataForm.budget" type="number">
-                      <span class="vlt form_msg"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>截止日期：</th>
-                  <td>
-                    <div class="inputbox inputbox-date">
-                      <input class="inputbox-max" v-model="dataForm.endDate" type="text" readonly id="endDate">
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>中验日期：</th>
-                  <td>
-                    <div class="inputbox inputbox-date">
-                      <input class="inputbox-max" v-model="dataForm.intermediateDate"
-                      type="text" readonly id="intermediateDate">
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>联系人：</th>
-                  <td>
-                    <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty" maxlength="20" data-error='联系人不能为空'
-                        v-model="dataForm.contacts" type="text"><span class="vlt form_msg"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>联系电话：</th>
-                  <td>
-                    <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty||isMobile" maxlength="11"
-                        data-error='联系电话不能为空||请填写正确的手机号码' v-model="dataForm.phone" type="text"><span
-                        class="vlt form_msg"></span>
-<!--                      todo-->
-                    </div>
-                  </td>
-                </tr>
-                <tr v-show="dataForm.demandType === '01'">
-                  <th><i>*</i>需求所处阶段：</th>
-                  <td>
-                    <div class="selectbox ptrt">
-                      <select id="stage" class="selectbox-max required" data-valid="custom:customstage"
-                        v-model="dataForm.stage">
-                        <option :value="opt.value" v-for="opt in options.demand_stage" :key="opt.id"
-                          v-text="opt.display">
-                        </option>
-                      </select><span class="vlt form_msg"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr v-show="dataForm.demandType === '01'">
-                  <th>需求缘由：</th>
-                  <td>
-                    <div class="selectbox ptrt">
-                      <select id="demandCase" class="selectbox-max" v-model="dataForm.demandCase">
-                        <option :value="opt.value" v-for="opt in options.demand_case" :key="opt.id"
-                          v-text="opt.display">
-                        </option>
-                      </select>
-                    </div>
-                  </td>
-                </tr>
-                <tr v-show="dataForm.demandType === '01'">
-                  <th>意向合作方式：</th>
-                  <td>
-                    <div class="selectbox ptrt">
-                      <select id="cooperationMode" class="selectbox-max" v-model="dataForm.cooperationMode">
-                        <option :value="opt.value" v-for="opt in options.cooperation_mode" :key="opt.id"
-                          v-text="opt.display">
-                        </option>
-                      </select>
-                    </div>
-                  </td>
-                </tr>
-                <tr v-show="dataForm.demandType === '03'">
-                  <th><i>*</i>人才职业描述：</th>
-                  <td>
-                    <div class="inputbox border required" ref="professionEl" data-valid="custom:customprofession">
-                      <vue-ueditor-wrap v-model="dataForm.profession" :config="ueditorConfig" class="exptextarea">
-                      </vue-ueditor-wrap>
-                    </div><span ref="professionMsg" class="vlt form_msg"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>需求描述：</th>
-                  <td>
-                    <div class="inputbox border required" ref="commentEl" data-valid="custom:customcomment">
-                      <vue-ueditor-wrap v-model="dataForm.comment" :config="ueditorConfig" class="exptextarea">
-                      </vue-ueditor-wrap>
-                    </div><span ref="commentMsg" class="vlt form_msg"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th><i>*</i>对投标方的要求：</th>
-                  <td>
-                    <div class="inputbox border required" ref="requirementEl" data-valid="custom:customrequirement">
-                      <vue-ueditor-wrap v-model="dataForm.requirement" :config="ueditorConfig" class="exptextarea">
-                      </vue-ueditor-wrap>
-                    </div><span ref="requirementMsg" class="vlt form_msg"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>投标指标（自定义）：</th>
-                  <td>
-                    <div class="inputbox">
-                      <input class="inputbox-button" type="button" @click="handleAddQuota" value="新增指标">
-                    </div>
-                    <div class="inputbox-add">
-                      <table class="table inputbox-add_table" v-if="dataForm.quotaList.length">
-                        <tr v-for="(quota, i) in dataForm.quotaList" :key="i">
-                          <th><i>*</i>指标名称：</th>
-                          <td>
-                            <input class="inputbox-min required" data-valid="isNonEmpty" maxlength="50"
-                              data-error='指标名称不能为空' v-model="quota.quotaName" type="text"><span
-                              class="vlt form_msg"></span>
-                          </td>
-                          <th>指标说明：</th>
-                          <td>
-                            <input class="inputbox-min" maxlength="200" v-model="quota.quotaComment" type="text">
-                          </td>
-                          <td>
-                            <input class="inputbox-button" @click="handleDeleteQuota(i)" type="button" value="删除">
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>需求附件：</th>
-                  <td>
-                    <div class="inputbox">
-                      <label class="exbtn">
-                        <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess'
-                          style="position: absolute;right: 10000px;" type='file' :nopro="true" :header='{}' :url='fileUploadUrl'
-                          :data='uploadData'>
-                        </ly-upload>
-                        <span class="exbtn inputbox-button">上传附件</span>
-                      </label>
-                      <span style="color:red; margin-left: 20px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>面向地区：</th>
+                                <td>
+                                    <div class="selectarea required" data-valid="custom:customarea">
+                                        <ly-address-select ref='addressRef' :ismap="false">
+                                        </ly-address-select>
+                                    </div>
+                                    <span class="vlt form_msg"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>需求预算（元）：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <input class="inputbox-max required" data-valid="isNonEmpty||positiveNum"
+                                               data-error='预算不能为空||请填写正数' v-model="dataForm.budget" type="number"
+                                               :disabled="isNegotiation">
+                                        <span class="vlt form_msg"></span>
+                                        <a @click="handleSetNegotiation"
+                                           style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
+                                           v-text="isNegotiation === true? '详细预算' : '面议'"></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>截止日期：</th>
+                                <td>
+                                    <div class="inputbox inputbox-date">
+                                        <input class="inputbox-max" v-model="dataForm.endDate" type="text" readonly
+                                               id="endDate">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>中验日期：</th>
+                                <td>
+                                    <div class="inputbox inputbox-date">
+                                        <input class="inputbox-max" v-model="dataForm.intermediateDate"
+                                               type="text" readonly id="intermediateDate">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>联系人：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <input class="inputbox-max required" data-valid="isNonEmpty" maxlength="20"
+                                               data-error='联系人不能为空'
+                                               v-model="dataForm.contacts" type="text"><span
+                                            class="vlt form_msg"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>联系电话：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <input class="inputbox-max required" data-valid="isNonEmpty||isMobile"
+                                               maxlength="11"
+                                               data-error='联系电话不能为空||请填写正确的手机号码或区号开始的座机号码' v-model="dataForm.phone"
+                                               type="text"><span
+                                            class="vlt form_msg"></span>
+                                        <!--                      todo-->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr v-show="dataForm.demandType === '01'">
+                                <th><i>*</i>需求所处阶段：</th>
+                                <td>
+                                    <div class="selectbox ptrt">
+                                        <select id="stage" class="selectbox-max required"
+                                                data-valid="custom:customstage"
+                                                v-model="dataForm.stage">
+                                            <option :value="opt.value" v-for="opt in options.demand_stage" :key="opt.id"
+                                                    v-text="opt.display">
+                                            </option>
+                                        </select><span class="vlt form_msg"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr v-show="dataForm.demandType === '01'">
+                                <th>需求缘由：</th>
+                                <td>
+                                    <div class="selectbox ptrt">
+                                        <select id="demandCase" class="selectbox-max" v-model="dataForm.demandCase">
+                                            <option :value="opt.value" v-for="opt in options.demand_case" :key="opt.id"
+                                                    v-text="opt.display">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr v-show="dataForm.demandType === '01'">
+                                <th>意向合作方式：</th>
+                                <td>
+                                    <div class="selectbox ptrt">
+                                        <select id="cooperationMode" class="selectbox-max"
+                                                v-model="dataForm.cooperationMode">
+                                            <option :value="opt.value" v-for="opt in options.cooperation_mode"
+                                                    :key="opt.id"
+                                                    v-text="opt.display">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr v-show="dataForm.demandType === '03'">
+                                <th><i>*</i>人才职业描述：</th>
+                                <td>
+                                    <div class="inputbox border required" ref="professionEl"
+                                         data-valid="custom:customprofession">
+                                        <vue-ueditor-wrap v-model="dataForm.profession" :config="ueditorConfig"
+                                                          class="exptextarea">
+                                        </vue-ueditor-wrap>
+                                    </div>
+                                    <span ref="professionMsg" class="vlt form_msg"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>需求描述：</th>
+                                <td>
+                                    <div class="inputbox border required" ref="commentEl"
+                                         data-valid="custom:customcomment">
+                                        <vue-ueditor-wrap v-model="dataForm.comment" :config="ueditorConfig"
+                                                          class="exptextarea">
+                                        </vue-ueditor-wrap>
+                                    </div>
+                                    <span ref="commentMsg" class="vlt form_msg"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i>*</i>对投标方的要求：</th>
+                                <td>
+                                    <div class="inputbox border required" ref="requirementEl"
+                                         data-valid="custom:customrequirement">
+                                        <vue-ueditor-wrap v-model="dataForm.requirement" :config="ueditorConfig"
+                                                          class="exptextarea">
+                                        </vue-ueditor-wrap>
+                                    </div>
+                                    <span ref="requirementMsg" class="vlt form_msg"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>投标指标（自定义）：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <input class="inputbox-button" type="button" @click="handleAddQuota"
+                                               value="新增指标">
+                                    </div>
+                                    <div class="inputbox-add">
+                                        <table class="table inputbox-add_table" v-if="dataForm.quotaList.length">
+                                            <tr v-for="(quota, i) in dataForm.quotaList" :key="i">
+                                                <th><i>*</i>指标名称：</th>
+                                                <td>
+                                                    <input class="inputbox-min required" data-valid="isNonEmpty"
+                                                           maxlength="50"
+                                                           data-error='指标名称不能为空' v-model="quota.quotaName"
+                                                           type="text"><span
+                                                        class="vlt form_msg"></span>
+                                                </td>
+                                                <th>指标说明：</th>
+                                                <td>
+                                                    <input class="inputbox-min" maxlength="200"
+                                                           v-model="quota.quotaComment" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="inputbox-button" @click="handleDeleteQuota(i)"
+                                                           type="button" value="删除">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>需求附件：</th>
+                                <td>
+                                    <div class="inputbox">
+                                        <label class="exbtn">
+                                            <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess'
+                                                       style="position: absolute;right: 10000px;" type='file'
+                                                       :nopro="true" :header='{}' :url='fileUploadUrl'
+                                                       :data='uploadData'>
+                                            </ly-upload>
+                                            <span class="exbtn inputbox-button">上传附件</span>
+                                        </label>
+                                        <span style="color:red; margin-left: 20px;">
                         附件文件名称最长50个汉字，附件文件大小最大10M
                       </span>
-                    </div>
-                    <div>
-                      <ul class="filelist">
-                        <li v-for="(item, index) in dataForm.fileList" v-cloak>
+                                    </div>
+                                    <div>
+                                        <ul class="filelist">
+                                            <li v-for="(item, index) in dataForm.fileList" v-cloak>
                           <span class="signfile">
                             <span v-text="item.name"></span>
                             <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="handleDelFile(index)"></i>
                           </span>
-                        </li>
-                      </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-view_button">
+                            <button type="button" :disabled="isSubmitDisabled" @click="handleNextStep">下一步</button>
+                        </div>
                     </div>
-                  </td>
-                </tr>
-              </table>
-              <div class="form-view_button">
-                <button type="button" :disabled="isSubmitDisabled" @click="handleNextStep">下一步</button>
-              </div>
+                </div>
+                <!--/编辑内容-->
             </div>
-          </div>
-          <!--/编辑内容-->
         </div>
-      </div>
     </div>
     <ly-minifooter></ly-minifooter>
-  </div>
-  <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
-  <script src="/common/js/laydate/laydate.js"></script>
-  <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script src="/common/js/buyer/demand/add.js"></script>
+</div>
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/laydate/laydate.js"></script>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="/common/js/buyer/demand/add.js"></script>
 </body>
 
 </html>
