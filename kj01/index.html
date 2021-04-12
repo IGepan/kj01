@@ -11,8 +11,8 @@
     <link href="../common/css/main.css" rel="stylesheet" type="text/css">
     <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
     <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
-    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
-    <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/button.css" rel="stylesheet" type="text/css">
     <link href="./style/css/index.css" rel="stylesheet" type="text/css">
     <link href="./style/css/icon/iconfont.css" rel="stylesheet">
     <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
@@ -60,11 +60,11 @@
                     </div> -->
                     <div class="banner middle swiper-slide" style="background-image: url(/image/newbanner5.png);">
                         <div class="newbanner5-top ani" swiper-animate-effect="mySix" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s">
-                            <img src="/style/images/index/left-right.png" alt="">
+                            <img src="./style/images/index/left-right.png" alt="">
                         </div>
                         <div class="banner-text ani newbanner5-cen" swiper-animate-effect="myFive" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s"><span>技术成果</span><span class="yellow">摆渡人</span></div>
                         <div class="newbanner5-down ani" swiper-animate-effect="mySeven" swiper-animate-duration="1.3s" swiper-animate-delay="0.3s">
-                            <img src="/style/images/index/right-left.png" alt="">
+                            <img src="./style/images/index/right-left.png" alt="">
                         </div>
                     </div>
                     <!-- <div class="banner right swiper-slide" style="background-image: url(/image/newbanner4.png);">
@@ -124,7 +124,7 @@
                     <div class="title">
                         <div class="title-left">政策资讯<span>政策动态速递，科技热点跟进</span></div>
                         <div class="title-right">
-                            <img src="/style/images/index/policytitle.png" alt="">
+                            <img src="./style/images/index/policytitle.png" alt="">
                             <div class="slideTxtBox">
                                 <div class="bd">
                                     <ul>
@@ -331,23 +331,49 @@
                     </div>
                 </div>
                 <div class="middle-box">
-                    <div class="item-box" v-cloak v-for="(item,index) in pinpai_list">
-                        <div class="item" :class="'item'+index">
-                            <div class="details-text">
-                                <div class="titles">{{item.name}}</div>
-                                <div class="title-desc">
-                                    <div>{{item.productTypeName}}</div>
-                                    <div v-if="item.mtimenumSup">{{item.mtimenumSub}}-{{item.mtimenumSup}}个月</div>
-                                    <div v-if="item.mSup">{{item.mSub}}-{{item.mSup}}万</div>
-                                </div>
-                                <div class="details-link"><a
-                                        :href="'https://www.kj01.cn/yukuairong/detail.html?id='+item.id"
-                                        target="_blank">查看详情&nbsp;></a></div>
-                            </div>
-                            <div class="img-box">
-                                <img :src="'/style/images/index/pinpai_0'+(index+1)+'.png'" alt="">
-                            </div>
-                        </div>
+                    <div class="card-box">
+                        <ul>
+                            <li><h4>高新贷-科创企业专属定制</h4>
+                            </li>
+                            <li>• 信用最高额度800万，增信最高额度1500万</li>
+                            <li>• 担保灵活，个人担保或政府风险基金补偿增信</li>
+                            <li>• 500万以内自主支付</li>
+                            <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-box">
+                        <ul>
+                            <li><h4>抵押贷</h4>
+                            </li>
+                            <li>• 品种多样-流贷、固贷、贸易融资
+
+                                </li>
+                            <li>• 用途广泛-经营周转、资产购置、装修改造</li>
+                            <li>• 期限宽松-额度最长5～10年</li>
+                            <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-box">
+                        <ul>
+                            <li><h4>招抵快贷</h4>
+                            </li>
+                            <li>• 融资金额高达1000万元
+                                </li>
+                            <li>• 线上预审批，申请后最快1分钟出预审批额度</li>
+                            <li>• 授信期限可长达5年，可循环使用</li>
+                            <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-box">
+                        <ul>
+                            <li><h4>结算流量贷</h4>
+                            </li>
+                            <li>• 信用贷款，最高额度200万
+                                </li>
+                            <li>• 个人担保</li>
+                            <li>• 线上申请，线上用款，自主支付</li>
+                            <li><a href="http://sme.cmbchina.com/homepage">查看详情</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="right-box">

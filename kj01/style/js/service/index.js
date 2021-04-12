@@ -85,13 +85,13 @@ require(['/common/js/require.config.js'], function () {
             {
               label: '推荐金融产品',
               active: true,
-              url: '/yukuairong/'
+              // url: '/yukuairong/'
             },
-            {
-              label: '精选金融服务',
-              active: false,
-              url: '/service/resource_list.html?stype=004'
-            }
+            // {
+            //   label: '精选金融服务',
+            //   active: false,
+            //   url: '/service/resource_list.html?stype=004'
+            // }
           ],
           hatchsNavs: [
             {
