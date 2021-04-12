@@ -150,6 +150,23 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           })
         },
         //****************************数据校验****************************** */
+        isTelAndMobile: function (value, errorMsg, vm, callback) {
+          //是否为手机号码/座机
+          var isLandLine = /^(0\d{2,3}\d{7,8})$/;
+          var isMob = /(^1\d{10}$)/;
+          if (value.length > 0) {
+            if (value.length === 11) {
+              if (!isMob.test(value.trim())){
+                return callback(vm, errorMsg);
+              }
+            }else {
+              if (isLandLine.test(value.trim())) {
+                return callback(vm, errorMsg);
+              }
+            }
+          }
+          return callback(vm);
+        },
         customdemandType: function (v, o, callback) {
           if (this.dataForm.demandType.length == 0) {
             callback(o, '需求类型不能为空')

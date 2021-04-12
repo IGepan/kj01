@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <!--   媒体关注       -->
-                <div class="platform-box" v-show="nowIndex===1">
+                <div class="platform-box" v-show="nowIndex===1" @click="getcmsList">
                     <div class="ul-list" v-if="detailActive===0">
                         <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
                             <div class="li-left">
