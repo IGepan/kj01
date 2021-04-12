@@ -15,6 +15,8 @@ require(['/common/js/require.config.js'], function () {
                         total:0,
                     },
                     pages:0,
+                    tabsParam:['工作状态','媒体关注'],//（这个也可以用对象key，value来实现）
+                    nowIndex:0,//默认第一个tab为激活状态
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/toper.vue'),
@@ -94,6 +96,9 @@ require(['/common/js/require.config.js'], function () {
                         var row = parseInt(pageNum / 2);
                         var index = row * 2 - 1;
                         return !(index + 4 > this.pages);
+                    },
+                    toggleTabs:function(index){
+                        this.nowIndex=index;
                     },
                 }
             })
