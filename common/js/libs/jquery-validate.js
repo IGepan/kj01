@@ -77,7 +77,7 @@
       //是否为手机号码/座机
       // var isLandLine = /^(((0\d{3}[\-])?\d{7,8}|(0\d{2}[\-])?\d{8}))(|[\-]\d{1,4})?$/;
       var isLandLine = /^(((0\d{3})?\d{7,8}|(0\d{2})?\d{8}))(|\d{1,4})?$/;
-      var isMob = /^1[3|4|5|7|8][0-9]{9}$/;
+      var isMob = /^[1][3|4|5|7|8][0-9]{9}$/;
       if (value.length > 0) {
         if (!(isMob.test(value.trim()) || isLandLine.test(value.trim()))) {
           return callback(vm, errorMsg);
