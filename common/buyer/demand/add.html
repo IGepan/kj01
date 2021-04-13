@@ -138,8 +138,8 @@
                   <th><i>*</i>需求预算（元）：</th>
                   <td>
                     <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty||positiveNum"
-                        data-error='预算不能为空||请填写正数' v-model="dataForm.budget" type="number" :disabled="isNegotiation">
+                      <input class="inputbox-max required" data-valid="positiveNum"
+                        data-error='请填写正数' v-model="dataForm.budget" type="number" :disabled="isNegotiation">
                       <span class="vlt form_msg"></span>
                       <a @click="handleSetNegotiation"
                          style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
