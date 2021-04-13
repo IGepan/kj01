@@ -768,8 +768,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             this.$dialog.showToast('当前已有人员签到，不允切换模式！');
             return false
           }else {
-            if (this.formData.onLineFlag === '1') {
-              this.formData.onLineFlag = '0'
+              this.formData.onLineFlag = '2'
+              this.$dialog.showToast('当前是线上活动+线下活动设置！');
               var addressArr = this.$refs.addressRef;
               if (addressArr) {
                 this.formData.country = '100'
@@ -778,7 +778,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 this.formData.district = ''
                 addressArr.setValues([this.formData.country, this.formData.province, this.formData.city, this.formData.district]);
               }
-            }
           }
         },
         addressValid: function (v, o, callback) {
