@@ -746,7 +746,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         this.$dialog.showToast('当前已有人员签到，不允切换模式！');
                         return false
                     } else {
-                        if (this.formData.onLineFlag === '0') {
+                        if (this.formData.onLineFlag === '0'||this.formData.onLineFlag === '2') {
                             this.formData.onLineFlag = '1'
                     this.isOnLineFlag='1'
                             var addressArr = this.$refs.addressRef;
