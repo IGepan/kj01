@@ -29,7 +29,7 @@ define(function () {
       // datacq: 'https://www.datacq.com.cn/'
 
       //
-      // //测试环境
+      // 测试环境
       authUrl: 'http://222.180.163.242:9769/tsOauth2',
       baseUrl: 'http://222.180.163.242:9769/tsAdmin',
       assisUrl: 'http://222.180.163.242:9769/tsAssistant',
