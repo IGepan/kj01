@@ -388,7 +388,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     //     if (res.result) {
                     //       var options = {
                     //         class: 'full',
-                    //         title: '需求发布规则',
+                    //         title: '规则',
                     //         texts: res.result.protocolContact,
                     //         buttons: [
                     //           {
@@ -414,7 +414,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     html += '<tr><th>面向地区：</th><td>' + ($.map($('.iptbox .expslt'), function (sel) {
                         return $(sel).find("option:selected").text()
                     }).join(' ')) + '</td></tr>'
-                    html += '<tr><th>需求预算（元）：</th><td>' + data.budget + '</td></tr>'
+                    if (this.dataForm.budget===''){
+                        html += '<tr><th>需求预算（元）：</th><td>' + '面议' + '</td></tr>'
+                    }else {
+                        html += '<tr><th>需求预算（元）：</th><td>' + data.budget + '</td></tr>'
+                    }
+
                     data.endDate && (html += '<tr><th>截止日期：</th><td>' + data.endDate + '</td></tr>')
                     html += '<tr><th>联系人：</th><td>' + data.contacts + '</td></tr>'
                     html += '<tr><th>联系电话：</th><td>' + data.phone + '</td></tr>'
@@ -486,8 +491,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 handleSetNegotiation: function () {
                     if (this.isNegotiation) {
                         this.isNegotiation = false;
-                    }else {
-                      this.isNegotiation = true;
+                    } else {
+                        this.dataForm.budget=''
+                        this.isNegotiation = true;
                     }
                 },
             }

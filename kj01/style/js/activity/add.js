@@ -741,14 +741,34 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     }
                 },
                 //TODO
+                handleSetLine: function () {
+                    if (!this.formData.isUpdateSign) {
+                        this.$dialog.showToast('当前已有人员签到，不允切换模式！');
+                        return false
+                    } else {
+                        if (this.formData.onLineFlag === '2') {
+                            this.formData.onLineFlag = '0'
+                            this.isOnLineFlag = '0'
+                          this.$dialog.showToast('当前正在设置线下活动');
+                            var addressArr = this.$refs.addressRef;
+                            if (addressArr) {
+                                this.formData.country = '100'
+                                this.formData.province = '500000'
+                                this.formData.city = '500100'
+                                this.formData.district = ''
+                                addressArr.setValues([this.formData.country, this.formData.province, this.formData.city, this.formData.district]);
+                            }
+                        }
+                    }
+                },
                 handleSetOnLine: function () {
                     if (!this.formData.isUpdateSign) {
                         this.$dialog.showToast('当前已有人员签到，不允切换模式！');
                         return false
                     } else {
-                        if (this.formData.onLineFlag === '0'||this.formData.onLineFlag === '2') {
+                        if (this.formData.onLineFlag === '0' || this.formData.onLineFlag === '2') {
                             this.formData.onLineFlag = '1'
-                    this.isOnLineFlag='1'
+                            this.isOnLineFlag = '1'
                             var addressArr = this.$refs.addressRef;
                             if (addressArr) {
                                 this.formData.country = ''
@@ -760,7 +780,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         } else {
                             $('#addressBox').removeAttr(":disableds");
                             this.formData.onLineFlag = '0'
-                            this.isOnLineFlag='0'
+                            this.isOnLineFlag = '0'
                             var addressArr = this.$refs.addressRef;
                             if (addressArr) {
                                 this.formData.country = '100'
@@ -777,8 +797,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         this.$dialog.showToast('当前已有人员签到，不允切换模式！');
                         return false
                     } else {
-                        if (this.formData.onLineFlag === '1' || this.formData.onLineFlag === '0'||this.formData.onLineFlag === '2') {
-                            this.isOnLineFlag='0'
+                        if (this.formData.onLineFlag === '1' || this.formData.onLineFlag === '0' || this.formData.onLineFlag === '2') {
+                            this.isOnLineFlag = '0'
                             this.formData.onLineFlag = '2'
                             this.$dialog.showToast('当前正在设置线上+线下活动');
                             var addressArr = this.$refs.addressRef;
@@ -986,4 +1006,5 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
         });
     });
-});
+})
+;
