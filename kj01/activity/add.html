@@ -939,7 +939,7 @@
                                                   @click="handleActivity">&nbsp;&nbsp;举办线上+线下活动</span>
                                             <a @click="handleSetOnLine"
                                                style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
-                                               v-text="formData.onLineFlag === '0' ? '举办线上活动' : '举办线下活动'"></a>
+                                               v-text="formData.onLineFlag === '0'||formData.onLineFlag === '2' ? '举办线上活动' : '举办线下活动'"></a>
 
                                             <span v-show="formData.onLineFlag === '0'||formData.onLineFlag === '2'"
                                                   style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
