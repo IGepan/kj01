@@ -1231,7 +1231,7 @@
                                                            @click="handEnrollCheckbox"
                                                            :true-value="1" :false-value="0" type="checkbox"
                                                            v-model="item.isHidden"
-                                                           :disabled="item.isNull===1?true:false">
+                                                           :disabled="item.isHidden===1?true:false">
                                                     <span class="text">隐藏</span>
                                                 </label>
                                             </div>
