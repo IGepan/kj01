@@ -39,6 +39,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 }
               })
               vm.detailList = res.result
+              if (vm.detailList.budget === -1) {
+                vm.detailList.budget='面议'
+              }
             }
           })
         },

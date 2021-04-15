@@ -60,7 +60,8 @@
                   </tr>
                   <tr>
                     <th>需求预算（元）：</th>
-                    <td v-text="(bidDetailList.budget||'')"></td>
+                    <!--<td v-text="(bidDetailList.budget||'')"></td>-->
+                    <td v-text="bidDetailList.budget==null?'面议':bidDetailList.budget"></td>
                   </tr>
                   <tr>
                     <th>截止日期：</th>

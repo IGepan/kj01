@@ -15,6 +15,8 @@ require(['/common/js/require.config.js'], function () {
                         total:0,
                     },
                     pages:0,
+                    tabsParam:['工作状态','媒体关注'],//（这个也可以用对象key，value来实现）
+                    nowIndex:0,//默认第一个tab为激活状态
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/toper.vue'),
@@ -49,7 +51,8 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.contentListByPage({
                             pageNum:this.queryForm.pageNum,
                             pageSize:this.queryForm.pageSize,
-                            type:1
+                            type:1,
+                            nowIndex:this.nowIndex
                         }).then(function (res) {
                             vm.$data.newsList = res.result.list;
                             vm.$data.queryForm.total=res.result.total;
@@ -93,6 +96,12 @@ require(['/common/js/require.config.js'], function () {
                         var row = parseInt(pageNum / 2);
                         var index = row * 2 - 1;
                         return !(index + 4 > this.pages);
+                    },
+                    toggleTabs:function(index){
+                        this.nowIndex=index;
+                        this.detailActive=0;
+                        this.getcmsList()
+
                     },
                 }
             })

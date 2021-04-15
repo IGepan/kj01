@@ -159,11 +159,17 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     loanselectByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/loan/selectByPage',param)
     },
-      /**
-       * 获取考试列表（鉴权）
-       */
-      examSelectByPage: function (param) {
-          return Http.post(httpUrl.baseUrl + '/exam/selectByPage',param)
-      }
+    /**
+     * 获取考试列表（鉴权）
+     */
+    examSelectByPage: function (param) {
+        return Http.post(httpUrl.baseUrl + '/exam/selectByPage',param)
+    },
+    /**
+     * 获取关注的政策列表
+     */
+    getFocusPolicy: function (param) {
+      return Http.get(httpUrl.baseUrl + '/label/list',param)
+    },    
   }
 })

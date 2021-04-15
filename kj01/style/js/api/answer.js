@@ -24,5 +24,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     console.log(param)
     return Http.post(httpUrl.baseUrl + '/questionRecord/getKeys', param)
   }, 
+  queryProblemList: () => Http.post(httpUrl.baseUrl + '/questionRecord/getKeyLogs')
  }
 })
