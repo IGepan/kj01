@@ -935,7 +935,7 @@
                                                    type="text"
                                                    style="width: 300px;vertical-align: middle; font-size: 14px;margin-bottom: 10px">
                                             <br>
-                                            <span
+                                            <span v-show="formData.onLineFlag !='2'"
                                                   style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
                                                   @click="handleActivity">&nbsp;&nbsp;举办线上+线下活动</span>
                                             <a @click="handleSetOnLine"
@@ -1231,7 +1231,7 @@
                                                            @click="handEnrollCheckbox"
                                                            :true-value="1" :false-value="0" type="checkbox"
                                                            v-model="item.isHidden"
-                                                           :disabled="item.isNull===1?true:false">
+                                                           :disabled="item.isHidden===1?true:false">
                                                     <span class="text">隐藏</span>
                                                 </label>
                                             </div>

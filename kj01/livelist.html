@@ -92,7 +92,8 @@
                     class="activity-info-state" :type="item.statusCode">{{item.statusDisplay}}</span></div>
                 <div class="topic-item-info-line line address" v-if="item.onLineFlag === '0' && item.cityShow"><i
                     class="iconfont icon-dingweixian"></i>{{item.cityShow|formatCity('')}}</div>
-                <div class="topic-item-info-line line onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动
+                <div class="topic-item-info-line line onLine" v-if="item.onLineFlag === '1'"><i class="iconfont icon-xianshanghuodong"></i>线上活动</div>
+                <div class="topic-item-info-line line onLine" v-if="item.onLineFlag === '2'"><i class="iconfont icon-xianshanghuodong"></i>线上+线下活动
                 </div>
                 <div class="topic-item-info-line line" v-if="item.sponsor"><i
                     class="iconfont icon-neirongtuisong"></i>{{item.sponsor}}</div>

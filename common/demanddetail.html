@@ -34,7 +34,10 @@
             <h1 class="baseinfo-title"><span v-text="infos.title"></span><small
                 v-text="infos.residueDay > 0 ? '离截止还有' + infos.residueDay + '天' : '已截止'"></small></h1>
             <ul class="params">
-              <li>预算金额：<span class="font-orange price" v-text="(infos.budget || '')+'元'"></span></li>
+              <li>预算金额：
+                <span class="font-orange price" v-show="infos.budget==null">面议</span>
+                <span class="font-orange price" v-show="infos.budget!=null">{{infos.budget}}元</span>
+              </li>
               <li>中标模式：<span v-text="'1人中标'"></span></li>
             </ul>
             <ul class="line">
