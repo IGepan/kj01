@@ -2,7 +2,7 @@
 
 require(['/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     window.vueDom = new Vue({
       el: '#index_box',
       data: {
@@ -134,7 +134,7 @@ require(['/common/js/require.config.js'], function () {
         var vm = this;
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'ly-select': httpVueLoader('/common/components/select.vue'),
         'ly-radio': httpVueLoader('/common/components/radio.vue'),

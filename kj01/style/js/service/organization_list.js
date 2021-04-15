@@ -17,7 +17,7 @@ require(['/common/js/require.config.js'], function () {
             }
           ],
           dicOptsSet: [
-            { code: 'services_level1_type_kj01', label: '服务领域', operationType: 'select', childIndex: -1, valueKey: 'servicesLevel', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
+            { code: 'services_level1_type', label: '服务领域', operationType: 'select', childIndex: -1, valueKey: 'servicesLevel', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
             { code: 'industry_level1_type', label: '所属行业', operationType: 'select', childIndex: -1, valueKey: 'industryLevel', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
             { code: 'identity_type', group: 2, label: '机构类型', operationType: 'select', childIndex: -1, valueKey: 'identityType', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
             { code: 'shop_qualification', label: '创新券', operationType: 'select', childIndex: -1, valueKey: 'shopQualification', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
@@ -130,10 +130,10 @@ require(['/common/js/require.config.js'], function () {
                     if (value) {
                       dic.selected = value === dic.value
                       value === dic.value && (display = dic.display, di = '' + dici, index = di)
-                      codes.code === 'services_level1_type_kj01' && (getItem = {
+                      codes.code === 'services_level1_type' && (getItem = {
                         pi: i + 1 + '',
                         di: di,
-                        code: 'services_level1_type_kj01',
+                        code: 'services_level1_type',
                         value: value
                       })
                     } else {
@@ -160,7 +160,7 @@ require(['/common/js/require.config.js'], function () {
                 });
                 opts.unshift(sortOpts)
                 vm.options.searchOpts = opts;
-                getItem.value && vm.getSetChild(getItem.pi, getItem.di, getItem.code === 'services_level1_type_kj01', getItem.value)
+                getItem.value && vm.getSetChild(getItem.pi, getItem.di, getItem.code === 'services_level1_type', getItem.value)
               }
             })
           },
@@ -371,7 +371,7 @@ require(['/common/js/require.config.js'], function () {
               soi.children && soi.children.length && soi.children.forEach(function (child, ci) {
                 child.selected = !ci
               })
-              soi.children && !soi.children.length && soi.value !== -1 && (oitem.code === 'services_level1_type_kj01' || oitem.code === 'industry_level1_type') && vm.getSetChild(dataset.pi, '' + i, oitem.code === 'services_level1_type_kj01', soi.value)
+              soi.children && !soi.children.length && soi.value !== -1 && (oitem.code === 'services_level1_type' || oitem.code === 'industry_level1_type') && vm.getSetChild(dataset.pi, '' + i, oitem.code === 'services_level1_type', soi.value)
               // 子选项选择
               soi.children && soi.children.length && dataset.ci && i == dataset.di && soi.children.forEach(function (child, ci) {
                 child.selected = ci == dataset.ci
@@ -401,7 +401,7 @@ require(['/common/js/require.config.js'], function () {
               } else {
                 this.$data.searchForm[oitem.valueKey] = dataset.value === '-1' ? '' : oitem.valueType === 'array' ? [dataset.value] : dataset.value
                 if(!t.children.length){
-                  let key=oitem.code === 'services_level1_type_kj01'? 'servicesTypeId' : 'industryTypeId';
+                  let key=oitem.code === 'services_level1_type'? 'servicesTypeId' : 'industryTypeId';
                   this.$data.searchForm[key]='';
                   this.$data.searchForm[key + 'Name'] = ''
                 }
@@ -431,7 +431,7 @@ require(['/common/js/require.config.js'], function () {
             } else {
               flag === -1 ? this.options.selectOpts.push(dataset) : (this.options.selectOpts[flag] = dataset)
             }
-            dataset.code === 'services_level1_type_kj01' && this.setHotView(dataset.value)
+            dataset.code === 'services_level1_type' && this.setHotView(dataset.value)
             this.$data.searchForm.pageNum = 1
             this.getList()
           },

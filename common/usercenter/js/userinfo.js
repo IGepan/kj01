@@ -142,7 +142,7 @@ require(['/common/js/require.config.js'], function () {
         this.imgUploader = $('.edithead0').imgUploader(this.imgOption);
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'ly-select': httpVueLoader('/common/components/select.vue'),
         'ly-radio': httpVueLoader('/common/components/radio.vue'),

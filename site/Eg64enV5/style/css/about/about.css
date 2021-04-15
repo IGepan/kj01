@@ -1,0 +1,122 @@
+.content-box.mmdiv{
+    margin-bottom: 20px;
+}
+.top-bg{
+    background:url("../../images/policy/detail-bg.png") no-repeat;
+    height:100px;
+}
+.top-bg .mmdiv{
+    height:100px;
+    line-height: 100px;
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: lighter;
+}
+.content-box{
+    display:flex;
+    margin-top:30px;
+}
+.content-box .left-box{
+    width:230px;
+    margin-right:25px;
+    font-size: 18px;
+    color: #3d3d3d;
+}
+.content-box .left-box .item{
+   height:65px;
+    line-height: 65px;
+    text-align: center;
+    background-color:#ffffff;
+    margin-bottom:1px;
+}
+.content-box .left-box .item:hover,.content-box .left-box .item.active{
+    background-color: #ee661c;
+    color:#ffffff;
+}
+.content-box .right-box{
+    background:#ffffff;
+    padding:46px 40px 40px;
+    flex:1;
+}
+.content-box .right-box .title{
+    font-size: 18px;
+    color: #ee661c;
+    position:relative;
+    margin-bottom:55px;
+}
+
+.content-box .right-box .title:after{
+    position:absolute;
+    bottom: -10px;
+    left: 17px;
+    display:inline-block;
+    content:'';
+    width: 61px;
+    height: 4px;
+    background-color: #ee661c;
+    border-radius: 2px;
+}
+.content-box .right-box .title:not(.title0):after{
+    left: 12px;
+    width: 50px;
+}
+.content-box .right-box .tab1 .desc{
+    font-size: 18px;
+    line-height: 34px;
+    color: #3d3d3d;
+    padding:0 0 66px;
+}
+.content-box .right-box .tab1 img{
+    width: 865px;
+    height: 325px;
+}
+.content-box .right-box .tab1 .img-box{
+    text-align: center;
+}
+.content-box .right-box .tab1 .img-box div{
+    font-size: 18px;
+    line-height: 18px;
+    color: #3d3d3d;
+    margin:30px 0;
+}
+.content-box .right-box .tab1 .img-box div:last-child{
+    margin-bottom:0;
+}
+.content-box .right-box .tab5 .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+.content-box .right-box .tab5 .imagesBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.content-box .right-box .tab5 .info-img {
+    width: 75px;
+    height: 75px;
+}
+.content-box .right-box .tab5 .info-img_text {
+    font-size: 14px;
+    color: #6a6e7d;
+    line-height: 24px;
+}
+.content-box .right-box .tab5 .info-text {
+    color: #222327;
+    font-size: 16px;
+    line-height: 30px;
+}
+.content-box .right-box .tab5 .info-text .iconfont-template {
+    color: #01c8f2;
+    font-size: 18px;
+    margin-right: 5px;
+}
+.content-box .right-box .tab5 .number {
+    margin-right: 40px;
+}
+.content-box .right-box .tab5 .map {
+    height: 420px;
+    margin-top: 20px;
+    margin-bottom: 200px;
+}

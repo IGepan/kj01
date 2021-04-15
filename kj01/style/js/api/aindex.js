@@ -72,7 +72,7 @@ define(['jquery', 'httpUrl', 'http'], function ($, httpUrl, Http) {
     },
     // 获取通用多级树(鉴权)
     getTree: function (param) {
-      return Http.post(httpUrl.baseUrl + '/treeMap/getTree', param);
+      return Http.post(httpUrl.baseUrl + '/treeMapSaas/getTree', param);
     },
     // 评价项目
     activeEvaluate: function (param) {

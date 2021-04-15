@@ -89,6 +89,27 @@ define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUr
   window.$dialog = dialog;
   window.httpUrl = httpUrl;
   window['ZeroClipboard'] = ZeroClipboard;
+  let site_url=location.href.indexOf('/site/')>-1?'/site/'+location.href.split('/site/')[1].split('/')[0]:''
+  Vue.prototype.$pathPrefix = site_url;
+  window.$pathPrefix = site_url;
+  Vue.prototype.monitorSetItem = function (key, newVal) {
+    //这个key就是我们要监听的那个key
+    if (key === 'webInfo') {
+      // 创建一个StorageEvent事件
+      let newStorageEvent = document.createEvent('StorageEvent');
+      const storage = {
+        setItem: function (k, val) {
+          //这里可以灵活更改local和session
+          localStorage.setItem(k, val);
+          // 初始化创建的事件
+          newStorageEvent.initStorageEvent('setItem', false, false, k, null, val, null, null);
+          // 派发对象
+          window.dispatchEvent(newStorageEvent)
+        }
+      }
+      return storage.setItem(key, newVal);
+    }
+  }
   // dialog.showLoading();
   // setTimeout(function () {
   //     dialog.hideLoading();

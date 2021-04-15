@@ -16,10 +16,9 @@
     </validate-dialog>
     <div class="login_header">
       <div class="mdiv">
-        <div class="logo"><a href="/index.html"><img src="/style/images/logos/blue.png" alt="" /></a></div>
+        <div class="logo"><a :href=$pathPrefix+"/index.html"><img :src="webInfo.logoUrl?webInfo.logoUrl:'/style/images/logos/blue-h66.png'" alt="" /></a></div>
         <div class="l_title">注册</div>
       </div>
-      <div class="clear"></div>
       <div class="tips">
         依据《网络安全法》，为保障您相关功能的正常使用，会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！
       </div>
@@ -58,7 +57,7 @@
             <span class="agreetype" @click="agreeClick(0)">注册协议</span><span class="agreetype"
               @click="agreeClick(1)">隐私保护协议</span></div>
           <div class="links">已有账号？
-            <a href="/common/login.html" class="reg">登录</a>
+            <a :href=$pathPrefix+"/common/login.html" class="reg">登录</a>
           </div>
         </form>
       </div>

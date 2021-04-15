@@ -112,7 +112,7 @@ require(['/common/js/require.config.js'], function () {
       },
       mixins: [seller, addpatentKey],
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-page': httpVueLoader('/common/components/pages.vue'),

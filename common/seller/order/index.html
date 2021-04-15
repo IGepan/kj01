@@ -19,7 +19,7 @@
       <div class="mdiv">
         <seller-left :http='http' :jquery='jquery'></seller-left>
         <div class="crumbs">
-          <a href="/common/seller/index.html">卖家中心</a>
+          <a :href="$pathPrefix+'/common/seller/index.html'">卖家中心</a>
           <span>我的订单</span>
         </div>
         <div class="rightmainbox">
@@ -130,9 +130,9 @@
                       <div class="total" v-text="'￥' + order.goodsPrices"></div>
                       <div class="state" v-text="order.orderStatusDisplay"></div>
                       <div class="operation">
-                        <a target="_blank" :href="'/common/seller/order/detail.html?id=' + order.id">订单详情</a>
+                        <a target="_blank" :href="$pathPrefix+'/common/seller/order/detail.html?id=' + order.id">订单详情</a>
                         <a v-if=" order.orderStatus==='001'" target="_blank"
-                          :href="'/common/seller/order/detail.html?id=' + order.id">确认订单</a>
+                          :href="$pathPrefix+'/common/seller/order/detail.html?id=' + order.id">确认订单</a>
                         <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"
                           :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>
                         <button v-if="order.orderStatus === '001'" class="acceptance"

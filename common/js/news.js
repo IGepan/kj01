@@ -7,7 +7,7 @@ require(['js/require.config'], function () {
         userInfo: undefined
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-mianmenu': httpVueLoader('/style/components/mianmenu.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
@@ -29,7 +29,7 @@ require(['js/require.config'], function () {
           this.$utils.delCookie('LOGIN_INFO');
           localStorage.removeItem('USER_INFO');
           localStorage.removeItem('saasId');
-          window.location.href = '/common/login.html';
+          window.location.href = this.$pathPrefix+'/common/login.html';
         },
         // 发送消息到Iframe 请求回调高度信息
         reinitIframe: function () {

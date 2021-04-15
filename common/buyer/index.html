@@ -21,7 +21,7 @@
         </div>
         <div class="centerbox">
           <div class="worklink clear">
-            <a class="violet" href="/common/buyer/demand/add.html?code=001.001.002.002">
+            <a class="violet" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">
               <i class="iconfont icon-icon_xuqiu"></i>
               <span>我的需求</span>
               <strong>发需求</strong>
@@ -77,7 +77,7 @@
                     class="iconfont icon-success"></i>已完成</a>
                 <a class="orderclick" @click.stop.prevent="handleOrdertabs('05')"><i
                     class="iconfont icon-daipingjia"></i>待评价</a>
-                <a class="orderclick" href="/common/buyer/order/?orderStatusFilter=01"><i
+                <a class="orderclick" :href="$pathPrefix+'/common/buyer/order/?orderStatusFilter=01'"><i
                     class="iconfont icon-ai222"></i>更多订单</a>
               </div>
               <ul class="orderlist">
@@ -86,7 +86,7 @@
                     :style="'background-image: url('+ (order.details[0].goodsImg && order.details[0].goodsImg.url || 'http://dummyimage.com/58x58') +')'">
                   </div>
                   <div class="info">
-                    <a target="_blank" :href="'/common/buyer/order/detail.html?id=' + order.id">查看详情</a>
+                    <a target="_blank" :href="$pathPrefix+'/common/buyer/order/detail.html?id=' + order.id">查看详情</a>
                     <div class="tips" v-text="$options.filters.filtersTips(order.orderStatus, order.evaluated)">
                       您的订单正在处理中，请耐心等待...</div>
                     <div class="time" v-text="order.orderCreateTime"></div>
@@ -98,7 +98,7 @@
             <div class="card focuscard mt20">
               <div class="title">政策速递</div>
               <div class="policylist">
-                <a class="item" :href="'/podetail.html?id='+item.id" target="_blank" v-for="item in policyList" :key="item.id"><span class="line"></span>{{item.title}}</a>
+                <a class="item" :href="$pathPrefix?($pathPrefix+'/policyList.html?id='+item.id):('/podetail.html?id='+item.id)" target="_blank" v-for="item in policyList" :key="item.id"><span class="line"></span>{{item.title}}</a>
               </div>
               <div class="policylist"  v-if="policyList.length == 0" style="padding: 1em 20px;">暂未匹配到相关信息</div>
             </div>
@@ -112,7 +112,7 @@
               </div>
               <div class="pdlist clear">
                 <div class="item active">
-                  <a target="_blank" v-for="item in attentionList" :href="item.goodsDetailUrl">
+                  <a target="_blank" v-for="item in attentionList" :href="$pathPrefix+item.goodsDetailUrl">
                     <span class="img"
                       :style="'background-image: url('+ (item.goodsImgUrl || 'http://dummyimage.com/128x128') +')'"></span>
                     <span class="tit" v-text="item.storeName"></span>
@@ -129,7 +129,7 @@
               </div>
               <div class="pdlist clear">
                 <div class="item active">
-                  <a target="_blank" v-for="hot in hotList" :href="hot.shopIndexUrl">
+                  <a target="_blank" v-for="hot in hotList" :href="$pathPrefix+hot.shopIndexUrl">
                     <span class="img"
                       :style="'background-image: url('+ (hot.shopLogo || '/common/images/defaultImg/default.gif') +')'"></span>
                     <span class="tit" v-text="hot.shopName"></span>
@@ -147,7 +147,7 @@
             <div class="card partner mt20">
               <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
               <div class="parlist">
-                <a target="_blank" :href="shop.shopIndexUrl" :title="shop.storeName"
+                <a target="_blank" :href="$pathPrefix+shop.shopIndexUrl" :title="shop.storeName"
                   :style="'background-image: url('+shop.shopLogo+')'" v-for="shop in shopList">
                 </a>
               </div>

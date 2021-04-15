@@ -1,0 +1,119 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/css/main.css" rel="stylesheet">
+    <link href="./style/css/activity/list.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="boxs gray-bg" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <index-head :nav-index="2" @search="bindSearchValue" :search-types="'活动'" :location-names="'activityList.html'"></index-head>
+    <div class="container-box">
+        <div class="top-bg">
+            <div class="mmdiv">活动中心</div>
+        </div>
+        <div class="content-box mmdiv">
+            <div class="searchListBox">
+                <template v-if="options.searchOpts.length">
+                    <template v-for="(optItem, index) in options.searchOpts">
+                        <div class="search-row" v-if="!optItem.isTop" :key="index">
+                            <label class="search-label">{{optItem.label}}</label>
+                            <div class="searchkeys">
+                                <template v-if="optItem.operationType === 'select'">
+                                    <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                  <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }"
+                        :data-di="sindex" :data-pi="index" :data-value="ducItem.value"
+                        :key="sindex">{{ducItem.display}}</span>
+                                    </template>
+                                    <span v-if="optItem.code === 'time_type'" class="datetime"><input type="text" placeholder="开始时间"
+                                                                                                      readonly id="stime"><i class="iconfont-template icon-rili"></i></span>
+                                    <span v-if="optItem.code === 'time_type'" class="timeRange">至</span>
+                                    <span v-if="optItem.code === 'time_type'" class="datetime"><input type="text" placeholder="结束时间"
+                                                                                                      readonly id="etime"><i class="iconfont-template icon-rili"></i></span>
+                                    <div class="childrenBox"
+                                         v-if="optItem.selecedIndex !== -1 && optItem.dictIInfos[optItem.selecedIndex].children">
+                                        <template v-for="(childItem, childindex) in optItem.dictIInfos[optItem.selecedIndex].children">
+                    <span class="searchkey childkey" @click.stop="handleSetSearchForm"
+                          :class="{ active: childItem.selected }" :data-ci="childindex" :data-di="optItem.selecedIndex"
+                          :data-pi="index" :data-value="childItem.value" :key="childindex">{{childItem.display}}</span>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+            <div class="sortBox">
+                <template v-if="options.searchOpts.length">
+                    <template v-for="(optItem, index) in options.searchOpts">
+                        <div class="searchMainkey" :key="index" v-if="optItem.isTop&&optItem.isDefault">
+                            <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+              <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }"
+                    :data-di="tindex" :data-pi="index" :data-value="topDicItem.value"
+                    :key="tindex">{{topDicItem.display}}<img :src="topDicItem.selected?'./style/images/arrow-yellow.png':'./style/images/arrow-gray.png'" alt=""></span>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+                <div class="adress">
+                    <div class="label">{{provinceDisplay}}<i class="icons-down"></i></div>
+                    <div class="selectsBox">
+                        <ul class="main-item">
+                            <li v-for="(popt, i) in provinceOptions" :class="{active: popt.selected}"
+                                @click="bindChangeProvince(i, popt.display)" v-text="popt.display"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="list">
+                <div class="listBox">
+                    <template v-for="(item, di) in dataList">
+                        <div class="vaMiddle topic-item" :key="di">
+                            <a :href="item.itemUrl" :title="item.title" target="_blank">
+                                <div class="specialTopic-img item-img" :style="item.styles">
+                                    <img :src="item.itemImg" :alt="item.title">
+                                    <div v-if="item.isTopic" class="topic">品牌</div>
+                                </div>
+                                <div class="topic-item-info">
+                                    <h4 class="topic-item-info-title line">{{item.title}}</h4>
+                                    <div class="sponsor line">主办方：{{item.sponsor}}</div>
+                                    <div class="info-box">
+                                        <div class="status-btn">
+                                            <span class="activity-info-state" :type="item.statusCode">{{item.statusDisplay}}</span>
+                                        </div>
+                                        <div class="view-tag">
+                                            <img src="./style/images/icon-peoples.png" alt="">{{item.joinNum}}人
+                                        </div>
+                                        <div class="date">
+                                            <span><i class="iconfont-template icon-lishijilu"></i>{{item.activeStartTime}} {{item.weekday}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </template>
+                </div>
+                <template v-if="pages">
+                    <pages :pages="pages" @changepage="bindPageChange"></pages>
+                </template>
+            </div>
+        </div>
+    </div>
+    <com-footer></com-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="./style/js/activity/list.js"></script>
+</body>
+
+</html>

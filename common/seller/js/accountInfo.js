@@ -63,7 +63,7 @@ require(['/common/js/require.config.js'], function () {
       },
       components: {
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-select': httpVueLoader('/common/components/select.vue'),
         'ly-radio': httpVueLoader('/common/components/radio.vue'),

@@ -30,7 +30,7 @@ require(['/common/js/require.config.js'], function () {
         },
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'auth-left': httpVueLoader('/common/components/authLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -137,7 +137,7 @@ require(['/common/js/require.config.js'], function () {
           }
         },
         handleCancel: function () {
-          this.$utils.openNewTable('/common/usercenter/user_information.html?code=001.003.001.001', '_self');
+          this.$utils.openNewTable(this.$pathPrefix+'/common/usercenter/user_information.html?code=001.003.001.001', '_self');
         },
         handleIndex: function () {
           this.$utils.delCookie('USER_INFO');

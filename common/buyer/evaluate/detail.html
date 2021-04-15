@@ -46,7 +46,7 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><a href="/buyer/evaluate/?code=001.001.004.001">我的评价</a><span>评价详情</span>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a><a :href="$pathPrefix+'/common/buyer/evaluate/index.html?code=001.001.004.001'">我的评价</a><span>评价详情</span>
         </div>
         <div class="centerbox">
           <div class="tabbox">
@@ -57,7 +57,7 @@
                   <img v-if="infos.oimgUrl" :src="infos.oimgUrl || '/images/ad.jpg'" alt=""
                     style="display: block; width: 116px; height: 116px; margin: 0 auto">
                   <p class="infotitle" style="max-width: 162px;margin: 0;">
-                    <a :href="infos.detailUrl" target="_blank" v-text="infos.oname || ''"></a>
+                    <a :href="$pathPrefix+infos.detailUrl" target="_blank" v-text="infos.oname || ''"></a>
                   </p>
                   <p v-if="infos.price">价格：￥{{infos.negotiableFlag | formatPrice(infos.price, infos.minPrice, infos.maxPrice)}}</p>
                 </div>

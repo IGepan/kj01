@@ -20,7 +20,8 @@ require(['/common/js/require.config.js'], function () {
         codeTime: 60,
         captchaData: {},
         m_host: ['kj01.liyantech.cn', 'kj.kjy01.com', 'www.kj01.cn','intell.liyantech.cn','www.znhpt.com','www.yzw.com'],
-        codeBtnText: '发送验证码'
+        codeBtnText: '发送验证码',
+        webInfo:''
       },
       components: {
         'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
@@ -28,10 +29,13 @@ require(['/common/js/require.config.js'], function () {
       },
       created: function () {
         // this.m_third_login = this.m_host.indexOf(document.location.host) === -1;
-        console.log(this.m_host)
+        // console.log(this.m_host)
       },
       mounted: function () {
         var that = this;
+        if(location.href.indexOf('/site/')>-1){
+          that.getPublicDetail()
+        }
         $(".slider").on("mousedown", function () {
           if (!that.form.token) {
             $("#captcha").find("canvas").stop().hide()
@@ -60,6 +64,15 @@ require(['/common/js/require.config.js'], function () {
         });
       },
       methods: {
+        getPublicDetail(){
+          let vm=this;
+          this.$httpCom.publicDetail().then(function(res) {
+            if (res.code === "rest.success") {
+              vm.webInfo = res.result;
+              vm.monitorSetItem('webInfo', JSON.stringify(vm.webInfo));
+            }
+          });
+        },
         openThird: function (type) {
           var origin = document.location.origin;
           var defurl = origin + '/index.html';
@@ -289,7 +302,7 @@ require(['/common/js/require.config.js'], function () {
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
-                      toUrl = '/index.html'
+                      toUrl = this.$pathPrefix+'/index.html'
                     }
                     window.location.href = toUrl
                   }

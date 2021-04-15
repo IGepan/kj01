@@ -1,7 +1,8 @@
 // JavaScript Document
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policyMatch.js',], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policyMatch.js',],
+      function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy) {
 
     new Vue({
       el: '#index_box',
@@ -62,7 +63,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         });
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -102,11 +103,19 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         getSelectShopByPage: function (value) {
           var vm = this
           this.hotType = value;
-          httpUser.selectShopByPage({ columnId: value }).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.hotList = res.result
-            }
-          })
+          if(value==='105'){
+            httpUser.selectShopRecommend().then(function (res) {
+              if (res.code === 'rest.success') {
+                vm.hotList = res.result
+              }
+            })
+          }else{
+            httpUser.selectShopExpert().then(function (res) {
+              if (res.code === 'rest.success') {
+                vm.hotList = res.result
+              }
+            })
+          }
         },
         // 人脉圈
         getSelectByPage: function () {
@@ -141,7 +150,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         getUserInfo: function(){
           var _this = this;
           httpUser.detail().then(function (res) {
-            console.log('res',res.result)
+            // console.log('res',res.result)
             var params = _this.getPlocyParams(res.result);
             _this.getPolicyNoticeList(params);
           });

@@ -21,22 +21,22 @@
         <seller-left :http='http' :jquery='jquery'></seller-left>
         <div class="rightmainbox">
           <div class="worklink mb20">
-            <a class="red" href="/common/seller/addpatent.html?code=technology-all&categoryId=82515756322918000">
+            <a class="red" :href="$pathPrefix+'/common/seller/addpatent.html?code=technology-all&categoryId=82515756322918000'">
               <i class="iconfont icon-tool"></i>
               <span>我的技术</span>
               <strong>发技术</strong>
             </a>
-            <a class="blue" href="/common/seller/addpatent.html?code=service&categoryId=82779310439534200">
+            <a class="blue" :href="$pathPrefix+'/common/seller/addpatent.html?code=service&categoryId=82779310439534200'">
               <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
               <span>我的需求</span>
               <strong>发服务</strong>
             </a>
-            <a class="aqua" href="/common/seller/addpatent.html?code=product&categoryId=82779310439534201">
+            <a class="aqua" :href="$pathPrefix+'/common/seller/addpatent.html?code=product&categoryId=82779310439534201'">
               <i class="iconfont icon-chanpin"></i>
               <span>我的产品</span>
               <strong>发产品</strong>
             </a>
-            <a class="steelblue" href="/common/seller/addpatent.html?code=resource-all&categoryId=84244636343734149">
+            <a class="steelblue" :href="$pathPrefix+'/common/seller/addpatent.html?code=resource-all&categoryId=84244636343734149'">
               <i class="iconfont icon-ziyuanjk"></i>
               <span>我的资源</span>
               <strong>发资源</strong>
@@ -54,7 +54,7 @@
                     class="iconfont icon-success"></i>已完成</a>
                 <a class="orderclick" @click.stop.prevent="handleOrdertabs('05')"><i
                     class="iconfont icon-daipingjia"></i>待评价</a>
-                <a class="orderclick" href="/common/seller/order/?orderStatusFilter=01&code=order-seller-my"><i
+                <a class="orderclick" :href="$pathPrefix+'/common/seller/order/?orderStatusFilter=01&code=order-seller-my'"><i
                     class="iconfont icon-ai222"></i>更多订单</a>
               </div>
               <ul class="orderlist">
@@ -63,7 +63,7 @@
                     :style="'background-image: url('+ (order.details[0].goodsImg && order.details[0].goodsImg.url || 'http://dummyimage.com/58x58') +')'">
                   </div>
                   <div class="info">
-                    <a target="_blank" :href="'/common/seller/order/detail.html?id=' + order.id">查看详情</a>
+                    <a target="_blank" :href="$pathPrefix+'/common/seller/order/detail.html?id=' + order.id">查看详情</a>
                     <div class="tips" v-text="$options.filters.filtersTips(order.orderStatus, order.evaluated)">
                       订单正等待您确认...</div>
                     <div class="time" v-text="order.orderCreateTime"></div>
@@ -77,7 +77,7 @@
               </div>
               <ul class="potenlist">
                 <li v-for="demand in demandlist">
-                  <a :href="'/common/demanddetail.html?id='+demand.contentId" target="_blank" v-text="demand.title"></a>
+                  <a :href="$pathPrefix+'/common/demanddetail.html?id='+demand.contentId" target="_blank" v-text="demand.title"></a>
                   <span v-text="demand.publicDate"></span></li>
               </ul>
             </div>

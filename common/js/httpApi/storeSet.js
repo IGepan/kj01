@@ -349,7 +349,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
 		 * 潜在订单(鉴权)
 		 */
     selectDemandByPage: function (param) {
-      return Http.get(httpUrl.baseUrl + '/colcont/selectDemandByPage', param)
+      return Http.get(httpUrl.baseUrl + '/demand/potentialOrder', param)
     },
 		/**
 		 * 申请解冻初始数据取得(鉴权)
