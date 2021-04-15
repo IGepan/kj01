@@ -138,7 +138,7 @@ require(['/common/js/require.config.js'], function () {
                   });
                 }
                 vm.$data.detail = res.result && res.result || ''
-                vm.$data.detail.visitNum=visitNumTotal==0?res.result.visitNum:visitNumTotal
+                vm.$data.detail.visitNum=visitNumTotal===0?res.result.visitNum:visitNumTotal
               }
             });
             return 1;
