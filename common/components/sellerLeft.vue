@@ -22,7 +22,7 @@
           >正常</a><span>|</span>
           <a
             style="display: inline-block;margin-left: -5px"
-            :href="userSeller.activeFlag === '1' ? userSeller.shopIndexUrl : ''"
+            :href="userSeller.activeFlag === '1' ? $pathPrefix+userSeller.shopIndexUrl : ''"
             target="_blank"
             @click="handleOpenShop($event)"
           >进入店铺</a>
@@ -103,9 +103,9 @@ module.exports = {
       // 叶子 跳转
       if (menu.isLeaf == 1) {
         if (menu.uri.indexOf('?') == -1) {
-          window.location.href = menu.uri + '?code=' + menu.code;
+          window.location.href = this.$pathPrefix+menu.uri + '?code=' + menu.code;
         } else {
-          window.location.href = menu.uri + '&code=' + menu.code;
+          window.location.href = this.$pathPrefix+menu.uri + '&code=' + menu.code;
         }
       } else if (menu.children) {
         $(e.srcElement).parents(".links").toggleClass("active");
@@ -121,7 +121,7 @@ module.exports = {
           texts: '请先激活店铺！',
           buttons: ['现在就去', '稍后激活'],
           callback: function () {
-            location = '/common/seller/activate.html?code=001.002.001.003'
+            location = this.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
           }
         }
         this.$dialog.confirm(options)

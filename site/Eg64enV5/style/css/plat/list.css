@@ -1,0 +1,63 @@
+.content-box.mmdiv{
+    margin-bottom: 30px;
+}
+.top-bg{
+    background:url("../../images/policy/detail-bg.png") no-repeat;
+    height:100px;
+}
+.top-bg .mmdiv{
+    height:100px;
+    line-height: 100px;
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: lighter;
+}
+.content-box{
+    background:#ffffff;
+    padding:40px 40px 50px;
+    margin:30px auto;
+}
+.content-box .title-box{
+    font-size: 24px;
+    line-height: 24px;
+    color: #ee661c;
+    position:relative;
+    padding-left:24px;
+    margin-bottom:36px;
+}
+.content-box .title-box:before{
+    position:absolute;
+    top:1px;
+    left:0;
+    display:inline-block;
+    content:'';
+    width: 4px;
+    height: 22px;
+    background-color: #ee661c;
+    border-radius: 2px;
+}
+.content-box .list-item a{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:28px;
+    font-size: 16px;
+    color: #3d3d3d;
+}
+.content-box .list-item a:hover{
+    color: #ee661c;
+}
+.content-box .list-item .title{
+    position:relative;
+    padding-left:23px;
+}
+.content-box .list-item .title:before{
+    position: absolute;
+    top:4px;
+    left:0;
+    display:inline-block;
+    content:'';
+    width: 10px;
+    height: 10px;
+    border:1px solid  #acaebd;
+    border-radius: 50%;
+}

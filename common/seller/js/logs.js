@@ -14,7 +14,7 @@ require(['/common/js/require.config.js'], function () {
       },
       mounted: function () { },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')

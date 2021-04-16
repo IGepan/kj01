@@ -1,7 +1,7 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'fileSaver', 'httpOrderApi', 'httpCom', 'dialog', 'httpUrl'], function ($, Vue, dic, httpVueLoader, fileSaver, httpOrderApi, httpCom, dialog, httpUrl) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     new Vue({
       el: '#index_box',
       data: {
@@ -10,7 +10,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },

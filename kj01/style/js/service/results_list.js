@@ -173,8 +173,10 @@ require(['/common/js/require.config.js'], function () {
                   var display = ''
                   var di = ''
                   var index = -1
+                  var dicValueList=[]
                   codes.dictIInfos.unshift({ id: "-1", value: -1, display: '全部' });
                   codes.dictIInfos.forEach(function (dic, dici) {
+                    dicValueList.push(dic.value);
                     dic.children = []
                     if (value) {
                       dic.selected = value === dic.value
@@ -189,6 +191,9 @@ require(['/common/js/require.config.js'], function () {
                       dic.selected = !dici
                     }
                   })
+                  if(dicValueList.indexOf(value)===-1){
+                    codes.dictIInfos[0].selected=true;
+                  }
                   codes.valueType = keys[i].valueType
                   codes.label = keys[i].label
                   codes.operationType = keys[i].operationType
@@ -425,7 +430,7 @@ require(['/common/js/require.config.js'], function () {
               soi.children && soi.children.length && soi.children.forEach(function (child, ci) {
                 child.selected = !ci
               })
-              soi.children && !soi.children.length && soi.value !== -1 && (oitem.code === 'services_level1_type_kj01' || oitem.code === 'industry_level1_type') && vm.getSetChild(dataset.pi, '' + i, oitem.code === 'services_level1_type_kj01', soi.value)
+              soi.children && !soi.children.length && soi.value !== -1 && (oitem.code === 'services_level1_type' || oitem.code === 'industry_level1_type') && vm.getSetChild(dataset.pi, '' + i, oitem.code === 'services_level1_type', soi.value)
               // 子选项选择
               soi.children && soi.children.length && dataset.ci && i == dataset.di && soi.children.forEach(function (child, ci) {
                 child.selected = ci == dataset.ci
@@ -455,7 +460,7 @@ require(['/common/js/require.config.js'], function () {
               } else {
                 this.$data.searchForm[oitem.valueKey] = dataset.value === '-1' ? '' : oitem.valueType === 'array' ? [dataset.value] : dataset.value
                 if(!t.children.length){
-                  let key=oitem.code === 'services_level1_type_kj01'? 'servicesTypeId' : 'industryTypeId';
+                  let key=oitem.code === 'services_level1_type'? 'servicesTypeId' : 'industryTypeId';
                   this.$data.searchForm[key]='';
                   this.$data.searchForm[key + 'Name'] = ''
                 }
@@ -488,7 +493,7 @@ require(['/common/js/require.config.js'], function () {
             } else {
               flag === -1 ? this.options.selectOpts.push(dataset) : (this.options.selectOpts[flag] = dataset)
             }
-            dataset.code === 'services_level1_type_kj01' && this.setHotView(dataset.value)
+            dataset.code === 'services_level1_type' && this.setHotView(dataset.value)
             this.$data.searchForm.pageNum = 1
             this.getList()
           },

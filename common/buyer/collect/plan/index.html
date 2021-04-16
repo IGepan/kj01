@@ -16,7 +16,7 @@
       <div class="mdiv">
         <buyer-left :http='http' :jquery='jquery'></buyer-left>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">
+          <a :href="$pathPrefix+'/common/buyer/index.html'">
             用户中心
           </a>
           <span>收藏的方案</span>
@@ -52,7 +52,7 @@
                           <img :src="detail.goodsImgUrl || 'http://dummyimage.com/60x60'" alt="">
                         </li>
                       </ul>
-                      <a target="_blank" :href="'/common/buyer/collect/plan/detail.html?id=' + order.id"
+                      <a target="_blank" :href="$pathPrefix+'/common/buyer/collect/plan/detail.html?id=' + order.id"
                         class="uplan-btn_project">查看方案</a>
                     </div>
                   </li>

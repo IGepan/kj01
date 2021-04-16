@@ -31,7 +31,7 @@
                     <a :class="{active:activeIndex===1}">业务办理消息<span v-html="busUnread" v-if="busUnread"></span></a>
                 </div>-->
           </div>
-          <div class="umess-ad">
+          <div class="umess-ad" v-if="$pathPrefix.indexOf('/site/')===-1">
             <a href="/demand.html"><img src="/common/images/umess-ad.jpg"></a>
           </div>
         </div>

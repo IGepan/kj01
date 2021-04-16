@@ -35,10 +35,10 @@
       <div class="mdiv">
         <buyer-left :http='http' :jquery='jquery'></buyer-left>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">
+          <a :href="$pathPrefix+'/common/buyer/index.html'">
             用户中心
           </a>
-          <a href="/common/buyer/collect/plan/index.html">
+          <a :href="$pathPrefix+'/common/buyer/collect/plan/index.html'">
             收藏的方案
           </a>
           <span>方案详情</span>

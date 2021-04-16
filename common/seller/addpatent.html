@@ -62,7 +62,7 @@
         </div>
         <div class="rightmainbox">
           <div class="routenav">
-            <a href="/common/seller/index.html">
+            <a :href="$pathPrefix+'/common/seller/index.html'">
               卖家中心&nbsp;&nbsp;&gt;
             </a>
             <span>我的供应</span>
@@ -149,49 +149,49 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="expitem form_item">
-                    <span class="expname">主图视频：</span>
-                    <div class="iptbox">
-                      <label class="exbtn">
-                        <!-- <input type="file" style="position: absolute;right: 10000px;"> -->
-                        <ly-upload :exp="{type: 'mainVideo'}" @success='imgUploadSuccess'
-                          style="position: absolute;right: 10000px;" accept=".mp4" type='file' :header='uploadHeader'
-                          :url='fileUploadUrl' :data='uploadData'>
-                        </ly-upload>
-                        <span class="exbtn">上传视频</span>
-                      </label>
-                      <span class="vlt form_msg">温馨提示：建议使用1:1或16:9比例视频，时长30秒以内，不建议电子相册式的图片翻页视频。</span>
-                      <ul class="filelist">
-                        <li v-for="(item,index) in mainVideoList" v-cloak>
-                          <span class="signfile">
-                            <span v-text="item.name"></span>
-                            <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="delMainVideoClick(index)"></i>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="expitem form_item">
-                    <span class="expname"><span v-text='keyName.mainVideo'></span></span>
-                    <div class="iptbox">
-                      <label class="exbtn">
-                        <ly-upload :exp="{type: 'goodsVideo'}" @success='imgUploadSuccess'
-                          style="position: absolute;right: 10000px;" accept=".mp4" :header='uploadHeader' type='file'
-                          :url='fileUploadUrl' :data='uploadData'>
-                        </ly-upload>
-                        <span class="exbtn">上传视频</span>
-                      </label>
-                      <span class="vlt form_msg">温馨提示：技术视频将展示在详情页，可以更真实、直观表达技术特点，快速提升成交转化</span>
-                      <ul class="filelist">
-                        <li v-for="(item,index) in goodsVideoList" v-cloak>
-                          <span class="signfile">
-                            <span v-text="item.name"></span>
-                            <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="delGoodsVideoClick(index)"></i>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+<!--                  <div class="expitem form_item">-->
+<!--                    <span class="expname">主图视频：</span>-->
+<!--                    <div class="iptbox">-->
+<!--                      <label class="exbtn">-->
+<!--                        &lt;!&ndash; <input type="file" style="position: absolute;right: 10000px;"> &ndash;&gt;-->
+<!--                        <ly-upload :exp="{type: 'mainVideo'}" @success='imgUploadSuccess'-->
+<!--                          style="position: absolute;right: 10000px;" accept=".mp4" type='file' :header='uploadHeader'-->
+<!--                          :url='fileUploadUrl' :data='uploadData'>-->
+<!--                        </ly-upload>-->
+<!--                        <span class="exbtn">上传视频</span>-->
+<!--                      </label>-->
+<!--                      <span class="vlt form_msg">温馨提示：建议使用1:1或16:9比例视频，时长30秒以内，不建议电子相册式的图片翻页视频。</span>-->
+<!--                      <ul class="filelist">-->
+<!--                        <li v-for="(item,index) in mainVideoList" v-cloak>-->
+<!--                          <span class="signfile">-->
+<!--                            <span v-text="item.name"></span>-->
+<!--                            <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="delMainVideoClick(index)"></i>-->
+<!--                          </span>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="expitem form_item">-->
+<!--                    <span class="expname"><span v-text='keyName.mainVideo'></span></span>-->
+<!--                    <div class="iptbox">-->
+<!--                      <label class="exbtn">-->
+<!--                        <ly-upload :exp="{type: 'goodsVideo'}" @success='imgUploadSuccess'-->
+<!--                          style="position: absolute;right: 10000px;" accept=".mp4" :header='uploadHeader' type='file'-->
+<!--                          :url='fileUploadUrl' :data='uploadData'>-->
+<!--                        </ly-upload>-->
+<!--                        <span class="exbtn">上传视频</span>-->
+<!--                      </label>-->
+<!--                      <span class="vlt form_msg">温馨提示：技术视频将展示在详情页，可以更真实、直观表达技术特点，快速提升成交转化</span>-->
+<!--                      <ul class="filelist">-->
+<!--                        <li v-for="(item,index) in goodsVideoList" v-cloak>-->
+<!--                          <span class="signfile">-->
+<!--                            <span v-text="item.name"></span>-->
+<!--                            <i class="iconfont icon-shanchuguanbicha2 icon_del" @click="delGoodsVideoClick(index)"></i>-->
+<!--                          </span>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                  </div>-->
                   <div class="line" id="jyinfo"></div>
                   <div class="addexperience">
                     <span class="experience"><i class="iconfont icon-gongzuojingli"></i>交易信息</span>
@@ -215,42 +215,42 @@
                       <input type="checkbox" v-model="formData.negotiableFlag" value="1" @change="faceChange">
                     </div>
                   </div>
-                  <div class="expitem form_item" v-if='!isFw && !isCp && !isCd && !isEquipment'>
-                    <span class="expname"><i>*</i>转让方式：</span>
-                    <div class="iptbox">
-                      <label class="inline expsltlb w200">
-                        <ly-select v-model="formData.transactionMode" class='expslt' code='transaction_mode'>
-                        </ly-select>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="expitem form_item">
-                    <span class="expname"><i>*</i>支付方式：</span>
-                    <div class="iptbox" style="overflow:visible">
-                      <label class="inline expsltlb w200">
-                        <ly-code-mulselect v-model="formData.payMode" data-valid="custom:payModeValid"
-                          class='expslt required' code='pay_mode' index='expslt'>
-                        </ly-code-mulselect>
-                      </label>
-                      <span class="vlt form_msg"></span>
-                    </div>
-                  </div>
-                  <div class="expitem form_item mleft">
-                    <span class="expname w218"><i>*</i><span>库存：</span></span>
-                    <input type="number" class="expipt w200 required"
-                           v-model.number="formData.stock" data-valid="custom:stockValid">
-                    <span class="vlt form_msg"></span>
-                  </div>
-                  <div class="expitem form_item mleft">
-                    <span class="expname w218"><i>*</i><span>库存计数：</span></span>
-                    <div class="iptbox">
-                      <label class="inline expsltlb w200">
-                        <ly-select v-model="formData.minus_stock" class='expslt required' code='minus_stock' data-valid="isNonEmpty">
-                        </ly-select>
-                      </label>
-                      <span class="vlt form_msg"></span>
-                    </div>
-                  </div>
+<!--                  <div class="expitem form_item" v-if='!isFw && !isCp && !isCd && !isEquipment'>-->
+<!--                    <span class="expname"><i>*</i>转让方式：</span>-->
+<!--                    <div class="iptbox">-->
+<!--                      <label class="inline expsltlb w200">-->
+<!--                        <ly-select v-model="formData.transactionMode" class='expslt' code='transaction_mode'>-->
+<!--                        </ly-select>-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="expitem form_item">-->
+<!--                    <span class="expname"><i>*</i>支付方式：</span>-->
+<!--                    <div class="iptbox" style="overflow:visible">-->
+<!--                      <label class="inline expsltlb w200">-->
+<!--                        <ly-code-mulselect v-model="formData.payMode" data-valid="custom:payModeValid"-->
+<!--                          class='expslt required' code='pay_mode' index='expslt'>-->
+<!--                        </ly-code-mulselect>-->
+<!--                      </label>-->
+<!--                      <span class="vlt form_msg"></span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="expitem form_item mleft">-->
+<!--                    <span class="expname w218"><i>*</i><span>库存：</span></span>-->
+<!--                    <input type="number" class="expipt w200 required"-->
+<!--                           v-model.number="formData.stock" data-valid="custom:stockValid">-->
+<!--                    <span class="vlt form_msg"></span>-->
+<!--                  </div>-->
+<!--                  <div class="expitem form_item mleft">-->
+<!--                    <span class="expname w218"><i>*</i><span>库存计数：</span></span>-->
+<!--                    <div class="iptbox">-->
+<!--                      <label class="inline expsltlb w200">-->
+<!--                        <ly-select v-model="formData.minus_stock" class='expslt required' code='minus_stock' data-valid="isNonEmpty">-->
+<!--                        </ly-select>-->
+<!--                      </label>-->
+<!--                      <span class="vlt form_msg"></span>-->
+<!--                    </div>-->
+<!--                  </div>-->
                   <div class="expitem form_item" v-if="isCp">
                     <span class="expname">售后服务：</span>
                     <div class="iptbox" style="overflow:visible">
@@ -311,88 +311,88 @@
                         </label>
                       </div>
                     </div>
-                    <div class="expitem form_item mleft" v-if='isFw'>
-                      <span class="expname w218">服务承诺：</span>
-                      <div class="inline" style="width:344px;">
-                        <label style="margin: 0px 6px" v-for="item in servicePromiseList">
-                          <input :disabled='item.value == "001" || item.value == "002"'
-                            v-model="formData.servicePromise" name="service_cn" type="checkbox"
-                            :value="item.value" /><span v-text="item.display"></span></label>
-                        <span class="vlt form_msg"></span>
-                      </div>
-                    </div>
-                    <div class="mleft">
-                      <template v-for="(item, pIndex) in it.gd03CategoryTempleteDetailViews">
-                        <!--单选框-->
-                        <div class="expitem form_item" v-if='item.controlType == controlType.select'>
-                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span
-                              v-text='item.specName+"："'></span></span>
-                          <label class="inline expsltlb w344">
-                            <select style="width:100%" v-model='valueList[item.specId]' data-valid="isNonEmpty"
-                              :data-error='"请选择"+item.specName' :class="{required: item.notNullFlag === '1'}"
-                              @change="valSelectChange(valueList[item.specId])">
-                              <option :value="spec.value" v-for="(spec, index) in item.specValueList"
-                                v-text="spec.value">
-                              </option>
-                            </select>
-                          </label>
-                          <span class="vlt form_msg" v-text="item.comment"></span>
-                        </div>
-                        <!--地址选择-->
-                        <div class="expitem form_item" v-if='item.controlType == controlType.addressSelect'>
-                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span
-                              v-text='item.specName+"："'></span></span>
-                          <input type="text" class="expipt" v-model='valueList[item.specId]' data-valid="isNonEmpty"
-                            :data-error='item.specName + "不能为空"' :class="{required: item.notNullFlag === '1'}">
-                          <span class="vlt form_msg" v-text="item.comment"></span>
-                        </div>
-                        <!--输入框-->
-                        <div class="expitem form_item"
-                          v-if='item.controlType == controlType.input && !valueHiddenList[item.specId]'>
-                          <span class="expname w218"><i
-                              v-if="item.notNullFlag !== '0' || valueHiddenList[item.specId] === 0">*</i><span
-                              v-text='item.specName+"："'></span></span>
-                          <input type="text" class="expipt" v-model='valueList[item.specId]' data-valid="isNonEmpty"
-                            :data-error='item.specName + "不能为空"'
-                            :class="{required: item.notNullFlag === '1' || valueHiddenList[item.specId] === 0}"><span
-                            style="color: #474747;" v-text="item.specNameSuffix||''"></span>
-                          <span class="vlt form_msg" v-text="item.comment"></span>
-                        </div>
-                        <!--时间选择器-->
-                        <ly-form-time :data='item' :index='gIndex+pIndex' v-if='item.controlType == controlType.date'
-                          v-model='valueList[item.specId]'></ly-form-time>
-                        <!--多选框-->
-                        <div class="expitem form_item" v-if='item.controlType == controlType.mulSelect'>
-                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span
-                              v-text='item.specName+"："'></span></span>
-                          <label class="inline expsltlb w344">
-                            <ly-mulselect v-model='valueList[item.specId]' ref='mulSelect' :index='gIndex+pIndex'
-                              :mul-select-list='item.specValueList'></ly-mulselect>
-                          </label>
-                          <span class="vlt form_msg" v-text="item.comment"></span>
-                        </div>
-                        <!--textarea--->
-                        <div class="expitem form_item" v-if='item.controlType == controlType.textarea'>
-                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span
-                              v-text='item.specName+"："'></span></span>
-                          <div class="iptbox" style="margin-bottom: 10px;">
-                            <div class="exptext textarea_box" style="width:344px">
-                              <textarea data-valid="isNonEmpty" :data-error='item.specName + "不能为空"'
-                                :class="{required: item.notNullFlag === '1'}" v-model='valueList[item.specId]'
-                                class="exptextarea" name="exptextarea" id="exptextarea" cols="30" rows="6"></textarea>
-                            </div>
-                            <span class="vlt form_msg" v-text="item.comment"></span>
-                          </div>
-                        </div>
-                      </template>
-                    </div>
-                    <div class="expitem form_item mleft">
-                      <span class="expname w218">自定义属性名：</span>
-                      <div class="iptbox">
-                        <button class="exbtn" @click="isAddAttr = true">增加</button>
-                        <span class="vlt"></span>
-                      </div>
-                    </div>
+<!--                    <div class="expitem form_item mleft" v-if='isFw'>-->
+<!--                      <span class="expname w218">服务承诺：</span>-->
+<!--                      <div class="inline" style="width:344px;">-->
+<!--                        <label style="margin: 0px 6px" v-for="item in servicePromiseList">-->
+<!--                          <input :disabled='item.value == "001" || item.value == "002"'-->
+<!--                            v-model="formData.servicePromise" name="service_cn" type="checkbox"-->
+<!--                            :value="item.value" /><span v-text="item.display"></span></label>-->
+<!--                        <span class="vlt form_msg"></span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="mleft">-->
+<!--                      <template v-for="(item, pIndex) in it.gd03CategoryTempleteDetailViews">-->
+<!--                        &lt;!&ndash;单选框&ndash;&gt;-->
+<!--                        <div class="expitem form_item" v-if='item.controlType == controlType.select'>-->
+<!--                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span-->
+<!--                              v-text='item.specName+"："'></span></span>-->
+<!--                          <label class="inline expsltlb w344">-->
+<!--                            <select style="width:100%" v-model='valueList[item.specId]' data-valid="isNonEmpty"-->
+<!--                              :data-error='"请选择"+item.specName' :class="{required: item.notNullFlag === '1'}"-->
+<!--                              @change="valSelectChange(valueList[item.specId])">-->
+<!--                              <option :value="spec.value" v-for="(spec, index) in item.specValueList"-->
+<!--                                v-text="spec.value">-->
+<!--                              </option>-->
+<!--                            </select>-->
+<!--                          </label>-->
+<!--                          <span class="vlt form_msg" v-text="item.comment"></span>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;地址选择&ndash;&gt;-->
+<!--                        <div class="expitem form_item" v-if='item.controlType == controlType.addressSelect'>-->
+<!--                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span-->
+<!--                              v-text='item.specName+"："'></span></span>-->
+<!--                          <input type="text" class="expipt" v-model='valueList[item.specId]' data-valid="isNonEmpty"-->
+<!--                            :data-error='item.specName + "不能为空"' :class="{required: item.notNullFlag === '1'}">-->
+<!--                          <span class="vlt form_msg" v-text="item.comment"></span>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;输入框&ndash;&gt;-->
+<!--                        <div class="expitem form_item"-->
+<!--                          v-if='item.controlType == controlType.input && !valueHiddenList[item.specId]'>-->
+<!--                          <span class="expname w218"><i-->
+<!--                              v-if="item.notNullFlag !== '0' || valueHiddenList[item.specId] === 0">*</i><span-->
+<!--                              v-text='item.specName+"："'></span></span>-->
+<!--                          <input type="text" class="expipt" v-model='valueList[item.specId]' data-valid="isNonEmpty"-->
+<!--                            :data-error='item.specName + "不能为空"'-->
+<!--                            :class="{required: item.notNullFlag === '1' || valueHiddenList[item.specId] === 0}"><span-->
+<!--                            style="color: #474747;" v-text="item.specNameSuffix||''"></span>-->
+<!--                          <span class="vlt form_msg" v-text="item.comment"></span>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;时间选择器&ndash;&gt;-->
+<!--                        <ly-form-time :data='item' :index='gIndex+pIndex' v-if='item.controlType == controlType.date'-->
+<!--                          v-model='valueList[item.specId]'></ly-form-time>-->
+<!--                        &lt;!&ndash;多选框&ndash;&gt;-->
+<!--                        <div class="expitem form_item" v-if='item.controlType == controlType.mulSelect'>-->
+<!--                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span-->
+<!--                              v-text='item.specName+"："'></span></span>-->
+<!--                          <label class="inline expsltlb w344">-->
+<!--                            <ly-mulselect v-model='valueList[item.specId]' ref='mulSelect' :index='gIndex+pIndex'-->
+<!--                              :mul-select-list='item.specValueList'></ly-mulselect>-->
+<!--                          </label>-->
+<!--                          <span class="vlt form_msg" v-text="item.comment"></span>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;textarea-&ndash;&gt;-->
+<!--                        <div class="expitem form_item" v-if='item.controlType == controlType.textarea'>-->
+<!--                          <span class="expname w218"><i v-if="item.notNullFlag !== '0'">*</i><span-->
+<!--                              v-text='item.specName+"："'></span></span>-->
+<!--                          <div class="iptbox" style="margin-bottom: 10px;">-->
+<!--                            <div class="exptext textarea_box" style="width:344px">-->
+<!--                              <textarea data-valid="isNonEmpty" :data-error='item.specName + "不能为空"'-->
+<!--                                :class="{required: item.notNullFlag === '1'}" v-model='valueList[item.specId]'-->
+<!--                                class="exptextarea" name="exptextarea" id="exptextarea" cols="30" rows="6"></textarea>-->
+<!--                            </div>-->
+<!--                            <span class="vlt form_msg" v-text="item.comment"></span>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </template>-->
+<!--                    </div>-->
+<!--                    <div class="expitem form_item mleft">-->
+<!--                      <span class="expname w218">自定义属性名：</span>-->
+<!--                      <div class="iptbox">-->
+<!--                        <button class="exbtn" @click="isAddAttr = true">增加</button>-->
+<!--                        <span class="vlt"></span>-->
+<!--                      </div>-->
+<!--                    </div>-->
                     <div class="expitem form_item" v-for='(item,index) in formData.customValueList'>
                       <span class="expname w218"><i>*</i><span v-text='item.customSpecName+"："'></span></span>
                       <input type="text" class="expipt w200" v-model='formData.customValueList[index].customSpecValue'>
@@ -510,8 +510,8 @@
                 <div class="iptbox">
                   <label for="protocol">
                     <input type="checkbox" v-model="protocol" id=protocol>
-                    我承诺以上图文信息不涉及侵权，如若侵权，发生知识产权纠纷，与<span v-text="platform"></span>服务平台无关，并同意<span style="color: #1052b3"
-                      @click.stop="handleOpenProtocol">《<span v-text="platform"></span>服务平台供应发布规范》</span>
+                    我承诺以上图文信息不涉及侵权，如若侵权，发生知识产权纠纷，与本服务平台无关，并同意<span style="color: #1052b3"
+                      @click.stop="handleOpenProtocol">《服务平台供应发布规范》</span>
                   </label>
                 </div>
               </div>

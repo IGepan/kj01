@@ -21,8 +21,8 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><a
-            href="/common/buyer/demand/list.html?code=001.001.002.002">需求列表</a>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a><a
+            :href="$pathPrefix+'/common/buyer/demand/list.html?code=001.001.002.002'">需求列表</a>
           <span>投标信息</span>
         </div>
         <div class="centerbox">
@@ -32,7 +32,7 @@
                 <div class="control orderbox-title">
                   <h3 style="font-size: 16px;margin: 0;" v-if="bidInfo.length" v-text="bidInfo[0].title"></h3>
                   <a style="line-height: 42px" v-if="bidInfo.length"
-                    :href="'/common/demanddetail.html?id=' + bidInfo[0].id">浏览需求</a>
+                    :href="$pathPrefix+'/common/demanddetail.html?id=' + bidInfo[0].id">浏览需求</a>
                 </div>
                 <div class="orderheader">
                   <div class="orderheader-uname">投标人</div>
@@ -60,7 +60,7 @@
                       </div>
                       <div class="type borders" style="vertical-align: middle">
                         <a target="_blank"
-                          :href="'/common/buyer/demand/bidDetail.html?code=001.001.002.002&id=' + bid.bidId"
+                          :href="$pathPrefix+'/common/buyer/demand/bidDetail.html?code=001.001.002.002&id=' + bid.bidId"
                           class="type-a">投标详情</a>
                         <button v-if="isViewBidBtn" @click="winningBid(bid)">设置中标</button>
                       </div>

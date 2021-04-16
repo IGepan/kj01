@@ -66,7 +66,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 },
                 components: {
                     'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
                     'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
                     'ly-header': httpVueLoader('/common/components/header.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),

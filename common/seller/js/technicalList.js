@@ -39,7 +39,7 @@ require(['/common/js/require.config.js'], function () {
       components: {
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-select': httpVueLoader('/common/components/select.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -324,7 +324,7 @@ require(['/common/js/require.config.js'], function () {
                 texts: '请先激活店铺！',
                 buttons: ['现在就去', '稍后激活'],
                 callback: function () {
-                  location = '/common/seller/activate.html?code=001.002.001.003'
+                  location = vm.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
                 }
               }
               this.$dialog.confirm(options)

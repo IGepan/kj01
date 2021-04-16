@@ -14,19 +14,19 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         jquery: $,
         orderTabs: {
           '01': {
-            url: '/common/seller/order?orderStatusFilter=01&code=001.002.003.001',
+            url: this.$pathPrefix+'/common/seller/order?orderStatusFilter=01&code=001.002.003.001',
             label: '所有订单'
           },
           '02': {
-            url: '/common/seller/order?orderStatusFilter=02&code=001.002.003.001',
+            url: this.$pathPrefix+'/common/seller/order?orderStatusFilter=02&code=001.002.003.001',
             label: '待付款'
           },
           '04': {
-            url: '/common/seller/order?orderStatusFilter=04&code=001.002.003.001',
+            url: this.$pathPrefix+'/common/seller/order?orderStatusFilter=04&code=001.002.003.001',
             label: '已完成'
           },
           '05': {
-            url: '/common/seller/order?orderStatusFilter=05&code=001.002.003.001',
+            url: this.$pathPrefix+'/common/seller/order?orderStatusFilter=05&code=001.002.003.001',
             label: '待评价'
           }
         },
@@ -93,7 +93,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       },
       components: {
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -321,7 +321,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.$dialog.showToast('敬请期待')
         },
         evaluate: function (id) {
-          location = '/common/seller/sellevaluate.html?id=' + id
+          location = this.$pathPrefix+'/common/seller/sellevaluate.html?id=' + id
         },
         savefile: function (e) {
           httpOrderApi.getFileBlob(e.target.href).then(function (res) {

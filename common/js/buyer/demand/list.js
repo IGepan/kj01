@@ -145,7 +145,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         })
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -226,7 +226,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         // 浏览需求
         scan: function (order) {
-          this.$utils.openNewTable('/common/demanddetail.html?id=' + order.id)
+          this.$utils.openNewTable(this.$pathPrefix+'/common/demanddetail.html?id=' + order.id)
         },
         // 需求延期
         postpone: function (order) {
@@ -332,7 +332,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 var name = $(this).html()
                 var id=$('.savefile').attr('data-id')
                 if(name.indexOf('.pdf')>-1){
-                  vm.$utils.openNewTable('/common/buyer/demand/preview.html?id='+id);
+                  vm.$utils.openNewTable(vm.$pathPrefix+'/common/buyer/demand/preview.html?id='+id);
                 }else{
                   info.files.forEach(function(item){
                     if(item.name === name){

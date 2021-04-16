@@ -1,0 +1,284 @@
+.content-box.mmdiv{
+    margin-bottom: 20px;
+}
+.top-bg{
+    background:url("../../images/policy/list-bg.png") no-repeat;
+    height:100px;
+}
+.top-bg .mmdiv{
+    height:100px;
+    line-height: 100px;
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: lighter;
+}
+.content-box{
+    font-size:14px;
+}
+.search-row-box{
+    background:#ffffff;
+    border-top:4px solid #ee661c;
+    margin-top:15px;
+    padding: 32px 0 36px;
+}
+.search-row {
+    padding: 0 20px;
+}
+.search-row .search-label {
+    display: inline-block;
+    vertical-align: top;
+    color: #343334;
+    text-align: right;
+    line-height: 48px;
+    width: 56px;
+}
+.search-row .searchkeys {
+    display: inline-block;
+    vertical-align: top;
+    padding: 11px 0 0;
+    border-bottom: 1px dashed #d4d9e6;
+    width: 92%;
+    margin-left: 16px;
+}
+.search-row .searchkey {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    line-height: 23px;
+    height: 24px;
+    margin-bottom: 12px;
+    color: #999999;
+    padding: 0 5px;
+}
+/*.noP .mainKey.active::after, .noP .mainKey:hover::after {
+    left: 0;
+    transform: translateX(0);
+}*/
+.search-row .searchkey:first-child {
+    margin-left: 0;
+}
+.search-row:last-child .searchkeys {
+    border-bottom: 0;
+}
+.search-row .select-box{
+    display:inline-block;
+    position:relative;
+}
+.search-row .select-box:after{
+    position:absolute;
+    top:11px;
+    right:7px;
+    display:inline-block;
+    content:'';
+    border: 4px solid;
+    border-color: #a3a3a3 transparent transparent transparent;
+}
+.search-row .select {
+    border: solid 1px #e6e7f1;
+    display: inline-block;
+    vertical-align: middle;
+    width: 134px;
+    height: 24px;
+    margin-bottom: 2px;
+    color:#a3a3a3;
+    appearance:none;
+    padding-left:7px;
+}
+.search-row .select:focus{
+    border-color:#ff8a00;
+    color:#ff8a00;
+}
+.search-row .datetime {
+    border: solid 1px #e6e7f1;
+    display: inline-block;
+    height: 24px;
+    padding: 2px 4px;
+    vertical-align: middle;
+    position: relative;
+}
+.search-row .timeRange {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 17px;
+    line-height:24px;
+}
+.search-row .datetime .icon-rili {
+    position: absolute;
+    right: 5px;
+    font-size: 12px;
+    top:50%;
+    transform: translateY(-50%);
+    color: #bec0d1;
+}
+.search-row .active, .searchkey:hover {
+    color: #fff;
+    background-color: #ff8a00;
+}
+
+.searchResult {
+    width: 100%;
+    font-size: 14px;
+    color: #999999;
+    padding: 17px 0 13px 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ededed;
+    margin-top:30px;
+}
+.searchResult .result-right{
+    display:flex;
+    align-items: center;
+}
+.searchResult .result-right .page-info{
+    margin:0 43px;
+    font-size: 14px;
+    color:#626262;
+}
+.searchResult .result-right .page-info .total{
+    color:#f1671b
+}
+.searchResult .mainKey {
+    line-height: 60px;
+    font-size: 14px;
+    color: #626262;
+    cursor: pointer;
+    margin-left: 20px;
+    position: relative;
+}
+.searchResult .mainKey:first-child {
+    margin-left: 0;
+}
+.searchResult .noP .mainKey,.searchResult .noP .mainKey:first-child {
+    margin-left: 30px;
+    line-height: 26px;
+}
+.searchResult .searchMainkey .active {
+    color: #ee661c;
+}
+.searchResult .searchMainkey .active .iconfont-template{
+    display: inline-block;
+    vertical-align: bottom;
+    transform:rotateZ(180deg);
+    -ms-transform:rotateZ(180deg); 	/* IE 9 */
+    -moz-transform:rotateZ(180deg); 	/* Firefox */
+    -webkit-transform:rotateZ(180deg); /* Safari 和 Chrome */
+    -o-transform:rotateZ(180deg);
+    transform:rotateX(180deg);
+    -ms-transform:rotateX(180deg); 	/* IE 9 */
+    -moz-transform:rotateX(180deg); 	/* Firefox */
+    -webkit-transform:rotateX(180deg); /* Safari 和 Chrome */
+    -o-transform:rotateX(180deg);
+    -webkit-transform:rotateX(180deg);
+}
+.searchResult .mainKey:hover {
+    color: #ee661c;
+}
+.searchResult .label{
+    color: #252525;
+}
+.searchResult .result-item {
+    background-color: #ffffff;
+    border: solid 1px #f1671b;
+    color: #ff7e00;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 7px 5px 10px;
+    margin-left: 4px;
+}
+.searchResult .result-value {
+    color: #ff7e00;
+}
+.searchResult .result-item .icon {
+    line-height: 0px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 5px;
+    color: #ff7e00;
+}
+.mainPolicyList {background-color: #fff;}
+.mainPolicyList .list-item {
+    border-bottom: 1px solid #e3eaf1;
+}
+.mainPolicyList .list-item .link {
+    color: #343334;
+    padding: 37px 43px 24px 35px;
+    display: inline-block;
+    width: 100%;
+}
+.mainPolicyList .list-item-title-text {line-height: 30px;/* font-weight: bold; */}
+.mainPolicyList .list-item-title {
+    font-size: 16px;
+    color: #343334;
+}
+.mainPolicyList .list-item .list-item-apply {
+    font-size: 14px;
+    margin-top: 13px;
+}
+.mainPolicyList .list-item:hover {
+    border: 1px solid #ff8a00;
+}
+.list-item-apply-days {
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    background-color: #87c63a;
+    color: #fff;
+    line-height: 22px;
+    padding: 0 8px;
+}
+.list-item-apply-days.end {
+    background-color: #8D8FA4;
+}
+.list-item-apply-time {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.mainPolicyList .list-item-other {
+    font-size: 12px;
+    margin-top: 3px;
+    color: #999999;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.list-item-other-label {
+    display: inline-block;
+    vertical-align: middle;
+}
+.list-item-other-label .label-item {
+    margin-right: 30px;
+}
+.label-item .icon {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0px;
+}
+.label-item .labelText {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 17px;
+    height: 17px;
+    margin-left: 4px;
+}
+.list-item-other .tags {
+    display: inline-block;
+    vertical-align: middle;
+}
+.list-item-other .tags .tag {
+    display: inline-block;
+    padding:6px 10px;
+    font-size: 14px;
+    line-height: 16px;
+    border: solid 1px #999999;
+    margin-left: 4px;
+}
+.jiedu {
+    font-size: 16px;
+    padding: 0 5px 1px;
+    color: #ec4619;
+    margin-right: 8px;
+    border: solid 1px #ec4619;
+}
