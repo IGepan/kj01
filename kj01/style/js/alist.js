@@ -127,6 +127,7 @@ require(['/common/js/require.config.js'], function () {
                 dataset[tkey] = el.getAttribute('data-' + tkey);
               })
             }
+            console.log(dataset)
             return dataset
           },
           bindPageChange: function (e) {
@@ -302,6 +303,7 @@ require(['/common/js/require.config.js'], function () {
                 child.selected = ci == dataset.ci
               })
             })
+            // console.log(oitem.dictIInfos)
             oitem.selecedIndex = dataset.di
             this.options.searchOpts[dataset.pi] = oitem
             dataset.code = oitem.code
@@ -360,7 +362,6 @@ require(['/common/js/require.config.js'], function () {
           bindSearchValue: function (e) {
             this.searchForm.title = e
             this.getDataList()
-            console.log(e)
           }
         }
       });

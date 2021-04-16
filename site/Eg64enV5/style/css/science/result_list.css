@@ -1,0 +1,430 @@
+.content-box.mmdiv{
+    margin-bottom: 46px;
+}
+.top-bg{
+    background:url("../../images/policy/list-bg.png") no-repeat;
+    height:100px;
+}
+.top-bg .mmdiv{
+    height:100px;
+    line-height: 100px;
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: lighter;
+}
+.content-box{
+    font-size:14px;
+}
+.search-row-box{
+    background:#ffffff;
+    border-top:4px solid #ee661c;
+    margin-top:15px;
+    padding: 32px 0 36px;
+}
+
+.searchResult {
+    width: 100%;
+    font-size: 14px;
+    color: #999999;
+    padding: 17px 0 13px 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ededed;
+    margin-top:30px;
+}
+.searchResult .result-right{
+    display:flex;
+    align-items: center;
+}
+.searchResult .result-right .page-info{
+    margin:0 43px;
+    font-size: 14px;
+    color:#626262;
+}
+.searchResult .result-right .page-info .total{
+    color:#f1671b
+}
+.searchResult .mainKey {
+    line-height: 60px;
+    font-size: 14px;
+    color: #626262;
+    cursor: pointer;
+    margin-left: 20px;
+    position: relative;
+}
+.searchResult .mainKey:first-child {
+    margin-left: 0;
+}
+.searchResult .noP .mainKey,.searchResult .noP .mainKey:first-child {
+    margin-left: 30px;
+    line-height: 26px;
+}
+.searchResult .searchMainkey .active {
+    color: #ee661c;
+}
+.searchResult .mainKey:hover {
+    color: #ee661c;
+}
+.searchResult .label{
+    color: #252525;
+}
+.searchResult .result-item {
+    background-color: #ffffff;
+    border: solid 1px #ee661c;
+    color: #343334;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 7px 5px 10px;
+    margin-left: 4px;
+}
+.searchResult .result-value {
+    color: #ee661c;
+}
+.searchResult .result-item .icon {
+    line-height: 0px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 5px;
+    color: #ee661c;
+}
+.searchResult .mainKey .iconfont-template{
+    font-size: 12px;
+}
+.searchResult .mainKey .current{
+    display: inline-block;
+    vertical-align: bottom;
+    transform:rotateZ(180deg);
+    -ms-transform:rotateZ(180deg); 	/* IE 9 */
+    -moz-transform:rotateZ(180deg); 	/* Firefox */
+    -webkit-transform:rotateZ(180deg); /* Safari 和 Chrome */
+    -o-transform:rotateZ(180deg);
+    transform:rotateX(180deg);
+    -ms-transform:rotateX(180deg); 	/* IE 9 */
+    -moz-transform:rotateX(180deg); 	/* Firefox */
+    -webkit-transform:rotateX(180deg); /* Safari 和 Chrome */
+    -o-transform:rotateX(180deg);
+    -webkit-transform:rotateX(180deg);
+}
+.searchResult .searchkey-second .current, .searchkey-second .searchkey:hover {
+    background-color: #f5f8fb;
+    border-color: #ff8a00;
+    color: #ff8a00;
+}
+
+
+/* 搜索列表 */
+.searchListBox {
+    font-size: 14px;
+    color: #343334;
+    user-select: none;
+    background:#ffffff;
+    border-top:4px solid #ee661c;
+    margin-top:15px;
+    padding: 32px 0 36px;
+}
+.search-row {
+    padding: 0 20px;
+}
+.search-label {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    line-height: 48px;
+    width: 56px;
+    color: #343334;
+}
+.searchkeys {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 11px 120px 0 0px;
+    border-bottom: 1px dashed #d4d9e6;
+    margin-left: 16px;
+    width: 1062px;
+}
+.searchkeys .unfold{
+    position: absolute;
+    right: 0;
+    top: 11px;
+    border: solid 1px #0096ff;
+    background-color: #ffffff;
+    color: #008ef2;
+    padding: 3px 6px;
+    cursor: pointer;
+}
+.searchkeys .unfold span:first-child{
+    margin-right: 5px;
+    font-size: 14px;
+}
+.searchkeys .toggle .iconfont{
+    display: inline-flex;
+    transform:rotateZ(180deg);
+    -ms-transform:rotateZ(180deg); 	/* IE 9 */
+    -moz-transform:rotateZ(180deg); 	/* Firefox */
+    -webkit-transform:rotateZ(180deg); /* Safari 和 Chrome */
+    -o-transform:rotateZ(180deg);
+}
+.searchkeys .unfold .iconfont{
+    font-size: 12px;
+}
+.searchkey:first-child {
+    margin-left: 0;
+}
+.searchkey {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    line-height: 23px;
+    height: 24px;
+    border: 1px solid transparent;
+    margin-bottom: 12px;
+    color: #999999;
+    padding: 0 5px;
+}
+.select {
+    border: solid 1px #e6e7f1;
+    display: inline-block;
+    vertical-align: middle;
+    width: 134px;
+    height: 24px;
+    margin-bottom: 2px;
+}
+.searchListBox .select.active{
+    outline: none;
+    background-color: #ffffff;
+    color: #ff8a00;
+    border: solid 1px #ff8a00;
+}
+.cityCode .select{
+    margin-left: 10px;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.searchListBox .active, .searchkey:hover {
+    color: #fff;
+    background-color: #ff8a00;
+}
+.search-row:last-child .searchkeys {
+    border-bottom: 0;
+}
+.searchkey-second{
+    padding: 7px 36px 0;
+    background-color: #f5f8fb;
+    display: block;
+    font-size: 0;
+    width: 980px;
+    min-height: 36px;
+    margin-bottom: 5px;
+}
+.searchkey-second .searchkey {
+    margin: 0 0 7px 10px;
+    font-size: 14px;
+}
+.searchkey-second .searchkey:first-child {
+    margin-left: 0;
+}
+.searchListBox .searchkey-second .current, .searchkey-second .searchkey:hover {
+    background-color: #f5f8fb;
+    border-color: #ff8a00;
+    color: #ff8a00;
+}
+
+
+/* 搜索列表 */
+.searchListBox {
+    margin-top: 17px;
+    font-size: 14px;
+    color: #343334;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    user-select: none;
+}
+.search-row {
+    padding: 0 20px;
+}
+.search-label {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    line-height: 48px;
+    width: 56px;
+    color: #343334;
+}
+.searchkeys {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 11px 120px 0 0px;
+    border-bottom: 1px dashed #d4d9e6;
+    margin-left: 16px;
+    width: 1062px;
+}
+.searchkeys .unfold{
+    position: absolute;
+    right: 0;
+    top: 11px;
+    border: solid 1px #0096ff;
+    background-color: #ffffff;
+    color: #008ef2;
+    padding: 3px 6px;
+    cursor: pointer;
+}
+.searchkeys .unfold span:first-child{
+    margin-right: 5px;
+    font-size: 14px;
+}
+.searchkeys .toggle .iconfont{
+    display: inline-flex;
+    transform:rotateZ(180deg);
+    -ms-transform:rotateZ(180deg); 	/* IE 9 */
+    -moz-transform:rotateZ(180deg); 	/* Firefox */
+    -webkit-transform:rotateZ(180deg); /* Safari 和 Chrome */
+    -o-transform:rotateZ(180deg);
+}
+.searchkeys .unfold .iconfont{
+    font-size: 12px;
+}
+.searchkey:first-child {
+    margin-left: 0;
+}
+.searchkey {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    line-height: 23px;
+    height: 24px;
+    border: 1px solid transparent;
+    margin-bottom: 12px;
+    color: #999999;
+    padding: 0 5px;
+}
+.select {
+    border: solid 1px #e6e7f1;
+    display: inline-block;
+    vertical-align: middle;
+    width: 134px;
+    height: 24px;
+    margin-bottom: 2px;
+}
+.searchListBox .select.active{
+    outline: none;
+    background-color: #ffffff;
+    color: #ff8a00;
+    border: solid 1px #ff8a00;
+}
+.cityCode .select{
+    margin-left: 10px;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.searchListBox .active, .searchkey:hover {
+    color: #fff;
+    background-color: #ff8a00;
+}
+.search-row:last-child .searchkeys {
+    border-bottom: 0;
+}
+.searchkey-second{
+    padding: 7px 36px 0;
+    background-color: #f5f8fb;
+    display: block;
+    font-size: 0;
+    width: 980px;
+    min-height: 36px;
+    margin-bottom: 5px;
+}
+.searchkey-second .searchkey {
+    margin: 0 0 7px 10px;
+    font-size: 14px;
+}
+.searchkey-second .searchkey:first-child {
+    margin-left: 0;
+}
+.searchListBox .searchkey-second .current, .searchkey-second .searchkey:hover {
+    background-color: #f5f8fb;
+    border-color: #ff8a00;
+    color: #ff8a00;
+}
+
+.list-box{
+    background:#ffffff;
+    padding:30px;
+}
+.list-box .list{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.list-box .list-item{
+    margin-right:19px;
+    margin-bottom:30px;
+}
+.list-box .list-item:hover{
+
+}
+.list-box .list-item:nth-child(4n){
+    margin-right:0;
+}
+.list-box .list-item a{
+    display:inline-block;
+    width: 270px;
+    height: 351px;
+    background-color: #ffffff;
+    border: solid 1px #ebebeb;
+    padding:22px 19px 20px;
+    position:relative;
+}
+.list-box .list-item .img-box{
+    width:150px;
+    height:150px;
+    margin-bottom:17px;
+}
+.list-box .list-item .img-box img{
+    width:150px;
+    height:150px;
+}
+.list-box .list-item .title{
+    font-size: 16px;
+    line-height: 24px;
+    color: #252525;
+}
+.list-box .list-item .money{
+    font-size: 24px;
+    line-height: 24px;
+    color: #f1671b;
+    padding:0 0 0 10px;
+    position:absolute;
+    bottom:75px;
+    left:19px;
+    width:230px;
+}
+.list-box .list-item .icon-text{
+    font-size: 12px;
+    color: #7b7e8a;
+    position:absolute;
+    bottom:17px;
+    left:19px;
+    width:230px;
+}
+.list-box .list-item .icon-text1{
+    bottom:42px;
+}
+.list-box .list-item .icon-text .iconfont-template{
+    margin-right:8px;
+}
+.pages{
+    margin:20px 0 15px;
+}

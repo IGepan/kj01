@@ -22,7 +22,7 @@
           <seller-left :http='http' :jquery='jquery'></seller-left>
         </div>
         <div class="crumbs">
-          <a href="/common/seller/index.html">卖家中心</a>
+          <a :href="$pathPrefix+'/common/seller/index.html'">卖家中心</a>
           <span>我的投标</span>
         </div>
         <div class="rightmainbox">
@@ -87,7 +87,7 @@
                     <td v-html="k.actualPeriod"></td>
                     <td v-html="k.bidStatusDisplay"></td>
                     <td>
-                      <a :href="'/common/demanddetail.html?id=' + k.demandId" target="_blank">浏览需求</a>
+                      <a :href="$pathPrefix+'/common/demanddetail.html?id=' + k.demandId" target="_blank">浏览需求</a>
                       <a :href="'biddetail.html?id=' + k.id" target="_blank">投标详情</a>
                     </td>
                   </tr>

@@ -23,27 +23,33 @@
     <div class="header">
       <ly-toper></ly-toper>
       <ly-header pagename="订单详情" :http="httpCom"></ly-header>
-      <nav class="main-menu shop-menu">
-        <div class="container">
-          <ul class="navbar-nav navbar-dark">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#"></a>
+      <div class="crumbs">
+        <div class="mdiv"><strong>你现在的位置：</strong>
+          <a href="/common/buyer/index.html">
+            用户中心
+          </a><a href="/common/buyer/order/?orderStatusFilter=01">
+            我的订单
+          </a>
+          <span>订单详情</span></div>
+      </div>
+    </div>
+    <div class="storecontent">
+      <div class="mdiv progress" :class="{noActive: !detailInfo.notimei}">
+        <div class="background">
+          <ul>
+            <li v-for="(log, index) in detailInfo.logList" :key="index"
+              :class="{active: detailInfo.notimei - 1 === index}" style="margin-top: -17px;">
+              <span v-text="index+1"></span>
+              <div class="background-item">
+                <div v-text="log.actionName"></div>
+                <div class="background-time" v-text="log.opTime || ''"></div>
+              </div>
+              <span v-if="detailInfo.notimei === 0 || (detailInfo.notimei - 1 === index && !detailInfo.logfull)"
+                class="porlitips" v-text="detailInfo.orderStatusDisplay"></span>
             </li>
           </ul>
         </div>
-      </nav>
-    </div>
-    <div class="storecontent container order-main-page">
-
-      <div class="step-point d-flex justify-content-between">
-        <div class="step step-1"  v-for="(log, index) in detailInfo.logList" :key="index"
-             :class="{active: detailInfo.notimei - 1  >= index}">
-          <span >{{log.actionName}} <strong>{{index+1}}</strong> </span>
-
-          <i class="iconfont icon-select"></i>
-        </div>
       </div>
-
       <div class="mdiv orderbox">
         <div class="infohead"><span v-text="'订单编号：' + detailInfo.id"></span><span
             v-text="'下单时间：' + detailInfo.orderCreateTime"></span><span v-text="'卖家：' + detailInfo.shopName">

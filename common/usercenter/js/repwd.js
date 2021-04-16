@@ -21,7 +21,7 @@ require(['/common/js/require.config.js'], function () {
         var vm = this;
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'auth-left': httpVueLoader('/common/components/authLeft.vue'),
         'repassword': httpVueLoader('./components/password.vue'),

@@ -1,24 +1,35 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCom', 'dialog'], function ($, Vue, dic, httpVueLoader, httpOrderApi, httpCom, dialog) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     new Vue({
       el: '#index_box',
       data: {
         detailInfo: {
           name: ''
         },
-        httpCom: httpCom
+        httpCom: httpCom,
+        webInfo:''
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
       created: function () {
-        this.getOrderInfo(this.$utils.getReqStr('userId'))
+        this.getOrderInfo(this.$utils.getReqStr('userId'));
+        this.getPublicDetail()
       },
       methods: {
+        getPublicDetail(){
+          let vm=this;
+          this.$httpCom.publicDetail().then(function(res) {
+            if (res.code === "rest.success") {
+              vm.webInfo = res.result;
+              vm.monitorSetItem('webInfo', JSON.stringify(vm.webInfo));
+            }
+          });
+        },
         getOrderInfo: function (id) {
           var vm = this
           this.$httpCom.detailFiling({ userId: id }).then(function (res) {

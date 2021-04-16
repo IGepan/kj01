@@ -84,9 +84,9 @@ module.exports = {
       if (menu.isLeaf == 1) {
         //if (menu.code !== '001.001.003.001') {
         if (menu.uri.indexOf('?') == -1) {
-          window.location.href = menu.uri + '?code=' + menu.code;
+          window.location.href = this.$pathPrefix+menu.uri + '?code=' + menu.code;
         } else {
-          window.location.href = menu.uri + '&code=' + menu.code;
+          window.location.href = this.$pathPrefix+menu.uri + '&code=' + menu.code;
         }
         // } else {
         //   this.$dialog.showToast('敬请期待！')

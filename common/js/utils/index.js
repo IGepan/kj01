@@ -72,7 +72,7 @@ define(['jquery'], function ($) {
       return null;
     },
     getShopCode: function () {
-      return location.pathname.split('/')[3]
+      return window.$pathPrefix.indexOf('/site/')===-1?location.pathname.split('/')[3]:location.pathname.split('/')[5]
     },
     endWith: function (str, s) {
       var d = str.length - s.length;

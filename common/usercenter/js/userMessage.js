@@ -36,7 +36,7 @@ require(['/common/js/require.config.js'], function () {
         this.getMessageApi();
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'ly-page': httpVueLoader('/common/components/pages.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')

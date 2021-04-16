@@ -1,7 +1,7 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCartApi', 'httpUserAddressApi', 'jqValidate', 'dialog', 'httpCom'], function ($, Vue, dic, httpVueLoader, httpCartApi, httpUserAddressApi, jqValidate, dialog, httpCom) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     window.vueDom = new Vue({
       el: '#index_box',
       data: {
@@ -40,7 +40,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
@@ -187,7 +187,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     if (res.code == 'rest.success') {
                       vm.$dialog.showToast('提交成功')
                       setTimeout(function () {
-                        location.href = '/common/buyer/order/?orderStatusFilter=01'
+                        location.href = vm.$pathPrefix+'/common/buyer/order/?orderStatusFilter=01'
                       }, 1000)
                     } else {
                       vm.$dialog.showToast(res.desc)

@@ -399,7 +399,7 @@
                     <seller-left :http='http' :jquery='jquery'></seller-left>
                 </div>
                 <div class="crumbs">
-                    <a href="/common/seller/index.html">卖家中心</a>
+                    <a :href="$pathPrefix+'/common/seller/index.html'">卖家中心</a>
                     <span>我的中标</span>
                 </div>
                 <div class="rightmainbox">
@@ -473,7 +473,7 @@
                                                 更多操作
                                                 <div class="more-ops" v-show="moreIndex===index" v-cloak
                                                     @mouseover="showOps" @mouseout="hideOps(index)">
-                                                    <a :href="'/common/demanddetail.html?id=' + k.demandId"
+                                                    <a :href="$pathPrefix+'/common/demanddetail.html?id=' + k.demandId"
                                                         target="_blank">浏览需求</a>
                                                     <a :href="'logs.html?id=' + k.demandId" target="_blank">查看日志</a>
                                                     <!--<a :href="'biddetail.html?id=' + k.id" target="_blank">查看投标详情</a>-->

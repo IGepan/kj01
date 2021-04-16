@@ -2,7 +2,7 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'dialog', 'httpStoret01', 'carousel', 'httpCom'], function ($, Vue, dic, httpVueLoader, dialog, httpStoret01, carousel, httpCom) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     new Vue({
       el: '#index_box',
       data: {
@@ -67,7 +67,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         });
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/template/t01/components/defaultHeader.vue'),
         'ly-store-info': httpVueLoader('/common/template/t01/components/defaultStoreInfo.vue'),
         'ly-menu-nav': httpVueLoader('/common/template/t01/components/defaultMenuNav.vue'),
@@ -235,7 +235,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.$utils.openNewTable(url);
         },
         jumpTo (o) {
-          this.$utils.openNewTable(o.goodsDetailUrl);
+          this.$utils.openNewTable(this.$pathPrefix+o.goodsDetailUrl);
         },
         // 获取产品
         selectpByPage: function (param, type) {

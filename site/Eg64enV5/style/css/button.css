@@ -1,0 +1,242 @@
+button {
+	cursor: pointer;
+}
+button[typeName="ask"] {
+	width: 80px;
+	background-color: transparent;
+	height: 30px;
+	border: solid 1px #fda322;
+	font-size: 14px;
+	line-height: 28px;
+	color: #fda322;
+}
+
+button[typeName="more"] {
+	width: 80px;
+	background-color: transparent;
+	height: 30px;
+	border: solid 1px #018dfc;
+	font-size: 16px;
+	line-height: 28px;
+	color: #018dfc;
+}
+button[typeName="more"]:hover {
+	color: #fff;
+	background-color: #018dfc;
+}
+
+button[typeName="publish"] {
+	width: 80px;
+	background-color: transparent;
+	height: 30px;
+	border: solid 1px #ff8110;
+	font-size: 16px;
+	line-height: 28px;
+	color: #ff8110;
+}
+button[typeName="publish"]:hover {
+	background-color: #ff8110;
+	color: #fff;
+}
+button[typeName~="articleBtn"] {
+	font-size: 16px;
+	line-height: 34px;
+	padding: 0 30px;
+	position: relative;
+	color: #ffffff;
+	background-color: transparent;
+}
+.borderRight {
+	border-right: 1px solid #696f8b;
+}
+button[typeName~="articleBtn"] .iconfont-template {
+	margin-right: 10px;
+}
+button[typeName~="articleBtn"] .icon-fenxiang {
+	font-size: 22px;
+}
+button[typeName~="articleBtn"] .icon-zhengcejiedu {
+	font-size: 29px;
+}
+button[typeName~="articleBtn"] .icon-pinggu {
+	font-size: 24px;
+}
+button[typeName~="articleBtn"] .icon-zixun {
+	font-size: 25px;
+}
+button[typeName~="articleBtn"] .icon-zhengce {
+	font-size: 25px;
+}
+button[typeName~="articleBtn"] .icon-fangda {
+	font-size: 25px;
+}
+button[typeName~="articleBtn"] .icon-suoxiao {
+	font-size: 25px;
+}
+button[typeName~="articleBtn"] .icon-shoucangdansexian {
+	font-size: 24px;
+}
+button[typeName~="articleBtn"] .icon-xiazai {
+	font-size: 21px;
+}
+button[typeName~="articleBtn"] .icon-shoucangdansemian {
+	font-size: 23px;
+	color: #ff8110;
+}
+button[typeName~="articleBtn"] .icon-shoucangdansemian +span{
+	color: #ff8110;
+}
+
+button[typeName~="download"] {
+	background-color: #6f7fc3;
+}
+
+button[typeName~="activityPublish"] {
+	width: 120px;
+	height: 80px;
+	background-color: rgba(255, 129, 16, .1);
+	border: solid 1px rgb(255, 129, 16);
+	color: #ff8110;
+}
+
+button[typeName~="refresh"] {
+	font-size: 14px;
+	line-height: 36px;
+	color: #9496a5;
+	background-color: transparent;
+}
+
+button[typeName~="refresh"] .iconfont-template {
+	margin-right: 5px;
+}
+
+button[typeName~="cancel"] {
+	width: 100%;
+	height: 30px;
+	background-color: transparent;
+	border-radius: 15px;
+	font-size: 14px;
+	line-height: 24px;
+	color: #0096ff;
+	border: solid 1px #0096ff;
+}
+
+button[typeName~="enrollFor"] {
+	width: 140px;
+	height: 40px;
+	background-color: transparent;
+	border: solid 1px #ff8a00;
+	font-size: 16px;
+	line-height: 18px;
+	color: #ff8110;
+}
+
+button[typeName~="evaluate"] {
+	width: 100px;
+	height: 40px;
+	background-color: transparent;
+	border: solid 1px #ff8a00;
+	font-size: 16px;
+	line-height: 30px;
+	color: #ff8a00;
+}
+button[typeName~="evaluate"]:hover {
+	width: 100px;
+	height: 40px;
+	background-color: #ff8a00;
+	border: solid 1px #ff8a00;
+	font-size: 16px;
+	line-height: 30px;
+	color: #fff;
+}
+
+button[typeName~="activity-state"] {
+	min-width: 140px;
+	height: 40px;
+	color: #fff;
+	margin-right: 9px;
+	padding: 0 10px;
+	line-height: 38px;
+	font-size: 14px;
+	text-align: center;
+	background-color: #597dfa;
+	border-radius: 0;
+	white-space: nowrap;
+}
+/* 预热 */
+button[typeName~="activity-state"][typeState="0301"] {
+	background-color: #ef970b;
+}
+/* 进行中 */
+button[typeName~="activity-state"][typeState="0303"] {
+	background-color: #28c917;
+}
+/* 结束 */
+/* button[typeName~="activity-state"][typeState="0304"] {
+	background-color: #9596a5;
+} */
+/* 签到 */
+button[typeName~="activity-state"][typeState="0305"], button[typeName~="activity-state"][typeState="0306"] {
+	background-color: #e65757;
+}
+button[typeName~="addPerson"] {
+	width: 540px;
+	height: 42px;
+	background-color: transparent;
+	border: 1px dashed #0096ff;
+	font-size: 16px;
+	line-height: 40px;
+	text-align: center;
+	color: #0096ff;
+}
+button[typeName~="moreSignup"] {
+	width: 540px;
+	height: 42px;
+	background-color: #0096ff;
+	border: 1px dashed #0096ff;
+	font-size: 16px;
+	line-height: 40px;
+	text-align: center;
+	color: #ffffff;
+}
+
+button[typeName~="collection"] {
+	width: 90px;
+	height: 40px;
+	background-color: #ffffff;
+	border: solid 1px #ff8a00;
+	font-size: 14px;
+	line-height: 24px;
+	color: #ff8a00;
+}
+
+button[typeName~="collection"] .iconfont-template {
+	line-height: 17px;
+	font-size: 20px;
+}
+button[typeName~="collection"].colSelected {
+	background-color: #ff8a00;
+	border: solid 1px #ff8a00;
+	color: #fff;
+}
+
+button[typeName~="print"] {
+	width: 100px;
+	height: 33px;
+	background-color: #ffffff;
+	border: solid 1px #ff8a00;
+	font-size: 14px;
+	line-height: 25px;
+	color: #ff8a00;
+}
+button[typeName~="print"]:hover {
+	background-color: #ff8a00;
+	border: solid 1px #ff8a00;
+	color: #fff;
+}
+
+button[typeName~="print"] .iconfont-template {
+	line-height: 20px;
+	font-size: 18px;
+	margin-right: 5px;
+}

@@ -14,12 +14,18 @@
 	right: 0;
 	background-color: #f7f7f7;
 }
+.login_header .mdiv{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	height:120px;
+}
+.logo{
+	padding-top:0;
+}
 .l_title {
-	float: left;
-	height: 56px;
-	line-height: 36px;
-	margin: 38px 22px 26px;
-	padding: 9px 40px;
+	margin-left: 40px;
+	padding-left:40px;
 	border-left: 1px solid #c6c6c6;
 	color: #7a7a7a;
 	font-size: 36px;
@@ -29,7 +35,7 @@
 	line-height: 30px;
 	text-align: center;
 	color: #2b6197;
-	font-size: 14px; 
+	font-size: 14px;
 	background-color: #cdd9ed;
 }
 .center {

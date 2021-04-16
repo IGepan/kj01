@@ -36,7 +36,7 @@ require(['/common/js/require.config.js'], function () {
       mixins: [seller],
       components: {
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'base-info': httpVueLoader('./components/baseInfo.vue'),
         'certificate': httpVueLoader('./components/certificate.vue'),

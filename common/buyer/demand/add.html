@@ -71,8 +71,8 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><a
-            href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a><a
+                :href="$pathPrefix+'/common/buyer/demand/list.html?code=001.001.002.002'">需求</a>
           <span>添加需求</span>
         </div>
         <div class="centerbox">

@@ -13,13 +13,14 @@
   <div class="box" id="index_box" v-cloak>
     <div class="header">
       <ly-toper :top-class="topClass"></ly-toper>
-      <ly-header :active-index="2" :apend-menu="apendMenu"></ly-header>
+      <ly-header v-if="$pathPrefix.indexOf('/site/')===-1" :active-index="2" :apend-menu="apendMenu"></ly-header>
+      <ly-header v-else :nav-index="0" :search-types="'政策'" :location-names="'policyList.html'"></ly-header>
       <!--<menu class="search-menu clear">
         <li v-for="(column, i) in columns" :class="{active: column.type === 'demand'}">
           <a :href="column.url" v-text="column.label"></a></li>
       </menu>-->
       <div v-show="!issep" class="line-sep"></div>
-      <div class="crumbs">
+      <div class="crumbs" v-if="$pathPrefix.indexOf('/site/')===-1">
         <div class="mdiv"><strong>你现在的位置：</strong>
           <a :href="searchUrl">
             需求搜索
@@ -140,11 +141,12 @@
           <img src="/common/images/demandbanner.jpg" alt="">
         </div>
         <div class="card">
-          <div class="card-title"><span>需求推荐</span> <a href="/searchList.html?type=demand&word=&page=1">更多&gt;</a>
+          <div class="card-title"><span>需求推荐</span>
+<!--            <a href="/searchList.html?type=demand&word=&page=1">更多&gt;</a>-->
           </div>
           <div class="card-body">
             <ul class="card-list">
-              <li v-for="rec in recommends"><a :href="'/common/demanddetail.html?id=' + rec.id" :title="rec.title"
+              <li v-for="rec in recommends"><a :href="$pathPrefix+'/common/demanddetail.html?id=' + rec.id" :title="rec.title"
                   v-text="rec.title"></a>
               </li>
             </ul>
