@@ -100,6 +100,7 @@ require(['/common/js/require.config.js'], function () {
                     select(i) {
                         this.nowIndex = i;
                         this.getcmsList();
+                        this.detailActive=0;
                     }
                 }
             })
