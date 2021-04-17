@@ -574,7 +574,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.$refs[code + 'Msg'] && (this.$refs[code + 'Msg'].innerText = '', this.$refs[code + 'El'].style = '')
                 },
                 handLiveCheckbox: function (e) {
-                    if (this.formData.onLineFlag === '1'||this.formData.onLineFlag==='2') {
+                    if (this.formData.onLineFlag === '0') {
                         this.$dialog.showToast('请先选择为线上活动！或线上+线下活动');
                         e.stopPropagation()
                         e.preventDefault()
