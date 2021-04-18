@@ -298,8 +298,11 @@
            <div class="list-avatar"><img :src="shop.shopLogo" alt=""></div>
            <div class="name" :title="shop.shopName">{{shop.shopName}}</div>
            <div class="type"><span class="iconfont icon-hangye"></span><span :title="shop.servicesNames">{{shop.servicesNames}}</span></div>
-           <div class="type"><span class="iconfont icon-dingweixian"></span><span
-             v-text="shop.provinceDisplay + shop.cityDisplay + shop.districtDisplay + shop.location"></span></div>
+           <div class="type"><span class="iconfont icon-dingweixian"></span>
+            <!--<span-->
+             <!--v-text="shop.provinceDisplay + shop.cityDisplay + shop.districtDisplay + shop.location"></span>-->
+            {{shop.provinceDisplay ? shop.provinceDisplay : ''}}{{shop.cityDisplay ? shop.cityDisplay : ''}}{{shop.districtDisplay ? shop.districtDisplay : ''}}{{shop.location ? shop.location : ''}}
+           </div>
           </div>
           <div class="bottom">
            <a :href="shop.shopIndexUrl" class="viewdetails">查看详情</a>
