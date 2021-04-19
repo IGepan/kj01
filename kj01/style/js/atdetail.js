@@ -103,58 +103,49 @@ require(['/common/js/require.config.js'], function () {
           },
           getDetailInfo: function (id) {
             var vm = this;
-            indexApi.selectIssueDetail({id: id || this.detail.id}).then(function (res) {
+            indexApi.selectPortalDetail({ id: id }).then(function (res) {
+              if (res.code === 'rest.success') {
+                res.result.styles = {
+                  backgroundImage: 'url(' + res.result.poster.url + ')'
+                }
+                res.result.posterUrl = res.result.poster.url
+                res.result.sponsor = res.result.sponsor.split('ぶんかつ').join(' / ');
 
-              res.result.styles = {
-                backgroundImage: 'url(' + res.result.posterUrl + ')'
-              }
-              res.result.isCollection = res.result.isCollection || 0
-              res.result.sponsor = res.result.sponsor.split('ぶんかつ');
-              if (res.result.files) {
-                res.result.files.forEach(function (item) {
-                  item.flieType = item.name.substring(item.name.lastIndexOf(".") + 1)
-                  item.flieType = dic.imgs.indexOf(item.flieType) !== -1 ? 'tupian' : item.flieType
-                  item.flieType = dic.zips.indexOf(item.flieType) !== -1 ? 'yasuobao' : item.flieType
-                  item.flieType = dic.doc.indexOf(item.flieType) !== -1 ? 'word' : item.flieType
-                  item.flieType = dic.excel.indexOf(item.flieType) !== -1 ? 'excel' : item.flieType
-                  item.flieType = dic.ppt.indexOf(item.flieType) !== -1 ? 'ppt' : item.flieType
-                })
-              }
-              if (res.result.cooperation.length) {
-                let cooperations = res.result.cooperation
-                let group = []
-                cooperations.forEach((cooperation) => {
-                  if (group.indexOf(cooperation.cooperationType) === -1) {
-                    group.push(cooperation.cooperationType)
-                  }
-                })
-                cooperations = group.map((type) => {
-                  return cooperations.filter((cooperation) => {
-                    return cooperation.cooperationType === type
+                if (res.result.cooperation.length) {
+                  let cooperations = res.result.cooperation
+                  let group = []
+                  cooperations.forEach((cooperation) => {
+                    if (group.indexOf(cooperation.cooperationType) === -1) {
+                      group.push(cooperation.cooperationType)
+                    }
                   })
-                })
-                res.result.cooperation = cooperations
+                  cooperations = group.map((type) => {
+                    return cooperations.filter((cooperation) => {
+                      return cooperation.cooperationType === type
+                    })
+                  })
+                  res.result.cooperation = cooperations
+                }
+                let visitNumTotal=0;
+                if (res.result.topicDtls.length) {
+                  res.result.topicDtls.forEach(function (item) {
+                    item.itemUrl = '/adetail.html?id=' + item.activeId
+                    item.styles = {
+                      backgroundImage: 'url(' + item.posterUrl + ')'
+                    }
+                    item.itemImg = item.posterUrl
+                    visitNumTotal+= Number(item.visitNum);
+                  });
+                }
+                if (vm.detail.isIgnoreEndTime === 1 && vm.detail.statusCode === '0304' && vm.detail.isJoinActive !== 1) {
+                  //如果已结束且活动可无视报名时间,则修改
+                  vm.detail.statusCode = '0302'
+                  vm.detail.statusDisplay = '立即报名'
+                }
+                vm.$data.detail = res.result && res.result || ''
+                vm.$data.detail.visitNum=visitNumTotal==0?res.result.visitNum:visitNumTotal
               }
-              if (res.result.joinUser.length) {
-                res.result.joinUser.forEach(function (item) {
-                  item.styles = {
-                    backgroundImage: 'url(' + item.header + ')'
-                  }
-                  item.itemImg = item.header
-                });
-              }
-              res.result.evaluateResult = res.result.averageResult && res.result.averageResult[0] && res.result.averageResult[0].evaluateResult || 0
-              vm.detail = res.result ? res.result : {}
-              if (vm.detail.isIgnoreEndTime === 1 && vm.detail.statusCode === '0304' && vm.detail.isJoinActive !== 1) {
-                //如果已结束且活动可无视报名时间,则修改
-                vm.detail.statusCode = '0302'
-                vm.detail.statusDisplay = '立即报名'
-              }
-
-              res.result.longitude && vm.$nextTick(function () {
-                this.initMap()
-              });
-            })
+            });
             return 1;
           },
           getRecommendList: function (id) {
