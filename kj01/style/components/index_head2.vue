@@ -59,18 +59,18 @@ module.exports = {
            label: '技术市场',
          url: '/market/index.html'
         },
-        // {
-        //   label: '科技服务',
-        //   url: '/service'
-        // },
-        // {
-        //   label: '创新资源',
-        //   url: '/resources'
-        // },
         {
-          label: '易智商城',
-          url: '/mail/index.html'
+          label: '科技服务',
+          url: '/service'
         },
+        {
+          label: '创新资源',
+          url: '/resources'
+        },
+        // {
+        //   label: '易智商城',
+        //   url: '/mail/index.html'
+        // },
         {
           label: '全景数据',
           url: 'http://datamap.kj01.cn/'
