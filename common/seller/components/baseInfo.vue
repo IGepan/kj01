@@ -127,6 +127,24 @@
       </div>
     </div>
     <div class="expitem form_item">
+      <span class="expname"><i>*</i>服务案例：</span>
+      <div
+          class="iptbox"
+          style
+      >
+        <div class="exptext">
+          <vue-ueditor-wrap
+              v-model="formData.case"
+              :config="myConfig"
+          ></vue-ueditor-wrap>
+        </div>
+        <span
+            class="vlt form_msg"
+            style="width: 170px;"
+        ></span>
+      </div>
+    </div>
+    <div class="expitem form_item">
       <span class="expname"><i>*</i>绑定手机：</span>
       <input
         v-model="formData.phone"
@@ -182,6 +200,7 @@ module.exports = {
         district: '', // 地区
         location: '', // 详细地址
         comment: '', // 简介
+        case:'',// 服务案例
         phone: '', // 电话
         email: '', // 邮箱
         industryList: [], // 行业范围
