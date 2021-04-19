@@ -11,10 +11,10 @@
        <div>综合服务平台</div>
       </div>
       <div class="header-text" v-else-if="navIndex===7">
-       <div style="font-size: 42px;font-weight: bold;">平台动态</div>
+       <div style="font-size: 35px;font-weight: bold;">平台动态</div>
       </div>
-       <div class="header-text" v-else>
-         <div style="font-size: 42px;font-weight: bold;">关于我们</div>
+       <div class="header-text" v-if="navIndex===8">
+         <div style="font-size: 35px;font-weight: bold;">关于我们</div>
        </div>
      </div>
      <div class="searchBox">
@@ -45,7 +45,7 @@ module.exports = {
       navs: [
         {
           label: '首页',
-          url: '/index.html'
+          url: '/index.html',
         },
         {
           label: '政策资讯',
@@ -98,6 +98,9 @@ module.exports = {
     }
   },
   methods: {
+    // alerta: function (i) {
+    //   alert(i)
+    // },
     searchFull: function () {
       location.href = '/search/?title=' + this.searchKey
       // this.$dialog.showToast('敬请期待！')
