@@ -156,10 +156,10 @@
                         </div>
                         <div class="price-box">
                             <span class="txt">服务售价:</span> <span class="price"><small>￥</small>
-                            <span v-if="item.choosePriceTag ==3">
-                                           {{detailInfo.price}}
+                            <span v-if="detailInfo.choosePriceTag ==3">
+                                           {{detailInfo.priceWord}}
                                         </span>
-                                        <span v-if="item.choosePriceTa!='3'">
+                                        <span v-if="detailInfo.choosePriceTa!='3'">
                                             {{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}
                                         </span></span>
                         </div>
