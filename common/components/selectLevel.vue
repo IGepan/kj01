@@ -167,12 +167,25 @@ module.exports = {
     itemClick: function (item, index) {
       this.activeIndex = index;
       this.initData();
+      let exist=false;
+      this.selectList.forEach(o => {if(o.name==item.display) exist=true})
+      if(!exist){ this.selectList.push({
+        name: item.display,
+        tagId: item.id
+      })}
     },
     // 选择值
     valueClick: function (item, type) {
       var that = this
       var key = type === this.secondType ? 'id' : 'tagId'
       var tagType
+      // 删除一级标签的内容
+      let templist = []
+      let parent = this.oneLevelList[this.activeIndex]
+      for (let o of this.selectList) {
+        if(o.name != parent.display) templist.push(o)
+      }
+      this.selectList = templist
       // 可选中
       if (!this.disabelList[item[key]]) {
         // 存在选中
@@ -205,6 +218,7 @@ module.exports = {
         name: tagName
       });
     },
+    // 输入框标签删除
     removeSeleced: function (tagId) {
       var i = this.isSelected(tagId)
       var tagType = this.selectList[i].tagType
@@ -219,6 +233,7 @@ module.exports = {
         })
       }
       this.selectList.splice(i, 1);
+      this.activeIndex=0;
     },
     setDisabel: function (arr) {
       var that = this
