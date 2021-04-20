@@ -79,8 +79,8 @@
                                     <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
                                     <div class="quoted-price"><span>￥</span>
 
-                                        <span >
-                                          {{item.choosePriceTag}}
+                                        <span v-if="item.choosePriceTag ==3">
+                                           {{item.price}}
                                         </span>
                                         <span v-if="item.choosePriceTa!='3'">
                                             {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
@@ -155,7 +155,14 @@
                             <h1>{{detailInfo.goodsName||''}}</h1>
                         </div>
                         <div class="price-box">
-                            <span class="txt">服务售价:</span> <span class="price"><small>￥</small>{{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}</span>
+                            <span class="txt">服务售价:
+                               <span v-if="item.choosePriceTag ==3" class="price">
+                                        <small>￥</small>   {{item.priceWord}}
+                                        </span>
+                                        <span v-if="item.choosePriceTa!='3'" class="price">
+                                         <small>￥</small>   {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                        </span>
+
                         </div>
                         <div class="service-tags">
                             <span class="txt">服务领域:</span>
