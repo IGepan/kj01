@@ -27,7 +27,6 @@ require(['/common/js/require.config.js'], function () {
                 },
                 isAddAttr: false,
                 copyFormData: {}, // 用于数据重置
-                chooseFlag: '0',
                 formData: {
                     id: '',
                     field: [], // 领域
@@ -37,6 +36,8 @@ require(['/common/js/require.config.js'], function () {
                     goodsName: '', // 商品名称
                     categoryId: '', // 类目id
                     keyWord: '', // 关键字
+                    priceWord: '',//自定义价格
+                    choosePriceTag: '0',//价格选择标签
                     price: '', // 价格
                     minPrice: '', // 价格区间下限
                     maxPrice: '', // 价格区间上限
@@ -141,6 +142,7 @@ require(['/common/js/require.config.js'], function () {
                 minus_stock: [],
                 customName: '', // 自定义属性名输入框
                 keywordVal: '',
+                priceWordVal: '',
                 httpCom: httpCom, // 关键字,
                 protocol: false,
                 isFixed: false,
@@ -175,6 +177,13 @@ require(['/common/js/require.config.js'], function () {
                         return [];
                     } else {
                         return this.formData.keyWord.split(",");
+                    }
+                },
+                priceWordList: function () {
+                    if (!this.formData.priceWord || this.formData.priceWord == '') {
+                        return [];
+                    } else {
+                        return this.formData.priceWord.split(",");
                     }
                 }
             },
@@ -535,6 +544,27 @@ require(['/common/js/require.config.js'], function () {
                             url: a
                         });
                     }
+                },
+                /**
+                 * 添加价格
+                 */
+                addPriceClick: function () {
+                    var isAdd = true;
+                    for (var item of this.priceWordList) {
+                        if (item == this.priceWordVal) {
+                            isAdd = false;
+                        }
+                    }
+                    if (!isAdd) {
+                        this.priceWordVal = "";
+                        return;
+                    }
+                    if (this.formData.priceWord == '') {
+                        this.formData.priceWord = this.priceWordVal;
+                    } else {
+                        this.formData.priceWord = this.formData.priceWord + ',' + this.priceWordVal;
+                    }
+                    this.priceWordVal = "";
                 },
                 /**
                  * 添加关键字
@@ -1050,18 +1080,19 @@ require(['/common/js/require.config.js'], function () {
                     v.length && this.clearMsg('services')
                 },
                 handleChoose: function () {
-                    if (this.chooseFlag === '0') {
+                    if (this.formData.choosePriceTag === '0') {
                         this.formData.minPrice = '';
                         this.formData.maxPrice = '';
                     }
-                    if (this.chooseFlag === '1') {
+                    if (this.formData.choosePriceTag === '1') {
                         this.formData.price = '0';
                     }
-                    if (this.chooseFlag === '3') {
+                    if (this.formData.choosePriceTag === '3') {
                         this.formData.negotiableFlag = '1';
                         this.faceChange();
                     } else {
-
+                        this.formData.negotiableFlag = '';
+                        this.faceChange();
                     }
                 },
                 handleOpenProtocol: function () {

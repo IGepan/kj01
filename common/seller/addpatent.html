@@ -208,28 +208,32 @@
                                     <span class="experience"><i class="iconfont icon-gongzuojingli"></i>交易信息</span>
                                 </div>
                                 <div style="margin-left: 98px">
+
+                                    <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="0"
+                                           @click="handleChoose">
                                     <span>单价</span>
-                                    <input name="choosePrice" type="radio" checked v-model="chooseFlag" value="0"
+
+                                    <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="1"
                                            @click="handleChoose">
                                     <span>价格范围</span>
-                                    <input name="choosePrice" type="radio" checked v-model="chooseFlag" value="1"
+
+                                    <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="2"
                                            @click="handleChoose">
                                     <span>面议</span>
-                                    <input name="choosePrice" type="radio" checked v-model="chooseFlag" value="2"
+
+                                    <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="3"
                                            @click="handleChoose">
                                     <span>自定义</span>
-                                    <input name="choosePrice" type="radio" checked v-model="chooseFlag" value="3"
-                                           @click="handleChoose">
                                 </div>
                                 <br/>
                                 <div class="expitem form_item price-row">
                                     <span class="expname"><i>*</i>价格：</span>
-                                    <div class="iptbox" v-if="chooseFlag==='0'">
+                                    <div class="iptbox" v-if="formData.choosePriceTag==='0'">
                                         <input type="number" class="expipt w100 required"
                                                v-model='formData.price' data-valid="custom:priceValid">
                                         (元)
                                     </div>
-                                    <div class="iptbox" v-if="chooseFlag==='1'">
+                                    <div class="iptbox" v-if="formData.choosePriceTag==='1'">
                                         <input type="number" class="expipt w100 required"
                                                v-model='formData.minPrice' data-valid="custom:priceValid">
                                         至
@@ -238,9 +242,19 @@
                                         (元)
                                         <!--                      <span class="vlt form_msg"></span>-->
                                     </div>
-                                    <span class="expname face-label" v-if="chooseFlag==='2'">面议</span>
-                                    <div v-if="chooseFlag==='3'">
-
+                                    <span class="expname face-label" v-if="formData.choosePriceTag==='2'">面议</span>
+                                    <div v-if="formData.choosePriceTag==='3'">
+                                        <div class="iptbox" style="margin-top: 17px">
+                                            <input maxlength="50" type="text" class="expipt w200" v-model='priceWordVal'>
+                                            <button class="exbtn" @click='addPriceClick'>增加</button>
+                                            <ul class="priceWordlist">
+                                                <li class="signword" v-for='(item,index) in priceWordList' v-cloak>
+                                                    <i class="iconfont icon-shanchuguanbicha2"
+                                                       @click="delKeywordClick(index)"></i>
+                                                    <span v-text='item'></span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <!--                    <div class="iptbox face-iptbox">-->
                                     <!--                      <input type="checkbox" v-model="formData.negotiableFlag" value="1" @change="faceChange">-->
