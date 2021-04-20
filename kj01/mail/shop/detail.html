@@ -155,14 +155,13 @@
                             <h1>{{detailInfo.goodsName||''}}</h1>
                         </div>
                         <div class="price-box">
-                            <span class="txt">服务售价:
-                               <span v-if="item.choosePriceTag ==3" class="price">
-                                        <small>￥</small>   {{item.priceWord}}
+                            <span class="txt">服务售价:</span> <span class="price"><small>￥</small>
+                            <span v-if="item.choosePriceTag ==3">
+                                           {{detailInfo.price}}
                                         </span>
-                                        <span v-if="item.choosePriceTa!='3'" class="price">
-                                         <small>￥</small>   {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
-                                        </span>
-                            </span>
+                                        <span v-if="item.choosePriceTa!='3'">
+                                            {{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}
+                                        </span></span>
                         </div>
                         <div class="service-tags">
                             <span class="txt">服务领域:</span>
