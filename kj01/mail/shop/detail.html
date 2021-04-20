@@ -77,8 +77,9 @@
                                         :src="item.goodsImgUrl" class="" alt="..."></a>
                                 <div class="card-body">
                                     <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
-                                    <div class="quoted-price"><span>￥</span>{{item.negotiableFlag |
-                                        formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                    <div class="quoted-price"><span>￥</span>
+                                        <span v-text="item.choosePriceFlag==='3'? {{item.priceWord}}: {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}">
+                                        </span>
                                     </div>
                                 </div>
                             </div>
