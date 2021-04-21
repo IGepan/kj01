@@ -596,6 +596,15 @@ require(['/common/js/require.config.js'], function () {
                     this.formData.keyWord = newKwList.join(',');
                 },
                 /**
+                 * 删除自定义价格
+                 * @param index
+                 */
+                delPriceWordClick: function (index) {
+                    var newKwList = JSON.parse(JSON.stringify(this.priceWordList));
+                    newKwList.splice(index, 1);
+                    this.formData.priceWord = newKwList.join(',');
+                },
+                /**
                  * 删除专利图片
                  */
                 delMainPhotoClick: function (index) {
