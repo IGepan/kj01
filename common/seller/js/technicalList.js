@@ -45,7 +45,8 @@ require(['/common/js/require.config.js'], function () {
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       watch: {
-
+        showed: function(val){
+          return val.replace(/\;/g, '</br>');}
       },
       mounted: function () {
         var vm = this;
