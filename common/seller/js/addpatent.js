@@ -1100,7 +1100,7 @@ require(['/common/js/require.config.js'], function () {
                         this.formData.priceWord = '';
                         this.formData.negotiableFlag = '';
                     }
-                    if (this.formData.choosePriceTag === '3') {
+                    if (this.formData.choosePriceTag === '2') {
                         this.formData.negotiableFlag = '1';
                         this.faceChange();
                         this.formData.priceWord = '';
