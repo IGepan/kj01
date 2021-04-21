@@ -85,9 +85,9 @@ require(['/common/js/require.config.js'], function () {
           vm.goodsSelectByPage();
           vm.categorySelectByVo();
         },
-        // cutout(cellValue) {
-        //   return cellValue.replace(/\,/g, '</br>')
-        // },
+        cutout(Value) {
+          return Value.replace(/\,/g, '</br>')
+        },
 				/**
 				 * 取得当前店铺已有的所有资质证书(鉴权)
 				 */
