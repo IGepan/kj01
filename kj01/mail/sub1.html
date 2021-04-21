@@ -130,7 +130,11 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{good.goodsName}}</h5>
                                         <div class="addition">
-                                            <div class="quoted-price"><span>￥</span>{{good.choosePriceTag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.choosePriceTag==='0'">万</span></div>
+                                            <div class="quoted-price"><span v-if="good.choosePriceTag==='0'">￥</span>
+                                                <span v-else-if="good.choosePriceTag==='1'">￥</span>
+                                                <span v-else-if="good.choosePriceTag==='2'"></span>
+                                                <span v-else-if="good.choosePriceTag==='3'"></span>
+                                                {{good.choosePriceTag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.choosePriceTag==='0'">万</span></div>
                                             <div class="short-text">
                                                 <p><i class="iconfont icon-tag"></i>{{good.typeName}}</p>
                                                 <p><i class="iconfont icon-city"></i>{{good.shopName}}</p>
