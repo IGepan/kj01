@@ -196,7 +196,7 @@ require(['/common/js/require.config.js'], function () {
             methods: {
                 faceChange: function (e) {
                     if (this.formData.negotiableFlag) {
-                        this.formData.price = '0';
+                        this.formData.price = '';
                         this.formData.minPrice = '';
                         this.formData.maxPrice = '';
                     //     this.isPriceDisabled = true;
