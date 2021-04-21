@@ -188,8 +188,8 @@
                                                 <div class="w135 price" >
                                                     <small v-if="goods.choosePriceTag==='0' || goods.choosePriceTag==='1'">¥</small>
                                                     <small v-else></small>
-                                                    <span v-if="goods.choosePriceTag ==3" v-html="cutout(goods.priceWord)" >
-                                           {{goods.priceWord}}
+                                                    <span v-if="goods.choosePriceTag ==3" >
+                                           价格请查看详情
                                         </span>
                                                     <span v-if="goods.choosePriceTa!='3'">
                                             {{goods.negotiableFlag | formatPrice(goods.price, goods.minPrice, goods.maxPrice)}}

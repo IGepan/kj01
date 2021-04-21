@@ -339,6 +339,9 @@ require(['/common/js/require.config.js'], function () {
                             location.href = url
                         }
                     },
+                    declaration: function () {
+
+                    },
                     fwsClic2: function () {
 
                         if (this.userInfo.userTypes) {
