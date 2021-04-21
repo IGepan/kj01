@@ -80,12 +80,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 watch: {
                     'evaluateForm.hasContentFlag': function () {
                         this.getEvaluateSelectpByPage()
-                    },
+                    }
 
-                        showed: function(val){
-                        return val.replace(/\;/g, '</br>');
 
-                    },
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
@@ -115,6 +112,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         if (this.component_toper) {
                             this.component_toper.updateCartInfo();
                         }
+                    },
+                    showed: function(val){
+                        return val.replace(/\;/g, '</br>');
+
                     },
                     shopAccess: function () {
                         var vm = this
