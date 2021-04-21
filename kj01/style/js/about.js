@@ -24,7 +24,7 @@ require(['/common/js/require.config.js'], function () {
             }
           ],
           nowIndex: 0,
-          sIndex: 8,
+          sIndex: 7,
           newsList:[],
           detailActive:0,
           details:'',

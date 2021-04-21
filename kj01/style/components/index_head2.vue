@@ -10,10 +10,10 @@
        <div>科技创新</div>
        <div>综合服务平台</div>
       </div>
-      <div class="header-text" v-else-if="navIndex===7">
+      <div class="header-text" v-else-if="navIndex===6">
        <div style="font-size: 35px;font-weight: bold;">平台动态</div>
       </div>
-       <div class="header-text" v-if="navIndex===8">
+       <div class="header-text" v-if="navIndex===7">
          <div style="font-size: 35px;font-weight: bold;">关于我们</div>
        </div>
      </div>
