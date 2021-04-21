@@ -156,8 +156,8 @@
                         </div>
                         <div class="price-box">
                             <span class="txt">服务售价:</span> <span class="price"><small></small>
-                            <span v-if="detailInfo.choosePriceTag ==3" v-show="showed">
-                                           {{detailInfo.priceWord}}
+                            <span v-if="detailInfo.choosePriceTag ==3" >
+                                           {{diyPrice(detailInfo.priceWord)}}
                                         </span>
                                         <span v-if="detailInfo.choosePriceTa!='3'">
                                             {{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}
