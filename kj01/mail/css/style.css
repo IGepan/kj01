@@ -715,7 +715,7 @@ a {
     background: rgba(255, 255, 255, 0.9); }
     .service-list .card-item .card-body .card-title {
       height: 2.5rem;
-      white-space: normal !important;
+      /*white-space: normal !important;*/
       line-height: 1.25rem; }
     .service-list .card-item:hover {
       background: #fff; }

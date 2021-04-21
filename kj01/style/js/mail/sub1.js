@@ -63,7 +63,10 @@ require(['/common/js/require.config.js'], function () {
                     formatPrice2: function (flag, v, n, m) {
                         if (flag === '1') {
                             return '面议'
-                        } else {
+                        }if(flag === "3"){
+                            return '查看价格详情'
+                        }
+                        else {
                             if (typeof v !== 'undefined') {
                                 return (v / 10000).toFixed(2)
                             } else if (!v && !m) {
