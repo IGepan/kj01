@@ -210,19 +210,19 @@
                                 <div style="margin-left: 98px">
 
                                     <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="0"
-                                           @click="handleChoose">
+                                           @change="handleChoose">
                                     <span>单价</span>
 
                                     <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="1"
-                                           @click="handleChoose">
+                                           @change="handleChoose">
                                     <span>价格范围</span>
 
                                     <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="2"
-                                           @click="handleChoose">
+                                           @change="handleChoose">
                                     <span>面议</span>
 
                                     <input name="choosePrice" type="radio" checked v-model="formData.choosePriceTag" value="3"
-                                           @click="handleChoose">
+                                           @change="handleChoose">
                                     <span>自定义</span>
                                 </div>
                                 <br/>
