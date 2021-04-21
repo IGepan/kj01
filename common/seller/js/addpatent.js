@@ -1092,13 +1092,18 @@ require(['/common/js/require.config.js'], function () {
                     if (this.formData.choosePriceTag === '0') {
                         this.formData.minPrice = '';
                         this.formData.maxPrice = '';
+                        this.formData.priceWord = '';
+                        this.formData.negotiableFlag = '';
                     }
                     if (this.formData.choosePriceTag === '1') {
                         this.formData.price = '';
+                        this.formData.priceWord = '';
+                        this.formData.negotiableFlag = '';
                     }
                     if (this.formData.choosePriceTag === '3') {
                         this.formData.negotiableFlag = '1';
                         this.faceChange();
+                        this.formData.priceWord = '';
                     } else {
                         this.formData.negotiableFlag = '';
                         this.faceChange();
