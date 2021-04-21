@@ -47,8 +47,8 @@
                 <li class="nav-item">
                     <a class="nav-link active" :href="'list.html?code='+shopCode">服务列表</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" :href="'/mail/shop/service.html?code='+shopCode">服务案例</a>
+                <li class="nav-item" v-if="statisticsInfo.orderCount!=0">
+                    <a class="nav-link" :href="'/mail/shop/service.html?code='+shopCode">成交案例</a>
                 </li>
             </ul>
         </div>
@@ -278,12 +278,12 @@
                         </div>
                         <div class="col">
                             <span class="value">{{statisticsInfo.orderCount||0}}</span>
-                            成效次数
+                            成交次数
                         </div>
                         <div class="col">
                             <span class="value"
                                   v-text="( statisticsInfo.turnover ? (statisticsInfo.turnover/10000).toFixed(2) : 0)+'万'"></span>
-                            成效金额
+                            成交金额
                         </div>
                         <div class="col">
                             <span class="value">{{statisticsInfo.views||0}}</span>

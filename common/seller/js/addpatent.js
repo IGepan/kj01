@@ -196,7 +196,7 @@ require(['/common/js/require.config.js'], function () {
             methods: {
                 faceChange: function (e) {
                     if (this.formData.negotiableFlag) {
-                        this.formData.price = '0';
+                        this.formData.price = '';
                         this.formData.minPrice = '';
                         this.formData.maxPrice = '';
                     //     this.isPriceDisabled = true;
@@ -1085,7 +1085,7 @@ require(['/common/js/require.config.js'], function () {
                         this.formData.maxPrice = '';
                     }
                     if (this.formData.choosePriceTag === '1') {
-                        this.formData.price = '0';
+                        this.formData.price = '';
                     }
                     if (this.formData.choosePriceTag === '3') {
                         this.formData.negotiableFlag = '1';
