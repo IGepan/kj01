@@ -183,7 +183,7 @@ require(['/common/js/require.config.js'], function () {
                     if (!this.formData.priceWord || this.formData.priceWord == '') {
                         return [];
                     } else {
-                        return this.formData.priceWord.join('<br/>');
+                        return this.formData.priceWord.split(",");
                     }
                 }
             },

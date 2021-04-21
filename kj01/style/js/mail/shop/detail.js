@@ -80,7 +80,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 watch: {
                     'evaluateForm.hasContentFlag': function () {
                         this.getEvaluateSelectpByPage()
-                    }
+                    },
+
+                        showed: function(val){
+                        return val.replace(/\;/g, '</br>');
+
+                    },
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
