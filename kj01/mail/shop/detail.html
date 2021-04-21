@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
@@ -144,7 +144,8 @@
                     <div class="swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
                             <template v-for="(imgs, index) in detailInfo.imgList">
-                                <div class="swiper-slide"><img class="img-fluid" :src="imgs.url" alt="" style="height: 84px;width: 99px"></div>
+                                <div class="swiper-slide"><img class="img-fluid" :src="imgs.url" alt=""
+                                                               style="height: 84px;width: 99px"></div>
                             </template>
                         </div>
                     </div>
@@ -155,10 +156,12 @@
                             <h1>{{detailInfo.goodsName||''}}</h1>
                         </div>
                         <div class="price-box">
-                            <span class="txt">服务售价:</span> <span class="price"><small v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">¥</small>
+                            <span class="txt">服务售价:</span> <span class="price"><small
+                                v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">¥</small>
                             <small v-else></small>
 
-                            <span v-if="detailInfo.choosePriceTag ==3" v-html="cutout(detailInfo.priceWord)" style="display: table-cell">
+                            <span v-if="detailInfo.choosePriceTag ==3" v-html="cutout(detailInfo.priceWord)"
+                                  style="display: table-cell">
                                            {{detailInfo.priceWord}}
                                         </span>
                                         <span v-if="detailInfo.choosePriceTa!='3'">
@@ -309,7 +312,7 @@
                                aria-controls="service-video" aria-selected="false">服务视频</a>
                         </li>
 
-                        <li class="nav-item" role="presentation"  v-if="detailInfo.videoList.length">
+                        <li class="nav-item" role="presentation" v-if="detailInfo.videoList.length">
                             <a class="nav-link " id="service-Sample-tab" data-bs-toggle="tab"
                                data-bs-target="#service-Sample" type="button" role="tab"
                                aria-controls="service-Sample" aria-selected="false">服务案列</a>
@@ -329,14 +332,44 @@
                                     <div class="col" v-for="iv in detailInfo.valueList" :key="iv.specId"
                                          v-text="(iv.specName||'') + '：' + (iv.specValue||'') + (iv.specNameSuffix||'')">
                                         <span></span></div>
-<!--                                                                        <div class="col"><span>服务区域：</span>中国</div>-->
+                                    <!--                                                                        <div class="col"><span>服务区域：</span>中国</div>-->
                                     <div class="col" v-for="iv in detailInfo.customValueList" :key="iv.customSpecId"
                                          v-text="(iv.customSpecName||'') + '：' + (iv.customSpecValue||'')">
                                     </div>
                                 </div>
                             </div>
-                            <div class="detailed" v-html="detailInfo.goodsIntroduce||''">
+                            <div style="margin-left: 15px">
+                                <table>
+                                    <th>
+                                        <!--                                        <tr style="border-bottom: 1px solid black">-->
+                                        <tr>
+                                            <td>
+                                                <div class="col"
+                                                     style="margin: 15px; font-size: 16px; color: rgba(101,101,102,0.85) ">
+                                                    服务案例：
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="detailed" v-html="detailInfo.goodsSample||''">
+                                                </div>
+                                            </td>
+                                        </tr>
 
+                                        <tr>
+                                            <td>
+                                                <div class="col"
+                                                     style="margin: 15px; font-size: 16px; color: rgba(101,101,102,0.85) ">
+                                                    服务简介：
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="detailed" v-html="detailInfo.goodsIntroduce||''">
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </th>
+                                </table>
                             </div>
                         </div>
 
@@ -370,101 +403,105 @@
                             </div>
                         </div>
 
-                    <div class="tab-pane fade" id="cumulative-comments" role="tabpanel"
-                         aria-labelledby="cumulative-comments-tab">
-                        <div class="block block-assess">
-                            <div class="content">
-                                <div class="overall-rating row">
-                                    <div class="col-auto">
-                                        <div class="total-review">
-                                            <p class="sub-total">综合得分</p>
-                                            <p class="num-summary">{{evaluateInfo.avgEvaluateResult}}</p>
-                                            <div class="rating-summary">
-                                                <div class="starlist clear">
-                                                    <i class="iconfont icon-star_full" v-for="i in avgEvaluateResult"
-                                                       v-for="i"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="review-progress">
-                                            <ul class="list-unstyled">
-                                                <li>服务态度： <span class="rating">{{statisticsInfo.evaluateResult}}</span>分
-                                                    <span
-                                                            class="text-muted"></span></li>
-                                                <li>工作速度： <span
-                                                        class="rating">{{statisticsInfo.shopEvaluateSpeed}}</span>分
-                                                    <span
-                                                            class="text-muted"></span></li>
-                                                <li>完成质量： <span
-                                                        class="rating">{{statisticsInfo.shopEvaluateQuality}}</span>分
-                                                    <span
-                                                            class="text-muted"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-toolbar d-flex justify-content-between">
-                                    <div class="all-review-filter">
-                                        <a class="active" href="#">全部评价 ({{sumEv}})</a>
-
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                               id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            有内容的评价
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="review-list">
-                                    <div class="review-item row" v-if="evaluateList.length"
-                                         v-for="evaluate in evaluateList">
+                        <div class="tab-pane fade" id="cumulative-comments" role="tabpanel"
+                             aria-labelledby="cumulative-comments-tab">
+                            <div class="block block-assess">
+                                <div class="content">
+                                    <div class="overall-rating row">
                                         <div class="col-auto">
-                                            <div class="avatar">
-                                                <img :src="evaluate.userLogo || '/common/images/defaultImg/default.gif'"
-                                                     alt="">
-                                                <div class="name">{{evaluate.userName}}</div>
-                                                <div class="add-time">{{evaluate.fristEvaluateDate}}</div>
+                                            <div class="total-review">
+                                                <p class="sub-total">综合得分</p>
+                                                <p class="num-summary">{{evaluateInfo.avgEvaluateResult}}</p>
+                                                <div class="rating-summary">
+                                                    <div class="starlist clear">
+                                                        <i class="iconfont icon-star_full"
+                                                           v-for="i in avgEvaluateResult"
+                                                           v-for="i"></i>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <div class="comment-title">
-                                                <span v-text="evaluate.oname"></span>
-                                            </div>
-                                            <div class="comment-body">
-                                                {{evaluate.comment}}
-                                                <div id="fixed-size" class="comment-pic d-flex">
-                                                    <a v-for="img in evaluate.fileList">
-                                                        <img :src="img.url" class="img-thumbnail">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div v-if="evaluate.replyList">
-                                                <div v-for="reply in evaluate.replyList" :key="reply.id" class="reply">
-                                                    <span>[卖家回复]</span> <span v-text="reply.reply"></span></div>
-                                            </div>
-                                            <div v-if="evaluate.addContentList"
-                                                 v-for="addContent in evaluate.addContentList"
-                                                 :key="addContent.evaluateContentId">
-                                                <div class="pltext">
-                                                    <span class="zjpl">追加评价：</span><span
-                                                        v-text="addContent.comment"></span></div>
-                                                <ul v-if="addContent.fileList" class="plimglist clear" v-viewer>
-                                                    <li v-for="img in addContent.fileList" :key="img.id" class="everimg"
-                                                        :style="'background-image: url('+img.url+')'">
-                                                        <img :src="img.url" class="opacityZero">
-                                                    </li>
+                                            <div class="review-progress">
+                                                <ul class="list-unstyled">
+                                                    <li>服务态度： <span
+                                                            class="rating">{{statisticsInfo.evaluateResult}}</span>分
+                                                        <span
+                                                                class="text-muted"></span></li>
+                                                    <li>工作速度： <span
+                                                            class="rating">{{statisticsInfo.shopEvaluateSpeed}}</span>分
+                                                        <span
+                                                                class="text-muted"></span></li>
+                                                    <li>完成质量： <span
+                                                            class="rating">{{statisticsInfo.shopEvaluateQuality}}</span>分
+                                                        <span
+                                                                class="text-muted"></span></li>
                                                 </ul>
-                                                <div v-for="reply in addContent.replyList" :key="reply.id"
-                                                     class="recall">
-                                                    <span>[卖家回复]</span> <span v-text="reply.reply"></span></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="review-toolbar d-flex justify-content-between">
+                                        <div class="all-review-filter">
+                                            <a class="active" href="#">全部评价 ({{sumEv}})</a>
+
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                   id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                有内容的评价
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="review-list">
+                                        <div class="review-item row" v-if="evaluateList.length"
+                                             v-for="evaluate in evaluateList">
+                                            <div class="col-auto">
+                                                <div class="avatar">
+                                                    <img :src="evaluate.userLogo || '/common/images/defaultImg/default.gif'"
+                                                         alt="">
+                                                    <div class="name">{{evaluate.userName}}</div>
+                                                    <div class="add-time">{{evaluate.fristEvaluateDate}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="comment-title">
+                                                    <span v-text="evaluate.oname"></span>
+                                                </div>
+                                                <div class="comment-body">
+                                                    {{evaluate.comment}}
+                                                    <div id="fixed-size" class="comment-pic d-flex">
+                                                        <a v-for="img in evaluate.fileList">
+                                                            <img :src="img.url" class="img-thumbnail">
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div v-if="evaluate.replyList">
+                                                    <div v-for="reply in evaluate.replyList" :key="reply.id"
+                                                         class="reply">
+                                                        <span>[卖家回复]</span> <span v-text="reply.reply"></span></div>
+                                                </div>
+                                                <div v-if="evaluate.addContentList"
+                                                     v-for="addContent in evaluate.addContentList"
+                                                     :key="addContent.evaluateContentId">
+                                                    <div class="pltext">
+                                                        <span class="zjpl">追加评价：</span><span
+                                                            v-text="addContent.comment"></span></div>
+                                                    <ul v-if="addContent.fileList" class="plimglist clear" v-viewer>
+                                                        <li v-for="img in addContent.fileList" :key="img.id"
+                                                            class="everimg"
+                                                            :style="'background-image: url('+img.url+')'">
+                                                            <img :src="img.url" class="opacityZero">
+                                                        </li>
+                                                    </ul>
+                                                    <div v-for="reply in addContent.replyList" :key="reply.id"
+                                                         class="recall">
+                                                        <span>[卖家回复]</span> <span v-text="reply.reply"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
