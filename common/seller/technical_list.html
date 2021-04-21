@@ -185,7 +185,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="w135 price"><span v-show="showed">¥{{goods.negotiableFlag | formatPrice(goods.price, goods.minPrice, goods.maxPrice)}}</span>
+                                                <div class="w135 price"><span v-html="cutout(detailInfo.price)">¥{{goods.negotiableFlag | formatPrice(goods.price, goods.minPrice, goods.maxPrice)}}</span>
                                                 </div>
                                             </td>
                                             <td>

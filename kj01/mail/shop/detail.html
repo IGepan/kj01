@@ -155,8 +155,8 @@
                             <h1>{{detailInfo.goodsName||''}}</h1>
                         </div>
                         <div class="price-box">
-                            <span class="txt">服务售价:</span> <span class="price"><small></small>
-                            <span v-if="detailInfo.choosePriceTag ==3" v-html="cutout(detailInfo.priceWord)">
+                            <span class="txt">服务售价:</span> <span class="price"><small>¥</small>
+                            <span v-if="detailInfo.choosePriceTag ==3" v-html="cutout(detailInfo.priceWord)" style="display: table-cell">
                                            {{detailInfo.priceWord}}
                                         </span>
                                         <span v-if="detailInfo.choosePriceTa!='3'">
