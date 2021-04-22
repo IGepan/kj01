@@ -75,7 +75,7 @@
         <div class="swiper-container" id="home-slider">
             <div class="swiper-wrapper">
                 <template v-for="idx_banner in indexBanner">
-                    <div class="swiper-slide"><img :src="idx_banner.path" @click="toLink(idx_banner.link)"></div>
+                    <div class="swiper-slide"><img :src="idx_banner.path" @click="toLink(idx_banner.link|'')"></div>
                     <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                     <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                     <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
@@ -524,7 +524,7 @@
                 </div>
                 <div class="tab-content">
                     <div class="left-banner">
-                        <h4>科技咨询</h4>
+                        <h4>{{knowledgeType.name}}</h4>
                         <div class="text">
                             {{knowledgeType.sortExplain|''}}
                         </div>
