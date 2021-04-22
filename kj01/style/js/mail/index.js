@@ -8,7 +8,7 @@ require(['/common/js/require.config.js'], function () {
                     saasId: '',
                     mailSite: {},
                     mailServiceTypeList: [],
-                    knowledgeType:[],
+                    knowledgeTypeList:[],
                     incubationTypeList: [],
                     designTypeList: [],
                     checkTypeList: [],
@@ -109,7 +109,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailGoods('technologyTypeList');
                     //科技咨询
                     this.goodFormData.type = this.mailServiceTypeList[6].id;;
-                    this.getMailGoods('technologyTypeList');
+                    this.getMailGoods('knowledgeTypeList');
                     // cookie用户信息
                     (this.userInfo = JSON.parse(
                         this.$utils.getCookie("USER_INFO")
