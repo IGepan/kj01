@@ -66,8 +66,7 @@ require(['/common/js/require.config.js'], function () {
                         }
                     },
                 },
-                mounted: function () {
-                },
+
                 components: {
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
@@ -88,29 +87,29 @@ require(['/common/js/require.config.js'], function () {
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
                     this.goodFormData.pageSize = 10;
-                    this.getMailGoods('chooseGoods')
+                    this.getMailGoods('chooseGoods');
                     //创业孵化
-                    this.goodFormData = {}
+                    this.goodFormData = {};
                     this.goodFormData.pageSize = 8;
-                    this.goodFormData.type = this.mailServiceTypeList[0].id;
-                    this.getMailGoods('incubationTypeList')
+                    this.goodFormData.type = '371977891599065088';
+                    this.getMailGoods('incubationTypeList');
                     //研发设计
-                    this.goodFormData.type = this.mailServiceTypeList[1].id;
-                    this.getMailGoods('designTypeList')
+                    this.goodFormData.type ='371979747670859776';
+                    this.getMailGoods('designTypeList');
                     //技术转移
-                    this.goodFormData.type = this.mailServiceTypeList[2].id;
-                    this.getMailGoods('transferTypeList')
+                    this.goodFormData.type = '371979827203252224';
+                    this.getMailGoods('transferTypeList');
                     //检验检测
-                    this.goodFormData.type = this.mailServiceTypeList[3].id;
-                    this.getMailGoods('checkTypeList')
+                    this.goodFormData.type = '371979918089625600';
+                    this.getMailGoods('checkTypeList');
                     //知识产权
-                    this.goodFormData.type = this.mailServiceTypeList[4].id;
-                    this.getMailGoods('propertyTypeList')
+                    this.goodFormData.type = '371980018614509568';
+                    this.getMailGoods('propertyTypeList');
                     //科技咨询
-                    this.goodFormData.type = this.mailServiceTypeList[5].id;
+                    this.goodFormData.type = '371980699979194368';
                     this.getMailGoods('technologyTypeList');
                     //科技咨询
-                    this.goodFormData.type = this.mailServiceTypeList[6].id;
+                    this.goodFormData.type = '371981659690475520';
                     this.getMailGoods('knowledgeTypeList');
                     // cookie用户信息
                     (this.userInfo = JSON.parse(
@@ -284,6 +283,7 @@ require(['/common/js/require.config.js'], function () {
                      * @param index
                      */
                     checkMore: function (index) {
+
                         location.href='/mail/sub1.html?type='+this.mailServiceTypeList[index].id
                     },
                     /**
