@@ -284,6 +284,7 @@ require(['/common/js/require.config.js'], function () {
                      * @param index
                      */
                     checkMore: function (index) {
+
                         location.href='/mail/sub1.html?type='+this.mailServiceTypeList[index].id
                     },
                     /**
