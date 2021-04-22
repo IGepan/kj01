@@ -1108,7 +1108,8 @@ require(['/common/js/require.config.js'], function () {
                         this.formData.priceWord = '';
                     } if (this.formData.choosePriceTag === '3') {
                         this.formData.price = '';
-                        this.formData.priceWord = '';
+                        this.formData.minPrice = '';
+                        this.formData.maxPrice = '';
                         this.formData.negotiableFlag = '';
                     }
                 },
