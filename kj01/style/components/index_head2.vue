@@ -10,10 +10,16 @@
        <div>科技创新</div>
        <div>综合服务平台</div>
       </div>
-      <div class="header-text" v-else-if="navIndex===6">
-       <div style="font-size: 35px;font-weight: bold;">平台动态</div>
-      </div>
-       <div class="header-text" v-if="navIndex===7">
+<!--      <div class="header-text" v-else-if="navIndex===6">-->
+<!--       <div style="font-size: 35px;font-weight: bold;">平台动态</div>-->
+<!--      </div>-->
+<!--       <div class="header-text" v-if="navIndex===7">-->
+<!--         <div style="font-size: 35px;font-weight: bold;">关于我们</div>-->
+<!--       </div>-->
+       <div class="header-text" v-else-if="navIndex===7">
+         <div style="font-size: 35px;font-weight: bold;">平台动态</div>
+       </div>
+       <div class="header-text" v-if="navIndex===8">
          <div style="font-size: 35px;font-weight: bold;">关于我们</div>
        </div>
      </div>
@@ -59,18 +65,18 @@ module.exports = {
            label: '技术市场',
          url: '/market/index.html'
         },
-        // {
-        //   label: '科技服务',
-        //   url: '/service'
-        // },
-        // {
-        //   label: '创新资源',
-        //   url: '/resources'
-        // },
         {
-          label: '易智商城',
-          url: '/mail/index.html'
+          label: '科技服务',
+          url: '/service'
         },
+        {
+          label: '创新资源',
+          url: '/resources'
+        },
+        // {
+        //   label: '易智商城',
+        //   url: '/mail/index.html'
+        // },
         {
           label: '全景数据',
           url: 'http://datamap.kj01.cn/'

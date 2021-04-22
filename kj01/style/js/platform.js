@@ -4,7 +4,8 @@ require(['/common/js/require.config.js'], function () {
             new Vue({
                 el: '#index_box',
                 data: {
-                    sIndex: 6,
+                    // sIndex: 8,
+                    sIndex: 7,
                     newsList:[],
                     detailActive:0,
                     details:'',
