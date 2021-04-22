@@ -1,0 +1,38 @@
+
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+  <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="box" id='index_box' v-cloak>
+  <ly-toper ref="lytoper" top-class="white"></ly-toper>
+  <index-head :nav-index="8"></index-head>
+  <div class="content">
+    <div class="mdiv">
+      <div class="platform-box" >
+        <div class="detail-box">
+          <div class="detail-title">{{newsList[0].title}}</div>
+          <div class="sub-title">
+<!--            <span>来源：{{details.origin}}</span>-->
+          </div>
+          <div class="detail-content" v-html="newsList[0].txt"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <web-footer></web-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="./style/js/about2.js"></script>
+</body>
+
+</html>
