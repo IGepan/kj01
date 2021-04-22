@@ -280,13 +280,6 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     /**
-                     * 查看更多
-                     * @param index
-                     */
-                    checkMore: function (index) {
-                            location.href='/mail/sub1.html?type='+this.mailServiceTypeList[index].id
-                    },
-                    /**
                      * 滑块验证成功
                      */
                     onSuccess: function (captchaData) {
