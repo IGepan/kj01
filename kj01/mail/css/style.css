@@ -163,7 +163,7 @@ a {
     .main-menu .navbar-nav .brand .dropdown-menu-main {
       margin-top: 0;
       border-radius: 0;
-      height: 26.25rem;
+      height: 32rem;
       padding: 0;
       width: 14.375rem;
       position: absolute;
@@ -372,7 +372,7 @@ a {
 
 #slideshow {
   padding-left: 15.625rem;
-  height: 26.25rem; }
+  height: 32rem; }
   #slideshow .swiper-slide {
     text-align: center;
     font-size: 18px;

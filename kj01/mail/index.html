@@ -159,9 +159,8 @@
                                                 <p><i class="iconfont icon-tag"></i> {{good.typeName}}</p>
                                                 <p><i class="iconfont icon-city"></i> {{good.shopName}}</p>
                                             </div>
-                                            <div class="quoted-price"><span>￥</span>{{good.negotiableFlag |
-                                                formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span
-                                                        v-if="good.negotiableFlag==='0'">万</span></div>
+                                            <div class="quoted-price"><span  v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">￥</span><span v-else></span>{{good.choosePriceTag |
+                                                formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span  v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">万</span><span v-else></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -212,13 +211,10 @@
                                         <p><i class="iconfont icon-tag"></i> {{good_incubation.typeName}}</p>
                                         <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>
                                     </div>
-                                    <div v-if="good_incubation.choosePriceTag=='3'">
-                                        <span>价格请查看详情</span>
-                                    </div>
-                                    <div class="quoted-price" v-else><span>￥</span>{{good_incubation.negotiableFlag |
+
+                                    <div class="quoted-price"><span  v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">￥</span><span v-else></span>{{good_incubation.choosePriceTag |
                                         formatPrice2(good_incubation.price, good_incubation.minPrice,
-                                        good_incubation.maxPrice)}}<span
-                                                v-if="good_incubation.negotiableFlag==='0'">万</span></div>
+                                        good_incubation.maxPrice)}}<span  v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">万</span><span v-else></span></div>
                                 </div>
                             </div>
                         </div>
@@ -266,13 +262,10 @@
                                             <p><i class="iconfont icon-tag"></i> {{good_design.typeName}}</p>
                                             <p><i class="iconfont icon-city"></i> {{good_design.shopName}}</p>
                                         </div>
-                                        <div v-if="good_design.choosePriceTag=='3'">
-                                            <span>价格请查看详情</span>
-                                        </div>
-                                        <div class="quoted-price" v-else><span>￥</span>{{good_design.negotiableFlag |
+
+                                        <div class="quoted-price"><span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">￥</span><span v-else></span>{{good_design.choosePriceTag |
                                             formatPrice2(good_design.price, good_design.minPrice,
-                                            good_design.maxPrice)}}<span
-                                                    v-if="good_design.negotiableFlag==='0'">万</span></div>
+                                            good_design.maxPrice)}}<span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">万</span><span v-else></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -326,13 +319,10 @@
                                         <p><i class="iconfont icon-tag"></i> {{good_checkType.typeName}}</p>
                                         <p><i class="iconfont icon-city"></i> {{good_checkType.shopName}}</p>
                                     </div>
-                                    <div v-if="good_checkType.choosePriceTag=='3'">
-                                        <span>价格请查看详情</span>
-                                    </div>
-                                    <div class="quoted-price" v-else><span>￥</span>{{good_checkType.negotiableFlag |
+
+                                    <div class="quoted-price"><span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_checkType.choosePriceTag |
                                         formatPrice2(good_checkType.price, good_checkType.minPrice,
-                                        good_checkType.maxPrice)}}<span
-                                                v-if="good_checkType.negotiableFlag==='0'">万</span></div>
+                                        good_checkType.maxPrice)}}<span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span>万<span v-else></span></div>
                                 </div>
                             </div>
                         </div>
@@ -379,13 +369,10 @@
                                             <p><i class="iconfont icon-tag"></i> {{good_propertyType.typeName}}</p>
                                             <p><i class="iconfont icon-city"></i> {{good_propertyType.shopName}}</p>
                                         </div>
-                                        <div v-if="good_propertyType.choosePriceTag=='3'">
-                                            <span>价格请查看详情</span>
-                                        </div>
-                                        <div class="quoted-price" v-else><span>￥</span>{{good_propertyType.negotiableFlag |
+
+                                        <div class="quoted-price"><span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_propertyType.choosePriceTag |
                                             formatPrice2(good_propertyType.price, good_propertyType.minPrice,
-                                            good_propertyType.maxPrice)}}<span
-                                                    v-if="good_propertyType.negotiableFlag==='0'">万</span></div>
+                                            good_propertyType.maxPrice)}}<span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">万</span><span v-else></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -435,14 +422,12 @@
                                         <p><i class="iconfont icon-tag"></i> {{good_technologyType.typeName}}</p>
                                         <p><i class="iconfont icon-city"></i> {{good_technologyType.shopName}}</p>
                                     </div>
-                                    <div v-if="good_technologyType.choosePriceTag=='3'">
-                                        <span>价格请查看详情</span>
-                                    </div>
-                                    <div class="quoted-price" v-else>
-                                        <span>￥</span>
-                                        {{good_technologyType.negotiableFlag | formatPrice2(good_technologyType.price,
+
+                                    <div class="quoted-price">
+                                        <span  v-if="good_technologyType.choosePriceTag==='0' || good_technologyType.choosePriceTag==='1'">￥</span><span v-else></span>
+                                        {{good_technologyType.choosePriceTag | formatPrice2(good_technologyType.price,
                                         good_technologyType.minPrice, good_technologyType.maxPrice)}}
-                                        <span v-if="good_technologyType.negotiableFlag==='0'">万</span></div>
+                                        <span  v-if="good_technologyType.choosePriceTag==='0' || good_technologyType.choosePriceTag==='1'">万</span><span v-else></span></div>
                                 </div>
                             </div>
                         </div>
@@ -490,14 +475,11 @@
                                             <p><i class="iconfont icon-tag"></i> {{good_transferType.typeName}}</p>
                                             <p><i class="iconfont icon-city"></i> {{good_transferType.shopName}}</p>
                                         </div>
-                                        <div v-if="good_transferType.choosePriceTag=='3'">
-                                            <span>价格请查看详情</span>
-                                        </div>
-                                        <div class="quoted-price" v-else>
-                                            <span>￥</span>{{good_transferType.negotiableFlag |
+
+                                        <div class="quoted-price">
+                                            <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_transferType.choosePriceTag |
                                             formatPrice2(good_transferType.price, good_transferType.minPrice,
-                                            good_transferType.maxPrice)}}<span
-                                                    v-if="good_transferType.negotiableFlag==='0'">万</span></div>
+                                            good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span></div>
                                     </div>
                                 </div>
                             </div>
