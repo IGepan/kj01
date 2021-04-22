@@ -129,27 +129,27 @@ require(['/common/js/require.config.js'], function () {
                                 vm.mailServiceTypeList = res.result
                                 //创业孵化
                                 vm.incubationType = res.result.filter(function (s) {
-                                    return s.id == '341963394375553024';
+                                    return s.id == res.result[0].id;
                                 })[0];
                                 //研发设计
                                 vm.designType = res.result.filter(function (s) {
-                                    return s.id == '342997980492664832';
+                                    return s.id == res.result[1].id;
                                 })[0];
                                 //检验检测
                                 vm.checkType = res.result.filter(function (s) {
-                                    return s.id == '351006150943117312';
+                                    return s.id == res.result[2].id;
                                 })[0];
                                 //知识产权
                                 vm.propertyType = res.result.filter(function (s) {
-                                    return s.id == '351006229049446400';
+                                    return s.id == res.result[3].id;
                                 })[0];
                                 //科技咨询
                                 vm.technologyType = res.result.filter(function (s) {
-                                    return s.id == '351006275161624576';
+                                    return s.id == res.result[4].id;
                                 })[0];
                                 //技术转移
                                 vm.transferType = res.result.filter(function (s) {
-                                    return s.id == '351006313468203008';
+                                    return s.id == res.result[5].id;
                                 })[0];
                             }
                         })
