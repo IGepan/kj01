@@ -149,7 +149,7 @@
                         <template v-for="(good,index) in chooseGoods">
                             <div class="swiper-slide">
                                 <div class="card card-item">
-                                    <img :src="good.goodsImg.url" class="" alt="...">
+                                    <img :src="good.goodsImg.url" class="" alt="..." >
                                     <div class="card-body">
                                         <h5 class="card-title"><a
                                                 :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode">{{good.goodsName}}</a>
@@ -201,7 +201,7 @@
 
                     <div class="col" v-for="good_incubation in incubationTypeList">
                         <div class="card card-item">
-                            <img :src="good_incubation.goodsImg.url" class="" alt="...">
+                            <img :src="good_incubation.goodsImg.url" class="" alt="..." v-if="good_incubation.goodsImg">
                             <div class="card-body">
                                 <h5 class="card-title"><a
                                         :href="'shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">{{good_incubation.goodsName}}</a>
@@ -253,7 +253,7 @@
 
                         <div class="col" v-for="good_design in designTypeList">
                             <div class="card card-item">
-                                <img :src="good_design.goodsImg.url" class="" alt="...">
+                                <img :src="good_design.goodsImg.url" class="" alt="..." v-if="good_design.goodsImg">
                                 <div class="card-body">
                                     <h5 class="card-title"><a
                                             :href="'shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">{{good_design.goodsName}}</a>
@@ -310,7 +310,7 @@
 
                     <div class="col" v-for="good_checkType in checkTypeList">
                         <div class="card card-item">
-                            <img :src="good_checkType.goodsImg.url" class="" alt="...">
+                            <img :src="good_checkType.goodsImg.url" class="" alt="..." v-if="good_checkType.goodsImg">
                             <div class="card-body">
                                 <h5 class="card-title"><a
                                         :href="'shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">{{good_checkType.goodsName}}</a>
@@ -360,7 +360,7 @@
 
                         <div class="col" v-for="good_propertyType in propertyTypeList">
                             <div class="card card-item">
-                                <img :src="good_propertyType.goodsImg.url" class="" alt="...">
+                                <img :src="good_propertyType.goodsImg.url" class="" alt="..." v-if="good_propertyType.goodsImg">
                                 <div class="card-body">
                                     <h5 class="card-title"><a
                                             :href="'shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">{{good_propertyType.goodsName}}</a>
@@ -413,7 +413,7 @@
 
                     <div class="col" v-for="good_technologyType in technologyTypeList">
                         <div class="card card-item">
-                            <img :src="good_technologyType.goodsImg.url" class="" alt="...">
+                            <img :src="good_technologyType.goodsImg.url" class="" alt="..." v-if="good_technologyType.goodsImg">
                             <div class="card-body">
                                 <h5 class="card-title"><a
                                         :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">{{good_technologyType.goodsName}}</a>
@@ -466,7 +466,7 @@
 
                         <div class="col" v-for="good_transferType in transferTypeList">
                             <div class="card card-item">
-                                <img :src="good_transferType.goodsImg.url" class="" alt="...">
+                                <img :src="good_transferType.goodsImg.url" class="" alt="..." v-if="good_transferType.goodsImg">
                                 <div class="card-body">
                                     <h5 class="card-title"><a
                                             :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">{{good_transferType.goodsName}}</a>
@@ -518,7 +518,7 @@
 
                     <div class="col" v-for="good_knowledgeType in knowledgeTypeList">
                         <div class="card card-item">
-                            <img :src="good_transferType.goodsImg.url|''" class="" alt="...">
+                            <img :src="good_knowledgeType.goodsImg.url|''" class="" alt="..." v-if="good_knowledgeType.goodsImg">
                             <div class="card-body">
                                 <h5 class="card-title"><a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">{{good_technologyType.goodsName}}</a></h5>
                                 <div class="addition">
