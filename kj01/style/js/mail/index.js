@@ -339,11 +339,11 @@ require(['/common/js/require.config.js'], function () {
                     goCart: function () {
                         location.href = '/common/servicetrade/shopping_cart.html'
                     },
-                    toLink: function (url) {
-                        if (url) {
-                            location.href = url
-                        }
-                    },
+                    // toLink: function (url) {
+                    //     if (url) {
+                    //         location.href = url
+                    //     }
+                    // },
                     declaration: function () {
 
                     },
