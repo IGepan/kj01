@@ -6,9 +6,8 @@
           <a href="http://kjj.cq.gov.cn" target="_blank">重庆市科学技术局</a>
           <a href="http://www.liangjiang.gov.cn" target="_blank">重庆市两江新区管委会</a>
           <a href="http://dsjj.cq.gov.cn" target="_blank">重庆市大数据应用发展管理局</a>
-          <a href="http://dsjj.cq.gov.cn" target="_blank">重庆市大数据应用发展管理局</a>
           <a href="http://www.cqast.cn" target="_blank">重庆市科学技术协会</a>
-          <a href="http://www.cast.org.cn" target="_blank">重庆市科学技术研究院</a>
+          <a href="https://www.cqast.org.cn/Index.shtml" target="_blank">重庆市科学技术研究院</a>
           <a href="http://www.cqhte.com/index.php" target="_blank">重庆市高新技术企业协会</a>
           <a href="http://www.cqsczt.com/scsite/index/index.html" target="_blank">重庆孵化器协会</a>
           <a href="http://www.cqhitech.com/" target="_blank">重庆创新方法网</a>
@@ -45,10 +44,9 @@
     <div class="footer">
       <div class="link">
         <a href="#">关于易智网</a>
-        <a href="#">免责声明</a>
-        <a href="#">隐私政策</a>
-        <a href="#">平台协议</a>
-        <a href="#">联系客服</a>
+        <a href="about3.html">隐私政策</a>
+        <a href="about4.html">平台协议</a>
+
       </div>
       <div class="main_copyright"> Copyright © 2019 易智网 版权所有 <a
           href="https://beian.miit.gov.cn/"
