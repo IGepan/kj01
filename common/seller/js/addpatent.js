@@ -1102,11 +1102,14 @@ require(['/common/js/require.config.js'], function () {
                     }
                     if (this.formData.choosePriceTag === '2') {
                         this.formData.negotiableFlag = '1';
-                        this.faceChange();
+                        this.formData.price = '';
+                        this.formData.minPrice = '';
+                        this.formData.maxPrice = '';
                         this.formData.priceWord = '';
-                    } else {
+                    } if (this.formData.choosePriceTag === '3') {
+                        this.formData.price = '';
+                        this.formData.priceWord = '';
                         this.formData.negotiableFlag = '';
-                        this.faceChange();
                     }
                 },
                 handleOpenProtocol: function () {
