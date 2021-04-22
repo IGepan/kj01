@@ -509,49 +509,50 @@
         </div>
     </div>
     <!--评估评价-->
-    <!--    <div class="container">-->
-    <!--        <div class="main-block block-tabs technology-tabs">-->
-    <!--            <div class="main-title">-->
-    <!--                <span>{{technologyType.name}}</span>-->
-    <!--            </div>-->
+        <div class="container">
+            <div class="main-block block-tabs technology-tabs">
+                <div class="main-title">
+                    <span>{{knowledgeType.name}}</span>
+                </div>
 
-    <!--            <div class="sub-title">-->
-    <!--                <ul class="nav justify-content-center">-->
-    <!--                    <li class="nav-item" v-for="technologyType in technologyType.children">-->
-    <!--                        <a class="nav-link" href="#">{{technologyType.name}}</a>-->
-    <!--                    </li>-->
-    <!--                </ul>-->
-    <!--            </div>-->
-    <!--            <div class="tab-content">-->
-    <!--                <div class="left-banner">-->
-    <!--                    <h4>科技咨询</h4>-->
-    <!--                    <div class="text">-->
-    <!--                        独享视角,给你专属价值-->
-    <!--                    </div>-->
-    <!--                    <a class="btn btn-outline-light" href="sub1.html?type=351006275161624576">查看更多 <i class="iconfont icon-arrow-right"></i> </a>-->
-    <!--                </div>-->
-    <!--                <div class="row row-cols-4">-->
+                <div class="sub-title">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item" v-for="technologyType in technologyType.children">
+                            <a class="nav-link" href="#">{{knowledgeType.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="left-banner">
+                        <h4>科技咨询</h4>
+                        <div class="text">
+                            {{knowledgeType.sortExplain|''}}
+                        </div>
+                        <a class="btn btn-outline-light" href="sub1.html?type=351006275161624576">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                    </div>
+                    <div class="row row-cols-4">
 
-    <!--                    <div class="col" v-for="good_technologyType in technologyTypeList">-->
-    <!--                        <div class="card card-item">-->
-    <!--                            <img :src="good_technologyType.goodsImg.url" class="" alt="...">-->
-    <!--                            <div class="card-body">-->
-    <!--                                <h5 class="card-title"><a :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">{{good_technologyType.goodsName}}</a></h5>-->
-    <!--                                <div class="addition">-->
-    <!--                                    <div class="short-text">-->
-    <!--                                        <p><i class="iconfont icon-tag"></i>  {{good_technologyType.typeName}}</p>-->
-    <!--                                        <p><i class="iconfont icon-city"></i> {{good_technologyType.shopName}}</p>-->
-    <!--                                    </div>-->
-    <!--                                    <div class="quoted-price"><span>￥</span>{{good_technologyType.negotiableFlag | formatPrice2(good_technologyType.price, good_technologyType.minPrice, good_technologyType.maxPrice)}}<span v-if="good_technologyType.negotiableFlag==='0'">万</span></div>-->
-    <!--                                </div>-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
+                        <div class="col" v-for="good_knowledgeType in knowledgeType">
+                            <div class="card card-item">
+                                <img :src="good_knowledgeType.goodsImg.url" class="" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">{{good_technologyType.goodsName}}</a></h5>
+                                    <div class="addition">
+                                        <div class="short-text">
+                                            <p><i class="iconfont icon-tag"></i>  {{good_knowledgeType.typeName}}</p>
+                                            <p><i class="iconfont icon-city"></i> {{good_knowledgeType.shopName}}</p>
+                                        </div>
+                                        <div class="quoted-price"><span>￥</span>{{good_knowledgeType.negotiableFlag | formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice, good_knowledgeType.maxPrice)}}<span v-if="good_knowledgeType.negotiableFlag==='0'">万</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--TODO-->
     <!--科技金融-->
     <!--    <div class="full-block">-->
     <!--        <div class="container">-->

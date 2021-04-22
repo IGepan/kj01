@@ -8,6 +8,7 @@ require(['/common/js/require.config.js'], function () {
                     saasId: '',
                     mailSite: {},
                     mailServiceTypeList: [],
+                    knowledgeType:[],
                     incubationTypeList: [],
                     designTypeList: [],
                     checkTypeList: [],
@@ -125,29 +126,33 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.mailServiceType().then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.mailServiceTypeList = res.result
-                                //创业孵化
+                                //知识产权
                                 vm.incubationType = res.result.filter(function (s) {
                                     return s.id == res.result[0].id;
                                 })[0];
-                                //研发设计
+                                //法律服务
                                 vm.designType = res.result.filter(function (s) {
                                     return s.id == res.result[1].id;
                                 })[0];
-                                //检验检测
+                                //政策申报
                                 vm.checkType = res.result.filter(function (s) {
                                     return s.id == res.result[2].id;
                                 })[0];
-                                //知识产权
+                                //工商财税
                                 vm.propertyType = res.result.filter(function (s) {
                                     return s.id == res.result[3].id;
                                 })[0];
-                                //科技咨询
+                                //评估评价
                                 vm.technologyType = res.result.filter(function (s) {
                                     return s.id == res.result[4].id;
                                 })[0];
-                                //技术转移
+                                //检验检测
                                 vm.transferType = res.result.filter(function (s) {
                                     return s.id == res.result[5].id;
+                                })[0];
+                                //科技咨询
+                                vm.knowledgeType = res.result.filter(function (s) {
+                                    return s.id == res.result[6].id;
                                 })[0];
                             }
                         })
