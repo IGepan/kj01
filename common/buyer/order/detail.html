@@ -6,6 +6,10 @@
   <title>我的订单详情</title>
   <link href="/common/css/main.css" rel="stylesheet" type="text/css">
   <link href="/common/servicetrade/css/service.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/mail/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/mail/css/style.css">
+  <link rel="stylesheet" href="/mail/css/iconfont.css" >
+
   <style>
     .files {
       cursor: pointer;
@@ -14,7 +18,7 @@
   </style>
 </head>
 
-<body>
+<body class="order-process">
   <div class="box" id="index_box">
     <div class="header">
       <ly-toper></ly-toper>
@@ -49,7 +53,8 @@
       <div class="mdiv orderbox">
         <div class="infohead"><span v-text="'订单编号：' + detailInfo.id"></span><span
             v-text="'下单时间：' + detailInfo.orderCreateTime"></span><span v-text="'卖家：' + detailInfo.shopName">
-          </span></div>
+          </span>
+        </div>
         <div class="infotable">
           <div class="title">联系人信息</div>
           <div class="tbody">

@@ -129,7 +129,7 @@
                               @click.stop.prevent="handleOnLineConsult(i)">立即咨询</span></div>
                         </div>
                         <div class="list-down">
-                          <div class="price">￥{{item.budget}}</div>
+                          <div class="price">￥{{item.budget==null? '面议' : item.budget}}</div>
                           <ul class="unit">
                             <li>
                               <span class="iconfont icon-hangye1"></span>

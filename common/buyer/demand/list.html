@@ -21,8 +21,8 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><a
-            href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a><a
+            :href="$pathPrefix+'/common/buyer/demand/list.html?code=001.001.002.002'">需求</a>
           <span>我的需求</span>
         </div>
         <div class="centerbox">
@@ -92,7 +92,7 @@
               <!--订单列表-->
               <div class="orderbox">
                 <div class="control">
-                  <a class="addtec fs14" target="_blank" href="add.html?code=001.001.002.002"><i
+                  <a class="addtec fs14" target="_blank" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'"><i
                       class="iconfont icon-jia"></i>新增 </a>
                 </div>
                 <div class="orderheader">
@@ -114,7 +114,7 @@
                         <span class="message" v-text="'编号：' + order.id"></span>
                       </a>
                       <div class="type borders" v-text="order.demandTypeDisplay"></div>
-                      <div class="price borders" v-text="order.budget"></div>
+                      <div class="price borders" v-text="order.budget==null?'面议':order.budget"></div>
                       <div class="time borders" v-text="order.publicDate"></div>
                       <div class="time borders" v-text="order.endDate"></div>
                       <div class="type borders" v-text="order.statusDisplay"></div>

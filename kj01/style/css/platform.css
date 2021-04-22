@@ -11,6 +11,8 @@
 .right{
 
 }
+.see{display: block}
+.none{display: none}
 .tabs{border-bottom: 6px solid #01c8f2;}
 .title {
     background-color: #f6f6f6;

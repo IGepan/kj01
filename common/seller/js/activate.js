@@ -12,7 +12,7 @@ require(['/common/js/require.config.js'], function () {
       mixins: [seller],
       components: {
         'seller-left': httpVueLoader('/common/components/sellerLeft.vue'),
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/header.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
@@ -63,7 +63,7 @@ require(['/common/js/require.config.js'], function () {
 				 */
         goUserInfoClick: function () {
           if (this.activateinfo.userCompleteFlag == '0') {
-            window.location.href = '/common/usercenter/user_information.html?code=001.003.001.001'
+            window.location.href = this.$pathPrefix+'/common/usercenter/user_information.html?code=001.003.001.001'
           }
         },
 				/**
@@ -71,7 +71,7 @@ require(['/common/js/require.config.js'], function () {
 				 */
         goUserAuthClick: function () {
           if (this.activateinfo.certificationFlag !== '04') {
-            window.location.href = '../usercenter/user_auth.html?code=001.003.001.002'
+            window.location.href = this.$pathPrefix+'/common/usercenter/user_auth.html?code=001.003.001.002'
           }
         }
       },

@@ -1,0 +1,268 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>系列活动</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <style>
+    template {
+      display: none;
+    }
+    .contant {
+      padding-bottom: 20px;
+    }
+
+    .searchrow label {
+      width: 32%;
+    }
+
+    .searchrow.normal label span {
+      width: 20%;
+    }
+
+    .searchrow.normal label .ipt,
+    .searchrow.normal label .select {
+      width: 78%;
+    }
+
+    .itembody,
+    .orderheader {
+      width: 100%;
+      display: table;
+    }
+
+    .form-view {
+      padding: 20px;
+    }
+
+    .line2 {
+      width: 100%;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .operation .ops-more-menu a {
+      display: block;
+    }
+
+    .ops-more-menu {
+      display: none;
+      position: absolute;
+      background: #fff;
+      white-space: nowrap;
+      z-index: 1;
+      left: 50%;
+      margin-left: -40px;
+      width: 80px;
+      border: 1px solid #eee;
+    }
+
+    .active.ops-more-menu {
+      display: block;
+    }
+
+    .ops-more-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .operation a {
+      display: inline-block;
+      color: #1890FF;
+    }
+
+
+    .contentTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .contentTable thead th {
+      border-top: 2px solid #89b2ec;
+      height: 40px;
+      line-height: 38px;
+      background-color: #f4f4f4;
+      text-align: center;
+      color: #212121;
+      font-size: 14px;
+    }
+
+    .contentTable tbody td {
+      height: 40px;
+      line-height: 38px;
+      text-align: center;
+      color: #212121;
+      font-size: 14px;
+      border-bottom: 1px solid #d2d2d2;
+    }
+
+    .tipsbox {
+      border: 1px solid #BAE7FF;
+      background-color: #E6F7FF;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .moreText {
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      word-break: break-all;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+
+    .searchrow .icon-create-time {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: pointer;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 0;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQwIDc5LjE2MDQ1MSwgMjAxNy8wNS8wNi0wMTowODoyMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTg3MTM5QTY2MTc5MTFFOEEwQjJGRkYyQTBDRTM0QjkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkQwM0NGMDQ2MTdBMTFFOEEwQjJGRkYyQTBDRTM0QjkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1ODcxMzlBNDYxNzkxMUU4QTBCMkZGRjJBMENFMzRCOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1ODcxMzlBNTYxNzkxMUU4QTBCMkZGRjJBMENFMzRCOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoVzpMgAAAEPSURBVHjaYmxoaGCAATExyf8w9qtXzxkZsABcapiAEgwwDAKZmWkwDVgxLjVMQP5hIP4PxcjgPw6MTc1hkEE2DJQDGyYGKgHGadNm/qeGQVRzEQvMZRSa85/qLsIJgGlGCBqzDg8ePLTds2ffs9+/f/sTNMjf30dASkrKGci0h2IdUFg+ffqMYc+eve9///6TSVRgb968bfXdu/fWAJm5QKwHUvPkyROG7dt3vAUa4gLknyHKoH///qXt3r334e3bd8D8R48eAw3Z9RpqyDlSwuj+////7ffu3b//1avXilevXnv19+9fkFevkJOOHoIMu3Tp8mGgIQ6EDCEUa4+B2G5AUvYRLMUDqeAoQIABAMKseRwm2ZWgAAAAAElFTkSuQmCC);
+    }
+  </style>
+  <div class="box" id='index_box'>
+    <ly-toper></ly-toper>
+    <header-bar type="conference"></header-bar>
+    <div class="contant">
+      <div class="mdiv">
+        <buyer-left :http='http'></buyer-left>
+        <div class="crumbs">
+          <a :href="$pathPrefix+'/common/activity/?code=001.004.001.003'">活动中心</a>
+          <span>系列活动</span>
+        </div>
+        <div class="centerbox">
+          <div class="tabbox">
+            <!--所有订单-->
+            <div class="active">
+              <!--搜索框-->
+              <div class="searchform">
+                <div class="searchrow normal">
+                  <label><span>关键字</span>
+                    <div class="ipt"><input type="search" v-model="queryForm.keyWord" maxlength="100"
+                        placeholder="请输入标题或主办单位"></div>
+                  </label>
+                  <label style="margin: 0 2%;">
+                    <span>状态</span>
+                    <div class="select">
+                      <select v-model="queryForm.status" placeholder="请选择">
+                        <option v-for="(opt, index) in options.topic_status" :value="opt.value" :key="opt.id">{{opt.display}}</option>
+                      </select>
+                    </div>
+                  </label>
+                  <label>
+                    <span>审核结果</span>
+                    <div class="select">
+                      <select v-model="queryForm.auditSituation" placeholder="请选择">
+                        <template v-for="(opt, index) in options.audit_situation">
+                          <option :value="opt.value" :key="opt.id">{{opt.display}}</option>
+                        </template>
+                      </select>
+                    </div>
+                  </label>
+                  <label style="width: 60%;">
+                    <span>活动时间</span>
+                    <div class="ipt" style="width: 40%;">
+                      <input type="text" id="time" readonly placeholder="活动开始时间"><label for="time"
+                        class="icon-create-time"></label>
+                    </div>
+                    <div class="ipt" style="width: 40%;margin-left: 4%;">
+                      <input type="text" id="time1" readonly placeholder="活动结束时间"><label for="time1"
+                        class="icon-create-time"></label>
+                    </div>
+                  </label>
+                  <button type="button"
+                    style="background-color: #1890FF;border-color: #1890FF;border-radius: 5px; float: right;"
+                    @click="getOrderList">搜索</button>
+                </div>
+              </div>
+              <!--/搜索框-->
+              <!--订单列表-->
+              <div class="orderbox">
+                <div class="control">
+                  <a class="addtec fs14" @click="isActiveLock('')"><i class="iconfont icon-jia"></i>新增 </a>
+                </div>
+                <table class="contentTable">
+                  <colgroup>
+                    <col v-for="(col, index) in columnHead" :key="index" :width="col.displayWeight">
+                  </colgroup>
+                  <thead>
+                    <th v-for="(col, index) in columnHead" :key="index" :style="{width: col.displayWeight+ 'px'}"
+                      v-text="col.columnName"></th>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(order, oi) in orderList" :key="oi">
+                      <td>
+                        <div class="moreText" :title="order.title" v-text="order.title"></div>
+                      </td>
+                      <td v-text="order.dtlNum"></td>
+                      <td>
+                        <div :title="order.sponsor" v-html="order.sponsor"></div>
+                      </td>
+                      <td v-text="order.statusDisplay"></td>
+                      <td v-text="order.auditSituationDisplay"></td>
+                      <td v-html="(order.activeStartTime || '') + ' <BR> ' + (order.activeEndTime|| '')"></td>
+                      <td v-text="order.upperFlag ? '上架' : '下架' "></td>
+                      <td class="operation">
+                        <a target="_blank" :href="'add.html?code=001.004.001.002&type=view&id=' + order.id"
+                          style="margin-right:10px;">查看</a>
+                        <span class="ops-more-container">
+                          <a @click.stop="showMore(oi)" v-if="order.auditSituation !== '03'">更多</a>
+                          <div class="ops-more-menu" :class="{active:index===oi}">
+                            <a v-if="order.auditSituation !== '03'" @click="isActiveLock(order.id)">编辑</a>
+                            <a v-if="order.auditSituation === '01'"
+                              @click="handlePutawayOrSoldout(order.id, order.upperFlag ? 0 : 1)"
+                              v-text="order.upperFlag ? '下架' : '上架'"></a>
+                            <a :href="'learning.html?code=001.004.001.002&id=' + order.id">学习名单</a>
+                            <a v-if="order.auditSituation !== '03'" @click="handleDelete(order.id)">删除</a>
+                          </div>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--分页-->
+                <div class="pager" v-cloak>
+                  <a @click='pageClick(1)'>[首页]</a>
+                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
+                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
+                  <a v-if='isMore()'>...</a>
+                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
+                  <a @click='pageClick(pages)'>[末页]</a>
+                  <span>[共<span v-text='pages'></span>页]</span>
+                  <span>[共<span v-text='queryForm.total || 0'></span>条]</span>
+                </div>
+                <!--/分页-->
+              </div>
+              <!--/订单列表-->
+            </div>
+            <!--/所有订单-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ly-minifooter></ly-minifooter>
+  </div>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="/common/js/activityTopic/index.js"></script>
+</body>
+
+</html>

@@ -5,11 +5,12 @@ require(['/common/js/require.config.js'], function () {
       data: {
         protocol: '',
         disabled: false,
-        http: httpStore
+        http: httpStore,
+        webInfo:''
       },
       mixins: [seller],
       components: {
-
+        'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       created: function () {
         var vm = this;
@@ -24,9 +25,18 @@ require(['/common/js/require.config.js'], function () {
         })
       },
       mounted: function () {
-
+          this.getPublicDetail()
       },
       methods: {
+        getPublicDetail(){
+          let vm=this;
+          this.$httpCom.publicDetail().then(function(res) {
+            if (res.code === "rest.success") {
+              vm.webInfo = res.result;
+              vm.monitorSetItem('webInfo', JSON.stringify(vm.webInfo));
+            }
+          });
+        },
         agreementClick: function () {
           var vm = this;
           if (!this.disabled) {
@@ -38,7 +48,7 @@ require(['/common/js/require.config.js'], function () {
                     vm.$utils.setCookie('USER_INFO', res.result);
                     localStorage.setItem('saasId', res.result.saasId);
                     res.result.userTypes && localStorage.setItem('AUTHORITY', JSON.stringify(res.result.userTypes));
-                    window.location.href = 'http://' + window.location.host + '/common/seller/consent_agreement.html'
+                    window.location.href = 'http://' + window.location.host + vm.$pathPrefix+'/common/seller/consent_agreement.html'
                   }
                 })
               }

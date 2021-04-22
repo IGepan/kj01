@@ -15,18 +15,17 @@
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <index-head :nav-index="6"></index-head>
+    <index-head :nav-index="sIndex"></index-head>
     <div class="content">
         <div class="mdiv">
             <div class="right">
                 <ul class="tabs">
-                    <li class="title" v-for="(item,index) in tabsParam"
-                        @click="toggleTabs(index)"
-                        :class="{active:index==nowIndex}">{{item}}</li>
+                    <li class="title" @click="select(1)" :class="nowIndex ==1?'active':'title'">工作动态</li>
+                    <li class="title" @click="select(3)" :class="nowIndex ==3?'active':'title'">媒体关注</li>
                 </ul>
                 <!--   工作动态       -->
 
-                <div class="platform-box" v-show="nowIndex===0">
+                <div class="platform-box" :class="nowIndex ==1?'see':'none'">
                     <div class="ul-list" v-if="detailActive===0">
                         <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
                             <div class="li-left">
@@ -59,7 +58,7 @@
                     </div>
                 </div>
                 <!--   媒体关注       -->
-                <div class="platform-box" v-show="nowIndex===1" @click="getcmsList">
+                <div class="platform-box" :class="nowIndex ==3?'see':'none'" @click="getcmsList">
                     <div class="ul-list" v-if="detailActive===0">
                         <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
                             <div class="li-left">

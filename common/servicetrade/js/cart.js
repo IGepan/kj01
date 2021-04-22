@@ -1,7 +1,7 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
   require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCartApi', 'httpCom', 'dialog'], function ($, Vue, dic, httpVueLoader, httpCartApi, httpCom, dialog) {
-    Vue.component('ly-searchbox', httpVueLoader('/style/components/searchbox.vue'))
+    Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     new Vue({
       el: '#index_box',
       data: {
@@ -12,7 +12,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
@@ -213,7 +213,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var skuIds = this.getSkuIds()
           if (skuIds.length) {
             sessionStorage.setItem('orderInfo', JSON.stringify({ skuIds: skuIds, source: '02' }))
-            location.href = '/common/servicetrade/order.html'
+            location.href = this.$pathPrefix+'/common/servicetrade/order.html'
           } else {
             this.$dialog.showToast('请先选中购买的商品！');
           }

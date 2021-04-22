@@ -27,10 +27,14 @@ require(['/common/js/require.config.js'], function () {
           }
         ],
         isSubmitDisabled: false,
-        protocolType: 0
+        protocolType: 0,
+        webInfo:''
       },
       mounted: function () {
         var vm = this;
+       if(location.href.indexOf('/site/')>-1){
+         vm.getPublicDetail()
+       }
         vm.$httpCom.protocol({
           protocolType: 1
         }).then(function (res) {
@@ -51,6 +55,15 @@ require(['/common/js/require.config.js'], function () {
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
       methods: {
+        getPublicDetail(){
+          let vm=this;
+          this.$httpCom.publicDetail().then(function(res) {
+            if (res.code === "rest.success") {
+              vm.webInfo = res.result;
+              vm.monitorSetItem('webInfo', JSON.stringify(vm.webInfo));
+            }
+          });
+        },
         showMsg: function (d) {
           var defaults = {
             msg: "",
@@ -143,7 +156,7 @@ require(['/common/js/require.config.js'], function () {
                 if (res.code === 'rest.success') {
                   vm.$dialog.showToast('注册成功');
                   setTimeout(function () {
-                    window.location.href = '/common/login.html'
+                    window.location.href = this.$pathPrefix+'/common/login.html'
                   }, 1000)
                 } else {
                   vm.isSubmitDisabled = false

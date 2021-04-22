@@ -10,11 +10,17 @@
        <div>科技创新</div>
        <div>综合服务平台</div>
       </div>
-      <div class="header-text" v-else-if="navIndex===7">
-       <div style="font-size: 42px;font-weight: bold;">平台动态</div>
-      </div>
-       <div class="header-text" v-else>
-         <div style="font-size: 42px;font-weight: bold;">关于我们</div>
+<!--      <div class="header-text" v-else-if="navIndex===6">-->
+<!--       <div style="font-size: 35px;font-weight: bold;">平台动态</div>-->
+<!--      </div>-->
+<!--       <div class="header-text" v-if="navIndex===7">-->
+<!--         <div style="font-size: 35px;font-weight: bold;">关于我们</div>-->
+<!--       </div>-->
+       <div class="header-text" v-else-if="navIndex===7">
+         <div style="font-size: 35px;font-weight: bold;">平台动态</div>
+       </div>
+       <div class="header-text" v-if="navIndex===8">
+         <div style="font-size: 35px;font-weight: bold;">关于我们</div>
        </div>
      </div>
      <div class="searchBox">
@@ -45,7 +51,7 @@ module.exports = {
       navs: [
         {
           label: '首页',
-          url: '/index.html'
+          url: '/index.html',
         },
         {
           label: '政策资讯',
@@ -55,9 +61,9 @@ module.exports = {
           label: '活动中心',
           url: '/aindex.html'
         },
-        {
-          label: '技术市场',
-          url: '/market/index.html'
+         {
+           label: '技术市场',
+         url: '/market/index.html'
         },
         {
           label: '科技服务',
@@ -67,6 +73,10 @@ module.exports = {
           label: '创新资源',
           url: '/resources'
         },
+        // {
+        //   label: '易智商城',
+        //   url: '/mail/index.html'
+        // },
         {
           label: '全景数据',
           url: 'http://datamap.kj01.cn/'
@@ -79,6 +89,7 @@ module.exports = {
           label: '关于我们',
           url: '/about.html'
         }
+
       ]
     }
   },
@@ -93,6 +104,9 @@ module.exports = {
     }
   },
   methods: {
+    // alerta: function (i) {
+    //   alert(i)
+    // },
     searchFull: function () {
       location.href = '/search/?title=' + this.searchKey
       // this.$dialog.showToast('敬请期待！')
@@ -139,6 +153,7 @@ module.exports = {
 .searchBox {
  display: flex;
  align-items: center;
+  margin-right: 100px;
 }
 .searchBox a {
  font-size: 18px;

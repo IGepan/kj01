@@ -123,6 +123,18 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     selectShopByPage: function (param) {
       return Http.get(httpUrl.baseUrl + '/colcont/selectShopByPage', param)
     },
+      /**
+       * 为您推荐-服务机构
+       */
+      selectShopRecommend: function (param) {
+          return Http.get(httpUrl.baseUrl + '/shop/recommend', param)
+      },
+      /**
+       * 为您推荐-专家
+       */
+      selectShopExpert: function (param) {
+          return Http.get(httpUrl.baseUrl + '/shop/recommendExpert', param)
+      },
 		/**
 		 * 条件搜索当前登录用户指定分类及所有下级分类的所有收藏
 		 */
@@ -159,11 +171,17 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     loanselectByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/loan/selectByPage',param)
     },
-      /**
-       * 获取考试列表（鉴权）
-       */
-      examSelectByPage: function (param) {
-          return Http.post(httpUrl.baseUrl + '/exam/selectByPage',param)
-      }
+    /**
+     * 获取考试列表（鉴权）
+     */
+    examSelectByPage: function (param) {
+        return Http.post(httpUrl.baseUrl + '/exam/selectByPage',param)
+    },
+    /**
+     * 获取关注的政策列表
+     */
+    getFocusPolicy: function (param) {
+      return Http.get(httpUrl.baseUrl + '/label/list',param)
+    },    
   }
 })

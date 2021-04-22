@@ -1,45 +1,163 @@
 .autobox {
-  background: #1f1e7b;
+  background: url('../images/answer/bg.jpg')no-repeat left top;
+  background-size: 100% 100%;
   height: 100%;
+  padding-bottom: 0 !important;
 }
 .windowbox {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  width: 720px;
-  height: 600px;
-  background: #fff;
+  width: 1169px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px 10px 0 0;
   box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
 }
 .windowbox .content {
-  font-size: 0;
+  /* font-size: 0; */
+  padding: 0 30px 30px 30px;
+  box-sizing: border-box;
+  /* display: flex;
+  flex-direction: column; */
 }
 .windowbox .messagebox {
- background: #f5f8fb;
+ background: #fff;
  overflow-y: auto;
 }
 .windowbox .title {
-  padding: 0 15px;
+  padding: 0 30px;
   border-bottom: 1px solid #eee;
-  height: 60px;
+  height: 85px;
+  background: url('../images/answer/title-bg.png')no-repeat left top;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
 }
 .windowbox .title img {
   margin-top: 10px;
   height: 40px;
 }
 .windowbox .title .subname {
-  display: inline-block;
-  font-family: XinYeNianTi;
-  font-size: 22px;
-  color: #01c8f2;
-  vertical-align: super;
+  font-size: 43px;
+  font-family: Source Han Sans SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.windowbox .title .tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 156px;
+  height: 41px;
+  font-size: 31px;
+  font-family: Source Han Sans SC;
+  font-weight: 500;
+  font-style: italic;
+  color: #2265A4;
+  background: url('../images/answer/msgkuang.png')no-repeat center center;
+  background-size: 100% 100%;
+  margin-left: 20px;
+}
+
+.common-problem{
+  width: 100%;
+  max-height: 246px;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.09);
+  padding: 30px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  transition: all .3s;
+}
+
+.problem-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.problem-title-left{
+  display: flex;
+  align-items: center;
+}
+
+.problem-title-right{
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(0deg, #FFA452, #FF8110);
+  box-shadow: 0px 2px 7px 0px rgba(237, 91, 11, 0.28);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.problem-title-right img{
+  width: 19px;
+  height: 11px;
+  transition: all .3s;
+}
+
+.problem-title .problem-title-left h1{
+  font-size: 27px;
+  font-family: Source Han Sans SC;
+  font-weight: bold;
+  color: #333333;
+  margin: 0;
+}
+
+.problem-title .problem-title-left span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 71px;
+  height: 18px;
+  font-size: 19px;
+  font-family: Source Han Sans SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  width: 100px;
+  height: 34px;
+  background: linear-gradient(90deg,  #41A4FF, #3B95E4, #3083CB);
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  margin-left: 30px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  cursor: default;
+}
+.problem-list{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.problem-list li{
+  width: 100px;
+  height: 34px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background: #ECECEC;
+  border-radius: 5px;
+  font-size: 19px;
+  font-family: Source Han Sans SC;
+  font-weight: 500;
+  color: #666666;
+  line-height: 34px;
+  text-align: center;
+  margin: 0 58px 10px 0;
+  cursor: default;
+}
+.problem-list li:nth-child(7n + 0){
+  margin-right: 0;
 }
 .windowbox .left {
   position: relative;
   display: inline-block;
-  width: 75%;
-  height: 540px;
+  width: 100%;
+  height: 677px;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.09);
 }
 .windowbox .right {
   display: inline-block;
@@ -80,15 +198,29 @@
 }
 .windowbox  .messagebox {
   padding: 10px 20px;
-  height: 400px;
+  height: 460px;
   font-size: 13px;
   color: #666;
 }
 .windowbox  .messagebox .time {
   padding: 5px 0;
-  text-align: center;
-  color: #999;
+  display: flex;
+  justify-content: center;
 }
+.windowbox .messagebox .time span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100px;
+  height: 34px;
+  background: #ECECEC;
+  border-radius: 5px;  
+  font-size: 18px;
+  font-weight: 500;
+  color: #999998;
+  padding:0 20px;
+}
+
 .windowbox  .messagebox .textwraper {
   display: flex;
 }
@@ -102,15 +234,20 @@
 .windowbox  .message_q .textwraper .text {
   margin-right: 10px;
   background: #007AFF;
-  border-radius: 15px 3px 15px 15px;
+  border-radius: 10px 3px 10px 10px;
   color: #fff;
 }
 .windowbox  .message_a .textwraper .text {
   order: 1;
   margin-left: 10px;
   background: #FFFFFF;
-  border-radius: 3px 15px 15px 15px;
+  border: 1px solid #3779DA;
+  border-radius: 3px 10px 10px 10px;
 }  
+.windowbox  .message_a .img{
+  background: url('../images/answer/service.png')no-repeat left top !important;
+  background-size: 100% 100% !important;
+}
 .windowbox  .messagebox .img {
   border-radius: 50%;
   width: 40px;
@@ -122,7 +259,7 @@
 }
 .windowbox .connectQustion {
   position: absolute;
-  bottom: 140px;
+  bottom: 216px;
   left: 0;
   right: 0;
   font-size: 13px;
@@ -140,7 +277,7 @@
 .windowbox  .sendbox {
   display: flex;
   flex-direction: column;
-  height: 140px;
+  height: 216px;
   overflow: hidden;
 }
 .windowbox .sendtext {
@@ -158,21 +295,38 @@
 }
 .windowbox .sendbtn {
   margin: 5px 20px;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
+.windowbox .sendbtn .sizeNum{
+  font-size: 14px;
+  font-weight: 500;
+  color: #999999;
+}
+
+.windowbox .sendbtn .sizeNum span{
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+}
+
 .windowbox .sendbtn .btn {
   display: inline-block;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
+  border-radius: 5px;
   height: 30px;
   width: 68px;
   text-align: center;
   line-height: 30px;
-  color: #666;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
   cursor: pointer;
+  background-color: #018FFF;
+  transform: scale(1);
+  transition: all .3s;
+  margin-left: 20px;
 }
 .windowbox .sendbtn .btn:hover {
-  background: cornflowerblue;
-  color: #fff;
+  transform: scale(1.05);
 }

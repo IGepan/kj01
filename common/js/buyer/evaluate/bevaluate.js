@@ -18,7 +18,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         isSubmitDisabled: false
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-star': httpVueLoader('/common/components/starts.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
@@ -173,7 +173,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             evaluate.buyerinsertFst(data).then(function (res) {
               if (res.code == 'rest.success') {
                 this.$dialog.showToast('评价成功，3秒后将关闭页面！')
-                location = '/common/buyer/order/?orderStatusFilter=01&code=001.001.001.001'
+                location = vm.$pathPrefix+'/common/buyer/order/?orderStatusFilter=01&code=001.001.001.001'
               } else {
                 vm.isSubmitDisabled = false
               }
@@ -183,7 +183,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
         },
         routerBack: function () {
-          location = '/common/buyer/order/?orderStatusFilter=01&code=001.001.001.001'
+          location = vm.$pathPrefix+'/common/buyer/order/?orderStatusFilter=01&code=001.001.001.001'
         }
       }
     })

@@ -75,9 +75,16 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
       if (type == 'post' && contentType == 'application/json;charset=UTF-8') {
         data = JSON.stringify(data);
       }
+      //新建分站，需要加WxSrcUrl
+      if(location.href.indexOf('/site/')>-1){
+        let urls=location.href.split('site')[1]
+        header = $.extend({
+          'WxSrcUrl': location.href.split('site')[0]+'site/'+urls.split('/')[1],
+        }, header);
+      }
       if(url.indexOf('/oauth/token')===-1&&url.indexOf('http://city-service.cykj01.com')===-1){
         header = $.extend({
-              'access-token': token
+              'access-token': token,
           }, header);
       }
       //newmain项目中的第三方接口需要另外的token
@@ -106,7 +113,7 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
               } else {
                 refreshTokenFlag=false;
                 dialog.showToast(res.desc);
-                window.location.href = '/common/login.html'
+                window.location.href = window.$pathPrefix+'/common/login.html'
               }
             }).catch(()=>{
                 refreshTokenFlag=false;
@@ -127,7 +134,7 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
                 if(window.location.hostname.indexOf('kjzx')>-1){
                   window.location.href = '/login/login.html'
                 }else{
-                  window.location.href = '/common/login.html'
+                  window.location.href = window.$pathPrefix+'/common/login.html'
                 }
               // }, 2000)
             } else {
@@ -135,7 +142,7 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
               if(window.location.hostname.indexOf('kjzx')>-1){
                 window.location.href = '/login/login.html'
               }else{
-                window.location.href = '/common/login.html'
+                window.location.href = window.$pathPrefix+'/common/login.html'
               }
             }
           } else {

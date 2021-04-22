@@ -137,6 +137,11 @@ require(['/common/js/require.config.js'], function () {
                     visitNumTotal+= Number(item.visitNum);
                   });
                 }
+                if (vm.detail.isIgnoreEndTime === 1 && vm.detail.statusCode === '0304' && vm.detail.isJoinActive !== 1) {
+                  //如果已结束且活动可无视报名时间,则修改
+                  vm.detail.statusCode = '0302'
+                  vm.detail.statusDisplay = '立即报名'
+                }
                 vm.$data.detail = res.result && res.result || ''
                 vm.$data.detail.visitNum=visitNumTotal==0?res.result.visitNum:visitNumTotal
               }

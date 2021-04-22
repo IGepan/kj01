@@ -2,223 +2,245 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>卖家中心-成渝城市群综合科技服务平台</title>
-  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
-  <link href="css/seller.css" rel="stylesheet" type="text/css">
-  <style>
-    .cover-box {
-      width: 400px;
-    }
+    <meta charset="utf-8">
+    <title>卖家中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/seller.css" rel="stylesheet" type="text/css">
+    <style>
+        .cover-box {
+            width: 400px;
+        }
 
-    .form-view {
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
+        .form-view {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="box" id="store_box">
+<div class="box" id="store_box">
     <div class="header">
-      <ly-toper :http='http'></ly-toper>
-      <ly-header type="seller" :http="httpCom"></ly-header>
+        <ly-toper :http='http'></ly-toper>
+        <ly-header type="seller" :http="httpCom"></ly-header>
     </div>
     <div class="contant">
-      <div class="mdiv">
-      </div>
-      <div class="mdiv mt20">
-        <div class="leftbox">
-          <seller-left ref="menuRef" :http='http' :jquery='jquery'></seller-left>
+        <div class="mdiv">
         </div>
-        <div class="rightmainbox">
-          <div class="routenav">
-            <a href="/common/seller/index.html">
-              卖家中心&nbsp;&nbsp;&gt;
-            </a>
-            <a href="/common/seller/index.html">
-              我的供应&nbsp;&nbsp;&gt;
-            </a>
-            <span>技术列表</span>
-          </div>
-          <div class="activestore">
-            <div class="storetit" v-text='keyName.subTitle+"列表"'></div>
-            <div class="opensearch">
-              <form class="filter">
-                <div class="allflt">
-                  <div class="f_row">
-                    <div class="f_col">
-                      <div class="online mr45">
-                        <span class="gjz">关键字&nbsp;：</span>
-                        <input type="text" class="f_ipt" v-model='formData.goodsName'>
-                      </div>
-                      <div class="online mr45">
-                        <span class="gjz">店铺首页&nbsp;：</span>
-                        <label class="f_label">
-                          <select class="f_select" v-model='formData.homePageFlag'>
-                            <option value="">全部</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                          </select>
-                          <i class="iconfont icon-xiala"></i>
-                        </label>
-                      </div>
-                      <div class="online">
-                        <span class="gjz">店铺置顶&nbsp;：</span>
-                        <label class="f_label">
-                          <select class="f_select" v-model='formData.roofFlag'>
-                            <option value="">全部</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                          </select>
-                          <i class="iconfont icon-xiala"></i>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="f_col">
-                      <div class="online mr45">
-                        <span class="gjz">审核状态&nbsp;：</span>
-                        <label class="f_label">
-                          <!-- <select class="f_select">
-                        <option value="1">全部</option>
-                      </select> -->
-                          <ly-select style="background-color: white;" v-model='formData.certificationFlag'
-                            class='f_select' code='certification_status'></ly-select>
-                          <i class="iconfont icon-xiala"></i>
-                        </label>
-                      </div>
-                      <div class="online mr45">
-                        <span class="gjz">成果类别&nbsp;：</span>
-                        <label class="f_label">
-                          <select class="f_select" v-model='formData.categoryId'>
-                            <option value="">全部</option>
-                            <option :value="item.id" v-for="item in categoryList" v-text='item.categoryName'></option>
-                          </select>
-                          <i class="iconfont icon-xiala"></i>
-                        </label>
-                      </div>
-                      <div class="online">
-                        <span class="gjz">是否上架&nbsp;：</span>
-                        <label class="f_label">
-                          <select class="f_select" v-model='formData.upperShelfflag'>
-                            <option value="">全部</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                          </select>
-                          <i class="iconfont icon-xiala"></i>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="f_row clear">
-                    <div type="reset" class="f_reset" @click='resetClick'>清空条件</div>
-                    <div class="f_sub" @click='goodsSelectByPage'>筛选</div>
-                  </div>
-                </div>
-              </form>
-              <div class="openclose">展开搜索条件</div>
+        <div class="mdiv mt20">
+            <div class="leftbox">
+                <seller-left ref="menuRef" :http='http' :jquery='jquery'></seller-left>
             </div>
-            <div class="teclist">
-              <div class="tecs">
-                <a class="addtec fs14" @click="handleValidateActive"><i class="iconfont icon-jia"></i>新增 <a>
-                    <div class="ovlh">
-                      <div class="inline mr10 fs14" id="chooseall">
-                        <span class="chooseall inline"></span>
-                        <span class="inline fs14">全选</span>
-                      </div>
-                      <div class="inline chslist fs14">
-                        <span class="chs inline" @click='upAllClick'>上架</span>
-                        <span class="chs inline" @click='downAllClick'>下架</span>
-                        <span class="chs inline" @click='delAllClick'>删除</span>
-                        <span class="chs inline" @click='showAllClick'>首页展示</span>
-                        <span class="chs inline" @click='topAllClick'>店铺置顶</span>
-                      </div>
-                    </div>
-              </div>
-              <div class="tectit mb10">
-                <div class="fl tecname w450"> 名称 </div>
-                <div class="fl tecname w135"> 价格 </div>
-                <div class="fl tecname w120"> 成果类型 </div>
-                <div class="fl tecname w75"> 上架 </div>
-                <div class="fl tecname w75"> 状态 </div>
-                <!-- <div class="fl tecname w105"> 匹配需求数 </div> -->
-              </div>
-              <div class="sciencelist">
-                <div class="science_item" v-for='(goods,index)   in goodsList' v-cloak>
-                  <div class="science_top">
-                    <div class="fr pr10">
-                      <a class="editbtn"
-                        :href="'addpatent.html?code='+code+'&categoryId='+goods.categoryId+'&id='+goods.id"><i
-                          class="iconfont icon-xiugai"></i>编辑</a>
-                      <span class="editbtn" @click='upperClick(goods)'
-                        v-if="goods.frozenFlag === '0' && goods.certificationFlag === '03' && goods.upperShelfflag === '0'"><i
-                          class="iconfont icon-shangjia"></i>上架</span>
-                      <span class="editbtn" @click='downClick(goods)' v-if="goods.upperShelfflag === '1'"><i
-                          class="iconfont icon-xiajia"></i>下架</span>
-                    </div>
-                    <div class="ovlh">
-                      <span class="choosesingle" :class="{active: goods.active}"
-                        @click='goodsChooseClick(goods)'></span>
-                      <span class="inline lh40">发布时间：<span v-text='goods.publishDate'></span></span>
-                    </div>
-                  </div>
-                  <table class="billinfo">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="fsttd w450">
-                            <div class="fstspan">
-                              <img :src="goods.goodsImg?goods.goodsImg.url:''" alt="">
+            <div class="rightmainbox">
+                <div class="routenav">
+                    <a :href="$pathPrefix+'/common/seller/index.html'">
+                        卖家中心&nbsp;&nbsp;&gt;
+                    </a>
+                    <a :href="$pathPrefix+'/common/seller/index.html'">
+                        我的供应&nbsp;&nbsp;&gt;
+                    </a>
+                    <span>技术列表</span>
+                </div>
+                <div class="activestore">
+                    <div class="storetit" v-text='keyName.subTitle+"列表"'></div>
+                    <div class="opensearch">
+                        <form class="filter">
+                            <div class="allflt">
+                                <div class="f_row">
+                                    <div class="f_col">
+                                        <div class="online mr45">
+                                            <span class="gjz">关键字&nbsp;：</span>
+                                            <input type="text" class="f_ipt" v-model='formData.goodsName'>
+                                        </div>
+                                        <div class="online mr45">
+                                            <span class="gjz">店铺首页&nbsp;：</span>
+                                            <label class="f_label">
+                                                <select class="f_select" v-model='formData.homePageFlag'>
+                                                    <option value="">全部</option>
+                                                    <option value="1">是</option>
+                                                    <option value="0">否</option>
+                                                </select>
+                                                <i class="iconfont icon-xiala"></i>
+                                            </label>
+                                        </div>
+                                        <div class="online">
+                                            <span class="gjz">店铺置顶&nbsp;：</span>
+                                            <label class="f_label">
+                                                <select class="f_select" v-model='formData.roofFlag'>
+                                                    <option value="">全部</option>
+                                                    <option value="1">是</option>
+                                                    <option value="0">否</option>
+                                                </select>
+                                                <i class="iconfont icon-xiala"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="f_col">
+                                        <div class="online mr45">
+                                            <span class="gjz">审核状态&nbsp;：</span>
+                                            <label class="f_label">
+                                                <!-- <select class="f_select">
+                                              <option value="1">全部</option>
+                                            </select> -->
+                                                <ly-select style="background-color: white;"
+                                                           v-model='formData.certificationFlag'
+                                                           class='f_select' code='certification_status'></ly-select>
+                                                <i class="iconfont icon-xiala"></i>
+                                            </label>
+                                        </div>
+                                        <div class="online mr45">
+                                            <span class="gjz">成果类别&nbsp;：</span>
+                                            <label class="f_label">
+                                                <select class="f_select" v-model='formData.categoryId'>
+                                                    <option value="">全部</option>
+                                                    <option :value="item.id" v-for="item in categoryList"
+                                                            v-text='item.categoryName'></option>
+                                                </select>
+                                                <i class="iconfont icon-xiala"></i>
+                                            </label>
+                                        </div>
+                                        <div class="online">
+                                            <span class="gjz">是否上架&nbsp;：</span>
+                                            <label class="f_label">
+                                                <select class="f_select" v-model='formData.upperShelfflag'>
+                                                    <option value="">全部</option>
+                                                    <option value="1">是</option>
+                                                    <option value="0">否</option>
+                                                </select>
+                                                <i class="iconfont icon-xiala"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="f_row clear">
+                                    <div type="reset" class="f_reset" @click='resetClick'>清空条件</div>
+                                    <div class="f_sub" @click='goodsSelectByPage'>筛选</div>
+                                </div>
                             </div>
+                        </form>
+                        <div class="openclose">展开搜索条件</div>
+                    </div>
+                    <div class="teclist">
+                        <div class="tecs">
+                            <a class="addtec fs14" @click="handleValidateActive"><i class="iconfont icon-jia"></i>新增
+                            </a>
                             <div class="ovlh">
-                              <div class="fsttitle"><a v-text='goods.goodsName' :href="goods.goodsDetailUrl"></a></div>
-                              <div class="identifying"><span v-text='"编号："+goods.id'></span> </div>
+                                <div class="inline mr10 fs14" id="chooseall">
+                                    <span class="chooseall inline"></span>
+                                    <span class="inline fs14">全选</span>
+                                </div>
+                                <div class="inline chslist fs14">
+                                    <span class="chs inline" @click='upAllClick'>上架</span>
+                                    <span class="chs inline" @click='downAllClick'>下架</span>
+                                    <span class="chs inline" @click='delAllClick'>删除</span>
+                                    <span class="chs inline" @click='showAllClick'>首页展示</span>
+                                    <span class="chs inline" @click='topAllClick'>店铺置顶</span>
+                                </div>
                             </div>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="w135 price"><span>¥{{goods.negotiableFlag | formatPrice(goods.price, goods.minPrice, goods.maxPrice)}}</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="w120 tbcenter" v-text='goods.categoryName'> </div>
-                        </td>
-                        <td>
-                          <div class="w75 tbcenter" v-text='goods.upperShelfflagDisplay'></div>
-                        </td>
-                        <td>
-                          <div class="w75 tbcenter" v-text='goods.certificationFlagDisplay'></div>
-                        </td>
-                        <td>
-                          <div class="w105 tbcenter"></div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+
+                            <div class="tectit mb10" style="margin-top: 15px">
+                                <div class="fl tecname w450"> 名称</div>
+                                <div class="fl tecname w135"> 价格</div>
+                                <div class="fl tecname w120"> 成果类型</div>
+                                <div class="fl tecname w75"> 上架</div>
+                                <div class="fl tecname w75"> 状态</div>
+                                <!-- <div class="fl tecname w105"> 匹配需求数 </div> -->
+                            </div>
+                            <div class="sciencelist">
+                                <div class="science_item" v-for='(goods,index)   in goodsList' v-cloak>
+                                    <div class="science_top">
+                                        <div class="fr pr10">
+                                            <a class="editbtn"
+                                               :href="'addpatent.html?code='+code+'&categoryId='+goods.categoryId+'&id='+goods.id"><i
+                                                    class="iconfont icon-xiugai"></i>编辑</a>
+                                            <span class="editbtn" @click='upperClick(goods)'
+                                                  v-if="goods.frozenFlag === '0' && goods.certificationFlag === '03' && goods.upperShelfflag === '0'"><i
+                                                    class="iconfont icon-shangjia"></i>上架</span>
+                                            <span class="editbtn" @click='downClick(goods)'
+                                                  v-if="goods.upperShelfflag === '1'"><i
+                                                    class="iconfont icon-xiajia"></i>下架</span>
+                                        </div>
+                                        <div class="ovlh">
+                      <span class="choosesingle" :class="{active: goods.active}"
+                            @click='goodsChooseClick(goods)'></span>
+                                            <span class="inline lh40">发布时间：<span
+                                                    v-text='goods.publishDate'></span></span>
+                                        </div>
+                                    </div>
+                                    <table class="billinfo">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="fsttd w450">
+                                                    <div class="fstspan">
+                                                        <img :src="goods.goodsImg?goods.goodsImg.url:''" alt="">
+                                                    </div>
+                                                    <div class="ovlh">
+                                                        <div class="fsttitle"><a v-text='goods.goodsName'
+                                                                                 :href="goods.goodsDetailUrl"></a>
+                                                        </div>
+                                                        <div class="identifying"><span
+                                                                v-text='"编号："+goods.id'></span></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="w135 price" style="margin-top: 1.20rem;">
+                                                    <small v-if="goods.choosePriceTag==='0' || goods.choosePriceTag==='1'">¥</small>
+                                                    <small v-else></small>
+                                                    <span v-if="goods.choosePriceTag ==3" style="font-size:20px;color:#f1671b;" >
+                                           价格请查看详情
+                                        </span>
+                                                    <span v-if="goods.choosePriceTa!='3'">
+                                            {{goods.negotiableFlag | formatPrice(goods.price, goods.minPrice, goods.maxPrice)}}
+                                        </span>
+
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div class="w120 tbcenter" v-text='goods.categoryName'></div>
+                                            </td>
+                                            <td>
+                                                <div class="w75 tbcenter"
+                                                     v-text='goods.upperShelfflagDisplay'></div>
+                                            </td>
+                                            <td>
+                                                <div class="w75 tbcenter"
+                                                     v-text='goods.certificationFlagDisplay'></div>
+                                            </td>
+                                            <td>
+                                                <div class="w105 tbcenter"></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--分页-->
+                        <div class="pager">
+                            <a @click='pageClick(1)'>[首页]</a>
+                            <a @click='pageClick(formData.pageNum-1)'>[上一页]</a>
+                            <a @click='pageClick(item)' v-for='item in pages' v-text='item'
+                               :class="{active: item == formData.pageNum}" v-if='isShowPage(item)'></a>
+                            <a v-if='isMore()'>...</a>
+                            <a @click='pageClick(formData.pageNum+1)'>[下一页]</a>
+                            <a @click='pageClick(pages)'>[末页]</a>
+                            <span>[共<span v-text='pages'></span>页]</span>
+                            <span>[共<span v-text='total'></span>条]</span>
+                        </div>
+                        <!--分页-->
+                    </div>
                 </div>
-              </div>
             </div>
-            <!--分页-->
-            <div class="pager">
-              <a @click='pageClick(1)'>[首页]</a>
-              <a @click='pageClick(formData.pageNum-1)'>[上一页]</a>
-              <a @click='pageClick(item)' v-for='item in pages' v-text='item'
-                :class="{active: item == formData.pageNum}" v-if='isShowPage(item)'></a>
-              <a v-if='isMore()'>...</a>
-              <a @click='pageClick(formData.pageNum+1)'>[下一页]</a>
-              <a @click='pageClick(pages)'>[末页]</a>
-              <span>[共<span v-text='pages'></span>页]</span>
-              <span>[共<span v-text='total'></span>条]</span>
-            </div>
-            <!--分页-->
-          </div>
         </div>
-      </div>
+        <ly-minifooter></ly-minifooter>
     </div>
-    <ly-minifooter></ly-minifooter>
-  </div>
-  <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script type="text/javascript" src="js/technicalList.js"></script>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="js/technicalList.js"></script>
 </body>
 
 </html>

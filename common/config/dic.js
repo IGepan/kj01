@@ -10,6 +10,10 @@ define([], function () {
       destroy: '006',
       kjzx_reg_email: '007',
       kjzx_pwd: '008',
+      //验证码类型 --易智商城投诉
+      BUSINESS_TYPE_009: "009",
+      //验证码类型 --易智商城投诉快速发布需求
+      BUSINESS_TYPE_010: "010"
     },
     locaKey: {
       USER_INFO: 'USER_INFO',

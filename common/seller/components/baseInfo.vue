@@ -127,14 +127,14 @@
       </div>
     </div>
     <div class="expitem form_item">
-      <span class="expname"><i>*</i>服务案例：</span>
+      <span class="expname">服务案例：</span>
       <div
           class="iptbox"
           style
       >
         <div class="exptext">
           <vue-ueditor-wrap
-              v-model="formData.case"
+              v-model="formData.serviceCase"
               :config="myConfig"
           ></vue-ueditor-wrap>
         </div>
@@ -200,7 +200,7 @@ module.exports = {
         district: '', // 地区
         location: '', // 详细地址
         comment: '', // 简介
-        case:'',// 服务案例
+        serviceCase:'',// 服务案例
         phone: '', // 电话
         email: '', // 邮箱
         industryList: [], // 行业范围

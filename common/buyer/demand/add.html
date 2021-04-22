@@ -71,8 +71,8 @@
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         </div>
         <div class="crumbs">
-          <a href="/common/buyer/index.html">用户中心</a><a
-            href="/common/buyer/demand/list.html?code=001.001.002.002">需求</a>
+          <a :href="$pathPrefix+'/common/buyer/index.html'">用户中心</a><a
+                :href="$pathPrefix+'/common/buyer/demand/list.html?code=001.001.002.002'">需求</a>
           <span>添加需求</span>
         </div>
         <div class="centerbox">
@@ -138,9 +138,12 @@
                   <th><i>*</i>需求预算（元）：</th>
                   <td>
                     <div class="inputbox">
-                      <input class="inputbox-max required" data-valid="isNonEmpty||positiveNum"
-                        data-error='预算不能为空||请填写正数' v-model="dataForm.budget" type="number">
+                      <input class="inputbox-max required" data-valid="positiveNum"
+                        data-error='请填写正数' v-model="dataForm.budget" type="number" :disabled="isNegotiation">
                       <span class="vlt form_msg"></span>
+                      <a @click="handleSetNegotiation"
+                         style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
+                         v-text="isNegotiation === true? '详细预算' : '面议'"></a>
                     </div>
                   </td>
                 </tr>

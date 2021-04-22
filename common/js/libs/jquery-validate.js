@@ -87,7 +87,7 @@
     },
     isTel: function (value, errorMsg, vm, callback) {
       //是否为手机号码/座机
-      var isLandLine = /^(((0\d{3}[\-])?\d{7,8}|(0\d{2}[\-])?\d{8}))?$/;
+      var isLandLine = /^(((0\d{3}[\-])?\d{7,8}|(0\d{2}[\-])?\d{8}))(|[\-]\d{1,4})?$/;
       if (value.length > 0) {
         if (isLandLine.test(value.trim())) {
           return callback(vm, errorMsg);

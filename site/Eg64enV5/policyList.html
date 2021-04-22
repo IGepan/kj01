@@ -1,0 +1,138 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/css/main.css" rel="stylesheet">
+    <link href="./style/css/policy/list.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="boxs gray-bg" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <index-head :nav-index="navIndex"  @search="bindSearchValue" :search-types="'政策'" :location-names="'policyList.html'"></index-head>
+    <div class="container-box">
+        <div class="top-bg">
+            <div class="mmdiv">政策资讯</div>
+        </div>
+        <div class="content-box mmdiv">
+            <div class="search-row-box">
+                <template v-for="(optItem, index) in options.searchOpts">
+                    <div class="search-row" v-if="index && optItem.operationType !== 'switchover'" :key="index">
+                        <label class="search-label">{{optItem.label}}</label>
+                        <div class="searchkeys" :class="{'cityCode': optItem.operationType === 'city'}">
+                            <template v-if="optItem.operationType=== 'select'">
+                                <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                                    <span class="searchkey"  @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }" :data-di="sindex" :data-pi="index" :data-value="ducItem.value" :key="sindex">{{ducItem.display}}</span>
+                                </template>
+                            </template>
+                            <template v-if="optItem.operationType=== 'city'">
+                                <template v-for="(ducItem, sindex) in optItem.dictIInfos">
+                                    <span class="searchkey"  @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }" :data-di="sindex" :data-pi="index" :data-value="ducItem.value" :key="sindex">{{ducItem.display}}</span>
+                                </template>
+                                <div class="select-box">
+                                    <select class="select" @change="bindChnageProvince" v-model="searchForm.province" placeholder="省级">
+                                        <option :value="opt.value" v-for="opt in options.provinceOptions" :key="opt.id">{{opt.display}}</option>
+                                    </select>
+                                </div>
+                                <div class="select-box">
+                                    <select class="select" @change="bindChnageCity" v-model="searchForm.city" placeholder="市级">
+                                        <option :value="opt.value" v-for="opt in options.cityOptions" :key="opt.id">{{opt.display}}</option>
+                                    </select>
+                                </div>
+                                <div class="select-box">
+                                    <select class="select" @change="bindChnageDistrict" v-model="searchForm.district" placeholder="区级">
+                                        <option :value="opt.value" v-for="opt in options.districtpayOptions" :key="opt.id">{{opt.display}}</option>
+                                    </select>
+                                </div>
+                            </template>
+                            <template v-if="optItem.operationType=== 'time'">
+                                <span class="datetime"><input type="text" class="timeInput" placeholder="开始时间" readonly id="stime"><i class="iconfont-template icon-rili"></i></span><span class="timeRange">至</span><span class="datetime"><input type="text" class="timeInput" placeholder="结束时间" readonly id="etime"><i class="iconfont-template icon-rili"></i></span>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="searchResult">
+                <div class="result-left">
+                    <span class="label">已选条件：</span>
+                    <template v-for="(selectOpt, index) in options.selectOpts">
+                        <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i @click.stop="handleDelSelectOpt" :data-index="index" class="iconfont-template icon-delete icon"></i></label>
+                    </template>
+                </div>
+                <div class="result-right">
+                    <template v-if="options.searchOpts.length">
+                        <template v-for="(optItem, index) in options.searchOpts">
+                            <div class="searchMainkey boxBorderBottom noP" v-if="index && optItem.operationType === 'switchover'">
+                                <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+                                    <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i class="iconfont-template icon-jiangxu"></i></span>
+                                </template>
+                            </div>
+                        </template>
+                    </template>
+                    <div class="page-info">
+                        已为您筛选 <span class="total" v-text="pages.total || 0" ></span> 条
+                    </div>
+                </div>
+            </div>
+            <div class="list mainPolicyList">
+                <template v-for="(policy, ni) in policyList">
+                    <div class="list-item" :key="ni">
+                        <a class="link" :title="policy.title" :href="policy.itemUrl" target="_blank">
+                            <div class="line list-item-title">
+                                <span v-if="policy.dismantleFlag === '1' || policy.tearFlag === '1'" class="jiedu">解读</span>
+                                <span v-if="policy.policyFileType">【{{policy.policyFileTypeDisplay[0]}}】</span>
+                                <span class="list-item-title-text">{{policy.title}}</span>
+                            </div>
+                            <div v-if="policy.applyStatusDisplay === 1" class="list-item-apply">
+                                <span class="list-item-apply-days">申报中 截止日期还剩{{policy.surplusDays}}天</span>
+                                <span class="list-item-apply-time">申报时间：{{policy.startDate|formatTime1}}{{policy.endDate|formatTime1(1)}}</span>
+                            </div>
+                            <div v-if="policy.applyStatusDisplay === 2" class="list-item-apply">
+                                <span class="list-item-apply-days end">已截止</span>
+                                <span class="list-item-apply-time">申报时间：{{policy.startDate|formatTime1}}{{policy.endDate|formatTime1(1)}}</span>
+                            </div>
+                            <div class="list-item-other">
+                                <div class="list-item-other-label">
+                                    <label class="label-item">
+                                        <i class="iconfont-template icon-neirongtuisong icon"></i>
+                                        <span class="labelText">{{policy.publishDepartmentDisplays && policy.publishDepartmentDisplays[0]}}</span>
+                                    </label>
+                                    <label class="label-item">
+                                        <i class="iconfont-template icon-dingweixian icon"></i>
+                                        <span class="labelText">{{policy.address}}</span>
+                                    </label>
+                                    <label class="label-item">
+                                        <i class="iconfont-template icon-lishijilu icon"></i>
+                                        <span class="labelText">{{policy.publishDate}}</span>
+                                    </label>
+                                </div>
+                                <div class="tags">
+                                    <template v-for="(word, index) in policy.selfTagNames">
+                                        <span class="tag" >{{word}}</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </template>
+                <template v-if="pages">
+                    <pages :pages="pages" @changepage="bindPageChange"></pages>
+                </template>
+            </div>
+        </div>
+    </div>
+    <com-footer></com-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="./style/js/policy/list.js"></script>
+</body>
+
+</html>

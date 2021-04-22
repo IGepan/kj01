@@ -14,23 +14,27 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         jquery: $,
         orderTabs: {
           '01': {
-            url: '/common/buyer/order?orderStatusFilter=01&code=001.001.001.001',
+            url: this.$pathPrefix+'/common/buyer/order?orderStatusFilter=01&code=001.001.001.001',
             label: '所有订单'
           },
+          '011': {
+            url: '/common/buyer/order?orderStatusFilter=011&code=001.001.001.001',
+            label: '待卖家确认'
+          },
           '02': {
-            url: '/common/buyer/order?orderStatusFilter=02&code=001.001.001.001',
+            url: this.$pathPrefix+'/common/buyer/order?orderStatusFilter=02&code=001.001.001.001',
             label: '待付款'
           },
           '03': {
-            url: '/common/buyer/order?orderStatusFilter=03&code=001.001.001.001',
+            url: this.$pathPrefix+'/common/buyer/order?orderStatusFilter=03&code=001.001.001.001',
             label: '待验收/待收货'
           },
           '04': {
-            url: '/common/buyer/order?orderStatusFilter=04&code=001.001.001.001',
+            url: this.$pathPrefix+'/common/buyer/order?orderStatusFilter=04&code=001.001.001.001',
             label: '已完成'
           },
           '05': {
-            url: '/common/buyer/order?orderStatusFilter=05&code=001.001.001.001',
+            url: this.$pathPrefix+'/common/buyer/order?orderStatusFilter=05&code=001.001.001.001',
             label: '待评价'
           }
         },
@@ -86,7 +90,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.initData();
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -307,7 +311,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.$dialog.showToast('敬请期待')
         },
         evaluate: function (id) {
-          location.href = '/common/buyer/evaluate/orderDetail.html?code=001.001.001.001&id=' + id
+          location.href = this.$pathPrefix+'/common/buyer/evaluate/orderDetail.html?code=001.001.001.001&id=' + id
         },
         savefile: function (e) {
           httpOrderApi.getFileBlob(e.target.href).then(function (res) {
