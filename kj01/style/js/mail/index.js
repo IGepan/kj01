@@ -92,25 +92,25 @@ require(['/common/js/require.config.js'], function () {
                     //创业孵化
                     this.goodFormData = {}
                     this.goodFormData.pageSize = 8;
-                    this.goodFormData.type = this.mailServiceTypeList[0].id;
+                    this.goodFormData.type = this.mailServiceTypeList[0];
                     this.getMailGoods('incubationTypeList')
                     //研发设计
-                    this.goodFormData.type = this.mailServiceTypeList[1].id;
+                    this.goodFormData.type = this.mailServiceTypeList[1];
                     this.getMailGoods('designTypeList')
                     //技术转移
-                    this.goodFormData.type = this.mailServiceTypeList[2].id;
+                    this.goodFormData.type = this.mailServiceTypeList[2];
                     this.getMailGoods('transferTypeList')
                     //检验检测
-                    this.goodFormData.type = this.mailServiceTypeList[3].id;
+                    this.goodFormData.type = this.mailServiceTypeList[3];
                     this.getMailGoods('checkTypeList')
                     //知识产权
-                    this.goodFormData.type = this.mailServiceTypeList[4].id;;
+                    this.goodFormData.type = this.mailServiceTypeList[4];
                     this.getMailGoods('propertyTypeList')
                     //科技咨询
-                    this.goodFormData.type = this.mailServiceTypeList[5].id;;
+                    this.goodFormData.type = this.mailServiceTypeList[5];
                     this.getMailGoods('technologyTypeList');
                     //科技咨询
-                    this.goodFormData.type = this.mailServiceTypeList[6].id;;
+                    this.goodFormData.type = this.mailServiceTypeList[6];
                     this.getMailGoods('knowledgeTypeList');
                     // cookie用户信息
                     (this.userInfo = JSON.parse(
@@ -278,6 +278,13 @@ require(['/common/js/require.config.js'], function () {
                             msg: "验证成功",
                             type: "success"
                         })
+                    },
+                    /**
+                     * 查看更多
+                     * @param index
+                     */
+                    checkMore: function (index) {
+                        location.href='/mail/sub1.html?type='+this.mailServiceTypeList[index].id
                     },
                     /**
                      * 滑块验证成功
