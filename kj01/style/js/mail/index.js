@@ -8,7 +8,7 @@ require(['/common/js/require.config.js'], function () {
                     saasId: '',
                     mailSite: {},
                     mailServiceTypeList: [],
-                    knowledgeTypeList:[],
+                    knowledgeTypeList: [],
                     incubationTypeList: [],
                     designTypeList: [],
                     checkTypeList: [],
@@ -53,9 +53,10 @@ require(['/common/js/require.config.js'], function () {
                     formatPrice2: function (flag, v, n, m) {
                         if (flag === '2') {
                             return '面议'
-                        }if(flag === "3"){
+                        }
+                        if (flag === "3") {
                             return '查看价格详情'
-                        }else {
+                        } else {
                             if (typeof v !== 'undefined') {
                                 return (v / 10000).toFixed(2)
                             } else if (!v && !m) {
@@ -88,7 +89,7 @@ require(['/common/js/require.config.js'], function () {
                     //广告2
                     this.getBanner('02', 'indexBanner02', 1);
                     console.log('开始加载板块数据')
-                    this.getMailServiceType().then(function (){
+                    this.getMailServiceType().then(function () {
                         console.log('加载完成')
                         //精选服务
                         _this.goodFormData.chosenFlag = '1';
@@ -137,7 +138,7 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         return indexApi.mailServiceType().then(function (res) {
                             if (res.code === 'rest.success') {
-                                console.log(res,'------------------------------')
+                                console.log(res, '------------------------------')
                                 vm.mailServiceTypeList = res.result
                                 //知识产权
                                 vm.incubationType = res.result.filter(function (s) {
@@ -204,9 +205,10 @@ require(['/common/js/require.config.js'], function () {
                             technologyTypeList: 5,
                             knowledgeTypeList: 6
                         }
-                        console.log(keymaping,dateKey, this.mailServiceTypeList, '-============================')
-                        if(keymaping[dateKey]) goodFormData.type = this.mailServiceTypeList[keymaping[dateKey]].id
-
+                        console.log(keymaping, dateKey, this.mailServiceTypeList, '-============================')
+                        if (keymaping[dateKey]) {
+                            this.goodFormData.type = this.mailServiceTypeList[keymaping[dateKey]].id
+                        }
                         indexApi.selectMailGoods(goodFormData).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.$data[dateKey] = res.result.list
@@ -306,7 +308,7 @@ require(['/common/js/require.config.js'], function () {
                      * @param index
                      */
                     checkMore: function (index) {
-                        location.href='/mail/sub1.html?type='+this.mailServiceTypeList[index].id
+                        location.href = '/mail/sub1.html?type=' + this.mailServiceTypeList[index].id
                     },
                     /**
                      * 滑块验证成功
@@ -356,7 +358,7 @@ require(['/common/js/require.config.js'], function () {
                                         });
                                         vm.form = {}
                                         vm.isSubmitDisabled = false
-                                        vm.codeBtnText=0;
+                                        vm.codeBtnText = 0;
                                     } else {
                                         vm.isSubmitDisabled = false
                                         vm.$message.error(data.desc);
