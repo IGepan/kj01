@@ -99,16 +99,16 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailGoods('designTypeList')
                     //政策申报
                     this.goodFormData.type = '371979827203252224';
-                    this.getMailGoods('transferTypeList')
+                    this.getMailGoods('checkTypeList')
                     //工商财税
                     this.goodFormData.type = '371979918089625600';
-                    this.getMailGoods('checkTypeList')
+                    this.getMailGoods('propertyTypeList')
                     //评估评价
                     this.goodFormData.type = '371980018614509568';
-                    this.getMailGoods('propertyTypeList')
+                    this.getMailGoods('technologyTypeList')
                     //检验检测
                     this.goodFormData.type = '371980699979194368';
-                    this.getMailGoods('technologyTypeList');
+                    this.getMailGoods('transferTypeList');
                     //科技咨询
                     this.goodFormData.type = '371981659690475520';
                     this.getMailGoods('knowledgeTypeList');
