@@ -325,7 +325,8 @@
                                         <p><i class="iconfont icon-city"></i> {{good_checkType.shopName}}</p>
                                     </div>
 
-                                    <div class="quoted-price"><span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_checkType.choosePriceTag |
+                                    <div class="quoted-price"><span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span>
+                                        <span v-else></span>{{good_checkType.choosePriceTag |
                                         formatPrice2(good_checkType.price, good_checkType.minPrice,
                                         good_checkType.maxPrice)}}<span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">万</span><span v-else></span></div>
                                 </div>
@@ -377,9 +378,11 @@
                                             <p><i class="iconfont icon-city"></i> {{good_propertyType.shopName}}</p>
                                         </div>
 
-                                        <div class="quoted-price"><span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_propertyType.choosePriceTag |
-                                            formatPrice2(good_propertyType.price, good_propertyType.minPrice,
-                                            good_propertyType.maxPrice)}}<span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">万</span><span v-else></span></div>
+                                        <div class="quoted-price">
+                                            <span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">￥</span>
+                                            <span v-else></span>{{good_propertyType.choosePriceTag | formatPrice2(good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}
+                                            <span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">万</span>
+                                            <span v-else></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -491,7 +494,8 @@
                                         <div class="quoted-price">
                                             <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_transferType.choosePriceTag |
                                             formatPrice2(good_transferType.price, good_transferType.minPrice,
-                                            good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span></div>
+                                            good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -539,7 +543,11 @@
                                         <p><i class="iconfont icon-tag"></i>  {{good_knowledgeType.typeName}}</p>
                                         <p><i class="iconfont icon-city"></i> {{good_knowledgeType.shopName}}</p>
                                     </div>
-                                    <div class="quoted-price"><span>￥</span>{{good_knowledgeType.negotiableFlag | formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice, good_knowledgeType.maxPrice)}}<span v-if="good_knowledgeType.negotiableFlag==='0'">万</span></div>
+                                    <div class="quoted-price">
+                                        <span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_knowledgeType.choosePriceTag |
+                                        formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,
+                                        good_knowledgeType.maxPrice)}}<span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span v-else></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
