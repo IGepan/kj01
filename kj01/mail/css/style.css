@@ -190,7 +190,7 @@ a {
         .main-menu .navbar-nav .brand .dropdown-menu-main > li.has-sub-menu .sub-menu {
           position: absolute;
           width: 25rem;
-          height: 26.25rem;
+          height: 32rem;
           padding: 1.25rem;
           background: #fff;
           border: 1px solid #ddd;
@@ -527,9 +527,9 @@ a {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      max-width: 12.5rem; }
+     }
     .card-item .card-body .addition .quoted-price {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       color: #f1671b;
       line-height: 3rem; }
       .card-item .card-body .addition .quoted-price span {
@@ -592,7 +592,8 @@ a {
       border-top: 1px solid #eee;
       border-right: 1px solid #eee;
       overflow: hidden; }
-      .block-tabs .tab-content .card-item img {
+.block-tabs .tab-content .card-item:hover h5{color: #01c8f2!important;}
+.block-tabs .tab-content .card-item img {
         margin: 1.25rem auto;
         width: 144px;
         height: 122px; }
