@@ -199,10 +199,10 @@ require(['/common/js/require.config.js'], function () {
                             chooseGoods: '',
                             incubationTypeList: 0,
                             designTypeList: 1,
-                            transferTypeList: 2,
-                            checkTypeList: 3,
-                            propertyTypeList: 4,
-                            technologyTypeList: 5,
+                            checkTypeList: 2,
+                            propertyTypeList: 3,
+                            technologyTypeList: 4,
+                            transferTypeList: 5,
                             knowledgeTypeList: 6
                         }
                         console.log(keymaping, dateKey, this.mailServiceTypeList, '-============================')
