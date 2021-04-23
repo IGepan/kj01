@@ -154,7 +154,7 @@
                                         <h5 class="card-title"><a
                                                 :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode">{{good.goodsName}}</a>
                                         </h5>
-                                        <div class="d-flex justify-content-between addition">
+                                        <div class="justify-content-between addition">
                                             <div class="short-text">
                                                 <p><i class="iconfont icon-tag"></i> {{good.typeName}}</p>
                                                 <p><i class="iconfont icon-city"></i> {{good.shopName}}</p>
@@ -200,11 +200,11 @@
                 <div class="row row-cols-4">
 
                     <div class="col" v-for="good_incubation in incubationTypeList">
+                        <a :href="'shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">
                         <div class="card card-item">
                             <img :src="good_incubation.goodsImg.url" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><a
-                                        :href="'shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">{{good_incubation.goodsName}}</a>
+                                <h5 class="card-title">{{good_incubation.goodsName}}
                                 </h5>
                                 <div class="addition">
                                     <div class="short-text">
@@ -218,6 +218,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
 
 
@@ -252,11 +253,11 @@
                     <div class="row row-cols-4">
 
                         <div class="col" v-for="good_design in designTypeList">
+                            <a :href="'shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">
                             <div class="card card-item">
                                 <img :src="good_design.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a
-                                            :href="'shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">{{good_design.goodsName}}</a>
+                                    <h5 class="card-title">{{good_design.goodsName}}
                                     </h5>
                                     <div class="addition">
                                         <div class="short-text">
@@ -270,6 +271,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                     </div>
@@ -309,11 +311,12 @@
                 <div class="row row-cols-4">
 
                     <div class="col" v-for="good_checkType in checkTypeList">
+                        <a
+                                :href="'shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">
                         <div class="card card-item">
                             <img :src="good_checkType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><a
-                                        :href="'shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">{{good_checkType.goodsName}}</a>
+                                <h5 class="card-title">{{good_checkType.goodsName}}
                                 </h5>
                                 <div class="addition">
                                     <div class="short-text">
@@ -327,6 +330,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -359,11 +363,12 @@
                     <div class="row row-cols-4">
 
                         <div class="col" v-for="good_propertyType in propertyTypeList">
+                            <a
+                                    :href="'shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">
                             <div class="card card-item">
                                 <img :src="good_propertyType.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a
-                                            :href="'shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">{{good_propertyType.goodsName}}</a>
+                                    <h5 class="card-title">{{good_propertyType.goodsName}}
                                     </h5>
                                     <div class="addition">
                                         <div class="short-text">
@@ -377,6 +382,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                     </div>
@@ -412,11 +418,12 @@
                 <div class="row row-cols-4">
 
                     <div class="col" v-for="good_technologyType in technologyTypeList">
+                        <a
+                                :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">
                         <div class="card card-item">
                             <img :src="good_technologyType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><a
-                                        :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">{{good_technologyType.goodsName}}</a>
+                                <h5 class="card-title">{{good_technologyType.goodsName}}
                                 </h5>
                                 <div class="addition">
                                     <div class="short-text">
@@ -432,6 +439,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
 
                 </div>
@@ -465,11 +473,13 @@
                     <div class="row row-cols-4">
 
                         <div class="col" v-for="good_transferType in transferTypeList">
+                            <a
+                                :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
+
                             <div class="card card-item">
                                 <img :src="good_transferType.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a
-                                            :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">{{good_transferType.goodsName}}</a>
+                                    <h5 class="card-title">{{good_transferType.goodsName}}
                                     </h5>
                                     <div class="addition">
                                         <div class="short-text">
@@ -484,6 +494,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                     </div>
@@ -517,10 +528,11 @@
                 <div class="row row-cols-4">
 
                     <div class="col" v-for="good_knowledgeType in knowledgeTypeList">
+                        <a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
                         <div class="card card-item">
                             <img :src="good_transferType.goodsImg.url|''" class="" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">{{good_technologyType.goodsName}}</a></h5>
+                                <h5 class="card-title">{{good_technologyType.goodsName}}</h5>
                                 <div class="addition">
                                     <div class="short-text">
                                         <p><i class="iconfont icon-tag"></i>  {{good_knowledgeType.typeName}}</p>
@@ -530,6 +542,8 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
+
                     </div>
 
                 </div>
