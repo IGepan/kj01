@@ -45,7 +45,7 @@
       <div class="link">
         <a href="about.html">关于易智网</a>
         <a href="#">隐私政策</a>
-        <a @click="#">平台协议</a>
+        <a href="#">平台协议</a>
 
       </div>
       <div class="main_copyright"> Copyright © 2019 易智网 版权所有 <a
