@@ -344,9 +344,9 @@ img {
 /*分页end*/
 @font-face {
     font-family: 'JQiTi';
-    src: url('./fontFamily/JQiTi.TTF');
+    src: url('fontFamily/JQiTi.TTF');
 }
 @font-face {
     font-family: 'GBK';
-    src: url('./fontFamily/gbk.TTF');
+    src: url('fontFamily/gbk.TTF');
 }

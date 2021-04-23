@@ -40,7 +40,7 @@ require(['/common/js/require.config.js'], function () {
 						if (this.userInfo && this.userInfo.userName) {
 							this.getDetailInfo(id);
 						} else {
-							window.location.href = '/common/login.html';
+							window.location.href = '../../../../../../common/login.html';
 						}
 					},
 					getDetailInfo: function (id) {

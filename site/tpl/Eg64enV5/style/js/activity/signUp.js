@@ -61,7 +61,7 @@ require(['/common/js/require.config.js'], function () {
 							this.formData.activeId = id;
 							id && this.getDetailInfo(id) && this.getEnrollInfo(id);
 						} else {
-							window.location.href = '/common/login.html';
+							window.location.href = '../../../../../../common/login.html';
 						}
 					},
 					getDetailInfo: function (id) {
