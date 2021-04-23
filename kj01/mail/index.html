@@ -148,11 +148,12 @@
                     <div class="swiper-wrapper">
                         <template v-for="(good,index) in chooseGoods">
                             <div class="swiper-slide">
-                                <div class="card card-item">
+                                <a
+                                        :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode"> <div class="card card-item">
                                     <img :src="good.goodsImg.url" class="" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title"><a
-                                                :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode">{{good.goodsName}}</a>
+                                        <h5 class="card-title">
+                                    {{good.goodsName}}
                                         </h5>
                                         <div class="justify-content-between addition">
                                             <div class="short-text">
@@ -163,7 +164,7 @@
                                                 formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span  v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">万</span><span v-else></span></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                         </template>
 
