@@ -46,21 +46,44 @@
                 <el-button type="text" style="color: #ced8fb;padding: 0 10px;" @click="about">关于易智网</el-button>
                 <!--<a @click="agreeClick(1)">隐私政策</a>-->
                 <!--<a @click="agreeClick(0)">平台协议</a>-->
-                <el-button type="text" @click="open(1)" style="color: #ced8fb;padding: 0 10px;">隐私政策</el-button>
-                <el-button type="text" @click="open(0)" style="color: #ced8fb;padding: 0 10px;">平台协议</el-button>
+                <el-button type="text" @click="centerDialogVisible = true" style="color: #ced8fb;padding: 0 10px;">隐私政策</el-button>
+                <el-button type="text" @click="centerDialogVisible2 = true" style="color: #ced8fb;padding: 0 10px;">平台协议</el-button>
+                <!--<el-button type="text" @click="open(1)" style="color: #ced8fb;padding: 0 10px;">隐私政策</el-button>-->
+                <!--<el-button type="text" @click="open(0)" style="color: #ced8fb;padding: 0 10px;">平台协议</el-button>-->
 
             </div>
             <!--<div class="cover" style='display: none;'>-->
-                <!--<div class="covtr">-->
-                    <!--<div class="agreebox">-->
-                        <!--<div class="cls" @click="clsClick"></div>-->
-                        <!--<div class="title" v-text="protocol[protocolType].title">服务协议详情</div>-->
-                        <!--<div class="content" v-html="protocol[protocolType].content"></div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="covtr">-->
+            <!--<div class="agreebox">-->
+            <!--<div class="cls" @click="clsClick"></div>-->
+            <!--<div class="title" v-text="protocol[protocolType].title">服务协议详情</div>-->
+            <!--<div class="content" v-html="protocol[protocolType].content"></div>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
 
-
+            <el-dialog
+                    :title="this.protocol[1].title"
+                    :visible.sync="centerDialogVisible"
+                    width="50%"
+                    center>
+                <div v-html="this.protocol[1].content"></div>
+                <span slot="footer" class="dialog-footer">
+    <!--<el-button @click="centerDialogVisible = false">取 消</el-button>-->
+    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+  </span>
+            </el-dialog>
+            <el-dialog
+                    :title="this.protocol[0].title"
+                    :visible.sync="centerDialogVisible2"
+                    width="50%"
+                    center>
+                <div v-html="this.protocol[0].content"></div>
+                <span slot="footer" class="dialog-footer">
+    <!--<el-button @click="centerDialogVisible = false">取 消</el-button>-->
+    <el-button type="primary" @click="centerDialogVisible2 = false">确 定</el-button>
+  </span>
+            </el-dialog>
             <div class="main_copyright"> Copyright © 2019 易智网 版权所有 <a
                     href="https://beian.miit.gov.cn/"
                     target="_blank"
@@ -82,6 +105,8 @@
                         content: ''
                     }
                 ],
+                centerDialogVisible: false,
+                centerDialogVisible2: false,
                 protocolType: 0,
             }
         },
@@ -116,13 +141,15 @@
             // clsClick: function () {
             //     $(".cover").fadeOut(300);
             // },
-            open: function (protocolType) {
-                this.$alert(this.protocol[protocolType].content, this.protocol[protocolType].title, {
-                    dangerouslyUseHTMLString: true
-                });
-            },
+            // open: function (protocolType) {
+            //     this.data.centerDialogVisible = true;
+            //     whichProtocol = protocolType;
+            //     // this.Dialog(this.protocol[protocolType].content, this.protocol[protocolType].title, {
+            //     //     // dangerouslyUseHTMLString: true
+            //     // });
+            // },
             about: function () {
-                location.href='/about.html'
+                location.href = '/about.html'
             }
         }
     }
@@ -312,6 +339,7 @@
         background: url(/common/images/icon_close.png) no-repeat center center #ddd;
         border-radius: 50%;
     }
+
     .agreebox {
         position: relative;
         margin: 0 auto;
