@@ -98,7 +98,7 @@
                   <td>
                     <div class="ipt realname">
                       <input :disabled="isCertificationed" v-model="formData.realName" type="text" class="required"
-                        data-tip="" data-valid="maxLength:20" data-error='姓名过长'>
+                        data-tip="" maxlength="20">
                     </div>
                     <div class="select showname">
                       <select name="" :disabled="isCertificationed"  v-model="formData.visibleFlag">
@@ -109,25 +109,25 @@
                   </td>
                   <td class="form_msg"></td>
                 </tr>
-                <tr class="form_item" v-if="formData.identityType === '01'">
-                  <th>单位名称：</th>
-                  <td>
-                    <div class="ipt">
-                      <input :disabled="isCertificationed" v-model="formData.companyName" type="text" class="required"
-                             maxlength="20">
-                    </div>
-                  </td>
-                  <td class="form_msg"></td>
-                </tr> <tr class="form_item" v-if="formData.identityType === '01'">
-                  <th>职务：</th>
-                  <td>
-                    <div class="ipt ">
-                      <input :disabled="isCertificationed" v-model="formData.job" type="text" class="required"
-                             maxlength="20">
-                    </div>
-                  </td>
-                  <td class="form_msg"></td>
-                </tr>
+<!--                <tr class="form_item" v-if="formData.identityType === '01'">-->
+<!--                  <th>单位名称：</th>-->
+<!--                  <td>-->
+<!--                    <div class="ipt">-->
+<!--                      <input :disabled="isCertificationed" v-model="formData.companyName" type="text" class="required"-->
+<!--                             maxlength="20">-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                  <td class="form_msg"></td>-->
+<!--                </tr> <tr class="form_item" v-if="formData.identityType === '01'">-->
+<!--                  <th>职务：</th>-->
+<!--                  <td>-->
+<!--                    <div class="ipt ">-->
+<!--                      <input :disabled="isCertificationed" v-model="formData.job" type="text" class="required"-->
+<!--                             maxlength="20">-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                  <td class="form_msg"></td>-->
+<!--                </tr>-->
                 <tr v-if="formData.identityType === '01'">
                   <th>出生年月：</th>
                   <td>
