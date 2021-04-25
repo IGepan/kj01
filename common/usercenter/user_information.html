@@ -101,10 +101,29 @@
                         data-tip="" data-valid="maxLength:20" data-error='姓名过长'>
                     </div>
                     <div class="select showname">
-                      <select name="" :disabled="isCertificationed" id="" v-model="formData.visibleFlag">
+                      <select name="" :disabled="isCertificationed"  v-model="formData.visibleFlag">
                         <option value="1">仅自己可见</option>
                         <option value="0">所有可见</option>
                       </select>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
+                <tr class="form_item" v-if="formData.identityType === '01'">
+                  <th>单位名称：</th>
+                  <td>
+                    <div class="ipt">
+                      <input :disabled="isCertificationed" v-model="formData.companyName" type="text" class="required"
+                             maxlength="20">
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr> <tr class="form_item" v-if="formData.identityType === '01'">
+                  <th>职务：</th>
+                  <td>
+                    <div class="ipt ">
+                      <input :disabled="isCertificationed" v-model="formData.job" type="text" class="required"
+                             maxlength="20">
                     </div>
                   </td>
                   <td class="form_msg"></td>

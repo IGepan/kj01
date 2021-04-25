@@ -10,6 +10,8 @@ require(['/common/js/require.config.js'], function () {
         httpUser: httpUser,
         httpCom: httpCom,
         formData: {
+          companyName: '', //单位名称
+          job: '', //职位
           headImg: '',
           userBasicId: '', // 用户基本信息主键
           userName: '', // 用户名
