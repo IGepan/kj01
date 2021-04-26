@@ -341,7 +341,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             if (res.result) {
                                 var options = {
                                     class: 'full',
-                                    title: vm.platform+'服务平台供应发布规范',
+                                    title: vm.platform+'易智商城服务协议',
                                     close: false,
                                     texts: '<div style="margin: 10px 20px;">' + res.result.protocolContact + '<div>',
                                     buttons: [
