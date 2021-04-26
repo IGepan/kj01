@@ -68,6 +68,23 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.shortCode = this.$utils.getReqStr('shortCode');
         this.shopAccess()
       },
+      filters: {
+        formatPrice2: function (flag, v, n, m) {
+          if (flag === '2') {
+            return '面议'
+          }if(flag === "3"){
+            return '查看价格详情'
+          }else {
+            if (typeof v !== 'undefined') {
+              return (v / 10000).toFixed(2)
+            } else if (!v && !m) {
+              return (n / 10000).toFixed(2)
+            } else {
+              return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+            }
+          }
+        },
+      },
       components: {
         'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
         'ly-header': httpVueLoader('/common/template/t01/components/defaultHeader.vue'),

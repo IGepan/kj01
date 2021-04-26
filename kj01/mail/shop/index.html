@@ -95,7 +95,8 @@
                 <div class="block-content">
                     <ul class="list-unstyled">
                         <li  v-for="item in latestGoodsList">
-                            <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span><i class="money">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</i></a>
+                            <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span>
+                                <i class="money"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span><span v-else></span>{{item.choosePriceTag | formatPrice2(item.price, item.minPrice, item.maxPrice)}}</i></a>
                         </li>
 
                     </ul>
@@ -149,7 +150,7 @@
                 <div class="about-shop">
                     <div class="main-title"><span>关于我们</span></div>
                     <div class="content ">
-                        <div class="poster-txt xg current-menu" style="height: 10rem;" v-html="shopInfo.comment">
+                        <div class="poster-txt xg current-menu" v-html="shopInfo.comment">
 
                         </div>
                     </div>
@@ -157,7 +158,7 @@
                 <div class="about-shop">
                     <div class="main-title"><span>服务案例</span></div>
                     <div class="content ">
-                        <div class="poster-txt xg current-menu" style="height: 10rem;" v-html="shopInfo.serviceCase">
+                        <div class="poster-txt xg current-menu"  v-html="shopInfo.serviceCase">
 
                         </div>
                     </div>
