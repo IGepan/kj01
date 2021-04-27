@@ -1500,6 +1500,11 @@ a {
       line-height: 2rem;
       font-size: 1rem; }
 
+    /*TODO 服务简介样式对齐改变*/
+.product-data .tab-content .detailed:nth-last-child(0) {
+  margin: 0; !important;
+}
+
 .extra-information {
   color: #848484;
   font-size: 1rem;
