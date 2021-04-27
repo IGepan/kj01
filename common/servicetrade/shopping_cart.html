@@ -81,8 +81,12 @@
               </div>
               <div class="inlinetop w190">
                 <!-- <div class="mtxt textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div> -->
-                <div class="mtxt2 textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div>
-<!--                <div class="mtxt2 textcenter" v-text="'￥' + (sku.choosePriceTag == '0'|sku.choosePriceTag == '1' ? sku.price : sku.minPrice)"></div>-->
+                <!--<div class="mtxt2 textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div>-->
+                <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>
+                <div class="mtxt2 textcenter" v-if="sku.choosePriceTag == '0'" >{{sku.price}}</div>
+                <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '1'" >{{sku.minPrice}}</div>
+                <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '2'" >面议</div>
+                <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '3'" >查看价格详情</div>
               </div>
               <div class="inlinetop w190 pl50">
                 <button class="addbtn fl" :disabled="sku.number === 1 || !sku.efficacyFlag"
@@ -94,9 +98,14 @@
                   :class="{low: sku.number === sku.stock}" @click="addNumber(i, si)">+</button>
               </div>
               <div class="inlinetop w130 pl20">
-                <div class="titorg"
-                  v-text="'￥' + $options.filters.sumPrice((sku.price !== undefined ? sku.price : sku.minPrice), sku.number)">
-                </div>
+                <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>
+                <!--<div class="titorg"-->
+                  <!--v-text="'￥' + $options.filters.sumPrice((sku.price !== undefined ? sku.price : sku.minPrice), sku.number)">-->
+                <!--</div>-->
+                <div class="titorg" v-if="sku.choosePriceTag == '0'" >{{$options.filters.sumPrice(sku.price)}}</div>
+                <div class="titorg" v-else-if="sku.choosePriceTag == '1'" >{{$options.filters.sumPrice(sku.minPrice)}}</div>
+                <div class="titorg" v-else-if="sku.choosePriceTag == '2'" >面议</div>
+                <div class="titorg" v-else-if="sku.choosePriceTag == '3'" >查看价格详情</div>
               </div>
               <div class="inlinetop w130 pl20">
                 <button class="delete lh20 fl pl10" type="button" @click="deleteOne(sku.skuId, i, si)">删除</button>
