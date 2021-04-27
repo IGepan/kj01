@@ -135,7 +135,7 @@
                                                 <span v-else-if="good.choosePriceTag==='1'">￥</span>
                                                 <span v-else-if="good.choosePriceTag==='2'"></span>
                                                 <span v-else-if="good.choosePriceTag==='3'"></span>
-                                                {{good.choosePriceTag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.choosePriceTag==='0'|'1'">万</span>
+                                                {{good.choosePriceTag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.choosePriceTag==='0'|good.choosePriceTag==='1'">万</span>
                                             <span v-else></span>
                                             </div>
                                             <div class="short-text">
