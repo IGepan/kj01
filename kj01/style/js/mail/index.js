@@ -66,8 +66,8 @@ require(['/common/js/require.config.js'], function () {
                         }
                     },
                 },
-                mounted: function () {
-                },
+                // mounted: function () {
+                // },
                 components: {
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
@@ -75,7 +75,7 @@ require(['/common/js/require.config.js'], function () {
                     'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
                 },
-                created: function () {
+                mounted: function () {
 
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
