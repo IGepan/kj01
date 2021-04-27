@@ -202,8 +202,11 @@
                             </div>
                         </div>
                     </td>
-                    <td class="text-center align-middle"><span
-                            class="price text-secondary fs-5 mt-3 d-block">￥{{sku.negotiableFlag | formatPrice(sku.price, sku.minPrice, sku.maxPrice)}}</span></td>
+                    <td class="text-center align-middle">
+                        <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>
+                        <span class="price text-secondary fs-5 mt-3 d-block" v-if="sku.choosePriceTag!='3'">{{sku.negotiableFlag | formatPrice(sku.price, sku.minPrice, sku.maxPrice)}}</span>
+                        <span class="price text-secondary fs-5 mt-3 d-block" v-else-if="sku.choosePriceTag=='3'">查看价格详情</span>
+                    </td>
                     <td width="152" class="align-middle">
                         <div class="num d-flex justify-content-center mt-3">
                             <div class="input-group">
