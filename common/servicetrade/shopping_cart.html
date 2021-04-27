@@ -82,9 +82,9 @@
               <div class="inlinetop w190">
                 <!-- <div class="mtxt textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div> -->
                 <!--<div class="mtxt2 textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div>-->
-                <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>
-                <div class="mtxt2 textcenter" v-if="sku.choosePriceTag == '0'" >{{sku.price}}</div>
-                <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '1'" >{{sku.minPrice}}</div>
+
+                <div class="mtxt2 textcenter" v-if="sku.choosePriceTag == '0'" > <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{sku.price}}</div>
+                <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '1'" > <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{sku.minPrice}}</div>
                 <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '2'" >面议</div>
                 <div class="mtxt2 textcenter" v-else-if="sku.choosePriceTag == '3'" >查看价格详情</div>
               </div>
@@ -98,12 +98,12 @@
                   :class="{low: sku.number === sku.stock}" @click="addNumber(i, si)">+</button>
               </div>
               <div class="inlinetop w130 pl20">
-                <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>
+
                 <!--<div class="titorg"-->
                   <!--v-text="'￥' + $options.filters.sumPrice((sku.price !== undefined ? sku.price : sku.minPrice), sku.number)">-->
                 <!--</div>-->
-                <div class="titorg" v-if="sku.choosePriceTag == '0'" >{{$options.filters.sumPrice(sku.price)}}</div>
-                <div class="titorg" v-else-if="sku.choosePriceTag == '1'" >{{$options.filters.sumPrice(sku.minPrice)}}</div>
+                <div class="titorg" v-if="sku.choosePriceTag == '0'" ><small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{$options.filters.sumPrice(sku.price,sku.number)}}</div>
+                <div class="titorg" v-else-if="sku.choosePriceTag == '1'" ><small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{$options.filters.sumPrice(sku.minPrice,sku.number)}}</div>
                 <div class="titorg" v-else-if="sku.choosePriceTag == '2'" >面议</div>
                 <div class="titorg" v-else-if="sku.choosePriceTag == '3'" >查看价格详情</div>
               </div>
