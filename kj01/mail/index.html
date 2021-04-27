@@ -388,12 +388,9 @@
                             </div>
                             </a>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
     <!--评估评价-->
@@ -422,8 +419,7 @@
                 <div class="row row-cols-4">
 
                     <div class="col" v-for="good_technologyType in technologyTypeList">
-                        <a
-                                :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">
+                        <a :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">
                         <div class="card card-item">
                             <img :src="good_technologyType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
@@ -533,7 +529,7 @@
                     <div class="col" v-for="good_knowledgeType in knowledgeTypeList">
                         <a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
                         <div class="card card-item">
-                            <img :src="good_knowledgeType.goodsImg.url|''" class="" alt="...">
+                            <img :src="https://fs.kj01.cn/resource/ts/goodsDefaultImg/009.jpg" class="" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{good_knowledgeType.goodsName}}</h5>
                                 <div class="addition">
