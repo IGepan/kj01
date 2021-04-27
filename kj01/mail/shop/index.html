@@ -99,12 +99,13 @@
                     <div class="block-content">
                         <ul class="list-unstyled">
                             <li v-for="item in latestGoodsList">
-                                <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title"
-                                                                                                        :title="item.goodsName"
-                                                                                                        v-text="item.goodsName||''"></span>
-                                    <i class="money">
+                                <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode">
+                                    <span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span>
+                                    <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">
                                         <span v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
-                                        <span v-else></span>{{item.choosePriceTag | formatPrice2(item.price, item.minPrice, item.maxPrice)}}</i></a>
+                                        <span v-else></span>{{item.choosePriceTag | formatPrice2(item.price, item.minPrice, item.maxPrice)}}
+                                    </i>
+                                </a>
                             </li>
 
                         </ul>
@@ -199,8 +200,7 @@
                                                 <p v-text="item.categoryName"><i class="iconfont icon-tag"></i></p>
                                                 <p><i class="iconfont icon-city"></i> {{item.shopName}}</p>
                                             </div>
-                                            <div class="quoted-price"><span
-                                                    v-if="item.choosePriceTag==='0'||item.choosePriceTag==='1'">￥</span>
+                                            <div class="quoted-price"><span v-if="item.choosePriceTag==='0'||item.choosePriceTag==='1'">￥</span>
                                                 <span v-if="item.choosePriceTag!='3'">{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</span>
                                                 <span v-if="item.choosePriceTag==='3'">查看价格详情</span>
 

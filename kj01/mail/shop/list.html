@@ -22,7 +22,7 @@
     <ly-header  :http="httpCom"></ly-header>
 </header>
     <div class="additional-menu">
-        <div class="container">
+        <div class="container" v-cloak=>
             <div class="store-info d-flex">
                 <span class="store-name">{{shopInfo.shopName}}</span>
                 <span class="icon-item icon-users">
@@ -31,7 +31,7 @@
                 <span class="icon-item icon-safety">
                 <i class="iconfont icon-anquan"></i>
             </span>
-                <div class="store-mark d-flex">
+                <div class="store-mark d-flex" >
                     <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
                     <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
                     <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
@@ -56,7 +56,7 @@
     </div>
 </nav>
 
-<div class="container shop-main-page">
+<div class="container shop-main-page" v-cloak>
     <div class="product-list-wrapper mt-3 pb-3">
         <div class="toolbar d-flex justify-content-between">
                 <div class="sort">
