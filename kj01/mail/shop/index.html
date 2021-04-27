@@ -55,7 +55,7 @@
                 <li class="nav-item">
                     <a class="nav-link" :href="'/mail/shop/list.html?code='+shopCode">服务列表</a>
                 </li>
-                <li class="nav-item" v-if="statisticsInfo.orderCount!=0">
+                <li class="nav-item" v-show="statisticsInfo.orderCount && statisticsInfo.orderCount!=0">
                     <a class="nav-link" :href="'/mail/shop/service.html?code='+shopCode">成交案例</a>
                 </li>
             </ul>
