@@ -167,7 +167,7 @@
                                         <span v-if="detailInfo.choosePriceTa!='3'">
                                             {{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}
                                         </span>
-                            <span  v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">万</span>
+                            <span v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">万</span>
                             <span v-else></span>
                         </span>
                         </div>
@@ -235,10 +235,10 @@
                                 收藏店铺</i>
                         </button>
                     </div>
-<!--                    <div class="operating-hours">-->
-<!--                        工作日 {{shopInfo.propertyDay}} <br>-->
-<!--                        {{shopInfo.propertyTime}}-->
-<!--                    </div>-->
+                    <!--                    <div class="operating-hours">-->
+                    <!--                        工作日 {{shopInfo.propertyDay}} <br>-->
+                    <!--                        {{shopInfo.propertyTime}}-->
+                    <!--                    </div>-->
                 </div>
                 <div class="block block-trend" v-if="latestGoodsList&&latestGoodsList.length">
                     <div class="block-title"><span>店铺动态</span></div>
@@ -248,8 +248,10 @@
                                 <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title"
                                                                                                         :title="item.goodsName"
                                                                                                         v-text="item.goodsName||''"></span>
-                                    <i class="money" ><span v-if="item.choosePriceTag=='0'||'1'">￥</span><span v-else></span>{{item.choosePriceTag| formatPrice2(item.price, item.minPrice, item.maxPrice)}}
-<!--                                    <i class="money">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</i>-->
+                                    <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap"><span v-if="item.choosePriceTag=='0'||'1'">￥</span><span
+                                            v-else></span>{{item.choosePriceTag| formatPrice2(item.price, item.minPrice,
+                                        item.maxPrice)}}
+                                        <!--                                    <i class="money">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</i>-->
                                     </i>
                                 </a>
                             </li>
@@ -360,18 +362,20 @@
                                             </td>
                                         </tr>
 
-                                        <tr>
-                                            <td style="width: 20px">
-                                                <div class="col"
-                                                     style="margin: 15px; font-size: 16px; color: rgba(101,101,102,0.85);">
-                                                    服务简介：
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="detailed" v-html="detailInfo.goodsIntroduce||''" style="text-align: center">
-                                                </div>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td style="width: 115px">
+                                                    <div class="col"
+                                                         style="margin: 15px; font-size: 16px; color: rgba(101,101,102,0.85);">
+                                                        服务简介：
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="detailed" v-html="detailInfo.goodsIntroduce||''"
+                                                         style="display: flex">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
                                     </th>
                                 </table>
                             </div>

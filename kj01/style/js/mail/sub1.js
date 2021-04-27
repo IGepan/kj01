@@ -130,7 +130,7 @@ require(['/common/js/require.config.js'], function () {
                                 this.searchForm.orderBy = 'createTime asc'
                             }
                             if (i === 2) {
-                                this.searchForm.orderBy = 'minPrice asc,price asc'
+                                this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc'
                             }
                         } else {
                             this.searchForm.orderBy = ''
