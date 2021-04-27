@@ -529,7 +529,7 @@
                     <div class="col" v-for="good_knowledgeType in knowledgeTypeList">
                         <a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
                         <div class="card card-item">
-                            <img :src="good_knowledgeType.goodsImg.url|''" class="" alt="...">
+                            <img :src="good_knowledgeType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{good_knowledgeType.goodsName}}</h5>
                                 <div class="addition">
