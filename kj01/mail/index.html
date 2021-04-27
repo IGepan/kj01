@@ -57,7 +57,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">首页</a>
+                    <a class="nav-link active" aria-current="page" href="/mail">首页</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="sub1.html">找服务</a>
@@ -388,12 +388,9 @@
                             </div>
                             </a>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
     <!--评估评价-->
@@ -422,8 +419,7 @@
                 <div class="row row-cols-4">
 
                     <div class="col" v-for="good_technologyType in technologyTypeList">
-                        <a
-                                :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">
+                        <a :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">
                         <div class="card card-item">
                             <img :src="good_technologyType.goodsImg.url" class="" alt="...">
                             <div class="card-body">
@@ -475,11 +471,9 @@
                                 class="iconfont icon-arrow-right"></i> </a>
                     </div>
                     <div class="row row-cols-4">
-
                         <div class="col" v-for="good_transferType in transferTypeList">
                             <a
                                 :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
-
                             <div class="card card-item">
                                 <img :src="good_transferType.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
@@ -522,7 +516,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="tab-content">
+            <div class="tab-content" v-show="knowledgeType!=undefined">
                 <div class="left-banner">
                     <h4>{{knowledgeType.name}}</h4>
                     <div class="text">

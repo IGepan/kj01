@@ -316,49 +316,49 @@
    </div>
   </div>
 
-  <div class="serviceBox">
-   <div class="mmdiv">
-    <div class="service">
-     <div class="titleBox">
-      <div class="title">
-       <div class="title-name"><span>推荐服务</span></div>
-       <div class="title-text">成果转化服务，为您的技术转化保驾护航</div>
-      </div>
-     </div>
-     <div class="content">
-      <div class="serve">
-       <div class="content-more serve-more" style="background: url(/style/images/market/servebg.png);">
-        <div class="content-more_top">
-         <div class="content-more_title">成果转化服务</div>
-         <div class="content-more_text">优选服务商，为您服务</div>
-         <a href="/service/resource_list.html?servicesLevel=003" class="iconfont icon-gengduo"></a>
-        </div>
-       </div>
-       <div class="serve-right">
-        <ul class="lists">
-         <li class="list" v-for="serve in serveList" :key="serve.id">
-          <div class="top">
-           <div class="name" :title="serve.goodsName">{{serve.goodsName}}</div>
-           <div class="shop">
-            <div class="shop-avater"><img :src="serve.shopLogoUrl" alt=""></div>
-            <span :title="serve.shopName">{{serve.shopName}}</span>
-           </div>
-           <div class="type"><span class="iconfont icon-hangye"></span><span :title="serve.goodsName">{{serve.goodsName}}</span></div>
-           <div class="type"><span class="iconfont icon-dingweixian"></span><span :title="serve.shopProvinceDisplay">{{serve.shopProvinceDisplay}}</span>
-           </div>
-          </div>
-          <div class="bottom">
-           <div class="price"><span>￥</span><span class="number">{{serve.negotiableFlag | formatPrice(serve.price, serve.minPrice, serve.maxPrice)}}</span></div>
-           <a :href="serve.goodsDetailUrl" class="viewdetails">查看详情</a>
-          </div>
-         </li>
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div>
+<!--  <div class="serviceBox">-->
+<!--   <div class="mmdiv">-->
+<!--    <div class="service">-->
+<!--     <div class="titleBox">-->
+<!--      <div class="title">-->
+<!--       <div class="title-name"><span>推荐服务</span></div>-->
+<!--       <div class="title-text">成果转化服务，为您的技术转化保驾护航</div>-->
+<!--      </div>-->
+<!--     </div>-->
+<!--     <div class="content">-->
+<!--      <div class="serve">-->
+<!--       <div class="content-more serve-more" style="background: url(/style/images/market/servebg.png);">-->
+<!--        <div class="content-more_top">-->
+<!--         <div class="content-more_title">成果转化服务</div>-->
+<!--         <div class="content-more_text">优选服务商，为您服务</div>-->
+<!--         <a href="/service/resource_list.html?servicesLevel=003" class="iconfont icon-gengduo"></a>-->
+<!--        </div>-->
+<!--       </div>-->
+<!--       <div class="serve-right">-->
+<!--        <ul class="lists">-->
+<!--         <li class="list" v-for="serve in serveList" :key="serve.id">-->
+<!--          <div class="top">-->
+<!--           <div class="name" :title="serve.goodsName">{{serve.goodsName}}</div>-->
+<!--           <div class="shop">-->
+<!--            <div class="shop-avater"><img :src="serve.shopLogoUrl" alt=""></div>-->
+<!--            <span :title="serve.shopName">{{serve.shopName}}</span>-->
+<!--           </div>-->
+<!--           <div class="type"><span class="iconfont icon-hangye"></span><span :title="serve.goodsName">{{serve.goodsName}}</span></div>-->
+<!--           <div class="type"><span class="iconfont icon-dingweixian"></span><span :title="serve.shopProvinceDisplay">{{serve.shopProvinceDisplay}}</span>-->
+<!--           </div>-->
+<!--          </div>-->
+<!--          <div class="bottom">-->
+<!--           <div class="price"><span>￥</span><span class="number">{{serve.negotiableFlag | formatPrice(serve.price, serve.minPrice, serve.maxPrice)}}</span></div>-->
+<!--           <a :href="serve.goodsDetailUrl" class="viewdetails">查看详情</a>-->
+<!--          </div>-->
+<!--         </li>-->
+<!--        </ul>-->
+<!--       </div>-->
+<!--      </div>-->
+<!--     </div>-->
+<!--    </div>-->
+<!--   </div>-->
+<!--  </div>-->
 
   <div class="contentDownBox">
    <div class="mmdiv">

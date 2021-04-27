@@ -32,7 +32,7 @@
 <!--                    </a>-->
 <!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="/">首页</a>
+                    <a class="nav-link " aria-current="page" href="/mail">首页</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="sub1.html">找服务</a>
@@ -126,7 +126,8 @@
                         <a :href="'/mail/shop/detail.html?id='+good.id+'&code='+good.shopCode">
                             <div class="col">
                                 <div class="card card-item" >
-                                    <img :src="good.goodsImg.url" class="" alt="...">
+                                    <img :src="good.goodsImg.url|''" class="" alt="...">
+<!--                                    <img :src="https://fs.kj01.cn/resource/ts/goodsDefaultImg/009.jpg" class="" alt="...">-->
                                     <div class="card-body">
                                         <h5 class="card-title">{{good.goodsName}}</h5>
                                         <div class="addition">
@@ -134,7 +135,9 @@
                                                 <span v-else-if="good.choosePriceTag==='1'">￥</span>
                                                 <span v-else-if="good.choosePriceTag==='2'"></span>
                                                 <span v-else-if="good.choosePriceTag==='3'"></span>
-                                                {{good.choosePriceTag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.choosePriceTag==='0'">万</span></div>
+                                                {{good.choosePriceTag | formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span v-if="good.choosePriceTag==='0'|good.choosePriceTag==='1'">万</span>
+                                            <span v-else></span>
+                                            </div>
                                             <div class="short-text">
                                                 <p><i class="iconfont icon-tag"></i>{{good.typeName}}</p>
                                                 <p><i class="iconfont icon-city"></i>{{good.shopName}}</p>

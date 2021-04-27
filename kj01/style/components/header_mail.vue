@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <div class="col">
-          <a class="logo" href="./"><img class="img-fluid" src="images/logo-1.png" alt=""></a>
+          <a class="logo" href="/"><img class="img-fluid" src="images/logo-1.png" alt=""></a>
         </div>
         <div class="col-6">
           <div class="input-group search-top">

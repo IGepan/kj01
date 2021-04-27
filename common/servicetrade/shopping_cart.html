@@ -82,6 +82,7 @@
               <div class="inlinetop w190">
                 <!-- <div class="mtxt textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div> -->
                 <div class="mtxt2 textcenter" v-text="'￥' + (sku.price !== undefined ? sku.price : sku.minPrice)"></div>
+<!--                <div class="mtxt2 textcenter" v-text="'￥' + (sku.choosePriceTag == '0'|sku.choosePriceTag == '1' ? sku.price : sku.minPrice)"></div>-->
               </div>
               <div class="inlinetop w190 pl50">
                 <button class="addbtn fl" :disabled="sku.number === 1 || !sku.efficacyFlag"
