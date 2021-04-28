@@ -613,17 +613,17 @@ require(['/common/js/require.config.js'], function () {
 							alt_tip:'愉快融',
 						},
 						{
-							img:'/style/images/index/friend_link_10.png',
+							img:'/style/images/index/friend_link_10(1).png',
 							href:'http://www.csti.cn',
 							alt_tip:'重庆科技资源共享平台',
 						},
 						{
-							img:'/style/images/index/friend_link_11.png',
+							img:'/style/images/index/friend_link_11(1).png',
 							href:'https://www.cqcxcyct.com',
 							alt_tip:'三创平台',
 						},
 						{
-							img:'/style/images/index/friend_link_12.png',
+							img:'/style/images/index/friend_link_12(1).png',
 							href:'http://www.patentcloud.net',
 							alt_tip:'重庆市技术创新专利导航平台',
 						},

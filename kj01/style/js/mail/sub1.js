@@ -30,16 +30,16 @@ require(['/common/js/require.config.js'], function () {
                     filters: [
                         {
                             value: false,
-                            label: '综合排序',
+                            label: '价格排序',
                             seleced: true
                         },
+                        // {
+                        //     value: false,
+                        //     label: '时间排序'
+                        // },
                         {
                             value: false,
-                            label: '时间排序'
-                        },
-                        {
-                            value: false,
-                            label: '价格排序'
+                            label: '综合排序'
                         }
                     ],
                     options: {
