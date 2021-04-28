@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <script src="js/swiper-bundle.min.js"></script>
     <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
-
+    <style>
+        .top_div > .mdiv {
+            width: 1440px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="box" id='index_box' v-cloak>
 
-    <ly-toper ref="lytoper" top-class="white" style="width: 1440px"></ly-toper>
+    <ly-toper ref="lytoper" top-class="white" class="top_div"></ly-toper>
     <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
     </validate-dialog>
     <header-mail ref="header_mail"></header-mail>
