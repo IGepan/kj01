@@ -75,7 +75,7 @@ module.exports = {
         },
         // {
         //   label: '易智商城',
-        //   url: '/mail/index.html'
+        //   url: '/mall/index.html'
         // },
         {
           label: '全景数据',
