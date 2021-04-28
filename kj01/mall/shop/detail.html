@@ -77,14 +77,15 @@
                                         :src="item.goodsImgUrl" class="" alt="..."></a>
                                 <div class="card-body">
                                     <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
-                                    <div class="quoted-price"><span>￥</span>
+                                    <div class="quoted-price"><span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">￥</span>
 
-                                        <span v-if="item.choosePriceTag ==3">
-                                           {{item.price}}
+                                        <span v-if="item.choosePriceTag =='3'">
+                                           {{item.priceWord}}
                                         </span>
                                         <span v-if="item.choosePriceTa!='3'">
                                             {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
                                         </span>
+                                        <span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">元</span>
                                     </div>
                                 </div>
                             </div>
@@ -117,8 +118,15 @@
                                         :src="item.goodsImgUrl" class="" alt="..."></a>
                                 <div class="card-body">
                                     <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
-                                    <div class="quoted-price"><span>￥</span>{{item.negotiableFlag |
-                                        formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                    <div class="quoted-price"><span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">￥</span>
+
+                                        <span v-if="item.choosePriceTag ==3">
+                                           {{item.priceWord}}
+                                        </span>
+                                        <span v-if="item.choosePriceTa!='3'">
+                                            {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                        </span>
+                                        <span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">元</span>
                                     </div>
                                 </div>
                             </div>
