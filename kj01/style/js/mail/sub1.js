@@ -95,6 +95,7 @@ require(['/common/js/require.config.js'], function () {
 
                     this.searchForm.title = title;
                     this.searchForm.type = type;
+                    this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc';
                     this.getMailGoods();
                     this.getDicList(this.dicOptsSet);
                     this.getMailServiceType();
