@@ -134,7 +134,7 @@
             <div class="address-item consignorbox" :class="{active:isFullAddress}">
                 <ul class="list-unstyled  consignorlist">
                     <li v-for="(address, i) in addressList"  :class="{active: address.activated}" @click="selectAddress(i)">
-                        <div class="name" v-text="address.contactsName"></div>
+                        <div class="name" v-text="address.contactsName" style="border: none;text-align: center"></div>
                         <div class="address"
                              v-text="address.provinceDisplay + address.cityDisplay + address.districtDisplay + address.location">
                         </div>
@@ -172,7 +172,8 @@
                 <div class="merchant">
                     商家: <strong   v-text="shop.shopName"></strong>
                     <span v-text="'卖家：' + shop.sellerName"></span>
-                    <a class="btn btn-outline-primary btn-sm" href="#">联系TA</a>
+<!--                    <a class="btn btn-outline-primary btn-sm" href="#">联系TA</a>-->
+                    <button >联系TA</button>
                 </div>
             </div>
             <table class="table table-bordered mt-3">
@@ -223,10 +224,10 @@
                         </div>
                     </td>
                     <td class="text-center align-middle">
-                        <span class="price text-danger fs-5 mt-3 d-block">￥{{sku.subtotal|formatingPrice}}</span>
+                        <span class="price text-danger fs-5 mt-3 d-block">￥{{sku.subtotal|format
+                            ingPrice}}</span>
                     </td>
                 </tr>
-
                 </tbody>
             </table>
             <div class="payment d-flex px-3">
