@@ -248,9 +248,10 @@
                                 <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title"
                                                                                                         :title="item.goodsName"
                                                                                                         v-text="item.goodsName||''"></span>
-                                    <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap"><span v-if="item.choosePriceTag=='0'||item.choosePriceTag=='1'">￥</span><span
-                                            v-else></span>{{item.choosePriceTag| formatPrice2(item.price, item.minPrice,
-                                        item.maxPrice)}}
+                                    <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">
+                                        <span v-if="item.choosePriceTag=='0'||item.choosePriceTag=='1'">￥</span>
+                                        <span v-else></span>{{item.choosePriceTag| formatPrice2(item.price, item.minPrice, item.maxPrice)}}
+                                        <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span>
                                         <!--                                    <i class="money">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</i>-->
                                     </i>
                                 </a>

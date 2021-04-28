@@ -81,7 +81,10 @@
                             <h2 class="name"><a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode">{{item.goodsName}}</a></h2>
                             <div class="price-box">
                                 <span>价格:</span>
-                                <span class="price"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span><span v-else></span>{{item.choosePriceTag | formatPrice2(item.price, item.minPrice, item.maxPrice)}}</span>
+                                <span class="price"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
+                                    <span v-else></span>{{item.choosePriceTag | formatPrice2(item.price, item.minPrice, item.maxPrice)}}
+                                     <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span>
+                                </span>
                             </div>
                             <ul class="list-inline extra-info">
                                 <li class="list-inline-item">服务类型：<span>{{item.typeName}}</span></li>
