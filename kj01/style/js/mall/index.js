@@ -284,7 +284,7 @@ require(['/common/js/require.config.js'], function () {
                      * @param index
                      */
                     checkMore: function (index) {
-                        location.href='/mail/sub1.html?type='+this.mailServiceTypeList[index].id
+                        location.href='/mall/sub1.html?type='+this.mailServiceTypeList[index].id
                     },
                     /**
                      * 滑块验证成功
@@ -346,7 +346,7 @@ require(['/common/js/require.config.js'], function () {
                         )
                     },
                     handelSearch: function () {
-                        location.href = '/mail/sub1.html?title=' + this.title
+                        location.href = '/mall/sub1.html?title=' + this.title
                     },
                     goCart: function () {
                         location.href = '/common/servicetrade/shopping_cart.html'

@@ -253,7 +253,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.$utils.openNewTable(url);
         },
         jumpTo (o) {
-          var url='/mail/shop/detail.html?id='+o.id+'&code='+this.shopCode
+          var url='/mall/shop/detail.html?id='+o.id+'&code='+this.shopCode
           this.$utils.openNewTable(url);
         },
         // 获取产品
