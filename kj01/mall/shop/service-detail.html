@@ -36,13 +36,13 @@
         <div class="container" v-cloak>
             <ul class="navbar-nav navbar-dark">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" :href="'/mail/shop/index.html?code='+shopCode">店铺首页</a>
+                    <a class="nav-link" aria-current="page" :href="'/mall/shop/index.html?code='+shopCode">店铺首页</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " :href="'/mail/shop/list.html?code='+shopCode">服务列表</a>
+                    <a class="nav-link " :href="'/mall/shop/list.html?code='+shopCode">服务列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" :href="'/mail/shop/service.html?code='+shopCode">成交案例</a>
+                    <a class="nav-link active" :href="'/mall/shop/service.html?code='+shopCode">成交案例</a>
                 </li>
             </ul>
         </div>
@@ -115,7 +115,7 @@
                     </tbody>
                 </table>
                 <div class="py-3 comeBack">
-                    <a class="btn btn-primary border-0 rounded-0" :href="'/mail/shop/service.html?code='+shopCode">返回</a>
+                    <a class="btn btn-primary border-0 rounded-0" :href="'/mall/shop/service.html?code='+shopCode">返回</a>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
                         <div class="card card-item">
                             <a class="img" href="#"><img :src="item.goodsImgUrl" class="" alt="..."></a>
                             <div class="card-body">
-                                <h5 class="card-name"><a :href="'/mail/shop/detail.html?id='+item.goodsId+'&code='+shopCode">{{item.goodsName}}</a></h5>
+                                <h5 class="card-name"><a :href="'/mall/shop/detail.html?id='+item.goodsId+'&code='+shopCode">{{item.goodsName}}</a></h5>
                                 <div class="quoted-price"><span>￥</span>{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
                             </div>
                         </div>
@@ -160,6 +160,6 @@
 
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mail/shop/finish_detail.js"></script>
+<script type="text/javascript" src="/style/js/mall/shop/finish_detail.js"></script>
 </body>
 </html>

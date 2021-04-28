@@ -101,7 +101,7 @@
 
       <div
           class="c-hover-item"
-          onclick="location.href='/mail/sub4-footprint.html'"
+          onclick="location.href='/mall/sub4-footprint.html'"
       >
         <div class="c-hover-icon">
           <span class="iconfont icon-time"></span>
@@ -126,7 +126,7 @@
 
       <div
           class="c-hover-item"
-          onclick="location.href='/mail/sub2-help.html'"
+          onclick="location.href='/mall/sub2-help.html'"
       >
         <div class="c-hover-icon">
           <span class="iconfont icon-time"></span>
@@ -139,7 +139,7 @@
 
       <div
           class="c-hover-item"
-          onclick="location.href='/mail/sub3-complaint.html'"
+          onclick="location.href='/mall/sub3-complaint.html'"
       >
         <div class="c-hover-icon">
           <span class="iconfont icon-time"></span>

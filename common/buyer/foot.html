@@ -6,13 +6,13 @@
     <title>我的足迹</title>
     <link href="/common/css/main.css" rel="stylesheet" type="text/css">
     <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/mail/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/mall/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="css/swiper-bundle.min.css">-->
-    <link rel="stylesheet" href="/mail/css/style.css">
+    <link rel="stylesheet" href="/mall/css/style.css">
     <!--<link rel="stylesheet" href="css/lightgallery.css">-->
 
     <!--<script src="js/jquery-3.5.1.slim.min.js"></script>-->
-    <link rel="stylesheet" href="/mail/css/iconfont.css" >
+    <link rel="stylesheet" href="/mall/css/iconfont.css" >
 
 </head>
 
@@ -40,7 +40,7 @@
                                     <div class="card card-item" v-bind:class="{'offShelf': fo.upperShelfflag==='0' }">
                                         <img :src="fo.goodsImg.url" class="" alt="...">
                                         <div class="card-body">
-                                            <h5 class="card-title"><a :href="'/mail/shop/detail.html?id='+fo.goodId+'&code='+fo.shopCode">{{fo.goodsName}}</a></h5>
+                                            <h5 class="card-title"><a :href="'/mall/shop/detail.html?id='+fo.goodId+'&code='+fo.shopCode">{{fo.goodsName}}</a></h5>
                                             <div class="addition">
                                                 <div class="quoted-price"><span>￥</span>{{fo.negotiableFlag | formatPrice2(fo.price, fo.minPrice, fo.maxPrice)}}<span v-if="fo.negotiableFlag==='0'">万</span></div>
                                             </div>

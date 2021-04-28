@@ -50,13 +50,13 @@
             <ul class="navbar-nav navbar-dark">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       :href="'/mail/shop/index.html?code='+shopCode">店铺首页</a>
+                       :href="'/mall/shop/index.html?code='+shopCode">店铺首页</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="'/mail/shop/list.html?code='+shopCode">服务列表</a>
+                    <a class="nav-link" :href="'/mall/shop/list.html?code='+shopCode">服务列表</a>
                 </li>
                 <li class="nav-item" v-show="statisticsInfo.orderCount && statisticsInfo.orderCount!=0">
-                    <a class="nav-link" :href="'/mail/shop/service.html?code='+shopCode">成交案例</a>
+                    <a class="nav-link" :href="'/mall/shop/service.html?code='+shopCode">成交案例</a>
                 </li>
             </ul>
         </div>
@@ -99,7 +99,7 @@
                     <div class="block-content">
                         <ul class="list-unstyled">
                             <li v-for="item in latestGoodsList">
-                                <a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode">
+                                <a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">
                                     <span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span>
                                     <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">
                                         <span v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
@@ -326,7 +326,7 @@
     </footer>
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mail/shop/index.js"></script>
+<script type="text/javascript" src="/style/js/mall/shop/index.js"></script>
 <script>
 </script>
 </body>

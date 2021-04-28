@@ -46,7 +46,7 @@
                             <div class="card card-item" v-bind:class="{'offShelf': fo.upperShelfflag==='0' }">
                                 <img :src="fo.goodsImg.url" class="" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a :href="'/mail/shop/detail.html?id='+fo.goodId+'&code='+fo.shopCode">{{fo.goodsName}}</a></h5>
+                                    <h5 class="card-title"><a :href="'/mall/shop/detail.html?id='+fo.goodId+'&code='+fo.shopCode">{{fo.goodsName}}</a></h5>
                                     <div class="addition">
                                         <div class="quoted-price"><span>￥</span>{{fo.negotiableFlag | formatPrice2(fo.price, fo.minPrice, fo.maxPrice)}}<span v-if="fo.negotiableFlag==='0'">万</span></div>
                                     </div>
@@ -70,6 +70,6 @@
 </div>
 </body>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mail/sub4.js"></script>
+<script type="text/javascript" src="/style/js/mall/sub4.js"></script>
 
 </html>

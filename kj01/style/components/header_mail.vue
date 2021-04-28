@@ -52,7 +52,7 @@ module.exports = {
   methods: {
     handelSearch:function () {
       var vm=this;
-      location.href='/mail/sub1.html?title='+vm.title+'&type='+vm.type
+      location.href='/mall/sub1.html?title='+vm.title+'&type='+vm.type
       // if(this.props.value==this.searchForm.type.name){
       //   this.eActive=index
       // }

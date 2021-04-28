@@ -44,13 +44,13 @@
     <div class="container" v-cloak="display=none">
         <ul class="navbar-nav navbar-dark">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" :href="'/mail/shop/index.html?code='+shopCode">店铺首页</a>
+                <a class="nav-link" aria-current="page" :href="'/mall/shop/index.html?code='+shopCode">店铺首页</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" :href="'/mail/shop/list.html?code='+shopCode">服务列表</a>
+                <a class="nav-link active" :href="'/mall/shop/list.html?code='+shopCode">服务列表</a>
             </li>
             <li class="nav-item" v-show="statisticsInfo.orderCount && statisticsInfo.orderCount!=0">
-                <a class="nav-link":href="'/mail/shop/service.html?code='+shopCode">成交案例</a>
+                <a class="nav-link":href="'/mall/shop/service.html?code='+shopCode">成交案例</a>
             </li>
         </ul>
     </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="col">
                         <div class="list-item-body">
-                            <h2 class="name"><a :href="'/mail/shop/detail.html?id='+item.id+'&code='+shopCode">{{item.goodsName}}</a></h2>
+                            <h2 class="name"><a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">{{item.goodsName}}</a></h2>
                             <div class="price-box">
                                 <span>价格:</span>
                                 <span class="price"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
@@ -133,6 +133,6 @@
 
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mail/shop/storeList.js"></script>
+<script type="text/javascript" src="/style/js/mall/shop/storeList.js"></script>
 </body>
 </html>
