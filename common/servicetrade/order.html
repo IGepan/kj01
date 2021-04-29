@@ -173,7 +173,7 @@
                     商家: <strong   v-text="shop.shopName"></strong>
                     <span v-text="'卖家：' + shop.sellerName"></span>
 <!--                    <a class="btn btn-outline-primary btn-sm" href="#">联系TA</a>-->
-                    <button >联系TA</button>
+<!--                    <button >联系TA</button>-->
                 </div>
             </div>
             <table class="table table-bordered mt-3">
@@ -224,8 +224,7 @@
                         </div>
                     </td>
                     <td class="text-center align-middle">
-                        <span class="price text-danger fs-5 mt-3 d-block">￥{{sku.subtotal|format
-                            ingPrice}}</span>
+                        <span class="price text-danger fs-5 mt-3 d-block">￥{{sku.subtotal|formatingPrice}}</span>
                     </td>
                 </tr>
                 </tbody>
