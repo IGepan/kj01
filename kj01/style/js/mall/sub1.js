@@ -140,16 +140,7 @@ require(['/common/js/require.config.js'], function () {
                         }
                         this.getMailGoods()
                     },
-                    //查询全部
-                    handleSearchAll:function () {
-                        this.searchForm.price = '';
-                        indexApi.selectMailGoods(this.searchForm).then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.goodList = res.result.list
-                                vm.$data.pages = res.result || ''
-                            }
-                        })
-            },
+
                     handleSearchForm: function (e, is) {
                         var vm = this
 
