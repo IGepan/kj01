@@ -93,6 +93,7 @@ require(['/common/js/require.config.js'], function () {
                     this.goodFormData = {}
                     this.goodFormData.pageSize = 8;
                     this.goodFormData.type = '371977891599065088';
+                    this.goodFormData.orderBy = 'homePageFlag desc';
                     this.getMailGoods('incubationTypeList')
                     //法律服务
                     this.goodFormData.type = '371979747670859776';

@@ -61,7 +61,7 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" :class="{active: activeAll}"  id="tabs-all-tab" data-bs-toggle="pill"  role="tab"
                                aria-controls="tabs-all" aria-selected="false"
-                               @click.stop="handleSearchForm('server')">全部</a>
+                               @click.stop="handleSearchForm('','server')">全部</a>
                         </li>
                         <template v-for="(type,index) in options.mailServiceTypeList" >
                             <li class="nav-item" role="presentation">
