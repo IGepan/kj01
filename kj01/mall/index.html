@@ -507,56 +507,56 @@
         </div>
     </div>
     <!--科技咨询-->
-<!--    <div class="container">-->
-<!--        <div class="main-block block-tabs technology-tabs">-->
-<!--            <div class="main-title">-->
-<!--                <span>{{knowledgeType.name}}</span>-->
-<!--            </div>-->
+    <div class="container">
+        <div class="main-block block-tabs technology-tabs">
+            <div class="main-title">
+                <span>{{knowledgeType.name}}</span>
+            </div>
 
-<!--            <div class="sub-title">-->
-<!--                <ul class="nav justify-content-center">-->
-<!--                    <li class="nav-item" v-for="knowledgeType in knowledgeType.children">-->
-<!--                        <a class="nav-link" href="#">{{knowledgeType.name}}</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div class="tab-content" v-show="knowledgeType!=undefined">-->
-<!--                <div class="left-banner">-->
-<!--                    <h4>{{knowledgeType.name}}</h4>-->
-<!--                    <div class="text">-->
-<!--                        {{knowledgeType.sortExplain|''}}-->
-<!--                    </div>-->
-<!--                    <a class="btn btn-outline-light" @click="checkMore(6)">查看更多 <i class="iconfont icon-arrow-right"></i> </a>-->
-<!--                </div>-->
-<!--                <div class="row row-cols-4">-->
+            <div class="sub-title">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item" v-for="knowledgeType in knowledgeType.children">
+                        <a class="nav-link" href="#">{{knowledgeType.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" v-show="knowledgeType!=undefined">
+                <div class="left-banner">
+                    <h4>{{knowledgeType.name}}</h4>
+                    <div class="text">
+                        {{knowledgeType.sortExplain|''}}
+                    </div>
+                    <a class="btn btn-outline-light" @click="checkMore(6)">查看更多 <i class="iconfont icon-arrow-right"></i> </a>
+                </div>
+                <div class="row row-cols-4">
 
-<!--                    <div class="col" v-for="good_knowledgeType in knowledgeTypeList">-->
-<!--                        <a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">-->
-<!--                        <div class="card card-item">-->
-<!--                            <img :src="good_knowledgeType.goodsImg.url" class="" alt="...">-->
-<!--                            <div class="card-body">-->
-<!--                                <h5 class="card-title">{{good_knowledgeType.goodsName}}</h5>-->
-<!--                                <div class="addition">-->
-<!--                                    <div class="short-text">-->
-<!--                                        <p><i class="iconfont icon-tag"></i>  {{good_knowledgeType.typeName}}</p>-->
-<!--                                        <p><i class="iconfont icon-city"></i> {{good_knowledgeType.shopName}}</p>-->
-<!--                                    </div>-->
-<!--                                    <div class="quoted-price">-->
-<!--                                        <span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_knowledgeType.choosePriceTag |-->
-<!--                                        formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,-->
-<!--                                        good_knowledgeType.maxPrice)}}<span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span v-else></span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        </a>-->
+                    <div class="col" v-for="good_knowledgeType in knowledgeTypeList">
+                        <a :href="'shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
+                        <div class="card card-item">
+                            <img :src="good_knowledgeType.goodsImg.url" class="" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{good_knowledgeType.goodsName}}</h5>
+                                <div class="addition">
+                                    <div class="short-text">
+                                        <p><i class="iconfont icon-tag"></i>  {{good_knowledgeType.typeName}}</p>
+                                        <p><i class="iconfont icon-city"></i> {{good_knowledgeType.shopName}}</p>
+                                    </div>
+                                    <div class="quoted-price">
+                                        <span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_knowledgeType.choosePriceTag |
+                                        formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,
+                                        good_knowledgeType.maxPrice)}}<span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span v-else></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
 
-<!--                    </div>-->
+                    </div>
 
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
     <!--TODO-->
     <!--科技金融-->
     <!--    <div class="full-block">-->
