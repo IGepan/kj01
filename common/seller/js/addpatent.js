@@ -144,7 +144,7 @@ require(['/common/js/require.config.js'], function () {
                 keywordVal: '',
                 priceWordVal: '',
                 httpCom: httpCom, // 关键字,
-                protocol: false,
+                protocol: true,
                 isFixed: false,
                 isPriceDisabled: false,
                 ismmPriceDisabled: false,
