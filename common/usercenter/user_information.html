@@ -109,25 +109,24 @@
                   </td>
                   <td class="form_msg"></td>
                 </tr>
-<!--                <tr class="form_item" v-if="formData.identityType === '01'">-->
-<!--                  <th>单位名称：</th>-->
-<!--                  <td>-->
-<!--                    <div class="ipt">-->
-<!--                      <input :disabled="isCertificationed" v-model="formData.companyName" type="text" class="required"-->
-<!--                             maxlength="20">-->
-<!--                    </div>-->
-<!--                  </td>-->
-<!--                  <td class="form_msg"></td>-->
-<!--                </tr> <tr class="form_item" v-if="formData.identityType === '01'">-->
-<!--                  <th>职务：</th>-->
-<!--                  <td>-->
-<!--                    <div class="ipt ">-->
-<!--                      <input :disabled="isCertificationed" v-model="formData.job" type="text" class="required"-->
-<!--                             maxlength="20">-->
-<!--                    </div>-->
-<!--                  </td>-->
-<!--                  <td class="form_msg"></td>-->
-<!--                </tr>-->
+                <tr class="form_item" v-if="formData.identityType === '01'">
+                  <th>单位名称：</th>
+                  <td>
+                    <div class="ipt">
+                      <input  v-model="formData.companyName" type="text"
+                             maxlength="20"/>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr> <tr class="form_item" v-if="formData.identityType === '01'">
+                  <th>职务：</th>
+                  <td>
+                    <div class="ipt ">
+                      <input  v-model="formData.job" type="text" maxlength="20"/>
+                    </div>
+                  </td>
+                  <td class="form_msg"></td>
+                </tr>
                 <tr v-if="formData.identityType === '01'">
                   <th>出生年月：</th>
                   <td>

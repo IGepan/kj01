@@ -10,8 +10,8 @@ require(['/common/js/require.config.js'], function () {
         httpUser: httpUser,
         httpCom: httpCom,
         formData: {
-          // companyName: '', //单位名称
-          // job: '', //职位
+          companyName: '', //单位名称
+          job: '', //职位
           headImg: '',
           userBasicId: '', // 用户基本信息主键
           userName: '', // 用户名
@@ -272,6 +272,8 @@ require(['/common/js/require.config.js'], function () {
               formData.focusPolicy = data.focusPolicy ? data.focusPolicy.map(item => item.tagId).join(',') : '';
               formData.focusPolicyName = data.focusPolicy ? data.focusPolicy.map(item => item.name).join(',') : '';
               formData.code = data.code;
+              formData.companyName = data.companyName;
+              formData.job = data.job;
               console.log(formData, formData.code)
               httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
 
