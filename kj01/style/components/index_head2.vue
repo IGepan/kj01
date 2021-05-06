@@ -68,6 +68,9 @@ module.exports = {
         {
           label: '科技服务',
           url: '/service'
+        },{
+          label: '科技智库',
+          url: 'http://www.castss.com/'
         },
         {
           label: '创新资源',
@@ -153,7 +156,7 @@ module.exports = {
 .searchBox {
  display: flex;
  align-items: center;
-  margin-right: 100px;
+  /*margin-right: 100px;*/
 }
 .searchBox a {
  font-size: 18px;
@@ -193,7 +196,8 @@ module.exports = {
 .search {
 	background-color: #ddf9ff;
 	border-radius: 20px;
- display: flex;
+ /*display: flex;*/
+ display: none;
  align-items: center;
 }
 .search .iconfont {
