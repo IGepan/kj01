@@ -101,6 +101,12 @@ define(['jquery', 'httpUrl', 'http'], function ($, httpUrl, Http) {
     //小程序直播页面,验证token
     validateVedio: function (param) {
       return Http.get(httpUrl.baseUrl + '/active/validateVedio', param);
-    }
+    },
+    /**
+     * 获取用户详细信息(鉴权)
+     */
+    detail: function (param) {
+      return Http.get(httpUrl.baseUrl + '/user/detail', param)
+    },
   }
 })
