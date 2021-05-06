@@ -14,7 +14,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-biaoqian:before {
+  content: "\e701";
+}
 .icon-tianjia:before {
   content: "\e602";
 }

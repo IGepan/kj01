@@ -58,6 +58,14 @@ module.exports = {
           url: '/polist.html'
         },
         {
+          label: '科技服务',
+          url: '/service'
+        },
+        {
+          label: '科技智库',
+          url: '/service'
+        },
+        {
           label: '活动中心',
           url: '/aindex.html'
         },
@@ -65,18 +73,18 @@ module.exports = {
            label: '技术市场',
          url: '/market/index.html'
         },
-        {
-          label: '科技服务',
-          url: '/service'
-        },
-        {
-          label: '创新资源',
-          url: '/resources'
-        },
+        // {
+        //   label: '科技金融',
+        //   url: '/scindex.html'
+        // },
         // {
         //   label: '易智商城',
         //   url: '/mall/index.html'
         // },
+        {
+          label: '创新资源',
+          url: '/resources'
+        },
         {
           label: '全景数据',
           url: 'http://datamap.kj01.cn/'
@@ -87,7 +95,7 @@ module.exports = {
         },
         {
           label: '关于我们',
-          url: '/about.html'
+          url: '/about2.html'
         }
 
       ]
@@ -153,7 +161,6 @@ module.exports = {
 .searchBox {
  display: flex;
  align-items: center;
-  margin-right: 100px;
 }
 .searchBox a {
  font-size: 18px;
@@ -194,6 +201,7 @@ module.exports = {
 	background-color: #ddf9ff;
 	border-radius: 20px;
  display: flex;
+  display: none;
  align-items: center;
 }
 .search .iconfont {
