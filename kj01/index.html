@@ -446,261 +446,186 @@
             <div class="boxtitle-subtext">一站式科技服务商城，为科技企业保驾护航</div>
         </div>
         <div class="mdiv pinpai-bottom server">
-<!-- 创业孵化-->
+<!-- 知识产权-->
             <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg1.png">
-                    <span class="mallItem-imgBox-title">创业孵化</span>
+                    <span class="mallItem-imgBox-title">{{mailServiceTypeList[0].name}}</span>
                     <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                     <div class="col-card">
-                      <a>
+                     <div class="col-card" v-for="good_incubation in incubationTypeList">
+                         <a :href="'/mall/shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">
                              <div class="card-item">
-                                 <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
+                                 <div class="technology-avatar"> <img :src="good_incubation.goodsImg.url" class="" alt="...">
+                                 </div>
 
-                                     <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
+                                     <div class="card-title">{{good_incubation.goodsName}}</div>
                                      <div class="addition">
-                                         <div class="quoted-price">￥30</div>
+                                         <div class="quoted-price"><span  v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">￥</span><span v-else></span>{{good_incubation.choosePriceTag |
+                                             formatPrice2(good_incubation.price, good_incubation.minPrice,
+                                             good_incubation.maxPrice)}}<span  v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">万</span><span v-else></span></div>
                                          <div class="short-text">
-                                             <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                             <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
+                                             <p><i class="iconfont icon-biaoqian"></i>{{good_incubation.typeName}}</p>
+                                             <p><i class="iconfont icon-dingweixian"></i>{{good_incubation.shopName}}</p>
                                          </div>
                                  </div>
                              </div>
                          </a>
                      </div>
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                  
                 </div>
             </div>
-<!--           研发设计 -->
+<!--           法律服务-->
             <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg2.png">
-                    <span class="mallItem-imgBox-title">研发设计</span>
+                    <span class="mallItem-imgBox-title">{{mailServiceTypeList[1].name}}</span>
                     <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card">
-                        <a>
+                    <div class="col-card" v-for="good_design in designTypeList">
+                        <a :href="'/mall/shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">
                             <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
+                                <div class="technology-avatar"><img :src="good_design.goodsImg.url" class="" alt="..."></div>
 
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
+                                <div class="card-title">{{good_design.goodsName}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price">￥30</div>
+                                    <div class="quoted-price"><span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">￥</span><span v-else></span>{{good_design.choosePriceTag |
+                                        formatPrice2(good_design.price, good_design.minPrice,
+                                        good_design.maxPrice)}}<span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">万</span><span v-else></span></div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_design.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_design.shopName}}</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-card">
-                        <a>
+                  
+                </div>
+            </div>
+<!--            政策申报-->
+            <div class="mallItem">
+                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg3.png">
+                    <span class="mallItem-imgBox-title">{{mailServiceTypeList[2].name}}</span>
+                    <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
+
+                </div>
+                <div class="mallItem-infoBox">
+                    <div class="col-card" v-for="good_checkType in checkTypeList">
+                        <a :href="'/mall/shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">
                             <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
+                                <div class="technology-avatar"><img :src="good_checkType.goodsImg.url" class="" alt="..."></div>
 
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
+                                <div class="card-title">{{good_checkType.name}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price">￥30</div>
+                                    <div class="quoted-price"><span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span>
+                                        <span v-else></span>{{good_checkType.choosePriceTag |
+                                        formatPrice2(good_checkType.price, good_checkType.minPrice,
+                                        good_checkType.maxPrice)}}<span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">万</span><span v-else></span></div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_checkType.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_checkType.shopName}}</p>
                                     </div>
-
                                 </div>
                             </div>
                         </a>
                     </div>
+                   
+                </div>
+            </div>
+<!--            工商财税-->
+            <div class="mallItem">
+                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg4.png">
+                    <span class="mallItem-imgBox-title">{{mailServiceTypeList[3].name}}</span>
+                    <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
+
+                </div>
+                <div class="mallItem-infoBox">
+                    <div class="col-card" v-for="good_propertyType in propertyTypeList">
+                        <a>
+                            <div class="card-item">
+                                <div class="technology-avatar"><img :src="good_propertyType.goodsImg.url" class="" alt="..."></div>
+
+                                <div class="card-title">{{good_propertyType.goodsName}}</div>
+                                <div class="addition">
+                                    <div class="quoted-price">
+                                        <span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">￥</span>
+                                        <span v-else></span>{{good_propertyType.choosePriceTag | formatPrice2(good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}
+                                        <span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">万</span>
+                                        <span v-else></span></div>
+                                    <div class="short-text">
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_propertyType.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_propertyType.shopName}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                  
                 </div>
             </div>
 <!--            检验检测-->
             <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg3.png">
-                    <span class="mallItem-imgBox-title">检验检测</span>
+                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">
+                    <span class="mallItem-imgBox-title">{{mailServiceTypeList[4].name}}</span>
                     <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
+                    <div class="col-card" v-for="good_transferType in transferTypeList">
+                        <a :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
+                        <div class="card-item">
+                                <div class="technology-avatar"> <img :src="good_knowledgeType.goodsImg.url" class="" alt="..."></div>
 
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
+                                <div class="card-title">{{good_transferType.goodsName}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price">￥30</div>
+                                    <div class="quoted-price">
+                                        <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_transferType.choosePriceTag |
+                                        formatPrice2(good_transferType.price, good_transferType.minPrice,
+                                        good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span>
+                                    </div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_transferType.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_transferType.shopName}}</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-<!--            知识产权-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg4.png">
-                    <span class="mallItem-imgBox-title">知识产权</span>
-                    <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
-
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
 <!--            科技咨询-->
             <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">
-                    <span class="mallItem-imgBox-title">科技咨询</span>
-                    <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
-
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-<!--            技术转移-->
-            <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg6.png">
-                    <span class="mallItem-imgBox-title">技术转移</span>
+                    <span class="mallItem-imgBox-title">{{mailServiceTypeList[5].name}}</span>
                     <a class="mallItem-imgBox-url">进入商城 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
+                    <div class="mallItem-infoBox">
+                        <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">
+                            <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
+                                <div class="card-item">
+                                    <div class="technology-avatar"> <img :src="good_knowledgeType.goodsImg.url" class="" alt="..."></div>
 
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
+                                    <div class="card-title">{{good_knowledgeType.goodsName}}</div>
+                                    <div class="addition">
+                                        <div class="quoted-price">
+                                            <span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_knowledgeType.choosePriceTag |
+                                            formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,
+                                            good_knowledgeType.maxPrice)}}<span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span v-else></span>
+                                        </div>
+                                        <div class="short-text">
+                                            <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>
+                                            <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-card">
-                        <a>
-                            <div class="card-item">
-                                <div class="technology-avatar"><img src="/style/images/index/tt.jpg"></div>
-
-                                <div class="card-title">整车生产线滑撬整车生产线滑撬整车生产线滑撬</div>
-                                <div class="addition">
-                                    <div class="quoted-price">￥30</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>服务类型</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>重庆易智网科技有限公司</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
