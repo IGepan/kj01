@@ -81,7 +81,7 @@ require(['/common/js/require.config.js'], function () {
           var param = this.getParams();
           httpStore.shopsetPreview(param).then(function (res) {
             // window.location.href = res.result.previewAddress;
-            window.open(res.result.previewAddress);
+            window.open(vm.$pathPrefix+res.result.previewAddress);
           })
         },
 				/**
