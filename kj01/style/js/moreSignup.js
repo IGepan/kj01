@@ -54,7 +54,11 @@ require(['/common/js/require.config.js'], function () {
                     document.addEventListener('click', function (e) {
                         vm.companyList = []
                     })
+                },
+                watch: {
+                  'formData.groupEnrollList' () {
                     this.initUserInfo()
+                  }
                 },
                 methods: {
                     initData: function () {
@@ -70,9 +74,30 @@ require(['/common/js/require.config.js'], function () {
                         }
                     },
                     initUserInfo: function () {
-                        $('#0_index_1').attr('v-model', this.detailInfo.realName | '');
-                        $('#0_index_2').attr('v-model', this.detailInfo.job | '');
-                        $('#0_index_3').attr('v-model', this.detailInfo.phone | '');
+                        // $('#0_index_1').attr('v-model', this.detailInfo.realName | '');
+                        // $('#0_index_2').attr('v-model', this.detailInfo.job | '');
+                        // $('#0_index_3').attr('v-model', this.detailInfo.phone | '');
+                        var keymaps = {
+                            '01': {
+                                '姓名': 'realName',
+                                '职务': 'job',
+                                '手机': 'phone'
+                            }
+                            // '02': {
+                            //     '姓名': 'contacts',
+                            //     '手机': 'contactsPhone'
+                            // }
+                        }
+
+                        console.log(this.formData.groupEnrollList,'this.formData.groupEnrollList')
+                        try {
+                            for (let item of this.formData.groupEnrollList[0]) {
+                                this.$set(item, 'value', this.detailInfo[keymaps[this.detailInfo.identityType][item.columnName]])
+                            }
+                        } catch (e) {}
+
+
+
                     },
 
                     getDetailInfo: function (id) {
@@ -88,7 +113,11 @@ require(['/common/js/require.config.js'], function () {
                          */
                         indexApi.detail().then((res) => {
                             vm.detailInfo = res.result;
-                            vm.company = res.result.organizationName;
+                            if (res.result.companyName) {
+                                vm.company = res.result.companyName
+                            }else {
+                                vm.company = res.result.organizationName;
+                            }
                         });
                         return 1;
                     },
@@ -157,6 +186,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     bindcompanyInputBlur: function (e) {
                         var eItem = this.companyRow
+                        // eItem.isNull && (!this.company || !this.detailInfo.companyName) && (flag = false, eItem.message = eItem.columnName + '不允许为空');
                         eItem.isNull && !this.company && (flag = false, eItem.message = eItem.columnName + '不允许为空');
                         eItem.value && eItem.columnType === '10' && !this.checkPhone(this.company) && (flag = false, eItem.message = eItem.columnName + '所填不是有效手机号码');
                         this.companyRow = eItem
