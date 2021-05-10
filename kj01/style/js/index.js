@@ -759,9 +759,9 @@ require(['/common/js/require.config.js'], function () {
 					//检验检测
 					this.goodFormData.type = '371980699979194368';
 					this.getMailGoods('technologyTypeList')
-					//科技咨询
-					this.goodFormData.type = '371981659690475520';
-					this.getMailGoods('transferTypeList');
+					// //科技咨询
+					// this.goodFormData.type = '371981659690475520';
+					// this.getMailGoods('transferTypeList');
 					//评估评价
 					this.goodFormData.type = '371980018614509568';
 					this.getMailGoods('knowledgeTypeList');

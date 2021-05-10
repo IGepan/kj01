@@ -566,7 +566,7 @@
                   
                 </div>
             </div>
-<!--            检验检测-->
+<!--            评估评价-->
             <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">
                     <span class="mallItem-imgBox-title">{{mailServiceTypeList[4].name}}</span>
@@ -574,21 +574,21 @@
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_transferType in transferTypeList">
-                        <a :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
-                        <div class="card-item">
+                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">
+                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
+                            <div class="card-item">
                                 <div class="technology-avatar"> <img :src="good_knowledgeType.goodsImg.url" class="" alt="..."></div>
 
-                                <div class="card-title">{{good_transferType.goodsName}}</div>
+                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>
                                 <div class="addition">
                                     <div class="quoted-price">
-                                        <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_transferType.choosePriceTag |
-                                        formatPrice2(good_transferType.price, good_transferType.minPrice,
-                                        good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span>
+                                        <span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_knowledgeType.choosePriceTag |
+                                        formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,
+                                        good_knowledgeType.maxPrice)}}<span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span v-else></span>
                                     </div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_transferType.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_transferType.shopName}}</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -597,7 +597,7 @@
                    
                 </div>
             </div>
-<!--            科技咨询-->
+<!--            检验检测-->
             <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg6.png">
                     <span class="mallItem-imgBox-title">{{mailServiceTypeList[5].name}}</span>
@@ -606,21 +606,21 @@
                 </div>
                 <div class="mallItem-infoBox">
                     <div class="mallItem-infoBox">
-                        <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">
-                            <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
+                        <div class="col-card" v-for="good_technology in technologyTypeList">
+                            <a :href="'/mall/shop/detail.html?id='+good_technology.id+'&code='+good_technology.shopCode">
                                 <div class="card-item">
-                                    <div class="technology-avatar"> <img :src="good_knowledgeType.goodsImg.url" class="" alt="..."></div>
+                                    <div class="technology-avatar"> <img :src="good_technology.goodsImg.url" class="" alt="..."></div>
 
-                                    <div class="card-title">{{good_knowledgeType.goodsName}}</div>
+                                    <div class="card-title">{{good_technology.goodsName}}</div>
                                     <div class="addition">
                                         <div class="quoted-price">
-                                            <span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_knowledgeType.choosePriceTag |
-                                            formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,
-                                            good_knowledgeType.maxPrice)}}<span  v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span v-else></span>
+                                            <span  v-if="good_technology.choosePriceTag==='0' || good_technology.choosePriceTag==='1'">￥</span><span v-else></span>{{good_technology.choosePriceTag |
+                                            formatPrice2(good_technology.price, good_technology.minPrice,
+                                            good_technology.maxPrice)}}<span  v-if="good_technology.choosePriceTag==='0' || good_technology.choosePriceTag==='1'">万</span><span v-else></span>
                                         </div>
                                         <div class="short-text">
-                                            <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>
-                                            <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>
+                                            <p><i class="iconfont icon-biaoqian"></i>{{good_technology.typeName}}</p>
+                                            <p><i class="iconfont icon-dingweixian"></i>{{good_technology.shopName}}</p>
                                         </div>
                                     </div>
                                 </div>
