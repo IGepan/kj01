@@ -735,14 +735,7 @@ require(['/common/js/require.config.js'], function () {
                         dots: false
                     });
                     window.addEventListener('scroll', this.scroll);
-                    $(".slideTxtBox").slide({
-                        titCell: ".hd ul",
-                        mainCell: ".bd ul",
-                        autoPage: true,
-                        effect: "top",
-                        autoPlay: true,
-                        vis: 1
-                    });
+
                     this.getMailServiceType();
                     //知识产权
 					this.goodFormData.type = '371977891599065088';
@@ -888,6 +881,14 @@ require(['/common/js/require.config.js'], function () {
                                         vis: 6,
                                         trigger: "click"
                                     });
+                                    $(".slideTxtBox").slide({
+                                        titCell: ".hd ul",
+                                        mainCell: ".bd ul",
+                                        autoPage: true,
+                                        effect: "top",
+                                        autoPlay: true,
+                                        vis: 1
+                                    });
                                 })
                             }
                         })
@@ -999,18 +1000,17 @@ require(['/common/js/require.config.js'], function () {
                     },
                     //2020-12-23 政策速递 政策精要 改为政策惠
                     // getPList: function (id) {
-                    // 	var vm = this;
-                    // 	indexApi.selectPolicyByPage({
-                    // 		columnId: id,
+                    // var vm = this;
+                    // indexApi.selectPolicyByPage({
+                    //  		columnId: id,
                     // 	}).then(function (res) {
                     // 		res.result && res.result.forEach(function (item) {
-                    // 			item.itemUrl = '/podetail.html?id=' + item.contentId
-                    // 			item.policyFileType = item.policyFileType && item.policyFileType.split(',')[0]
+                    //  			item.itemUrl = '/podetail.html?id=' + item.contentId
+                    //  			item.policyFileType = item.policyFileType && item.policyFileType.split(',')[0]
                     // 			item.policyFileTypeDisplay = item.policyFileTypeDisplay && item.policyFileTypeDisplay[0]
                     // 		})
-                    // 		vm.policyList = vm.expressList = res.result
-                    // 	})
-                    // },
+                    //     vm.policyList = vm.expressList = res.result})
+                    //  },
                     getPList: function (id) {
                         var vm = this;
                         indexApi.selectPolicyByPage({
