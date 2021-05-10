@@ -29,7 +29,7 @@ require(['/common/js/require.config.js'], function () {
 				methods:{
 					getNewsList(){
 						let vm=this,params={
-							type:'1',
+							nowIndex:1,
 							pageNum: this.search.pageNum,
 							pageSize: 10,
 						};

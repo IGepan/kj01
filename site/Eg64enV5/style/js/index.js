@@ -224,7 +224,7 @@ require(['/common/js/require.config.js'], function () {
 					},
 					getNewsList(){
 						let vm=this,params={
-							type:'1',
+							nowIndex:1,
 							pageNum: 1,
 							pageSize: 5,
 						};
