@@ -277,7 +277,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 label: '返回网站首页',
                 class: 'back-blue',
                 fun: function () {
-                  vm.$utils.openNewTable(this.$pathPrefix+'/', '_self')
+                  vm.$utils.openNewTable(vm.$pathPrefix+'/', '_self')
                   return 1
                 }
               },
