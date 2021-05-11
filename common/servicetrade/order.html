@@ -219,12 +219,13 @@
                                        aria-label="" value="1"  onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" v-model="sku.number"
                                        value="1">
                                 <button class="btn btn-outline-secondary btn-sm" type="button" id="add"  :disabled="sku.number === sku.stock"
-                                        :class="{low: sku.number === sku.stock}" @click="addNumber(i, si)" > +</button>
+                                        :class="{low: sku.number === sku.stock}" @click="addNumber(i, si)"> +</button>
                             </div>
                         </div>
                     </td>
                     <td class="text-center align-middle">
-                        <span class="price"  v-text="'￥' + shopTotal"></span>
+                        <span class="price text-danger fs-5 mt-3 d-block" v-if="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥{{sku.subtotal|formatingPrice}}</span>
+                        <span class="price text-danger fs-5 mt-3 d-block" v-else>{{sku.protocolPrice}}</span>
                     </td>
                 </tr>
                 </tbody>
@@ -253,7 +254,7 @@
 
 
             <div class="submit-order d-flex justify-content-end py-4 my-4">
-                <div  class="total me-5"><span class="align-middle">总金额(含运费)</span> <span id = "totalmoney" class="price"  v-text="'￥' + shopTotal"></span></div>
+                <div class="total me-5"><span class="align-middle">总金额(含运费)</span> <span class="price"  v-text="'￥' + shopTotal"></span></div>
                 <button :disabled="isSubmitDisabled" type="button" @click="addOrder" class="btn btn-primary rounded-0">提交订单</button>
             </div>
         </div>
