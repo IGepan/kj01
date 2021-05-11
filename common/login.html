@@ -62,7 +62,8 @@
           </ul>
           <div class="links">
             <a :href=$pathPrefix+"/common/forgotpwd.html" target="_blank">忘记密码</a>
-            <a :href=$pathPrefix+"/common/reg.html" class="reg">注册新帐号</a>
+<!--            <a :href=$pathPrefix+"/common/reg.html" class="reg">注册新帐号</a>-->
+            <a @click="handelReg" class="reg">注册新帐号</a>
           </div>
         </form>
       </div>

@@ -282,6 +282,17 @@ require(['/common/js/require.config.js'], function () {
             });
           }
         },
+        /**
+         * 跳转注册
+         */
+        handelReg: function () {
+          var url = location.href
+          if (url.indexOf('?') > 0) {
+            var suffixUrl = url.substring(url.indexOf('?') + 1);
+
+          }
+          location.href=this.$pathPrefix+'/common/reg.html'+'?'+suffixUrl
+        },
         loginSubmit: function () {
           var vm = this;
           vm.form.token = this.captchaData.token;
@@ -295,6 +306,7 @@ require(['/common/js/require.config.js'], function () {
                 vm.$utils.setCookie(dic.locaKey.LOGIN_INFO, data.result);
                 vm.$httpCom.webCommonUser().then(function (res) {
                   if (res.code === 'rest.success') {
+
                     var referrer = document.referrer
                     var toUrl = referrer
                     vm.$utils.delCookie(dic.locaKey.USER_INFO);
@@ -302,7 +314,15 @@ require(['/common/js/require.config.js'], function () {
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
-                      toUrl = this.$pathPrefix+'/index.html'
+                      var url = this.window.location.href
+                      if (url.indexOf('?') > 0) {
+                        var suffixUrl=url.substring(url.indexOf('?')+1);
+                        if (suffixUrl.indexOf('=')) {
+                          toUrl=this.$pathPrefix+suffixUrl.substring(suffixUrl.indexOf('=')+1)
+                        }
+                      }else {
+                        toUrl = this.$pathPrefix+'/index.html'
+                      }
                     }
                     window.location.href = toUrl
                   }
