@@ -48,8 +48,11 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><a :href="'/mall/shop/detail.html?id='+fo.goodId+'&code='+fo.shopCode">{{fo.goodsName}}</a></h5>
                                     <div class="addition">
-                                        <div class="quoted-price"><span>￥</span>{{fo.negotiableFlag | formatPrice2(fo.price, fo.minPrice, fo.maxPrice)}}<span v-if="fo.negotiableFlag==='0'">万</span></div>
-                                    </div>
+                                        <div class="quoted-price">
+                                            <span  v-if="fo.choosePriceTag==='0' || fo.choosePriceTag==='1'">￥</span><span v-else></span>{{fo.choosePriceTag |
+                                            formatPrice2(fo.price, fo.minPrice,
+                                            fo.maxPrice)}}<span  v-if="fo.choosePriceTag==='0' || fo.choosePriceTag==='1'">万</span><span v-else></span>
+                                        </div>
                                 </div>
                                 <a v-show="show" class="btn-del"  @click="handelRemove(fo.id)"><i class="iconfont icon-delete"></i></a>
                                 <template v-if="fo.upperShelfflag==='0'" >
@@ -70,6 +73,6 @@
 </div>
 </body>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mall/sub4.js"></script>
+<script type="text/javascript" src="../style/js/mall/sub4.js"></script>
 
 </html>
