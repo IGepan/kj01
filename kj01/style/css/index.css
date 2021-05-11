@@ -383,6 +383,8 @@
 .recent-news .bd ul li a:hover{
     color:#f76c19;
 }
+.achlink{z-index: 100;color: #FFFFff;margin-top: 20px;padding: 15px 30px;border-radius:20px;background: #ff9c00;display: inline-block;position: absolute;right: 20%;font-size: 18px}
+.achlink:hover{opacity: 0.9}
 .container-top {
     background: url(../images/index/infobg.png);
     padding-bottom: 120px;
