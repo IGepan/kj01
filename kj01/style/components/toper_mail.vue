@@ -97,7 +97,7 @@
       </div>
     </div>
     <chat-im :userinfo="userInfo"></chat-im>
-    <div class="c-hover-menu" v-if="userInfo && userInfo.userId">
+    <div class="c-hover-menu" >
       <div class="c-hover-txt">
         <chat-history :userinfo="userInfo" @clearmsg="clearUnreadMsg"></chat-history>
         <div class="c-hover-item" @click="action('message')" style="height: 67px;">
