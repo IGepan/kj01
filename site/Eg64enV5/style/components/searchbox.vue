@@ -1,6 +1,6 @@
 <template>
   <div
-    class="search"
+    class="search ss"
     :class="{'searchBorder': false, 'searchInputLine': isInputLine}"
   >
     <a

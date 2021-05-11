@@ -908,6 +908,17 @@ require(['/common/js/require.config.js'], function () {
                     }, 1000)
                 },
                 /**
+                 * 库存计数不能为空
+                 */
+                minusStockValid:function (v, o, callback) {
+                    if (this.formData.minus_stock == 0) {
+                        callback(o, '请选择库存计数')
+                    } else {
+                        callback(o)
+                    }
+        },
+
+                /**
                  * 校验价格
                  */
                 // TODO 校验价格

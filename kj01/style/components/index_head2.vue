@@ -16,10 +16,10 @@
 <!--       <div class="header-text" v-if="navIndex===7">-->
 <!--         <div style="font-size: 35px;font-weight: bold;">关于我们</div>-->
 <!--       </div>-->
-       <div class="header-text" v-else-if="navIndex===7">
+       <div class="header-text" v-else-if="navIndex===8">
          <div style="font-size: 35px;font-weight: bold;">平台动态</div>
        </div>
-       <div class="header-text" v-if="navIndex===8">
+       <div class="header-text" v-if="navIndex===9">
          <div style="font-size: 35px;font-weight: bold;">关于我们</div>
        </div>
      </div>

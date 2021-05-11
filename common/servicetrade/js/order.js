@@ -75,6 +75,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         }
       },
       methods: {
+        //IM聊天界面
+        onLineConsult: function (shopId,userId) {
+          if (shopId) {
+            this.$root.$chat_im.connect(userId);
+          }
+        },
           selectJuan: function(k, v) {
               if(k.innovationVouchersList[0] === v) {
                   k.innovationVouchersList = [];
@@ -390,7 +396,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }).then(function (res) {
             if (res.code == 'rest.success') {
               detail.number = number
-              detail.subtotal = detail.price !== undefined ? (detail.number * detail.price) : (detail.number * detail.minPrice)
+              //如果价格为面议或者自定义，则根据协议单价计算金额
+              if (detail.choosePriceTag!=='0'||detail.choosePriceTag!=='1'){
+                detail.subtotal = detail.price !== undefined ? (detail.number * detail.price) : (detail.number * detail.minPrice)
+              }else{
+                detail.subtotal = detail.protocolPrice * detail.number
+              }
             }
           })
         },
