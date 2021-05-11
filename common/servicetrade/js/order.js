@@ -75,6 +75,11 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         }
       },
       methods: {
+        onLineConsult: function (shopId,userId) {
+          if (shopId) {
+            this.$root.$chat_im.connect(userId);
+          }
+        },
           selectJuan: function(k, v) {
               if(k.innovationVouchersList[0] === v) {
                   k.innovationVouchersList = [];

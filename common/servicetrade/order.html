@@ -172,7 +172,7 @@
                 <div class="merchant">
                     商家: <strong   v-text="shop.shopName"></strong>
                     <span v-text="'卖家：' + shop.sellerName"></span>
-<!--                    <a class="btn btn-outline-primary btn-sm" href="#">联系TA</a>-->
+                    <a class="btn btn-outline-primary btn-sm" @click="onLineConsult(shop.shopId,shop.userId)">联系TA</a>
 <!--                    <button >联系TA</button>-->
                 </div>
             </div>
