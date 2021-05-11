@@ -172,7 +172,7 @@
                 <div class="merchant">
                     商家: <strong   v-text="shop.shopName"></strong>
                     <span v-text="'卖家：' + shop.sellerName"></span>
-                    <a class="btn btn-outline-primary btn-sm" @click="onLineConsult(shop.shopId,shop.userId)">联系TA</a>
+<!--                    <a class="btn btn-outline-primary btn-sm" href="#">联系TA</a>-->
 <!--                    <button >联系TA</button>-->
                 </div>
             </div>
@@ -198,14 +198,14 @@
                             <div class="col-sm-10 inputContent">
                                 <input type="text" v-model="sku.protocolPrice" :disabled="sku.price !== undefined && sku.negotiableFlag === '0'"
                                        class="storeipt w210 required" data-valid="custom:protocolPriceValid" :data-shopIndex="i"
-                                       :data-skuIndex="si">
+                                       :data-skuIndex="si" @blur="">
                                 <span class="vlt form_msg"></span>
                             </div>
                         </div>
                     </td>
                     <td class="text-center align-middle">
-                        <small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>
-                        <span class="price text-secondary fs-5 mt-3 d-block" v-if="sku.choosePriceTag!='3'">{{sku.negotiableFlag | formatPrice(sku.price, sku.minPrice, sku.maxPrice)}}</span>
+
+                        <span class="price text-secondary fs-5 mt-3 d-block" v-if="sku.choosePriceTag!='3'"><small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{sku.negotiableFlag | formatPrice(sku.price, sku.minPrice, sku.maxPrice)}}</span>
                         <span class="price text-secondary fs-5 mt-3 d-block" v-else-if="sku.choosePriceTag=='3'">查看价格详情</span>
                     </td>
                     <td width="152" class="align-middle">
@@ -224,7 +224,8 @@
                         </div>
                     </td>
                     <td class="text-center align-middle">
-                        <span class="price text-danger fs-5 mt-3 d-block">￥{{sku.subtotal|formatingPrice}}</span>
+                        <span class="price text-danger fs-5 mt-3 d-block" v-if="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥{{sku.subtotal|formatingPrice}}</span>
+                        <span class="price text-danger fs-5 mt-3 d-block" v-else>{{sku.protocolPrice}}</span>
                     </td>
                 </tr>
                 </tbody>
