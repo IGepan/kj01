@@ -290,7 +290,7 @@
                                     <span class="expname w218"><i>*</i><span>库存计数：</span></span>
                                     <div class="iptbox">
                                         <label class="inline expsltlb w200">
-                                            <ly-select v-model="formData.minus_stock" class='expslt required' code='minus_stock' data-valid="isNonEmpty">
+                                            <ly-select v-model="formData.minus_stock" class='expslt required' code='minus_stock' data-valid="custom:minusStockValid" >
                                             </ly-select>
                                         </label>
                                         <span class="vlt form_msg"></span>
