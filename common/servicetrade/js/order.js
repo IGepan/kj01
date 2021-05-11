@@ -75,6 +75,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         }
       },
       methods: {
+        //IM聊天界面
         onLineConsult: function (shopId,userId) {
           if (shopId) {
             this.$root.$chat_im.connect(userId);
