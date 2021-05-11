@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./style/css/normalize.min.css">
     <link rel='stylesheet' href='./style/css/flatpickr.min.css'>
     <link rel="stylesheet" href="./style/css/style.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <style>
     .mdiv {
@@ -42,7 +42,7 @@
                     <div class="form__name">
                         <div class="form__text-input">
                             <p class="text-input">
-                                <input class="text-input__body" type="text" name="achievename" placeholder="请输入成果名称"
+                                <input class="text-input__body" type="text" placeholder="请输入成果名称"
                                        title="必须输入名称" required>
                                 <span class="text-input__validator"></span>
                             </p>
@@ -75,6 +75,16 @@
                 <div class="form__group-content">
                     <div class="form__select-box">
                         <div class="select-box">
+                            <template>
+                                <el-select v-model="value" placeholder="请选择">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </template>
                             <select id="address-level2" class="select-box__body" name="district" required>
                                 <option value="" disabled selected hidden>选择区县</option>
                                 <option value="渝中区">渝中区</option>
@@ -106,19 +116,19 @@
                                 <option value="高新区">高新区</option>
                                 <option value="梁平区">梁平区</option>
                                 <option value="开州区">开州区</option>
-                                    <option value="城口县">城口县</option>
-                                    <option value="丰都县">丰都县</option>
-                                    <option value="垫江县">垫江县</option>
-                                    <option value="武隆">武隆</option>
-                                    <option value="忠县">忠县</option>
-                                    <option value="云阳">云阳</option>
-                                    <option value="奉节">奉节</option>
-                                    <option value="巫山">巫山</option>
-                                    <option value="巫溪">巫溪</option>
-                                    <option value="石柱">石柱</option>
-                                    <option value="秀山">秀山</option>
-                                    <option value="酉阳">酉阳</option>
-                                    <option value="彭水">彭水</option>
+                                <option value="城口县">城口县</option>
+                                <option value="丰都县">丰都县</option>
+                                <option value="垫江县">垫江县</option>
+                                <option value="武隆">武隆</option>
+                                <option value="忠县">忠县</option>
+                                <option value="云阳">云阳</option>
+                                <option value="奉节">奉节</option>
+                                <option value="巫山">巫山</option>
+                                <option value="巫溪">巫溪</option>
+                                <option value="石柱">石柱</option>
+                                <option value="秀山">秀山</option>
+                                <option value="酉阳">酉阳</option>
+                                <option value="彭水">彭水</option>
 
                             </select>
                         </div>
@@ -136,7 +146,7 @@
                         <div class="select-box">
                             <select id="address-level3" class="select-box__body" name="field" required>
                                 <option value="" disabled selected hidden>选择领域</option>
-                                <option value="农、林、牧、渔业" > 农、林、牧、渔业</option>
+                                <option value="农、林、牧、渔业"> 农、林、牧、渔业</option>
                                 <option value="采矿业">采矿业</option>
                                 <option value="制造业">制造业</option>
                                 <option value="电力、热力、燃气及水生产和供应业">电力、热力、燃气及水生产和供应业</option>
@@ -167,11 +177,12 @@
                     <span class="form__group-label">成果简介</span>
 
                 </legend>
+
                 <div class="form__group-content">
                     <div class="form__name">
                         <div class="form__text-input">
                             <p class="text-input">
-<!--                                <textarea id="content" name="content"></textarea>-->
+                                <textarea id="content" name="content"></textarea>
                             </p>
                         </div>
                     </div>
@@ -384,11 +395,12 @@
 </div>
 <web-footer></web-footer>
 
-<script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="./style/js/about.js"></script>
-
-<!--<script type="text/javascript" src="./style/js/achieve.js"></script>-->
-
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/about.js"></script>
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<!--<script src="/common/js/libs/vue.js"></script>-->
+<script src="./style/js/achieve.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </body>
 
 </html>

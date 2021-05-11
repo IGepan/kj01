@@ -156,7 +156,16 @@ require(['/common/js/require.config.js'], function () {
                 if (res.code === 'rest.success') {
                   vm.$dialog.showToast('注册成功');
                   setTimeout(function () {
-                    window.location.href = this.$pathPrefix+'/common/login.html'
+                    var suffixUrl;
+                    var url = this.window.location.href
+                    if (url.indexOf('?') > 0) {
+                      suffixUrl = url.substring(url.indexOf('?') + 1);
+
+                    }
+                    if (suffixUrl) {
+                      window.location.href = this.$pathPrefix+'/common/login.html'+suffixUrl;
+                    }
+                    window.location.href = this.$pathPrefix+'/common/login.html';
                   }, 1000)
                 } else {
                   vm.isSubmitDisabled = false
