@@ -196,7 +196,7 @@
                             <label  class="col-sm-2 col-form-label text-end"><span
                                     class="text-danger">*</span>协议单价:</label>
                             <div class="col-sm-10 inputContent">
-                                <input name = "price" type="text" v-model="sku.protocolPrice" :disabled="sku.price !== undefined && sku.negotiableFlag === '0'"
+                                <input type="text" v-model="sku.protocolPrice" :disabled="sku.price !== undefined && sku.negotiableFlag === '0'"
                                        class="storeipt w210 required" data-valid="custom:protocolPriceValid" :data-shopIndex="i"
                                        :data-skuIndex="si" @blur="">
                                 <span class="vlt form_msg"></span>
