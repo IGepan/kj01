@@ -314,16 +314,16 @@ require(['/common/js/require.config.js'], function () {
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
-                      var url = this.window.location.href
-                      if (url.indexOf('?') > 0) {
-                        var suffixUrl=url.substring(url.indexOf('?')+1);
-                        if (suffixUrl.indexOf('=')) {
-                          toUrl=this.$pathPrefix+suffixUrl.substring(suffixUrl.indexOf('=')+1)
-                        }
-                      }else {
                         toUrl = this.$pathPrefix+'/index.html'
+                    }
+                    var url = this.window.location.href
+                    if (url.indexOf('?') > 0) {
+                      var suffixUrl=url.substring(url.indexOf('?')+1);
+                      if (suffixUrl.indexOf('=')) {
+                        toUrl=location.host+suffixUrl.substring(suffixUrl.indexOf('=')+1)
                       }
                     }
+
                     window.location.href = toUrl
                   }
                   vm.isSubmitDisabled = false
