@@ -112,5 +112,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         selectMailGoods: function (param) {
             return Http.post(httpUrl.baseUrl + '/mailGoods/selectByPage', param);
         },
+        /**
+         *
+         * 成果发布
+         */
+        //分页查询商品列表
+        submit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/result/submit', param);
+        },
     }
 })

@@ -861,6 +861,13 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
+                    handelAcheve: function () {
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?return=/achieve.html";
+                        } else {
+                            window.location.href = "/achieve.html";
+                        }
+                    },
                     getNewActiveList: function () {
                         var vm = this
                         indexApi.selectIssuePage({
