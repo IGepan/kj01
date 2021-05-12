@@ -307,8 +307,9 @@ require(['/common/js/require.config.js'], function () {
                 vm.$httpCom.webCommonUser().then(function (res) {
                   if (res.code === 'rest.success') {
 
-                    // var referrer = document.location.referrer
+                    var referrer = document.referrer
                     var toUrl = referrer
+                    window.location.href = toUrl
                     vm.$utils.delCookie(dic.locaKey.USER_INFO);
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
@@ -324,6 +325,7 @@ require(['/common/js/require.config.js'], function () {
                         toUrl = this.$pathPrefix+'/index.html'
                       }
                     }
+
                     window.location.href = toUrl
                   }
                   vm.isSubmitDisabled = false

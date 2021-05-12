@@ -1,6 +1,6 @@
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js'],
-        function ($, Vue, httpVueLoader, httpUrl, indexApi) {
+    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js','ELEMENT'],
+        function ($, Vue, httpVueLoader, httpUrl, indexApi,ELEMENT) {
             new Vue({
                 el: '#index_box',
                 data: function () {
@@ -252,12 +252,13 @@ require(['/common/js/require.config.js'], function () {
                 },
                 methods: {
                     submit() {
-                        var vm = this;
+                        // var vm = this;
                         indexApi.submit(this.formData).then((res) => {
-                            if (res.code === 'rest.success') {
-                                setTimeout(function () {
-                                    vm.$dialog.showToast('提交成功')
-                                },3000);
+                            if (res.code == 'rest.success') {
+                                // setTimeout(function () {
+                                //     vm.$dialog.showToast('提交成功')
+                                // },3000);
+                                this.$message.success('提交成功')
                                 window.location.href=$pathPrefix+'/achieve.html'
                             }else{
                                 this.$dialog.showToast('系统错误')
