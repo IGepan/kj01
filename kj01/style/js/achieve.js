@@ -14,11 +14,12 @@ require(['/common/js/require.config.js'], function () {
                             noticeId: '1',
                             achievementName: '',
                             companyName: '',
+                            contact:'',
                             districtAndCountry: '',
                             applicationArea: '',
                             comment: '',
                             maturity: '',
-                            status: '',
+                            status: '1',
                             progressiveness: '',
                             ownership: '',
                             mode: '',
@@ -33,6 +34,10 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             companyName: [
                                 { required: true, message: '请输入单位名称', trigger: 'blur' },
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            contact: [
+                                { required: true, message: '请输入负责人姓名', trigger: 'blur' },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             districtAndCountry: [
@@ -229,59 +234,47 @@ require(['/common/js/require.config.js'], function () {
                         }],
                         applicationAreaLIst: [
                             {
-                                value: '农、林、牧、渔业',
-                                label: '农、林、牧、渔业'
+                                value: '高端装备',
+                                label: '高端装备'
                             },{
-                                value: '采矿业',
-                                label: '采矿业'
+                                value: '汽车',
+                                label: '汽车'
                             },{
-                                value: '制造业',
-                                label: '制造业'
+                                value: '生物医药',
+                                label: '生物医药'
                             },{
-                                value: '电力、热力、燃气及水生产和供应业',
-                                label: '电力、热力、燃气及水生产和供应业'
+                                value: '物联网',
+                                label: '物联网'
                             },{
-                                value: '建筑业',
-                                label: '建筑业'
+                                value: '新材料',
+                                label: '新材料',
                             },{
-                                value: '批发和零售业',
-                                label: '批发和零售业'
+                                value: '人工智能',
+                                label: '人工智能'
                             },{
-                                value: '交通运输、仓储和邮政业',
-                                label: '交通运输、仓储和邮政业'
+                                value: '新能源',
+                                label: '新能源'
                             },{
-                                value: '住宿和餐饮业',
-                                label: '住宿和餐饮业'
+                                value: '现代农业',
+                                label: '现代农业'
                             },{
-                                value: '信息传输、软件和信息技术服务业',
-                                label: '信息传输、软件和信息技术服务业'
+                                value: '电子信息',
+                                label: '电子信息'
                             },{
-                                value: '金融业',
-                                label: '金融业'
+                                value: '大数据',
+                                label: '大数据'
                             },{
-                                value: '房地产业',
-                                label: '房地产业'
+                                value: '半导体',
+                                label: '半导体'
                             },{
-                                value: '租赁和商务服务业',
-                                label: '租赁和商务服务业'
+                                value: '节能环保',
+                                label: '节能环保'
                             },{
-                                value: '科学研究和技术服务业',
-                                label: '科学研究和技术服务业'
+                                value: '新一代通信',
+                                label: '新一代通信'
                             },{
-                                value: '教育',
-                                label: '教育'
-                            },{
-                                value: '卫生和社会工作',
-                                label: '卫生和社会工作'
-                            },{
-                                value: '文化、体育和娱乐业',
-                                label: '文化、体育和娱乐业'
-                            },{
-                                value: '公共管理、社会保障和社会组织',
-                                label: '公共管理、社会保障和社会组织'
-                            },{
-                                value: '国际组织',
-                                label: '国际组织'
+                                value: '其他',
+                                label: '其他'
                             }
                         ]
                     }

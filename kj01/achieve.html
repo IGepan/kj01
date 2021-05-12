@@ -31,7 +31,7 @@
     <!--  <index-head :nav-index="8"></index-head>-->
 
     <div class="mdiv">
-        <h1 class="title-h2">重庆院所机构研发能力成果发布信息收集表</h1>
+        <h1 class="title-h2">科研机构科研结果信息征集</h1>
         <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" style="background: #eff5f4;border-radius: 20px;margin-bottom: 50px">
             <fieldset class="form__group">
                 <el-form-item label="成果名称" prop="achievementName" class="el-text">
@@ -44,6 +44,14 @@
                 <el-form-item label="所属单位" prop="companyName" class="el-text">
                     <el-input placeholder="请输入单位名称"
                               v-model="formData.companyName"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="成果负责人" prop="contact" class="el-text">
+                    <el-input placeholder="请输入负责人姓名"
+                              v-model="formData.contact"
                               clearable></el-input>
                 </el-form-item>
             </fieldset>
@@ -102,16 +110,12 @@
                 </el-form-item>
             </div>
             <div class="form__group">
-                <el-form-item label="专利状态" prop="status">
+                <el-form-item label="专利状态(是否授权)" prop="status">
                     <template>
-                        <el-select v-model="formData.status" placeholder="请选择">
-                            <el-option
-                                    v-for="item in statusList"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
-                            </el-option>
-                        </el-select>
+                        <el-radio-group  v-model="formData.status">
+                            <el-radio  label="1">是</el-radio>
+                            <el-radio label="2">否</el-radio>
+                        </el-radio-group>
                     </template>
                 </el-form-item>
             </div>

@@ -318,12 +318,15 @@ require(['/common/js/require.config.js'], function () {
                       var url = this.window.location.href
                       if (url.indexOf('?') > 0) {
                         var suffixUrl=url.substring(url.indexOf('?')+1);
-                        if (suffixUrl.indexOf('=')) {
-                          toUrl=location.host+suffixUrl.substring(suffixUrl.indexOf('=')+1)
+                         if (suffixUrl.indexOf('=')) {toUrl=location.host+suffixUrl.substring(suffixUrl.indexOf('=')+1)
                         }
                       }else {
                         toUrl = this.$pathPrefix+'/index.html'
                       }
+                    }
+                    // 判断是否有return url
+                    if(location.search.indexOf('return')>-1){
+                        toUrl = location.search.replace('?return=','')
                     }
 
                     window.location.href = toUrl
