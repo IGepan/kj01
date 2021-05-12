@@ -251,19 +251,26 @@ require(['/common/js/require.config.js'], function () {
                     'web-footer': httpVueLoader('/style/components/web_footer.vue')
                 },
                 methods: {
+                    //提交表单
                     submit() {
-                        // var vm = this;
                         indexApi.submit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
-                                // setTimeout(function () {
-                                //     vm.$dialog.showToast('提交成功')
-                                // },3000);
-                                this.$message.success('提交成功')
-                                window.location.href=$pathPrefix+'/achieve.html'
+                                this.$message.success('提交成功');
+                                this.clearForm();
+                                scrollTo(0,0);
                             }else{
-                                this.$dialog.showToast('系统错误')
+                                this.$dialog.showToast('系统错误');
                             }
+
                         });
+                    },
+                    //重置表单
+                    clearForm() {
+                        this.formData={}
+                        this.formData.noticeId = '1';
+                        this.formData.intention = '1';
+                        this.formData.isExperience = '1';
+                        this.formData.isExhibition = '1';
                     }
                 }
             });
