@@ -252,9 +252,12 @@ require(['/common/js/require.config.js'], function () {
                 },
                 methods: {
                     submit() {
+                        var vm = this;
                         indexApi.submit(this.formData).then((res) => {
                             if (res.code === 'rest.success') {
-                                this.$dialog.showToast('提交成功')
+                                setTimeout(function () {
+                                    vm.$dialog.showToast('提交成功')
+                                },3000);
                                 window.location.href=$pathPrefix+'/achieve.html'
                             }else{
                                 this.$dialog.showToast('系统错误')
