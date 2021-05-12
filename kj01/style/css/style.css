@@ -278,8 +278,9 @@ html {
 .form__submit {
   align-items: center;
   display: flex;
-  flex-direction: column-reverse;
+  /*flex-direction: column-reverse;*/
   margin-top: 3em;
+  margin-left: 45%;
 }
 
 /**

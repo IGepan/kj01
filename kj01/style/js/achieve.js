@@ -1,10 +1,15 @@
 require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js','ELEMENT'],
         function ($, Vue, httpVueLoader, httpUrl, indexApi,ELEMENT) {
+            Vue.component('vue-ueditor-wrap', VueUeditorWrap)
             new Vue({
                 el: '#index_box',
                 data: function () {
                     return {
+                        ueditorConfig: {
+                            initialFrameHeight: 240,
+                            maximumWords: 5000
+                        },
                         formData: {
                             noticeId: '1',
                             achievementName: '',
@@ -20,6 +25,42 @@ require(['/common/js/require.config.js'], function () {
                             intention: '1',
                             isExperience: '1',
                             isExhibition: '1'
+                        },
+                        rules: {
+                            achievementName: [
+                                { required: true, message: '请输入成果名称', trigger: 'blur' },
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            companyName: [
+                                { required: true, message: '请输入单位名称', trigger: 'blur' },
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            districtAndCountry: [
+                                { required: true, message: '请选择所在区县', trigger: 'blur' }
+                            ],
+                            applicationArea: [
+                                { required: true, message: '请选择应用领域', trigger: 'blur' }
+                            ],
+                            comment: [
+                                { required: true, message: '请输入成果简介', trigger: 'blur' },
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            maturity: [
+                                { required: true, message: '请选择成熟度', trigger: 'blur' }
+                            ],
+                            status: [
+                                { required: true, message: '请选择专利状态', trigger: 'blur' }
+                            ],
+                            progressiveness: [
+                                { required: true, message: '请选择先进性', trigger: 'blur' }
+                            ],
+                            ownership: [
+                                { required: true, message: '请输入成果权属', trigger: 'blur' },
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            mode: [
+                                { required: true, message: '请选择合作方式', trigger: 'blur' }
+                            ],
                         },
                         modeList: [{
                             value: '技术许可',
@@ -252,25 +293,41 @@ require(['/common/js/require.config.js'], function () {
                 },
                 methods: {
                     //提交表单
-                    submit() {
-                        indexApi.submit(this.formData).then((res) => {
-                            if (res.code == 'rest.success') {
-                                this.$message.success('提交成功');
-                                this.clearForm();
-                                scrollTo(0,0);
-                            }else{
-                                this.$dialog.showToast('系统错误');
-                            }
 
+                    submit() {
+                        console.log(this.$refs)
+                        window.test = this.$refs.form
+                        this.$refs.form.validate((valid) => {
+                            console.log(valid,'valid')
+                            if (valid) {
+                                indexApi.submit(this.formData).then((res) => {
+                                    if (res.code == 'rest.success') {
+                                        this.$message.success('提交成功');
+                                        this.clearForm();
+                                        scrollTo(0, 0);
+                                    } else {
+                                        this.$dialog.showToast('系统错误');
+
+                                    }
+                                });
+                            }else {
+                                this.$message.success('请完善信息');
+                            }
                         });
                     },
                     //重置表单
                     clearForm() {
-                        this.formData={}
-                        this.formData.noticeId = '1';
-                        this.formData.intention = '1';
-                        this.formData.isExperience = '1';
-                        this.formData.isExhibition = '1';
+                        for(let key in this.formData){
+                            this.formData[key]=''
+                            scrollTo(0, 0);
+                        }
+                        // this.$refs.from.resetFields();
+
+                        // this.formData={}
+                        // this.formData.noticeId = '1';
+                        // this.formData.intention = '1';
+                        // this.formData.isExperience = '1';
+                        // this.formData.isExhibition = '1';
                     }
                 }
             });
