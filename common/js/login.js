@@ -307,7 +307,7 @@ require(['/common/js/require.config.js'], function () {
                 vm.$httpCom.webCommonUser().then(function (res) {
                   if (res.code === 'rest.success') {
 
-                    var referrer = document.location.referrer
+                    // var referrer = document.location.referrer
                     var toUrl = referrer
                     vm.$utils.delCookie(dic.locaKey.USER_INFO);
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
