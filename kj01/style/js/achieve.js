@@ -234,8 +234,8 @@ require(['/common/js/require.config.js'], function () {
                         }],
                         applicationAreaLIst: [
                             {
-                                value: '高端装备',
-                                label: '高端装备'
+                                value: '装备制造',
+                                label: '装备制造'
                             },{
                                 value: '汽车',
                                 label: '汽车'
@@ -272,7 +272,16 @@ require(['/common/js/require.config.js'], function () {
                             },{
                                 value: '新一代通信',
                                 label: '新一代通信'
-                            },{
+                            },
+                            {
+                                value: '战略咨询',
+                                label: '战略咨询'
+                            },
+                            {
+                                value: '大健康',
+                                label: '大健康'
+                            },
+                            {
                                 value: '其他',
                                 label: '其他'
                             }
@@ -317,10 +326,11 @@ require(['/common/js/require.config.js'], function () {
                         // this.$refs.from.resetFields();
 
                         // this.formData={}
-                        // this.formData.noticeId = '1';
-                        // this.formData.intention = '1';
-                        // this.formData.isExperience = '1';
-                        // this.formData.isExhibition = '1';
+                        this.formData.noticeId = '1';
+                        this.formData.status='1';
+                        this.formData.intention = '1';
+                        this.formData.isExperience = '1';
+                        this.formData.isExhibition = '1';
                     }
                 }
             });

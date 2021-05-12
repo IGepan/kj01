@@ -1187,6 +1187,7 @@
         transform: rotateZ(360deg)
     }
 }
+/*//新增样式*/
 .el-text .el-input{
     width: 30%!important;}
 .el-form-item__label{width: 180px!important;font-size: 16px!important;text-align: left!important;}
@@ -1203,6 +1204,9 @@
     display: inline-block!important;
     padding-left: 10px;
 }
+.el-radio__inner{width: 20px!important;height: 20px!important;}
+.el-radio__label{vertical-align: middle}
+/*//新增样式*/
 .el-pagination {
     white-space: nowrap;
     padding: 2px 5px;

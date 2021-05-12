@@ -94,7 +94,7 @@ html {
   padding: 0;
 }
 .form__group + .form__group {
-  margin-top: 1.5em;
+  margin-top: 0.5em;
 }
 .form__group::after {
   clear: both;
