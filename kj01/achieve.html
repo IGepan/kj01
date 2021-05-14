@@ -74,7 +74,7 @@
                     <template>
                         <el-select v-model="formData.applicationArea" placeholder="请选择">
                             <el-option
-                                    v-for="item in applicationAreaLIst"
+                                    v-for="item in applicationAreaList"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value">
@@ -82,15 +82,10 @@
                         </el-select>
                     </template>
                 </el-form-item>
-
             </div>
             <fieldset class="form__group">
                 <el-form-item label="成果简介" prop="comment" class="el-text">
-<!--                    <el-input type="textarea"-->
-<!--                              :rows="8"-->
-<!--                              placeholder="请输入内容"-->
-<!--                              v-model="formData.comment"-->
-<!--                    >-->
+
                         <vue-ueditor-wrap v-model="formData.comment" :config="ueditorConfig" class="exptextarea">
                         </vue-ueditor-wrap>
                 </el-form-item>

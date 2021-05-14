@@ -236,7 +236,7 @@ require(['/common/js/require.config.js'], function () {
                             value: '彭水',
                             label: '彭水'
                         }],
-                        applicationAreaLIst: [
+                        applicationAreaList: [
                             {
                                 value: '装备制造',
                                 label: '装备制造'
@@ -301,6 +301,12 @@ require(['/common/js/require.config.js'], function () {
                     //提交表单
 
                     submit() {
+                        // this.$alert('本次征集已结束', '提示', {
+                        //     confirmButtonText: '确定',
+                        //     callback: action => {
+                        //         window.location.href=$pathPrefix+'/index.html'
+                        //     }
+                        // });
                         console.log(this.$refs)
                         window.test = this.$refs.form
                         this.$refs.form.validate((valid) => {
