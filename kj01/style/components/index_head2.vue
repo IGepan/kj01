@@ -63,7 +63,7 @@ module.exports = {
         },
         {
           label: '科技智库',
-          url: '/service'
+          url: 'http://www.castss.com/'
         },
         {
           label: '活动中心',
@@ -95,7 +95,8 @@ module.exports = {
         },
         {
           label: '关于我们',
-          url: '/about2.html'
+          // url: '/about2.html'
+          url: '/about.html'
         }
 
       ]
