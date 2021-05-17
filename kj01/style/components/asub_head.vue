@@ -41,7 +41,7 @@
                 class="btn-search"
                 type="button"
                 @click.stop="handleSearch"
-              >搜 索</button>
+              >全 站 搜 索</button>
             </div>
           </div>
         </div>

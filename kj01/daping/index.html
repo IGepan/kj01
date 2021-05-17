@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+
+    <link rel="stylesheet" href="style/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/css/style.css" />
+
+    <title>科研机构助力成渝地区双城经济圈建设 基层行启动仪式暨渝北-广安站技术对接会</title>
+</head>
+<body>
+<div class="container" id='index_box' v-cloak>
+    <h1 class="page-title">科研机构助力成渝地区双城经济圈建设<br/>
+        基层行启动仪式暨渝北-广安站技术对接会
+    </h1>
+    <div class="latest-news">
+        <div class="news-title"><img src="style/images/icon-ly.svg" alt="">近期活动预告：</div>
+        <div class="marquee-left" id="marquee-left">
+            <ul class="list-inline clearfix">
+                <li v-for="(item,index) in achievementList" :key="index">
+                    {{item.companyName}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="docking" style="height: auto;">
+    <ul class="list-unstyled" style="margin-bottom: 0">
+        <li class="row clearfix" style="padding-bottom: 0;border:0;padding: 0;line-height: 55px">
+            <div class="col-xs-7 text-center">成果名称</div>
+            <div class="col-xs-7 text-center">成果所属单位</div>
+            <div class="col-xs-6 text-center">领域</div>
+            <div class="col-xs-4 text-center">合作方式</div>
+        </li>
+    </ul>
+    </div>
+    <div class="docking" id="marquee-up">
+        <ul class="list-unstyled">
+            <li class="row clearfix" v-for="(item,index) in achievementList" :key="index">
+                <div class="col-xs-7 text-center">{{item.achievementName}}</span></div>
+                <div class="col-xs-7 text-center">{{item.companyName}}</div>
+                <div class="col-xs-6 text-center">{{item.applicationArea}}</div>
+                <div class="col-xs-4 text-center">{{item.mode}}</div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="statistics">
+        <ul class="list-inline clearfix">
+            <li>成果总数 <span>168项</span></li>
+            <li>报名人数 <span>380人</span></li>
+            <li>参与人数 <span>180人</span></li>
+            <li>参与企业 <span>70家</span></li>
+            <li>参与机构 <span>60家</span></li>
+        </ul>
+    </div>
+    <div class="footer">
+        <p>主办单位：重庆市科学技术局</p>
+        <p>承办单位：重庆易智网科技有限公司</p>
+        <p>协办单位：重庆市高校重创空间联盟&nbsp;&nbsp;&nbsp;重庆科炬企业孵化器有限公司</p>
+    </div>
+    <div class="leftbox"><img src="style/images/qrcode.jpg"></div>
+    <div class="rightbox"><img src="style/images/qrcode.jpg"></div>
+</div>
+
+
+
+
+
+<!--<script src="style/js/bootstrap.min.js"></script>-->
+<!--<script src="style/js/main.js"></script>-->
+<script src="/common/js/libs/require.js"></script>
+<script src="/daping/style/js/daping.js"></script>
+<script src="/daping/style/js/vendor/jquery.min.js"></script>
+<script src="/daping/style/js/kxbdSuperMarquee.js"></script>
+<script>
+    setTimeout(function(){
+        $('#marquee-left').kxbdSuperMarquee({
+            isMarquee:true,
+            direction: 'left',
+            scrollDelay:30,
+            isEqual: false
+        });
+        $('#marquee-up').kxbdSuperMarquee({
+            isMarquee:true,
+            direction: 'up',
+            scrollDelay:80,
+            isEqual: false
+        });
+    }, 500);
+
+</script>
+</body>
+</html>
