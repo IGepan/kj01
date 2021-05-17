@@ -301,31 +301,31 @@ require(['/common/js/require.config.js'], function () {
                     //提交表单
 
                     submit() {
-                        this.$alert('本次征集已结束', '提示', {
-                            confirmButtonText: '确定',
-                            callback: action => {
-                                window.location.href=$pathPrefix+'/index.html'
-                            }
-                        });
-                        // console.log(this.$refs)
-                        // window.test = this.$refs.form
-                        // this.$refs.form.validate((valid) => {
-                        //     console.log(valid,'valid')
-                        //     if (valid) {
-                        //         indexApi.submit(this.formData).then((res) => {
-                        //             if (res.code == 'rest.success') {
-                        //                 this.$message.success('提交成功');
-                        //                 this.clearForm();
-                        //                 scrollTo(0, 0);
-                        //             } else {
-                        //                 this.$dialog.showToast('系统错误');
-                        //
-                        //             }
-                        //         });
-                        //     }else {
-                        //         this.$message.success('请完善信息');
+                        // this.$alert('本次征集已结束', '提示', {
+                        //     confirmButtonText: '确定',
+                        //     callback: action => {
+                        //         window.location.href=$pathPrefix+'/index.html'
                         //     }
                         // });
+                        console.log(this.$refs)
+                        window.test = this.$refs.form
+                        this.$refs.form.validate((valid) => {
+                            console.log(valid,'valid')
+                            if (valid) {
+                                indexApi.submit(this.formData).then((res) => {
+                                    if (res.code == 'rest.success') {
+                                        this.$message.success('提交成功');
+                                        this.clearForm();
+                                        scrollTo(0, 0);
+                                    } else {
+                                        this.$dialog.showToast('系统错误');
+
+                                    }
+                                });
+                            }else {
+                                this.$message.success('请完善信息');
+                            }
+                        });
                     },
                     //重置表单
                     clearForm() {
