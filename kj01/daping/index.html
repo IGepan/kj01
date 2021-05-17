@@ -27,22 +27,22 @@
         </div>
     </div>
     <div class="docking" style="height: auto;">
-    <ul class="list-unstyled" style="margin-bottom: 0">
+    <ul class="list-unstyled color" style="margin-bottom: 0">
         <li class="row clearfix" style="padding-bottom: 0;border:0;padding: 0;line-height: 55px">
-            <div class="col-xs-7 text-center">成果名称</div>
-            <div class="col-xs-7 text-center">成果所属单位</div>
-            <div class="col-xs-6 text-center">领域</div>
-            <div class="col-xs-4 text-center">合作方式</div>
+            <div class="col-xs-9 text-center">成果名称</div>
+            <div class="col-xs-8 text-center">成果所属单位</div>
+            <div class="col-xs-4 text-center">领域</div>
+            <div class="col-xs-3 text-center">合作方式</div>
         </li>
     </ul>
     </div>
     <div class="docking" id="marquee-up">
         <ul class="list-unstyled">
             <li class="row clearfix" v-for="(item,index) in achievementList" :key="index">
-                <div class="col-xs-7 text-center">{{item.achievementName}}</span></div>
-                <div class="col-xs-7 text-center">{{item.companyName}}</div>
-                <div class="col-xs-6 text-center">{{item.applicationArea}}</div>
-                <div class="col-xs-4 text-center">{{item.mode}}</div>
+                <div class="col-xs-9 text-center">{{item.achievementName}}</span></div>
+                <div class="col-xs-8 text-center">{{item.companyName}}</div>
+                <div class="col-xs-4 text-center">{{item.applicationArea}}</div>
+                <div class="col-xs-3 text-center">{{item.mode}}</div>
             </li>
 
         </ul>
@@ -90,7 +90,6 @@
             isEqual: false
         });
     }, 500);
-
 </script>
 </body>
 </html>
