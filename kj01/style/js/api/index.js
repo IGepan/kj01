@@ -120,5 +120,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         submit: function (param) {
             return Http.post(httpUrl.baseUrl + '/result/submit', param);
         },
+        /**
+         *
+         * 成果展示
+         */
+        //分页查询商品列表
+        selectReleaseByPage:function (param) {
+            return Http.post(httpUrl.baseUrl + '/result/getAllReleaseByPage', param);
+        }
     }
 })
