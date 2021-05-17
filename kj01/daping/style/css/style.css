@@ -30,7 +30,7 @@ body {
 .rightbox{position:fixed;right:1%;top:50%;z-index: 999;width: 10%}
 .leftbox img, .rightbox img{display: block;width: 100%}
 .latest-news {
-  padding-left: 180px;
+  padding-left: 130px;
   background: #000;
   position: relative; }
   .latest-news .news-title {
