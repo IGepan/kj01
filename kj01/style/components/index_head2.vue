@@ -61,14 +61,6 @@ module.exports = {
           label: '科技服务',
           url: '/service'
         },
-        {
-          label: '科技智库',
-          url: 'http://www.castss.com/'
-        },
-        {
-          label: '活动中心',
-          url: '/aindex.html'
-        },
          {
            label: '技术市场',
          url: '/market/index.html'
@@ -82,8 +74,15 @@ module.exports = {
         //   url: '/mall/index.html'
         // },
         {
+          label: '活动中心',
+          url: '/aindex.html'
+        },
+        {
           label: '创新资源',
           url: '/resources'
+        },  {
+          label: '科技智库',
+          url: 'http://www.castss.com/'
         },
         {
           label: '全景数据',
