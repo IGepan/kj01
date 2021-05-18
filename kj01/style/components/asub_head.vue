@@ -211,7 +211,7 @@ module.exports = {
   background-color: #0096ff;
   display: inline-block;
   vertical-align: middle;
-  width: 60px;
+  width: 108px;
   cursor: pointer;
   font-size: 16px;
   line-height: 36px;
