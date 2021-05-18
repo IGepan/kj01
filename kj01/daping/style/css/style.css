@@ -9,13 +9,22 @@ html {
 
 .container {
  width:60% !important; }
+@font-face {
+  font-family: 'XinYeNianTi';
+  src: url('/common/css/font-family/XinYeNianTi.otf');
+}
 
 body {
   font-size: 1.4rem;
   font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
-  background: #0c367f; }
+  background: #2d69b3; }
 [v-cloak]{
   display: none;
+}
+.header-logo_text{
+  font-family: XinYeNianTi;
+  font-size: 30px;
+  color: #ffffff;
 }
 .page-title {
   padding: 20px 0;
@@ -30,8 +39,8 @@ body {
 .rightbox{position:fixed;right:1%;top:50%;z-index: 999;width: 10%}
 .leftbox img, .rightbox img{display: block;width: 100%}
 .latest-news {
-  padding-left: 130px;
-  background: #000;
+  padding-left: 140px;
+  background: #0b3b8a;
   position: relative; }
   .latest-news .news-title {
     color: #fff;
@@ -55,7 +64,7 @@ body {
         float: left;
         padding: 5px 10px;
         color: #70ffe2; }
-.color li{color: #0096ff!important;}
+.color li{color:#000!important;font-weight: bold}
 .docking {
   color: #fff;
   height: 550px;
@@ -98,7 +107,7 @@ body {
   padding: 20px 0 0; }
   .footer p {
     font-size: 1.8rem;
-    color: #c0c0b5;
+    color: #70ffe2;
     text-shadow: 1px  1px 3px #666; }
 
 /*# sourceMappingURL=style.css.map */
