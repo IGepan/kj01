@@ -170,6 +170,7 @@
         background-image: url("../images/footer_bg.png");
         width: 100%;
         height: 400px;
+      background-size:100% ;
     }
 
     .yizhi_footer .footer {
