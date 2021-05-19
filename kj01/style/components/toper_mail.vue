@@ -42,10 +42,12 @@
               v-if='userInfo && userInfo.userName'
               @click="yhzxClick"
           >用户中心</a>
-          <a
+          <a id="tandiv"
               v-if='userInfo && userInfo.userName'
               @click="fwsClick"
-          >{{ isSeller ? '卖家中心' : '服务商入驻' }}</a>
+             @mouseover="mouseOver"  @mouseleave="mouseLeave"
+          >{{ isSeller ? '卖家中心' : '服务商入驻' }}
+            <img class="advertising" :style="active" src="/mall/images/art.png"></a>
         </div>
         <div class="official-account"><span class="show">关注易智网</span>
           <span class="avater">
@@ -187,6 +189,7 @@ module.exports = {
       urlIsType: false,
       urlIsCheckSeller: false,
       urlIsCheckBuyer: false,
+      active:'',
       menuInfo: {
         cartCount: 0,
         messageCount: 0
@@ -571,10 +574,26 @@ module.exports = {
       }
       this.$httpCom.accessSave(data);
     }
+    ,mouseOver(){
+      //改变样式
+      this.active = 'display:block';
+    },
+    mouseLeave() {
+      //清空样式
+      this.active = 'display:none';
+    }
   }
 };
 </script>
 <style scoped>
+.advertising{
+  position: absolute;
+  z-index: 99;
+  top: 30px;
+  border-right: 0!important;
+  margin-left: -8rem;
+  display: none;
+}
 .toper {
   height: 40px;
   line-height: 40px;
@@ -706,11 +725,13 @@ module.exports = {
 .toper .links a {
   border-right: 1px solid rgb(106, 110, 125);
 }
-
+#tandiv:hover{
+  color:#ff9900;
+}
 .c-hover-menu {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: 30%;
   margin-top: -170px;
   z-index: 99;
 }

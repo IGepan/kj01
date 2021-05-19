@@ -1,6 +1,8 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/style/js/libs/scroll.js',
+            '/style/js/libs/swiper-5.4.1/js/swiper.min.js',
+            '/style/js/libs/swiper-5.4.1/js/swiper.animate.min.js','/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', '/common/js/libs/jquery.SuperSlide.2.1.3.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
         function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -48,6 +50,8 @@ require(['/common/js/require.config.js'], function () {
                     },
                     title: '',
                     userInfo: {},
+                    changeSelectStyle:'0',//索引样式
+
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -106,17 +110,18 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailGoods('propertyTypeList')
                     //评估评价
                     this.goodFormData.type = '371980699979194368';
-                    this.getMailGoods('technologyTypeList')
+                     this.getMailGoods('technologyTypeList')
                     //检验检测
                     this.goodFormData.type = '371981659690475520';
                     this.getMailGoods('transferTypeList');
                     //科技咨询
-                    this.goodFormData.type = '371980018614509568';
-                    this.getMailGoods('knowledgeTypeList');
+                    // this.goodFormData.type = '371980018614509568';
+                    // this.getMailGoods('knowledgeTypeList');
                     // cookie用户信息
                     (this.userInfo = JSON.parse(
                         this.$utils.getCookie("USER_INFO")
                     ));
+                    window.addEventListener('scroll', this.handleScroll, true)
                 },
                 methods: {
                     getMailSiteDetail: function () {
@@ -148,18 +153,18 @@ require(['/common/js/require.config.js'], function () {
                                 vm.propertyType = res.result.filter(function (s) {
                                     return s.id == res.result[3].id;
                                 })[0];
-                                //评估评价
+                                // //评估评价
                                 vm.technologyType = res.result.filter(function (s) {
-                                    return s.id == res.result[4].id;
+                                     return s.id == res.result[4].id;
                                 })[0];
                                 //检验检测
                                 vm.transferType = res.result.filter(function (s) {
                                     return s.id == res.result[5].id;
                                 })[0];
                                 //科技咨询
-                                vm.knowledgeType = res.result.filter(function (s) {
-                                    return s.id == res.result[6].id;
-                                })[0];
+                                // vm.knowledgeType = res.result.filter(function (s) {
+                                //     return s.id == res.result[6].id;
+                                // })[0];
                             }
                         })
                     },
@@ -184,6 +189,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
+
                     getMailGoods: function (dateKey) {
                         var vm = this
                         indexApi.selectMailGoods(this.goodFormData).then(function (res) {
@@ -380,6 +386,11 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/common/seller/store_agreement.html";
                         }
                     },
+                    // 右侧栏索引
+                    changeStyle:function (index){
+                        this.changeSelectStyle = index;
+                    },
+
                 }
             });
         })
