@@ -115,6 +115,10 @@ a:hover {
 .el-select > .el-input{width: 120px!important;}
 .el-input__suffix-inner{border-right: 1px solid #008df4;}
 .el-select .el-input .el-select__caret{color: #008df4!important;font-weight: bold;}
+.hot-box{font-size: 14px;
+    color: rgb(123, 126, 138);margin-top: 8px;}.hot-box a{margin-right: 10px;color: #666666}
+.hot-box a:hover{color:#01c8f2!important;}
+
 .shop-box{
     background: #ff9000;
     color: #fff;
