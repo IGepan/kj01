@@ -31,7 +31,7 @@ require(['/common/js/require.config.js'], function () {
         seriesList: [
         ],
         navIndex: 2,
-        pages: '',
+        pages: {},
       },
       filters: {
         formatTime: function (v) {
@@ -225,8 +225,10 @@ require(['/common/js/require.config.js'], function () {
                 item.itemUrl = '/atdetail.html?id='+item.id
               })
               vm.$data.seriesList = res.result && res.result.list || []
-              res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
               vm.$data.pages = res.result || ''
+              res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
+
+
             }
           })
         },
