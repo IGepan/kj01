@@ -55,7 +55,8 @@
                 src="/style/images/index/qrcode.jpg"
                 alt=""
             ><span class="avater-text">易智网</span>
-          </span></div>
+          </span>
+        </div>
         <div class="official-account"><span class="show">小程序</span><span class="avater">
             <img
                 src="/style/images/footerCode1.jpg"
@@ -737,8 +738,9 @@ module.exports = {
 .toper .links a {
   border-right: 1px solid rgb(106, 110, 125);
 }
-#tandiv:hover{
-  color:#ff9900;
+#tandiv:hover{color: #ff9900}
+.show:hover{
+  color:#ff9900!important;
 }
 .c-hover-menu {
   position: fixed;
