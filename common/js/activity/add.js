@@ -486,7 +486,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             activityApi[type](data).then(function (res) {
                                 if (res.code === 'rest.success') {
                                     setTimeout(() => {
-                                        location.href = '/activity/list.html?code=001.004.001.001'
+                                        location.href = '/common/activity/list.html?code=001.004.001.001'
                                     }, 2000);
                                 } else {
                                     vm.isSubmitDisabled = false
