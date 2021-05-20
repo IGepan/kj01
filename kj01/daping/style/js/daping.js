@@ -1,6 +1,6 @@
 require(['/common/js/require.config.js'], function () {
     require(['jquery','vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js','ELEMENT'],
-        function ($, Vue, httpVueLoader, httpUrl, indexApi,ELEMENT) {
+        function ($, Vue, httpVueLoader, httpUrl, indexApi, ELEMENT) {
             new Vue({
                 el: '#index_box',
                 data: function () {
@@ -24,7 +24,23 @@ require(['/common/js/require.config.js'], function () {
                             isExhibition: '1'
 
                         },
-                        achievementList:[]
+                        achievementList:[],
+                        imgList: [
+                            {
+                                name: "lj",
+                                src: "/image/newbanner1.png"
+
+                            },
+                            {
+                                name: "logo",
+                                src: "/image/newbanner5.png"
+
+                            },
+
+
+                        ],
+                        screenWeight: 0, // 屏幕宽度
+                        screenHeight: 0, // 屏幕高度
 
                     }
                 },
@@ -46,6 +62,8 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted:function (){
                      this.getAllList();
+                    this.screenWeight = document.documentElement.clientWidth;
+                    this.screenHeight = document.documentElement.clientHeight;
                 },
             });
         });
