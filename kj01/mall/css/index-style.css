@@ -690,6 +690,8 @@ z-index: -1;
     white-space: nowrap;
     font-size: 1.05rem;
     color: #292929; }
+.s-line{width:50% }
+
 .s-line p{line-height: 1.625rem}
   .card-item .card-body .addition {
     /*margin-top: 1rem; */
