@@ -380,6 +380,16 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     },
+
+                    //委托举办活动信息收集
+                    handleEntrust: function (){
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?return=/entrustInfo.html";
+                        } else {
+                            window.location.href = "/entrustInfo.html";
+                        }
+                    },
+
                     handleColSelected: function () {
                         if (this.detail.isCollection) {
                             this.collectionCancel();

@@ -1,0 +1,52 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/normalize.min.css">
+    <link rel='stylesheet' href='./style/css/flatpickr.min.css'>
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+</head>
+<style>
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+        margin: 30px 0
+    }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+        <h1 class="title-h2">科研机构科研结果信息征集</h1>
+            <div class="block">
+                <span class="demonstration">活动类型</span>
+                <el-cascader
+                        v-model="value"
+                        :options="options"
+                        @change="handleChange">
+                </el-cascader>
+            </div>
+</div>
+
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/entrustInfo.js"></script>
+<!--<script src="/common/js/libs/vue.js"></script>-->
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+
+</body>
+
+</html>

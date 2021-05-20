@@ -163,6 +163,21 @@ button[typeName~="activity-state"] {
 	border-radius: 0;
 	white-space: nowrap;
 }
+
+/* 委托举办活动按键 */
+button[typeName~="entrust-activity"] {
+	min-width: 70px;
+	height: 40px;
+	color: #fff;
+	margin-right: 9px;
+	padding: 0 10px;
+	line-height: 38px;
+	font-size: 14px;
+	text-align: center;
+	background-color: #77bbe8;
+	border-radius: 40px 40px 40px 40px;;
+	white-space: nowrap;
+}
 /* 预热 */
 button[typeName~="activity-state"][typeState="0301"] {
 	background-color: #ef970b;

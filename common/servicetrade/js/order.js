@@ -394,7 +394,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             skuId: detail.skuId,
             num: number
           }).then(function (res) {
-            if (res.code == 'rest.success') {debugger
+            if (res.code == 'rest.success') {
               detail.number = number
               //如果价格为面议或者自定义，则根据协议单价计算金额
               if (detail.choosePriceTag!=='0'||detail.choosePriceTag!=='1'){
