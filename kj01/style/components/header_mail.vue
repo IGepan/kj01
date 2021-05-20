@@ -31,7 +31,7 @@
               <i class="iconfont icon-cart" ></i>
               购物车
             </div>
-            <div class="shop-box fr" @click="goCart">
+            <div class="shop-box fr" @click="goShop">
               我要开店
             </div>
           </div>
@@ -72,6 +72,9 @@ module.exports = {
     },
     goCart:function () {
       location.href='/common/servicetrade/shopping_cart.html'
+    },
+    goShop:function () {
+      window.location.href = "/common/seller/store_agreement.html";
     },
     getType:function (){
       var vm=this;

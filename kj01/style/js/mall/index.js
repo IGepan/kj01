@@ -52,6 +52,7 @@ require(['/common/js/require.config.js'], function () {
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
 
+
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -390,7 +391,13 @@ require(['/common/js/require.config.js'], function () {
                     changeStyle:function (index){
                         this.changeSelectStyle = index;
                     },
-
+                    mallsubmit: function () {
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?return=/.html";
+                        } else {
+                            window.location.href = "/achieve.html";
+                        }
+                    },
                 }
             });
         })

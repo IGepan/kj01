@@ -129,6 +129,7 @@ a:hover {
     font-size: 1rem;
     position: relative;
     text-align: center;
+    cursor: pointer;
 }
 #page-header .shopping-cart .iconfont {
     font-size: 1.25rem;

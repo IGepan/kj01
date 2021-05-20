@@ -127,6 +127,7 @@ a {
   font-size: 1rem;
   position: relative;
   text-align: center;
+  cursor: pointer;
 }
 .el-same{border: 0 !important;border-radius: 0 !important;}
 .el-select > .el-input{width: 120px!important;}
@@ -596,6 +597,9 @@ z-index: -1;
   float: left;border-bottom:1px solid #FFFFff;text-align: center;padding: 1rem ;font-size: 12px;background: #ebeef1;}
 .rightbox-list ul li:first-child{border-radius: 25% 25% 0 0}
 .rightbox-list ul li:last-child{border-radius: 0 0 25% 25%}
+.rightbox-list ul li a{
+  clear: both;}
+
 .changeStyle,.rightbox-list ul li:hover{background: #008df4!important;color: #FFFFff!important;}
 .rightbox-list ul li:hover a{color: #FFFFff!important;}
 .changeStyle a{color: #FFFFff}
