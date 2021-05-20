@@ -21,14 +21,14 @@ html, body {
 body {
     font-size: 1.4rem;
     font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
-    background: #2d69b3;
+    background: url(/daping/style/images/bg.png) no-repeat center;
+    background-size: 100%;
+
 }
 
 [v-cloak] {
     display: none;
 }
-
-
 .demo2 {
     font-family: "Microsoft YaHei";
     text-align: center;
