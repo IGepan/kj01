@@ -285,7 +285,7 @@ require(['/common/js/require.config.js'], function () {
                       vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                       localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                       localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
-                      vm.initData()
+                      window.location.reload(true)
                     }
                   })
                 } else {
