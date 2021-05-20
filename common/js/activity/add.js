@@ -506,7 +506,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.requestForm('submit')
                 },
                 handleBack: function () {
-                    location.href = '/activity/list.html?code=001.004.001.001'
+                    location.href = '/common/activity/list.html?code=001.004.001.001'
                 },
                 handleDelFile: function (i) {
                     this.formData.fileIds.splice(i, 1)
