@@ -79,13 +79,21 @@
           <a href="/common/reg.html">注册</a>
         </div>
 
+        <div >
+          <a class="show" @click="login"  @mouseover="mouseOver"  @mouseleave="mouseLeave">服务商入驻
+          <div class="avater" >
+            <img class="advertising" :style="active" src="/mall/images/art.png">
+          </div>
+          </a>
+        </div>
         <div class="official-account"><span class="show">关注易智网</span>
           <span class="avater">
             <img
                 src="/style/images/index/qrcode.jpg"
                 alt=""
             ><span class="avater-text">易智网</span>
-          </span></div>
+          </span>
+        </div>
         <div class="official-account"><span class="show">小程序</span><span class="avater">
             <img
                 src="/style/images/footerCode1.jpg"
@@ -184,6 +192,7 @@ module.exports = {
       url: "/common/login.html",
       userInfo: {},
       isSeller: false,
+      isShow: false,
       logined: false,
       urlType: false,
       urlIsType: false,
@@ -412,6 +421,9 @@ module.exports = {
           }
         }
       }
+    },
+    login:function() {
+      window.location.href = "/common/login.html";
     },
     msgChlick: function () {
       if (!this.userInfo.userId) {
