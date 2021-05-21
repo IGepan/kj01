@@ -90,11 +90,11 @@
                 <div class="swiper-container" id="home-slider">
                     <div class="swiper-wrapper">
                         <template v-for="idx_banner in indexBanner">
-                            <!--                    <div class="swiper-slide"><img :src="idx_banner.path"></div>-->
-<!--                                           <div class="swiper-slide">-->
-<!--                                                 <img :src="idx_banner.path" @click="toLink(idx_banner.link)">-->
-<!--                                         </div>-->
-                         <div class="swiper-slide"><img src="images/banner-1.png" alt="..."></div>
+<!--                                                <div class="swiper-slide"><img :src="idx_banner.path"></div>-->
+                                           <div class="swiper-slide">
+                                                 <img :src="idx_banner.path" @click="toLink(idx_banner.link)">
+                                         </div>
+<!--                         <div class="swiper-slide"><img src="images/banner-1.png" alt="..."></div>-->
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                         </template>
@@ -117,7 +117,7 @@
                     <a href="/common/reg.html">注册</a>
                 </div>
                 <div class="right-column-2">
-                    <a href="/common/seller/store_agreement.html" target="_parent"><img src="images/right-b.png">
+                    <a @click="fwsClick" target="_parent"><img src="images/right-b.png">
                         <p>免费做推广 · 平台有保障</p>
                         <span>加入我们</span>
                     </a>

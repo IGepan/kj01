@@ -53,6 +53,7 @@ require(['/common/js/require.config.js'], function () {
                     title: '',
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
+                    isSeller: false
 
                 },
                 filters: {
@@ -160,8 +161,26 @@ require(['/common/js/require.config.js'], function () {
                             scrollTop: $(hash).offset().top
                         },300)
                     })
+                    if (this.userInfo.userTypes) {
+                        for (var it of this.userInfo.userTypes) {
+                            if (it === "002") {
+                                this.isSeller = true;
+                            }
+                        }
+                    }
                 },
                 methods: {
+                    fwsClick: function () {
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html";
+                            return;
+                        }
+                        if (this.isSeller) {
+                            window.location.href = "/common/seller/index.html";
+                        } else {
+                            window.location.href = "/common/seller/store_agreement.html";
+                        }
+                    },
                     getMailSiteDetail: function () {
                         var vm = this
                         vm.$httpCom.mailSiteDetail().then(function (res) {
