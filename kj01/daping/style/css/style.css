@@ -128,12 +128,12 @@ body {
 .color li {
     color: #70ffe2 !important;
     font-weight: bold;
-    font-size: 4rem!important;
+    font-size: 5rem!important;
 }
 
 .docking {
     color: #fff;
-    height: 550px;
+    height: 750px;
     overflow: hidden;
 }
 
@@ -141,7 +141,7 @@ body {
     border-bottom: 1px dashed #bfbfbf;
     padding: 10px 0;
     vertical-align: middle;
-    font-size: 3.0rem;
+    font-size: 4.0rem;
     height: auto;
 }
 
