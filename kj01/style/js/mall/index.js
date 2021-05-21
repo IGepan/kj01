@@ -27,6 +27,8 @@ require(['/common/js/require.config.js'], function () {
                     indexBanner02: [],
                     //精选服务
                     chooseGoods: [],
+                    //最新入驻
+                    newShops:[],
                     goodFormData: {
                         chosenFlag: '',
                         pageSize: '',
@@ -93,8 +95,12 @@ require(['/common/js/require.config.js'], function () {
                     this.goodFormData.chosenFlag = '1';
                     this.goodFormData.pageSize = 10;
                     this.getMailGoods('chooseGoods')
-                    //知识产权
                     this.goodFormData = {}
+                    //最新入驻
+                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.orderBy = 'createTime desc';
+                    this.getNewShops();
+                    //知识产权
                     this.goodFormData.pageSize = 8;
                     this.goodFormData.type = '371977891599065088';
                     this.goodFormData.orderBy = 'homePageFlag desc';
@@ -221,7 +227,15 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
-
+                    //查询最新店铺信息
+                    getNewShops: function () {
+                        var vm = this
+                        indexApi.selectNewShops(this.goodFormData).then(function (res) {
+                            if (res.code === 'rest.success') {
+                                vm.newShops = res.result;
+                            }
+                        });
+                    },
                     getMailGoods: function (dateKey) {
                         var vm = this
                         indexApi.selectMailGoods(this.goodFormData).then(function (res) {

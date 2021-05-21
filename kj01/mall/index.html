@@ -107,7 +107,8 @@
             <div class="right-column fr">
                 <div class="right-column-1" v-if='userInfo && userInfo.userName'>
                      <img src="images/toux.png">
-                    <span >Hi~，欢迎来到易智商城！</span>
+                   <span> Hi~，<b style="color: #fc7f10;">{{userInfo.userName}}</b></span>
+                    <span>欢迎来到易智商城！</span>
                 </div>
                 <div class="right-column-1" v-else>
                     <img src="images/toux.png">
@@ -180,7 +181,7 @@
 <!--                    <li v-for="(item,index) in achievementList" :key="index">-->
 <!--                        欢迎{{item.companyName}}-->
 <!--                    </li>-->
-                    <li v-for="(good,index) in chooseGoods">欢迎<a>{{good.shopName}}</a>入驻商城</li>
+                    <li v-for="(shop,index) in newShops">欢迎<a :href="'shop/index.html?code='+shop.shopCode">{{shop.shopName}}</a>入驻商城</li>
                 </ul>
                 </template>
             </div>
