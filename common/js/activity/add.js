@@ -486,7 +486,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             activityApi[type](data).then(function (res) {
                                 if (res.code === 'rest.success') {
                                     setTimeout(() => {
-                                        location.href = '/activity/list.html?code=001.004.001.001'
+                                        location.href = '/common/activity/list.html?code=001.004.001.001'
                                     }, 2000);
                                 } else {
                                     vm.isSubmitDisabled = false
@@ -506,7 +506,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.requestForm('submit')
                 },
                 handleBack: function () {
-                    location.href = '/activity/list.html?code=001.004.001.001'
+                    location.href = '/common/activity/list.html?code=001.004.001.001'
                 },
                 handleDelFile: function (i) {
                     this.formData.fileIds.splice(i, 1)
@@ -941,13 +941,13 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         callback(o)
                     }
                 },
-                bindSponsorValid: function (v, o, callback) {
+                /*bindSponsorValid: function (v, o, callback) {
                     if (!this.formData.sponsor.length) {
                         callback(o, '主办单位不能为空')
                     } else {
                         callback(o)
                     }
-                },
+                },*/
                 bindCooperationValid: function (v, o, callback) {
                     if (this.formData.cooperation.some(function (item) {
                         return !item.cooperationName

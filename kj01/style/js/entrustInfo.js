@@ -5,6 +5,7 @@ require(['/common/js/require.config.js'], function () {
             new Vue({
                     el: '#index_box',
                     data: {
+                        textarea: '',
                         value: [],
                         options: [
                             {
