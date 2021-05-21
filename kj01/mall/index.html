@@ -91,10 +91,10 @@
                     <div class="swiper-wrapper">
                         <template v-for="idx_banner in indexBanner">
                             <!--                    <div class="swiper-slide"><img :src="idx_banner.path"></div>-->
-                            <!--                    <div class="swiper-slide">-->
-                            <!--                        <img :src="idx_banner.path" @click="toLink(idx_banner.link)">-->
-                            <!--                    </div>-->
-                            <div class="swiper-slide"><img src="images/banner-1.png" alt="..."></div>
+<!--                                           <div class="swiper-slide">-->
+<!--                                                 <img :src="idx_banner.path" @click="toLink(idx_banner.link)">-->
+<!--                                         </div>-->
+                         <div class="swiper-slide"><img src="images/banner-1.png" alt="..."></div>
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                         </template>
@@ -105,18 +105,18 @@
                 </div>
             </div>
             <div class="right-column fr">
-                <div class="right-column-1">
+                <div class="right-column-1" v-if='userInfo && userInfo.userName'>
                      <img src="images/toux.png">
-                    <span>欢迎您，请登录</span>
+                    <span >Hi~，欢迎来到易智商城！</span>
+                </div>
+                <div class="right-column-1" v-else>
+                    <img src="images/toux.png">
+                    <span >Hi~，欢迎来到易智商城！请登录</span>
                     <a href="/common/login.html">登录</a>
                     <a href="/common/reg.html">注册</a>
                 </div>
-                <div class="right-column-1" style="display: none">
-                    <img src="images/toux.png">
-                    <span>hi！欢迎您来到易智网</span>
-                </div>
                 <div class="right-column-2">
-                    <a target="_parent"><img src="images/right-b.png">
+                    <a href="/common/seller/store_agreement.html" target="_parent"><img src="images/right-b.png">
                         <p>免费做推广 · 平台有保障</p>
                         <span>加入我们</span>
                     </a>
@@ -186,7 +186,7 @@
             </div>
         </div>
     </div>
-        <div class="container">
+        <div class="container floor">
             <div id="service-box">
             <div class="main-block block-service">
                 <div class="title-bg">
@@ -268,7 +268,7 @@
     </div>
 
     <!--知识产权-->
-    <div class="container" id="property">
+    <div class="container floor" id="property">
         <div class="main-block block-tabs">
             <div class="main-title-left ">
                 <span>{{incubationType.name}}</span>
@@ -328,7 +328,7 @@
     </div>
     <!--法律服务-->
     <div>
-        <div class="container" id="law">
+        <div class="container floor" id="law">
             <div class="main-block block-tabs design-tabs">
                 <div class="main-title-left ">
                     <span>{{designType.name}}</span>
@@ -397,7 +397,7 @@
         </div>
     </div>
     <!--政策申报-->
-    <div class="container" id="policy">
+    <div class="container floor" id="policy">
         <div class="main-block block-tabs test-tabs">
             <div class="main-title-left ">
                 <span>{{checkType.name}}</span>
@@ -458,7 +458,7 @@
     </div>
     <!--工商财税-->
     <div class="">
-        <div class="container" id="business">
+        <div class="container floor" id="business">
             <div class="main-block block-tabs property-tabs">
                 <div class="main-title-left ">
                     <span>{{propertyType.name}}</span>
@@ -521,7 +521,7 @@
         </div>
     </div>
     <!--检验检测-->
-    <div class="container" id="inspection">
+    <div class="container floor" id="inspection">
         <div class="main-block block-tabs migrate-tabs">
             <div class="main-title-left ">
                 <span>{{technologyType.name}}</span>
@@ -585,7 +585,7 @@
     </div>
     <!--科技咨询-->
     <div>
-        <div class="container" id="technology">
+        <div class="container floor" id="technology">
             <div class="main-block block-tabs technology-tabs">
                 <div class="main-title-left ">
                     <span>{{transferType.name}}</span>
@@ -806,7 +806,7 @@
     </div>
     </div>
     <div class="rightbox-list" id="showbox">
-        <ul>
+        <ul :class="'active'+changeSelectStyle">
             <li :class="{changeStyle:changeSelectStyle == 0}" @click="changeStyle(0)" ><a href="#/service-box">精选<br>服务</a></li>
             <li :class="{changeStyle:changeSelectStyle == 1}" @click="changeStyle(1)" ><a href="#/property">知识<br>产权</a></li>
             <li :class="{changeStyle:changeSelectStyle == 2}" @click="changeStyle(2)"><a  href="#/law">法律<br>服务</a></li>
@@ -814,6 +814,7 @@
             <li :class="{changeStyle:changeSelectStyle == 4}" @click="changeStyle(4)"><a href="#/business">工商<br>财税</a></li>
             <li :class="{changeStyle:changeSelectStyle == 5}" @click="changeStyle(5)" ><a href="#/inspection">检验<br>检测</a></li>
             <li :class="{changeStyle:changeSelectStyle == 6}" @click="changeStyle(6)" ><a href="#/technology">科技<br>咨询</a></li>
+<!--            <span class="bg_color"></span>-->
 <!--            <li ><a href="#"><img src="/style/images/index/toper_4.png" alt="">顶部</a></li>-->
         </ul>
     </div>
@@ -835,15 +836,17 @@
         {
             var oDiv = document.getElementById("showbox")
             var s = document.body.scrollTop || document.documentElement.scrollTop
+            var w = $(this).height();
             if(s>200) {
                 oDiv.style = "display:block"
             } else {
                 oDiv.style = "dispaly:none"
             }
+            if(s + w){
+
+            }
         }
     }, 500);
-
-
 
 </script>
 </body>

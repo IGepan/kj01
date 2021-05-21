@@ -51,7 +51,6 @@ require(['/common/js/require.config.js'], function () {
                     title: '',
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
-                    engrossed: true, // 锚链接进度标识
 
                 },
                 filters: {
@@ -122,19 +121,38 @@ require(['/common/js/require.config.js'], function () {
                     (this.userInfo = JSON.parse(
                         this.$utils.getCookie("USER_INFO")
                     ));
-                    // window.addEventListener('scroll', this.handleScroll, true)
-                    // 锚链接动画
-                    window.addEventListener('scroll', function(evt) {
-                        _this.engrossed = window.scrollY < window.innerHeight
-                    })
+                    // 监听页面滚动，设置导航
+                    /**
+                     * <ul class="active4"><li class=""><a href="#/service-box">精选<br>服务</a></li>
+                     * <li class=""><a href="#/property">知识<br>产权</a></li> <li class=""><a href="#/law">法律<br>服务</a></li>
+                     * <li class=""><a href="#/policy">政策<br>申报</a></li>
+                     * <li class="changeStyle"><a href="#/business">工商<br>财税</a></li>
+                     * <li class=""><a href="#/inspection">检验<br>检测</a></li>
+                     * <li class=""><a href="#/technology">科技<br>咨询</a></li></ul>
+                     * @type {string[]}
+                     */
+                    var sections = ['service-box', 'property', 'law', 'policy', 'business', 'inspection', 'technology']
+                    window.addEventListener('scroll', function(){
+                        var st = $(window).scrollTop()
+                        sections.forEach(function(key,idx){
+                            var offset = (window.innerHeight - $('#'+key).height()) / 2
+                            if(st >= $('#'+key).offset().top - offset && idx == sections.length - 1) {
+                                _this.changeSelectStyle = idx
+                                return
+                            }
+                            if(st >= $('#'+key).offset().top - offset && st < $('#'+sections[idx+1]).offset().top - offset){
+                                _this.changeSelectStyle = idx
+                                return
+                            }
+                        })
+                        console.log(_this.changeSelectStyle)
+                    }, true)
+
                     window.addEventListener('hashchange', function() {
                         const hash = location.hash.replace('/', '')
-                        console.log(hash,' hash')
-                        document.querySelector(hash).scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'end',
-                            inline: 'nearest'
-                        })
+                        $('body,html').animate({
+                            scrollTop: $(hash).offset().top
+                        },300)
                     })
                 },
                 methods: {
