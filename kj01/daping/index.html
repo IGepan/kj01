@@ -49,7 +49,7 @@
 <!--    </div>-->
     <div style="width: 80%;margin: 0 10%;">
     <div class="docking" style="height: auto">
-    <ul class="list-unstyled color" style="margin-top: 10%">
+    <ul class="list-unstyled color" style="margin-top: 12%;">
         <li class="row clearfix" style="padding-bottom: 0;border:0;padding: 0;line-height: 55px">
             <div class="col-xs-9 text-center">成果名称</div>
             <div class="col-xs-8 text-center">成果所属单位</div>
@@ -61,10 +61,10 @@
     <div class="docking" id="marquee-up">
         <ul class="list-unstyled">
             <li class="row clearfix " v-for="(item,index) in achievementList" :key="index">
-                <div class="col-xs-9 text-center demo2">{{item.achievementName}}</div>
-                <div class="col-xs-8 text-center demo2">{{item.companyName}}</div>
-                <div class="col-xs-4 text-center demo2">{{item.applicationArea}}</div>
-                <div class="col-xs-3 text-center demo2">{{item.mode}}</div>
+                <div class="col-xs-9 text-center ">{{item.achievementName}}</div>
+                <div class="col-xs-8 text-center ">{{item.companyName}}</div>
+                <div class="col-xs-4 text-center">{{item.applicationArea}}</div>
+                <div class="col-xs-3 text-center">{{item.mode}}</div>
             </li>
 
         </ul>
