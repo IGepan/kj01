@@ -1,0 +1,113 @@
+* {
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  transition: all 400ms ease; }
+
+html {
+  min-width: 60% !important;
+}
+
+.container {
+ width:60% !important; }
+@font-face {
+  font-family: 'XinYeNianTi';
+  src: url('/common/css/font-family/XinYeNianTi.otf');
+}
+
+body {
+  font-size: 1.4rem;
+  font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+  background: #2d69b3; }
+[v-cloak]{
+  display: none;
+}
+.header-logo_text{
+  font-family: XinYeNianTi;
+  font-size: 30px;
+  color: #ffffff;
+}
+.page-title {
+  /*padding: 20px 0;*/
+  text-align: center;
+  color: #fff;
+  line-height: 50px;
+   }
+  .page-title small {
+    color: #70ffe2;
+    font-size: 1.4rem; }
+.leftbox{position:fixed;left:1%;top:50%;z-index: 999;width: 10%}
+.rightbox{position:fixed;right:1%;top:50%;z-index: 999;width: 10%}
+.leftbox img, .rightbox img{display: block;width: 100%}
+.latest-news {
+  padding-left: 140px;
+  background: #0b3b8a;
+  position: relative; }
+  .latest-news .news-title {
+    color: #fff;
+    font-size: 2rem;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 9px; }
+    .latest-news .news-title img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px; }
+  .latest-news .marquee-left {
+    overflow: hidden;
+    padding: 5px;
+    height: 48px; }
+    .latest-news .marquee-left ul {
+      margin: 0; }
+      .latest-news .marquee-left ul li {
+        font-size: 2rem;
+        float: left;
+        padding: 5px 10px;
+        color: #70ffe2; }
+.color li{color:#000!important;font-weight: bold}
+.docking {
+  color: #fff;
+  height: 550px;
+  overflow: hidden; }
+  .docking ul li {
+    border-bottom: 1px dashed #bfbfbf;
+    padding: 10px 0;
+    vertical-align: middle;
+    font-size: 2.0rem;
+    height:auto; }
+/*.docking ul li .col-xs-7{overflow:hidden;}*/
+.docking ul li .c1{color: #ff9900!important;}
+    .docking ul li a {
+      color: #fff; }
+      .docking ul li a:hover {
+        text-decoration: underline; }
+    .docking ul li .c1 {
+      color: #0096ff; }
+    .docking ul li .c2 {
+      color: #fd6500; }
+
+.statistics {
+  padding: 12px 0;
+  background: #1a1a1a; }
+  .statistics ul {
+    margin: 0; }
+    .statistics ul li {
+      font-size: 2rem;
+      color: #b9b9b9;
+      width: 20%;
+      float: left;
+      text-align: center; }
+      .statistics ul li span 
+      {
+        color: #f20000; padding-left: 10px;}
+      .statistics ul li + li {
+        border-left: 1px solid #b9b9b9; }
+
+.footer {
+  padding: 20px 0 0; }
+  .footer p {
+    font-size: 1.8rem;
+    color: #70ffe2;
+    text-shadow: 1px  1px 3px #666; }
+
+/*# sourceMappingURL=style.css.map */

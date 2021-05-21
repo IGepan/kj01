@@ -121,7 +121,7 @@ module.exports = {
           texts: '请先激活店铺！',
           buttons: ['现在就去', '稍后激活'],
           callback: function () {
-            location = this.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
+           location.href = '/common/seller/activate.html?code=001.002.001.003'
           }
         }
         this.$dialog.confirm(options)

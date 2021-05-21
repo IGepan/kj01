@@ -71,15 +71,19 @@ require(['/common/js/require.config.js'], function () {
                             value: '技术许可',
                             label: '技术许可'
                         },{
-                            value: '技术咨询',
-                            label: '技术咨询'
+                            value: '授权转让',
+                            label: '授权转让'
                         },{
-                            value: '技术服务',
-                            label: '技术服务'
+                            value: '完全转让',
+                            label: '完全转让'
                         },{
-                            value: '产品推广',
-                            label: '产品推广'
-                        }],
+                            value: '投资入股',
+                            label: '投资入股'
+                        },
+                            {
+                                value: '其他',
+                                label: '其他'
+                            }],
                         progressivenessList: [{
                             value: '国内领先',
                             label: '国内领先'
@@ -232,7 +236,7 @@ require(['/common/js/require.config.js'], function () {
                             value: '彭水',
                             label: '彭水'
                         }],
-                        applicationAreaLIst: [
+                        applicationAreaList: [
                             {
                                 value: '装备制造',
                                 label: '装备制造'
@@ -297,25 +301,31 @@ require(['/common/js/require.config.js'], function () {
                     //提交表单
 
                     submit() {
-                        console.log(this.$refs)
-                        window.test = this.$refs.form
-                        this.$refs.form.validate((valid) => {
-                            console.log(valid,'valid')
-                            if (valid) {
-                                indexApi.submit(this.formData).then((res) => {
-                                    if (res.code == 'rest.success') {
-                                        this.$message.success('提交成功');
-                                        this.clearForm();
-                                        scrollTo(0, 0);
-                                    } else {
-                                        this.$dialog.showToast('系统错误');
-
-                                    }
-                                });
-                            }else {
-                                this.$message.success('请完善信息');
+                        this.$alert('本次征集已结束', '提示', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                window.location.href=$pathPrefix+'/index.html'
                             }
                         });
+                        // console.log(this.$refs)
+                        // window.test = this.$refs.form
+                        // this.$refs.form.validate((valid) => {
+                        //     console.log(valid,'valid')
+                        //     if (valid) {
+                        //         indexApi.submit(this.formData).then((res) => {
+                        //             if (res.code == 'rest.success') {
+                        //                 this.$message.success('提交成功');
+                        //                 this.clearForm();
+                        //                 scrollTo(0, 0);
+                        //             } else {
+                        //                 this.$dialog.showToast('系统错误');
+                        //
+                        //             }
+                        //         });
+                        //     }else {
+                        //         this.$message.success('请完善信息');
+                        //     }
+                        // });
                     },
                     //重置表单
                     clearForm() {

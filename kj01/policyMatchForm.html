@@ -8,17 +8,17 @@
     <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
     <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
     <link href="../common/css/main.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://www.1633.com/kygj/static/plugin/layui-2.4.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
     <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
     <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
-    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
-    <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/button.css" rel="stylesheet" type="text/css">
     <link href="./style/css/policyMatchForm.css" rel="stylesheet" type="text/css">
     <link href="./style/css/icon/iconfont.css" rel="stylesheet">
     <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
     <link href="./style/js/libs/swiper-5.4.1/css/swiper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/js/libs/swiper-5.4.1/css/animate.min.css">
-
+    <link rel="stylesheet" href="./style/css/policyMatchLogin.css">
 </head>
 <body>
   <div class="box" id='matchForm_box' v-cloak>
@@ -35,7 +35,7 @@
                           <td align="right" width="160"><em class="red">*</em>企业名称</td>
                           <td>
                             <div class="layui-input-inline width_300">
-                                <input type="text" class="layui-input" v-model="formData.organizationName" id="companyNameU">
+                                <input type="text" class="layui-input" v-model="formData.organizationName" id="companyNameU" style="width: 200px">
                              </div>
                           </td>
                       </tr>
@@ -119,16 +119,16 @@
                           :http='httpUser'></ly-address-select>                        
                         </td>
                       </tr>     
-                      <tr>
-                        <td align="right">服务领域</td>
-                        <td class="td2 width_600">
-                            <label class="select" style="line-height: normal;">
-                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
-                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>
-                            </label>     
-                        </td>
-                        <td ref="servicesMsg" class="form_msg"></td>   
-                      </tr>                                                            
+<!--                      <tr>-->
+<!--                        <td align="right">服务领域</td>-->
+<!--                        <td class="td2 width_600">-->
+<!--                            <label class="select" style="line-height: normal;">-->
+<!--                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"-->
+<!--                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>-->
+<!--                            </label>     -->
+<!--                        </td>-->
+<!--                        <td ref="servicesMsg" class="form_msg"></td>   -->
+<!--                      </tr>                                                            -->
                       <tr>
                         <td align="right">关注的政策</td>
                         <td class="td2 width_600">
@@ -280,6 +280,7 @@
                 <input @click="toLastStep" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
                 <input @click="toResult" type="button" value="查看匹配结果" class="layui-btn layui-btn-lg layui-btn-normal viewReport viewReportBtn">
               </div>
+
           </form>
       </div>
       </div>

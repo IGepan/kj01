@@ -5,7 +5,7 @@
         <div class="col">
           <a class="logo" href="/"><img class="img-fluid" src="images/logo-1.png" alt=""></a>
         </div>
-        <div class="col-6">
+        <div class="col-5" style="margin-top: 30px">
           <div class="input-group search-top">
             <el-select v-model="type">
               <el-option class="el-same"
@@ -15,17 +15,28 @@
                   :value="item.id" >
               </el-option>
             </el-select>
-            <input type="text" v-model="title" class="form-control" aria-label="">
+            <input type="text" v-model="title" class="form-control" aria-label="" placeholder="请输入关键字">
             <button class="btn btn-link btn-search" @click="handelSearch()"><i class="iconfont icon-search"></i></button>
           </div>
-        </div>
-        <div class="col-2">
-          <div class="shopping-cart" @click="goCart">
-            <i class="iconfont icon-cart" ></i>
-            购物车
+          <div class="hot-box">
+            <span>热门搜索：</span>
+            <a>专利</a>
+            <a>商标</a>
+            <a>专项项目</a>
           </div>
         </div>
-      </div>
+
+          <div class="col-3">
+            <div class="shopping-cart fl" @click="goCart">
+              <i class="iconfont icon-cart" ></i>
+              购物车
+            </div>
+            <div class="shop-box fr" @click="goShop">
+              我要开店
+            </div>
+          </div>
+
+        </div>
     </div>
   </header>
 </template>
@@ -62,6 +73,9 @@ module.exports = {
     goCart:function () {
       location.href='/common/servicetrade/shopping_cart.html'
     },
+    goShop:function () {
+      window.location.href = "/common/seller/store_agreement.html";
+    },
     getType:function (){
       var vm=this;
       this.$httpCom.mailServiceType().then(function (res) {
@@ -81,4 +95,3 @@ module.exports = {
   }
 };
 </script>
-

@@ -41,7 +41,7 @@
                 class="btn-search"
                 type="button"
                 @click.stop="handleSearch"
-              >搜 索</button>
+              >全 站 搜 索</button>
             </div>
           </div>
         </div>
@@ -203,6 +203,7 @@ module.exports = {
 .input-search {
   display: inline-block;
   width: 178px;
+  border: 1px;
   padding: 0 10px;
   line-height: 36px;
   vertical-align: middle;
@@ -211,10 +212,11 @@ module.exports = {
   background-color: #0096ff;
   display: inline-block;
   vertical-align: middle;
-  width: 60px;
+  width: 108px;
+  border: 1px;
   cursor: pointer;
   font-size: 16px;
-  line-height: 36px;
+  line-height: 37px;
   color: #fff;
 }
 .breadcrumb {
