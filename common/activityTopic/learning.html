@@ -88,6 +88,13 @@
                                          v-text="(detail.activeStartTime || '') + ' 至 ' + (detail.activeEndTime||'')">
                                     </div>
                                 </label>
+                                <label v-cloak style="width: 83%;">
+                                    <span>学习人数：</span>
+                                    <div style="border: 0; background-color: transparent;font-size: 14px;line-height: 31px;height: auto;"
+                                         class="ipt">
+                                    <span>共 {{detail.title||0}} 人</span>
+                                </div>
+                                </label>
                             </div>
                         </div>
                         <div class="searchform">

@@ -861,16 +861,6 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
-                    handelAcheve: function () {
-                        this.$alert('本次活动征集已结束', '提示', {
-                            confirmButtonText: '确定',
-                        });
-                        // if (!this.userInfo.userId) {
-                        //     window.location.href = "/common/login.html?return=/achieve.html";
-                        // } else {
-                        //     window.location.href = "/achieve.html";
-                        // }
-                    },
                     getNewActiveList: function () {
                         var vm = this
                         indexApi.selectIssuePage({

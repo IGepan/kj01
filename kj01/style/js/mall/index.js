@@ -1,6 +1,8 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/style/js/libs/scroll.js',
+            '/style/js/libs/swiper-5.4.1/js/swiper.min.js',
+            '/style/js/libs/swiper-5.4.1/js/swiper.animate.min.js','/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', '/common/js/libs/jquery.SuperSlide.2.1.3.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
         function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -25,6 +27,8 @@ require(['/common/js/require.config.js'], function () {
                     indexBanner02: [],
                     //精选服务
                     chooseGoods: [],
+                    //最新入驻
+                    newShops:[],
                     goodFormData: {
                         chosenFlag: '',
                         pageSize: '',
@@ -48,6 +52,9 @@ require(['/common/js/require.config.js'], function () {
                     },
                     title: '',
                     userInfo: {},
+                    changeSelectStyle:'0',//索引样式
+                    isSeller: false
+
                 },
                 filters: {
                     formatPrice2: function (flag, v, n, m) {
@@ -76,7 +83,7 @@ require(['/common/js/require.config.js'], function () {
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
                 },
                 mounted: function () {
-
+                    var _this = this
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
                     this.getMailSiteDetail();
@@ -89,8 +96,12 @@ require(['/common/js/require.config.js'], function () {
                     this.goodFormData.chosenFlag = '1';
                     this.goodFormData.pageSize = 10;
                     this.getMailGoods('chooseGoods')
-                    //知识产权
                     this.goodFormData = {}
+                    //最新入驻
+                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.orderBy = 'createTime desc';
+                    this.getNewShops();
+                    //知识产权
                     this.goodFormData.pageSize = 8;
                     this.goodFormData.type = '371977891599065088';
                     this.goodFormData.orderBy = 'homePageFlag desc';
@@ -106,19 +117,70 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailGoods('propertyTypeList')
                     //评估评价
                     this.goodFormData.type = '371980699979194368';
-                    this.getMailGoods('technologyTypeList')
+                     this.getMailGoods('technologyTypeList')
                     //检验检测
                     this.goodFormData.type = '371981659690475520';
                     this.getMailGoods('transferTypeList');
                     //科技咨询
-                    this.goodFormData.type = '371980018614509568';
-                    this.getMailGoods('knowledgeTypeList');
+                    // this.goodFormData.type = '371980018614509568';
+                    // this.getMailGoods('knowledgeTypeList');
                     // cookie用户信息
                     (this.userInfo = JSON.parse(
                         this.$utils.getCookie("USER_INFO")
                     ));
+                    // 监听页面滚动，设置导航
+                    /**
+                     * <ul class="active4"><li class=""><a href="#/service-box">精选<br>服务</a></li>
+                     * <li class=""><a href="#/property">知识<br>产权</a></li> <li class=""><a href="#/law">法律<br>服务</a></li>
+                     * <li class=""><a href="#/policy">政策<br>申报</a></li>
+                     * <li class="changeStyle"><a href="#/business">工商<br>财税</a></li>
+                     * <li class=""><a href="#/inspection">检验<br>检测</a></li>
+                     * <li class=""><a href="#/technology">科技<br>咨询</a></li></ul>
+                     * @type {string[]}
+                     */
+                    var sections = ['service-box', 'property', 'law', 'policy', 'business', 'inspection', 'technology']
+                    window.addEventListener('scroll', function(){
+                        var st = $(window).scrollTop()
+                        sections.forEach(function(key,idx){
+                            var offset = (window.innerHeight - $('#'+key).height()) / 2
+                            if(st >= $('#'+key).offset().top - offset && idx == sections.length - 1) {
+                                _this.changeSelectStyle = idx
+                                return
+                            }
+                            if(st >= $('#'+key).offset().top - offset && st < $('#'+sections[idx+1]).offset().top - offset){
+                                _this.changeSelectStyle = idx
+                                return
+                            }
+                        })
+                        console.log(_this.changeSelectStyle)
+                    }, true)
+
+                    window.addEventListener('hashchange', function() {
+                        const hash = location.hash.replace('/', '')
+                        $('body,html').animate({
+                            scrollTop: $(hash).offset().top
+                        },300)
+                    })
+                    if (this.userInfo.userTypes) {
+                        for (var it of this.userInfo.userTypes) {
+                            if (it === "002") {
+                                this.isSeller = true;
+                            }
+                        }
+                    }
                 },
                 methods: {
+                    fwsClick: function () {
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html";
+                            return;
+                        }
+                        if (this.isSeller) {
+                            window.location.href = "/common/seller/index.html";
+                        } else {
+                            window.location.href = "/common/seller/store_agreement.html";
+                        }
+                    },
                     getMailSiteDetail: function () {
                         var vm = this
                         vm.$httpCom.mailSiteDetail().then(function (res) {
@@ -148,18 +210,18 @@ require(['/common/js/require.config.js'], function () {
                                 vm.propertyType = res.result.filter(function (s) {
                                     return s.id == res.result[3].id;
                                 })[0];
-                                //评估评价
+                                // //评估评价
                                 vm.technologyType = res.result.filter(function (s) {
-                                    return s.id == res.result[4].id;
+                                     return s.id == res.result[4].id;
                                 })[0];
                                 //检验检测
                                 vm.transferType = res.result.filter(function (s) {
                                     return s.id == res.result[5].id;
                                 })[0];
                                 //科技咨询
-                                vm.knowledgeType = res.result.filter(function (s) {
-                                    return s.id == res.result[6].id;
-                                })[0];
+                                // vm.knowledgeType = res.result.filter(function (s) {
+                                //     return s.id == res.result[6].id;
+                                // })[0];
                             }
                         })
                     },
@@ -183,6 +245,15 @@ require(['/common/js/require.config.js'], function () {
                                 })
                             }
                         })
+                    },
+                    //查询最新店铺信息
+                    getNewShops: function () {
+                        var vm = this
+                        indexApi.selectNewShops(this.goodFormData).then(function (res) {
+                            if (res.code === 'rest.success') {
+                                vm.newShops = res.result;
+                            }
+                        });
                     },
                     getMailGoods: function (dateKey) {
                         var vm = this
@@ -379,6 +450,10 @@ require(['/common/js/require.config.js'], function () {
                         } else {
                             window.location.href = "/common/seller/store_agreement.html";
                         }
+                    },
+                    // 右侧栏索引
+                    changeStyle:function (index){
+                        this.changeSelectStyle = index;
                     },
                 }
             });
