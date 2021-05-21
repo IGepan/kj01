@@ -51,7 +51,7 @@ require(['/common/js/require.config.js'], function () {
                     title: '',
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
-
+                    engrossed: true, // 锚链接进度标识
 
                 },
                 filters: {
@@ -81,7 +81,7 @@ require(['/common/js/require.config.js'], function () {
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
                 },
                 mounted: function () {
-
+                    var _this = this
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
                     this.getMailSiteDetail();
@@ -122,7 +122,20 @@ require(['/common/js/require.config.js'], function () {
                     (this.userInfo = JSON.parse(
                         this.$utils.getCookie("USER_INFO")
                     ));
-                    window.addEventListener('scroll', this.handleScroll, true)
+                    // window.addEventListener('scroll', this.handleScroll, true)
+                    // 锚链接动画
+                    window.addEventListener('scroll', function(evt) {
+                        _this.engrossed = window.scrollY < window.innerHeight
+                    })
+                    window.addEventListener('hashchange', function() {
+                        const hash = location.hash.replace('/', '')
+                        console.log(hash,' hash')
+                        document.querySelector(hash).scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'end',
+                            inline: 'nearest'
+                        })
+                    })
                 },
                 methods: {
                     getMailSiteDetail: function () {
@@ -390,13 +403,6 @@ require(['/common/js/require.config.js'], function () {
                     // 右侧栏索引
                     changeStyle:function (index){
                         this.changeSelectStyle = index;
-                    },
-                    mallsubmit: function () {
-                        if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?return=/.html";
-                        } else {
-                            window.location.href = "/achieve.html";
-                        }
                     },
                 }
             });

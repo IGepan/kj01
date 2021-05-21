@@ -106,10 +106,14 @@
             </div>
             <div class="right-column fr">
                 <div class="right-column-1">
-    <img src="images/toux.png">
-    <span>欢迎您，请登录</span>
+                     <img src="images/toux.png">
+                    <span>欢迎您，请登录</span>
                     <a href="/common/login.html">登录</a>
                     <a href="/common/reg.html">注册</a>
+                </div>
+                <div class="right-column-1" style="display: none">
+                    <img src="images/toux.png">
+                    <span>hi！欢迎您来到易智网</span>
                 </div>
                 <div class="right-column-2">
                     <a target="_parent"><img src="images/right-b.png">
@@ -803,13 +807,13 @@
     </div>
     <div class="rightbox-list" id="showbox">
         <ul>
-            <li :class="{changeStyle:changeSelectStyle == 0}" @click="changeStyle(0)" onclick="javascript:location.href='#service-box'"><a>精选<br>服务</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 1}" @click="changeStyle(1)" onclick="javascript:location.href='#property'"><a >知识<br>产权</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 2}" @click="changeStyle(2)"onclick="javascript:location.href='#law'"><a >法律<br>服务</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 3}" @click="changeStyle(3)"onclick="javascript:location.href='#policy'"><a >政策<br>申报</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 4}" @click="changeStyle(4)"onclick="javascript:location.href='#business'"><a >工商<br>财税</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 5}" @click="changeStyle(5)" onclick="javascript:location.href='#inspection'"><a >检验<br>检测</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 6}" @click="changeStyle(6)" onclick="javascript:location.href='#technology'"><a >科技<br>咨询</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 0}" @click="changeStyle(0)" ><a href="#/service-box">精选<br>服务</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 1}" @click="changeStyle(1)" ><a href="#/property">知识<br>产权</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 2}" @click="changeStyle(2)"><a  href="#/law">法律<br>服务</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 3}" @click="changeStyle(3)"><a href="#/policy">政策<br>申报</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 4}" @click="changeStyle(4)"><a href="#/business">工商<br>财税</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 5}" @click="changeStyle(5)" ><a href="#/inspection">检验<br>检测</a></li>
+            <li :class="{changeStyle:changeSelectStyle == 6}" @click="changeStyle(6)" ><a href="#/technology">科技<br>咨询</a></li>
 <!--            <li ><a href="#"><img src="/style/images/index/toper_4.png" alt="">顶部</a></li>-->
         </ul>
     </div>
