@@ -98,11 +98,11 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailGoods('chooseGoods')
                     this.goodFormData = {}
                     //最新入驻
-                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.pageSize = 10;
                     this.goodFormData.orderBy = 'createTime desc';
                     this.getNewShops();
                     //知识产权
-                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.pageSize = 10;
                     this.goodFormData.type = '371977891599065088';
                     this.goodFormData.orderBy = 'homePageFlag desc';
                     this.getMailGoods('incubationTypeList')
