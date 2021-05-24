@@ -19,6 +19,10 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
         selectMailGoods: function (param) {
             return Http.post(httpUrl.baseUrl + '/mailGoods/selectByPage', param);
         },
+        //查询最新入驻店铺
+        selectNewShops: function (param) {
+            return Http.post(httpUrl.baseUrl + '/shopinfo/selectNewShops', param);
+        },
         //发布需求
         saveMailDemand: function (param) {
             return Http.post(httpUrl.baseUrl + '/mailDemand/save', param);
