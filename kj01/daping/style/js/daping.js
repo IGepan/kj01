@@ -54,7 +54,7 @@ require(['/common/js/require.config.js'], function () {
                     //获取全部列表数据
                     getAllList: function (id) {
                         var vm = this;
-                        indexApi.selectReleaseByPage({ noticeId: 1,}).then(function (res) {
+                        indexApi.selectReleaseByPage({ noticeId: 1,delFlag:0}).then(function (res) {
                             // vm.activiyList = vm.activiyList.concat(res.result.list || [])
                             vm.achievementList = res.result || []
                         })
