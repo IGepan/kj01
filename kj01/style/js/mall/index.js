@@ -1,9 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/style/js/libs/scroll.js',
-            '/style/js/libs/swiper-5.4.1/js/swiper.min.js',
-            '/style/js/libs/swiper-5.4.1/js/swiper.animate.min.js','/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', '/common/js/libs/jquery.SuperSlide.2.1.3.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
-        function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
+        function ($, Vue, dic, httpVueLoader, indexApi, httpUrl, validate, captcha, httpLogin) {
             window.vueDom = new Vue({
                 el: '#index_box',
                 data: {
@@ -53,7 +51,8 @@ require(['/common/js/require.config.js'], function () {
                     title: '',
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
-                    isSeller: false
+                    isSeller: false,
+
 
                 },
                 filters: {
@@ -80,7 +79,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
                     'index-head': httpVueLoader('/style/components/index_head.vue'),
                     'header-mail': httpVueLoader('/style/components/header_mail.vue'),
-                    'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
+                    'validate-dialog-mall': httpVueLoader('/common/components/validateDialogmall.vue'),
                 },
                 mounted: function () {
                     var _this = this
@@ -168,6 +167,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     }
+
                 },
                 methods: {
                     fwsClick: function () {
@@ -246,6 +246,8 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
+                    //获取左侧高度
+
                     //查询最新店铺信息
                     getNewShops: function () {
                         var vm = this
