@@ -24,8 +24,8 @@
 <div class="box" id='index_box' v-cloak>
 
     <ly-toper ref="lytoper" top-class="white" class="top_div"></ly-toper>
-    <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
-    </validate-dialog>
+    <validate-dialog-mall v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
+    </validate-dialog-mall>
     <header-mail ref="header_mail"></header-mail>
 
     <nav class="main-menu">
@@ -35,7 +35,8 @@
                     <a class="nav-link" href="#" id="main-down-first">
                         服务分类
                     </a>
-                    <ul class="dropdown-menu-main list-unstyled">
+
+                    <ul class="dropdown-menu-main list-unstyled" >
 
                         <li class="has-sub-menu" v-for="(serviceType,index) in mailServiceTypeList" v-if="index < 7"
                             :key="serviceType.id">
@@ -72,6 +73,7 @@
 <!--                            <a class="sub-link" >热门分类</a>-->
 <!--                        </li>-->
                     </ul>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/mall">首页</a>
@@ -104,7 +106,7 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-            <div class="right-column fr">
+            <div class="right-column fr" >
                 <div class="right-column-1" v-if='userInfo && userInfo.userName'>
                      <img src="images/toux.png">
                    <span> Hi~，<b style="color: #fc7f10;">{{userInfo.userName}}</b></span>
@@ -119,7 +121,8 @@
                 <div class="right-column-2">
                     <a @click="fwsClick" target="_parent"><img src="images/right-b.png">
                         <p>免费做推广 · 平台有保障</p>
-                        <span>加入我们</span>
+                        <span v-if="isSeller==false">加入我们</span>
+                        <span v-else style="width: 100px">进入卖家中心</span>
                     </a>
                 </div>
             </div>
@@ -838,7 +841,7 @@
             var oDiv = document.getElementById("showbox")
             var s = document.body.scrollTop || document.documentElement.scrollTop
             var w = $(this).height();
-            if(s>200) {
+            if(s>220) {
                 oDiv.style = "display:block"
             } else {
                 oDiv.style = "dispaly:none"
@@ -847,7 +850,12 @@
 
             }
         }
+        // window.onload = function() {
+        //     document.getElementsByClassName("right-column").style.height=document.getElementsByClassName("dropdown-menu-main").offsetHeight + "px";
+        // }
     }, 500);
+
+
 
 </script>
 </body>

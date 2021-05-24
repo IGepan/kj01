@@ -1,9 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', '/style/js/libs/scroll.js',
-            '/style/js/libs/swiper-5.4.1/js/swiper.min.js',
-            '/style/js/libs/swiper-5.4.1/js/swiper.animate.min.js','/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js', '/common/js/libs/jquery.SuperSlide.2.1.3.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
-        function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
+        function ($, Vue, dic, httpVueLoader, indexApi, httpUrl, validate, captcha, httpLogin) {
             window.vueDom = new Vue({
                 el: '#index_box',
                 data: {
@@ -53,7 +51,8 @@ require(['/common/js/require.config.js'], function () {
                     title: '',
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
-                    isSeller: false
+                    isSeller: false,
+
 
                 },
                 filters: {
@@ -80,7 +79,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
                     'index-head': httpVueLoader('/style/components/index_head.vue'),
                     'header-mail': httpVueLoader('/style/components/header_mail.vue'),
-                    'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
+                    'validate-dialog-mall': httpVueLoader('/common/components/validateDialogmall.vue'),
                 },
                 mounted: function () {
                     var _this = this
@@ -94,7 +93,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getBanner('02', 'indexBanner02', 1);
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
-                    this.goodFormData.pageSize = 10;
+                    this.goodFormData.pageSize = 6;
                     this.getMailGoods('chooseGoods')
                     this.goodFormData = {}
                     //最新入驻
@@ -102,7 +101,7 @@ require(['/common/js/require.config.js'], function () {
                     this.goodFormData.orderBy = 'createTime desc';
                     this.getNewShops();
                     //知识产权
-                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.pageSize = 10;
                     this.goodFormData.type = '371977891599065088';
                     this.goodFormData.orderBy = 'homePageFlag desc';
                     this.getMailGoods('incubationTypeList')

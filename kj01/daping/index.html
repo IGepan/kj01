@@ -8,31 +8,48 @@
 
     <link rel="stylesheet" href="style/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link href="./style/css/icon/iconfont.css" rel="stylesheet">
     <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
     <title>科研机构助力成渝地区双城经济圈建设 基层行启动仪式暨渝北-广安站技术对接会</title>
 </head>
+<style>
+    .el-carousel__button{display: none!important;}
+    .el-carousel--horizontal{height: 100%;width: 100%}
+    .el-carousel__container{height: 100%!important;width: 100%}
+   .el-carousel__arrow--left{display: none}
+   .el-carousel__arrow--right{display: none}
+
+</style>
 <body>
-<div class="container" id='index_box' v-cloak>
-    <h1 class="page-title">
-        科研机构助力成渝地区双城经济圈建设<br/>
-        基层行启动仪式暨渝北-广安站技术对接会
-        <div class="fl" style="margin: 20px 0">
-            <img src="style/images/bottomNew.png">
-            <span class="header-logo_text">技术成果摆渡人</span></div>
-    </h1>
-    <div class="latest-news">
-        <div class="news-title"><img src="style/images/icon-ly.svg" alt="">参会单位：</div>
-        <div class="marquee-left" id="marquee-left">
-            <ul class="list-inline clearfix">
-                <li v-for="(item,index) in achievementList" :key="index">
-                    {{item.companyName}}
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="docking" style="height: auto;">
-    <ul class="list-unstyled color" style="margin-bottom: 0">
+<div  id='index_box' v-cloak style="height: 100%;">
+<!--    <h1 class="page-title">-->
+<!--        科研机构助力成渝地区双城经济圈建设<br/>-->
+<!--        基层行启动仪式暨渝北-广安站技术对接会-->
+<!--        <div class="fl" style="margin: 20px 0">-->
+<!--            <img src="style/images/bottomNew.png">-->
+<!--            <span class="header-logo_text">技术成果摆渡人</span></div>-->
+<!--    </h1>-->
+<!-- <div class="latest-news">-->
+<!--        <div class="news-title"><img src="style/images/icon-ly.svg" alt="">参会单位：</div>-->
+<!--        <div class="marquee-left" id="marquee-left">-->
+<!--            <ul class="list-inline clearfix">-->
+<!--                <li v-for="(item,index) in achievementList" :key="index">-->
+<!--                    {{item.companyName}}-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="block" style="height: 100%">-->
+<!--        <el-carousel>-->
+<!--            <el-carousel-item v-for="item in imgList" :key="item.name">-->
+<!--                <img :src="item.src" style="height:100%;width:100%;"/>-->
+<!--            </el-carousel-item>-->
+<!--        </el-carousel>-->
+<!--    </div>-->
+    <div style="width: 80%;margin: 0 10%;">
+    <div class="docking" style="height: auto">
+    <ul class="list-unstyled color" style="margin-top: 12%;">
         <li class="row clearfix" style="padding-bottom: 0;border:0;padding: 0;line-height: 55px">
             <div class="col-xs-9 text-center">成果名称</div>
             <div class="col-xs-8 text-center">成果所属单位</div>
@@ -43,14 +60,15 @@
     </div>
     <div class="docking" id="marquee-up">
         <ul class="list-unstyled">
-            <li class="row clearfix" v-for="(item,index) in achievementList" :key="index">
-                <div class="col-xs-9 text-center">{{item.achievementName}}</span></div>
-                <div class="col-xs-8 text-center">{{item.companyName}}</div>
+            <li class="row clearfix " v-for="(item,index) in achievementList" :key="index">
+                <div class="col-xs-9 text-center ">{{item.achievementName}}</div>
+                <div class="col-xs-8 text-center ">{{item.companyName}}</div>
                 <div class="col-xs-4 text-center">{{item.applicationArea}}</div>
                 <div class="col-xs-3 text-center">{{item.mode}}</div>
             </li>
 
         </ul>
+    </div>
     </div>
 <!--    <div class="statistics">-->
 <!--        <ul class="list-inline clearfix">-->
@@ -61,13 +79,13 @@
 <!--            <li>参与机构 <span>60家</span></li>-->
 <!--        </ul>-->
 <!--    </div>-->
-    <div class="footer">
-        <p>主办单位：重庆市科学技术局&nbsp;&nbsp;&nbsp;渝北区人民政府&nbsp;&nbsp;&nbsp;广安市人民政府</p>
-        <p>承办单位：渝北区科学技术局&nbsp;&nbsp;&nbsp;广安市科学技术局</p>
-        <p>协办单位：重庆易智网科技有限公司&nbsp;&nbsp;&nbsp;重庆仙桃国际大数据谷&nbsp;&nbsp;&nbsp;重庆市大健康产业专利导航中心&nbsp;&nbsp;&nbsp;重庆智慧之源科技有限公司</p>
-    </div>
-    <div class="leftbox"><img src="style/images/qrcode.png"></div>
-    <div class="rightbox"><img src="style/images/qrcode.png"></div>
+<!--    <div class="footer">-->
+<!--        <p>主办单位：重庆市科学技术局&nbsp;&nbsp;&nbsp;渝北区人民政府&nbsp;&nbsp;&nbsp;广安市人民政府</p>-->
+<!--        <p>承办单位：渝北区科学技术局&nbsp;&nbsp;&nbsp;广安市科学技术局</p>-->
+<!--        <p>协办单位：重庆易智网科技有限公司&nbsp;&nbsp;&nbsp;重庆仙桃国际大数据谷&nbsp;&nbsp;&nbsp;重庆市大健康产业专利导航中心&nbsp;&nbsp;&nbsp;重庆智慧之源科技有限公司</p>-->
+<!--    </div>-->
+<!--    <div class="leftbox"><img src="style/images/qrcode.png"></div>-->
+<!--    <div class="rightbox"><img src="style/images/qrcode.png"></div>-->
 </div>
 
 
@@ -80,14 +98,15 @@
 <script src="/daping/style/js/daping.js"></script>
 <script src="/daping/style/js/vendor/jquery.min.js"></script>
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
+<script src="/daping/style/js/script.js"></script>
 <script>
     setTimeout(function(){
-        $('#marquee-left').kxbdSuperMarquee({
-            isMarquee:true,
-            direction: 'left',
-            scrollDelay:30,
-            isEqual: false
-        });
+         // $('#marquee-left').kxbdSuperMarquee({
+         //    isMarquee:true,
+         //    direction: 'left',
+         //    scrollDelay:30,
+         //    isEqual: false
+         // });
         $('#marquee-up').kxbdSuperMarquee({
             isMarquee:true,
             direction: 'up',
