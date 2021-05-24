@@ -94,11 +94,11 @@ require(['/common/js/require.config.js'], function () {
                     this.getBanner('02', 'indexBanner02', 1);
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
-                    this.goodFormData.pageSize = 10;
+                    this.goodFormData.pageSize = 6;
                     this.getMailGoods('chooseGoods')
                     this.goodFormData = {}
                     //最新入驻
-                    this.goodFormData.pageSize = 10;
+                    this.goodFormData.pageSize = 8;
                     this.goodFormData.orderBy = 'createTime desc';
                     this.getNewShops();
                     //知识产权
