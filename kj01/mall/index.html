@@ -58,20 +58,20 @@
                                 </div>
                             </div>
                         </li>
-<!--                        <li class="has-sub-menu">-->
-<!--                            <a class="main-link">科技金融</a>-->
-<!--                            <a class="sub-link" >债权融资</a>-->
-<!--                            <a class="sub-link" >股权融资</a>-->
-<!--                        </li>-->
-<!--                        <li class="has-sub-menu">-->
-<!--                            <a class="main-link">研发设计</a>-->
-<!--                            <a class="sub-link" >网站建设</a>-->
-<!--                            <a class="sub-link" >外形设计</a>-->
-<!--                        </li>-->
-<!--                        <li class="has-sub-menu">-->
-<!--                            <a class="main-link">仪器设备</a>-->
-<!--                            <a class="sub-link" >热门分类</a>-->
-<!--                        </li>-->
+                        <li class="has-sub-menu">
+                            <a class="main-link">科技金融</a>
+                            <a class="sub-link" >债权融资</a>
+                            <a class="sub-link" >股权融资</a>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a class="main-link">研发设计</a>
+                            <a class="sub-link" >网站建设</a>
+                            <a class="sub-link" >外形设计</a>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a class="main-link">仪器设备</a>
+                            <a class="sub-link" >热门分类</a>
+                        </li>
                     </ul>
 
                 </li>
@@ -131,7 +131,7 @@
     <div class="slogan-tree">
 
         <div class="container">
-            <img src="images/super.png" style="padding-top: 2rem;">
+            <img src="images/super.png" style="padding-top: 2rem;width: 100%">
             <div class="row">
 
 <!--                <div class="col">-->
@@ -829,6 +829,12 @@
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>
     setTimeout(function(){
+        $('.right-column').css({
+            height: $('.dropdown-menu-main').outerHeight()+'px'
+        })
+        $('#slideshow img').css({
+            height: $('.dropdown-menu-main').outerHeight()+'px'
+        })
         $('#marquee-left').kxbdSuperMarquee({
             isMarquee:true,
             direction: 'left',
@@ -845,13 +851,9 @@
             } else {
                 oDiv.style = "dispaly:none"
             }
-            if(s + w){
-
-            }
         }
-        // window.onload = function() {
-        //     document.getElementsByClassName("right-column").style.height=document.getElementsByClassName("dropdown-menu-main").offsetHeight + "px";
-        // }
+
+
     }, 500);
 
 
