@@ -167,7 +167,6 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     }
-
                 },
                 methods: {
                     fwsClick: function () {
@@ -246,8 +245,6 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
-                    //获取左侧高度
-
                     //查询最新店铺信息
                     getNewShops: function () {
                         var vm = this
