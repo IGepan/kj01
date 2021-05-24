@@ -121,7 +121,8 @@
                 <div class="right-column-2">
                     <a @click="fwsClick" target="_parent"><img src="images/right-b.png">
                         <p>免费做推广 · 平台有保障</p>
-                        <span>加入我们</span>
+                        <span v-if="isSeller==false">加入我们</span>
+                        <span v-else style="width: 100px">进入卖家中心</span>
                     </a>
                 </div>
             </div>
