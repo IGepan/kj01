@@ -13,7 +13,7 @@
           v-if="isConference"
           :href="$pathPrefix+'/common/activity/list.html?code=001.004.001.001'"
           :class="{'active': type === 'conference'}"
-        >活动中心</a>
+        >活动管理</a>
         <a
           v-if="type === 'seller'"
           :href="$pathPrefix+'/common/seller/index.html'"
