@@ -535,7 +535,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         // return false
                     }
                 },
-                handleAddKeywordClick: function () {
+                /*handleAddKeywordClick: function () {
                     if (this.keywordVal) {
                         this.formData.sponsor.push(this.keywordVal)
                         this.keywordVal = ''
@@ -545,7 +545,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 },
                 handleDelKeywordClick: function (index) {
                     this.formData.sponsor.splice(index, 1);
-                },
+                },*/
                 handleAddCooperation: function (e) {
                     var dataset = e.target.dataset
                     this.formData.cooperation.push({
