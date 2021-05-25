@@ -1128,7 +1128,7 @@ a:hover {
 }
 
 .s-line {
-  width: 50%
+  width: 40%
 }
 
 .s-line p {
@@ -1208,7 +1208,7 @@ a:hover {
 
 .block-tabs .tab-content {
   padding-left: 10rem;
-  height: 33.4rem;
+  height: 33.5rem;
   /*height: auto;*/
   position: relative;
   border-bottom: 1px solid #eee;
