@@ -57,10 +57,10 @@ module.exports = {
           label: '政策资讯',
           url: '/polist.html'
         },
-        {
-          label: '科技服务',
-          url: '/service'
-        },
+        // {
+        //   label: '科技服务',
+        //   url: '/service'
+        // },
          {
            label: '技术市场',
          url: '/market/index.html'
@@ -69,18 +69,19 @@ module.exports = {
         //   label: '科技金融',
         //   url: '/scindex.html'
         // },
-        // {
-        //   label: '易智商城',
-        //   url: '/mall/index.html'
-        // },
+        {
+          label: '易智商城',
+          url: '/mall/index.html'
+        },
         {
           label: '活动中心',
           url: '/aindex.html'
         },
+        // {
+        //   label: '创新资源',
+        //   url: '/resources'
+        // },
         {
-          label: '创新资源',
-          url: '/resources'
-        },  {
           label: '科技智库',
           url: 'http://www.castss.com/'
         },
