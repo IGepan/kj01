@@ -815,6 +815,13 @@ require(['/common/js/require.config.js'], function () {
                             location.href = '/atList.html?type=' + val.topicCustomTag
                         }
                     },
+                    /**
+                     * 查看更多
+                     * @param index
+                     */
+                    checkMore: function (index) {
+                        location.href='/mall/sub1.html?type='+this.mailServiceTypeList[index].id
+                    },
                     handleactivityTabs: function (val, i) {
                         var vm = this
                         vm.activityTabs.forEach(function (item, ti) {
