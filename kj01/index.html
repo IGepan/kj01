@@ -565,7 +565,7 @@
                 </div>
                 <div class="mallItem-infoBox">
                     <div class="col-card" v-for="good_propertyType in propertyTypeList">
-                        <a>
+                        <a :href="'/mall/shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">
                             <div class="card-item">
                                 <div class="technology-avatar"><img :src="good_propertyType.goodsImg.url" class=""
                                                                     alt="..."></div>
