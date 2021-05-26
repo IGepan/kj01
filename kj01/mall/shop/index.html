@@ -207,7 +207,8 @@
                                                 <p v-text="item.categoryName"><i class="iconfont icon-tag"></i></p>
                                                 <p><i class="iconfont icon-city"></i> {{item.shopName}}</p>
                                             </div>
-                                            <div class="quoted-price"><span v-if="item.choosePriceTag==='0'||item.choosePriceTag==='1'">￥</span>
+                                            <div class="quoted-price">
+                                                <span v-if="item.choosePriceTag==='0'||item.choosePriceTag==='1'">￥</span>
                                                 <span v-if="item.choosePriceTag!='3'">{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</span>
                                                 <span v-show="item.choosePriceTag==='0'||item.choosePriceTag==='1'">元</span>
                                                 <span v-if="item.choosePriceTag==='3'">查看价格详情</span>
