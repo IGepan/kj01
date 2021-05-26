@@ -62,7 +62,7 @@ module.exports = {
         //   url: '/service'
         // },
          {
-           label: '技术市场',
+           label: '技术转移',
          url: '/market/index.html'
         },
         // {
