@@ -126,6 +126,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             this.component_toper.updateCartInfo();
           }
         },
+        cutout(cellValue) {
+          return cellValue.replace(/\,/g, '</br>')
+        },
         shopAccess: function () {
           var vm = this
           this.http.shopAccess({ shopCode: this.shopCode, shortCode: this.shortCode }).then(function (res) {
