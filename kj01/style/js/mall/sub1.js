@@ -150,8 +150,8 @@ require(['/common/js/require.config.js'], function () {
                         } else {
                             if (e.id==-1){
                                 this.searchForm.type = e.parentId
-                            }else {
-                                this.searchForm.type = e.id
+                            } else {
+                                if(e.id) this.searchForm.type = e.id
                             }
                         }
                         if (e.name || e.display) {
@@ -204,7 +204,8 @@ require(['/common/js/require.config.js'], function () {
                             this.result = [...this.ser = [], ...this.pr]
                             this.isActive = e
                             vm.parentId=null;
-
+                            // 清空type
+                            delete this.searchForm.type
                         } else if (e === 'price') {
                             this.result = [...this.ser, ...this.pr = []]
                             // 清空价格
