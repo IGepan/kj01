@@ -47,7 +47,10 @@
               @click="fwsClick"
              @mouseover="mouseOver"  @mouseleave="mouseLeave"
           >{{ isSeller ? '卖家中心' : '服务商入驻' }}
-            <img class="advertising" :style="active" src="/mall/images/art.png"></a>
+            <div v-show="isSeller==false">
+              <img class="advertising" :style="active" src="/mall/images/art.png">
+            </div>
+          </a>
         </div>
         <div class="official-account"><span class="show">关注易智网</span>
           <span class="avater">
