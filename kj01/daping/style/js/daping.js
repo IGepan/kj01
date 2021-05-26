@@ -39,8 +39,6 @@ require(['/common/js/require.config.js'], function () {
 
 
                         ],
-                        screenWeight: 0, // 屏幕宽度
-                        screenHeight: 0, // 屏幕高度
 
                     }
                 },
@@ -57,7 +55,6 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.selectReleaseByPage({ noticeId: 1,delFlag:0}).then(function (res) {
                             // vm.activiyList = vm.activiyList.concat(res.result.list || [])
                             vm.achievementList = res.result || []
-
                             if(typeof call == 'function') call()
                         })
                     },
@@ -74,8 +71,6 @@ require(['/common/js/require.config.js'], function () {
                             });
                         },300)
                     });
-                    this.screenWeight = document.documentElement.clientWidth;
-                    this.screenHeight = document.documentElement.clientHeight;
                 },
             });
         });
