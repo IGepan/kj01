@@ -144,15 +144,14 @@ require(['/common/js/require.config.js'], function () {
                     handleSearchForm: function (e, is) {
                         var vm = this
 
-
+                        console.log(e,'e')
                         if (e.value) {
                             this.searchForm.price = e.value
                         } else {
                             if (e.id==-1){
-                                this.searchForm.type = null
+                                this.searchForm.type = e.parentId
                             }else {
                                 this.searchForm.type = e.id
-
                             }
                         }
                         if (e.name || e.display) {
@@ -208,6 +207,8 @@ require(['/common/js/require.config.js'], function () {
 
                         } else if (e === 'price') {
                             this.result = [...this.ser, ...this.pr = []]
+                            // 清空价格
+                            delete this.searchForm.price
                         }
 
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
