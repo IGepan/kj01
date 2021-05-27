@@ -9,8 +9,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom,
         defaultValue: {},
         goodsList: [],
-        technologyList:[],
-        productList:[],
+        // technologyList:[],
+        // productList:[],
         shopInfo: {},
         statisticsInfo: {},
         total: 0,
@@ -103,15 +103,14 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var data = JSON.parse(JSON.stringify(this.formData, function (k, v) {
             return v ? v : undefined
           }))
+          data.type = "service";
           this.http.selectByMailShopPage(data).then(function (res) {
             if (res.code === 'rest.success') {
               vm.goodsList = res.result.list;
-              vm.technologyList = res.result.list;
-              vm.productList = res.result.list;
               vm.total = res.result.total;
               vm.pages = res.result.pages;
             }
-          })
+          });
         },
         handleFilter: function (i) {
           if (this.filters[i].seleced) {
