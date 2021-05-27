@@ -47,12 +47,12 @@
                 <li class="nav-item">
                     <a class="nav-link active" :href="'list.html?code='+shopCode">服务列表</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" :href="'/mall/shop/technologylist.html?code='+shopCode">技术列表</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  :href="'/mall/shop/productlist.html?code='+shopCode">产品列表</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" :href="'/mall/shop/technologylist.html?code='+shopCode">技术列表</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link"  :href="'/mall/shop/productlist.html?code='+shopCode">产品列表</a>-->
+<!--                </li>-->
                 <li class="nav-item" v-show="statisticsInfo.orderCount && statisticsInfo.orderCount!=0">
                     <a class="nav-link" :href="'/mall/shop/service.html?code='+shopCode">成交案例</a>
                 </li>
