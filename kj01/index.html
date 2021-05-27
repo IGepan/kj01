@@ -124,8 +124,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="mdiv"><a>
-                <a href="https://www.yunyao365.com/book_preview/SKHX29ZhlvC8" target="_blank">
+            <div class="mdiv"><a >
+                <a href="https://www.yunyao365.com/book_preview/SKyHSGtBqINQ" target="_blank">
                     <img  src="./style/images/index/achieve.png">
                 </a>
             </a>
@@ -137,7 +137,8 @@
         <div class="policyBox">
             <div class="mmdiv">
                 <div class="title">
-                    <div class="title-left">政策资讯<span>政策动态速递，科技热点跟进</span></div>
+                    <div class="title-left">
+                       <a href="/polist.html" style="color: black">政策资讯</a> <span>政策动态速递，科技热点跟进</span></div>
                     <div class="title-right">
                         <img src="./style/images/index/policytitle.png" alt="">
                         <div class="slideTxtBox">
@@ -197,7 +198,9 @@
         <div class="activityBox">
             <div class="mmdiv">
                 <div class="title">
-                    <div class="title-left">活动中心<span>互联网+科技创新活动</span></div>
+                    <div class="title-left">
+                        <a href="/aindex.html"style="color: black">活动中心</a>
+                        <span>互联网+科技创新活动</span></div>
                     <div class="title-center">
                             <span :class="{active: item.active}" v-for="(item,index) in activityTabs"
                                   @mouseover.stop="handleactivityTabs(item,index)"
@@ -239,7 +242,9 @@
     <div class="technologyBox">
         <div class="mmdiv">
             <div class="title">
-                <div class="title-left">技术转移<span>助力企业创新能力提升与变现</span>
+                <div class="title-left">
+                    <a href="market/index.html" style="color: white">技术转移</a>
+                    <span>助力企业创新能力提升与变现</span>
                 </div>
             </div>
             <div class="technology">
@@ -329,7 +334,9 @@
     </div>
     <div class="grayBgBox pinpai-fuwu">
         <div class="mdiv boxtitle">
-            <div class="boxtitle-text">科技金融</div>
+            <div class="boxtitle-text">
+           科技金融
+            </div>
             <div class="boxtitle-subtext">助力企业创新能力提升与变现</div>
         </div>
         <div class="mdiv pinpai-top">
@@ -449,7 +456,9 @@
 <!--                        </template>-->
 <!--                    </div>-->
         <div class="mdiv boxtitle">
-            <div class="boxtitle-text">易智商城</div>
+            <div class="boxtitle-text">
+            <a href="/mall/index.html" style="color: black">易智商城</a>
+            </div>
             <div class="boxtitle-subtext">一站式科技服务商城，为科技企业保驾护航</div>
         </div>
         <div class="mdiv pinpai-bottom server">
@@ -565,7 +574,7 @@
                 </div>
                 <div class="mallItem-infoBox">
                     <div class="col-card" v-for="good_propertyType in propertyTypeList">
-                        <a>
+                        <a :href="'/mall/shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">
                             <div class="card-item">
                                 <div class="technology-avatar"><img :src="good_propertyType.goodsImg.url" class=""
                                                                     alt="..."></div>
@@ -666,7 +675,8 @@
     </div>
     <div class="jingxuan">
         <div class="mdiv boxtitle">
-            <div class="boxtitle-text">精选资源</div>
+            <div class="boxtitle-text">
+               <a href="/resources" style="color: black;">精选资源</a> </div>
             <div class="boxtitle-subtext">汇聚科技资源，协同创造价值</div>
         </div>
         <div class="mdiv jingxuan-top">

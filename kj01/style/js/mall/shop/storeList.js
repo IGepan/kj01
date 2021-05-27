@@ -9,6 +9,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom,
         defaultValue: {},
         goodsList: [],
+        technologyList:[],
+        productList:[],
         shopInfo: {},
         statisticsInfo: {},
         total: 0,
@@ -35,6 +37,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           pageSize: 10,
           shopCode: '',
           goodsName: '',
+          technologyName:'',//技术
+          productName:'',//产品
           categoryCode: '',
           orderSales: '',
           order: '',
@@ -102,6 +106,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.http.selectByMailShopPage(data).then(function (res) {
             if (res.code === 'rest.success') {
               vm.goodsList = res.result.list;
+              vm.technologyList = res.result.list;
+              vm.productList = res.result.list;
               vm.total = res.result.total;
               vm.pages = res.result.pages;
             }
@@ -150,6 +156,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               if (res.code === 'rest.success') {
                 vm.goodsList[i].collectFlag = '1'
                 vm.goodsList[i].collectCount += 1
+                vm.technologyList[i].collectFlag = '1'
+                vm.technologyList[i].collectCount += 1
+                vm.productList[i].collectFlag = '1'
+                vm.productList[i].collectCount += 1
                 vm.$dialog.showToast("收藏成功")
               }
             })
@@ -177,6 +187,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         searchShop: function (data) {
           this.formData.goodsName = decodeURIComponent(data.searchKey)
+          this.formData.technologyName = decodeURIComponent(data.searchKey)
+          this.formData.productName = decodeURIComponent(data.searchKey)
           this.selectpByPage()
         },
         pageClick: function (index) {

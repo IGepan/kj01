@@ -190,13 +190,15 @@
                                                 <div class="w135 price" style="width: 140px">
                                                     <small v-if="goods.choosePriceTag==='0' || goods.choosePriceTag==='1'">¥</small>
                                                     <small v-else></small>
-                                                    <span v-if="goods.choosePriceTag ==3" style="font-size:20px;color:#f1671b;" >
+                                                    <span v-if="goods.choosePriceTag ==='3'" style="font-size:20px;color:#f1671b;" >
                                            价格请查看详情
                                         </span>
                                                     <span v-if="goods.choosePrictecseTa!='3'">
                                             {{goods.negotiableFlag | formatPrice(goods.price, goods.minPrice, goods.maxPrice)}}
-                                                        <span v-show="goods.choosePriceTag==='0' || goods.choosePriceTag==='1'">元</span>
+                                                        <span v-show="goods.choosePriceTag==='0' || goods.choosePriceTag==='1'">万</span>
                                         </span>
+
+
 
                                                 </div>
 

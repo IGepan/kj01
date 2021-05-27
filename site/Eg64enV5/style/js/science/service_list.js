@@ -10,9 +10,9 @@ require(['/common/js/require.config.js'], function () {
 					saasId: '',
 					dicOptsSet: [
 						{ code: 'services_level1_type', label: '服务领域', operationType: 'select', childIndex: -1, valueKey: 'servicesLevel', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
-						{ code: 'industry_level1_type', label: '所属行业', operationType: 'select', childIndex: -1, valueKey: 'industryLevel', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
+						// { code: 'industry_level1_type', label: '所属行业', operationType: 'select', childIndex: -1, valueKey: 'industryLevel', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
 						{ code: 'price', label: '服务价格', operationType: 'select', childIndex: -1, valueKey: 'price', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
-						{ code: 'shop_qualification', label: '创新券', operationType: 'select', childIndex: -1, valueKey: 'innovationVouchers', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
+						// { code: 'shop_qualification', label: '创新券', operationType: 'select', childIndex: -1, valueKey: 'innovationVouchers', valueType: 'string', isMoreShow: 0, isMore: 0, isTop: 0 },
 					],
 					options: {
 						searchOpts: [],
@@ -56,9 +56,12 @@ require(['/common/js/require.config.js'], function () {
 						return v ? v.substr(0, 1) : ''
 					},
 					formatPrice: function (flag,v, n, m) {
-						if(flag === '1') {
+						if(flag === '2') {
 							return '面议'
-						} else {
+						}
+						if(flag === "3"){
+							return '查看价格详情'
+						}else {
 							if(typeof v !== 'undefined') {
 								return v/10000+'万'
 							} else if(!v && !m) {

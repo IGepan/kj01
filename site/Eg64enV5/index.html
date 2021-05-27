@@ -124,7 +124,10 @@
                                 <div class="date-left line" :title="item.industryNames">
                                     行业分类：{{item.industryNames}}
                                 </div>
-                                <div class="date-right line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)"><span v-if="item.negotiableFlag!=1">￥</span><span>{{item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)}}</span></div>
+                                <div class="date-right line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">
+                                    <span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
+                                    <span v-else></span><span>{{item.choosePriceTag|formatPrice(item.price, item.minPrice, item.maxPrice)}}</span>
+                                    <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span></div>
                             </div>
                         </div>
                     </a>
@@ -150,7 +153,10 @@
                                 <div class="date-left line" :title="item.industryNames">
                                     行业分类：{{item.industryNames}}
                                 </div>
-                                <div class="date-right line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)"><span v-if="item.negotiableFlag!=1">￥</span><span>{{item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)}}</span></div>
+                                <div class="date-right line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">
+                                    <span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='2'">￥</span>
+                                    <span v-else></span>{{item.choosePriceTag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                    <span v-show="item.choosePriceTag===!'3'">万</span></div>
                             </div>
                         </div>
                     </a>

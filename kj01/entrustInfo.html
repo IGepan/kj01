@@ -29,24 +29,23 @@
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
-        <h1 class="title-h2">科研机构科研结果信息征集</h1>
-            <div class="block">
-                <span class="demonstration">活动类型</span>
-                <el-cascader
-                        v-model="value"
-                        :options="options"
-                        @change="handleChange">
-                </el-cascader>
-            </div>
-</div>
+        <h1 class="title-h2">委托举办活动需求信息</h1>
+    <div class="mdiv">
+            <span class="demonstration">活动类型</span>
+            <el-cascader
+                    v-model="value"
+                    :options="options"
+                    @change="handleChange">
+            </el-cascader>
+    </div>
 
+</div>
 
 <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
 <script src="/common/js/libs/require.js"></script>
 <script src="./style/js/entrustInfo.js"></script>
 <!--<script src="/common/js/libs/vue.js"></script>-->
 <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
-
 </body>
 
 </html>
