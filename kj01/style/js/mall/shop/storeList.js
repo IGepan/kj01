@@ -168,6 +168,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               if (res.code === 'rest.success') {
                 vm.goodsList[i].collectFlag = '0'
                 vm.goodsList[i].collectCount -= 1
+                vm.technologyList[i].collectFlag = '1'
+                vm.technologyList[i].collectCount -= 1
+                vm.productList[i].collectFlag = '1'
+                vm.productList[i].collectCount -= 1
                 vm.$dialog.showToast("取消成功")
               }
             })

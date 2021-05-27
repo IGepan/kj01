@@ -77,29 +77,29 @@
             </div>
         
         <div class="product-list">
-            <div class="list-item" v-for="(item, i) in technologyList">
+            <div class="list-item" v-for="(technology, i) in technologyList">
                 <div class="row">
                     <div class="col-auto">
                         <a class="head-image" >
-                            <img class="img-fluid" :src="item.goodsImg.url" alt="" style="width: 180px;height: 179px">
+                            <img class="img-fluid" :src="technology.technologyImg.url" alt="" style="width: 180px;height: 179px">
                         </a>
                     </div>
                     <div class="col">
                         <div class="list-item-body">
-                            <h2 class="name"><a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">{{item.technologyName}}</a></h2>
+                            <h2 class="name"><a :href="'/mall/shop/detail.html?id='+technology.id+'&code='+shopCode">{{technology.technologyName}}</a></h2>
                             <div class="price-box">
                                 <span>价格:</span>
-                                <span class="price"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
-                                    <span v-else></span>{{item.choosePriceTag | formatPrice2(item.price, item.minPrice, item.maxPrice)}}
-                                     <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span>
+                                <span class="price"><span  v-if="technology.choosePriceTag==='0' || technology.choosePriceTag==='1'">￥</span>
+                                    <span v-else></span>{{technology.choosePriceTag | formatPrice2(technology.price, technology.minPrice, technology.maxPrice)}}
+                                     <span v-show="technology.choosePriceTag==='0' || technology.choosePriceTag==='1'">万</span>
                                 </span>
                             </div>
                             <ul class="list-inline extra-info">
-                                <li class="list-inline-item">服务类型：<span>{{item.typeName}}</span></li>
-                                <li class="list-inline-item">服务单位：<span>{{item.shopName}}</span></li>
-                                <li class="list-inline-item">更新时间：<span>{{item.publishDate}}</span></li>
+                                <li class="list-inline-item">服务类型：<span>{{technology.typeName}}</span></li>
+                                <li class="list-inline-item">服务单位：<span>{{technology.shopName}}</span></li>
+                                <li class="list-inline-item">更新时间：<span>{{technology.publishDate}}</span></li>
                             </ul>
-                            <a class="follow" href="#"><i class="iconfont icon-favorite"></i> ({{item.collectCount}})</a>
+                            <a class="follow" href="#"><i class="iconfont icon-favorite"></i> ({technology.collectCount}})</a>
                         </div>
                     </div>
                 </div>
@@ -111,8 +111,8 @@
         <div class="pager" v-cloak>
             <a @click='pageClick(1)'>[首页]</a>
             <a @click='pageClick(formData.pageNum - 1)'>[上一页]</a>
-            <a @click='pageClick(item)' v-for='item in pages' v-text='item' :class="{active: item == formData.pageNum}"
-               v-if='isShowPage(item)'></a>
+            <a @click='pageClick(technology)' v-for='technology in pages' v-text='technology' :class="{active: technology == formData.pageNum}"
+               v-if='isShowPage(technology)'></a>
             <a v-if='isMore()'>...</a>
             <a @click='pageClick(formData.pageNum + 1)'>[下一页]</a>
             <a @click='pageClick(pages)'>[末页]</a>
