@@ -158,7 +158,7 @@ require(['/common/js/require.config.js'], function () {
                         const hash = location.hash.replace('/', '')
                         $('body,html').animate({
                             scrollTop: $(hash).offset().top
-                        },300)
+                        },100)
                     })
                     if (this.userInfo.userTypes) {
                         for (var it of this.userInfo.userTypes) {

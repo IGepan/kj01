@@ -22,7 +22,7 @@
 
 </style>
 <body>
-<div  id='index_box' v-cloak style="height: 100%;">
+<div  id='index_box' v-cloak style="height: 100%">
 <!--    <h1 class="page-title">-->
 <!--        科研机构助力成渝地区双城经济圈建设<br/>-->
 <!--        基层行启动仪式暨渝北-广安站技术对接会-->
@@ -47,24 +47,24 @@
 <!--            </el-carousel-item>-->
 <!--        </el-carousel>-->
 <!--    </div>-->
-    <div style="width: 80%;margin: 0 10%;">
+    <div style="width: 90%;margin: 0 5%;">
     <div class="docking" style="height: auto">
     <ul class="list-unstyled color" style="margin-top: 12%;">
-        <li class="row clearfix" style="padding-bottom: 0;border:0;padding: 0;line-height: 55px">
-            <div class="col-xs-9 text-center">成果名称</div>
+        <li class="row clearfix" style="padding-bottom: 0;border:0;padding: 0;line-height: 70px;">
+            <div class="col-xs-8 text-center">成果名称</div>
             <div class="col-xs-8 text-center">成果所属单位</div>
             <div class="col-xs-4 text-center">领域</div>
-            <div class="col-xs-3 text-center">合作方式</div>
+            <div class="col-xs-4 text-center">合作方式</div>
         </li>
     </ul>
     </div>
     <div class="docking" id="marquee-up">
         <ul class="list-unstyled">
             <li class="row clearfix " v-for="(item,index) in achievementList" :key="index">
-                <div class="col-xs-9 text-center ">{{item.achievementName}}</div>
+                <div class="col-xs-8 text-center ">{{item.achievementName}}</div>
                 <div class="col-xs-8 text-center ">{{item.companyName}}</div>
                 <div class="col-xs-4 text-center">{{item.applicationArea}}</div>
-                <div class="col-xs-3 text-center">{{item.mode}}</div>
+                <div class="col-xs-4 text-center">{{item.mode}}</div>
             </li>
 
         </ul>
@@ -99,21 +99,5 @@
 <script src="/daping/style/js/vendor/jquery.min.js"></script>
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script src="/daping/style/js/script.js"></script>
-<script>
-    setTimeout(function(){
-         // $('#marquee-left').kxbdSuperMarquee({
-         //    isMarquee:true,
-         //    direction: 'left',
-         //    scrollDelay:30,
-         //    isEqual: false
-         // });
-        $('#marquee-up').kxbdSuperMarquee({
-            isMarquee:true,
-            direction: 'up',
-            scrollDelay:80,
-            isEqual: false
-        });
-    }, 500);
-</script>
 </body>
 </html>

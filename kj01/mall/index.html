@@ -132,7 +132,7 @@
     <div class="slogan-tree">
 
         <div class="container">
-            <img src="images/super.png" style="padding-top: 2rem;">
+            <img src="images/super.png" style="padding-top: 2rem;width: 100%">
             <div class="row">
 
 <!--                <div class="col">-->
@@ -312,7 +312,7 @@
                                 </h5>
                                 <div class="addition">
                                     <div class="short-text fl s-line">
-                                        <p>{{good_incubation.typeName}}</p>
+                                        <p>{{good_incubation.shopName}}</p>
 <!--                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>-->
                                     </div>
 
@@ -375,8 +375,8 @@
                                     </h5>
                                     <div class="addition">
                                         <div class="short-text fl s-line">
-                                            <p> {{good_design.typeName}}</p>
-<!--                                            <p><i class="iconfont icon-city"></i> {{good_design.shopName}}</p>-->
+<!--                                            <p><i class="iconfont icon-city"></i> {{good_design.typeName}}</p>-->
+                                            <p>{{good_design.shopName}}</p>
                                         </div>
 
                                         <div class="quoted-price fr"><span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">￥</span><span v-else></span>{{good_design.choosePriceTag |
@@ -443,8 +443,8 @@
                                 </h5>
                                 <div class="addition">
                                     <div class="short-text fl s-line">
-                                        <p>{{good_checkType.typeName}}</p>
-<!--                                        <p><i class="iconfont icon-city"></i> {{good_checkType.shopName}}</p>-->
+<!--                                        <p>{{good_checkType.typeName}}</p>-->
+                                        <p> {{good_checkType.shopName}}</p>
                                     </div>
 
                                     <div class="quoted-price fr"><span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span>
@@ -505,8 +505,8 @@
                                     </h5>
                                     <div class="addition">
                                         <div class="short-text fl s-line">
-                                            <p> {{good_propertyType.typeName}}</p>
-<!--                                            <p><i class="iconfont icon-city"></i> {{good_propertyType.shopName}}</p>-->
+<!--                                            <p> {{good_propertyType.typeName}}</p>-->
+                                            <p>{{good_propertyType.shopName}}</p>
                                         </div>
 
                                         <div class="quoted-price fr">
@@ -568,8 +568,8 @@
                                 </h5>
                                 <div class="addition">
                                     <div class="short-text fl s-line">
-                                        <p> {{good_technologyType.typeName}}</p>
-<!--                                        <p><i class="iconfont icon-city"></i> {{good_technologyType.shopName}}</p>-->
+<!--                                        <p> {{good_technologyType.typeName}}</p>-->
+                                        <p> {{good_technologyType.shopName}}</p>
                                     </div>
 
                                     <div class="quoted-price fr">
@@ -633,8 +633,8 @@
                                     </h5>
                                     <div class="addition">
                                         <div class="short-text fl s-line">
-                                            <p>{{good_transferType.typeName}}</p>
-<!--                                            <p><i class="iconfont icon-city"></i> {{good_transferType.shopName}}</p>-->
+<!--                                            <p>{{good_transferType.typeName}}</p>-->
+                                            <p> {{good_transferType.shopName}}</p>
                                         </div>
 
                                         <div class="quoted-price fr">
@@ -830,6 +830,12 @@
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>
     setTimeout(function(){
+        $('.right-column').css({
+            height: $('.dropdown-menu-main').outerHeight()+'px'
+        })
+        $('#slideshow img').css({
+            height: $('.dropdown-menu-main').outerHeight()+'px'
+        })
         $('#marquee-left').kxbdSuperMarquee({
             isMarquee:true,
             direction: 'left',
@@ -846,13 +852,9 @@
             } else {
                 oDiv.style = "dispaly:none"
             }
-            if(s + w){
-
-            }
         }
-        // window.onload = function() {
-        //     document.getElementsByClassName("right-column").style.height=document.getElementsByClassName("dropdown-menu-main").offsetHeight + "px";
-        // }
+
+
     }, 500);
 
 
