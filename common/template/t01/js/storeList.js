@@ -73,6 +73,23 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         'ly-menu-nav': httpVueLoader('/common/template/t01/components/defaultMenuNav.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
+      filters: {
+        formatPrice2: function (flag, v, n, m) {
+          if (flag === '2') {
+            return '面议'
+          }if(flag === "3"){
+            return '查看价格详情'
+          }else {
+            if (typeof v !== 'undefined') {
+              return (v / 10000).toFixed(2)
+            } else if (!v && !m) {
+              return (n / 10000).toFixed(2)
+            } else {
+              return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+            }
+          }
+        },
+      },
       methods: {
         // 获取产品
         selectpByPage: function () {
