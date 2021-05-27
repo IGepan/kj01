@@ -39,8 +39,6 @@ require(['/common/js/require.config.js'], function () {
 
 
                         ],
-                        screenWeight: 0, // 屏幕宽度
-                        screenHeight: 0, // 屏幕高度
 
                     }
                 },
@@ -52,18 +50,27 @@ require(['/common/js/require.config.js'], function () {
 
                 methods: {
                     //获取全部列表数据
-                    getAllList: function (id) {
+                    getAllList: function (id,call) {
                         var vm = this;
                         indexApi.selectReleaseByPage({ noticeId: 1,delFlag:0}).then(function (res) {
                             // vm.activiyList = vm.activiyList.concat(res.result.list || [])
                             vm.achievementList = res.result || []
+                            if(typeof call == 'function') call()
                         })
                     },
                 },
                 mounted:function (){
-                     this.getAllList();
-                    this.screenWeight = document.documentElement.clientWidth;
-                    this.screenHeight = document.documentElement.clientHeight;
+
+                    this.getAllList(0,function(){
+                        setTimeout(function (){
+                            $('#marquee-up').kxbdSuperMarquee({
+                                isMarquee:true,
+                                direction: 'up',
+                                scrollDelay:80,
+                                isEqual: false
+                            });
+                        },300)
+                    });
                 },
             });
         });

@@ -1,6 +1,7 @@
 
 .top-box{
-    background:url("../images/index/index-top-bg.jpg") no-repeat;
+    background:url("../images/index/index-top-bg.jpg") no-repeat center;
+    background-size: cover;
     width:100%;
     height:230px;
     color: #ffffff;
@@ -326,7 +327,8 @@
 
 /*科技成果start*/
 .science-result{
-    background: url("../images/index/science-bg.jpg") no-repeat;
+    background: url("../images/index/science-bg.jpg") no-repeat center;
+    background-size: cover;
     height:558px;
 }
 .science-result .title-common .title{
@@ -437,10 +439,10 @@
 .science-service .item-box .img-bottom .date-left{
     width:150px;
 }
-.science-service .item-box .img-bottom .date-right span:last-child{
-    font-size: 20px;
-    line-height: 20px;
-}
+/*.science-service .item-box .img-bottom .date-right span:last-child{*/
+/*    font-size: 20px;*/
+/*    line-height: 20px;*/
+/*}*/
 /*科技服务end*/
 
 /*服务机构start*/
