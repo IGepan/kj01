@@ -73,6 +73,23 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         'ly-menu-nav': httpVueLoader('/common/template/t01/components/defaultMenuNav.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
+      filters: {
+        formatPrice2: function (flag, v, n, m) {
+          if (flag === '2') {
+            return '面议'
+          }if(flag === "3"){
+            return '查看价格详情'
+          }else {
+            if (typeof v !== 'undefined') {
+              return (v / 10000).toFixed(2)
+            } else if (!v && !m) {
+              return (n / 10000).toFixed(2)
+            } else {
+              return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+            }
+          }
+        },
+      },
       methods: {
         // 获取产品
         selectpByPage: function () {
@@ -80,13 +97,23 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var data = JSON.parse(JSON.stringify(this.formData, function (k, v) {
             return v ? v : undefined
           }))
-          this.http.selectpByPage(data).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.goodsList = res.result.list;
-              vm.total = res.result.total;
-              vm.pages = res.result.pages;
-            }
-          })
+          if (data.categoryCode == '009') {
+            this.http.selectByMailShopPage(data).then(res => {
+              if (res.code === 'rest.success') {
+                vm.goodsList = res.result.list;
+                vm.total = res.result.total;
+                vm.pages = res.result.pages;
+              }
+            });
+          }else{
+            this.http.selectpByPage(data).then(function (res) {
+              if (res.code === 'rest.success') {
+                vm.goodsList = res.result.list;
+                vm.total = res.result.total;
+                vm.pages = res.result.pages;
+              }
+            });
+          }
         },
         handleFilter: function (i) {
           if (this.filters[i].seleced) {

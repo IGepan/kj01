@@ -103,7 +103,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var data = JSON.parse(JSON.stringify(this.formData, function (k, v) {
             return v ? v : undefined
           }))
-          data.type = "service";
           this.http.selectByMailShopPage(data).then(function (res) {
             if (res.code === 'rest.success') {
               vm.goodsList = res.result.list;
