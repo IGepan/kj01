@@ -14,7 +14,7 @@
     <link href="/common/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body class="shop-page">
-<div class="box" id='index_box'>
+<div class="box" id='index_box' v-cloak>
     <ly-toper ref="topbar"></ly-toper>
     <header id="page-header" class="shop-header">
         <ly-header :http="httpCom"></ly-header>
@@ -81,7 +81,7 @@
                     </tr>
                     <tr>
                         <th scope="row" class="table-active">交易额</th>
-                        <td colspan="3">{{order.protocolPrice}}</td>
+                        <td colspan="3">{{order.protocolPrice}}万</td>
                     </tr>
                     <tr>
                         <th scope="row" class="table-active">交易时间</th>
@@ -135,7 +135,10 @@
                             <a class="img" href="#"><img :src="item.goodsImgUrl" class="" alt="..."></a>
                             <div class="card-body">
                                 <h5 class="card-name"><a :href="'/mall/shop/detail.html?id='+item.goodsId+'&code='+shopCode">{{item.goodsName}}</a></h5>
-                                <div class="quoted-price"><span>￥</span>{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
+                                <div class="quoted-price"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
+                                    <span v-else></span>{{item.choosePriceTag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
+                                    <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span>
+                                </div>
                             </div>
                         </div>
                     </div>
