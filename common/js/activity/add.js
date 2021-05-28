@@ -941,13 +941,13 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         callback(o)
                     }
                 },
-                bindSponsorValid: function (v, o, callback) {
+                /*bindSponsorValid: function (v, o, callback) {
                     if (!this.formData.sponsor.length) {
                         callback(o, '主办单位不能为空')
                     } else {
                         callback(o)
                     }
-                },
+                },*/
                 bindCooperationValid: function (v, o, callback) {
                     if (this.formData.cooperation.some(function (item) {
                         return !item.cooperationName

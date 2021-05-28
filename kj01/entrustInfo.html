@@ -1,0 +1,110 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/normalize.min.css">
+    <link rel='stylesheet' href='./style/css/flatpickr.min.css'>
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+</head>
+<style>
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+
+    }
+    .el-input{width: 60%}
+    .exptextarea {
+        width: 60%!important;
+        display: inline-block;
+    }
+    .bg{background-color: rgb(234, 248, 251);padding: 2%}
+</style>
+<body>
+<!--<el-cascader-->
+<!--        v-model="value"-->
+<!--        :options="typelist"-->
+<!--        :props="optionProps"-->
+<!--        @change="handleChange">-->
+<!--</el-cascader>-->
+<div  id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="mdiv bg">
+        <h1 class="title-h2">委托举办活动需求信息</h1>
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="活动名称" prop="name">
+                <el-input v-model="ruleForm.name"></el-input>
+            </el-form-item>
+            <el-form-item label="活动类型" prop="optionProps">
+                <el-cascader
+                        v-model="value"
+                        :options="typeList"
+                        :props="optionProps"
+                        @change="handleChange">
+                </el-cascader>
+            </el-form-item>
+            <el-form-item label="活动时间" required>
+                <el-col :span="6">
+                    <el-form-item prop="date1">
+                        <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                </el-col>
+                <el-col class="line" :span="2" style="text-align: center">——</el-col>
+                <el-col :span="6">
+                    <el-form-item prop="date2">
+                        <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
+                    </el-form-item>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="活动性质" prop="type">
+                <el-checkbox-group v-model="ruleForm.type">
+                    <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
+                    <el-checkbox label="地推活动" name="type"></el-checkbox>
+                    <el-checkbox label="线下主题活动" name="type"></el-checkbox>
+                    <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+                </el-checkbox-group>
+            </el-form-item>
+            <el-form-item label="特殊资源" prop="resource">
+                <el-radio-group v-model="ruleForm.resource">
+                    <el-radio label="线上品牌商赞助"></el-radio>
+                    <el-radio label="线下场地免费"></el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item label="活动介绍" prop="desc">
+                <vue-ueditor-wrap  :config="ueditorConfig" class="exptextarea">
+                </vue-ueditor-wrap>
+            </el-form-item>
+            <el-form-item label="单位名称" prop="desc">
+                <el-input type="text" v-model="ruleForm.desc"></el-input>
+            </el-form-item>
+            <el-form-item label="联系电话" prop="desc">
+                <el-input type="text" v-model="ruleForm.desc"></el-input>
+            </el-form-item>
+            <el-form-item style="margin-left: 80px">
+                <el-button type="primary" @click="submitForm('ruleForm')">立即申请</el-button>
+                <el-button @click="resetForm('ruleForm')">重置</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+    <web-footer></web-footer>
+</div>
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/entrustInfo.js"></script>
+<!--<script src="/common/js/libs/vue.js"></script>-->
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+</body>
+
+</html>

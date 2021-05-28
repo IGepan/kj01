@@ -21,7 +21,11 @@ require(['/common/js/require.config.js'], function () {
             { code: 'yes_no', label: '线上活动', operationType: 'select', valueKey: 'onLineFlag', valueType: 'string', isTop: 0 },
             { code: 'active_status', group: 'wx', label: '活动状态', operationType: 'select', valueKey: 'status', valueType: 'string', isTop: 0 },
           ],
-          searchtitle: '',
+          searchtitle:{
+            type: String,
+            default: ''
+          },
+          searchValue: '',
           options: {
             searchOpts: [],
             selectOpts: [],
@@ -75,8 +79,18 @@ require(['/common/js/require.config.js'], function () {
         },
         created: function () {
           this.initData()
+          this.searchtitle && (this.searchValue = this.searchtitle)
         },
         methods: {
+
+          handleSearch: function () {
+            if (location.pathname === '/alist.html') {
+              this.$emit('search', this.searchValue)
+            } else {
+              location.href = '/alist.html?title=' + this.searchValue
+            }
+          },
+
           initData: function () {
             this.saasId = localStorage.getItem('saasId');
             var type = this.$utils.getReqStr('type')

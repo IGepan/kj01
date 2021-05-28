@@ -202,7 +202,7 @@ module.exports = {
 
 .input-search {
   display: inline-block;
-  width: 178px;
+  width: 180px;
   border: 1px;
   padding: 0 10px;
   line-height: 36px;
@@ -216,8 +216,9 @@ module.exports = {
   border: 1px;
   cursor: pointer;
   font-size: 16px;
-  line-height: 37px;
+  line-height: 38px;
   color: #fff;
+  margin-top: -1px;
 }
 .breadcrumb {
   font-size: 14px;

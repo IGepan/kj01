@@ -22,6 +22,21 @@
 
 
     <div class="mdiv searchListBox">
+      <div class="search-row">
+      <div class="searchbox">
+        <input
+                class="input-search"
+                v-model="searchValue"
+                placeholder="请输入活动关键词"
+                type="text"
+        >
+        <button
+                class="btn-search"
+                type="button"
+                @click.stop="handleSearch"
+        >搜 索</button>
+      </div>
+    </div>
       <template v-if="options.searchOpts.length">
         <template v-for="(optItem, index) in options.searchOpts">
           <div class="search-row" v-if="!optItem.isTop" :key="index">
@@ -101,6 +116,9 @@
                 <span>
                   <span class="tag">{{item.activeTypeDisplay}}</span>
                 </span>
+                <!--<span>
+                  <span class="tag">{{item.activityLabels}}</span>
+                </span>-->
                 <span class="viewTag"><i class="iconfont icon-liulanliang"></i>{{item.pageViews}}</span>
               </div>
             </a>
