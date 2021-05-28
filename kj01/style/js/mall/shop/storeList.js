@@ -9,8 +9,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom,
         defaultValue: {},
         goodsList: [],
-        technologyList:[],
-        productList:[],
+        // technologyList:[],
+        // productList:[],
         shopInfo: {},
         statisticsInfo: {},
         total: 0,
@@ -106,12 +106,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.http.selectByMailShopPage(data).then(function (res) {
             if (res.code === 'rest.success') {
               vm.goodsList = res.result.list;
-              vm.technologyList = res.result.list;
-              vm.productList = res.result.list;
               vm.total = res.result.total;
               vm.pages = res.result.pages;
             }
-          })
+          });
         },
         handleFilter: function (i) {
           if (this.filters[i].seleced) {
@@ -168,6 +166,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               if (res.code === 'rest.success') {
                 vm.goodsList[i].collectFlag = '0'
                 vm.goodsList[i].collectCount -= 1
+                vm.technologyList[i].collectFlag = '1'
+                vm.technologyList[i].collectCount -= 1
+                vm.productList[i].collectFlag = '1'
+                vm.productList[i].collectCount -= 1
                 vm.$dialog.showToast("取消成功")
               }
             })
