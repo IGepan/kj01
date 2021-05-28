@@ -31,5 +31,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     newsDetail: function (param) {
       return Http.get(httpUrl.baseUrl + '/content/detail', param);
     },
+
   }
 })
