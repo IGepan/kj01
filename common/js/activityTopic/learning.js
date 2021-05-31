@@ -93,6 +93,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     var index = row * 2 - 1;
                     return !(index + 4 > this.pages);
                 },
+                handleExportExcel: function () {
+                    var vm = this
+                    activityApi.exportExcel(this.queryForm)
+                }
             }
         });
     });
