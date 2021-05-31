@@ -99,7 +99,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.shopAccess()
                 },
                 filters: {
-                    formatPrice2: function (flag, v, n, m) {
+                    formatPrice: function (flag, v, n, m) {
                         if (flag === '2') {
                             return '面议'
                         }if(flag === "3"){
@@ -131,7 +131,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         }
                     },
                     cutout(cellValue) {
-                             return cellValue.replace(/\,/g, '</br>')
+                        if (cellValue.indexOf(',') > 0) {
+                            return cellValue.replace(/\,/g, '</br>');
+                        }else {
+                            return cellValue;
+                        }
+
                            },
                     shopAccess: function () {
                         var vm = this
