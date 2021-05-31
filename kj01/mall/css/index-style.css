@@ -1108,11 +1108,11 @@ a:hover {
   padding: 1rem;
 }
 
-.card-item img {
-  /*margin: 2.5rem auto;*/
-  width: 11.25rem;
-  height: 11.25rem;
-}
+/*.card-item img {*/
+/*  !*margin: 2.5rem auto;*!*/
+/*  width: 11.25rem;*/
+/*  height: 11.25rem;*/
+/*}*/
 
 .card-body {
   padding: 0!important;
