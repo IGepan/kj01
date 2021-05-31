@@ -110,6 +110,21 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           }
         },
+        formatPrice: function (flag, v, n, m) {
+          if (flag === '2') {
+            return '面议'
+          }if(flag === "3"){
+            return '查看价格详情'
+          }else {
+            if (typeof v !== 'undefined') {
+              return (v / 10000).toFixed(2)
+            } else if (!v && !m) {
+              return (n / 10000).toFixed(2)
+            } else {
+              return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+            }
+          }
+        },
       },
       methods: {
         updateCartInfo: function () {
@@ -127,7 +142,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
         },
         cutout(cellValue) {
-          return cellValue.replace(/\,/g, '</br>')
+          if (cellValue.indexOf(',') > 0) {
+            return cellValue.replace(/\,/g, '</br>');
+          }else {
+            return cellValue;
+          }
+
         },
         shopAccess: function () {
           var vm = this
