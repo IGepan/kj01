@@ -187,13 +187,8 @@
                                             </td>
                                             <td>
 <!--                                                <div class="w135 price" style="margin-top: 1.20rem;">-->
-                                                <div class="w135 price" style="width: 140px">
-                                                   <span
-                                                         v-html="cutout(goods.priceWord)"
-                                                         v-if="goods.choosePriceTag ==3">
-                                           {{goods.priceWord}}
-                                        </span>
-                                                    <span v-if="goods.choosePriceTag!='3'">
+                                                <div class="w135 price" style="width: 190px">
+                                                    <span >
                                             {{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice, goods.maxPrice)}}
 
                                         </span>
