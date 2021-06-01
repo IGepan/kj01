@@ -91,6 +91,21 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       methods: {
+        formatPrice: function (flag, v, n, m) {
+          if (flag === '2') {
+            return '面议'
+          }if(flag === "3"){
+            return '查看价格详情'
+          }else {
+            if (typeof v !== 'undefined') {
+              return (v / 10000).toFixed(3)
+            } else if (!v && !m) {
+              return (n / 10000).toFixed(3)
+            } else {
+              return (n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(3)
+            }
+          }
+        },
         updatePull () {
           var vm = this;
           this.$nextTick(function () {

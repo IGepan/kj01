@@ -106,19 +106,21 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             return '查看价格详情'
                         }else {
                             if (typeof v !== 'undefined') {
-                                return (v / 10000).toFixed(2)
+                                return (v / 10000).toFixed(3)
                             } else if (!v && !m) {
-                                return (n / 10000).toFixed(2)
+                                return (n / 10000).toFixed(3)
                             } else {
-                                return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+                                return (n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(3)
                             }
                         }
                     },
-                    formatPrice2: function ( v, n, m) {
-                        return v > -1 ? v : n + '-' + m
-                    },
                 },
                 methods: {
+                    formatPrice2: function ( v, n, m) {
+                        return v > -1 ? v : n + '-' + m
+
+
+                    },
                     updateCartInfo: function () {
                         if (!this.component_toper) {
                             for (var i = 0, l = this.$children.length;i < l;i++) {
