@@ -11,20 +11,21 @@ require(['/common/js/require.config.js'], function () {
                             maximumWords: 5000
                         },
                         ruleForm: {
-                            name: '',
-                            region: '',
-                            date1: '',
-                            date2: '',
-                            delivery: false,
-                            type: [],
-                            resource: '1',
-                            desc: '',
-                            textarea: '',
-                            value:'',
-                            companyName: '',
+                            name: '',               //活动名称
+                            date1: '',              //活动日期
+                            date2: '',              //活动时间
                             type: '1',
-                            optionProps:'',
+                            value:'',
+                            resource: '1',
                             comment:'',
+                            desc: '',
+                            phone: ''
+                            /*optionProps:'',*/
+                            /*delivery: false,*/
+                            /*type: [],*/
+                            /*companyName: '',*/
+                            /*textarea: '',*/
+                            /*region: '',*/
                         },
                         rules: {
                             name: [
@@ -56,10 +57,41 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请填写联系电话', trigger: 'blur'},
                                 {pattern:/^1[34578]\d{9}$/,message: '请填写正确的电话号码', trigger: 'blur'}
                             ],
-
-
                         },
                         typeList: [
+                            {
+                                value: '政策直播间',
+                                label: '政策直播间',
+                                children: [{value: '高企培育', label: '高企培育',},
+                                    {value: '技术合同登记', label: '技术合同登记',},
+                                    {value: '研发费用加计扣除', label: '研发费用加计扣除',},
+                                    {value: '成果转化', label: '成果转化',},
+                                    {value: '项目申报', label: '项目申报',}]
+                            },
+                            {
+                                value: '主题培训', label: '主题培训',
+                                children: [{value: '技术经纪人', label: '技术经纪人',},
+                                    {value: '创新能力培训', label: '创新能力培训',},
+                                    {value: '双创载体培训', label: '双创载体培训',},
+                                    {value: '企业家培训', label: '企业家培训',},
+                                    {value: '知识产权', label: '知识产权',},
+                                    {value: '法律财税', label: '法律财税',}]
+                            }, {
+
+                                value: '对接会', label: '对接会',
+                                children: [{value: '技术供需对接', label: '技术供需对接',},
+                                    {value: '投融资对接', label: '投融资对接',},
+                                    {value: '项目落地对接', label: '项目落地对接',}]
+                            }, {
+                                value: '创享会', label: '创享会',
+                                children: [{value: '技术沙龙', label: '技术沙龙',},
+                                    {value: '产业论坛', label: '产业论坛',},
+                                    {value: '主题峰会', label: '主题峰会',},
+                                    {value: '双创大赛', label: '双创大赛',},
+                                    {value: '项目推介', label: '项目推介',}]
+                            }
+                        ]
+                        /*[
                             {
                                 value: 'broadcastRoom',
                                 label: '政策直播间',
@@ -91,7 +123,7 @@ require(['/common/js/require.config.js'], function () {
                                     {value: 'contest', label: '双创大赛',},
                                     {value: 'recommend', label: '项目推介',}]
                             }
-                        ]
+                        ]*/
                     }
                 },
 
@@ -123,14 +155,15 @@ require(['/common/js/require.config.js'], function () {
                                 this.$refs.ruleForm.validate((valid) => {
                                     console.log(valid,'valid')
                                     if (valid) {
-                                        indexApi.submit(this.ruleForm).then((res) => {
+                                        indexApi.submit1(this.ruleForm).then((res) => {
                                             if (res.code == 'rest.success') {
                                                 this.$message.success('提交成功');
-                                                this.clearForm();
-                                                scrollTo(0, 0);
+                                                // this.clearForm();
+                                                // scrollTo(0, 0);
+                                                /*window.location.href = '/aindex.html'*/
+                                                window.history.go(-1)
                                             } else {
                                                 this.$dialog.showToast('系统错误');
-
                                             }
                                         });
                                     }else {

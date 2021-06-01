@@ -127,6 +127,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         //分页查询商品列表
         selectReleaseByPage:function (param) {
             return Http.post(httpUrl.baseUrl + '/result/getAllReleaseByPage', param);
+        },
+        /**
+         *
+         * 委办信息提交
+         */
+        submit1: function (param) {
+            return Http.post(httpUrl.baseUrl + '/entrusInfo/submit', param);
         }
     }
 })
