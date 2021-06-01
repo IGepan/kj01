@@ -180,10 +180,9 @@
                                   style="display: table-cell;font-size: 1.5rem">
                                            {{detailInfo.priceWord}}
                                         </span>
-                                        <span v-if="detailInfo.choosePriceTag!='3' && detailInfo.choosePriceTag!='2'">
-                                            {{formatPrice2(detailInfo.price,detailInfo.minPrice, detailInfo.maxPrice)}}
+                                        <span v-if="detailInfo.choosePriceTag!='3'">
+                                            {{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}
                                         </span>
-                                <span v-else-if="detailInfo.choosePriceTag==2">面议</span>
                             <span v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">元</span>
                             <span v-else></span>
                         </span>
