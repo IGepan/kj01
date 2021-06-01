@@ -638,8 +638,8 @@
                                         </div>
 
                                         <div class="quoted-price fr">
-                                            <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_transferType.choosePriceTag |
-                                            formatPrice2(good_transferType.price, good_transferType.minPrice,
+                                            <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>
+                                            {{formatPrice2(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,
                                             good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span>
                                         </div>
                                     </div>
