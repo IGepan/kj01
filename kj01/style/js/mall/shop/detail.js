@@ -130,8 +130,18 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             }
                         }
                     },
-                    formatPrice2: function ( v, n, m) {
-                        return '￥'+ (v > -1 ? v : n +'元'+ '-' + m+'元')
+                    formatPrice2: function (flag, v, n, m) {
+                        if (flag === '2') {
+                            return '面议'
+                        }else if (flag === '0') {
+                            if (typeof v !== 'undefined') {
+                                return '￥' + v + '元';
+                            }else if (n !== 'undefined') {
+                                return '￥' + n + '元';
+                            }
+                        }else {
+                            return '￥' + n + '-' + m + '元'
+                        }
 
                     },
                     updateCartInfo: function () {
