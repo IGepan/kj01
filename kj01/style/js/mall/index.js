@@ -205,9 +205,9 @@ require(['/common/js/require.config.js'], function () {
                                 }
                             } else {
                                 if(n && m >= 10000){
-                                    return '￥'+((n / 10000).toFixed(2) +'万元'+ '-' + (m / 10000).toFixed(2)+'万元');
+                                    return '￥'+((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)+'万元');
                                 }else{
-                                    return  '￥'+(n+"元" + '-' +m+'元')
+                                    return  '￥'+(n + '-' +m+'元')
                                 }
 
                             }
