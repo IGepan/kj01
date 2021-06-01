@@ -1209,7 +1209,7 @@ a:hover {
     line-height: 3rem;
     color: #000; }
 .block-trend ul a .title {
-    max-width: 70%;
+    max-width: 60%;
     display: block;
     overflow: hidden;
     white-space: nowrap;
