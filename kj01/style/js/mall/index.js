@@ -204,10 +204,12 @@ require(['/common/js/require.config.js'], function () {
                                     return  '￥'+n+"元";
                                 }
                             } else {
-                                if(n && m >= 10000){
+                                if(n >= 100 && m >=10000 ){
                                     return '￥'+((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)+'万元');
-                                }else{
-                                    return  '￥'+(n + '-' +m+'元')
+                                }else if (n < 100 && m >= 10000) {
+                                    return '￥'+((n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(2)+'万元');
+                                } else {
+                                    return '￥' + (n + '-' + m + '元');
                                 }
 
                             }
