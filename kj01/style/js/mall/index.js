@@ -55,23 +55,39 @@ require(['/common/js/require.config.js'], function () {
 
 
                 },
-                filters: {
-                    formatPrice: function (flag, v, n, m) {
-                        if (flag === '2') {
-                            return '面议'
-                        }if(flag === "3"){
-                            return '查看价格详情'
-                        }else {
-                            if (typeof v !== 'undefined') {
-                                return (v / 10000).toFixed(2)
-                            } else if (!v && !m) {
-                                return (n / 10000).toFixed(2)
-                            } else {
-                                return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                            }
-                        }
-                    },
-                },
+                // filters: {
+                //     formatPrice: function (flag, v, n, m) {
+                //         if (flag === '2') {
+                //             return '面议'
+                //         }if(flag === "3"){
+                //             return '查看价格详情'
+                //         }else {
+                //             if (typeof v !== 'undefined') {
+                //                 return (v / 10000).toFixed(2)
+                //             } else if (!v && !m) {
+                //                 return (n / 10000).toFixed(2)
+                //             } else {
+                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+                //             }
+                //         }
+                //     },
+                //     formatPrice2: function (flag, v, n, m) {
+                //         if (flag === '2') {
+                //             return '面议'
+                //         }if(flag === "3"){
+                //             return '查看价格详情'
+                //         }else {
+                //             if (typeof v !== 'undefined') {
+                //                 return (v / 10000).toFixed(2)
+                //             } else if (!v && !m) {
+                //                 return (n / 10000).toFixed(2)
+                //             } else {
+                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+                //             }
+                //         }
+                //     },
+                // },
+
                 // mounted: function () {
                 // },
                 components: {
