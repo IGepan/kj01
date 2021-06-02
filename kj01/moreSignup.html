@@ -12,6 +12,18 @@
   <link href="/style/css/button.css" rel="stylesheet" type="text/css">
   <link href="/style/css/moreSignup.css" rel="stylesheet" type="text/css">
   <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <style>
+    .showdiv{background: rgba(0,0,1,0.5);position: absolute;z-index: 999;width: 990px;height: 100%;
+      text-align: center;display: block}
+    .showdiv .dg{background: #FFFFff;width:300px;overflow: hidden ;text-align: center;padding: 30px;margin:30%  auto}
+    .dg button{background: #2c82f1;
+      width: 20%;
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+    }
+    .dg button:hover{opacity: 0.6}
+  </style>
 </head>
 
 <body>
@@ -21,6 +33,15 @@
 
     <template v-if="detail">
       <div class="mdiv moreSignup">
+        <div class="showdiv" id="showdiv">
+          <div class="dg">
+            <img
+                    src="/style/images/index/qrcode.jpg"
+                    alt=""
+            ><h4>关注公众号，发现更多活动</h4>
+            <button  class="hiden" onclick="closeme()" >关闭</button>
+          </div>
+        </div>
         <div class="detail-base">
           <div class="vaMiddle item-img detail-base-img" :style="detail.styles">
             <img :src="detail.posterUrl" :alt="detail.title">
@@ -103,6 +124,13 @@
   <script src="/style/css/icon/iconfont.js"></script>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
   <script type="text/javascript" src="./style/js/moreSignup.js"></script>
+<script>
+
+    function closeme(){
+      document.getElementById("showdiv").style.display="none";
+
+  }
+</script>
 </body>
 
 </html>
