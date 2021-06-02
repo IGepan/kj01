@@ -1163,6 +1163,7 @@ a:hover {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  width: 50%;
 }
 .card-item .card-body .addition2 .quoted-price {
   font-size: 1rem;

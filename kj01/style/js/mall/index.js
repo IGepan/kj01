@@ -110,6 +110,7 @@ require(['/common/js/require.config.js'], function () {
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
                     this.getMailGoods('chooseGoods')
+
                     this.goodFormData = {}
                     //最新入驻
                     this.goodFormData.pageSize = 8;
@@ -304,9 +305,16 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         indexApi.selectMailGoods(this.goodFormData).then(function (res) {
                             if (res.code === 'rest.success') {
+
                                 vm.$data[dateKey] = res.result.list
                                 vm.$nextTick(function () {
                                     console.log('---------')
+                                    //精选服务列表，只展示2的倍数
+                                    if( vm.chooseGoods.length % 2 !== 0 ){
+                                        var list = vm.chooseGoods
+                                        vm.chooseGoods = list.splice(0,list.length - list.length % 2)
+
+                                    }
                                   window.serviceSwiper = new Swiper('.service-list', {
                                         slidesPerView: 3,
                                       slidesPerColumn: 2,
