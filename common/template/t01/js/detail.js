@@ -94,6 +94,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.userInfo = JSON.parse(this.$utils.getCookie(dic.locaKey.USER_INFO));
         this.shopAccess()
       },
+
       // filters: {
       //   formatPrice2: function (flag, v, n, m) {
       //     if (flag === '2') {
