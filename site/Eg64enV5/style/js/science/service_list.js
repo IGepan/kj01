@@ -101,22 +101,22 @@ require(['/common/js/require.config.js'], function () {
 					firstWord: function (v) {
 						return v ? v.substr(0, 1) : ''
 					},
-					formatPrice2: function (flag,v, n, m) {
-						if(flag === '2') {
-							return '面议'
-						}
-						if(flag === "3"){
-							return '查看价格详情'
-						}else {
-							if(typeof v !== 'undefined') {
-								return v/10000+'万'
-							} else if(!v && !m) {
-								return n/10000+'万'
-							} else {
-								return n/10000 + '万-' + m/10000+'万'
-							}
-						}
-					},
+					// formatPrice2: function (flag,v, n, m) {
+					// 	if(flag === '2') {
+					// 		return '面议'
+					// 	}
+					// 	if(flag === "3"){
+					// 		return '查看价格详情'
+					// 	}else {
+					// 		if(typeof v !== 'undefined') {
+					// 			return v/10000+'万'
+					// 		} else if(!v && !m) {
+					// 			return n/10000+'万'
+					// 		} else {
+					// 			return n/10000 + '万-' + m/10000+'万'
+					// 		}
+					// 	}
+					// },
 				},
 				watch: {
 					'searchForm.categoryCode': function (v) {
@@ -167,6 +167,37 @@ require(['/common/js/require.config.js'], function () {
 					// this.getList()
 				},
 				methods: {
+					formatPrice: function (flag, v, n, m) {
+						if (flag == '2') {
+							return '面议'
+						}
+						if (flag == "3") {
+							return '查看价格详情'
+						} else {
+							if (typeof v !== 'undefined') {
+								if (v >= 10000) {
+									return '￥' + ((v / 10000).toFixed(2) + '万元');
+								} else {
+									return '￥' + v + '元'
+								}
+							} else if (!v && !m) {
+								if (n >= 10000) {
+									return '￥' + ((n / 10000).toFixed(2) + "万元");
+								} else {
+									return '￥' + n + "元";
+								}
+							} else {
+								if (n >= 100 && m >= 10000) {
+									return '￥' + ((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2) + '万元');
+								} else if (n < 100 && m >= 10000) {
+									return '￥' + ((n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(2) + '万元');
+								} else {
+									return '￥' + (n + '-' + m + '元');
+								}
+
+							}
+						}
+					},
 					handleFilter: function (i) {
 						if (this.filters[i].seleced) {
 							if (!this.filters[i].value) {
