@@ -153,6 +153,7 @@ require(['/common/js/require.config.js'], function () {
                      * <li class=""><a href="#/technology">科技<br>咨询</a></li></ul>
                      * @type {string[]}
                      */
+
                     var sections = ['service-box', 'property', 'law', 'policy', 'business', 'inspection', 'technology']
                     window.addEventListener('scroll', function(){
                         var st = $(window).scrollTop()
@@ -167,7 +168,7 @@ require(['/common/js/require.config.js'], function () {
                                 return
                             }
                         })
-                        console.log(_this.changeSelectStyle)
+                        // console.log(_this.changeSelectStyle)
                     }, true)
 
                     window.addEventListener('hashchange', function() {
@@ -306,9 +307,13 @@ require(['/common/js/require.config.js'], function () {
                             if (res.code === 'rest.success') {
                                 vm.$data[dateKey] = res.result.list
                                 vm.$nextTick(function () {
-                                    new Swiper('.service-list', {
-                                        slidesPerView: 4,
+                                    console.log('---------')
+                                  window.serviceSwiper = new Swiper('.service-list', {
+                                        slidesPerView: 3,
+                                      slidesPerColumn: 2,
+                                      // slidesPerGroup: 3,
                                         spaceBetween: 30,
+                                        // loop:true,
                                         navigation: {
                                             nextEl: '.item-next',
                                             prevEl: '.item-prev',

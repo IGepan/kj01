@@ -1024,12 +1024,12 @@ a:hover {
 }
 
 #service-box .block-service .item-next {
-  right: -4.375rem;
+  right: -.375rem;
 }
 
 #service-box .block-service .item-prev {
   padding-left: 0.125rem !important;
-  left: -4.375rem;
+  left: -.675rem;
 }
 
 #service-box .card-item .card-body .card-title {
@@ -1160,6 +1160,9 @@ a:hover {
   font-size: 1rem;
   color: #f1671b;
   line-height: 3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .card-item .card-body .addition2 .quoted-price {
   font-size: 1rem;
@@ -1496,8 +1499,8 @@ a:hover {
 }
 
 .service-list {
-  padding: 1.25rem 0;
-  display: inline-block
+  padding: 1.25rem .5rem;
+  /*display: inline-block*/
 }
 
 .service-list .card-item {
