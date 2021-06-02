@@ -62,11 +62,14 @@ require(['/common/js/require.config.js'], function () {
 					activityList:[],
 					activityTypeList:[],
 					scienceTypeList:[],
+					mailServiceTypeList: [],//科技服务分类
+					goodList: [],//商品列表
 					scienceList:[],
 					serviceList:[],
 					shopList:[],
 					policyList:[],
 					userInfo:'',
+					searchForm:{}
 				},
 				computed: {
 				/*	text () {
@@ -128,6 +131,10 @@ require(['/common/js/require.config.js'], function () {
 						activeType:'218340665870780082'
 					},'zhiboList');
 					this.getScienceType();
+					this.getMailServiceType();
+					this.searchForm.pageNum=1;
+					this.searchForm.pageSize=4
+					this.getMailGoods();
 					this.getScienceList('001,010','scienceList');
 					this.getScienceList('009','serviceList');
 					this.getShopList();
@@ -198,6 +205,39 @@ require(['/common/js/require.config.js'], function () {
 								vm.scienceTypeList=res.result[0].dictIInfos
 							}
 						});
+					},
+					//服务分类
+					getMailServiceType: function () {
+						var vm = this
+						indexApi.mailServiceType().then(function (res) {
+							if (res.code === 'rest.success') {
+								vm.mailServiceTypeList = res.result
+								vm.mailServiceTypeList.forEach(function (item, si) {
+									item.children.unshift({ id: "-1", id: -1, parentId:item.id,name: '不限', selected: true })
+									item.selected = false
+								});
+
+								if (vm.searchForm.type) {
+									var types = vm.mailServiceTypeList.filter(function (el) {
+										return el.id == vm.searchForm.type;
+									});
+									types[0].selected = true
+									vm.activeAll = false
+									vm.parentId=vm.searchForm.type;
+									vm.result = types
+								}
+							}
+						})
+					},
+					//商品-列表
+					getMailGoods: function () {
+						var vm = this
+						indexApi.selectMailGoods(this.searchForm).then(function (res) {
+							if (res.code === 'rest.success') {
+								vm.goodList = res.result.list
+								vm.$data.pages = res.result || ''
+							}
+						})
 					},
 					//科技-列表
 					getScienceList(code,list){
