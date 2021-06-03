@@ -1,4 +1,5 @@
 // JavaScript Document
+
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', '/common/js/httpApi/topic.js', 'jqValidate', 'dialog', 'httpUrl', 'laydate'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, activityApi, jqValidate, dialog, httpUrl, laydate) {

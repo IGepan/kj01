@@ -12,8 +12,13 @@ require(['/common/js/require.config.js'], function () {
                         },
                         ruleForm: {
                             name: '',               //活动名称
-                            date1: '',              //活动日期
-                            date2: '',              //活动时间
+
+                            date1: '',              //活动开始日期
+                            date2: '',              //活动开始时间
+
+                            date3: '',              //活动结束日期
+                            date4: '',              //活动结束时间
+
                             type: '1',
                             value:'',
                             resource: '1',
@@ -39,6 +44,12 @@ require(['/common/js/require.config.js'], function () {
                                 {type: 'string', required: true, message: '请选择日期', trigger: 'change'}
                             ],
                             date2: [
+                                {type: 'string', required: true, message: '请选择时间', trigger: 'change'}
+                            ],
+                            date3: [
+                                {type: 'string', required: true, message: '请选择日期', trigger: 'change'}
+                            ],
+                            date4: [
                                 {type: 'string', required: true, message: '请选择时间', trigger: 'change'}
                             ],
                             type: [
