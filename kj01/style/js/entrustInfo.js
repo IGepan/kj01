@@ -137,7 +137,6 @@ require(['/common/js/require.config.js'], function () {
                         ]*/
                     }
                 },
-
                         components: {
                             'ly-toper': httpVueLoader('/style/components/toper.vue'),
                             // 'index-head': httpVueLoader('/style/components/index_head2.vue'),
@@ -145,22 +144,6 @@ require(['/common/js/require.config.js'], function () {
                         },
                         methods: {
                             submitForm() {
-                                // this.$refs[ruleForm].validate((valid) => {
-                                //     if (valid) {
-                                //         indexApi.submit(this.ruleForm).then((res) => {
-                                //                         if (res.code == 'rest.success') {
-                                //                             this.$message.success('提交成功');
-                                //                             this.clearForm();
-                                //                             scrollTo(0, 0);
-                                //                         } else {
-                                //                             this.$dialog.showToast('系统错误');
-                                //
-                                //                         }
-                                //                     });
-                                //     } else {
-                                //         this.$message.success('请完善信息');
-                                //     }
-                                // });
                                 console.log(this.$refs)
                                 window.test = this.$refs.ruleForm
                                 this.$refs.ruleForm.validate((valid) => {
