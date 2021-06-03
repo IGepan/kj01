@@ -582,29 +582,60 @@
 
                 </div>
             </div>
-            <!--            评估评价-->
+<!--            &lt;!&ndash;            评估评价&ndash;&gt;-->
+<!--            <div class="mallItem">-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">-->
+<!--                    <span class="mallItem-imgBox-title">评估评价</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(6)">查看更多 &gt;&gt;</a>-->
+
+<!--                </div>-->
+<!--                <div class="mallItem-infoBox">-->
+<!--                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">-->
+<!--                            <div class="card-item">-->
+<!--                                <div class="technology-avatar"><img :src="good_knowledgeType.goodsImg.url" class=""-->
+<!--                                                                    alt="..."></div>-->
+
+<!--                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="quoted-price">-->
+<!--                                        {{formatPrice(good_knowledgeType.choosePriceTag,good_knowledgeType.price, good_knowledgeType.minPrice,-->
+<!--                                        good_knowledgeType.maxPrice)}}-->
+<!--                                    </div>-->
+<!--                                    <div class="short-text">-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+            <!--            科技咨询-->
             <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">
-                    <span class="mallItem-imgBox-title">评估评价</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(6)">查看更多 &gt;&gt;</a>
+                    <span class="mallItem-imgBox-title">科技咨询</span>
+                    <a class="mallItem-imgBox-url" @click="checkMore(5)">查看更多 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
+                    <div class="col-card" v-for="good_transferType in transferTypeList">
+                        <a :href="'/mall/shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
                             <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_knowledgeType.goodsImg.url" class=""
+                                <div class="technology-avatar"><img :src="good_transferType.goodsImg.url" class=""
                                                                     alt="..."></div>
 
-                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>
+                                <div class="card-title">{{good_transferType.goodsName}}</div>
                                 <div class="addition">
                                     <div class="quoted-price">
-                                        {{formatPrice(good_knowledgeType.choosePriceTag,good_knowledgeType.price, good_knowledgeType.minPrice,
-                                        good_knowledgeType.maxPrice)}}
+                                        {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,
+                                        good_transferType.maxPrice)}}
                                     </div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_transferType.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_transferType.shopName}}</p>
                                     </div>
                                 </div>
                             </div>

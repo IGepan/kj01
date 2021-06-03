@@ -615,10 +615,15 @@ require(['/common/js/require.config.js'], function () {
                             href: 'https://www.qiyekexie.com',
                             alt_tip: '中国科学技术协会-绿平台',
                         },
+                        // {
+                        //     img: '/style/images/index/friend_link_8.jpg',
+                        //     href: 'http://zwfw.cq.gov.cn/cq/public/index',
+                        //     alt_tip: '渝快办',
+                        // },
                         {
-                            img: '/style/images/index/friend_link_8.jpg',
-                            href: 'http://zwfw.cq.gov.cn/cq/public/index',
-                            alt_tip: '渝快办',
+                            img: '/style/images/index/friend_link_8-1.png',
+                            href: 'http://main.liyantech.cn/',
+                            alt_tip: '成渝城市群综合科技服务平台',
                         },
                         {
                             img: '/style/images/index/friend_link_9.png',
@@ -760,8 +765,8 @@ require(['/common/js/require.config.js'], function () {
 					this.goodFormData.type = '371980699979194368';
 					this.getMailGoods('technologyTypeList')
 					// //科技咨询
-					// this.goodFormData.type = '371981659690475520';
-					// this.getMailGoods('transferTypeList');
+					 this.goodFormData.type = '371981659690475520';
+					 this.getMailGoods('transferTypeList');
 					//评估评价
 					this.goodFormData.type = '371980018614509568';
 					this.getMailGoods('knowledgeTypeList');
