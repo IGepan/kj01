@@ -95,7 +95,7 @@
                 <el-input type="text" v-model="ruleForm.desc"  clearable></el-input>
             </el-form-item>
             <el-form-item label="联系电话" prop="phone">
-                <el-input type="text" v-model="ruleForm.phone"  clearable></el-input>
+                <el-input type="text" v-model="ruleForm.phone" maxlength="11" clearable></el-input>
             </el-form-item>
             <el-form-item style="margin-left: 80px">
                 <el-button type="primary" @click="submitForm('ruleForm')">立即申请</el-button>

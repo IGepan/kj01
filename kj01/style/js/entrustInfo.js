@@ -136,7 +136,7 @@ require(['/common/js/require.config.js'], function () {
                                         indexApi.submit1(this.ruleForm).then((res) => {
                                             if (res.code == 'rest.success') {
                                                 this.$message.success('提交成功')
-                                                setTimeout( window.history.go(-1),100000);
+                                                setTimeout( "window.history.go(-1)",1000);
                                             } else {
                                                 this.$dialog.showToast('系统错误');
                                             }
