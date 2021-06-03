@@ -23,19 +23,7 @@
 
     <div class="mdiv searchListBox">
       <div class="search-row">
-      <div class="searchbox">
-        <input
-                class="input-search"
-                v-model="searchValue"
-                placeholder="请输入活动关键词"
-                type="text"
-        >
-        <button
-                class="btn-search"
-                type="button"
-                @click.stop="handleSearch"
-        >搜 索</button>
-      </div>
+     <asearch :searchtitle="searchtitle"  @search="bindSearchValue"></asearch>
     </div>
       <template v-if="options.searchOpts.length">
         <template v-for="(optItem, index) in options.searchOpts">
