@@ -5,7 +5,7 @@ require(['/common/js/require.config.js'], function () {
                 el: '#index_box',
                 data: {
                     // sIndex: 8,
-                    sIndex: 7,
+                    sIndex: 6,
                     newsList:[],
                     detailActive:0,
                     details:'',

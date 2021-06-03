@@ -46,7 +46,7 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
     conn.listen({
       onOpened: function (message) {          //连接成功回调
         m_connected = true;
-        tFn();
+        // tFn();
         tFn = noop;
         console.log('connect success');
       },
