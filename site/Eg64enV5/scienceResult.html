@@ -106,8 +106,9 @@
                         <a :href="$pathPrefix+item.goodsDetailUrl">
                             <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
                             <div class="title line2">{{item.goodsName}}</div>
-                            <div class="money line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">
-                                {{formatPrice(item.choosePrice,item.price, item.minPrice, item.maxPrice)}}</div>
+<!--                            <div class="money line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">-->
+                            <div class="money line" >
+                                {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</div>
                             <div class="icon-text icon-text1 line" :title="item.industryNames"><i class="iconfont-template icon-biaoqian1"></i>{{item.industryNames}}</div>
                             <div class="icon-text icon-text2 line" :title="item.shopName"><i class="iconfont-template icon-jigou"></i>{{item.shopName}}</div>
                         </a>

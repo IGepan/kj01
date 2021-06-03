@@ -18,6 +18,11 @@ define(function() {
 
 
     var config = {
+        //rest Server地址
+        restServer:"a1.easemob.com",
+
+        //socket Server地址
+        socketServer:"im-api-v2.easemob.com",
         /*
          * XMPP server
          */

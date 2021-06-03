@@ -96,9 +96,9 @@ require(['/common/js/require.config.js'], function () {
 				},
 				methods: {
 					formatPrice: function (flag, v, n, m) {
-						if (flag == '2') {
+						if (flag === '2') {
 							return '面议'
-						}if(flag == "3"){
+						}if(flag === "3"){
 							return '查看价格详情'
 						}else {
 							if (typeof v !== 'undefined' ) {
