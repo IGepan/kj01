@@ -202,7 +202,7 @@ module.exports = {
 	background-color: #ddf9ff;
 	border-radius: 20px;
  display: flex;
-  display: none;
+  /*display: none;*/
  align-items: center;
 }
 .search .iconfont {
