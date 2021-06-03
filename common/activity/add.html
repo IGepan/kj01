@@ -773,6 +773,7 @@
     input:disabled {
         cursor: not-allowed;
     }
+    .radio-box label{font-size: 16px}
 </style>
 <div class="box" id='index_box'>
     <ly-toper></ly-toper>
@@ -1012,6 +1013,16 @@
                                 <td>
                                     <div class="ipt name">
                                         <input maxlength="50" v-model="formData.scale">
+                                    </div>
+                                </td>
+                                <td class="form_msg"></td>
+                            </tr>
+                            <tr class="form_item">
+                                <th>是否点播：</th>
+                                <td>
+                                    <div class="radio-box">
+                                      <input type="radio" name="是" value="0" ><label>是</label>
+                                        <input type="radio" name="否" value="1"><label>否</label>
                                     </div>
                                 </td>
                                 <td class="form_msg"></td>

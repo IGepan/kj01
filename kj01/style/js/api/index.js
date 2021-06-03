@@ -15,6 +15,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         getActiveJoinNum: function (param) {
             return Http.get(httpUrl.baseUrl + '/active/getActiveJoinNum', param);
         },
+        // 获取通用多级树(鉴权)
+        getTree: function (param) {
+            return Http.post(httpUrl.baseUrl + '/treeMapSaas/getTree', param);
+        },
         // 活动首页-活动统计
         getActiveStatistics: function (param) {
             return Http.get(httpUrl.baseUrl + '/active/getActiveStatistics', param);

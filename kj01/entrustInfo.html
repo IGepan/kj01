@@ -51,6 +51,7 @@
                 <el-cascader
                         placeholder="选择活动类型"
                         v-model="ruleForm.value"
+                        :props="typeProps"
                         :options="typeList"
                         @change="handleChange"
                        >
@@ -59,35 +60,33 @@
             <el-form-item label="活动时间" required>
                 <el-col :span="6">
                     <el-form-item prop="date1">
-                        <el-date-picker placeholder="选择日期" style="width: 100%;" type="date"
+                        <el-date-picker placeholder="开始时间" style="width: 100%;" type="date"
                                         v-model="ruleForm.date1" format="yy-MM-dd" value-format="yy-MM-dd"></el-date-picker>
                     </el-form-item>
                 </el-col>
                 <el-col :span="2" class="line" style="text-align: center">——</el-col>
                 <el-col :span="6">
                     <el-form-item prop="date2">
-                        <el-time-select placeholder="选择时间"
-                                        style="width: 100%;"
-                                        v-model="ruleForm.date2">
-
-                        </el-time-select>
+                        <el-date-picker placeholder="结束时间" style="width: 100%;" type="date"
+                                        v-model="ruleForm.date1" format="yy-MM-dd" value-format="yy-MM-dd"></el-date-picker>
+                    </el-form-item>
                     </el-form-item>
                 </el-col>
             </el-form-item>
-            <el-form-item label="活动性质" prop="type">
-                <el-radio-group v-model="ruleForm.type">
-                    <el-radio label="1" >线上主题活动</el-radio>
-                    <el-radio label="2" >品牌推广</el-radio>
-                    <el-radio label="3" >线下主题活动</el-radio>
-                    <el-radio label="4" >单纯品牌曝光</el-radio>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="特殊资源" prop="resource">
-                <el-radio-group v-model="ruleForm.resource">
-                    <el-radio label="1">线上品牌商赞助</el-radio>
-                    <el-radio label="2">线下场地免费</el-radio>
-                </el-radio-group>
-            </el-form-item>
+<!--            <el-form-item label="活动性质" prop="type">-->
+<!--                <el-radio-group v-model="ruleForm.type">-->
+<!--                    <el-radio label="1" >线上主题活动</el-radio>-->
+<!--                    <el-radio label="2" >品牌推广</el-radio>-->
+<!--                    <el-radio label="3" >线下主题活动</el-radio>-->
+<!--                    <el-radio label="4" >单纯品牌曝光</el-radio>-->
+<!--                </el-radio-group>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="特殊资源" prop="resource">-->
+<!--                <el-radio-group v-model="ruleForm.resource">-->
+<!--                    <el-radio label="1">线上品牌商赞助</el-radio>-->
+<!--                    <el-radio label="2">线下场地免费</el-radio>-->
+<!--                </el-radio-group>-->
+<!--            </el-form-item>-->
             <el-form-item label="活动简介" prop="comment">
                 <vue-ueditor-wrap v-model="ruleForm.comment" :config="ueditorConfig" class="exptextarea">
                 </vue-ueditor-wrap>
