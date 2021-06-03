@@ -122,25 +122,23 @@ require(['/common/js/require.config.js'], function () {
                                         //判断res.result是不是一个数组
                                         vm.typeList =  res.result instanceof Array ? res.result[0] : ''
                                         vm.$data.pages = res.result || ''
-
                                     }
                                 })
                             },
                             //提交表单
+
                             submitForm() {
                                 console.log(this.$refs)
                                 window.test = this.$refs.ruleForm
                                 this.$refs.ruleForm.validate((valid) => {
                                     console.log(valid,'valid')
                                     if (valid) {
-                                        indexApi.submit(this.ruleForm).then((res) => {
+                                        indexApi.submit1(this.ruleForm).then((res) => {
                                             if (res.code == 'rest.success') {
-                                                this.$message.success('提交成功');
-                                                this.clearForm();
-                                                scrollTo(0, 0);
+                                                this.$message.success('提交成功')
+                                                setTimeout( window.history.go(-1),100000);
                                             } else {
                                                 this.$dialog.showToast('系统错误');
-
                                             }
                                         });
                                     }else {
