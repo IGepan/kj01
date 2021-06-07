@@ -269,7 +269,64 @@
             </div>
         </div>
     </div>
+<!--    //测试-->
+    <div class="container floor" id="property" >
+        <div class="main-block block-tabs" v-for="type in typeList">
+            <div class="main-title-left ">
+                <span>{{type.name}}</span>
+                <span class="sol-title">{{type.sortExplain|''}}</span>
+            </div>
+            <!--            <div class="sub-title">-->
+            <!--                <ul class="nav justify-content-center">-->
+            <!--                    <li class="nav-item" v-for="incubation in incubationType.children">-->
+            <!--                        <a class="nav-link" href="#">{{incubation.name}}</a>-->
+            <!--                    </li>-->
+            <!--                </ul>-->
+            <!--            </div>-->
+            <div class="tab-content">
+                <div class="left-banner">
+                    <!--                    <h4>{{incubationType.name}}</h4>-->
 
+                    <ul class="nav-list">
+                        <li class=""><a class="nav-link" >全部</a></li>
+                        <li class="nav-item" v-for="title in type.children">
+                            <a class="nav-link" href="#">{{title.name}}</a>
+                        </li>
+                    </ul>
+
+                    <a class="btn btn-outline-light" @click="checkMore(0)">进入专区 </a>
+                </div>
+                <div class="row row-cols-5">
+
+                    <div class="col" v-for="goods in type.goodList">
+                        <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
+                            <div class="card card-item">
+                                <div class="content-img">
+                                    <img :src="goods.goodsImg.url" class="" alt="...">
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{goods.goodsName}}
+                                    </h5>
+                                    <div class="addition2">
+                                        <div class="short-text s-line">
+                                            <p><i class="iconfont icon-city"></i>{{goods.shopName}}</p>
+                                            <!--                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>-->
+                                        </div>
+
+                                        <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice,
+                                            goods.maxPrice)}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!--知识产权-->
     <div class="container floor" id="property" style="margin-top: -50px">
         <div class="main-block block-tabs">

@@ -32,6 +32,9 @@ require(['/common/js/require.config.js'], function () {
                         pageSize: '',
                         type: ''
                     },
+                    itemData:{
+                        type: ''
+                    },
                     contentErrorMsg: '',
                     phoneErrorMsg: '',
                     vercodeErrorMsg: '',
@@ -52,8 +55,8 @@ require(['/common/js/require.config.js'], function () {
                     userInfo: {},
                     changeSelectStyle:'0',//索引样式
                     isSeller: false,
-
-
+                    typeList:[],//板块列表
+                    goodList:[]//板块数据列表
                 },
                 // filters: {
                 //     formatPrice: function (flag, v, n, m) {
@@ -102,7 +105,12 @@ require(['/common/js/require.config.js'], function () {
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
                     this.getMailSiteDetail();
-                    this.getMailServiceType();
+                    //获取类型板块
+                    _this.getMailServiceType(function (){
+                            //递归板块数据，从第一个板块开始
+                            _this.getMailServiceData(0)
+                        }
+                    );
                     //首页banner
                     this.getBanner('01', 'indexBanner', 10);
                     //广告2
@@ -116,30 +124,30 @@ require(['/common/js/require.config.js'], function () {
                     this.goodFormData.pageSize = 8;
                     this.goodFormData.orderBy = 'createTime desc';
                     this.getNewShops();
-                    //知识产权
-                    this.goodFormData.pageSize = 10;
-                    this.goodFormData.type = '371977891599065088';
-                    this.goodFormData.orderBy = 'homePageFlag desc';
-                    this.getMailGoods('incubationTypeList')
-                    //法律服务
-                    this.goodFormData.type = '371979747670859776';
-                    this.getMailGoods('designTypeList')
-                    //政策申报
-                    this.goodFormData.type = '371979827203252224';
-                    this.getMailGoods('checkTypeList')
-                    //工商财税
-                    this.goodFormData.type = '371979918089625600';
-                    this.getMailGoods('propertyTypeList')
-                    //评估评价
-                    this.goodFormData.type = '371980699979194368';
-                     this.getMailGoods('technologyTypeList')
-                    //检验检测
-                    this.goodFormData.type = '371981659690475520';
-                    this.getMailGoods('transferTypeList');
-                    //科技咨询
-                    // this.goodFormData.type = '371980018614509568';
-                    // this.getMailGoods('knowledgeTypeList');
-                    // cookie用户信息
+                    // //知识产权
+                    // this.goodFormData.pageSize = 10;
+                    // this.goodFormData.type = '371977891599065088';
+                    // this.goodFormData.orderBy = 'homePageFlag desc';
+                    // this.getMailGoods('incubationTypeList')
+                    // //法律服务
+                    // this.goodFormData.type = '371979747670859776';
+                    // this.getMailGoods('designTypeList')
+                    // //政策申报
+                    // this.goodFormData.type = '371979827203252224';
+                    // this.getMailGoods('checkTypeList')
+                    // //工商财税
+                    // this.goodFormData.type = '371979918089625600';
+                    // this.getMailGoods('propertyTypeList')
+                    // //评估评价
+                    // this.goodFormData.type = '371980699979194368';
+                    //  this.getMailGoods('technologyTypeList')
+                    // //检验检测
+                    // this.goodFormData.type = '371981659690475520';
+                    // this.getMailGoods('transferTypeList');
+                    // //科技咨询
+                    // // this.goodFormData.type = '371980018614509568';
+                    // // this.getMailGoods('knowledgeTypeList');
+                    // // cookie用户信息
                     (this.userInfo = JSON.parse(
                         this.$utils.getCookie("USER_INFO")
                     ));
@@ -235,42 +243,69 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
-                    getMailServiceType: function () {
+                    //获取类型板块
+                    getMailServiceType: function (call) {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.mailServiceTypeList = res.result
-                                //知识产权
-                                vm.incubationType = res.result.filter(function (s) {
-                                    return s.id == res.result[0].id;
-                                })[0];
-                                //法律服务
-                                vm.designType = res.result.filter(function (s) {
-                                    return s.id == res.result[1].id;
-                                })[0];
-                                //政策申报
-                                vm.checkType = res.result.filter(function (s) {
-                                    return s.id == res.result[2].id;
-                                })[0];
-                                //工商财税
-                                vm.propertyType = res.result.filter(function (s) {
-                                    return s.id == res.result[3].id;
-                                })[0];
-                                // //评估评价
-                                vm.technologyType = res.result.filter(function (s) {
-                                     return s.id == res.result[4].id;
-                                })[0];
-                                //检验检测
-                                vm.transferType = res.result.filter(function (s) {
-                                    return s.id == res.result[5].id;
-                                })[0];
-                                //科技咨询
-                                // vm.knowledgeType = res.result.filter(function (s) {
-                                //     return s.id == res.result[6].id;
-                                // })[0];
+                            var List = res.result || []
+                            //设置板块数据
+                            for( var key in List){
+                               List[key].goodList = []
                             }
+                            //设置板块列表
+                            vm.typeList = List
+                            //执行回调
+                            typeof call == 'function' ? call():[]
                         })
                     },
+                    //获取板块数据
+                    getMailServiceData:function (idx) {
+                        var vm = this
+                        var item = vm.typeList[idx]
+                        indexApi.selectMailGoods({type: item.id}).then(function (res) {
+                            //设置数据列表
+                            item.goodList  =  res.result.list || []
+                            //判断是否循环完
+                            if(idx < vm.typeList.length - 1)vm.getMailServiceData(idx + 1)
+
+                        })
+                    },
+                    // getMailServiceType: function () {
+                    //     var vm = this
+                    //     indexApi.mailServiceType().then(function (res) {
+                    //         if (res.code === 'rest.success') {
+                    //             vm.mailServiceTypeList = res.result
+                    //             //知识产权
+                    //             vm.incubationType = res.result.filter(function (s) {
+                    //                 return s.id == res.result[0].id;
+                    //             })[0];
+                    //             //法律服务
+                    //             vm.designType = res.result.filter(function (s) {
+                    //                 return s.id == res.result[1].id;
+                    //             })[0];
+                    //             //政策申报
+                    //             vm.checkType = res.result.filter(function (s) {
+                    //                 return s.id == res.result[2].id;
+                    //             })[0];
+                    //             //工商财税
+                    //             vm.propertyType = res.result.filter(function (s) {
+                    //                 return s.id == res.result[3].id;
+                    //             })[0];
+                    //             // //评估评价
+                    //             vm.technologyType = res.result.filter(function (s) {
+                    //                  return s.id == res.result[4].id;
+                    //             })[0];
+                    //             //检验检测
+                    //             vm.transferType = res.result.filter(function (s) {
+                    //                 return s.id == res.result[5].id;
+                    //             })[0];
+                    //             //科技咨询
+                    //             // vm.knowledgeType = res.result.filter(function (s) {
+                    //             //     return s.id == res.result[6].id;
+                    //             // })[0];
+                    //         }
+                    //     })
+                    // },
                     getBanner: function (bannerType, key, pageSize) {
                         var vm = this
                         indexApi.selectBanner({bannerType: bannerType, pageSize: pageSize}).then(function (res) {
