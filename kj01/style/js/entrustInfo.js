@@ -12,7 +12,7 @@ require(['/common/js/require.config.js'], function () {
                         },
                         typeList: [],
                         typeProps: {
-                            value: 'id',
+                            value: 'name',
                             label: 'name'
                         },
                         ruleForm: {

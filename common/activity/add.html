@@ -761,7 +761,12 @@
     input:disabled {
         cursor: not-allowed;
     }
-    .radio-box label{font-size: 16px}
+    .radio-box label{font-size: 14px;vertical-align: middle;margin-right: 20px}
+    .radio-box input{    vertical-align: middle;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;}
 </style>
 <div class="box" id='index_box'>
     <ly-toper></ly-toper>
@@ -1012,8 +1017,8 @@
                                 <th>是否点播：</th>
                                 <td>
                                     <div class="radio-box">
-                                      <input type="radio" name="是" value="0" ><label>是</label>
-                                        <input type="radio" name="否" value="1"><label>否</label>
+                                      <input type="radio" name="rbox" value="0" @click="getRadioVal"><label>是</label>
+                                        <input type="radio" name="rbox" value="1" @click="getRadioVal"><label>否</label>
                                     </div>
                                 </td>
                                 <td class="form_msg"></td>
