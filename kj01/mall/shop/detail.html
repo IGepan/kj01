@@ -84,15 +84,11 @@
                                 <div class="card-body">
                                     <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
                                     <div class="quoted-price">
-                                        <span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">￥</span>
 
-                                        <span v-if="item.choosePriceTag =='3'">
-                                           {{item.priceWord}}
+                                        <span>
+                                            {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
                                         </span>
-                                        <span v-if="item.choosePriceTa!='3'">
-                                            {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
-                                        </span>
-                                        <span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">万</span>
+
                                     </div>
                                 </div>
                             </div>
@@ -126,15 +122,10 @@
                                 <div class="card-body">
                                     <h5 class="card-name"><a href="#" v-text="item.goodsName"></a></h5>
                                     <div class="quoted-price">
-                                        <span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">￥</span>
+                                        <span>
+                                            {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
+                                        </span>
 
-                                        <span v-if="item.choosePriceTag ==3">
-                                           {{item.priceWord}}
-                                        </span>
-                                        <span v-if="item.choosePriceTa!='3'">
-                                            {{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
-                                        </span>
-                                        <span v-show="item.choosePriceTag!='2'||item.choosePriceTag!='3'">元</span>
                                     </div>
                                 </div>
                             </div>
@@ -174,17 +165,13 @@
                         <div class="price-box">
                             <span class="txt">服务售价:</span>
                             <span class="price">
-                            <small v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">¥</small>
-                            <small v-else></small>
                             <span v-if="detailInfo.choosePriceTag ==3" v-html="cutout(detailInfo.priceWord)"
                                   style="display: table-cell;font-size: 1.5rem">
                                            {{detailInfo.priceWord}}
                                         </span>
-                                        <span v-if="detailInfo.choosePriceTa!='3'">
-                                            {{detailInfo.negotiableFlag | formatPrice(detailInfo.price, detailInfo.minPrice, detailInfo.maxPrice)}}
+                                        <span v-if="detailInfo.choosePriceTag!='3'">
+                                            {{formatPrice2(detailInfo.choosePriceTag,detailInfo.price, detailInfo.minPrice,detailInfo.maxPrice)}}
                                         </span>
-                            <span v-if="detailInfo.choosePriceTag==='0' || detailInfo.choosePriceTag==='1'">元</span>
-                            <span v-else></span>
                         </span>
                         </div>
                         <div class="service-tags">
@@ -261,13 +248,14 @@
                     <div class="block-content">
                         <ul class="list-unstyled">
                             <li v-for="item in latestGoodsList">
-                                <a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode"><span class="title"
+                                <a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">
+                                    <span class="title"
                                                                                                         :title="item.goodsName"
                                                                                                         v-text="item.goodsName||''"></span>
                                     <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">
-                                        <span v-if="item.choosePriceTag=='0'||item.choosePriceTag=='1'">￥</span>
-                                        <span v-else></span>{{item.choosePriceTag| formatPrice2(item.price, item.minPrice, item.maxPrice)}}
-                                        <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span>
+
+                                        {{formatPrice(item.choosePriceTag, item.price, item.minPrice, item.maxPrice)}}
+
                                         <!--                                    <i class="money">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</i>-->
                                     </i>
                                 </a>
@@ -568,10 +556,10 @@
         </div>
     </div>
 </footer>
-<script src="/common/js/jquery-3.2.1.min.js"></script>
-<script src="/common/js/owl.carousel.2.2.1/owl.carousel.min.js"></script>
+<script src="../../mall/js/jquery-3.5.1.slim.min.js"></script>
+<script src="/common/js/libs/owl.carousel.2.2.1/owl.carousel.min.js"></script>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mall/shop/detail.js"></script>
+<script type="text/javascript" src="../../style/js/mall/shop/detail.js"></script>
 
 
 </body>

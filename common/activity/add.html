@@ -360,16 +360,6 @@
         margin-right: -8px;
     }
 
-    /*.planSelect .mySelect-option {
-        border-color: #DDDDDD;
-        overflow: hidden;
-        word-break: break-all;
-        word-wrap: break-word;
-        margin-top: 5px;
-        box-sizing: content-box;
-        left: -1;
-        padding: 0 0 12px;
-    }*/
     .planSelect .mySelect-option {
         border-color: #DDDDDD;
         overflow: hidden;
@@ -379,8 +369,6 @@
         box-sizing: content-box;
         left: -1;
         padding: 0 0 12px;
-        max-height: 200px!important;
-        overflow-y: scroll;
     }
 
     .planSelect .mySelect-option div {
@@ -861,7 +849,7 @@
                                 </td>
                                 <td class="form_msg"></td>
                             </tr>
-                            <!--<tr class="validate form_item">
+                            <tr class="validate form_item">
                                 <th>主办单位：</th>
                                 <td>
                                     <div class="ipt name required" data-valid="custom:bindSponsorValid">
@@ -879,7 +867,7 @@
                                     </div>
                                 </td>
                                 <td class="form_msg"></td>
-                            </tr>-->
+                            </tr>
                             <tr class="form_item">
                                 <th></th>
                                 <td>
@@ -891,10 +879,8 @@
                                                        :false-value="0"
                                                        type="checkbox" v-model="isOpenCooperation">
                                                 <i class="icon iconfont icon-tianjiajiahaowubiankuang"></i>
-                                               <!-- <span class="text" style="line-height: 83px;"
-                                                      v-text="formData.cooperation.length ? '点击查看合作单位信息' : '如果需要添加合作单位，请添加；若没则跳过'"></span>-->
                                                 <span class="text" style="line-height: 83px;"
-                                                      v-text="formData.cooperation.length ? '点击查看主办单位及合作单位信息' : '添加主办单位；如果需要添加合作单位，请添加，若没则跳过'"></span>
+                                                      v-text="formData.cooperation.length ? '点击查看合作单位信息' : '如果需要添加合作单位，请添加；若没则跳过'"></span>
                                             </label>
                                         </div>
                                     </div>

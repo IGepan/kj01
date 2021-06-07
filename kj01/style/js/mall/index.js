@@ -55,23 +55,39 @@ require(['/common/js/require.config.js'], function () {
 
 
                 },
-                filters: {
-                    formatPrice2: function (flag, v, n, m) {
-                        if (flag === '2') {
-                            return '面议'
-                        }if(flag === "3"){
-                            return '查看价格详情'
-                        }else {
-                            if (typeof v !== 'undefined') {
-                                return (v / 10000).toFixed(2)
-                            } else if (!v && !m) {
-                                return (n / 10000).toFixed(2)
-                            } else {
-                                return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                            }
-                        }
-                    },
-                },
+                // filters: {
+                //     formatPrice: function (flag, v, n, m) {
+                //         if (flag === '2') {
+                //             return '面议'
+                //         }if(flag === "3"){
+                //             return '查看价格详情'
+                //         }else {
+                //             if (typeof v !== 'undefined') {
+                //                 return (v / 10000).toFixed(2)
+                //             } else if (!v && !m) {
+                //                 return (n / 10000).toFixed(2)
+                //             } else {
+                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+                //             }
+                //         }
+                //     },
+                //     formatPrice2: function (flag, v, n, m) {
+                //         if (flag === '2') {
+                //             return '面议'
+                //         }if(flag === "3"){
+                //             return '查看价格详情'
+                //         }else {
+                //             if (typeof v !== 'undefined') {
+                //                 return (v / 10000).toFixed(2)
+                //             } else if (!v && !m) {
+                //                 return (n / 10000).toFixed(2)
+                //             } else {
+                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
+                //             }
+                //         }
+                //     },
+                // },
+
                 // mounted: function () {
                 // },
                 components: {
@@ -93,8 +109,8 @@ require(['/common/js/require.config.js'], function () {
                     this.getBanner('02', 'indexBanner02', 1);
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
-                    this.goodFormData.pageSize = 6;
                     this.getMailGoods('chooseGoods')
+
                     this.goodFormData = {}
                     //最新入驻
                     this.goodFormData.pageSize = 8;
@@ -137,6 +153,7 @@ require(['/common/js/require.config.js'], function () {
                      * <li class=""><a href="#/technology">科技<br>咨询</a></li></ul>
                      * @type {string[]}
                      */
+
                     var sections = ['service-box', 'property', 'law', 'policy', 'business', 'inspection', 'technology']
                     window.addEventListener('scroll', function(){
                         var st = $(window).scrollTop()
@@ -151,7 +168,7 @@ require(['/common/js/require.config.js'], function () {
                                 return
                             }
                         })
-                        console.log(_this.changeSelectStyle)
+                        // console.log(_this.changeSelectStyle)
                     }, true)
 
                     window.addEventListener('hashchange', function() {
@@ -169,6 +186,36 @@ require(['/common/js/require.config.js'], function () {
                     }
                 },
                 methods: {
+                    formatPrice: function (flag, v, n, m) {
+                        if (flag == '2') {
+                            return '面议'
+                        }if(flag == "3"){
+                            return '查看价格详情'
+                        }else {
+                            if (typeof v !== 'undefined' ) {
+                                if (v >= 10000) {
+                                    return  '￥'+((v / 10000).toFixed(2) + '万元');
+                                }else {
+                                    return '￥'+ v + '元'
+                                }
+                            } else if (!v && !m ) {
+                                if (n >= 10000) {
+                                    return  '￥'+((n / 10000).toFixed(2)+"万元");
+                                }else {
+                                    return  '￥'+n+"元";
+                                }
+                            } else {
+                                if(n >= 100 && m >=10000 ){
+                                    return '￥'+((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)+'万元');
+                                }else if (n < 100 && m >= 10000) {
+                                    return '￥'+((n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(2)+'万元');
+                                } else {
+                                    return '￥' + (n + '-' + m + '元');
+                                }
+
+                            }
+                        }
+                    },
                     fwsClick: function () {
                         if (!this.userInfo.userId) {
                             window.location.href = "/common/login.html";
@@ -258,11 +305,22 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         indexApi.selectMailGoods(this.goodFormData).then(function (res) {
                             if (res.code === 'rest.success') {
+
                                 vm.$data[dateKey] = res.result.list
                                 vm.$nextTick(function () {
-                                    new Swiper('.service-list', {
-                                        slidesPerView: 4,
+                                    console.log('---------')
+                                    //精选服务列表，只展示2的倍数
+                                    if( vm.chooseGoods.length % 2 !== 0 ){
+                                        var list = vm.chooseGoods
+                                        vm.chooseGoods = list.splice(0,list.length - list.length % 2)
+
+                                    }
+                                  window.serviceSwiper = new Swiper('.service-list', {
+                                        slidesPerView: 3,
+                                      slidesPerColumn: 2,
+                                      // slidesPerGroup: 3,
                                         spaceBetween: 30,
+                                        // loop:true,
                                         navigation: {
                                             nextEl: '.item-next',
                                             prevEl: '.item-prev',

@@ -1,5 +1,5 @@
 .mdiv {
-    overflow: hidden;
+    /*overflow: hidden;*/
     pointer-events: fill;
     z-index: 1;
 }

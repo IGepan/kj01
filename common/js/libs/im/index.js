@@ -22,7 +22,7 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
   var config = {
     contactUser: httpUrl.baseUrl + '/im/getContactUserInfo',        //获取历史联系人或单个联系人信息
     regist: httpUrl.baseUrl + '/im/contactUser',                    //点击联系他注册
-    base_url: '/common/js/libs/im',                                                //表情目录
+    base_url: '/common/js/libs/im',                                  //表情目录
     searchHistory: httpUrl.baseUrl + '/im/getHistoryMsgByUserId',   //获取历史信息
     clearUnreadMsg: httpUrl.baseUrl + '/im/delUnreadMsg',           //清除所有未读
     token: httpUrl.baseUrl + '/im/getUserToken'                     //获取IM token
@@ -46,7 +46,7 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
     conn.listen({
       onOpened: function (message) {          //连接成功回调
         m_connected = true;
-        tFn();
+        // tFn();
         tFn = noop;
         console.log('connect success');
       },
@@ -65,6 +65,7 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
       },    //收到文件消息
       onError: function (message) {
       }       //收到消息已读回执
+
     });
   }
 

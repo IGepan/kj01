@@ -17,6 +17,9 @@
         .top_div > .mdiv {
             width: 1440px;
         }
+        .block-service .swiper-container-multirow-column>.swiper-wrapper{flex-direction: row!important; }
+        .block-service .swiper-slide{margin-top: 0!important;margin-bottom: 30px}
+        .block-service .card-body{width: 70%}
     </style>
 </head>
 <body>
@@ -199,40 +202,33 @@
                 </div>
                     <div class="sub-title">易智商城, 品牌优选</div></div>
 
-<!--                <div class="swiper-container service-list">-->
-<!--                    <div class="swiper-wrapper">-->
+                <div class="swiper-container service-list" style="width:90%;margin: 0 auto;">
+                    <div class="swiper-wrapper">
 <!--                        <template v-for="(good,index) in chooseGoods">-->
 <!--                            <div class="swiper-slide">-->
-<!--                                <a-->
-<!--                                        :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode"> <div class="card card-item">-->
-<!--                                    <img :src="good.goodsImg.url" class="" alt="...">-->
-<!--                                    <div class="card-body">-->
-<!--                                        <h5 class="card-title">-->
-<!--                                    {{good.goodsName}}-->
-<!--                                        </h5>-->
-<!--                                        <div class="justify-content-between addition">-->
-<!--                                            <div class="short-text">-->
-<!--                                                <p><i class="iconfont icon-tag"></i> {{good.typeName}}</p>-->
-<!--                                                <p><i class="iconfont icon-city"></i> {{good.shopName}}</p>-->
+<!--                                <a :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode">-->
+<!--                                    <div class="card card-item">-->
+<!--                                        <img :src="good.goodsImg.url" class="" alt="...">-->
+<!--                                        <div class="card-body">-->
+<!--                                            <h5 class="card-title">-->
+<!--                                        {{good.goodsName}}-->
+<!--                                            </h5>-->
+<!--                                            <div class="justify-content-between addition">-->
+<!--                                                <div class="short-text">-->
+<!--                                                    <p><i class="iconfont icon-tag"></i> {{good.typeName}}</p>-->
+<!--                                                    <p><i class="iconfont icon-city"></i> {{good.shopName}}</p>-->
+<!--                                                </div>-->
+<!--                                                <div class="quoted-price">{{formatPrice(good.choosePriceTag,good.price, good.minPrice, good.maxPrice)}}</div>-->
 <!--                                            </div>-->
-<!--                                            <div class="quoted-price"><span  v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">￥</span><span v-else></span>{{good.choosePriceTag |-->
-<!--                                                formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span  v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">万</span><span v-else></span></div>-->
 <!--                                        </div>-->
 <!--                                    </div>-->
-<!--                                </div></a>-->
+<!--                                </a>-->
 <!--                            </div>-->
 <!--                        </template>-->
 
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="item-next"><i class="iconfont icon-arrow-right"></i></div>-->
-<!--                <div class="item-prev"><i class="iconfont icon-arrow-left"></i></div>-->
-                <div class="service-list">
-                    <div class="">
                         <template v-for="(good,index) in chooseGoods">
-                            <div class="service-card col-4 fl">
-                                <a
-                                        :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode"> <div class="card card-item">
+                            <div class="swiper-slide">
+                                <a :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode"> <div class="card card-item">
                                     <img :src="good.goodsImg.url" class="" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">
@@ -240,12 +236,7 @@
                                         </h5>
                                         <div class="justify-content-between addition ">
                                             <div class="quoted-price">
-                                                <span
-                                                    v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">￥</span><span
-                                                    v-else></span>{{good.choosePriceTag |
-                                                formatPrice2(good.price, good.minPrice, good.maxPrice)}}<span
-                                                        v-if="good.choosePriceTag==='0' || good.choosePriceTag==='1'">万</span><span
-                                                        v-else></span>
+                                                {{formatPrice(good.choosePriceTag,good.price, good.minPrice, good.maxPrice)}}
 
                                             </div>
                                             <div class="ser-text l-line">
@@ -267,12 +258,20 @@
 
                     </div>
                 </div>
+                <div class="item-next"><i class="iconfont icon-arrow-right"></i></div>
+                <div class="item-prev"><i class="iconfont icon-arrow-left"></i></div>
+<!--                <div class="service-list">-->
+<!--                    <div class="">-->
+<!--
+
+                  </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
 
     <!--知识产权-->
-    <div class="container floor" id="property">
+    <div class="container floor" id="property" style="margin-top: -50px">
         <div class="main-block block-tabs">
             <div class="main-title-left ">
                 <span>{{incubationType.name}}</span>
@@ -310,15 +309,14 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{good_incubation.goodsName}}
                                 </h5>
-                                <div class="addition">
-                                    <div class="short-text fl s-line">
-                                        <p>{{good_incubation.shopName}}</p>
+                                <div class="addition2">
+                                    <div class="short-text s-line">
+                                        <p><i class="iconfont icon-city"></i>{{good_incubation.shopName}}</p>
 <!--                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>-->
                                     </div>
 
-                                    <div class="quoted-price fr"><span  v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">￥</span><span v-else></span>{{good_incubation.choosePriceTag |
-                                        formatPrice2(good_incubation.price, good_incubation.minPrice,
-                                        good_incubation.maxPrice)}}<span  v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">万</span><span v-else></span></div>
+                                    <div class="quoted-price">{{formatPrice(good_incubation.choosePriceTag,good_incubation.price, good_incubation.minPrice,
+                                        good_incubation.maxPrice)}}</div>
                                 </div>
                             </div>
                         </div>
@@ -373,18 +371,19 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{good_design.goodsName}}
                                     </h5>
-                                    <div class="addition">
-                                        <div class="short-text fl s-line">
+                                    <div class="addition2">
+                                        <div class="short-text s-line">
 <!--                                            <p><i class="iconfont icon-city"></i> {{good_design.typeName}}</p>-->
-                                            <p>{{good_design.shopName}}</p>
+                                            <p><i class="iconfont icon-city"></i>{{good_design.shopName}}</p>
                                         </div>
 
-                                        <div class="quoted-price fr"><span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">￥</span><span v-else></span>{{good_design.choosePriceTag |
-                                            formatPrice2(good_design.price, good_design.minPrice,
-                                            good_design.maxPrice)}}<span  v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">万</span><span v-else></span></div>
+                                        <div class="quoted-price">
+                                            {{ formatPrice(good_design.choosePriceTag, good_design.price, good_design.minPrice,
+                                            good_design.maxPrice)}}</div>
                                     </div>
                                 </div>
                             </div>
+
                             </a>
                         </div>
 
@@ -441,16 +440,16 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{good_checkType.goodsName}}
                                 </h5>
-                                <div class="addition">
-                                    <div class="short-text fl s-line">
+                                <div class="addition2">
+                                    <div class="short-text s-line">
 <!--                                        <p>{{good_checkType.typeName}}</p>-->
-                                        <p> {{good_checkType.shopName}}</p>
+                                        <p><i class="iconfont icon-city"></i>{{good_checkType.shopName}}</p>
                                     </div>
 
-                                    <div class="quoted-price fr"><span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span>
-                                        <span v-else></span>{{good_checkType.choosePriceTag |
-                                        formatPrice2(good_checkType.price, good_checkType.minPrice,
-                                        good_checkType.maxPrice)}}<span  v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">万</span><span v-else></span></div>
+                                    <div class="quoted-price">
+                                       {{formatPrice(good_checkType.choosePriceTag,good_checkType.price, good_checkType.minPrice,
+                                        good_checkType.maxPrice)}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -504,18 +503,17 @@
                                     <h5 class="card-title">{{good_propertyType.goodsName}}
                                     </h5>
                                     <div class="addition">
-                                        <div class="short-text fl s-line">
+                                        <div class="short-text s-line">
 <!--                                            <p> {{good_propertyType.typeName}}</p>-->
-                                            <p>{{good_propertyType.shopName}}</p>
+                                            <p><i class="iconfont icon-city"></i>{{good_propertyType.shopName}}</p>
                                         </div>
 
-                                        <div class="quoted-price fr">
-                                            <span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">￥</span>
-                                            <span v-else></span>{{good_propertyType.choosePriceTag | formatPrice2(good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}
-                                            <span  v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">万</span>
-                                            <span v-else></span></div>
+                                        <div class="quoted-price ">
+                                           {{formatPrice(good_propertyType.choosePriceTag,good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}
+
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             </a>
                         </div>
@@ -567,18 +565,19 @@
                                 <h5 class="card-title">{{good_technologyType.goodsName}}
                                 </h5>
                                 <div class="addition">
-                                    <div class="short-text fl s-line">
+                                    <div class="short-text s-line">
 <!--                                        <p> {{good_technologyType.typeName}}</p>-->
-                                        <p> {{good_technologyType.shopName}}</p>
+                                        <p><i class="iconfont icon-city"></i>{{good_technologyType.shopName}}</p>
                                     </div>
 
-                                    <div class="quoted-price fr">
-                                        <span  v-if="good_technologyType.choosePriceTag==='0' || good_technologyType.choosePriceTag==='1'">￥</span><span v-else></span>
-                                        {{good_technologyType.choosePriceTag | formatPrice2(good_technologyType.price,
+                                    <div class="quoted-price ">
+
+                                        {{ formatPrice(good_technologyType.choosePriceTag,good_technologyType.price,
                                         good_technologyType.minPrice, good_technologyType.maxPrice)}}
-                                        <span  v-if="good_technologyType.choosePriceTag==='0' || good_technologyType.choosePriceTag==='1'">万</span><span v-else></span></div>
+
                                 </div>
                             </div>
+                        </div>
                         </div>
                         </a>
                     </div>
@@ -632,15 +631,14 @@
                                     <h5 class="card-title">{{good_transferType.goodsName}}
                                     </h5>
                                     <div class="addition">
-                                        <div class="short-text fl s-line">
+                                        <div class="short-text s-line">
 <!--                                            <p>{{good_transferType.typeName}}</p>-->
-                                            <p> {{good_transferType.shopName}}</p>
+                                            <p><i class="iconfont icon-city"></i>{{good_transferType.shopName}}</p>
                                         </div>
 
-                                        <div class="quoted-price fr">
-                                            <span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">￥</span><span v-else></span>{{good_transferType.choosePriceTag |
-                                            formatPrice2(good_transferType.price, good_transferType.minPrice,
-                                            good_transferType.maxPrice)}}<span  v-if="good_transferType.choosePriceTag==='0' || good_transferType.choosePriceTag==='1'">万</span><span v-else></span>
+                                        <div class="quoted-price ">
+                                            {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,
+                                            good_transferType.maxPrice)}}
                                         </div>
                                     </div>
                                 </div>
@@ -825,7 +823,7 @@
     <web-footer></web-footer>
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
-<script type="text/javascript" src="/style/js/mall/index.js"></script>
+<script type="text/javascript" src="../style/js/mall/index.js"></script>
 <script src="/daping/style/js/vendor/jquery.min.js"></script>
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>

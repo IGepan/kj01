@@ -124,10 +124,10 @@
                                 <div class="date-left line" :title="item.industryNames">
                                     行业分类：{{item.industryNames}}
                                 </div>
-                                <div class="date-right line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">
-                                    <span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
-                                    <span v-else></span><span>{{item.choosePriceTag|formatPrice(item.price, item.minPrice, item.maxPrice)}}</span>
-                                    <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span></div>
+                                <div class="date-right line" :title="formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)">
+
+                                    {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</span>
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -138,25 +138,26 @@
             <div class="title-common">
                 <div class="title">科技服务</div>
                 <div class="sub-box">
-                    <div v-for="(item,index) in scienceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceService.html?industryLevel='+item.value">{{item.display}}</a></div>
+                    <div v-for="(item,index) in mailServiceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceService.html?type='+item.id">{{item.name}}</a></div>
                     <div><a href="scienceService.html">更多+</a></div>
                 </div>
             </div>
             <div class="content-box">
-                <div class="item-box" v-for="item in serviceList">
+                <div class="item-box" v-for="item in goodList">
                     <a :href="$pathPrefix+item.goodsDetailUrl">
                         <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
                         <div class="img-bottom">
                             <div class="title line">{{item.goodsName}}</div>
                             <div class="address"><span class="line">所属店铺：{{item.shopName}}</span></div>
                             <div class="date">
-                                <div class="date-left line" :title="item.industryNames">
-                                    行业分类：{{item.industryNames}}
+                                <div class="date-left line" :title="item.name">
+                                    服务类型：{{item.typeName}}
                                 </div>
-                                <div class="date-right line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">
-                                    <span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='2'">￥</span>
-                                    <span v-else></span>{{item.choosePriceTag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
-                                    <span v-show="item.choosePriceTag===!'3'">万</span></div>
+                                <div class="date-right line" :title="formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)">
+
+                                    {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
+
+                            </div>
                             </div>
                         </div>
                     </a>
