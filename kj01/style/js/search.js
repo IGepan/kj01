@@ -76,12 +76,12 @@ require(['/common/js/require.config.js'], function () {
                 selected: false,
                 display: '企业需求'
               },
-              {
-                id: 'select_type_7',
-                value: 'contentList',
-                selected: false,
-                display: '科技资讯'
-              },
+              // {
+              //   id: 'select_type_7',
+              //   value: 'contentList',
+              //   selected: false,
+              //   display: '科技资讯'
+              // },
               {
                 id: 'select_type_8',
                 value: '',
@@ -502,10 +502,10 @@ require(['/common/js/require.config.js'], function () {
                 this.searchForm.categoryCode = ki === 5 ? '' : ki === 4 ? '001,010' : '009'
                 this.searchForm.orderBy = 'createTime desc'
                 break;
-              case 6:
-                this.searchForm.orderBy = '4'
-                this.searchForm.categoryCode = ''
-                break;
+              // case 6:
+              //   this.searchForm.orderBy = '4'
+              //   this.searchForm.categoryCode = ''
+              //   break;
               default:
 			          location.href = '/resources/'
                 break;
