@@ -194,11 +194,11 @@
                         </div>
                         <div class="mb-3 row mb15  ">
                             <label  class="col-sm-2 col-form-label text-end"><span
-                                    class="text-danger">*</span>协议单价:</label>
+                                    class="text-danger" >*</span >协议单价:</label>
                             <div class="col-sm-10 inputContent">
-                                <input type="text" v-model="sku.protocolPrice" :disabled="sku.price !== undefined && sku.negotiableFlag === '0'"
+                                <input type="text" v-model="sku.protocolPrice" :disabled="sku.price !== undefined && sku.choosePriceTag === '0'"
                                        class="storeipt w210 required" data-valid="custom:protocolPriceValid" :data-shopIndex="i"
-                                       :data-skuIndex="si" @blur="">
+                                       :data-skuIndex="si" @blur="changePrice(i, si)">
                                 <span class="vlt form_msg"></span>
                             </div>
                         </div>
@@ -254,7 +254,9 @@
 
 
             <div class="submit-order d-flex justify-content-end py-4 my-4">
-                <div class="total me-5"><span class="align-middle">总金额(含运费)</span> <span class="price"  v-text="'￥' + shopTotal"></span></div>
+                <div class="total me-5"><span class="align-middle">总金额(含运费)</span>
+                    <span class="price"  v-text="'￥' + shopTotal"></span>
+                </div>
                 <button :disabled="isSubmitDisabled" type="button" @click="addOrder" class="btn btn-primary rounded-0">提交订单</button>
             </div>
         </div>

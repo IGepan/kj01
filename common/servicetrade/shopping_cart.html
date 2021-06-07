@@ -58,7 +58,8 @@
             <span class="titfl inline" style="margin-left: 61px;">操作</span>
           </div>
         </div>
-        <template v-for="(shop, i) in cartList" :key="shop.shopId">
+<!--        <template v-for="(shop, i) in cartList" :key="shop.shopId">-->
+        <template v-for="(shop, i) in cartList" >
           <div class="school">
             <div class="inline">
               <span class="chooseall mr5 inline" :class="{active: shop.isActive}" @click="selecedShopSkus(i)"></span>
