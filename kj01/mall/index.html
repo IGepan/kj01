@@ -270,63 +270,63 @@
         </div>
     </div>
 <!--    //测试-->
-    <div class="container floor" id="property" >
-        <div class="main-block block-tabs" v-for="type in typeList">
-            <div class="main-title-left ">
-                <span>{{type.name}}</span>
-                <span class="sol-title">{{type.sortExplain|''}}</span>
-            </div>
-            <!--            <div class="sub-title">-->
-            <!--                <ul class="nav justify-content-center">-->
-            <!--                    <li class="nav-item" v-for="incubation in incubationType.children">-->
-            <!--                        <a class="nav-link" href="#">{{incubation.name}}</a>-->
-            <!--                    </li>-->
-            <!--                </ul>-->
-            <!--            </div>-->
-            <div class="tab-content">
-                <div class="left-banner">
-                    <!--                    <h4>{{incubationType.name}}</h4>-->
+<!--    <div class="container floor" id="property" >-->
+<!--        <div class="main-block block-tabs" v-for="type in typeList">-->
+<!--            <div class="main-title-left ">-->
+<!--                <span>{{type.name}}</span>-->
+<!--                <span class="sol-title">{{type.sortExplain|''}}</span>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            <div class="sub-title">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <li class="nav-item" v-for="incubation in incubationType.children">&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <a class="nav-link" href="#">{{incubation.name}}</a>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--            &lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div class="tab-content">-->
+<!--                <div class="left-banner">-->
+<!--                    &lt;!&ndash;                    <h4>{{incubationType.name}}</h4>&ndash;&gt;-->
 
-                    <ul class="nav-list">
-                        <li class=""><a class="nav-link" >全部</a></li>
-                        <li class="nav-item" v-for="title in type.children">
-                            <a class="nav-link" href="#">{{title.name}}</a>
-                        </li>
-                    </ul>
+<!--                    <ul class="nav-list">-->
+<!--                        <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                        <li class="nav-item" v-for="title in type.children">-->
+<!--                            <a class="nav-link" href="#">{{title.name}}</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
 
-                    <a class="btn btn-outline-light" @click="checkMore(0)">进入专区 </a>
-                </div>
-                <div class="row row-cols-5">
+<!--                    <a class="btn btn-outline-light" @click="checkMore(0)">进入专区 </a>-->
+<!--                </div>-->
+<!--                <div class="row row-cols-5">-->
 
-                    <div class="col" v-for="goods in type.goodList">
-                        <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
-                            <div class="card card-item">
-                                <div class="content-img">
-                                    <img :src="goods.goodsImg.url" class="" alt="...">
-                                </div>
+<!--                    <div class="col" v-for="goods in type.goodList">-->
+<!--                        <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode">-->
+<!--                            <div class="card card-item">-->
+<!--                                <div class="content-img">-->
+<!--                                    <img :src="goods.goodsImg.url" class="" alt="...">-->
+<!--                                </div>-->
 
-                                <div class="card-body">
-                                    <h5 class="card-title">{{goods.goodsName}}
-                                    </h5>
-                                    <div class="addition2">
-                                        <div class="short-text s-line">
-                                            <p><i class="iconfont icon-city"></i>{{goods.shopName}}</p>
-                                            <!--                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>-->
-                                        </div>
+<!--                                <div class="card-body">-->
+<!--                                    <h5 class="card-title">{{goods.goodsName}}-->
+<!--                                    </h5>-->
+<!--                                    <div class="addition2">-->
+<!--                                        <div class="short-text s-line">-->
+<!--                                            <p><i class="iconfont icon-city"></i>{{goods.shopName}}</p>-->
+<!--                                            &lt;!&ndash;                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>&ndash;&gt;-->
+<!--                                        </div>-->
 
-                                        <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice,
-                                            goods.maxPrice)}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+<!--                                        <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice,-->
+<!--                                            goods.maxPrice)}}</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
 
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--知识产权-->
     <div class="container floor" id="property" style="margin-top: -50px">
         <div class="main-block block-tabs">
