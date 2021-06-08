@@ -31,5 +31,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     newsDetail: function (param) {
       return Http.get(httpUrl.baseUrl + '/content/detail', param);
     },
+    //服务分类
+    mailServiceType: function () {
+      return Http.get(httpUrl.baseUrl + '/mailServiceType/tree');
+    },
+    //分页查询商品列表
+    selectMailGoods: function (param) {
+      return Http.post(httpUrl.baseUrl + '/mailGoods/selectByPage', param);
+    },
   }
 })

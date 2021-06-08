@@ -134,7 +134,9 @@
                         <a target="_blank" :href="'/mall/shop/service-detail.html?id='+item.orderId+'&code='+shopCode" class="cpsign">
               <span class="cpfr">
                 <em class="cptime" v-text="'交易时间：'+(item.orderCreateTime||'')"></em>
-                <em class="cpmoney">交易金额：<i v-text="'￥' + item.protocolPrice"></i></em>
+                <em class="cpmoney">交易金额：<i v-text="'￥' + item.protocolPrice+'元'" ></i>
+
+                </em>
               </span>
                             <span class="cpbox">
                 <span class="cpname" v-text="item.goodsName"></span>
@@ -153,8 +155,9 @@
                     </li>
                 </ul>
                 <div class="countsbox">
-                    <span>小计：<i class="ctyellow">￥{{totalCount}}</i></span>
-                    <span>合计：<i class="ctyellow" v-text="'￥' + totalProtocolPrice"></i></span>
+                    <span>小计：<i class="ctyellow">￥{{totalCount}}元</i></span>
+                    <span>合计：<i class="ctyellow">
+                        ￥{{totalProtocolPrice}}元</i></span>
                 </div>
             </div>
             <!--分页-->

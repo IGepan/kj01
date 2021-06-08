@@ -76,12 +76,12 @@ require(['/common/js/require.config.js'], function () {
                 selected: false,
                 display: '企业需求'
               },
-              {
-                id: 'select_type_7',
-                value: 'contentList',
-                selected: false,
-                display: '科技资讯'
-              },
+              // {
+              //   id: 'select_type_7',
+              //   value: 'contentList',
+              //   selected: false,
+              //   display: '科技资讯'
+              // },
               {
                 id: 'select_type_8',
                 value: '',
@@ -159,6 +159,36 @@ require(['/common/js/require.config.js'], function () {
           this.handleSearch()
         },
         methods: {
+          formatPrice: function (flag, v, n, m) {
+            if (flag == '2') {
+              return '面议'
+            }if(flag == "3"){
+              return '查看价格详情'
+            }else {
+              if (typeof v !== 'undefined' ) {
+                if (v >= 10000) {
+                  return  '￥'+((v / 10000).toFixed(2) + '万元');
+                }else {
+                  return '￥'+ v + '元'
+                }
+              } else if (!v && !m ) {
+                if (n >= 10000) {
+                  return  '￥'+((n / 10000).toFixed(2)+"万元");
+                }else {
+                  return  '￥'+n+"元";
+                }
+              } else {
+                if(n >= 100 && m >=10000 ){
+                  return '￥'+((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)+'万元');
+                }else if (n < 100 && m >= 10000) {
+                  return '￥'+((n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(2)+'万元');
+                } else {
+                  return '￥' + (n + '-' + m + '元');
+                }
+
+              }
+            }
+          },
           getList: function () {
             var vm = this;
             var fun = this.typeValue.fun
@@ -472,10 +502,10 @@ require(['/common/js/require.config.js'], function () {
                 this.searchForm.categoryCode = ki === 5 ? '' : ki === 4 ? '001,010' : '009'
                 this.searchForm.orderBy = 'createTime desc'
                 break;
-              case 6:
-                this.searchForm.orderBy = '4'
-                this.searchForm.categoryCode = ''
-                break;
+              // case 6:
+              //   this.searchForm.orderBy = '4'
+              //   this.searchForm.categoryCode = ''
+              //   break;
               default:
 			          location.href = '/resources/'
                 break;

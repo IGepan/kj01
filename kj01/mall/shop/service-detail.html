@@ -135,9 +135,9 @@
                             <a class="img" href="#"><img :src="item.goodsImgUrl" class="" alt="..."></a>
                             <div class="card-body">
                                 <h5 class="card-name"><a :href="'/mall/shop/detail.html?id='+item.goodsId+'&code='+shopCode">{{item.goodsName}}</a></h5>
-                                <div class="quoted-price"><span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='1'">￥</span>
-                                    <span v-else></span>{{item.choosePriceTag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
-                                    <span v-show="item.choosePriceTag==='0' || item.choosePriceTag==='1'">万</span>
+                                <div class="quoted-price">
+                                    {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
+
                                 </div>
                             </div>
                         </div>

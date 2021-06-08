@@ -16,10 +16,10 @@
 <!--       <div class="header-text" v-if="navIndex===7">-->
 <!--         <div style="font-size: 35px;font-weight: bold;">关于我们</div>-->
 <!--       </div>-->
-       <div class="header-text" v-else-if="navIndex===8">
+       <div class="header-text" v-else-if="navIndex===7">
          <div style="font-size: 35px;font-weight: bold;">平台动态</div>
        </div>
-       <div class="header-text" v-if="navIndex===9">
+       <div class="header-text" v-if="navIndex===8">
          <div style="font-size: 35px;font-weight: bold;">关于我们</div>
        </div>
      </div>
@@ -85,10 +85,10 @@ module.exports = {
           label: '科技智库',
           url: 'http://www.castss.com/'
         },
-        {
-          label: '全景数据',
-          url: 'http://datamap.kj01.cn/'
-        },
+        // {
+        //   label: '全景数据',
+        //   url: 'http://datamap.kj01.cn/'
+        // },
         {
          label:"平台动态",
          url:"/platform.html"
@@ -202,7 +202,7 @@ module.exports = {
 	background-color: #ddf9ff;
 	border-radius: 20px;
  display: flex;
-  display: none;
+  /*display: none;*/
  align-items: center;
 }
 .search .iconfont {

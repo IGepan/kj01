@@ -479,13 +479,9 @@
 
                                 <div class="card-title">{{good_incubation.goodsName}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price"><span
-                                            v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">￥</span><span
-                                            v-else></span>{{good_incubation.choosePriceTag |
-                                        formatPrice2(good_incubation.price, good_incubation.minPrice,
-                                        good_incubation.maxPrice)}}<span
-                                                v-if="good_incubation.choosePriceTag==='0' || good_incubation.choosePriceTag==='1'">万</span><span
-                                                v-else></span></div>
+                                    <div class="quoted-price">{{formatPrice(good_incubation.choosePriceTag,good_incubation.price, good_incubation.minPrice,
+                                        good_incubation.maxPrice)}}
+                                    </div>
                                     <div class="short-text">
                                         <p><i class="iconfont icon-biaoqian"></i>{{good_incubation.typeName}}</p>
                                         <p><i class="iconfont icon-dingweixian"></i>{{good_incubation.shopName}}</p>
@@ -513,13 +509,8 @@
 
                                 <div class="card-title">{{good_design.goodsName}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price"><span
-                                            v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">￥</span><span
-                                            v-else></span>{{good_design.choosePriceTag |
-                                        formatPrice2(good_design.price, good_design.minPrice,
-                                        good_design.maxPrice)}}<span
-                                                v-if="good_design.choosePriceTag==='0' || good_design.choosePriceTag==='1'">万</span><span
-                                                v-else></span></div>
+                                    <div class="quoted-price">{{formatPrice(good_design.choosePriceTag,good_design.price, good_design.minPrice,
+                                        good_design.maxPrice)}}</div>
                                     <div class="short-text">
                                         <p><i class="iconfont icon-biaoqian"></i>{{good_design.typeName}}</p>
                                         <p><i class="iconfont icon-dingweixian"></i>{{good_design.shopName}}</p>
@@ -547,13 +538,8 @@
 
                                 <div class="card-title">{{good_checkType.goodsName}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price"><span
-                                            v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">￥</span>
-                                        <span v-else></span>{{good_checkType.choosePriceTag |
-                                        formatPrice2(good_checkType.price, good_checkType.minPrice,
-                                        good_checkType.maxPrice)}}<span
-                                                v-if="good_checkType.choosePriceTag==='0' || good_checkType.choosePriceTag==='1'">万</span><span
-                                                v-else></span></div>
+                                    <div class="quoted-price">{{formatPrice(good_checkType.choosePriceTag,good_checkType.price, good_checkType.minPrice,
+                                        good_checkType.maxPrice)}}</div>
                                     <div class="short-text">
                                         <p><i class="iconfont icon-biaoqian"></i>{{good_checkType.typeName}}</p>
                                         <p><i class="iconfont icon-dingweixian"></i>{{good_checkType.shopName}}</p>
@@ -582,12 +568,9 @@
                                 <div class="card-title">{{good_propertyType.goodsName}}</div>
                                 <div class="addition">
                                     <div class="quoted-price">
-                                        <span v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">￥</span>
-                                        <span v-else></span>{{good_propertyType.choosePriceTag |
-                                        formatPrice2(good_propertyType.price, good_propertyType.minPrice,
+                                        {{formatPrice(good_propertyType.choosePriceTag,good_propertyType.price, good_propertyType.minPrice,
                                         good_propertyType.maxPrice)}}
-                                        <span v-if="good_propertyType.choosePriceTag==='0' || good_propertyType.choosePriceTag==='1'">万</span>
-                                        <span v-else></span></div>
+                                        </div>
                                     <div class="short-text">
                                         <p><i class="iconfont icon-biaoqian"></i>{{good_propertyType.typeName}}</p>
                                         <p><i class="iconfont icon-dingweixian"></i>{{good_propertyType.shopName}}</p>
@@ -599,33 +582,60 @@
 
                 </div>
             </div>
-            <!--            评估评价-->
+<!--            &lt;!&ndash;            评估评价&ndash;&gt;-->
+<!--            <div class="mallItem">-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">-->
+<!--                    <span class="mallItem-imgBox-title">评估评价</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(6)">查看更多 &gt;&gt;</a>-->
+
+<!--                </div>-->
+<!--                <div class="mallItem-infoBox">-->
+<!--                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">-->
+<!--                            <div class="card-item">-->
+<!--                                <div class="technology-avatar"><img :src="good_knowledgeType.goodsImg.url" class=""-->
+<!--                                                                    alt="..."></div>-->
+
+<!--                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="quoted-price">-->
+<!--                                        {{formatPrice(good_knowledgeType.choosePriceTag,good_knowledgeType.price, good_knowledgeType.minPrice,-->
+<!--                                        good_knowledgeType.maxPrice)}}-->
+<!--                                    </div>-->
+<!--                                    <div class="short-text">-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+            <!--            科技咨询-->
             <div class="mallItem">
                 <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">
-                    <span class="mallItem-imgBox-title">评估评价</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(6)">查看更多 &gt;&gt;</a>
+                    <span class="mallItem-imgBox-title">科技咨询</span>
+                    <a class="mallItem-imgBox-url" @click="checkMore(5)">查看更多 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">
+                    <div class="col-card" v-for="good_transferType in transferTypeList">
+                        <a :href="'/mall/shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
                             <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_knowledgeType.goodsImg.url" class=""
+                                <div class="technology-avatar"><img :src="good_transferType.goodsImg.url" class=""
                                                                     alt="..."></div>
 
-                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>
+                                <div class="card-title">{{good_transferType.goodsName}}</div>
                                 <div class="addition">
                                     <div class="quoted-price">
-                                        <span v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">￥</span><span
-                                            v-else></span>{{good_knowledgeType.choosePriceTag |
-                                        formatPrice2(good_knowledgeType.price, good_knowledgeType.minPrice,
-                                        good_knowledgeType.maxPrice)}}<span
-                                            v-if="good_knowledgeType.choosePriceTag==='0' || good_knowledgeType.choosePriceTag==='1'">万</span><span
-                                            v-else></span>
+                                        {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,
+                                        good_transferType.maxPrice)}}
                                     </div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{good_transferType.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{good_transferType.shopName}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -652,12 +662,9 @@
                                 <div class="card-title">{{good_technology.goodsName}}</div>
                                 <div class="addition">
                                     <div class="quoted-price">
-                                        <span v-if="good_technology.choosePriceTag==='0' || good_technology.choosePriceTag==='1'">￥</span><span
-                                            v-else></span>{{good_technology.choosePriceTag |
-                                        formatPrice2(good_technology.price, good_technology.minPrice,
-                                        good_technology.maxPrice)}}<span
-                                            v-if="good_technology.choosePriceTag==='0' || good_technology.choosePriceTag==='1'">万</span><span
-                                            v-else></span>
+                                        {{formatPrice(good_technology.choosePriceTag,good_technology.price, good_technology.minPrice,
+                                        good_technology.maxPrice)}}
+
                                     </div>
                                     <div class="short-text">
                                         <p><i class="iconfont icon-biaoqian"></i>{{good_technology.typeName}}</p>

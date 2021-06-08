@@ -13,108 +13,131 @@
     <link href="style/css/main.css" rel="stylesheet">
     <link href="style/css/science/result_list.css" rel="stylesheet">
     <link href="style/css/science/service_list.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/css/science/bootstrap.min.css">
+    <link rel="stylesheet" href="style/css/science/swiper-bundle.min.css">
+    <link href="style/css/science/style.css" rel="stylesheet">
+    <script src="style/js/science/bootstrap.bundle.min.js"></script>
+    <script src="style/js/science/swiper-bundle.min.js"></script>
 </head>
 
 <body>
 <div class="boxs gray-bg" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <index-head :nav-index="4" :search-types="'服务'" :location-names="'scienceService.html'" @search="bindSearchValue"></index-head>
+    <index-head :nav-index="4" :search-types="'服务'" :location-names="'scienceService.html'" ></index-head>
     <div class="container-box">
         <div class="top-bg">
             <div class="mmdiv">科技服务</div>
         </div>
         <div class="content-box mmdiv">
-            <div class="searchListBox">
-                <template v-if="options.searchOpts.length">
-                    <template v-for="(optItem, index) in options.searchOpts">
-                        <div class="search-row" v-if="!optItem.isTop" :key="index">
-                            <label class="search-label">{{optItem.label}}</label>
-                            <div class="searchkeys" :class="{full: optItem.isMore}">
-                                <template v-if="optItem.operationType === 'select'">
-                                    <template v-for="(ducItem, sindex) in optItem.dictIInfos">
-                        <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: ducItem.selected }"
-                              :data-di="sindex" :data-pi="index" :data-value="ducItem.value"
-                              :key="sindex">{{ducItem.display}}</span>
+            <div class="filter-box">
+                <div class="filter-box-list">
+                    <div class="filter-item d-flex">
+
+                        <div class="filter-title">服务类型:</div>
+                        <ul class="nav filter-list" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" :class="{active: activeAll}"  id="tabs-all-tab" data-bs-toggle="pill"  role="tab"
+                                   aria-controls="tabs-all" aria-selected="false"
+                                   @click.stop="handleSearchForm('server')">全部</a>
+
+                            </li>
+                            <template v-for="(type,index) in options.mailServiceTypeList" >
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" :class="{active: type.selected}" data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
+                                       aria-controls="tabs-1" aria-selected="false"  :data-typeid="type.id"  @click.stop="handleSearchForm(type,'server')" >{{type.name}}</a>
+                                </li>
+                            </template>
+
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="pills-tabContent">
+                        <template v-for="(type,index) in options.mailServiceTypeList">
+                            <div class="tab-pane fade" :class="{active:type.id==parentId,show:type.id==parentId}" :id="'tabs-'+type.id" role="tabpanel" aria-labelledby="tabs-1-tab">
+                                <ul class="nav filter-list" >
+
+                                    <template v-for="child in type.children" >
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" :class="{active: child.selected}" data-bs-toggle="pill" :href="'#tabs-'+type.id" role="tab"
+                                               aria-controls="tabs-1" aria-selected="false" :data-typeid="child.id" @click.stop="handleSearchForm(child,'server')" >{{child.name}}</a></li>
                                     </template>
-                                    <div class="searchkey-second"
-                                         v-if="optItem.childIndex !== -1 && optItem.dictIInfos[optItem.childIndex].children.length">
-                                        <template v-for="(childItem, childindex) in optItem.dictIInfos[optItem.childIndex].children">
-                          <span class="searchkey childkey" @click.stop="handleSetSearchForm"
-                                :class="{ current: childItem.selected }" :data-ci="childindex" :data-di="optItem.childIndex"
-                                :data-pi="index" :data-value="childItem.value"
-                                :key="childindex">{{childItem.display}}</span>
-                                        </template>
-                                    </div>
-                                    <div v-show="optItem.isMoreShow" class="unfold" @click.stop="handleSetMoreItem(index)">
-                                        <span>{{ optItem.isMore ? '收起' : '更多' }}</span><span class="iconfont"
-                                                                                             :class="{'icon-zhankai': !optItem.isMore, 'iconfont icon-shouqi': optItem.isMore}"></span>
-                                    </div>
-                                </template>
-                                <template v-if="optItem.operationType=== 'area'">
-                      <span class="searchkey" @click.stop="handleSetSearchForm" :class="{ active: selected }"
-                            :data-di="-1" :data-pi="index" :data-value="-1">全部</span>
-                                    <span class="selectBox">
-                        <select placeholder="省级" v-model="searchForm.area" :data-pi="index"
-                                @change.stop="handleSetSearchForm" class="select" :class="{active: searchForm.area}">
-                          <template v-for="opt in optItem.dictIInfos">
-                            <option :value="opt.code" :key="opt.id">
-                              {{opt.display}}</option>
-                          </template>
-                        </select>
-                      </span>
-                                </template>
-                            </div>
-                        </div>
-                    </template>
-                </template>
-            </div>
-            <div class="searchResult">
-                <div class="result-left">
-                    <span class="label">已选条件：</span>
-                    <template v-for="(selectOpt, index) in options.selectOpts">
-                        <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i @click.stop="handleDelSelectOpt" :data-index="index" class="iconfont-template icon-delete icon"></i></label>
-                    </template>
-                </div>
-                <div class="result-right">
-                    <template v-if="options.searchOpts.length">
-                        <template v-for="(optItem, index) in options.searchOpts">
-                            <div class="searchMainkey boxBorderBottom noP" v-if="optItem.isTop">
-                                <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
-                                    <span class="mainKey" @click.stop="handleSetSearchForm"
-                                          :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index"
-                                          :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i
-                                            v-if="topDicItem.values.length" class="iconfont-template icon-shengxu"
-                                            :class="{current: !topDicItem.selectedIndex}"></i></span>
-<!--                                    <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i class="iconfont-template icon-paixu"></i></span>-->
-                                </template>
-                                <!-- <label class="checkbox" for="analyzingFlag">
-                                     <input id="analyzingFlag" class="vaMiddle" type="checkbox" v-model="searchForm.analyzingFlag" :true-value="1" :false-value="''">
-                                     <span class="vaMiddle checkbox-text">解读</span>
-                                 </label>-->
+                                </ul>
                             </div>
                         </template>
-                    </template>
-                    <div class="page-info">
-                        已为您筛选 <span class="total" v-text="count || 0" ></span> 条
                     </div>
+                </div>
+                <div class="filter-item d-flex price">
+                    <div class="filter-title">服务价格:</div>
+                    <ul class="nav filter-list" role="tablist">
+                        <template v-for="(optItem, index) in options.searchOpts">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link"  :class="{active: activePriceAll}" data-bs-toggle="pill"  role="tab"
+                                   aria-controls="tabs-all" aria-selected="false" :data-price="''"
+                                   @click.stop="handleSearchForm('price')">全部</a>
+
+                            </li>
+                            <template v-for="(ducItem, index) in optItem.dictIInfos" >
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" :class="{active: ducItem.selected}"
+                                       data-bs-toggle="pill" :href="'#tabs-'+ducItem.id" role="tab"
+                                       aria-controls="tabs-1" aria-selected="false":data-price="ducItem.value" @click.stop="handleSearchForm(ducItem,'price')" >{{ducItem.display}}</a>
+                                </li>
+                            </template>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+            <div class="toolbar d-flex justify-content-between">
+                <div class="filter-current">
+                    <span>已选条件:</span>
+                    <a v-for="(type,index) in result" :key = "index"
+                       class="cur-item" href="#">{{type.name||type.display}}<i class="iconfont-template icon-delete icon" @click.stop="remove(type)"></i></a>
+
+                </div>
+                <div class="sort">
+                    <ul class="list-inline m-0">
+
+                        <li class="list-inline-item"v-for="(item, i) in filters" :key="i" @click="handleFilter(i)" >
+                            <a :class="{active: item.seleced}" href="#" v-text="">{{item.label}}<i class="iconfont-template icon-shengxu"></i></a>
+                            </li>
+
+                        <li class="list-inline-item">已为您筛选 <span v-text="pages.total || 0" ></span> 条</li>
+                    </ul>
                 </div>
             </div>
             <div class="list-box mainPolicyList">
-                <div class="list">
-                    <div class="list-item" v-for="item in dataList">
-                        <a :href="$pathPrefix+item.goodsDetailUrl">
-                            <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
-                            <div class="title line2">{{item.goodsName}}</div>
-                            <div class="money line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">
-                                <span  v-if="item.choosePriceTag==='0' || item.choosePriceTag==='2'">￥</span>
-                                <span v-else></span>{{item.choosePriceTag | formatPrice(item.price, item.minPrice, item.maxPrice)}}
-                                <span v-show="item.choosePriceTag===!'3'">万</span></div>
-                            <div class="icon-text icon-text1 line" :title="item.industryNames"><i class="iconfont-template icon-biaoqian1"></i>{{item.industryNames}}</div>
-                            <div class="icon-text icon-text2 line" :title="item.shopName"><i class="iconfont-template icon-jigou"></i>{{item.shopName}}</div>
+                <div class="row row-cols-4">
+                    <template v-for="good in goodList">
+                        <a :href="$pathPrefix+good.goodsDetailUrl">
+                            <div class="col">
+                                <div class="card card-item" >
+                                    <img :src="good.goodsImg.url|''" class="" alt="...">
+                                    <!--                                    <img :src="https://fs.kj01.cn/resource/ts/goodsDefaultImg/009.jpg" class="" alt="...">-->
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{good.goodsName}}</h5>
+                                        <div class="addition">
+                                            <div class="quoted-price">
+                                                {{formatPrice(good.choosePriceTag,good.price, good.minPrice, good.maxPrice)}}
+<!--                                                <span v-if="good.choosePriceTag==='0'|good.choosePriceTag==='1'">万</span>-->
+<!--                                                <span v-else></span>-->
+                                            </div>
+                                            <div class="short-text">
+                                                <p><i class="iconfont-template icon-biaoqian1"></i>{{good.typeName}}</p>
+                                                <p><i class="iconfont-template icon-jigou"></i>{{good.shopName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </a>
-                    </div>
+                    </template>
                 </div>
-                <div id="pagination-container" class="pages" v-if="count>0"></div>
+                <!--                <div id="pagination-container" class="pages" v-if="count>0"></div>-->
+
+                    <template v-if="pages">
+                        <pages1 :pages="pages" @changepage="bindPageChange"></pages1>
+                    </template>
+
+<!--                <pages></pages>-->
             </div>
         </div>
     </div>

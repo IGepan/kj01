@@ -414,7 +414,7 @@
 					certificatImgs: [], // 证件图片
 					attachmentIdUrl: undefined,
           businessDuration: '', // 营业年限
-          businessDurationTo: '',
+          businessDurationTo: '2099-12-31',
 					certificatCountry: '', // 证件所在地国家(字典表:administrati
 					certificatProvince: '', // 证件所在地省份(字典表:administrative_
 					certificatCity: '', // 证件所在地城市(字典表:administrative_division)

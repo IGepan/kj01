@@ -153,7 +153,7 @@
                           </li>
                         </ul>
                         <div class="list-down_botton">
-                          <div class="price">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
+                          <div class="price">{{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</div>
                           <div class="grade">
                             <div class="stars" v-if="item.evaluateResult">
                               <div class="stars-empty">
@@ -245,7 +245,7 @@
                         <div class="list-up_left">
                           <div class="name">{{item.title}}</div>
                         </div>
-                        <div class="price">￥{{item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)}}</div>
+                        <div class="price">{{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</div>
                         <ul class="ul">
                           <li>
                             <span class="iconfont icon-hangye1"></span>
@@ -293,7 +293,7 @@
                           class="consult">立即咨询</span></div>
                     </div>
                     <div class="list-down">
-                      <div class="price">￥{{item.budget}}</div>
+                      <div class="price">￥{{item.budget}}元</div>
                       <ul class="unit">
                         <li>
                           <span class="iconfont icon-hangye1"></span>
@@ -334,7 +334,7 @@
     <web-footer></web-footer>
   </div>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script type="text/javascript" src="/style/js/search.js"></script>
+  <script type="text/javascript" src="../style/js/search.js"></script>
 </body>
 
 </html>
