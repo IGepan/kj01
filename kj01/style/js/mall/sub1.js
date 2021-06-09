@@ -180,9 +180,12 @@ require(['/common/js/require.config.js'], function () {
                             if (e.id==-1){
                                 this.searchForm.type = e.parentId
                             } else {
-                                if(e.id) this.searchForm.type = e.id
+                                if(e.id)
+                                  this.searchForm.type = e.id
+                                }
+
                             }
-                        }
+
                         if (e.name || e.display) {
                             var ser = []
                             var pr = []
@@ -198,9 +201,9 @@ require(['/common/js/require.config.js'], function () {
                                         item.selected = true
                                         vm.parentId=e.id;
                                     }
-                                    item.children.forEach(function (item2, dici) {
-                                        item2.selected=false
-                                    });
+                                    // item.children.forEach(function (item2, dici) {
+                                    //     item2.selected=false
+                                    // });
                                     item.children.forEach(function (item2, dici) {
                                         if (e.id == item2.id) {
                                             item2.selected = true
@@ -209,8 +212,10 @@ require(['/common/js/require.config.js'], function () {
                                                item2.selected=true
                                            }else {
                                                item2.selected=false
+
                                            }
                                         }
+
                                     });
                                 })
                             }

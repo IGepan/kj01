@@ -1185,8 +1185,9 @@ a:hover {
   margin-right: 1rem
 }
 
-.block-tabs {
+.block-tabs:first-child {
   /*padding-bottom: 2.8125rem; */
+  margin-top: -50px
 }
 
 .block-tabs .sub-title {
@@ -1234,14 +1235,25 @@ a:hover {
   width: 10rem;
   height: 37.3rem;
   /*background: url(../images/tab-bg1.jpg) no-repeat 50% 50%;*/
-  background: #74c4f2;
   position: absolute;
   left: 0;
   top: 0;
   padding: 1.75rem 1.25rem;
   color: #fff;
 }
-
+.bg1{background: #74c4f2}
+.bg1 .nav-list li a{background: #0a9fdd}
+.bg2{background: #ffc598}
+.bg2 .nav-list li a{background:#e9923a}
+.bg3{background: #8989f0}
+.bg3 .nav-list li a{background: #6237ea}
+.bg4{background: #f5b97e}
+.bg4 .nav-list li a{background: #e47a58}
+.bg5{background: #77ddba}
+.bg5 .nav-list li a{background: #059965}
+.bg6{background: #d49ff4}
+.bg6 .nav-list li a{background: #8f68f6}
+/*.bg7{background: #74c4f2}*/
 .nav-list {
   padding: 0!important;
 }

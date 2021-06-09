@@ -268,57 +268,106 @@
 <!--                </div>-->
             </div>
         </div>
-    </div>
-<!--    //测试-->
-<!--    <div class="container floor" id="property" >-->
-<!--        <div class="main-block block-tabs" v-for="type in typeList">-->
+
+<!--    //类型板块循环显示-->
+        <div class="main-block block-tabs" v-for="(type,index) in typeList" :id="'tabs'+index">
+            <div class="main-title-left ">
+                <span>{{type.name}}</span>
+                <span class="sol-title">{{type.sortExplain|''}}</span>
+            </div>
+            <div class="tab-content">
+                <div class="left-banner" :class="bgcolor[index]">
+                    <!--                    <h4>{{incubationType.name}}</h4>-->
+
+                    <ul class="nav-list">
+                        <li class=""><a class="nav-link" :href="'sub1.html?type='+type.id">全部</a></li>
+                        <li class="nav-item" v-for="title in type.children">
+                            <a class="nav-link" :href="'sub1.html?type='+title.id">{{title.name}}</a>
+                        </li>
+                    </ul>
+
+                    <a class="btn btn-outline-light" :href="'sub1.html?type='+type.id">进入专区 </a>
+                </div>
+                <div class="row row-cols-5" >
+
+                    <div class="col" v-for="goods in type.goodList">
+                        <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
+                            <div class="card card-item">
+                                <div class="content-img">
+                                    <img :src="goods.goodsImg.url" class="" alt="...">
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{goods.goodsName}}
+                                    </h5>
+                                    <div class="addition2">
+                                        <div class="short-text s-line">
+                                            <p><i class="iconfont icon-city"></i>{{goods.shopName}}</p>
+                                            <!--                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>-->
+                                        </div>
+
+                                        <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice, goods.maxPrice)}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+    <!--知识产权-->
+<!--    <div class="container floor" id="property" style="margin-top: -50px">-->
+<!--        <div class="main-block block-tabs">-->
 <!--            <div class="main-title-left ">-->
-<!--                <span>{{type.name}}</span>-->
-<!--                <span class="sol-title">{{type.sortExplain|''}}</span>-->
+<!--                <span>{{incubationType.name}}</span>-->
+<!--                <span class="sol-title">{{incubationType.sortExplain|''}}</span>-->
 <!--            </div>-->
-<!--            &lt;!&ndash;            <div class="sub-title">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <ul class="nav justify-content-center">&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <li class="nav-item" v-for="incubation in incubationType.children">&ndash;&gt;-->
-<!--            &lt;!&ndash;                        <a class="nav-link" href="#">{{incubation.name}}</a>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    </li>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </ul>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="sub-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="nav-item" v-for="incubation in incubationType.children">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="nav-link" href="#">{{incubation.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
 <!--            <div class="tab-content">-->
 <!--                <div class="left-banner">-->
-<!--                    &lt;!&ndash;                    <h4>{{incubationType.name}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h4>{{incubationType.name}}</h4>&ndash;&gt;-->
 
-<!--                    <ul class="nav-list">-->
-<!--                        <li class=""><a class="nav-link" >全部</a></li>-->
-<!--                        <li class="nav-item" v-for="title in type.children">-->
-<!--                            <a class="nav-link" href="#">{{title.name}}</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
+<!--                        <ul class="nav-list">-->
+<!--                            <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                            <li class="nav-item" v-for="incubation in incubationType.children">-->
+<!--                                <a class="nav-link" href="#">{{incubation.name}}</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
 
 <!--                    <a class="btn btn-outline-light" @click="checkMore(0)">进入专区 </a>-->
 <!--                </div>-->
 <!--                <div class="row row-cols-5">-->
 
-<!--                    <div class="col" v-for="goods in type.goodList">-->
-<!--                        <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode">-->
-<!--                            <div class="card card-item">-->
-<!--                                <div class="content-img">-->
-<!--                                    <img :src="goods.goodsImg.url" class="" alt="...">-->
-<!--                                </div>-->
+<!--                    <div class="col" v-for="good_incubation in incubationTypeList">-->
+<!--                        <a :href="'shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">-->
+<!--                        <div class="card card-item">-->
+<!--                            <div class="content-img">-->
+<!--                                <img :src="good_incubation.goodsImg.url" class="" alt="...">-->
+<!--                            </div>-->
 
-<!--                                <div class="card-body">-->
-<!--                                    <h5 class="card-title">{{goods.goodsName}}-->
-<!--                                    </h5>-->
-<!--                                    <div class="addition2">-->
-<!--                                        <div class="short-text s-line">-->
-<!--                                            <p><i class="iconfont icon-city"></i>{{goods.shopName}}</p>-->
-<!--                                            &lt;!&ndash;                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>&ndash;&gt;-->
-<!--                                        </div>-->
-
-<!--                                        <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice,-->
-<!--                                            goods.maxPrice)}}</div>-->
+<!--                            <div class="card-body">-->
+<!--                                <h5 class="card-title">{{good_incubation.goodsName}}-->
+<!--                                </h5>-->
+<!--                                <div class="addition2">-->
+<!--                                    <div class="short-text s-line">-->
+<!--                                        <p><i class="iconfont icon-city"></i>{{good_incubation.shopName}}</p>-->
+<!--&lt;!&ndash;                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>&ndash;&gt;-->
 <!--                                    </div>-->
+
+<!--                                    <div class="quoted-price">{{formatPrice(good_incubation.choosePriceTag,good_incubation.price, good_incubation.minPrice,-->
+<!--                                        good_incubation.maxPrice)}}</div>-->
 <!--                                </div>-->
 <!--                            </div>-->
+<!--                        </div>-->
 <!--                        </a>-->
 <!--                    </div>-->
 
@@ -327,388 +376,330 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->
-    <!--知识产权-->
-    <div class="container floor" id="property" style="margin-top: -50px">
-        <div class="main-block block-tabs">
-            <div class="main-title-left ">
-                <span>{{incubationType.name}}</span>
-                <span class="sol-title">{{incubationType.sortExplain|''}}</span>
-            </div>
-<!--            <div class="sub-title">-->
-<!--                <ul class="nav justify-content-center">-->
-<!--                    <li class="nav-item" v-for="incubation in incubationType.children">-->
-<!--                        <a class="nav-link" href="#">{{incubation.name}}</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-            <div class="tab-content">
-                <div class="left-banner">
-<!--                    <h4>{{incubationType.name}}</h4>-->
-
-                        <ul class="nav-list">
-                            <li class=""><a class="nav-link" >全部</a></li>
-                            <li class="nav-item" v-for="incubation in incubationType.children">
-                                <a class="nav-link" href="#">{{incubation.name}}</a>
-                            </li>
-                        </ul>
-
-                    <a class="btn btn-outline-light" @click="checkMore(0)">进入专区 </a>
-                </div>
-                <div class="row row-cols-5">
-
-                    <div class="col" v-for="good_incubation in incubationTypeList">
-                        <a :href="'shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">
-                        <div class="card card-item">
-                            <div class="content-img">
-                                <img :src="good_incubation.goodsImg.url" class="" alt="...">
-                            </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title">{{good_incubation.goodsName}}
-                                </h5>
-                                <div class="addition2">
-                                    <div class="short-text s-line">
-                                        <p><i class="iconfont icon-city"></i>{{good_incubation.shopName}}</p>
-<!--                                        <p><i class="iconfont icon-city"></i> {{good_incubation.shopName}}</p>-->
-                                    </div>
-
-                                    <div class="quoted-price">{{formatPrice(good_incubation.choosePriceTag,good_incubation.price, good_incubation.minPrice,
-                                        good_incubation.maxPrice)}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
     <!--法律服务-->
-    <div>
-        <div class="container floor" id="law">
-            <div class="main-block block-tabs design-tabs">
-                <div class="main-title-left ">
-                    <span>{{designType.name}}</span>
-                    <span class="sol-title">{{designType.sortExplain|''}}</span>
-                </div>
-<!--                <div class="main-title">-->
+<!--    <div>-->
+<!--        <div class="container floor" id="law">-->
+<!--            <div class="main-block block-tabs design-tabs">-->
+<!--                <div class="main-title-left ">-->
 <!--                    <span>{{designType.name}}</span>-->
+<!--                    <span class="sol-title">{{designType.sortExplain|''}}</span>-->
 <!--                </div>-->
-<!--                <div class="sub-title">-->
-<!--                    <ul class="nav justify-content-center">-->
-<!--                        <li class="nav-item" v-for="designType in designType.children">-->
-<!--                            <a class="nav-link" href="#">{{designType.name}}</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-                <div class="tab-content">
-                    <div class="left-banner">
-<!--                        <h4>{{designType.name}}</h4>-->
-<!--                        <div class="text">-->
-<!--                            {{designType.sortExplain|''}}-->
+<!--&lt;!&ndash;                <div class="main-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span>{{designType.name}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="sub-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item" v-for="designType in designType.children">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" href="#">{{designType.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="tab-content">-->
+<!--                    <div class="left-banner">-->
+<!--&lt;!&ndash;                        <h4>{{designType.name}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="text">&ndash;&gt;-->
+<!--&lt;!&ndash;                            {{designType.sortExplain|''}}&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                        <ul class="nav-list">-->
+<!--                            <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                            <li class="nav-item" v-for="designType in designType.children">-->
+<!--                                <a class="nav-link" href="#">{{designType.name}}</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        <a class="btn btn-outline-light" @click="checkMore(1)">进入专区-->
+<!--                                </a>-->
+<!--                    </div>-->
+<!--                    <div class="row row-cols-5">-->
+
+<!--                        <div class="col" v-for="good_design in designTypeList">-->
+<!--                            <a :href="'shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">-->
+<!--                            <div class="card card-item">-->
+<!--                                <div class="content-img"><img :src="good_design.goodsImg.url" class="" alt="..."></div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <h5 class="card-title">{{good_design.goodsName}}-->
+<!--                                    </h5>-->
+<!--                                    <div class="addition2">-->
+<!--                                        <div class="short-text s-line">-->
+<!--&lt;!&ndash;                                            <p><i class="iconfont icon-city"></i> {{good_design.typeName}}</p>&ndash;&gt;-->
+<!--                                            <p><i class="iconfont icon-city"></i>{{good_design.shopName}}</p>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="quoted-price">-->
+<!--                                            {{ formatPrice(good_design.choosePriceTag, good_design.price, good_design.minPrice,-->
+<!--                                            good_design.maxPrice)}}</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            </a>-->
 <!--                        </div>-->
-                        <ul class="nav-list">
-                            <li class=""><a class="nav-link" >全部</a></li>
-                            <li class="nav-item" v-for="designType in designType.children">
-                                <a class="nav-link" href="#">{{designType.name}}</a>
-                            </li>
-                        </ul>
-                        <a class="btn btn-outline-light" @click="checkMore(1)">进入专区
-                                </a>
-                    </div>
-                    <div class="row row-cols-5">
 
-                        <div class="col" v-for="good_design in designTypeList">
-                            <a :href="'shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">
-                            <div class="card card-item">
-                                <div class="content-img"><img :src="good_design.goodsImg.url" class="" alt="..."></div>
-
-                                <div class="card-body">
-                                    <h5 class="card-title">{{good_design.goodsName}}
-                                    </h5>
-                                    <div class="addition2">
-                                        <div class="short-text s-line">
-<!--                                            <p><i class="iconfont icon-city"></i> {{good_design.typeName}}</p>-->
-                                            <p><i class="iconfont icon-city"></i>{{good_design.shopName}}</p>
-                                        </div>
-
-                                        <div class="quoted-price">
-                                            {{ formatPrice(good_design.choosePriceTag, good_design.price, good_design.minPrice,
-                                            good_design.maxPrice)}}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-                <!--首页通栏广告-->
-<!--                <div class="page-banner">-->
-<!--                    <template v-for="idx_banner2 in indexBanner02" >-->
-<!--                        <a href="#"><img class="img-fluid" :src="idx_banner2.path" alt="" ></a>-->
-<!--                    </template>-->
+<!--                    </div>-->
 <!--                </div>-->
-            </div>
+<!--                &lt;!&ndash;首页通栏广告&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="page-banner">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <template v-for="idx_banner2 in indexBanner02" >&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="#"><img class="img-fluid" :src="idx_banner2.path" alt="" ></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </template>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
 
-        </div>
-    </div>
+<!--        </div>-->
+<!--    </div>-->
     <!--政策申报-->
-    <div class="container floor" id="policy">
-        <div class="main-block block-tabs test-tabs">
-            <div class="main-title-left ">
-                <span>{{checkType.name}}</span>
-                <span class="sol-title">{{checkType.sortExplain|''}}</span>
-            </div>
-<!--            <div class="main-title">-->
+<!--    <div class="container floor" id="policy">-->
+<!--        <div class="main-block block-tabs test-tabs">-->
+<!--            <div class="main-title-left ">-->
 <!--                <span>{{checkType.name}}</span>-->
+<!--                <span class="sol-title">{{checkType.sortExplain|''}}</span>-->
 <!--            </div>-->
-<!--            <div class="sub-title">-->
-<!--                <ul class="nav justify-content-center">-->
-<!--                    <li class="nav-item" v-for="checkType in checkType.children">-->
-<!--                        <a class="nav-link" href="#">{{checkType.name}}</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-            <div class="tab-content">
-                <div class="left-banner">
-<!--                    <h4>{{checkType.name}}</h4>-->
-<!--                    <div class="text">-->
-<!--                        {{checkType.sortExplain|''}}-->
+<!--&lt;!&ndash;            <div class="main-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span>{{checkType.name}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="sub-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="nav-item" v-for="checkType in checkType.children">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="nav-link" href="#">{{checkType.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div class="tab-content">-->
+<!--                <div class="left-banner">-->
+<!--&lt;!&ndash;                    <h4>{{checkType.name}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="text">&ndash;&gt;-->
+<!--&lt;!&ndash;                        {{checkType.sortExplain|''}}&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <ul class="nav-list">-->
+<!--                        <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                        <li class="nav-item" v-for="checkType in checkType.children">-->
+<!--                            <a class="nav-link" href="#">{{checkType.name}}</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                    <a class="btn btn-outline-light" @click="checkMore(2)">进入专区 </a>-->
+<!--                </div>-->
+<!--                <div class="row row-cols-5">-->
+
+<!--                    <div class="col" v-for="good_checkType in checkTypeList">-->
+<!--                        <a-->
+<!--                                :href="'shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">-->
+<!--                        <div class="card card-item">-->
+<!--                            <div class="content-img"> <img :src="good_checkType.goodsImg.url" class="" alt="..."></div>-->
+<!--                            <div class="card-body">-->
+<!--                                <h5 class="card-title">{{good_checkType.goodsName}}-->
+<!--                                </h5>-->
+<!--                                <div class="addition2">-->
+<!--                                    <div class="short-text s-line">-->
+<!--&lt;!&ndash;                                        <p>{{good_checkType.typeName}}</p>&ndash;&gt;-->
+<!--                                        <p><i class="iconfont icon-city"></i>{{good_checkType.shopName}}</p>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="quoted-price">-->
+<!--                                       {{formatPrice(good_checkType.choosePriceTag,good_checkType.price, good_checkType.minPrice,-->
+<!--                                        good_checkType.maxPrice)}}-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        </a>-->
 <!--                    </div>-->
-                    <ul class="nav-list">
-                        <li class=""><a class="nav-link" >全部</a></li>
-                        <li class="nav-item" v-for="checkType in checkType.children">
-                            <a class="nav-link" href="#">{{checkType.name}}</a>
-                        </li>
-                    </ul>
-                    <a class="btn btn-outline-light" @click="checkMore(2)">进入专区 </a>
-                </div>
-                <div class="row row-cols-5">
-
-                    <div class="col" v-for="good_checkType in checkTypeList">
-                        <a
-                                :href="'shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">
-                        <div class="card card-item">
-                            <div class="content-img"> <img :src="good_checkType.goodsImg.url" class="" alt="..."></div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{good_checkType.goodsName}}
-                                </h5>
-                                <div class="addition2">
-                                    <div class="short-text s-line">
-<!--                                        <p>{{good_checkType.typeName}}</p>-->
-                                        <p><i class="iconfont icon-city"></i>{{good_checkType.shopName}}</p>
-                                    </div>
-
-                                    <div class="quoted-price">
-                                       {{formatPrice(good_checkType.choosePriceTag,good_checkType.price, good_checkType.minPrice,
-                                        good_checkType.maxPrice)}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--工商财税-->
-    <div class="">
-        <div class="container floor" id="business">
-            <div class="main-block block-tabs property-tabs">
-                <div class="main-title-left ">
-                    <span>{{propertyType.name}}</span>
-                    <span class="sol-title">{{propertyType.sortExplain|''}}</span>
-                </div>
-<!--                <div class="main-title">-->
+<!--    <div class="">-->
+<!--        <div class="container floor" id="business">-->
+<!--            <div class="main-block block-tabs property-tabs">-->
+<!--                <div class="main-title-left ">-->
 <!--                    <span>{{propertyType.name}}</span>-->
+<!--                    <span class="sol-title">{{propertyType.sortExplain|''}}</span>-->
 <!--                </div>-->
+<!--&lt;!&ndash;                <div class="main-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span>{{propertyType.name}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
 
-<!--                <div class="sub-title">-->
-<!--                    <ul class="nav justify-content-center">-->
-<!--                        <li class="nav-item" v-for="propertyType in propertyType.children">-->
-<!--                            <a class="nav-link" href="#">{{propertyType.name}}</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-                <div class="tab-content">
-                    <div class="left-banner">
-                        <ul class="nav-list">
-                            <li class=""><a class="nav-link" >全部</a></li>
-                            <li class="nav-item" v-for="propertyType in propertyType.children">
-                                <a class="nav-link" href="#">{{propertyType.name}}</a>
-                            </li>
-                        </ul>
-<!--                        <h4>{{propertyType.name}}</h4>-->
-<!--                        <div class="text">-->
-<!--                            {{propertyType.sortExplain|''}}-->
-<!--                        </div>-->
-                        <a class="btn btn-outline-light" @click="checkMore(3)">进入专区 </a>
-                    </div>
-                    <div class="row row-cols-5">
-
-                        <div class="col" v-for="good_propertyType in propertyTypeList">
-                            <a
-                                    :href="'shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">
-                            <div class="card card-item">
-                                <div class="content-img"> <img :src="good_propertyType.goodsImg.url" class="" alt="..."></div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{good_propertyType.goodsName}}
-                                    </h5>
-                                    <div class="addition">
-                                        <div class="short-text s-line">
-<!--                                            <p> {{good_propertyType.typeName}}</p>-->
-                                            <p><i class="iconfont icon-city"></i>{{good_propertyType.shopName}}</p>
-                                        </div>
-
-                                        <div class="quoted-price ">
-                                           {{formatPrice(good_propertyType.choosePriceTag,good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}
-
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--检验检测-->
-    <div class="container floor" id="inspection">
-        <div class="main-block block-tabs migrate-tabs">
-            <div class="main-title-left ">
-                <span>{{technologyType.name}}</span>
-                <span class="sol-title">{{technologyType.sortExplain|''}}</span>
-            </div>
-<!--            <div class="main-title">-->
-<!--                <span>{{technologyType.name}}</span>-->
-<!--            </div>-->
-
-<!--            <div class="sub-title">-->
-<!--                <ul class="nav justify-content-center">-->
-<!--                    <li class="nav-item" v-for="technologyType in technologyType.children">-->
-<!--                        <a class="nav-link" href="#">{{technologyType.name}}</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-            <div class="tab-content">
-                <div class="left-banner">
-                    <ul class="nav-list">
-                        <li class=""><a class="nav-link" >全部</a></li>
-                        <li class="nav-item" v-for="technologyType in technologyType.children">
-                            <a class="nav-link" href="#">{{technologyType.name}}</a>
-                        </li>
-                    </ul>
-<!--                    <h4>{{technologyType.name}}</h4>-->
-<!--                    <div class="text">-->
-<!--                        {{technologyType.sortExplain|''}}-->
+<!--&lt;!&ndash;                <div class="sub-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item" v-for="propertyType in propertyType.children">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" href="#">{{propertyType.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="tab-content">-->
+<!--                    <div class="left-banner">-->
+<!--                        <ul class="nav-list">-->
+<!--                            <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                            <li class="nav-item" v-for="propertyType in propertyType.children">-->
+<!--                                <a class="nav-link" href="#">{{propertyType.name}}</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--&lt;!&ndash;                        <h4>{{propertyType.name}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="text">&ndash;&gt;-->
+<!--&lt;!&ndash;                            {{propertyType.sortExplain|''}}&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                        <a class="btn btn-outline-light" @click="checkMore(3)">进入专区 </a>-->
 <!--                    </div>-->
-                    <a class="btn btn-outline-light" @click="checkMore(4)">进入专区  </a>
-                </div>
-                <div class="row row-cols-5">
+<!--                    <div class="row row-cols-5">-->
 
-                    <div class="col" v-for="good_technologyType in technologyTypeList">
-                        <a :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">
-                        <div class="card card-item">
-                            <div class="content-img"><img :src="good_technologyType.goodsImg.url" class="" alt="..."></div>
+<!--                        <div class="col" v-for="good_propertyType in propertyTypeList">-->
+<!--                            <a-->
+<!--                                    :href="'shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">-->
+<!--                            <div class="card card-item">-->
+<!--                                <div class="content-img"> <img :src="good_propertyType.goodsImg.url" class="" alt="..."></div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <h5 class="card-title">{{good_propertyType.goodsName}}-->
+<!--                                    </h5>-->
+<!--                                    <div class="addition">-->
+<!--                                        <div class="short-text s-line">-->
+<!--&lt;!&ndash;                                            <p> {{good_propertyType.typeName}}</p>&ndash;&gt;-->
+<!--                                            <p><i class="iconfont icon-city"></i>{{good_propertyType.shopName}}</p>-->
+<!--                                        </div>-->
 
-                            <div class="card-body">
-                                <h5 class="card-title">{{good_technologyType.goodsName}}
-                                </h5>
-                                <div class="addition">
-                                    <div class="short-text s-line">
-<!--                                        <p> {{good_technologyType.typeName}}</p>-->
-                                        <p><i class="iconfont icon-city"></i>{{good_technologyType.shopName}}</p>
-                                    </div>
+<!--                                        <div class="quoted-price ">-->
+<!--                                           {{formatPrice(good_propertyType.choosePriceTag,good_propertyType.price, good_propertyType.minPrice, good_propertyType.maxPrice)}}-->
 
-                                    <div class="quoted-price ">
-
-                                        {{ formatPrice(good_technologyType.choosePriceTag,good_technologyType.price,
-                                        good_technologyType.minPrice, good_technologyType.maxPrice)}}
-
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--科技咨询-->
-    <div>
-        <div class="container floor" id="technology">
-            <div class="main-block block-tabs technology-tabs">
-                <div class="main-title-left ">
-                    <span>{{transferType.name}}</span>
-                    <span class="sol-title">{{transferType.sortExplain|''}}</span>
-                </div>
-<!--                <div class="main-title">-->
-<!--                    <span>{{transferType.name}}</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
 <!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <!--检验检测-->
+<!--    <div class="container floor" id="inspection">-->
+<!--        <div class="main-block block-tabs migrate-tabs">-->
+<!--            <div class="main-title-left ">-->
+<!--                <span>{{technologyType.name}}</span>-->
+<!--                <span class="sol-title">{{technologyType.sortExplain|''}}</span>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            <div class="main-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span>{{technologyType.name}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
 
-<!--                <div class="sub-title">-->
-<!--                    <ul class="nav justify-content-center">-->
-<!--                        <li class="nav-item" v-for="transferType in transferType.children">-->
-<!--                            <a class="nav-link" href="#">{{transferType.name}}</a>-->
+<!--&lt;!&ndash;            <div class="sub-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="nav-item" v-for="technologyType in technologyType.children">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="nav-link" href="#">{{technologyType.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div class="tab-content">-->
+<!--                <div class="left-banner">-->
+<!--                    <ul class="nav-list">-->
+<!--                        <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                        <li class="nav-item" v-for="technologyType in technologyType.children">-->
+<!--                            <a class="nav-link" href="#">{{technologyType.name}}</a>-->
 <!--                        </li>-->
 <!--                    </ul>-->
+<!--&lt;!&ndash;                    <h4>{{technologyType.name}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="text">&ndash;&gt;-->
+<!--&lt;!&ndash;                        {{technologyType.sortExplain|''}}&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <a class="btn btn-outline-light" @click="checkMore(4)">进入专区  </a>-->
 <!--                </div>-->
-                <div class="tab-content">
-                    <div class="left-banner">
-                        <ul class="nav-list">
-                            <li class=""><a class="nav-link" >全部</a></li>
-                            <li class="nav-item" v-for="transferType in transferType.children">
-                                <a class="nav-link" href="#">{{transferType.name}}</a>
-                            </li>
-                        </ul>
-<!--                        <h4>{{transferType.name}}</h4>-->
-<!--                        <div class="text">-->
-<!--                            {{transferType.sortExplain|''}}-->
+<!--                <div class="row row-cols-5">-->
+
+<!--                    <div class="col" v-for="good_technologyType in technologyTypeList">-->
+<!--                        <a :href="'shop/detail.html?id='+good_technologyType.id+'&code='+good_technologyType.shopCode">-->
+<!--                        <div class="card card-item">-->
+<!--                            <div class="content-img"><img :src="good_technologyType.goodsImg.url" class="" alt="..."></div>-->
+
+<!--                            <div class="card-body">-->
+<!--                                <h5 class="card-title">{{good_technologyType.goodsName}}-->
+<!--                                </h5>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="short-text s-line">-->
+<!--&lt;!&ndash;                                        <p> {{good_technologyType.typeName}}</p>&ndash;&gt;-->
+<!--                                        <p><i class="iconfont icon-city"></i>{{good_technologyType.shopName}}</p>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="quoted-price ">-->
+
+<!--                                        {{ formatPrice(good_technologyType.choosePriceTag,good_technologyType.price,-->
+<!--                                        good_technologyType.minPrice, good_technologyType.maxPrice)}}-->
+
+<!--                                </div>-->
+<!--                            </div>-->
 <!--                        </div>-->
-                        <a class="btn btn-outline-light" @click="checkMore(5)">进入专区 </a>
-                    </div>
-                    <div class="row row-cols-5">
-                        <div class="col" v-for="good_transferType in transferTypeList">
-                            <a
-                                :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
-                            <div class="card card-item">
+<!--                        </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                                <div class="content-img"><img :src="good_transferType.goodsImg.url" class="" alt="..."></div>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <!--科技咨询-->
+<!--    <div>-->
+<!--        <div class="container floor" id="technology">-->
+<!--            <div class="main-block block-tabs technology-tabs">-->
+<!--                <div class="main-title-left ">-->
+<!--                    <span>{{transferType.name}}</span>-->
+<!--                    <span class="sol-title">{{transferType.sortExplain|''}}</span>-->
+<!--                </div>-->
+<!--&lt;!&ndash;                <div class="main-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span>{{transferType.name}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
 
-                                <div class="card-body">
-                                    <h5 class="card-title">{{good_transferType.goodsName}}
-                                    </h5>
-                                    <div class="addition">
-                                        <div class="short-text s-line">
-<!--                                            <p>{{good_transferType.typeName}}</p>-->
-                                            <p><i class="iconfont icon-city"></i>{{good_transferType.shopName}}</p>
-                                        </div>
+<!--&lt;!&ndash;                <div class="sub-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ul class="nav justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item" v-for="transferType in transferType.children">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" href="#">{{transferType.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="tab-content">-->
+<!--                    <div class="left-banner">-->
+<!--                        <ul class="nav-list">-->
+<!--                            <li class=""><a class="nav-link" >全部</a></li>-->
+<!--                            <li class="nav-item" v-for="transferType in transferType.children">-->
+<!--                                <a class="nav-link" href="#">{{transferType.name}}</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--&lt;!&ndash;                        <h4>{{transferType.name}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="text">&ndash;&gt;-->
+<!--&lt;!&ndash;                            {{transferType.sortExplain|''}}&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                        <a class="btn btn-outline-light" @click="checkMore(5)">进入专区 </a>-->
+<!--                    </div>-->
+<!--                    <div class="row row-cols-5">-->
+<!--                        <div class="col" v-for="good_transferType in transferTypeList">-->
+<!--                            <a-->
+<!--                                :href="'shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">-->
+<!--                            <div class="card card-item">-->
 
-                                        <div class="quoted-price ">
-                                            {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,
-                                            good_transferType.maxPrice)}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
+<!--                                <div class="content-img"><img :src="good_transferType.goodsImg.url" class="" alt="..."></div>-->
 
-                    </div>
-                </div>
-            </div>
+<!--                                <div class="card-body">-->
+<!--                                    <h5 class="card-title">{{good_transferType.goodsName}}-->
+<!--                                    </h5>-->
+<!--                                    <div class="addition">-->
+<!--                                        <div class="short-text s-line">-->
+<!--&lt;!&ndash;                                            <p>{{good_transferType.typeName}}</p>&ndash;&gt;-->
+<!--                                            <p><i class="iconfont icon-city"></i>{{good_transferType.shopName}}</p>-->
+<!--                                        </div>-->
 
-        </div>
-    </div>
+<!--                                        <div class="quoted-price ">-->
+<!--                                            {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,-->
+<!--                                            good_transferType.maxPrice)}}-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
 <!--    评估评价-->
 <!--    <div class="container">-->
 <!--        <div class="main-block block-tabs technology-tabs">-->
@@ -864,15 +855,18 @@
         </div>
     </div>
     </div>
+
     <div class="rightbox-list" id="showbox">
         <ul :class="'active'+changeSelectStyle">
+
             <li :class="{changeStyle:changeSelectStyle == 0}" @click="changeStyle(0)" ><a href="#/service-box">精选<br>服务</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 1}" @click="changeStyle(1)" ><a href="#/property">知识<br>产权</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 2}" @click="changeStyle(2)"><a  href="#/law">法律<br>服务</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 3}" @click="changeStyle(3)"><a href="#/policy">政策<br>申报</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 4}" @click="changeStyle(4)"><a href="#/business">工商<br>财税</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 5}" @click="changeStyle(5)" ><a href="#/inspection">检验<br>检测</a></li>
-            <li :class="{changeStyle:changeSelectStyle == 6}" @click="changeStyle(6)" ><a href="#/technology">科技<br>咨询</a></li>
+            <li v-for="(item,index) in typeList"  :class="{changeStyle:changeSelectStyle == index +1}" @click="changeStyle(index+1)" ><a :href="'#tabs'+index">{{item.name}}</a></li>
+<!--            <li :class="{changeStyle:changeSelectStyle == 1}" @click="changeStyle(1)" ><a href="#/property">知识<br>产权</a></li>-->
+<!--            <li :class="{changeStyle:changeSelectStyle == 2}" @click="changeStyle(2)"><a  href="#/law">法律<br>服务</a></li>-->
+<!--            <li :class="{changeStyle:changeSelectStyle == 3}" @click="changeStyle(3)"><a href="#/policy">政策<br>申报</a></li>-->
+<!--            <li :class="{changeStyle:changeSelectStyle == 4}" @click="changeStyle(4)"><a href="#/business">工商<br>财税</a></li>-->
+<!--            <li :class="{changeStyle:changeSelectStyle == 5}" @click="changeStyle(5)" ><a href="#/inspection">检验<br>检测</a></li>-->
+<!--            <li :class="{changeStyle:changeSelectStyle == 6}" @click="changeStyle(6)" ><a href="#/technology">科技<br>咨询</a></li>-->
 <!--            <span class="bg_color"></span>-->
 <!--            <li ><a href="#"><img src="/style/images/index/toper_4.png" alt="">顶部</a></li>-->
         </ul>
@@ -901,10 +895,10 @@
         {
             var oDiv = document.getElementById("showbox")
             var s = document.body.scrollTop || document.documentElement.scrollTop
-            var w = $(this).height();
-            if(s>220) {
+            var h = $('.floor').outerHeight()
+            if(s>220 && s<(h+50)) {
                 oDiv.style = "display:block"
-            } else {
+            } else{
                 oDiv.style = "dispaly:none"
             }
         }
