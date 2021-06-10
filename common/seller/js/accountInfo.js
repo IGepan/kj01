@@ -115,7 +115,7 @@ require(['/common/js/require.config.js'], function () {
 
         },
         industryValid (v, o, callback) {
-          if (!this.industrySel || this.formData.industryIds.length == 0) {
+          if (!this.industrySel || this.formData.industryIds.length === 0) {
             callback(o, '所属行业不能为空')
           } else {
             callback()

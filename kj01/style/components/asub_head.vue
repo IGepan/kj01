@@ -31,17 +31,19 @@
               </template>
             </nav>
             <div class="searchbox">
-              <input
-                class="input-search"
-                v-model="searchValue"
-                placeholder="搜索感兴趣的活动"
-                type="text"
-              >
-              <button
-                class="btn-search"
-                type="button"
-                @click.stop="handleSearch"
-              >全 站 搜 索</button>
+<!--              <input-->
+<!--                class="input-search"-->
+<!--                v-model="searchValue"-->
+<!--                placeholder="搜索感兴趣的活动"-->
+<!--                type="text"-->
+<!--              >-->
+<!--              <button-->
+<!--                class="btn-search"-->
+<!--                type="button"-->
+<!--                @click.stop="handleSearch"-->
+<!--              >全 站 搜 索</button>-->
+              <input type="text" class="input-search" placeholder="请输入关键词搜索" v-model="searchKey">
+              <button class="btn-search" type="button" @click="searchFull">全 站 搜 索</button>
             </div>
           </div>
         </div>
@@ -88,6 +90,7 @@ module.exports = {
       }
     }
   },
+
   watch: {
     navIndex: function (v) {
       this.navs.forEach(function (item, i) {
@@ -101,6 +104,7 @@ module.exports = {
   },
   data: function () {
     return {
+      searchKey: '',
       searchValue: '',
       navs: [
         {
@@ -123,6 +127,12 @@ module.exports = {
     }
   },
   methods: {
+    //全站搜索
+    searchFull: function () {
+      location.href = '/search/?title=' + this.searchKey
+      // this.$dialog.showToast('敬请期待！')
+      // this.$emit('search-full', this.getData())
+    },
     handleSearch: function () {
       if (location.pathname === '/alist.html') {
         this.$emit('search', this.searchValue)
@@ -198,6 +208,8 @@ module.exports = {
   height: 40px;
   border: 2px solid #0096ff;
   font-size: 0;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
 .input-search {
@@ -205,7 +217,7 @@ module.exports = {
   width: 180px;
   border: 1px;
   padding: 0 10px;
-  line-height: 36px;
+  line-height: 37px;
   vertical-align: middle;
 }
 .btn-search {

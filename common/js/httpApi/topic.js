@@ -38,6 +38,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     //获取系列活动下的学习名单列表（鉴权）
     learnSelectByPage: function (param) {
       return Http.post(httpUrl.baseUrl + '/topic/selectEnrollPage', param);
-    }
+    },
+    //导出系列活动下的学习名单列表（鉴权）
+    exportExcel: function (param) {
+      return Http.post(httpUrl.baseUrl + '/topic/studyListExport', param);
+    },
   }
 })

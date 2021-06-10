@@ -7,9 +7,9 @@
         </div>
         <div class="col-5" style="margin-top: 30px">
           <div class="input-group search-top">
-            <el-select v-model="type">
+            <el-select v-model="type" >
               <el-option class="el-same"
-                  v-for="item in mailServiceTypeList"
+                         v-for="item in mailServiceTypeList"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id" >
@@ -68,7 +68,7 @@ module.exports = {
   },
   created: function() {
     this.title = this.$utils.getReqStr('title')||'';
-    this.type = this.$utils.getReqStr('type')||'';
+    // this.type = this.$utils.getReqStr('type')||'';
     this.getType()
     this.mailSiteDetail()
     var vm = this;

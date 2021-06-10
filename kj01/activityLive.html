@@ -43,6 +43,9 @@
               <div class="title">活动介绍</div>
               <div class="desc-box" v-html="detail.activeAbstract"></div>
             </div>
+            <div class="download">
+                <a @click="handleGetWxSignCode()">签到二维码</a>
+            </div>
         </div>
     </template>
 

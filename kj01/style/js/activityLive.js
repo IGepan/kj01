@@ -1,7 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'dic', 'vue', 'httpVueLoader', '/style/js/api/aindex.js', 'fileSaver', 'httpUrl','jqValidate'],
-        function ($, dic, Vue, httpVueLoader, indexApi, fileSaver, httpUrl,jqValidate) {
+    require(['jquery', 'dic', 'vue', 'httpVueLoader', '/style/js/api/aindex.js', '/common/js/httpApi/activity.js', 'fileSaver', 'httpUrl','jqValidate'],
+        function ($, dic, Vue, httpVueLoader, indexApi, activityApi, fileSaver, httpUrl,jqValidate) {
             new Vue({
                 el: '#index_box',
                 data: {
@@ -33,12 +33,20 @@ require(['/common/js/require.config.js'], function () {
                     'sub-head': httpVueLoader('/style/components/asub_head.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue')
                 },
+
                 created: function () {
                     this.initData()
                 },
                 mounted: function () {
                 },
                 methods: {
+                    //下载签到二维码
+                    handleGetWxSignCode: function (id) {
+                        var id = this.$utils.getReqStr('id')
+                        activityApi.getWxSignCode({ id: id }).then(function (res) {
+                            saveAs(res, '签到' + id + '.jpg', { type: 'image/jpeg;charset=utf-8' })
+                        })
+                    },
                     initData: function () {
                         // this.saasId = localStorage.getItem('saasId');
                         var id = this.$utils.getReqStr('id')
