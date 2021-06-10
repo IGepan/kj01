@@ -90,11 +90,7 @@ module.exports = {
       }
     }
   },
-  data: function () {
-    return {
-      searchKey: '',
-    }
-  },
+
   watch: {
     navIndex: function (v) {
       this.navs.forEach(function (item, i) {
@@ -108,6 +104,7 @@ module.exports = {
   },
   data: function () {
     return {
+      searchKey: '',
       searchValue: '',
       navs: [
         {
