@@ -135,6 +135,7 @@ require(['/common/js/require.config.js'], function () {
           getAttributeData: function (el, keys) {
             var dataset = {}
             if (el.dataset) {
+
               dataset = el.dataset
             } else {
               keys.forEach(function (tkey) {
@@ -184,11 +185,11 @@ require(['/common/js/require.config.js'], function () {
 
                     res.result[0].forEach(function (item, i) {
                       item.value = item.id
-                      item.display = item.name
+                      item.display = item.name?item.name:item.objName
                       if (activeType) {
                         if (activeType === item.id) {
                           dataset.di = '' + i;
-                          dataset.display = item.name
+                          dataset.display = item.name?item.name:item.objName
                           item.selected = true
                           selecedIndex = '' + i
                         } else {
@@ -205,12 +206,12 @@ require(['/common/js/require.config.js'], function () {
                         item.children.unshift({ id: "-1", id: -1, name: '不限', selected: true })
                         item.children.forEach(function (sitem, si) {
                           sitem.value = sitem.id
-                          sitem.display = sitem.name
+                          sitem.display = sitem.name?sitem.name:sitem.objName
                           if (activeType && selecedIndex === -1) {
                             if (activeType === sitem.id) {
                               dataset.di = '' + i;
                               dataset.ci = '' + si
-                              dataset.display = item.name + '·' + sitem.name
+                              dataset.display = (item.name?item.name:item.objName) + '·' + (sitem.name?sitem.name:sitem.objName)
                               selecedIndex = '' + i
                               item.selected = true
                               sitem.selected = true
