@@ -14,6 +14,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         cooperation_type: [],
                         user_code: []
                     },
+
                     type: 'add',
                     imgOption: {
                         size: '690,460',
@@ -343,6 +344,11 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 }
             },
             methods: {
+                //是否点播
+                getRadioVal (event) {
+                    let radioVal = event.target.value;
+                    console.log(radioVal);
+                },
                 initData: function () {
                     this.getOptions([
                         {'code': "cooperation_type"}
