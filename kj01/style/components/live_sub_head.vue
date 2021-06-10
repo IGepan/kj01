@@ -87,6 +87,8 @@ module.exports = {
         return []
       }
     }
+
+
   },
   watch: {
     navIndex: function (v) {
@@ -97,28 +99,28 @@ module.exports = {
   },
   created: function () {
     this.searchtitle && (this.searchValue = this.searchtitle)
-    // this.navs[this.navIndex].active = 1
+    this.navs[this.navIndex].active = 1
   },
   data: function () {
     return {
       searchValue: '',
       navs: [
-        // {
-        //   label: '首页',
-        //   url: '/aindex.html'
-        // },
-        // {
-        //   label: '企业学堂',
-        //   url: '/alist.html?type=218340665862391473'
-        // },
-        // {
-        //   label: '品牌活动',
-        //   url: '/atList.html'
-        // },
-        // {
-        //   label: '主题活动',
-        //   url: '/alist.html?type=218340665912723126'
-        // }
+        {
+          label: '首页',
+          url: '/aindex.html'
+        },
+        {
+          label: '企业学堂',
+          url: '/alist.html?type=218340665862391473'
+        },
+        {
+          label: '品牌活动',
+          url: '/atList.html'
+        },
+        {
+          label: '主题活动',
+          url: '/alist.html?type=218340665912723126'
+        }
       ]
     }
   },
@@ -195,27 +197,32 @@ module.exports = {
 .searchbox {
   display: inline-block;
   vertical-align: middle;
-  height: 40px;
+  height: 39px;
   border: 2px solid #0096ff;
   font-size: 0;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
 .input-search {
   display: inline-block;
-  width: 178px;
+  width: 180px;
+  border: 1px;
   padding: 0 10px;
-  line-height: 36px;
+  line-height: 37px;
   vertical-align: middle;
 }
 .btn-search {
   background-color: #0096ff;
   display: inline-block;
   vertical-align: middle;
-  width: 60px;
+  width: 108px;
+  border: 1px;
   cursor: pointer;
   font-size: 16px;
-  line-height: 36px;
+  line-height: 38px;
   color: #fff;
+  margin-top: -1px;
 }
 .breadcrumb {
   font-size: 14px;

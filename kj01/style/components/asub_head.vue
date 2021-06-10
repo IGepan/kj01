@@ -205,7 +205,7 @@ module.exports = {
 .searchbox {
   display: inline-block;
   vertical-align: middle;
-  height: 40px;
+  height: 39px;
   border: 2px solid #0096ff;
   font-size: 0;
   border-radius: 18px;
