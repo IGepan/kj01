@@ -82,7 +82,7 @@
     <div class="mdiv tabnavs">
       <template v-for="(tabnav, i) in tabNavs0">
         <span class="tab-item" @click.stop="handleActivtySwitchTo(tabnav.value, 'activtyList', i)" :class="{active: tabnav.selected}">
-          <span class="tab-item-text">{{tabnav.display}}</span>
+          <span class="tab-item-text">{{tabnav.objName}}</span>
         </span>
       </template>
     </div>
@@ -154,7 +154,7 @@
     </div>
     <div class="mdiv tabnavs">
       <template v-for="(tabnav, i) in tabNavs2">
-        <span class="tab-item" @click.stop="handleActivtySwitchTo(tabnav.value, 'activtyList1', i)" :class="{active: tabnav.selected}"><span class="tab-item-text">{{tabnav.display}}</span></span>
+        <span class="tab-item" @click.stop="handleActivtySwitchTo(tabnav.value, 'activtyList1', i)" :class="{active: tabnav.selected}"><span class="tab-item-text">{{tabnav.objName}}</span></span>
       </template>
     </div>
     <div class="mdiv specialTopicList theme">

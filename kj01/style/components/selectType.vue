@@ -1,14 +1,15 @@
 <template>
   <div class="select-column" id="select-column">
-    <div class="select-column-result" @click.stop="handleOpenSelectList"><span class="select-column-result-value">{{result.name}}</span></div>
+    <div class="select-column-result" @click.stop="handleOpenSelectList"><span class="select-column-result-value">{{result.name?result.name:result.objName}}</span></div>
     <div ref="selectColumnList" class="select-column-list" :class="{'select-column-list-open': openSelectList}">
       <template v-for="(codes, ci) in tSelectData">
         <div class="select-column-row" :key="ci">
-          <label class="select-column-label"  :class="{active: codes.selected}" @click.stop="handleSelected" :data-ci="ci">{{codes.name}}</label>
+          <label class="select-column-label"  :class="{active: codes.selected}" @click.stop="handleSelected" :data-ci="ci">
+            {{codes.objName?codes.objName:codes.name}}</label>
           <div class="select-column-items" :style="columnItems">
             <template v-for="(code, index) in codes.children">
               <span @click.stop="handleSelected" :data-ci="ci" :data-index="index" :data-value="code.type" :key="index" class="select-column-item"
-              :class="{active: code.selected}" >{{code.name}}</span>
+              :class="{active: code.selected}" >{{code.objName?code.objName:code.name}}</span>
             </template>
           </div>
         </div>
@@ -33,7 +34,8 @@ module.exports = {
   data: function () {
     return {
       result: {
-        name: ''
+        name: '',
+        objName:''
       },
       selected: [],
       tSelectData: [],

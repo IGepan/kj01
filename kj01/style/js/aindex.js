@@ -280,7 +280,7 @@ require(['/common/js/require.config.js'], function () {
           if (dict.id==='218340665870780082'){
             location.href='/livelist.html?type=' + dict.value
           }else {
-            location.href = dict.name ? '/alist.html?type=' + dict.value : '/atList.html?type=' + dict.value
+            location.href = index==2 ? '/alist.html?type=' + dict.value : '/atList.html?type=' + dict.value
           }
         },
         handleRefresh: function () {
