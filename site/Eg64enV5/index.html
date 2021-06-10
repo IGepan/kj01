@@ -82,7 +82,7 @@
             <div class="title-common">
                 <div class="title">活动中心</div>
                 <div class="sub-box">
-                    <div v-for="(item,index) in activityTypeList" v-if="index<5"><a :href="'./activityList.html?type='+item.id">{{item.name}}</a></div>
+                    <div v-for="(item,index) in activityTypeList" v-if="index<5"><a :href="'./activityList.html?type='+item.id">{{item.objName}}</a></div>
                     <div><a href="activityList.html">更多+</a></div>
                 </div>
             </div>
