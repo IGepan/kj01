@@ -335,7 +335,7 @@ a:hover {
 .main-menu .navbar-nav .brand .dropdown-menu-main > li.has-sub-menu .sub-menu {
   position: absolute;
   width: 25rem;
-  height: 10rem;
+  height: 100%;
   padding: 0 1.25rem;
   background: #fff;
   border: 1px solid #ddd;
@@ -1253,6 +1253,14 @@ a:hover {
 .bg5 .nav-list li a{background: #059965}
 .bg6{background: #d49ff4}
 .bg6 .nav-list li a{background: #8f68f6}
+.bg7{background: #74c4f2}
+.bg7 .nav-list li a{background: #00abf2}
+.bg8{background: #73caae}
+.bg8 .nav-list li a{background: #00a985}
+.bg9{background: #f2a674}
+.bg9 .nav-list li a{background: #db640c}
+.bg10{background: #6dcbea}
+.bg10 .nav-list li a{background: #07b0ce}
 /*.bg7{background: #74c4f2}*/
 .nav-list {
   padding: 0!important;
