@@ -278,9 +278,9 @@ require(['/common/js/require.config.js'], function () {
             dic.selected && (dict = dic)
           })
           if (dict.id==='218340665870780082'){
-            location.href='/livelist.html?type=' + dict.value
+            location.href='/livelist.html?type=' + dict.parentId
           }else {
-            location.href = index==2 ? '/alist.html?type=' + dict.value : '/atList.html?type=' + dict.value
+            location.href = index==2 ? '/alist.html?type=' + dict.parentId : '/atList.html'
           }
         },
         handleRefresh: function () {
