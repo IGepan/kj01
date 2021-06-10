@@ -51,7 +51,9 @@ require(['/common/js/require.config.js'], function () {
                     pages: '',
                     nameList: [],
                     result: [],
+                    // 服务筛选临时缓存数组
                     ser: [],
+                    // 价格筛选临时缓存数组
                     pr: [],
                     active: false,
                     activeAll: true,
@@ -90,6 +92,7 @@ require(['/common/js/require.config.js'], function () {
                 },
                 created: function () {
                     var title = this.$utils.getReqStr('title');
+                    // 从url获取type的值
                     var type = this.$utils.getReqStr('type');
 
 
@@ -202,7 +205,7 @@ require(['/common/js/require.config.js'], function () {
                                         vm.parentId=e.id;
                                     }
                                     // item.children.forEach(function (item2, dici) {
-                                    //     item2.selected=false
+                                    //     item2.selected = true
                                     // });
                                     item.children.forEach(function (item2, dici) {
                                         if (e.id == item2.id) {
@@ -349,23 +352,46 @@ require(['/common/js/require.config.js'], function () {
                         this.$data.searchForm.pageNum = e;
                         this.getMailGoods()
                     },
+                    // 获取服务类型列表
                     getMailServiceType: function () {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
                             if (res.code === 'rest.success') {
-                                vm.options.mailServiceTypeList = res.result
+                                vm.options.mailServiceTypeList = res.result || []
                                 vm.options.mailServiceTypeList.forEach(function (item, si) {
+
                                     item.children.unshift({ id: "-1", id: -1, parentId:item.id,name: '不限', selected: true })
+
                                     item.selected = false
+
                                 });
 
+                                // 当url上有type值的时候，设置一级、二级服务类型的选中状态
                                 if (vm.searchForm.type) {
-                                    var types = vm.options.mailServiceTypeList.filter(function (el) {
-                                        return el.id == vm.searchForm.type;
+                                    var types = []
+                                    var parentId
+                                    vm.options.mailServiceTypeList.forEach(function (el) {
+                                        el.children.forEach(function(item, idx){
+                                            if(item.id == vm.searchForm.type){
+                                                types = [item]
+                                                el.selected = true
+                                                parentId = el.id
+                                                el.children[0].selected = false
+                                                return
+                                            }
+                                        })
+                                        if(el.id == vm.searchForm.type){
+                                            types = [el]
+                                            parentId = el.id
+                                            return
+                                        }
                                     });
+
                                     types[0].selected = true
+                                    // 缓存到服务数组中
+                                    vm.ser.push(types[0])
                                     vm.activeAll = false
-                                    vm.parentId=vm.searchForm.type;
+                                    vm.parentId= parentId;
                                     vm.result = types
                                 }
                             }
