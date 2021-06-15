@@ -12,17 +12,37 @@
     <link href="style/css/iconfont/iconfont.css" rel="stylesheet">
     <link href="style/css/main.css" rel="stylesheet">
     <link href="style/css/index.css" rel="stylesheet">
+    <!-- 引入样式 -->
+    <link href="style/css/carousel.css" rel="stylesheet">
+    <!-- 引入组件库 -->
+    <script src="style/js/libs/carousel.js"></script>
 </head>
+<style>
 
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+</style>
 <body>
 <div class="boxs gray-bg" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
     <index-head :nav-index="navIndex" :search-types="'政策'" :location-names="'policyList.html'"></index-head>
     <div class="container-box">
-        <div class="top-box">
-           <div class="title">易智网--{{webInfo.saasName||''}}</div>
-           <div class="sub-title">技术摆渡人 / 科技服务人 / 创业孵化人</div>
-        </div>
+        <template>
+            <div  class="top-box">
+                <el-carousel height="230px">
+                    <el-carousel-item v-for="item in img_list" :key="item">
+<!--                        <div class="title">易智网&#45;&#45;{{webInfo.saasName||''}}</div>-->
+<!--                        <div class="sub-title">技术摆渡人 / 科技服务人 / 创业孵化人</div>-->
+                        <img :src="item"  style="width: 100%" alt />
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
+        </template>
         <div class="activity-total mmdiv">
             <div class="activity-total-top">
                 <div class="total-left">
