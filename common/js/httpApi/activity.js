@@ -83,6 +83,10 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     getWxSignCode: function (param) {
       return Http.getFile(httpUrl.baseUrl + '/wxApp/active/getActiveSignPageQRCodeByActiveId', param, 'get', 'image/*;charset=UTF-8');
     },
+    //app签到二维码
+    getWxAppSignCode: function (param) {
+      return Http.getFile(httpUrl.baseUrl + '/wxApp/active/getAppAcitveCode', param, 'get', 'image/*;charset=UTF-8');
+    },
     // 意见征集列表excel导出(鉴权)
     receiptListExport: function (param) {
       return Http.getFile(httpUrl.baseUrl + '/active/receipt/receiptListExport', param, 'post', 'application/json;charset=UTF-8');
