@@ -950,7 +950,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 bindSponsorValid: function (v, o, callback) {
                     if (!this.formData.sponsor.length) {
                         callback(o, '主办单位不能为空')
-                    } else {alist
+                    } else {
                         callback(o)
                     }
                 },
