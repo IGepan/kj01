@@ -196,6 +196,11 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             saveAs(res, '签到' + id + '.jpg', { type: 'image/jpeg;charset=utf-8' })
           })
         },
+        handleGetWxAppSignCode: function (id) {
+          activityApi.getWxAppSignCode({ id: id }).then(function (res) {
+            saveAs(res, 'App签到' + id + '.jpg', { type: 'image/jpeg;charset=utf-8' })
+          })
+        },
         handleStartLive: function (id) {
           let vm=this
           activityApi.startLive({ id: id }).then(function (res) {

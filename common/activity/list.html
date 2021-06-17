@@ -258,6 +258,8 @@
                             @click="handleGetWxCode(order.id)">活动二维码</a>
                           <a v-if="order.status !== '01' && order.status !== '02' && order.status !== '04'"
                             @click="handleGetWxSignCode(order.id)">签到二维码</a>
+                          <a v-if="order.status !== '01' && order.status !== '02' && order.status !== '04'"
+                            @click="handleGetWxAppSignCode(order.id)">APP签到二维码</a>
                           <a v-if="order.allowUpdateFlag" @click="isActiveLock(order.id)">编辑</a>
                           <a v-if="order.status !== '01' && order.status !== '02' && order.status !== '04'"
                             @click="handlePutawayOrSoldout(order.id,order.upperFlag === '1' ? 0 : 1,order.version)"
