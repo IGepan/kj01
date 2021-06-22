@@ -39,5 +39,9 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     selectMailGoods: function (param) {
       return Http.post(httpUrl.baseUrl + '/mailGoods/selectByPage', param);
     },
+    //首页轮播图
+    getBanner:function (param){
+      return Http.get(httpUrl.baseUrl + '/saasInfoExt/selectBanners', param);
+    }
   }
 })
