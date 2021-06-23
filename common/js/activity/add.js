@@ -492,7 +492,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             activityApi[type](data).then(function (res) {
                                 if (res.code === 'rest.success') {
                                     setTimeout(() => {
-                                        location.href = '/common/activity/list.html?code=001.004.001.001'
+                                        window.history.go(-1)
                                     }, 2000);
                                 } else {
                                     vm.isSubmitDisabled = false
@@ -512,7 +512,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.requestForm('submit')
                 },
                 handleBack: function () {
-                    location.href = '/common/activity/list.html?code=001.004.001.001'
+                    // location.href = 'common/activity/list.html?code=001.004.001.001'
+                   window.history.go(-1)
                 },
                 handleDelFile: function (i) {
                     this.formData.fileIds.splice(i, 1)
