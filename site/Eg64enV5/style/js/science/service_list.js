@@ -56,7 +56,7 @@ require(['/common/js/require.config.js'], function () {
 					filters: [
 						{
 							value: false,
-							label: '价格排序',
+							label: '综合排序',
 							seleced: true
 						},
 						// {
@@ -65,7 +65,7 @@ require(['/common/js/require.config.js'], function () {
 						// },
 						{
 							value: false,
-							label: '综合排序'
+							label: '价格排序'
 						}
 					],
 					options: {
@@ -155,7 +155,7 @@ require(['/common/js/require.config.js'], function () {
 					var type = this.$utils.getReqStr('type');
 					this.searchForm.title = title;
 					this.searchForm.type = type;
-					this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc';
+					this.searchForm.orderBy = '';
 					this.getMailGoods();
 					this.getDicList(this.dicOptsSet);
 					this.getMailServiceType();
