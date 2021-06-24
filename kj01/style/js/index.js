@@ -514,11 +514,11 @@ require(['/common/js/require.config.js'], function () {
                         // 	icon: 'icon-xuqiu',
                         // 	url: '/common/buyer/demand/add.html?code=001.001.002.002'
                         // },
-                        {
-                            label: '需求诊断',
-                            icon: 'icon-xuqiu',
-                            url: '/demand.html'
-                        },
+                        // {
+                        //     label: '需求诊断',
+                        //     icon: 'icon-xuqiu',
+                        //     url: '/demand.html'
+                        // },
                         {
                             label: '技术合同登记',
                             icon: 'icon-hetong',
