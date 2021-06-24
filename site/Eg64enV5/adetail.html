@@ -1,0 +1,337 @@
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>活动详情</title>
+  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+  <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/adetail.css" rel="stylesheet" type="text/css">
+  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+  <style>
+
+    .activity-activeText .selectTdClass {
+      background-color: #edf5fa !important
+    }
+
+    .activity-activeText table.noBorderTable td, .activity-activeText table.noBorderTable th, .activity-activeText table.noBorderTable caption {
+      border: 1px dashed #ddd !important
+    }
+
+    .activity-activeText table {
+      margin-bottom: 10px;
+      border-collapse: collapse;
+      display: table;
+    }
+
+    .activity-activeText td, th {
+      padding: 5px 10px;
+      border: 1px solid #DDD;
+    }
+
+    .activity-activeText caption {
+      border: 1px dashed #DDD;
+      border-bottom: 0;
+      padding: 3px;
+      text-align: center;
+    }
+
+    .activity-activeText th {
+      border-top: 1px solid #BBB;
+      background-color: #F7F7F7;
+    }
+
+    .activity-activeText table tr.firstRow th {
+      border-top-width: 2px;
+    }
+
+    .activity-activeText .ue-table-interlace-color-single {
+      background-color: #fcfcfc;
+    }
+
+    .activity-activeText .ue-table-interlace-color-double {
+      background-color: #f7faff;
+    }
+
+    .activity-activeText td p {
+      margin: 0;
+      padding: 0;
+    }
+    .other-btns .end-live-btn{
+      background:#ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box grayBgbox" v-cloak id='index_box'>
+    <ly-toper top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
+    <sub-head name="活动中心" :bottom-border="true" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
+
+    <template v-if="detail">
+      <div class="mdiv activity-base">
+        <div class="fl item-img activity-base-img" :style="detail.styles">
+          <img :src="detail.posterUrl" :alt="detail.title">
+        </div>
+        <div class="fr activity-base-info">
+          <h1 class="activity-base-info-title" :title="detail.title">{{detail.title}}</h1>
+          <div class="activity-base-info-topic" v-if="detail.isTopic">
+            <span class="vaMiddle topic1">品牌</span>
+            <a class="vaMiddle line topicUrl" :href="'/atdetail.html?id=' + detail.topicId" :title="detail.topicTitle"
+              target="_blank">{{detail.topicTitle}}</a>
+            <i class="vaMiddle iconfont icon-gengduokuozhe"></i>
+          </div>
+          <div class="time"><i class="iconfont icon-lishijilu"></i>{{detail.activeStartShowTime2}} {{detail.weekday}}
+          </div>
+          <div class="address" v-if="!detail.onLineFlag || detail.onLineFlag === '0'"><i
+              class="iconfont icon-dingweixian"></i>{{detail.provinceDisplay||''}}{{detail.cityDisplay||''}}{{detail.districtDisplay||''}}{{detail.location||''}}
+          </div>
+          <div class="onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动</div>
+          <div class="sponsor"><i class="iconfont icon-neirongtuisong"></i>发布方：{{detail.userName}}</div>
+          <div v-if="detail.subscribeTag.length" class="tags">
+            <template v-for="subtag in detail.subscribeTagDisplay">
+              <span class="tag">#{{subtag}}</span>
+            </template>
+          </div>
+          <div class="other">
+            <div class="other-info">
+              <span class="label"><i class="iconfont icon-liulanliang"></i>{{detail.visitNum||0}}</span>
+              <span class="label select" :class="{colSelected: detail.isCollection}" @click.stop="handleColSelected"><i
+                  class="iconfont"
+                  :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i>{{detail.collectionNum||0}}</span>
+            </div>
+            <div class="other-btns">
+              <button type="button" typeName="articleBtn" class="shareBtn">
+                <i class="iconfont icon-fenxiang vaMiddle"></i><span class="vaMiddle">分享</span>
+                <div class="shareBox">
+                  <div class="share-item" @click.stop="handleShareToWeixin"><i class="iconfont icon-weixin"></i><span
+                      class="text">微信</span></div>
+                  <div class="share-item" @click.stop="handleShareToQQ"><i class="iconfont icon-qq"></i><span
+                      class="text">QQ</span></div>
+                </div>
+              </button>
+              <button type="button" typeName="activity-state" @click.stop="handleStateClick"
+                :typeState="detail.statusCode">{{detail.statusShow}}</button>
+              <!--<button type="button" typeName="entrust-activity" @click.stop="handleEntrust" style="border-radius: 0">委办</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mdiv activityBox">
+        <div class="fl activity">
+          <div class="activity-box">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动介绍</span></div>
+            <div class="activity-box-body">
+              <div class="activity-activeText" v-html="detail.activeText"></div>
+            </div>
+          </div>
+          <div class="activity-box activity-box-files" v-if="detail.files && detail.files.length">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动附件</span></div>
+            <div class="activity-box-body">
+              <div class="filesbox">
+                <template v-for="(tfile, fi) in detail.files">
+                  <div class="activity-file" @click.stop="handleFileSaveAs(fi)">
+                    <svg class="vaMiddle jsicon svg-icon" aria-hidden="true">
+                      <use :xlink:href="'#icon-'+tfile.flieType"></use>
+                    </svg>
+                    <span class="vaMiddle line">{{tfile.name}}</span>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <div class="activity-box">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动评价</span>
+              <div class="activity-box-title-more"></div>
+            </div>
+            <div class="activity-box-body">
+              <div class="activity-evaluate">
+                <div class="activity-evaluate-top">
+                  <div class="vaMiddle activity-evaluate-top-left">
+                    <div class="activity-evaluate-main">
+                      <span class="activity-evaluate-main-label">综合评分</span>
+                      <template v-for="i in 5">
+                        <svg class="vaBottom jsicon svg-icon" aria-hidden="true">
+                          <use :xlink:href="detail.evaluateResult >= i ? '#icon-xingxing' : '#icon-xingxingxian'"></use>
+                        </svg>
+                      </template>
+                      <span class="mainNumber">{{detail.evaluateResult|formatNumber}}</span>
+                    </div>
+                    <div class="activity-evaluate-tips">感谢您的参与，请为本次活动进行评分</div>
+                  </div>
+                  <div class="vaMiddle activity-evaluate-top-right">
+                    <button type="button" v-if="!detail.isEvaluate" typeName="evaluate"
+                      @click.stop="handleToggleEvaluate" v-if="">立即评价</button>
+                  </div>
+                </div>
+                <div class="activity-evaluate-body">
+                  <template v-for="(item, ei) in evaluateList">
+                    <div class="evaluate-item" v-if="maxEvaluateViewLength > ei" :key="ei">
+                      <div class="vaTop item-img evaluate-item-head" :style="item.styles">
+                        <img :src="item.itemImg" :alt="item.userName">
+                      </div>
+                      <div class="vaTop evaluate-item-body">
+                        <div class="evaluate-item-name">{{item.userName}}</div>
+                        <div class="evaluate-item-time">{{item.evaluateDate}}</div>
+                        <div class="evaluate-item-options">
+                          <template v-for="(evaluate, sei) in item.results">
+                            <label class="evaluate-item-option"
+                              v-if="sei">{{evaluate.evaluateItemDisplay|formatItemDisplay}}：{{evaluate.evaluateResult|formatNumber}}
+                            </label>
+                          </template>
+                        </div>
+                      </div>
+                      <div class="vaTop evaluate-item-mark">
+                        <template v-for="i in 5">
+                          <svg class="vaBottom jsicon svg-icon" aria-hidden="true">
+                            <use
+                              :xlink:href="item.results[0].evaluateResult >= i ? '#icon-xingxing' : '#icon-xingxingxian'">
+                            </use>
+                          </svg>
+                        </template>
+                        <span
+                          class="vaBottom evaluate-item-mark-score">{{item.results[0].evaluateResult|formatNumber}}</span>
+                        <span class="vaBottom evaluate-item-mark-unit">分</span>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+                <div v-if="evaluateLength > 2" class="activity-evaluate-footer"
+                  class="{'zhankai': evaluateLength !== maxEvaluateViewLength}" @click.stop="handleEvaluateMore">
+                  <i class="iconfont"
+                    :class="{'icon-shouqi': evaluateLength === maxEvaluateViewLength, 'icon-zhankai': evaluateLength !== maxEvaluateViewLength }"></i>{{evaluateLength === maxEvaluateViewLength ? '收起' : '展开'}}
+                </div>
+              </div>
+            </div>
+            <evaluate :visible.sync="isEvaluateFlag" @toggle="bindEvaluateToggle" @submit="bindEvaluateSubmit">
+            </evaluate>
+          </div>
+          <div class="activity-box" v-if="detail.joinUser && detail.joinUser.length">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">最近参与</span></div>
+            <div class="activity-box-body">
+              <div class="userList">
+                <template v-for="(item, ji) in detail.joinUser">
+                  <div class="vaMiddle user-item" :key="ji">
+                    <div class="user-img item-img" :style="item.styles">
+                      <img :src="item.itemImg" :alt="item.userName">
+                    </div>
+                    <h4 :title="item.userName" class="user-item-info line user-item-info_name">{{item.userName}}</h4>
+                    <div class="user-item-info line user-item-info_type"><span class="vaMiddle typeFlag"
+                        :class="{attention: item.joinType === '关注'}">{{item.joinType}}</span></div>
+                    <div class="user-item-info line user-item-info_time">{{item.showJoinTime}}</div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <div class="activity-box" v-if="recommendList.length">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">您可能感兴趣</span></div>
+            <div class="activity-box-body">
+              <div class="listBox">
+                <template v-for="(item, di) in recommendList">
+                  <div class="vaMiddle topic-item" :key="di">
+                    <a :href="item.itemUrl" :title="item.title" target="_blank">
+                      <div class="specialTopic-img item-img" :style="item.styles">
+                        <img :src="item.itemImg" :alt="item.title">
+                        <!-- <div v-if="item.isTopic" class="topic">系列</div> -->
+                      </div>
+                      <div class="topic-item-info">
+                        <h4 class="topic-item-info-title line">{{item.title}}</h4>
+                        <div class="topic-item-info-line line mt state">
+                          <span>{{item.activeStartTimeDisplay[9]}}&nbsp;&nbsp;{{item.activeStartTimeDisplay[3]}}&nbsp;{{item.weekday}}</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fr activity-aside">
+          <div class="activity-box">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">主/承办单位</span></div>
+            <div class="activity-box-body">
+              <div class="unit-box">
+                <div class="unit-row" v-if="detail.sponsor != 8888" >
+                  <div class="vaTop unit-label">主办单位：</div>
+                  <div class="vaTop unit-units">
+                    <template v-for="(sponsor, si) in detail.sponsor">
+                      <div class="line unit" :key="si">{{sponsor}}</div>
+                    </template>
+                  </div>
+                </div>
+                <template v-for="(cooperation, ci) in detail.cooperation">
+                  <div class="unit-row" :key="ci">
+                    <div class="vaTop unit-label">{{cooperation[0].cooperationTypeDisplay}}：</div>
+                    <div class="vaTop unit-units">
+                      <template v-for="(coop, sci) in cooperation">
+                        <div class="line unit" :title="coop.cooperationName" :key="sci">{{coop.cooperationName}}</div>
+                      </template>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <div class="activity-box" v-if="detail.longitude">
+            <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动地点</span></div>
+            <div class="activity-box-body">
+              <div class="activityMap" id="activityMap"></div>
+            </div>
+          </div>
+          <div class="qrcodebox">
+            <img :src="qrcodeUrl" width="103" height="103" alt="">
+            <div class="qrcodebox-info">
+              <div class="qrcodebox-title">微信扫一扫</div>
+              <div class="qrcodebox-tips">分享此活动到朋友圈</div>
+            </div>
+          </div>
+
+          <div class="calendarBox">
+            <div class="calendartop">
+              <div class="vaMiddle prev" @click.stop="handlePrevMonth"><i class="iconfont icon-fanhui"></i></div>
+              <div class="vaMiddle viewDisplay">活动日历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{calendar.month + 1}}月</div>
+              <div class="vaMiddle next" @click.stop="handleNextMonth"><i class="iconfont icon-gengduokuozhe"></i></div>
+            </div>
+            <div class="calendarweek">
+              <span class="vaMiddle week">日</span>
+              <span class="vaMiddle week">一</span>
+              <span class="vaMiddle week">二</span>
+              <span class="vaMiddle week">三</span>
+              <span class="vaMiddle week">四</span>
+              <span class="vaMiddle week">五</span>
+              <span class="vaMiddle week">六</span>
+            </div>
+            <div class="calendarDays" v-if="calendar.days.length">
+              <template v-for="(day, di) in calendar.days">
+                <span class="vaMiddle day" @click.stop="handleSetDay" :data-click="day.click" :data-index="di"
+                  :data-value="day.label"
+                  :class="{none: !day.click, dot: day.activeNum, default: day.isSelect, active: selectIndex === di }">
+                  {{day.label||''}}
+                </span>
+              </template>
+            </div>
+            <template v-if="dayResultList.length">
+              <aside-today box-title="当天活动" :data-list="dayResultList"></aside-today>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <web-footer></web-footer>
+  </div>
+  <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=hiSNGiYjCDay4EMncAjAUjx5oEblgpsx"></script>
+  <script src="/style/css/icon/iconfont.js"></script>
+  <script type="text/javascript" src="/common/js/libs/require.js"></script>
+  <script type="text/javascript" src="./style/js/activity/adetail.js"></script>
+</body>
+
+</html>
