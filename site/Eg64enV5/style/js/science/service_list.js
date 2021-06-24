@@ -218,16 +218,16 @@ require(['/common/js/require.config.js'], function () {
 							})
 						}
 						if (i) {
-							if (i === 1) {
+							if (i === 0) {
 								// this.searchForm.orderBy = 'createTime as'
 								this.searchForm.orderBy = ''
 							}
-							if (i === 2) {
+							if (i === 1) {
 								this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc'
 							}
 						} else {
-							// this.searchForm.orderBy = ''
-							this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc'
+							 this.searchForm.orderBy = ''
+							// this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc'
 						}
 						this.getMailGoods()
 					},
