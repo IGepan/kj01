@@ -999,8 +999,8 @@ require(['/common/js/require.config.js'], function () {
                                 httpStore.goodsUpdate(subData).then(function (res) {
                                     if (res.code == 'rest.success') {
                                         vm.$dialog.showToast('保存成功');
-                                        window.location.href = "/common/seller/technical_list.html?categoryId="+vm.formData.categoryId+"&code=001.002.002.002"
-                                        // vm.back();
+                                        // window.location.href = "/common/seller/technical_list.html?categoryId="+vm.formData.categoryId+"&code=001.002.002.002"
+                                        window.location.back(-1)
                                     }
                                     vm.isSubmitDisabled = false
                                 }).catch(function () {
@@ -1010,8 +1010,8 @@ require(['/common/js/require.config.js'], function () {
                                 httpStore.goodsInsert(subData).then(function (res) {
                                     if (res.code == 'rest.success') {
                                         vm.$dialog.showToast('添加成功');
-                                        window.location.href = "/common/seller/technical_list.html?categoryId="+vm.formData.categoryId+"&code=001.002.002.002"
-                                        // vm.back();
+                                        // window.location.href = "/common/seller/technical_list.html?categoryId="+vm.formData.categoryId+"&code=001.002.002.002"
+                                        window.location.back(-1)
                                     } else {
                                         vm.$dialog.showToast(res.desc)
                                     }
@@ -1053,8 +1053,8 @@ require(['/common/js/require.config.js'], function () {
                             httpStore.goodsSubmit(subData).then(function (res) {
                                 if (res.code == 'rest.success') {
                                     vm.$dialog.showToast('提交成功');
-                                    window.location.href = "/common/seller/technical_list.html?categoryId="+vm.formData.categoryId+"&code=001.002.002.002"
-                                    // vm.back();
+                                    // window.location.href = "/common/seller/technical_list.html?categoryId="+vm.formData.categoryId+"&code=001.002.002.002"
+                                    window.location.back(-1)
                                 } else {
                                     vm.$dialog.showToast(res.desc)
                                 }
