@@ -141,6 +141,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getMailSiteDetail();
                     this.getAllServiceType();//服务分类
                     // 获取类型板块
+                    this.goodFormData.orderBy = 'homePageFlag desc,createTime desc';
                     _this.getMailServiceType(function (){
                             //递归板块数据，从第一个板块开始
                             _this.getMailServiceData(0)
