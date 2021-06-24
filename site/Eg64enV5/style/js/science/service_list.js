@@ -223,7 +223,7 @@ require(['/common/js/require.config.js'], function () {
 								this.searchForm.orderBy = ''
 							}
 							if (i === 1) {
-								this.searchForm.orderBy = 'choosePriceTag asc,minPrice asc,price asc'
+								this.searchForm.orderBy = 'saasId desc,choosePriceTag asc,minPrice asc,price asc'
 							}
 						} else {
 							 this.searchForm.orderBy = ''

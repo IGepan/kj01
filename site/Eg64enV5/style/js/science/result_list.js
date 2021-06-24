@@ -152,7 +152,7 @@ require(['/common/js/require.config.js'], function () {
 									dictIInfos: [
 										{
 											id: 'order_by_1',
-											values: ['createTime desc', 'createTime asc'],
+											values: ['saasId desc,createTime desc', 'saasId desc,createTime asc'],
 											selectedIndex: 0,
 											selected: true,
 											display: '综合排序'
@@ -166,7 +166,7 @@ require(['/common/js/require.config.js'], function () {
 										},*/
 										{
 											id: 'order_by_3',
-											values: ['createTime desc', 'createTime asc'],
+											values: ['saasId desc,createTime desc', 'saasId desc,createTime asc'],
 											selected: false,
 											selectedIndex: 0,
 											display: '发布时间'

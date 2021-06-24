@@ -308,7 +308,8 @@ require(['/common/js/require.config.js'], function () {
                                     label: "排序方式",
                                     operationType: "select",
                                     selecedIndex: -1,
-                                    valueKey: "sortTypeDefault",
+                                    valueKey: "sortType",
+                                    // valueKey: "sortTypeDefault",
 
                                 };
                                 opts.push(obj);
