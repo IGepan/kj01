@@ -1,7 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
 	require(['jquery', 'vue', 'dic', 'httpVueLoader',
-		'./style/js/api/index.js', 'httpUrl','/common/js/libs/jquery.SuperSlide.2.1.3.js','httpStore'],
+			'./style/js/api/index.js', 'httpUrl','/common/js/libs/jquery.SuperSlide.2.1.3.js','httpStore'],
 		function ($, Vue, dic, httpVueLoader, indexApi, httpUrl,superSlide,httpStore) {
 			new Vue({
 				el: '#index_box',
@@ -58,6 +58,7 @@ require(['/common/js/require.config.js'], function () {
 						}
 					],
 					webInfo:'',
+					extId: '',
 					zhiboList:[],
 					activityList:[],
 					activityTypeList:[],
@@ -69,15 +70,16 @@ require(['/common/js/require.config.js'], function () {
 					shopList:[],
 					policyList:[],
 					userInfo:'',
-					searchForm:{}
+					searchForm:{},
+					bannerList: [],
 				},
 				computed: {
-				/*	text () {
-						return {
-							id: this.number,
-							val: this.honorList[this.number].name
-						};
-					}*/
+					/*	text () {
+                            return {
+                                id: this.number,
+                                val: this.honorList[this.number].name
+                            };
+                        }*/
 				},
 				filters: {
 					formatTime: function (v) {
@@ -108,17 +110,24 @@ require(['/common/js/require.config.js'], function () {
 					// 	}
 					// },
 				},
+				components: {
+					'ly-toper': httpVueLoader('./style/components/toper.vue'),
+					'index-head': httpVueLoader('./style/components/header.vue'),
+					'com-footer': httpVueLoader('./style/components/com-footer.vue'),
+				},
 				mounted(){
 					this.userInfo = JSON.parse(
 						this.$utils.getCookie("USER_INFO")
 					);
+					this.getPublicDetail();
 					window.addEventListener("setItem", (e) => {
 						if(e.key==='webInfo'){
 							let info=JSON.parse(e.newValue)
 							this.webInfo=info?info:'';
+							this.extId = info.extId ? info.extId : '';
+							this.getBannerList();
 						}
 					});
-					this.getPublicDetail();
 					this.getActivityList({
 						pageNum: 1,
 						pageSize: 4,
@@ -130,6 +139,7 @@ require(['/common/js/require.config.js'], function () {
 						sortType: "02",
 						activeType:'218340665870780082'
 					},'zhiboList');
+
 					this.getScienceType();
 					this.getMailServiceType();
 					this.searchForm.pageNum=1;
@@ -140,13 +150,19 @@ require(['/common/js/require.config.js'], function () {
 					this.getShopList();
 					this.getPolicyList();
 					this.getNewsList();
+
 				},
-				components: {
-					'ly-toper': httpVueLoader('./style/components/toper.vue'),
-					'index-head': httpVueLoader('./style/components/header.vue'),
-					'com-footer': httpVueLoader('./style/components/com-footer.vue'),
-				},
+
 				methods:{
+					//首页轮播图
+					getBannerList:function (){
+						var vm = this;
+						indexApi.getBanner({extId: this.extId}).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.bannerList = res.result
+							}
+						});
+					},
 					formatPrice: function (flag, v, n, m) {
 						if (flag == '2') {
 							return '面议'

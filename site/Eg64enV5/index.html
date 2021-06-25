@@ -32,7 +32,7 @@
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
     <index-head :nav-index="navIndex" :search-types="'政策'" :location-names="'policyList.html'"></index-head>
     <div class="container-box">
-        <template>
+        <template v-if="bannerList !== null">
             <div  class="top-box">
                 <el-carousel height="230px">
                     <el-carousel-item v-for="item in bannerList" :key="item">
@@ -42,6 +42,9 @@
                     </el-carousel-item>
                 </el-carousel>
             </div>
+        </template>
+        <template v-else="bannerList == null">
+            <div class="top-box" style="display: none"></div>
         </template>
         <div class="activity-total mmdiv">
             <div class="activity-total-top">

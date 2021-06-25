@@ -672,13 +672,14 @@ margin-bottom: 30px}
     margin-top: 15px;
     padding: 32px 0 36px;}
 .filter-box .filter-title {
-    padding: 0.5rem 1rem;
+    padding: 0rem 1rem;
     font-size: 14px;
     /*font-weight: 700;*/
 }
 .filter-box .filter-list {
     margin: 0;
     font-size: 14px;
+    margin-bottom:.5rem;
 
 }
 .filter-box .filter-list .nav-item .nav-link{
@@ -711,7 +712,7 @@ margin-bottom: 30px}
     width: 1062px;
     border-bottom: 1px dashed #d4d9e6;
     top: 0;
-    left: 105px;
+    left: 100px;
     position: absolute; }
 .filter-box .tab-content {
     margin-left: 105px;
