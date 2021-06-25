@@ -38,7 +38,7 @@
                     <el-carousel-item v-for="item in bannerList" :key="item">
 <!--                        <div class="title">易智网&#45;&#45;{{webInfo.saasName||''}}</div>-->
 <!--                        <div class="sub-title">技术摆渡人 / 科技服务人 / 创业孵化人</div>-->
-                        <a :href="item.link" v-if="item.link">
+                        <a :href="'https://'+item.link" v-if="item.link">
                             <img :src="item.url"  style="width: 100%" alt />
                         </a>
                         <img :src="item.url"  style="width: 100%" alt v-if="!item.link"/>
