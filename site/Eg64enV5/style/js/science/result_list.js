@@ -22,7 +22,7 @@ require(['/common/js/require.config.js'], function () {
 						province: '',
 						pageNum: 1,	// 	第几页	是	[string]		查看
 						pageSize: 12,	// 	每页显示多少行	是	[string]		查看
-						orderBy: 'createTime desc',	// 	排序字段	是	[string]		查看
+						orderBy: 'saasId desc,createTime desc',	// 	排序字段	是	[string]		查看
 						categoryCode: "001,010"
 					},
 					selected: false,

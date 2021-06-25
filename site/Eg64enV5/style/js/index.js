@@ -243,7 +243,7 @@ require(['/common/js/require.config.js'], function () {
 					getScienceList(code,list){
 						let vm=this,params={
 							categoryCode: code,
-							orderBy: "homePageFlag desc,createTime desc",
+							orderBy: "saasId,desc,homePageFlag desc,createTime desc",
 							pageNum: 1,
 							pageSize: 4
 						};
