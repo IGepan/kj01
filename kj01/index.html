@@ -463,28 +463,30 @@
         </div>
         <div class="mdiv pinpai-bottom server">
             <!-- 知识产权-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg1.png">
-                    <span class="mallItem-imgBox-title">知识产权</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(0)">查看更多 &gt;&gt;</a>
+            <div class="mallItem" v-for="(type,index) in typeList">
+                <div class="mallItem-imgBox">
+                    <img :src="bgImg[index]">
+<!--                    <img src="/style/images/index/tab-bg1.png">-->
+                    <span class="mallItem-imgBox-title">{{type.name}}</span>
+                    <a class="mallItem-imgBox-url" :href="'/mall/sub1.html?type='+type.id">查看更多 &gt;&gt;</a>
 
                 </div>
                 <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_incubation in incubationTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_incubation.id+'&code='+good_incubation.shopCode">
+                    <div class="col-card" v-for="goods in type.goodList" >
+                        <a :href="'/mall/shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
                             <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_incubation.goodsImg.url" class=""
+                                <div class="technology-avatar"><img :src="goods.goodsImg.url" class=""
                                                                     alt="...">
                                 </div>
 
-                                <div class="card-title">{{good_incubation.goodsName}}</div>
+                                <div class="card-title">{{goods.goodsName}}</div>
                                 <div class="addition">
-                                    <div class="quoted-price">{{formatPrice(good_incubation.choosePriceTag,good_incubation.price, good_incubation.minPrice,
-                                        good_incubation.maxPrice)}}
+                                    <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice,
+                                        goods.maxPrice)}}
                                     </div>
                                     <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_incubation.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_incubation.shopName}}</p>
+                                        <p><i class="iconfont icon-biaoqian"></i>{{goods.typeName}}</p>
+                                        <p><i class="iconfont icon-dingweixian"></i>{{goods.shopName}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -494,117 +496,26 @@
                 </div>
             </div>
             <!--           法律服务-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg2.png">
-                    <span class="mallItem-imgBox-title">法律服务</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(1)">查看更多 &gt;&gt;</a>
-
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_design in designTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">
-                            <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_design.goodsImg.url" class="" alt="...">
-                                </div>
-
-                                <div class="card-title">{{good_design.goodsName}}</div>
-                                <div class="addition">
-                                    <div class="quoted-price">{{formatPrice(good_design.choosePriceTag,good_design.price, good_design.minPrice,
-                                        good_design.maxPrice)}}</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_design.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_design.shopName}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-            <!--            政策申报-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg3.png">
-                    <span class="mallItem-imgBox-title">政策申报</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(2)">查看更多 &gt;&gt;</a>
-
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_checkType in checkTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">
-                            <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_checkType.goodsImg.url" class=""
-                                                                    alt="..."></div>
-
-                                <div class="card-title">{{good_checkType.goodsName}}</div>
-                                <div class="addition">
-                                    <div class="quoted-price">{{formatPrice(good_checkType.choosePriceTag,good_checkType.price, good_checkType.minPrice,
-                                        good_checkType.maxPrice)}}</div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_checkType.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_checkType.shopName}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-            <!--            工商财税-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg4.png">
-                    <span class="mallItem-imgBox-title">工商财税</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(3)">查看更多 &gt;&gt;</a>
-
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_propertyType in propertyTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">
-                            <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_propertyType.goodsImg.url" class=""
-                                                                    alt="..."></div>
-
-                                <div class="card-title">{{good_propertyType.goodsName}}</div>
-                                <div class="addition">
-                                    <div class="quoted-price">
-                                        {{formatPrice(good_propertyType.choosePriceTag,good_propertyType.price, good_propertyType.minPrice,
-                                        good_propertyType.maxPrice)}}
-                                        </div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_propertyType.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_propertyType.shopName}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-<!--            &lt;!&ndash;            评估评价&ndash;&gt;-->
 <!--            <div class="mallItem">-->
-<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">-->
-<!--                    <span class="mallItem-imgBox-title">评估评价</span>-->
-<!--                    <a class="mallItem-imgBox-url" @click="checkMore(6)">查看更多 &gt;&gt;</a>-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg2.png">-->
+<!--                    <span class="mallItem-imgBox-title">法律服务</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(1)">查看更多 &gt;&gt;</a>-->
 
 <!--                </div>-->
 <!--                <div class="mallItem-infoBox">-->
-<!--                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">-->
-<!--                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">-->
+<!--                    <div class="col-card" v-for="good_design in designTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_design.id+'&code='+good_design.shopCode">-->
 <!--                            <div class="card-item">-->
-<!--                                <div class="technology-avatar"><img :src="good_knowledgeType.goodsImg.url" class=""-->
-<!--                                                                    alt="..."></div>-->
+<!--                                <div class="technology-avatar"><img :src="good_design.goodsImg.url" class="" alt="...">-->
+<!--                                </div>-->
 
-<!--                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>-->
+<!--                                <div class="card-title">{{good_design.goodsName}}</div>-->
 <!--                                <div class="addition">-->
-<!--                                    <div class="quoted-price">-->
-<!--                                        {{formatPrice(good_knowledgeType.choosePriceTag,good_knowledgeType.price, good_knowledgeType.minPrice,-->
-<!--                                        good_knowledgeType.maxPrice)}}-->
-<!--                                    </div>-->
+<!--                                    <div class="quoted-price">{{formatPrice(good_design.choosePriceTag,good_design.price, good_design.minPrice,-->
+<!--                                        good_design.maxPrice)}}</div>-->
 <!--                                    <div class="short-text">-->
-<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>-->
-<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_design.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_design.shopName}}</p>-->
 <!--                                    </div>-->
 <!--                                </div>-->
 <!--                            </div>-->
@@ -613,70 +524,161 @@
 
 <!--                </div>-->
 <!--            </div>-->
-            <!--            科技咨询-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">
-                    <span class="mallItem-imgBox-title">科技咨询</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(5)">查看更多 &gt;&gt;</a>
+<!--            &lt;!&ndash;            政策申报&ndash;&gt;-->
+<!--            <div class="mallItem">-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg3.png">-->
+<!--                    <span class="mallItem-imgBox-title">政策申报</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(2)">查看更多 &gt;&gt;</a>-->
 
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_transferType in transferTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">
-                            <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_transferType.goodsImg.url" class=""
-                                                                    alt="..."></div>
+<!--                </div>-->
+<!--                <div class="mallItem-infoBox">-->
+<!--                    <div class="col-card" v-for="good_checkType in checkTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_checkType.id+'&code='+good_checkType.shopCode">-->
+<!--                            <div class="card-item">-->
+<!--                                <div class="technology-avatar"><img :src="good_checkType.goodsImg.url" class=""-->
+<!--                                                                    alt="..."></div>-->
 
-                                <div class="card-title">{{good_transferType.goodsName}}</div>
-                                <div class="addition">
-                                    <div class="quoted-price">
-                                        {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,
-                                        good_transferType.maxPrice)}}
-                                    </div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_transferType.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_transferType.shopName}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+<!--                                <div class="card-title">{{good_checkType.goodsName}}</div>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="quoted-price">{{formatPrice(good_checkType.choosePriceTag,good_checkType.price, good_checkType.minPrice,-->
+<!--                                        good_checkType.maxPrice)}}</div>-->
+<!--                                    <div class="short-text">-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_checkType.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_checkType.shopName}}</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-            </div>
-            <!--            检验检测-->
-            <div class="mallItem">
-                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg6.png">
-                    <span class="mallItem-imgBox-title">检验检测</span>
-                    <a class="mallItem-imgBox-url" @click="checkMore(4)">查看更多 &gt;&gt;</a>
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            工商财税&ndash;&gt;-->
+<!--            <div class="mallItem">-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg4.png">-->
+<!--                    <span class="mallItem-imgBox-title">工商财税</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(3)">查看更多 &gt;&gt;</a>-->
 
-                </div>
+<!--                </div>-->
+<!--                <div class="mallItem-infoBox">-->
+<!--                    <div class="col-card" v-for="good_propertyType in propertyTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_propertyType.id+'&code='+good_propertyType.shopCode">-->
+<!--                            <div class="card-item">-->
+<!--                                <div class="technology-avatar"><img :src="good_propertyType.goodsImg.url" class=""-->
+<!--                                                                    alt="..."></div>-->
 
-                <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="good_technology in technologyTypeList">
-                        <a :href="'/mall/shop/detail.html?id='+good_technology.id+'&code='+good_technology.shopCode">
-                            <div class="card-item">
-                                <div class="technology-avatar"><img :src="good_technology.goodsImg.url" class=""
-                                                                    alt="..."></div>
+<!--                                <div class="card-title">{{good_propertyType.goodsName}}</div>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="quoted-price">-->
+<!--                                        {{formatPrice(good_propertyType.choosePriceTag,good_propertyType.price, good_propertyType.minPrice,-->
+<!--                                        good_propertyType.maxPrice)}}-->
+<!--                                        </div>-->
+<!--                                    <div class="short-text">-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_propertyType.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_propertyType.shopName}}</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                                <div class="card-title">{{good_technology.goodsName}}</div>
-                                <div class="addition">
-                                    <div class="quoted-price">
-                                        {{formatPrice(good_technology.choosePriceTag,good_technology.price, good_technology.minPrice,
-                                        good_technology.maxPrice)}}
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            &lt;!&ndash;            评估评价&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="mallItem">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span class="mallItem-imgBox-title">评估评价</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="mallItem-imgBox-url" @click="checkMore(6)">查看更多 &gt;&gt;</a>&ndash;&gt;-->
 
-                                    </div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{good_technology.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{good_technology.shopName}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="mallItem-infoBox">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-card" v-for="good_knowledgeType in knowledgeTypeList">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a :href="'/mall/shop/detail.html?id='+good_knowledgeType.id+'&code='+good_knowledgeType.shopCode">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="card-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="technology-avatar"><img :src="good_knowledgeType.goodsImg.url" class=""&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                    alt="..."></div>&ndash;&gt;-->
 
-            </div>
+<!--&lt;!&ndash;                                <div class="card-title">{{good_knowledgeType.goodsName}}</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="addition">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="quoted-price">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        {{formatPrice(good_knowledgeType.choosePriceTag,good_knowledgeType.price, good_knowledgeType.minPrice,&ndash;&gt;-->
+<!--&lt;!&ndash;                                        good_knowledgeType.maxPrice)}}&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="short-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p><i class="iconfont icon-biaoqian"></i>{{good_knowledgeType.typeName}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p><i class="iconfont icon-dingweixian"></i>{{good_knowledgeType.shopName}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            科技咨询&ndash;&gt;-->
+<!--            <div class="mallItem">-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg5.png">-->
+<!--                    <span class="mallItem-imgBox-title">科技咨询</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(5)">查看更多 &gt;&gt;</a>-->
+
+<!--                </div>-->
+<!--                <div class="mallItem-infoBox">-->
+<!--                    <div class="col-card" v-for="good_transferType in transferTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_transferType.id+'&code='+good_transferType.shopCode">-->
+<!--                            <div class="card-item">-->
+<!--                                <div class="technology-avatar"><img :src="good_transferType.goodsImg.url" class=""-->
+<!--                                                                    alt="..."></div>-->
+
+<!--                                <div class="card-title">{{good_transferType.goodsName}}</div>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="quoted-price">-->
+<!--                                        {{formatPrice(good_transferType.choosePriceTag,good_transferType.price, good_transferType.minPrice,-->
+<!--                                        good_transferType.maxPrice)}}-->
+<!--                                    </div>-->
+<!--                                    <div class="short-text">-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_transferType.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_transferType.shopName}}</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            检验检测&ndash;&gt;-->
+<!--            <div class="mallItem">-->
+<!--                <div class="mallItem-imgBox"><img src="/style/images/index/tab-bg6.png">-->
+<!--                    <span class="mallItem-imgBox-title">检验检测</span>-->
+<!--                    <a class="mallItem-imgBox-url" @click="checkMore(4)">查看更多 &gt;&gt;</a>-->
+
+<!--                </div>-->
+
+<!--                <div class="mallItem-infoBox">-->
+<!--                    <div class="col-card" v-for="good_technology in technologyTypeList">-->
+<!--                        <a :href="'/mall/shop/detail.html?id='+good_technology.id+'&code='+good_technology.shopCode">-->
+<!--                            <div class="card-item">-->
+<!--                                <div class="technology-avatar"><img :src="good_technology.goodsImg.url" class=""-->
+<!--                                                                    alt="..."></div>-->
+
+<!--                                <div class="card-title">{{good_technology.goodsName}}</div>-->
+<!--                                <div class="addition">-->
+<!--                                    <div class="quoted-price">-->
+<!--                                        {{formatPrice(good_technology.choosePriceTag,good_technology.price, good_technology.minPrice,-->
+<!--                                        good_technology.maxPrice)}}-->
+
+<!--                                    </div>-->
+<!--                                    <div class="short-text">-->
+<!--                                        <p><i class="iconfont icon-biaoqian"></i>{{good_technology.typeName}}</p>-->
+<!--                                        <p><i class="iconfont icon-dingweixian"></i>{{good_technology.shopName}}</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
         </div>
 
     </div>
