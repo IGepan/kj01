@@ -899,6 +899,7 @@ a:hover {
   background: #ebeef1;
   overflow: hidden;
   border-radius: 12px;
+  margin-bottom: 0!important;
 }
 
 .rightbox-list ul:before {
@@ -941,7 +942,18 @@ a:hover {
 .rightbox-list ul.active6:before {
   top: calc(68px * 6);
 }
-
+.rightbox-list ul.active7:before {
+  top: calc(68px * 7);
+}
+.rightbox-list ul.active8:before {
+  top: calc(68px * 8);
+}
+.rightbox-list ul.active9:before {
+  top: calc(68px * 9);
+}
+.rightbox-list ul.active10:before {
+  top: calc(68px * 10);
+}
 .bg_color {
   background: #008df4 !important;
   color: #FFFFff!important;
