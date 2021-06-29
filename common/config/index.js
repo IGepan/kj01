@@ -5,6 +5,7 @@ define(function () {
     {
       // 本地环境
       authUrl: 'http://192.168.0.200:9769/tsOauth2',
+      // baseUrl: 'http://192.168.1.3:9769/tsAdmin',
       baseUrl: 'http://192.168.0.200:9769/tsAdmin',
       assisUrl: 'http://192.168.0.200:9769/tsAssistant',
       statisticsUrl: 'http://192.168.0.200/as', // 统计地址 配置域名
