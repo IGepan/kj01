@@ -9,7 +9,7 @@
 <!--                        </a>-->
                         <div class="logo-right">
                             <div class="title">{{webInfo.saasName || ''}}</div>
-                            <div class="sub-title">科技创新综合服务平台</div>
+<!--                            <div class="sub-title">科技创新综合服务平台</div>-->
                         </div>
                     </div>
                     <div class="search-box">
