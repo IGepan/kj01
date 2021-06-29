@@ -1276,7 +1276,13 @@ require(['/common/js/require.config.js'], function () {
                             //         return s.id == res.result[6].id;
                             //     })[0];
                             // }
-                            var List = res.result || []
+                            var List;
+                            if (res.result.length() >= 6) {
+                                 List = res.result.slice(0.6)
+                            }else {
+                                List = res.result || [];
+                            }
+
                             //设置板块数据
                             for( var key in List){
                                 List[key].goodList = []
