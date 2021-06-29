@@ -4,9 +4,9 @@
             <div class="headers">
                 <div class="headers-top">
                     <div class="header-logo">
-                        <a href="">
-                            <img :src="webInfo.logoUrl?webInfo.logoUrl:'./style/images/default-logo.png'" alt="">
-                        </a>
+<!--                        <a href="">-->
+<!--                            <img :src="webInfo.logoUrl?webInfo.logoUrl:'./style/images/default-logo.png'" alt="">-->
+<!--                        </a>-->
                         <div class="logo-right">
                             <div class="title">{{webInfo.saasName || ''}}</div>
                             <div class="sub-title">科技创新综合服务平台</div>
@@ -194,8 +194,8 @@
         height: 50px;
     }
     .logo-right{
-        border-left:2px solid #c3c3c3;
-        padding-left:16px;
+        /*border-left:2px solid #c3c3c3;*/
+        /*padding-left:16px;*/
     }
     .logo-right .title{
         font-family: GBK;
