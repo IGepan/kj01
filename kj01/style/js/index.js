@@ -390,30 +390,30 @@ require(['/common/js/require.config.js'], function () {
                                 }
                             ]
                         },
-                        {
-                            name: '仪器设备',
-                            subName: '为您提供高性能仪器设备',
-                            list: [
-                                {
-                                    name: '分析仪器',
-                                    number: '3449',
-                                    desc: [],
-                                    url: '/resources/equipment_list.html?equipmentTypeId=8'
-                                },
-                                {
-                                    name: '计量仪器',
-                                    number: '190',
-                                    desc: [],
-                                    url: '/resources/equipment_list.html?equipmentTypeId=1'
-                                },
-                                {
-                                    name: '电子测量仪器',
-                                    number: '414',
-                                    desc: [],
-                                    url: '/resources/equipment_list.html?equipmentTypeId=3'
-                                }
-                            ]
-                        },
+                        // {
+                        //     name: '仪器设备',
+                        //     subName: '为您提供高性能仪器设备',
+                        //     list: [
+                        //         {
+                        //             name: '分析仪器',
+                        //             number: '3449',
+                        //             desc: [],
+                        //             url: '/resources/equipment_list.html?equipmentTypeId=8'
+                        //         },
+                        //         {
+                        //             name: '计量仪器',
+                        //             number: '190',
+                        //             desc: [],
+                        //             url: '/resources/equipment_list.html?equipmentTypeId=1'
+                        //         },
+                        //         {
+                        //             name: '电子测量仪器',
+                        //             number: '414',
+                        //             desc: [],
+                        //             url: '/resources/equipment_list.html?equipmentTypeId=3'
+                        //         }
+                        //     ]
+                        // },
                     ],
                     lvmengList: [
                         {
