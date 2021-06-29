@@ -1277,7 +1277,7 @@ require(['/common/js/require.config.js'], function () {
                             //     })[0];
                             // }
                             var List;
-                            if (res.result.length() >= 6) {
+                            if (res.result.length >= 6) {
                                  List = res.result.slice(0.6)
                             }else {
                                 List = res.result || [];
