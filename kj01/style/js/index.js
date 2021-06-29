@@ -1276,19 +1276,16 @@ require(['/common/js/require.config.js'], function () {
                             //         return s.id == res.result[6].id;
                             //     })[0];
                             // }
-                            var List;
-                            if (res.result.length >= 6) {
-                                 List = res.result.slice(0.6)
-                            }else {
-                                List = res.result || [];
-                            }
 
+                                var List = res.result || [];
+                                var list = List.slice(0,6);
                             //设置板块数据
-                            for( var key in List){
-                                List[key].goodList = []
+
+                            for( var key in list){
+                                list[key].goodList = [];
                             }
                             //设置板块列表
-                            vm.typeList = List
+                            vm.typeList = list
                             //执行回调
                             typeof call == 'function' ? call():[]
                         })
