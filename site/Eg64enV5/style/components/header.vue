@@ -1,36 +1,39 @@
 <template>
     <div class="headerBox" :class="{fixed: isfixed}">
-        <div class="mmdiv">
-            <div class="headers">
-                <div class="headers-top">
-                    <div class="header-logo">
-<!--                        <a href="">-->
-<!--                            <img :src="webInfo.logoUrl?webInfo.logoUrl:'./style/images/default-logo.png'" alt="">-->
-<!--                        </a>-->
-                        <div class="logo-right">
-                            <div class="title">{{webInfo.saasName || ''}}</div>
-<!--                            <div class="sub-title">科技创新综合服务平台</div>-->
-                        </div>
+        <div class="">
+            <div class="headers" style="padding: 0">
+              <div style="background:url(./style/images/bg.png) no-repeat;width: 100%;padding-top: 37px;background-size: cover;margin-bottom: 10px">
+                <div class="headers-top mmdiv">
+                  <div class="header-logo">
+                    <a href="">
+                      <img :src="webInfo.logoUrl?webInfo.logoUrl:'./style/images/lg.png'" alt="">
+                    </a>
+                    <div class="logo-right">
+                      <div class="title">{{webInfo.saasName || ''}}</div>
+                      <!--                            <div class="sub-title">科技创新综合服务平台</div>-->
                     </div>
-                    <div class="search-box">
-                     <div class="select-box-mark">
+                  </div>
+                  <div class="search-box">
+                    <div class="select-box-mark">
                       <div class="select-mark" @click="openValue">
-                       {{keyType}}
+                        {{keyType}}
                       </div>
                       <div class="list" v-show="optionShow">
-                       <ul>
-                        <li @click="handleSelect(index,item)" v-for="(item,index) in keyOptions" :key="index">{{item.name}}
-                        </li>
-                       </ul>
+                        <ul>
+                          <li @click="handleSelect(index,item)" v-for="(item,index) in keyOptions" :key="index">{{item.name}}
+                          </li>
+                        </ul>
                       </div>
-                     </div>
-                     <div class="ipt-box">
+                    </div>
+                    <div class="ipt-box">
                       <input type="text" placeholder="输入关键字" v-model="searchKey">
                       <span class="iconfont iconfont-template icon-fangdajing" @click="handleSearch"></span>
-                     </div>
                     </div>
+                  </div>
                 </div>
-                <div class="headers-bottom">
+              </div>
+
+                <div class="headers-bottom mmdiv">
                     <a :href="nav.url" :class="{active: nav.active}" v-for="(nav,index) in navs" :key="index">{{nav.label}}</a>
                     <!--  <div class="search">
                        <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">
@@ -175,7 +178,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-     margin-bottom:37px;
+     padding-bottom:37px;
     }
 
     .header-logo {
@@ -184,14 +187,15 @@
     }
 
     .header-logo a {
-        width: 124px;
-        height: 50px;
+        /*width: 124px;*/
+        /*height: 50px;*/
         margin-right: 17px;
     }
 
     .header-logo a img {
-        width: 124px;
-        height: 50px;
+        /*width: 124px;*/
+      width: 32px;
+        /*height: 50px;*/
     }
     .logo-right{
         /*border-left:2px solid #c3c3c3;*/
@@ -200,8 +204,8 @@
     .logo-right .title{
         font-family: GBK;
        font-size: 26px;
-       line-height: 26px;
-       color: #ee661c;
+       line-height: 32px;
+       color: #fff;
         letter-spacing: 2px;
     }
     .logo-right .sub-title{
