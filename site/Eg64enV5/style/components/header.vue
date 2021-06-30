@@ -194,7 +194,6 @@
 
     .header-logo a img {
         /*width: 124px;*/
-      width: 32px;
         /*height: 50px;*/
     }
     .logo-right{
@@ -204,7 +203,7 @@
     .logo-right .title{
         font-family: GBK;
        font-size: 26px;
-       line-height: 32px;
+       line-height: 30px;
        color: #fff;
         letter-spacing: 2px;
     }
