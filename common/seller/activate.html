@@ -32,8 +32,8 @@
             </div>
             <div class="auditstatus">
               <span>审核状态：</span>
-              <span class="fr" v-if="activateinfo.activeFlag !== '0'"><a style="color:#000" @click="fileSaveAs" :href="httpUrl.baseUrl + '/shop/downloadFiling'
-">下载备案信息表</a></span>
+<!--              <span class="fr" v-if="activateinfo.activeFlag !== '0'">-->
+<!--                <a style="color:#000" @click="fileSaveAs" :href="httpUrl.baseUrl + '/shop/downloadFiling'">下载备案信息表</a></span>-->
               <span class="red" v-text="activateinfo.activeFlag === '0'?'未激活，请尽快完成店铺激活':'店铺已激活'"></span>
             </div>
             <div class="storestep">
