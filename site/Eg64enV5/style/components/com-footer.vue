@@ -25,12 +25,8 @@
         </div>
         <div class="foot-bottom">
             <div class="mmdiv">
-                <div class="foot-content-box">
-                    <a href="">关于易智网</a>
-                    <a href="">免责声明</a>
-                    <a href="">隐私政策</a>
-                    <a href="">平台协议</a>
-                    <a href="">联系客服</a>
+                <div class="foot-content-box" >
+                    <a :href="'about.html#'+item.label" v-for="item in List" style="margin-right: 10px">{{item.label}}</a>
                 </div>
                 <div class="foot-content-box">Copyright © 2019 易智网 版权所有 <a href="">渝ICP备09050127号-36</a></div>
             </div>
@@ -43,7 +39,23 @@
         name: "com-footer",
         data(){
             return{
-                webInfo:''
+                webInfo:'',
+              List:[
+                {
+                  label:'关于易智网',
+                },{
+                  label:'免责声明',
+
+                },{
+                  label:'隐私政策',
+
+                },{
+                  label:'平台协议',
+
+                },{
+                  label:'联系客服',
+                }
+              ]
             }
         },
         watch:{
@@ -56,7 +68,15 @@
                     this.webInfo=info?info:'';
                 }
             });
+        },
+      handleTabs(index,item){
+        this.activeIndex=index;
+        this.activeName=item.label;
+        this.detail='';
+        if(item.type){
+          this.getInfo(item.type);
         }
+      }
     }
 </script>
 

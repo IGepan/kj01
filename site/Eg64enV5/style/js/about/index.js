@@ -27,6 +27,19 @@ require(['/common/js/require.config.js'], function () {
 					activeName:'关于易智网',
 				},
 				mounted(){
+					var vm = this
+					window.onhashchange = function() {
+						var hash = location.hash
+						var tit = decodeURI(hash.split('#')[1]);//解密获取的字符串
+						vm.sidebarList.forEach(function (item,idx){
+							if(tit == item.label){
+								vm.activeIndex = idx
+								vm.handleTabs(idx,item)
+
+							}
+						})
+						// 根据hash去找到页面的导航值，设置选中
+					}
 					// this.getInfo();
 				},
 				components: {
@@ -35,6 +48,7 @@ require(['/common/js/require.config.js'], function () {
 					'com-footer': httpVueLoader('./style/components/com-footer.vue'),
 				},
 				methods:{
+
 					getInfo(id){
 						let vm=this,params={
 							protocolType:id

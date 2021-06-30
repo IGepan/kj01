@@ -1,7 +1,7 @@
 <template>
     <div class="headerBox" :class="{fixed: isfixed}">
         <div class="">
-            <div class="headers" style="padding: 0">
+            <div class="headers" >
               <div style="background:url(./style/images/bg.png) no-repeat;width: 100%;padding-top: 37px;background-size: cover;margin-bottom: 10px">
                 <div class="headers-top mmdiv">
                   <div class="header-logo">
@@ -171,7 +171,7 @@
     }
     .headers {
         width: 100%;
-        padding-top:30px;
+        /*padding-top:30px;*/
     }
 
     .headers-top {
