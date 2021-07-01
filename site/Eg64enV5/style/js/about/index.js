@@ -28,18 +28,10 @@ require(['/common/js/require.config.js'], function () {
 				},
 				mounted(){
 					var vm = this
-					window.onhashchange = function() {
-						var hash = location.hash
-						var tit = decodeURI(hash.split('#')[1]);//解密获取的字符串
-						vm.sidebarList.forEach(function (item,idx){
-							if(tit == item.label){
-								vm.activeIndex = idx
-								vm.handleTabs(idx,item)
-
-							}
-						})
-						// 根据hash去找到页面的导航值，设置选中
+					window.onhashchange = function(){
+						vm.getUrl()
 					}
+					this.getUrl()
 					// this.getInfo();
 				},
 				components: {
@@ -48,7 +40,20 @@ require(['/common/js/require.config.js'], function () {
 					'com-footer': httpVueLoader('./style/components/com-footer.vue'),
 				},
 				methods:{
+                    getUrl:function (){
+						var vm = this
+						var hash = location.hash
+						var tit = decodeURI(hash.split('#')[1]);//解密获取的字符串
+						vm.sidebarList.forEach(function (item,idx){
+								if(tit == item.label){
+									vm.activeIndex = idx
+									vm.handleTabs(idx,item)
 
+								}
+							})
+							// 根据hash去找到页面的导航值，设置选中
+
+					},
 					getInfo(id){
 						let vm=this,params={
 							protocolType:id
