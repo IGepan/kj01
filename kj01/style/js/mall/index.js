@@ -55,7 +55,7 @@ require(['/common/js/require.config.js'], function () {
                     typeList:[],//板块列表
                     goodList:[],//板块数据列表
                     bgcolor:[
-                        'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6','bg7','bg8','bg9','bg10'
+                        'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7','bg6','bg8','bg9','bg10'
                     ],
                     scrollList:[]
                 },
