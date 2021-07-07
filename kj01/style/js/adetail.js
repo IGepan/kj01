@@ -33,6 +33,7 @@ require(['/common/js/require.config.js'], function () {
                     activeNowTime: '',
                     selectIndex: 0,
                     dayResultList: [],
+                    comList:[],
                     isEvaluateFlag: false
                 },
                 filters: {
@@ -122,6 +123,7 @@ require(['/common/js/require.config.js'], function () {
                                     })
                                 })
                                 res.result.cooperation = cooperations
+                                vm.comList = res.result.cooperation
                             }
                             if (res.result.joinUser.length) {
                                 res.result.joinUser.forEach(function (item) {
@@ -268,6 +270,15 @@ require(['/common/js/require.config.js'], function () {
                                 item.itemUrl = '/adetail.html?id=' + item.id
                             });
                             vm.$data.dayResultList = res.result.list || []
+
+                            console.log(vm.detail.cooperation[0][0])
+                              if(vm.detail.cooperation[0][0].cooperationTypeDisplay==='指导单位'){
+                                  vm.comList = vm.comList.splice(1,0,vm.$data.dayResultList)
+                              }else {
+                                  vm.comList = vm.comList.unshift(vm.$data.dayResultList)
+                              }
+
+
                         })
                         return 1;
                     },

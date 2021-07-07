@@ -254,6 +254,28 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     },
+                    formatPrice2: function (flag, v, n, m) {
+                        if (flag == '2') {
+                            return '面议'
+                        }if(flag == "3"){
+                            return '查看价格详情'
+                        }
+                        else {
+                            if (typeof v !== 'undefined' ) {
+
+                                return '￥'+ v
+
+                            } else if (!v && !m ) {
+
+                                return  '￥'+ n
+
+                            } else if(n && m) {
+
+                                return '￥' + n + '~' + m
+                            }
+                        }
+
+                    },
                     fwsClick: function () {
                         if (!this.userInfo.userId) {
                             window.location.href = "/common/login.html";
