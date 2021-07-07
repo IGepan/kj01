@@ -278,7 +278,7 @@
                 </div>
 <!--              </div>-->
               <template v-for="(cooperation, ci) in detail.cooperation">
-                <div class="unit-row" :key="ci" v-if="cooperation[0].cooperationType !=== '04'">
+                <div class="unit-row" :key="ci" v-if="cooperation[0].cooperationType !== '04'">
                   <div class="vaTop unit-label">{{cooperation[0].cooperationTypeDisplay}}：</div>
                   <div class="vaTop unit-units">
                     <template v-for="(coop, sci) in cooperation">
