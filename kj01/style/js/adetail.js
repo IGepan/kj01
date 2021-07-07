@@ -33,7 +33,7 @@ require(['/common/js/require.config.js'], function () {
                     activeNowTime: '',
                     selectIndex: 0,
                     dayResultList: [],
-                    comList:[],
+                    // comList:[],
                     isEvaluateFlag: false
                 },
                 filters: {
@@ -122,8 +122,8 @@ require(['/common/js/require.config.js'], function () {
                                         return cooperation.cooperationType === type
                                     })
                                 })
-                                res.result.cooperation = cooperations
-                                vm.comList = res.result.cooperation
+                                res.result.cooperation = cooperations;
+
                             }
                             if (res.result.joinUser.length) {
                                 res.result.joinUser.forEach(function (item) {
@@ -271,12 +271,12 @@ require(['/common/js/require.config.js'], function () {
                             });
                             vm.$data.dayResultList = res.result.list || []
 
-                            console.log(vm.detail.cooperation[0][0])
-                              if(vm.detail.cooperation[0][0].cooperationTypeDisplay==='指导单位'){
-                                  vm.comList = vm.comList.splice(1,0,vm.$data.dayResultList)
-                              }else {
-                                  vm.comList = vm.comList.unshift(vm.$data.dayResultList)
-                              }
+                            // console.log(vm.detail.cooperation[0][0])
+                            //   if(vm.detail.cooperation[0][0].cooperationTypeDisplay==='指导单位'){
+                            //       vm.comList = vm.comList.splice(1,0,vm.$data.dayResultList)
+                            //   }else {
+                            //       vm.comList = vm.comList.unshift(vm.$data.dayResultList)
+                            //   }
 
 
                         })
