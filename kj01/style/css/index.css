@@ -389,7 +389,24 @@
     background: url(../images/index/infobg.png);
     padding-bottom: 120px;
 }
+.el-carousel__container{
+    height: 100px!important;
+}.el-carousel__arrow{
+     /*color: #ff9000!important;*/
+     font-size: 36px!important;
+ }
+.el-carousel__button{
+    /*width: 10px!important;*/
+    height: 5px!important;
+    /*border-radius: 50%;*/
+    opacity: 1!important;
+}
 
+.el-carousel__arrow--left{left: 0px!important;}
+.el-carousel__arrow--right{right: 0px!important;}
+.el-carousel__indicator.is-active button {
+    background: #ff9000;
+}
 .title {
     display: flex;
     justify-content: space-between;
