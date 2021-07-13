@@ -58,6 +58,12 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
       return Http.getNoToast(httpUrl.baseUrl + '/webCommon/user', param)
     },
     /**
+     * 取得用户电话号码
+     */
+    webCommonUserPhone: function () {
+      return Http.post(httpUrl.baseMarketUrl + '/certification/getUserInfo');
+    },
+    /**
      * 公用查询商品项目
      */
     searchList: function (param) {
