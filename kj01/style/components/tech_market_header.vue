@@ -37,7 +37,7 @@ module.exports = {
   props: {
     name: {
       type: String,
-      default: "技术市场",
+      default: "技术转移",
     },
   },
 
@@ -52,7 +52,7 @@ module.exports = {
         {
           id: 0,
           value: "首页",
-          href: "/technologyMarket/index.html",
+          href: "/index.html",
           impro: "index",
         },
         {
