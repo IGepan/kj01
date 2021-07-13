@@ -955,6 +955,9 @@ require(['/common/js/require.config.js'], function () {
                         })
                         location.href = '/service/results_list.html?industryLevel=' + industryLevel
                     },
+                    getImgPath(path) {
+                        return httpUrl.fileShowUrl + '/resource/' + path;
+                    },
                     // getShopList: function () {
                     //     var vm = this
                     //     indexApi.shopSelectbByPage({

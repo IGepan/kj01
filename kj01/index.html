@@ -148,13 +148,13 @@
                                     </a>
 
                                 </el-carousel-item>
-                                <el-carousel-item >
-                                    <!--                                        技术经理人学院-->
-                                    <a  @click="handleSchool" target="_blank">
-                                        <img  src="./style/images/index/study.png">
-                                    </a>
+<!--                                <el-carousel-item >-->
+<!--                                    &lt;!&ndash;                                        技术经理人学院&ndash;&gt;-->
+<!--                                    <a  @click="handleSchool" target="_blank">-->
+<!--                                        <img  src="./style/images/index/study.png">-->
+<!--                                    </a>-->
 
-                                </el-carousel-item>
+<!--                                </el-carousel-item>-->
                             </el-carousel>
                         </div>
 <!--            <div class="mdiv">< a href=" " >< img  src="./style/images/index/achieve.png"><a class="achlink">点击查看更多</ a></ a></div>-->
@@ -375,7 +375,7 @@
                     <div class="technology-lists">
                         <a :href="'/technologyMarket/tech_achievements_details.html?id=' + good.id" v-for="(good,index) in goodsList" :key="index">
                             <div class="technology-avatar">
-                                <img src="/style/images/top_qrCode.jpg" alt="">
+                                <img :src="getImgPath(good.projectImgPath)" alt="">
                             </div>
                             <div class="technology-name" >{{good.title}}</div>
                             <div class="technology-type">
@@ -429,7 +429,7 @@
                 <div class="technology-right">
                     <div class="technology-serve">
                         <div class="technology-serve_list">
-                            <a href="/market/technicalBroker.html">
+                            <a onclick="window.open(httpUrl.baseSchoolOutUrl)" target="_blank">
                                 <div class="iconfont icon-xianshanghuodong"></div>
                                 <div class="serve-right">
                                     <div class="serve-name">技术经理人学院</div>
@@ -455,7 +455,7 @@
                                                          class="iconfont icon-gengduo"></a></div>
                         <div class="supplier-list">
                             <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">
-                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>
+                                <div class="supplier-avatar"><img :src="getImgPath(shop.logoPath)" alt=""></div>
                                 <div class="supplier-name" >{{shop.organName}}</div>
                             </a>
                         </div>
@@ -465,7 +465,7 @@
                                                           class="iconfont icon-gengduo"></a></div>
                         <div class="supplier-list">
                             <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
-                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>
+                                <div class="supplier-avatar"><img :src="getImgPath(Man.logoPath)" alt=""></div>
                                 <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}
                                     <br>
                                     <div style="font-size: 12px">({{Man.agentType_display}})
