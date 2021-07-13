@@ -365,6 +365,11 @@
 <!--                        <div class="technology-title">-->
 <!--                            <div class="policy-title">技术成果<a href="/technologyMarket/tech_achievements.html"-->
 <!--                                                             class="iconfont icon-gengduo"></a></div>-->
+<!--                            &lt;!&ndash;                            <div class="technology-lable">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                          :key="index"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                          @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                    <div class="technology-lists">-->
@@ -402,7 +407,24 @@
 <!--                                <div class="fl">需求类型：{{demand.demandType_display}}</div>-->
 <!--                            </div>-->
 <!--                        </a>-->
+
 <!--                    </div>-->
+<!--                    &lt;!&ndash;                    <div class="title-border">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <div class="policy-title">技术经济人<a href="/service/demand_list.html"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                           class="iconfont icon-gengduo"></a></div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <div class="technology-lists market-demand">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <a :href="'/common/demanddetail.html?id='+ demand.id" v-for="(demand,index) in demandList">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <div class="technology-name" :title="demand.title">{{demand.title}}</div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                <div class="technology-adress"><span&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        class="iconfont icon-dingweixian"></span>{{demand.provinceDisplay}}{{demand.cityDisplay}}&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                <div class="prcie-yellow"><span>￥</span><span&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        class="number">{{demand.budget}}</span></div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
 <!--                </div>-->
 <!--                <div class="technology-right">-->
 <!--                    <div class="technology-serve">-->
@@ -422,9 +444,14 @@
 <!--                                </div>-->
 <!--                            </a>-->
 <!--                        </div>-->
+<!--                        &lt;!&ndash;                        <div class="technology-info">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                               :data-url="button.url"><span class="iconfont"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                                            :class="button.icon"></span><span>{{button.label}}</span></a>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
 <!--                    </div>-->
 <!--                    <div class="supplier">-->
-<!--                        <div class="policy-title">技术机构<a href="/service/organization_list.html"-->
+<!--                        <div class="policy-title">技术机构<a href="/technologyMarket/service_organization.html"-->
 <!--                                                         class="iconfont icon-gengduo"></a></div>-->
 <!--                        <div class="supplier-list">-->
 <!--                            <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">-->
@@ -434,14 +461,17 @@
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                    <div class="supplier">-->
-<!--                        <div class="policy-title">技术经理人<a href="/service/organization_list.html"-->
+<!--                        <div class="policy-title">技术经理人<a href="/technologyMarket/technical_manager.html"-->
 <!--                                                          class="iconfont icon-gengduo"></a></div>-->
 <!--                        <div class="supplier-list">-->
 <!--                            <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">-->
 <!--                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>-->
-<!--                                <div class="supplier-name">{{Man.brokerName}}</div>-->
-<!--                                <br>-->
-<!--                                <div style="color: #13c9ef;border: 1px solid #13c9ef;">{{Man.agentType_display}}</div>-->
+<!--                                <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}-->
+<!--                                    <br>-->
+<!--                                    <div style="font-size: 12px">({{Man.agentType_display}})-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
 <!--                            </a>-->
 <!--                        </div>-->
 <!--                    </div>-->
