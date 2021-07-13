@@ -503,6 +503,7 @@ require(['/common/js/require.config.js'], function () {
                     ],
                     goodsList: [],
                     demandList: [],
+                    ManagerList:[],
                     buttons: [
                         {
                             label: '技术发布',
@@ -809,6 +810,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getHelperList() // 申报助手
                     this.getGoodsList() // 技术成果
                     this.getDemandList() // 技术市场需求
+                    this.getManagerList()//技术经理人
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
@@ -953,40 +955,106 @@ require(['/common/js/require.config.js'], function () {
                         })
                         location.href = '/service/results_list.html?industryLevel=' + industryLevel
                     },
+                    // getShopList: function () {
+                    //     var vm = this
+                    //     indexApi.shopSelectbByPage({
+                    //         isContainIdentityTypeSelf: "0",
+                    //         orderBy: "createTime desc",
+                    //         pageNum: 1,
+                    //         pageSize: 4
+                    //     }).then(function (res) {
+                    //         if (res.code === 'rest.success') {
+                    //             vm.shopList = res.result.list
+                    //         }
+                    //     })
+                    // },
                     getShopList: function () {
                         var vm = this
                         indexApi.shopSelectbByPage({
-                            isContainIdentityTypeSelf: "0",
-                            orderBy: "createTime desc",
-                            pageNum: 1,
-                            pageSize: 4
+                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            payload: {achievementBelong:null,
+                                achievementMaturity:null,
+                                budget_sectionQuery:null,
+                                businessPlanProportion:null,
+                                cooperationMode:null,
+                                projectIndustryType:null,
+                                projectSource:null}
                         }).then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.shopList = res.result.list
-                            }
+
+                            vm.shopList = res.data.records
+
                         })
                     },
                     handleTips: function () {
                         this.$dialog.showToast('敬请期待')
                     },
+                    // getDemandList: function () {
+                    //     var vm = this
+                    //     indexApi.demandSelectbByPage({
+                    //         orderBy: "createTime desc",
+                    //         pageNum: 1,
+                    //         pageSize: 4
+                    //     }).then(function (res) {
+                    //         if (res.code === 'rest.success') {
+                    //             vm.demandList = res.result.list
+                    //         }
+                    //     })
+                    // },
+                    // getGoodsList: function () {
+                    //     var vm = this
+                    //     indexApi.goodsSelectbByPage(vm.params).then(function (res) {
+                    //         if (res.code === 'rest.success') {
+                    //             vm.goodsList = res.result.list
+                    //         }
+                    //     })
+                    // },
                     getDemandList: function () {
                         var vm = this
                         indexApi.demandSelectbByPage({
-                            orderBy: "createTime desc",
-                            pageNum: 1,
-                            pageSize: 4
+                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            payload: {achievementBelong:null,
+                                achievementMaturity:null,
+                                budget_sectionQuery:null,
+                                businessPlanProportion:null,
+                                cooperationMode:null,
+                                projectIndustryType:null,
+                                projectSource:null}
                         }).then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.demandList = res.result.list
-                            }
+
+                            vm.demandList = res.data.records
+
                         })
                     },
                     getGoodsList: function () {
                         var vm = this
-                        indexApi.goodsSelectbByPage(vm.params).then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.goodsList = res.result.list
-                            }
+                        indexApi.goodsSelectbByPage({
+                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            payload: {achievementBelong:null,
+                                achievementMaturity:null,
+                                budget_sectionQuery:null,
+                                businessPlanProportion:null,
+                                cooperationMode:null,
+                                projectIndustryType:null,
+                                projectSource:null}
+                        }).then(function (res) {
+
+                            vm.goodsList = res.data.records
+
+                        })
+                    },
+                    getManagerList: function () {
+                        var vm = this
+                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            payload: {achievementBelong:null,
+                                achievementMaturity:null,
+                                budget_sectionQuery:null,
+                                businessPlanProportion:null,
+                                cooperationMode:null,
+                                projectIndustryType:null,
+                                projectSource:null}}).then(function (res) {
+
+                            vm.ManagerList = res.data.records
+
                         })
                     },
                     getAnswerList: function () {

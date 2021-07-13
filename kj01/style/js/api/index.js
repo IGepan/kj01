@@ -78,20 +78,32 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         /**
          * 技术成果列表
          */
+        // goodsSelectbByPage: function (param) {
+        //     return Http.post(httpUrl.baseUrl + '/goods/selectbByPage', param)
+        // },
         goodsSelectbByPage: function (param) {
-            return Http.post(httpUrl.baseUrl + '/goods/selectbByPage', param)
+            return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/pageProjectBaseInfo', param)
         },
         /**
          * 技术市场需求列表
          */
+        // demandSelectbByPage: function (param) {
+        //     return Http.post(httpUrl.baseUrl + '/demand/selectbByPage', param)
+        // },
         demandSelectbByPage: function (param) {
-            return Http.post(httpUrl.baseUrl + '/demand/selectbByPage', param)
+            return Http.post(httpUrl.baseMarketUrl + '/zMDemandRest/pageDemandBaseInfo', param)
+        },
+        /**
+         * 技术经理人
+         */
+        ManagerSelectbByPage: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMTechBrokerRest/selectPageZMTechBrokerVOTrans', param)
         },
         /**
          * 技术供应商
          */
         shopSelectbByPage: function (param) {
-            return Http.post(httpUrl.baseUrl + '/shop/selectByPage', param)
+            return Http.post(httpUrl.baseMarketUrl + '/zMTechOrganRest/pageZMTechOrganBaseInfo', param)
         },
         /**
          * 活动中心

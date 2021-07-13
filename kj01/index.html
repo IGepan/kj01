@@ -274,157 +274,53 @@
                     <span>助力企业创新能力提升与变现</span>
                 </div>
             </div>
-            <div class="technology">
-                <div class="technology-left">
-                    <div class="achievement">
-                        <div class="technology-title">
-                            <div class="policy-title">技术成果<a href="/service/results_list.html"
-                                                             class="iconfont icon-gengduo"></a></div>
-                            <div class="technology-lable">
-                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"
-                                          :key="index"
-                                          @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="technology-lists">
-                        <a :href="good.goodsDetailUrl" v-for="(good,index) in goodsList" :key="index">
-                            <div class="technology-avatar">
-                                <img :src="good.goodsImg.url" alt="">
-                            </div>
-                            <div class="technology-name" :title="good.goodsName">{{good.goodsName}}</div>
-                            <div class="technology-type">
-                                <div>交易价格：<span
-                                        class="price-red">{{formatPrice(good.choosePriceTag,good.price, good.minPrice,
-                                        good.maxPrice)}}</span>
-                                </div>
-                                <div>转让方式：{{good.transactionModeDisplay}}</div>
-                                <div class="technology-type_classify" :title="good.industryNames">
-                                    行业分类：{{good.industryNames}}
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="title-border">
-                        <div class="policy-title">技术市场需求<a href="/service/demand_list.html"
-                                                           class="iconfont icon-gengduo"></a></div>
-                    </div>
-                    <div class="technology-lists market-demand">
-                        <a :href="'/common/demanddetail.html?id='+ demand.id" v-for="(demand,index) in demandList">
-                            <div class="technology-name" :title="demand.title">{{demand.title}}</div>
-                            <div>
-                                <div class="technology-adress"><span
-                                        class="iconfont icon-dingweixian"></span>{{demand.provinceDisplay}}{{demand.cityDisplay}}
-                                </div>
-                                <div class="prcie-yellow"><span>￥</span><span
-                                        class="number">{{demand.budget}}</span></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="technology-right">
-                    <div class="technology-serve">
-                        <div class="technology-serve_list">
-                            <a href="/market/technicalBroker.html">
-                                <div class="iconfont icon-xianshanghuodong"></div>
-                                <div class="serve-right">
-                                    <div class="serve-name">技术经纪人协同服务</div>
-                                    <div class="serve-type">一站式服务，为成果转化保驾护航</div>
-                                </div>
-                            </a>
-                            <a href="http://www.chttc.com" target="_blank">
-                                <div class="iconfont icon-xianshanghuodong"></div>
-                                <div class="serve-right">
-                                    <div class="serve-name">国际技术转移服务</div>
-                                    <div class="serve-type">面向全球，服务世界</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="technology-info">
-                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"
-                               :data-url="button.url"><span class="iconfont"
-                                                            :class="button.icon"></span><span>{{button.label}}</span></a>
-                        </div>
-                    </div>
-                    <div class="supplier">
-                        <div class="policy-title">技术供应商<a href="/service/organization_list.html"
-                                                          class="iconfont icon-gengduo"></a></div>
-                        <div class="supplier-list">
-                            <a :href="shop.shopIndexUrl" v-for="(shop,index) in shopList" :key="index">
-                                <div class="supplier-avatar"><img :src="shop.shopLogo" alt=""></div>
-                                <div class="supplier-name" :title="shop.shopName">{{shop.shopName}}</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!--            新技术转移页面内容-->
 <!--            <div class="technology">-->
 <!--                <div class="technology-left">-->
 <!--                    <div class="achievement">-->
 <!--                        <div class="technology-title">-->
-<!--                            <div class="policy-title">技术成果<a href="/technologyMarket/tech_achievements.html"-->
+<!--                            <div class="policy-title">技术成果<a href="/service/results_list.html"-->
 <!--                                                             class="iconfont icon-gengduo"></a></div>-->
-<!--                            &lt;!&ndash;                            <div class="technology-lable">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                          :key="index"&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                          @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                            <div class="technology-lable">-->
+<!--                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"-->
+<!--                                          :key="index"-->
+<!--                                          @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>-->
+<!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                    <div class="technology-lists">-->
-<!--                        <a :href="'/technologyMarket/tech_achievements_details.html?id=' + good.id" v-for="(good,index) in goodsList" :key="index">-->
+<!--                        <a :href="good.goodsDetailUrl" v-for="(good,index) in goodsList" :key="index">-->
 <!--                            <div class="technology-avatar">-->
-<!--                                <img src="/style/images/top_qrCode.jpg" alt="">-->
+<!--                                <img :src="good.goodsImg.url" alt="">-->
 <!--                            </div>-->
-<!--                            <div class="technology-name" >{{good.title}}</div>-->
+<!--                            <div class="technology-name" :title="good.goodsName">{{good.goodsName}}</div>-->
 <!--                            <div class="technology-type">-->
-<!--                                <div class="fl">所属领域：</div>-->
-
-<!--                                <div class="fl pad10" v-for="(item,index) in good.projectIndustryType"> {{item.name}}-->
-<!--                                    <span v-if="index < good.projectIndustryType.length - 1">, </span>-->
+<!--                                <div>交易价格：<span-->
+<!--                                        class="price-red">{{formatPrice(good.choosePriceTag,good.price, good.minPrice,-->
+<!--                                        good.maxPrice)}}</span>-->
 <!--                                </div>-->
-<!--                                <div class="clear">转让方式：{{good.cooperationMode_display}}</div>-->
-<!--                                <div >价格：<span-->
-<!--                                        class="price-red">{{good.budget}}元</span>-->
+<!--                                <div>转让方式：{{good.transactionModeDisplay}}</div>-->
+<!--                                <div class="technology-type_classify" :title="good.industryNames">-->
+<!--                                    行业分类：{{good.industryNames}}-->
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </a>-->
 <!--                    </div>-->
 <!--                    <div class="title-border">-->
-<!--                        <div class="policy-title">技术需求<a href="/technologyMarket/tech_requirements.html"-->
-<!--                                                         class="iconfont icon-gengduo"></a></div>-->
+<!--                        <div class="policy-title">技术市场需求<a href="/service/demand_list.html"-->
+<!--                                                           class="iconfont icon-gengduo"></a></div>-->
 <!--                    </div>-->
 <!--                    <div class="technology-lists market-demand">-->
-<!--                        <a :href="'/technologyMarket/tech_requirements_details.html?id=' + demand.id" v-for="(demand,index) in demandList" style="display: block">-->
-<!--                            <div class="technology-name">{{demand.title}}</div>-->
-<!--                            <div class="technology-type">-->
-<!--                                <div class="fl">技术领域：</div>-->
-<!--                                <template v-for="(item,index) in demand.demandIndustryType">-->
-<!--                                    <div class="fl">{{item.name}}-->
-<!--                                        <span v-if="index < demand.demandIndustryType.length - 1">, </span></div>-->
-<!--                                </template>-->
-<!--                                <div class="fl">需求类型：{{demand.demandType_display}}</div>-->
+<!--                        <a :href="'/common/demanddetail.html?id='+ demand.id" v-for="(demand,index) in demandList">-->
+<!--                            <div class="technology-name" :title="demand.title">{{demand.title}}</div>-->
+<!--                            <div>-->
+<!--                                <div class="technology-adress"><span-->
+<!--                                        class="iconfont icon-dingweixian"></span>{{demand.provinceDisplay}}{{demand.cityDisplay}}-->
+<!--                                </div>-->
+<!--                                <div class="prcie-yellow"><span>￥</span><span-->
+<!--                                        class="number">{{demand.budget}}</span></div>-->
 <!--                            </div>-->
 <!--                        </a>-->
-
 <!--                    </div>-->
-<!--                    &lt;!&ndash;                    <div class="title-border">&ndash;&gt;-->
-<!--                    &lt;!&ndash;                        <div class="policy-title">技术经济人<a href="/service/demand_list.html"&ndash;&gt;-->
-<!--                    &lt;!&ndash;                                                           class="iconfont icon-gengduo"></a></div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                    <div class="technology-lists market-demand">&ndash;&gt;-->
-<!--                    &lt;!&ndash;                        <a :href="'/common/demanddetail.html?id='+ demand.id" v-for="(demand,index) in demandList">&ndash;&gt;-->
-<!--                    &lt;!&ndash;                            <div class="technology-name" :title="demand.title">{{demand.title}}</div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                            <div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                                <div class="technology-adress"><span&ndash;&gt;-->
-<!--                    &lt;!&ndash;                                        class="iconfont icon-dingweixian"></span>{{demand.provinceDisplay}}{{demand.cityDisplay}}&ndash;&gt;-->
-<!--                    &lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                                <div class="prcie-yellow"><span>￥</span><span&ndash;&gt;-->
-<!--                    &lt;!&ndash;                                        class="number">{{demand.budget}}</span></div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
 <!--                </div>-->
 <!--                <div class="technology-right">-->
 <!--                    <div class="technology-serve">-->
@@ -432,8 +328,8 @@
 <!--                            <a href="/market/technicalBroker.html">-->
 <!--                                <div class="iconfont icon-xianshanghuodong"></div>-->
 <!--                                <div class="serve-right">-->
-<!--                                    <div class="serve-name">技术经理人学院</div>-->
-<!--                                    <div class="serve-type">在线考试，成为技术经理人</div>-->
+<!--                                    <div class="serve-name">技术经纪人协同服务</div>-->
+<!--                                    <div class="serve-type">一站式服务，为成果转化保驾护航</div>-->
 <!--                                </div>-->
 <!--                            </a>-->
 <!--                            <a href="http://www.chttc.com" target="_blank">-->
@@ -444,39 +340,143 @@
 <!--                                </div>-->
 <!--                            </a>-->
 <!--                        </div>-->
-<!--                        &lt;!&ndash;                        <div class="technology-info">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                               :data-url="button.url"><span class="iconfont"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                                            :class="button.icon"></span><span>{{button.label}}</span></a>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--                    </div>-->
-<!--                    <div class="supplier">-->
-<!--                        <div class="policy-title">技术机构<a href="/technologyMarket/service_organization.html"-->
-<!--                                                         class="iconfont icon-gengduo"></a></div>-->
-<!--                        <div class="supplier-list">-->
-<!--                            <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">-->
-<!--                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>-->
-<!--                                <div class="supplier-name" >{{shop.organName}}</div>-->
-<!--                            </a>-->
+<!--                        <div class="technology-info">-->
+<!--                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"-->
+<!--                               :data-url="button.url"><span class="iconfont"-->
+<!--                                                            :class="button.icon"></span><span>{{button.label}}</span></a>-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                    <div class="supplier">-->
-<!--                        <div class="policy-title">技术经理人<a href="/technologyMarket/technical_manager.html"-->
+<!--                        <div class="policy-title">技术供应商<a href="/service/organization_list.html"-->
 <!--                                                          class="iconfont icon-gengduo"></a></div>-->
 <!--                        <div class="supplier-list">-->
-<!--                            <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">-->
-<!--                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>-->
-<!--                                <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}-->
-<!--                                    <br>-->
-<!--                                    <div style="font-size: 12px">({{Man.agentType_display}})-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
+<!--                            <a :href="shop.shopIndexUrl" v-for="(shop,index) in shopList" :key="index">-->
+<!--                                <div class="supplier-avatar"><img :src="shop.shopLogo" alt=""></div>-->
+<!--                                <div class="supplier-name" :title="shop.shopName">{{shop.shopName}}</div>-->
 <!--                            </a>-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
+<!--            新技术转移页面内容-->
+            <div class="technology">
+                <div class="technology-left">
+                    <div class="achievement">
+                        <div class="technology-title">
+                            <div class="policy-title">技术成果<a href="/technologyMarket/tech_achievements.html"
+                                                             class="iconfont icon-gengduo"></a></div>
+                            <!--                            <div class="technology-lable">-->
+                            <!--                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"-->
+                            <!--                                          :key="index"-->
+                            <!--                                          @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                    <div class="technology-lists">
+                        <a :href="'/technologyMarket/tech_achievements_details.html?id=' + good.id" v-for="(good,index) in goodsList" :key="index">
+                            <div class="technology-avatar">
+                                <img src="/style/images/top_qrCode.jpg" alt="">
+                            </div>
+                            <div class="technology-name" >{{good.title}}</div>
+                            <div class="technology-type">
+                                <div class="fl">所属领域：</div>
+
+                                <div class="fl pad10" v-for="(item,index) in good.projectIndustryType"> {{item.name}}
+                                    <span v-if="index < good.projectIndustryType.length - 1">, </span>
+                                </div>
+                                <div class="clear">转让方式：{{good.cooperationMode_display}}</div>
+                                <div >价格：<span
+                                        class="price-red">{{good.budget}}元</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="title-border">
+                        <div class="policy-title">技术需求<a href="/technologyMarket/tech_requirements.html"
+                                                         class="iconfont icon-gengduo"></a></div>
+                    </div>
+                    <div class="technology-lists market-demand">
+                        <a :href="'/technologyMarket/tech_requirements_details.html?id=' + demand.id" v-for="(demand,index) in demandList" style="display: block">
+                            <div class="technology-name">{{demand.title}}</div>
+                            <div class="technology-type">
+                                <div class="fl">技术领域：</div>
+                                <template v-for="(item,index) in demand.demandIndustryType">
+                                    <div class="fl">{{item.name}}
+                                        <span v-if="index < demand.demandIndustryType.length - 1">, </span></div>
+                                </template>
+                                <div class="fl">需求类型：{{demand.demandType_display}}</div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <!--                    <div class="title-border">-->
+                    <!--                        <div class="policy-title">技术经济人<a href="/service/demand_list.html"-->
+                    <!--                                                           class="iconfont icon-gengduo"></a></div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="technology-lists market-demand">-->
+                    <!--                        <a :href="'/common/demanddetail.html?id='+ demand.id" v-for="(demand,index) in demandList">-->
+                    <!--                            <div class="technology-name" :title="demand.title">{{demand.title}}</div>-->
+                    <!--                            <div>-->
+                    <!--                                <div class="technology-adress"><span-->
+                    <!--                                        class="iconfont icon-dingweixian"></span>{{demand.provinceDisplay}}{{demand.cityDisplay}}-->
+                    <!--                                </div>-->
+                    <!--                                <div class="prcie-yellow"><span>￥</span><span-->
+                    <!--                                        class="number">{{demand.budget}}</span></div>-->
+                    <!--                            </div>-->
+                    <!--                        </a>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="technology-right">
+                    <div class="technology-serve">
+                        <div class="technology-serve_list">
+                            <a href="/market/technicalBroker.html">
+                                <div class="iconfont icon-xianshanghuodong"></div>
+                                <div class="serve-right">
+                                    <div class="serve-name">技术经理人学院</div>
+                                    <div class="serve-type">在线考试，成为技术经理人</div>
+                                </div>
+                            </a>
+                            <a href="http://www.chttc.com" target="_blank">
+                                <div class="iconfont icon-xianshanghuodong"></div>
+                                <div class="serve-right">
+                                    <div class="serve-name">国际技术转移服务</div>
+                                    <div class="serve-type">面向全球，服务世界</div>
+                                </div>
+                            </a>
+                        </div>
+                        <!--                        <div class="technology-info">-->
+                        <!--                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"-->
+                        <!--                               :data-url="button.url"><span class="iconfont"-->
+                        <!--                                                            :class="button.icon"></span><span>{{button.label}}</span></a>-->
+                        <!--                        </div>-->
+                    </div>
+                    <div class="supplier">
+                        <div class="policy-title">技术机构<a href="/technologyMarket/service_organization.html"
+                                                         class="iconfont icon-gengduo"></a></div>
+                        <div class="supplier-list">
+                            <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">
+                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>
+                                <div class="supplier-name" >{{shop.organName}}</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="supplier">
+                        <div class="policy-title">技术经理人<a href="/technologyMarket/technical_manager.html"
+                                                          class="iconfont icon-gengduo"></a></div>
+                        <div class="supplier-list">
+                            <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
+                                <div class="supplier-avatar"><img src="/style/images/top_qrCode.jpg" alt=""></div>
+                                <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}
+                                    <br>
+                                    <div style="font-size: 12px">({{Man.agentType_display}})
+                                    </div>
+                                </div>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="grayBgBox pinpai-fuwu">
