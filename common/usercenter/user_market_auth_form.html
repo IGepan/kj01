@@ -477,7 +477,7 @@
                                     <el-input class="width_100_115" value="您已获得证书" disabled v-if="certificate_or_not">
                                     </el-input>
                                     <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"
-                                        href="/technologySchool/index.html" target="_blank">前往学习,获得证书</a>
+                                        @alick="turnPageClassSign" target="_blank">前往学习,获得证书</a>
                                 </div>
 
                                 <div class="f_w_50 fl margin_tb_10" v-if="certeinId=='2'">
