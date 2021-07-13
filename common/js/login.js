@@ -62,6 +62,14 @@ require(['/common/js/require.config.js'], function () {
             $(".select").find("ul").hide();
           }
         });
+        //临时集成益智学堂退出
+        if (location.search.indexOf('?return=schoolExit') >-1) {
+          this.$utils.delCookie("USER_INFO");
+          this.$utils.delCookie("LOGIN_INFO");
+          localStorage.removeItem("USER_INFO");
+          localStorage.removeItem("saasId");
+          localStorage.removeItem("userPhone");
+        }
       },
       methods: {
         getPublicDetail() {
