@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+    <link href="css/element_index.css" rel="stylesheet" type="text/css">
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html" class="active"><i
+                                class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff ">
+                <div class=" border_bot_f2f2f2">
+                    <ul class="user_center_transfer clear">
+                        <li v-for="(tab, i) in tabs" :key="i" @click="selecedTab(i)" class="fl"
+                            :class="{active: tab.selected,hide:!infos.profession && i === 2}" v-text="tab.label"></li>
+                    </ul>
+                </div>
+                <div class="margin_20">
+                    <!-- <div class="margin_bot_20 clear">
+                                    <input class="padding_06_1 width_50_115 border_efefef margin_tb_10 fl"
+                                        placeholder="请输入你想查找的需求名称">
+                                    <a class="bg_70adf1 color_fff fl margin_tb_10 border_70adf1"
+                                        style="padding: 0.52rem 2rem;">检索</a>
+                                </div> -->
+                    <div class="pro_details">
+                        <div class="details_tab_content margin_top_20">
+                            <template v-if="tabs[0].selected">
+
+                                <div class="article">
+                                    <el-table :data="techTableListOne" style="width: 100%">
+                                        <el-table-column label="经纪人">
+                                            <template slot-scope="scope">
+                                                <a @click="changePageView(scope.row)" class="color_13c9ef">{{
+                                                    scope.row.brokerName }}</a>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="职业等级">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.techWorkLevel_text }}</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="进行中订单数量">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.co0 }}</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="完结订单数量">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.co1 }}</span>
+                                            </template>
+                                        </el-table-column>
+                                        <!-- <el-table-column label="处理状态">
+                                                                            <template slot-scope="scope">
+                                                                                <span>已通过审核</span>
+                                                                            </template>
+                                                                        </el-table-column> -->
+
+                                        <el-table-column label="申请时间">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.createTime }}</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="操作">
+                                            <template slot-scope="scope">
+                                                <el-button @click="changePageView(scope.row)" type="text" size="small">
+                                                    查看
+                                                </el-button>
+                                            </template>
+                                        </el-table-column>
+
+                                    </el-table>
+                                    <div class="pages margin_top_15">
+                                        <el-pagination background layout="prev, pager, next" :pager-count="7"
+                                            :page-size="pageSize_1" :total="allTotal_1"
+                                            @current-change="handleCurrentChange_1">
+                                        </el-pagination>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-if="tabs[1].selected">
+                                <div class="article">
+                                    <el-table :data="techTableListTwo" style="width: 100%">
+                                        <el-table-column label="经纪人">
+                                            <template slot-scope="scope">
+                                                <a @click="changePageView(scope.row)" class="color_13c9ef">{{
+                                                    scope.row.brokerName }}</a>
+                                            </template>
+
+                                        </el-table-column>
+
+                                        <el-table-column label="职业等级">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.techWorkLevel_text }}</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="进行中订单数量">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.co0 }}</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="完结订单数量">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.co1 }}</span>
+                                            </template>
+                                        </el-table-column>
+
+
+                                        <el-table-column label="处理状态">
+                                            <template slot-scope="scope">
+                                                <span>待处理</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="申请时间">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.createTime }}</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="操作">
+                                            <template slot-scope="scope">
+                                                <el-dropdown @command="handleCommand">
+                                                    <span class="el-dropdown-link">
+                                                        展开<i class="el-icon-arrow-down el-icon--right"></i>
+                                                    </span>
+                                                    <el-dropdown-menu slot="dropdown">
+                                                        <el-dropdown-item
+                                                            :command="HandleButtonView(scope.$index, scope.row,1)">
+                                                            <el-button size="mini">查看
+                                                            </el-button>
+                                                        </el-dropdown-item>
+                                                        <el-dropdown-item
+                                                            :command="HandleButtonEdit(scope.$index, scope.row,2)">
+                                                            <el-button size="mini">通过
+                                                            </el-button>
+                                                        </el-dropdown-item>
+                                                        <el-dropdown-item
+                                                            :command="handleButtonRefuse(scope.$index, scope.row,3)">
+                                                            <el-button size="mini" type="danger">
+                                                                不通过</el-button>
+                                                        </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
+                                            </template>
+                                        </el-table-column>
+
+                                    </el-table>
+                                    <div class="pages margin_top_15">
+                                        <el-pagination background layout="prev, pager, next" :pager-count="7"
+                                            :page-size="pageSize" :total="allTotal"
+                                            @current-change="handleCurrentChange">
+                                        </el-pagination>
+                                    </div>
+
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <ly-minifooter></ly-minifooter>
+    </div>
+
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketAuthBrokerManagement.js"></script>
+</body>
+
+</html>

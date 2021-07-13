@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+
+        <div class="bg_star_box over_flow">
+            <div class="mdiv bread_card">
+                <div class="breadcrumb">当前位置：
+                    <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">技术经纪人</span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">经纪人详情</span>
+                </div>
+            </div>
+            <img class="width_100 list_bg_star_img" src="/style/images/technologyMarket/list_bg_star.jpg" />
+        </div>
+        <div class="mdiv margin_top_20 margin_bot_20 bg_fff padding_20">
+            <div class="fl details_left_tag border_ececec">
+                <el-image class="border_ca broker_img_box" :src="getImgPath(ZMTechBrokerVO.logoPath)">
+                    <div slot="placeholder" class="image-slot">
+                        加载中<span class="dot">...</span>
+                    </div>
+                </el-image>
+            </div>
+            <div class="fl details_right_content">
+                <div class="list_details_title clear">
+                    <h3 class="fl">{{ZMTechBrokerVO.brokerName}}</h3>
+                    <!-- <span class="list_browse margin_left_20">浏览：{{detail.readCount}}</span>
+                                <i class="details_title_line"></i>
+                                <span class="list_collection">收藏：12</span> -->
+                    <a class="fr">
+                        <!-- <a class="fl list_details_btn bg_78c837 color_fff">及时通信</a> -->
+                        <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                            收藏
+                        </span>
+                        <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                            已收藏
+                        </span>
+                        <!-- <span class="color_78c837 fl small_active_btn">X通信</span> -->
+                        <!-- <a class="fl list_details_btn bg_13c9ef color_fff" @click.stop="linkProject">投递项目</a> -->
+                    </a>
+                </div>
+                <div class="list_details_content margin_top_20">
+                    <!-- <div class="ell_nowrap">投资人类型：{{detail.investorType}}</div>
+                    <div class="ell_nowrap">机构背景：{{detail.institutionalBackground}}</div>
+                    <div class="ell_nowrap">擅长领域：{{detail.industryType}}</div>
+                    <div class="ell_nowrap">喜好阶段：{{detail.financeStage}}</div>
+                    <div class="ell_nowrap">已投项目：{{detail.investmentCount}}</div> -->
+                    <div class="clear">
+                        <div class="ell_nowrap width_50 fl">最高学历：
+                            <span v-if="ZMTechBrokerVO.academicDegree">{{ZMTechBrokerVO.academicDegree_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">执业等级：
+                            <span
+                                v-if="ZMTechBrokerVO.techWorkLevel_display">{{ZMTechBrokerVO.techWorkLevel_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">从业年限：
+                            <span v-if="ZMTechBrokerVO.graduationYear">{{ZMTechBrokerVO.graduationYear}}年</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">执业类型：
+                            <span v-if="ZMTechBrokerVO.agentType_display">{{ZMTechBrokerVO.agentType_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">信用等级：
+                            <span
+                                v-if="ZMTechBrokerVO.creditLevel_display">{{ZMTechBrokerVO.creditLevel_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">所在机构：
+                            <span v-if="ZMTechBrokerVO.organName_display">{{ZMTechBrokerVO.organName_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">能力等级：
+                            <span
+                                v-if="ZMTechBrokerVO.capabilityLevel_display">{{ZMTechBrokerVO.capabilityLevel_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class=" width_100 fl">擅长行业与领域：
+                            <span
+                                v-if="ZMTechBrokerVO.industryType">{{ZMTechBrokerVO.industryType.map(item=>item.name).join(',')}}
+                            </span>
+                            <span v-else>-</span>
+                        </div>
+                    </div>
+                    <div class="clear margin_top_20">
+                        <!-- <a class="fl list_details_btn bg_78c837 color_fff">及时通信</a> -->
+                        <!-- <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn"
+                                            @click.stop="addFavorite">
+                                            收藏
+                                        </span>
+                                        <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn"
+                                            @click.stop="addFavorite">
+                                            已收藏
+                                        </span> -->
+                        <!-- <span class="color_78c837 fl small_active_btn">X通信</span> -->
+                        <!-- <a class="fl list_details_btn bg_13c9ef color_fff" @click.stop="linkProject">投递项目</a> -->
+                        <a class="fl list_details_btn bg_13c9ef color_fff margin_right_20"
+                            @click.stop="invitation">邀约交流</a>
+                        <a class="fl list_details_btn bg_orange color_fff margin_right_20"
+                            @click.stop="sendEntrustPro">委托成果</a>
+                        <a class="fl list_details_btn bg_orange color_fff"
+                            @click.stop="sendEntrustRequirements">委托需求</a>
+
+                        <!-- <span class="list_collection fr">收藏：12</span>
+                        <i class="details_title_line fr"></i> -->
+                        <span class="list_browse fr">浏览：{{ZMTechBrokerVO.readCount}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!-- <div class="fl details_right_content">
+                <div class="list_details_title clear">
+                    <h3 class="fl">{{ZMTechBrokerVO.brokerName}}</h3>
+                    <span class="list_browse margin_left_20">浏览：{{ZMTechBrokerVO.readCount}}</span>
+                    <div class="fr">
+                        <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                            收藏
+                        </span>
+                        <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                            已收藏
+                        </span>
+                        <a class="fl list_details_btn bg_13c9ef color_fff" @click.stop="invitation">邀约交流</a>
+                        <a class="fl list_details_btn bg_orange color_fff" @click.stop="sendEntrustPro">委托成果</a>
+                        <a class="fl list_details_btn bg_orange color_fff"
+                            @click.stop="sendEntrustRequirements">委托需求</a>
+                    </div>
+                </div>
+                <div class="list_details_content margin_top_20 clear">
+                    <div class="ell_nowrap width_50 fl">最高学历：{{ZMTechBrokerVO.academicDegree}}</div>
+                    <div class="ell_nowrap width_50 fl">执业等级：{{ZMTechBrokerVO.techWorkLevel_display}}</div>
+                    <div class="ell_nowrap width_50 fl">从业年限：{{ZMTechBrokerVO.graduationYear}}年</div>
+                    <div class="ell_nowrap width_50 fl">执业类型：{{ZMTechBrokerVO.agentType_display}}</div>
+                    <div class="ell_nowrap width_50 fl">信用等级：{{ZMTechBrokerVO.creditLevel_display}}</div>
+                    <div class="ell_nowrap width_50 fl">所在机构：{{ZMTechBrokerVO.organName_display}}</div>
+                    <div class="ell_nowrap width_50 fl">能力等级：{{ZMTechBrokerVO.capabilityLevel_display}}</div>
+                    <div class=" width_100 fl">擅长行业与领域：{{ZMTechBrokerVO.industryType_display}}</div>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="mdiv margin_top_20 margin_bot_20 clear">
+            <div class="width_25 fl bg_fff">
+                <div class="bg_dadada padding_15_20">经纪人列表</div>
+
+                <ul class="details_page_list_ul details_page_manager ">
+                    <li class="border_bot_ededed margin_lr_20 clear" v-for="(item, index) in dataList" :key="index">
+                        <a class="padding_15_0 display_inl_blo width_100"
+                            :href="'technical_manager_details.html?id='+item.id">
+                            <div class="width_25 fl manager_img">
+                                <!-- <img class="width_100" src="/style/images/technologyMarket/manager.jpg" /> -->
+                                <el-image style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"
+                                    :src="getImgPath(item.logoPath)" fit="cover">
+                                    <div slot="placeholder" class="image-slot">
+                                        加载中<span class="dot">...</span>
+                                    </div>
+                                </el-image>
+                            </div>
+                            <div class="width_73 fr">
+                                <div class="ell_nowrap padding_bottom_10">{{item.brokerName}}</div>
+                                <div class="ell_nowrap color_999 font_14">
+                                    擅长领域：{{item.industryType.map(item=>item.name).join(',')}}</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="width_73 fr bg_fff">
+                <div class="bg_fff">
+                    <div class="details_tab_title" style=" border-bottom: #13c9ef 3px solid;">
+                        <ul class="clear">
+                            <li v-for="(tab, i) in tabs" :key="i" @click="selecedTab(i)"
+                                :class="{active: tab.selected,hide:!infos.profession && i === 3}" v-text="tab.label">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details_tab_content padding_left_20 padding_right_20 padding_bottom_20">
+
+                        <template v-if="tabs[0].selected">
+                            <div class="article margin_top_20" v-html="ZMTechBrokerVO.brokerDes"></div>
+                        </template>
+                        <!-- <template v-if="tabs[1].selected">
+
+                            <div class="article margin_top_20" v-html="infos.comment1">1111</div>
+                        </template> -->
+                        <template v-if="tabs[1].selected">
+                            <div class="bg_f7f7f7 padding_15_20 clear">
+                                <span class="fl" style="line-height: 30px;">综合评分：</span>
+                                <span class="fl" style="padding: 5px 8px;">
+                                    <el-rate v-model="averageValue" disabled show-score text-color="#ff9900"
+                                        :colors="colors" score-template="{value}" disabled-void-color="#c6d1de">
+                                    </el-rate>
+                                </span>
+                                <a class="fr list_details_btn bg_orange color_fff" @click="evaluateEvent">我要评价</a>
+                            </div>
+                            <div class="block">
+                                <div>
+                                    <ul>
+                                        <li class="clear padding_20 border_bot_f3f3f3"
+                                            v-for="(item,index) in evaluationList" :key="index">
+                                            <div class="details_scope_avatar fl">
+                                                <img src="/style/images/technologyMarket/default_avatar.jpg" />
+                                            </div>
+                                            <div class="details_scope_text fr ">
+                                                <div class="clear" style="padding-bottom: 5px;">
+                                                    <span class="fl">{{item.phone}}</span>
+                                                    <span class="fl margin_left_20">
+                                                        <el-rate v-model="item.evaluationScore" disabled show-score
+                                                            text-color="#ff9900" :colors="colors"
+                                                            score-template="{value}" disabled-void-color="#c6d1de">
+                                                        </el-rate>
+                                                    </span>
+                                                    <span class="fr color_999">{{item.createTime}}</span>
+                                                </div>
+                                                <div class="clear color_999">{{item.evaluationDes}}</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- 评价弹窗 -->
+        <div v-if="evaluation_pop_show">
+            <div class="all_bg_opacity" @click.stop="evaluation_pop_show = false"></div>
+            <div class="scope_evaluation_pop">
+                <div class="bg_orange padding_15_20 color_fff position_relative">
+                    <span>评价</span>
+                    <a @click.stop="evaluation_pop_show = false">
+                        <i class="el-icon-close fr padding_20" style="position: absolute; top:0;right: 0;"></i>
+                    </a>
+                </div>
+                <div class="scope_evaluation_pop_content margin_20">
+                    <div class="clear ">
+                        <span class="fl padding_06_0 font_9">选择评分：</span>
+                        <span class="fl padding_06_0" style="position: relative;z-index: 1111;">
+                            <el-rate v-model="evaluationScore" :colors="colors" show-text>
+                            </el-rate>
+                        </span>
+                    </div>
+                    <el-input v-model="evaluationDes" type="textarea" :rows="6" placeholder="请发表您的评价，最大200个字符"
+                        maxLength="200">
+                    </el-input>
+                    <!-- <button>提交</button> -->
+
+                    <div class="clear margin_top_20">
+                        <a class="fr list_details_btn bg_orange color_fff" @click.stop="keep_evaluation_pop">提交评价</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/technical_manager_details.js"></script>
+</body>
+
+</html>

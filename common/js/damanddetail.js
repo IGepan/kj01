@@ -1,7 +1,8 @@
 // JavaScript Document
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCom', 'httpDemandApi', 'dialog', 'fileSaver', 'httpUrl', 'jqValidate', 'httpLogin'], function ($, Vue, dic, httpVueLoader, httpCom, httpDemandApi, dialog, fileSaver, httpUrl, jqValidate, httpLogin) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCom', 'httpDemandApi', 'dialog', 'fileSaver', 
+  'httpUrl', 'jqValidate', 'httpLogin'], function ($, Vue, dic, httpVueLoader, httpCom, httpDemandApi, dialog, fileSaver, httpUrl, jqValidate, httpLogin) {
     Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix+'/style/components/searchbox.vue'))
     window.vueDom = new Vue({
       el: '#index_box',

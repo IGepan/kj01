@@ -1,4 +1,4 @@
-let refreshTokenFlag=false;
+let refreshTokenFlag = false;
 define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], function ($, dic, dialog, utils, httpUrl, httpCom, base64) {
   $.ajaxTransport("+binary", function (options, originalOptions, jqXHR) {
     // check for conditions and support for blob / arraybuffer response type
@@ -66,6 +66,7 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
         LOGIN_INFO = JSON.parse(LOGIN_INFO)
         token = LOGIN_INFO.access_token
       }
+      console.log("ajax token:" + token);
       // 过滤空字符串
       for (item in data) {
         if (data[item] === '') {
@@ -76,29 +77,29 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
         data = JSON.stringify(data);
       }
       //新建分站，需要加WxSrcUrl
-      if(location.href.indexOf('/site/')>-1){
-        let urls=location.href.split('site')[1]
+      if (location.href.indexOf('/site/') > -1) {
+        let urls = location.href.split('site')[1]
         header = $.extend({
-          'WxSrcUrl': location.href.split('site')[0]+'site/'+urls.split('/')[1],
+          'WxSrcUrl': location.href.split('site')[0] + 'site/' + urls.split('/')[1],
         }, header);
       }
-      if(url.indexOf('/oauth/token')===-1&&url.indexOf('http://city-service.cykj01.com')===-1){
+      if (url.indexOf('/oauth/token') === -1 && url.indexOf('http://city-service.cykj01.com') === -1) {
         header = $.extend({
-              'access-token': token,
-          }, header);
+          'access-token': token,
+        }, header);
       }
       //newmain项目中的第三方接口需要另外的token
-      if(url.indexOf('http://city-service.cykj01.com')>-1){
+      if (url.indexOf('http://city-service.cykj01.com') > -1) {
         header = $.extend({
-          'Authorization': localStorage.getItem('Authorization')?'Bearer '+localStorage.getItem('Authorization'):''
+          'Authorization': localStorage.getItem('Authorization') ? 'Bearer ' + localStorage.getItem('Authorization') : ''
         }, header);
       }
       var xhrFields = xhrFields || {}
       var success = function (data, a, b) {
         var noCodes = ['msg.user.buyerIdentityHaveNot', 'msg.shop.info.pleaseActive', 'msg.goods.noUp', 'msg.shop.info.frozened', 'msg.goods.deleted']
         if (this.url.indexOf('/access/save') === -1 && this.url.indexOf('/access/wxappSave') === -1) {
-          if (data.refreshToken&&!refreshTokenFlag) {
-            refreshTokenFlag=true;
+          if (data.refreshToken && !refreshTokenFlag) {
+            refreshTokenFlag = true;
             var param = {};
             param.auth_type = 'userName';
             param.login_type = '1';
@@ -107,19 +108,19 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
             that.formPost(httpUrl.authUrl + '/oauth/token', param, {
               'Authorization': 'Basic ' + $.base64.encode('ts_liyan:ts_liyan')
             }).then(function (res) {
-              if (res.code == 'rest.success') {
+              if (res.code == 'rest.success' || data.code) {
                 utils.delCookie(dic.locaKey.LOGIN_INFO);
                 utils.setCookie(dic.locaKey.LOGIN_INFO, res.result);
               } else {
-                refreshTokenFlag=false;
+                refreshTokenFlag = false;
                 dialog.showToast(res.desc);
-                window.location.href = window.$pathPrefix+'/common/login.html'
+                window.location.href = window.$pathPrefix + '/common/login.html'
               }
-            }).catch(()=>{
-                refreshTokenFlag=false;
+            }).catch(() => {
+              refreshTokenFlag = false;
             })
           }
-          if (data.code == 'rest.success') {
+          if (data.code == 'rest.success' || data.code) {
             def.resolve(data);
           } else if ((data.code == 'msg.user.tokenFail' || data.code == 'msg.user.authFail')) {
             var urls = this.url.split('/')
@@ -130,22 +131,23 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
             if (urls[5] !== 'selected' && urls[5] !== 'add' && urls[5].indexOf('cancel') === -1) {
               // dialog.showToast(this.url + '登录过期');
               // setTimeout(function () {
-                //科技咨询是自己的登录页
-                if(window.location.hostname.indexOf('kjzx')>-1){
-                  window.location.href = '/login/login.html'
-                }else{
-                  window.location.href = window.$pathPrefix+'/common/login.html'
-                }
+              //科技咨询是自己的登录页
+              if (window.location.hostname.indexOf('kjzx') > -1) {
+                window.location.href = '/login/login.html'
+              } else {
+                window.location.href = window.$pathPrefix + '/common/login.html'
+              }
               // }, 2000)
             } else {
               console.log('接口数据')
-              if(window.location.hostname.indexOf('kjzx')>-1){
+              if (window.location.hostname.indexOf('kjzx') > -1) {
                 window.location.href = '/login/login.html'
-              }else{
-                window.location.href = window.$pathPrefix+'/common/login.html'
+              } else {
+                window.location.href = window.$pathPrefix + '/common/login.html'
               }
             }
           } else {
+            //后台接口执行失败后，在此处弹出提示框
             if (!option.noShowToast) {
               if (data.desc && noCodes.every(function (code) { return data.code !== code })) {
                 dialog.showToast(data.desc);
@@ -167,10 +169,36 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
         }
       };
       var error = error || function (data) {
-        if (this.url.indexOf('/access/save') === -1&&this.url.indexOf('/financial/finProduct/list') === -1) {
-          dialog.showToast('系统错误，请稍后再试！');
+        if (this.url.indexOf('/access/save') === -1 && this.url.indexOf('/financial/finProduct/list') === -1) {
+          // dialog.showToast('系统错误，请稍后再试！');
           def.reject(error);
         }
+        // let code = data.responseJSON ? data.responseJSON.message : ''
+        // if ((code == 'msg.user.tokenFail' || code == 'msg.user.authFail')) {
+        //   var urls = this.url.split('/')
+        //   utils.delCookie(dic.locaKey.LOGIN_INFO);
+        //   utils.delCookie(dic.locaKey.USER_INFO);
+        //   localStorage.removeItem(dic.locaKey.SAASID);
+        //   localStorage.removeItem(dic.locaKey.USER_INFO);
+        //   if (urls[5] !== 'selected' && urls[5] !== 'add' && urls[5].indexOf('cancel') === -1) {
+        //     // dialog.showToast(this.url + '登录过期');
+        //     // setTimeout(function () {
+        //     //科技咨询是自己的登录页
+        //     if (window.location.hostname.indexOf('kjzx') > -1) {
+        //       window.location.href = '/login/login.html'
+        //     } else {
+        //       window.location.href = window.$pathPrefix + '/common/login.html'
+        //     }
+        //     // }, 2000)
+        //   } else {
+        //     console.log('接口数据')
+        //     if (window.location.hostname.indexOf('kjzx') > -1) {
+        //       window.location.href = '/login/login.html'
+        //     } else {
+        //       window.location.href = window.$pathPrefix + '/common/login.html'
+        //     }
+        //   }
+        // }
       };
       $.ajax({
         'headers': header,
@@ -262,7 +290,7 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
  * @param {Object} error    错误处理
  */
 
-function ajaxForm (url, data, success, type, cache, alone, async, dataType, error) {
+function ajaxForm(url, data, success, type, cache, alone, async, dataType, error) {
   var type = type || 'post'; //请求类型
   var dataType = dataType || 'json'; //接收数据类型
   var async = async || true; //异步请求
@@ -305,7 +333,7 @@ function ajaxForm (url, data, success, type, cache, alone, async, dataType, erro
 }
 
 // submitAjax(post方式提交)
-function submitAjax (form, cache, alone) {
+function submitAjax(form, cache, alone) {
   cache = cache || true;
   var form = $(form);
   var url = form.attr('action');
@@ -314,16 +342,16 @@ function submitAjax (form, cache, alone) {
 }
 
 // ajax提交(get方式提交)
-function get (url, data, cache, alone) {
+function get(url, data, cache, alone) {
   return ajax(url, data, 'get', alone, false, 'json');
 }
 
 // jsonp跨域请求(get方式提交)
-function jsonp (url, data, cache, alone) {
+function jsonp(url, data, cache, alone) {
   return ajax(url, {}, success, 'get', cache, alone, false, 'json');
 }
 
 // ajax提交(post方式提交)
-function request (url, data, type, cache, alone) {
+function request(url, data, type, cache, alone) {
   return ajax(url, data, success, type || "get", cache, alone, false, 'json');
 }

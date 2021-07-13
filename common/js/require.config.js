@@ -30,6 +30,7 @@ require.config({
     dic: 'config/dic',
     img_captcha: 'js/libs/captcha/img_captcha',
     httpVueLoader: 'js/libs/httpVueLoader',
+
     carousel: 'js/libs/owl.carousel.2.2.1/owl.carousel.min',
     // 工具类
     utils: 'js/utils/index',
@@ -41,7 +42,7 @@ require.config({
     dialog: 'components/alert/index',
     fileSaver: 'js/libs/FileSaver.min',
     echarts: 'js/libs/echarts.min',
-    superSlide:'js/libs/jquery.SuperSlide.2.1.3.js',
+    superSlide: 'js/libs/jquery.SuperSlide.2.1.3.js',
     // 用户中心
     userCenter: 'usercenter/js/usercenter',
     // 店铺装修
@@ -61,7 +62,7 @@ require.config({
       exports: 'captcha' //exports的值为js提供的 对外接口的名称
     },
     // "ELEMENT": {
-    //   "deps": ["vue", "css!/common/css/element.css"]
+    //   "deps": ["vue", "common/usercenter/css/element_index.css"]
     // },
     'httpVueLoader': {
       exports: 'httpVueLoader'
@@ -76,10 +77,11 @@ require.config({
   }
 });
 // 转码
-define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUrl', 'http', 'im', 'viewerjs', 'VueViewer','ELEMENT'], function (Promise, Vue, dialog, utils, httpCom, ZeroClipboard, httpUrl, http, im, viewerjs, VueViewer,ELEMENT) {
+define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUrl', 'http', 'im', 'viewerjs', 'VueViewer', 'ELEMENT'], function (Promise, Vue, dialog, utils, httpCom, ZeroClipboard, httpUrl, http, im, viewerjs, VueViewer, ELEMENT) {
   Vue.prototype.$utils = utils;
   Vue.prototype.$httpCom = httpCom;
   Vue.prototype.$dialog = dialog;
+  
   Vue.prototype.$http = http;
   Vue.use(im);
   Vue.use(VueViewer.default)
@@ -89,7 +91,7 @@ define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUr
   window.$dialog = dialog;
   window.httpUrl = httpUrl;
   window['ZeroClipboard'] = ZeroClipboard;
-  let site_url=location.href.indexOf('/site/')>-1?'/site/'+location.href.split('/site/')[1].split('/')[0]:''
+  let site_url = location.href.indexOf('/site/') > -1 ? '/site/' + location.href.split('/site/')[1].split('/')[0] : ''
   Vue.prototype.$pathPrefix = site_url;
   window.$pathPrefix = site_url;
   Vue.prototype.monitorSetItem = function (key, newVal) {
@@ -115,12 +117,12 @@ define(['promise', 'vue', 'dialog', 'utils', 'httpCom', 'ZeroClipboard', 'httpUr
   //     dialog.hideLoading();
   // }, 1000);
   Vue.filter('formatPrice', function (flag, v, n, m) {
-    if(flag === '1') {
+    if (flag === '1') {
       return '面议'
     } else {
-      if(typeof v !== 'undefined') {
+      if (typeof v !== 'undefined') {
         return v
-      } else if(!v && !m) {
+      } else if (!v && !m) {
         return n
       } else {
         return n + '-' + m

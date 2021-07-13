@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+        <a href="/technologySchool/index.html">
+            <div class="bannerBox" style="background: url(/style/images/technologyMarket/banner1.jpg)"></div>
+        </a>
+
+        <div style="background:#fff">
+            <div class="padding_tb_20 mmdiv">
+                <ul class="clear">
+                    <li class="classify_list fl index_classify">
+                        <div class="list_left fl">
+                            <img src="/style/images/technologyMarket/index_classification_bg_0.jpg" />
+                            <img class="icon" src="/style/images/technologyMarket/polygon0.png" />
+                        </div>
+                        <div class="list_right fl">
+                            <span>技术成果</span><br />
+                            <span class="number_style">{{zMResourceStatistics.project}}</span>
+                            <span class="text_style">项</span>
+                        </div>
+                    </li>
+                    <li class="classify_list fl index_classify">
+                        <div class="list_left fl">
+                            <img src="/style/images/technologyMarket/index_classification_bg_1.jpg" />
+                            <img class="icon" src="/style/images/technologyMarket/polygon1.png" />
+                        </div>
+                        <div class="list_right fl">
+                            <span>技术需求</span><br />
+                            <span class="number_style">{{zMResourceStatistics.demand}}</span>
+                            <span class="text_style">项</span>
+                        </div>
+                    </li>
+
+                    <li class="classify_list fl index_classify">
+                        <div class="list_left fl">
+                            <img src="/style/images/technologyMarket/index_classification_bg_2.jpg" />
+                            <img class="icon" src="/style/images/technologyMarket/polygon2.png" />
+                        </div>
+                        <div class="list_right fl">
+                            <span>技术经纪人</span><br />
+                            <span class="number_style">{{zMResourceStatistics.broker}}</span>
+                            <span class="text_style">位</span>
+                        </div>
+                    </li>
+                    <li class="classify_list fl index_classify">
+                        <div class="list_left fl">
+                            <img src="/style/images/technologyMarket/index_classification_bg_2.jpg" />
+                            <img class="icon" src="/style/images/technologyMarket/polygon2.png" />
+                        </div>
+                        <div class="list_right fl">
+                            <span>技术转移机构</span><br />
+                            <span class="number_style">{{zMResourceStatistics.organ}}</span>
+                            <span class="text_style">家</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mmdiv">
+            <div class="project_title_more clear">
+                <h3 class="fl">技术成果</h3>
+                <div class="fr view_more color_13c9ef">
+                    <a href="/technologyMarket/tech_achievements.html" style="color: #13c9ef !important;">
+                        查看更多
+                        <span class="view_more_icon">
+                            <span class="arrow"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <ul class="clear">
+                <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techAchiList" :key="index">
+                    <!-- @mouseover.stop="toggleShow(cascade.value)" -->
+                    <!--                    <div class="pro_top_img_box border_ca">-->
+                    <!--                    </div>-->
+                    <el-image class="border_ca achi_img_box" :src="getImgPath(item.projectImgPath)" fit="cover">
+                        <div slot="placeholder" class="image-slot">
+                            加载中<span class="dot">...</span>
+                        </div>
+                    </el-image>
+
+                    <div class="pro_bottom_text">
+                        <h4 class="ell_nowrap">{{item.title}}</h4>
+                        <div class="ell_nowrap" :title="item.projectIndustryType.map(item=>item.name).join(',')">
+                            所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</div>
+                        <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
+                            标签：{{item.tags.map(item=>item.name).join(',')}}</div>
+                        <div class="margin_top_4">
+                            <span
+                                class="width_max_70 ell_nowrap display_inl_blo">转让方式：{{item.cooperationMode_display}}</span>
+                            <span class="fr">价格：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                        </div>
+                    </div>
+                    <a class="margin_top_15 pro_list_button bg_orange color_fff"
+                        :href="'tech_achievements_details.html?id='+item.id">邀约交流</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="padding_top_20 mmdiv">
+            <a>
+                <img class="width_100" src="/style/images/technologyMarket/ad_banner.jpg" />
+            </a>
+        </div>
+
+        <div class="mmdiv">
+            <div class="project_title_more clear">
+                <h3 class="fl">技术需求</h3>
+                <div class="fr view_more color_13c9ef">
+                    <a href="/technologyMarket/tech_requirements.html" style="color: #13c9ef !important;">
+                        查看更多
+                        <span class="view_more_icon">
+                            <span class="arrow"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <ul class="clear">
+                <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techRequireList" :key="index">
+                    <div class="pro_bottom_text">
+                        <h4 class="ell_nowrap">{{item.title}}</h4>
+                        <div>
+                            <!--                            <span-->
+                            <!--                                class="width_max_70 ell_nowrap display_inl_blo">技术领域：{{item.demandIndustryType_display}}</span>-->
+                            <div class="ell_nowrap" :title="item.demandIndustryType.map(item=>item.name).join(',')">
+                                技术领域：{{item.demandIndustryType.map(item=>item.name).join(',')}}</div>
+                            <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
+                                标签：{{item.tags.map(item=>item.name).join(',')}}</div>
+                            <span class="fr">预算：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                        </div>
+                        <div class="ell_nowrap">需求类型：{{item.demandType_display}}</div>
+                        <div class="ell_nowrap margin_top_4">合作方式：{{item.cooperationMode_display}}</div>
+                    </div>
+                    <a class="margin_top_15 pro_list_button bg_orange color_fff"
+                        :href="'tech_requirements_details.html?id='+item.id">投递成果</a>
+                </li>
+
+            </ul>
+        </div>
+
+
+        <div class="padding_top_20 mmdiv">
+            <a>
+                <img class="width_100" src="/style/images/technologyMarket/ad_banner1.jpg" />
+            </a>
+        </div>
+
+        <div class="mmdiv margin_bot_20">
+            <div class="project_title_more clear">
+                <h3 class="fl">技术经纪人</h3>
+                <div class="fr view_more color_13c9ef">
+                    <a href="/technologyMarket/technical_manager.html" style="color: #13c9ef !important;">
+                        查看更多
+                        <span class="view_more_icon">
+                            <span class="arrow"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <ul class="clear">
+                <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techManagerList" :key="index">
+                    <!--                    <div class="pro_top_img_box border_ca">-->
+                    <!--                    </div>-->
+                    <el-image class="border_ca broker_img_box" :src="getImgPath(item.logoPath)" fit="cover">
+                        <div slot="placeholder" class="image-slot">
+                            加载中<span class="dot">...</span>
+                        </div>
+                    </el-image>
+                    <div class="pro_bottom_text">
+                        <div>
+                            <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.brokerName}}</h4>
+                            <span class="fr search_box color_13c9ef margin_15">{{item.agentType_display}}</span>
+                        </div>
+                        <div class="ell_nowrap" :title="item.industryType.map(item=>item.name).join(',')">
+                            擅长领域：{{item.industryType.map(item=>item.name).join(',')}}</div>
+                        <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
+                            标签：{{item.tags.map(item=>item.name).join(',')}}</div>
+                        <div class="ell_nowrap margin_top_4">附加技能：{{item.zMProjectAdditional}}</div>
+                    </div>
+                    <a class="fl margin_top_15 pro_list_button_half bg_13c9ef color_fff"
+                        :href="'technical_manager_details.html?id='+item.id">邀约交流</a>
+                    <a class="fr margin_top_15 pro_list_button_half bg_orange color_fff"
+                        :href="'technical_manager_details.html?id='+item.id">投递成果</a>
+                </li>
+            </ul>
+        </div>
+
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/index.js"></script>
+</body>
+
+</html>

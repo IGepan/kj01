@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_school_header name="技术市场"></tech_school_header>
+
+        <div class="bg_star_box over_flow">
+            <div class="mdiv bread_card_0">
+                <div class="breadcrumb">当前位置：
+                    <span class="breadcrumb__item"><a href="/" style="color:#333">首页</a></span>
+                    <i class="bread_card_line_0"></i>
+                    <span class="breadcrumb__item">开班培训</span>
+                    <i class="bread_card_line_0"></i>
+                    <span class="breadcrumb__item">培训详情</span>
+                </div>
+            </div>
+            <!-- <img class="width_100 list_bg_star_img" src="/style/images/technologyMarket/list_bg_star.jpg" /> -->
+        </div>
+        <div class="mdiv margin_top_20 margin_bot_20 bg_fff padding_20">
+            <div class="fl details_left_tag border_ececec">
+                <!-- <img src="/style/images/technologySchool/class_img.jpg" /> -->
+                <el-image class="border_ca broker_img_box" :src="getImgOutPath(ZMTechBrokerVO.logo)" fit="cover">
+                    <div slot="placeholder" class="image-slot">
+                        加载中<span class="dot">...</span>
+                    </div>
+                </el-image>
+            </div>
+            <div class="fl details_right_content">
+                <div class="list_details_title clear">
+                    <h3 class="fl">{{ZMTechBrokerVO.courseName}}</h3>
+                    <div class="fr">
+                        <a class="fl list_details_btn bg_13c9ef color_fff"
+                            v-if="!joinClass || baomingData.certificationFlag===3"
+                            @click.stop="class_training_join_act(ZMTechBrokerVO.courseId)">前往报名</a>
+                        <a class="fl list_details_btn bg_13c9ef color_fff"
+                            v-if="joinClass && baomingData.certificationFlag===1">已报名,等待审核</a>
+                        <a class="fl list_details_btn bg_13c9ef color_fff"
+                            v-if="joinClass && baomingData.certificationFlag===2">已报名成功</a>
+                    </div>
+                </div>
+
+                <div class="clear" style="font-size: 14px;color: #666;margin: 5px 0;">
+                    班级讲师：
+                </div>
+                <div class="clear" style="background:#f9f9f9;color: #999;padding:3px 10px;font-size: 14px;">
+                    已学：{{ZMTechBrokerVO.bogusBuycount}}人
+                    <i class="class_train_detail_i"></i>
+                    浏览：{{ZMTechBrokerVO.bogusViewcount}}
+                    <i class="class_train_detail_i"></i>
+                    开班时间： {{ZMTechBrokerVO.liveBeginTime}} 至 {{ZMTechBrokerVO.liveEndTime}}
+                    <i class="class_train_detail_i"></i>
+                    <span v-if="ZMTechBrokerVO.isCertificate=='yes'">有证书</span>
+                    <span v-if="ZMTechBrokerVO.isCertificate=='no'">无证书</span>
+                </div>
+                <div class="list_details_content margin_top_20 clear">
+                    价格：<i class="color_orange" style="font-size: 1rem;">{{ZMTechBrokerVO.currentPrice}}</i>
+                </div>
+            </div>
+        </div>
+        <div class="mdiv margin_top_20 margin_bot_20 bg_fff padding_left_20 padding_right_20 padding_bottom_20">
+            <div class="details_tab_title">
+                <ul class="clear">
+                    <li class="active">班级介绍</li>
+                </ul>
+            </div>
+            <div class="details_tab_content margin_top_20">
+                <div class="article" v-html="ZMTechBrokerVO.context">
+                    {{ZMTechBrokerVO.context}}
+                </div>
+            </div>
+        </div>
+        <div class="mdiv margin_top_20 margin_bot_20 bg_fff padding_left_20 padding_right_20 padding_bottom_20">
+            <div class="details_tab_title">
+                <ul class="clear">
+                    <li class="active">学习内容</li>
+                </ul>
+            </div>
+            <el-col>
+                <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" unique-opened
+                    @select="selectedHandleTable">
+
+                    <el-submenu v-for="(item,index) in LearningContentList" :key="index" :index="(index+1)+''">
+                        <template slot="title" v-if="LearningContentList.length>0">{{item.courseName}}</template>
+
+                        <el-menu-item-group index="index1" v-if="item.kpointList.length>0"
+                            v-for="(item1,index1) in item.kpointList" :key="index1" :index="(index+1)+'-'+(index1+1)">
+
+                            <template slot="title" v-if="item1.kpointList.length>0">{{item1.name}} </template>
+
+                            <el-menu-item index="index2" :key="index2" v-if="item1.kpointList.length>0"
+                                v-for="(item2,index2) in item1.kpointList"
+                                :index="item2.courseId+''+','+item2.kpointId">
+                                <template slot="title">
+                                    <span>{{item2.name}}</span>
+                                </template>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                </el-menu>
+            </el-col>
+        </div>
+
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologySchool/class_training_details.js"></script>
+    <!-- style\js\technologySchool\class_training_details.js -->
+</body>
+
+</html>

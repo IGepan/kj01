@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="css/element_index.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+
+        .inputbox-date:after {
+            position: absolute;
+            content: "\e611";
+            font-family: "iconfont";
+            color: #bfbfbf;
+            font-size: 16px;
+            line-height: 33px;
+            pointer-events: none;
+            top: 1px;
+            right: 5px;
+            background-color: #ffffff;
+        }
+
+        .inputbox-max {
+            border: 1px solid #bfbfbf;
+            width: 100%;
+            height: 35px;
+            padding: 0 15px;
+            background-color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html" class="active"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+                <div class="user_market_title border_bot_f2f2f2">
+                    <span class="market_title">添加专利</span>
+
+                </div>
+                <div class="clear margin_20">
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>专利类型：
+                        </span>
+
+                        <div class="width_100_115 fl">
+                            <!-- <el-radio v-for="(item,index) in patent_type_list" :key="item.id" class="user_center_radio"
+                                v-model="patentForm.patentType" :label="item.dictValue">{{item.display}}
+                            </el-radio> -->
+
+                            <el-radio-group v-model="patentForm.patentType" class="width_100">
+                                <el-radio v-for="(item,index) in patent_type_list" :key="item.id"
+                                    class="user_center_radio" :label="item.dictValue">
+                                    {{item.display}}
+                                </el-radio>
+                            </el-radio-group>
+
+                        </div>
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>专利名称：</span>
+                        <el-input v-model="patentForm.patentName" class="width_100_115 fl" placeholder="请输入专利名称,最大50字符"
+                            maxlength="50">
+                    </div>
+                    <div class="clear">
+                        <div class="width_100">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>技术领域：</span>
+                            <el-input v-model="patentForm.patentArea" class="width_100_115 fl"
+                                placeholder="请输入技术领域,最大50字符" maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>申请号：</span>
+                            <el-input v-model="patentForm.appNo" class="width_100_115" placeholder="请输入申请号"
+                                maxlength="30">
+                            </el-input>
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>申请日：</span>
+                            <!-- <el-input v-model="patentForm.appDate" class="width_100_115" placeholder="请输入申请日"
+                                maxlength="30"> -->
+
+                            <div class="width_100_115 fl position_relative">
+                                <input class="el-input__inner" v-model="patentForm.appDate" type="text" readonly
+                                    id="appDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>公布(公告)号：</span>
+                            <el-input v-model="patentForm.pubNo" class="width_100_115" placeholder="请输入公布(公告)号"
+                                maxlength="30">
+                            </el-input>
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>公布(公告)日：</span>
+                            <!-- <el-input v-model="patentForm.pubDate" class="width_100_115" placeholder="请输入公布(公告)日"
+                                maxlength="30">
+                            </el-input> -->
+                            <div class="width_100_115 fl position_relative">
+                                <input class="el-input__inner" v-model="patentForm.pubDate" type="text" id="pubDate">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>摘要<br>
+                            <i class="color_red" style="visibility: hidden;">*</i>简要说明：</span>
+                        <el-input type="textarea" :rows="9" v-model="patentForm.pubAbstract" class="width_100_115 fl"
+                            placeholder="请输摘要/简要说明,最大500字符" maxlength="500">
+                            <div class="width_100_115 fl">
+                                <!-- <vue-ueditor-wrap v-model="patentForm.pubAbstract" :config="ueditorConfig"
+                                class="exptextarea">
+                            </vue-ueditor-wrap> -->
+                                <!-- <el-input type="textarea" rows="9" v-model="patentForm.pubAbstract" placeholder="请输入专利权人"
+                                maxlength="10">
+                            </el-input> -->
+
+                            </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>专利权人：</span>
+                            <el-input v-model="patentForm.applicantName" class="width_100_115" placeholder="请输入专利权人"
+                                maxlength="10">
+                            </el-input>
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>发明人：</span>
+                            <el-input v-model="patentForm.inventorName" class="width_100_115" placeholder="请输入发明人"
+                                maxlength="10">
+                            </el-input>
+                        </div>
+                    </div>
+                    <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20">
+                        <a class="bg_70adf1 color_fff" @click.stop="save_tech_project_patent">提交</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ly-minifooter></ly-minifooter>
+    </div>
+    <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+    <script src="/common/js/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketTechPatentForm.js"></script>
+</body>
+
+</html>

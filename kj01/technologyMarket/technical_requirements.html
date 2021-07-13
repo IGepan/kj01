@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+
+        <div class="bg_star_box over_flow">
+            <div class="mdiv bread_card">
+                <div class="breadcrumb">当前位置：
+                    <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">技术需求</span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">技术详情</span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">投递</span>
+                </div>
+            </div>
+            <img class="width_100 list_bg_star_img" src="/style/images/technologyMarket/list_bg_star.jpg" />
+        </div>
+
+        <div class="mdiv bg_fff padding_20">
+            <!-- <h2 style="text-align: center;">投递成果至：朱啸虎</h2> -->
+            <div class="pro_details">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <thead class="bg_fafafa">
+                        <th>成果名称</th>
+                        <th>所属领域</th>
+                        <th>转让方式</th>
+                        <th>价格(元)</th>
+                        <th>操作</th>
+                    </thead>
+                    <tbody class="">
+                        <tr v-for="(item,index) in techAchiList" :key="index">
+                            <td class="color_orange">{{item.title}}</td>
+                            <td>{{item.projectIndustryType.map(item=>item.name).join(',')}} </td>
+                            <td>{{item.cooperationMode}}</td>
+                            <td>{{item.budget}}</td>
+                            <!-- <td>2021-06-02 15:21:10</td> -->
+                            <td>
+                                <a class="bg_orange color_fff details_pro_act_btn" @click="sendPros(item.id)">投递成果</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="clear">
+                <a class=" fr bg_13c9ef color_fff details_pro_act_btn margin_20" @click.stop="addProject">新增成果</a>
+            </div>
+        </div>
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/technical_requirements.js"></script>
+</body>
+
+</html>

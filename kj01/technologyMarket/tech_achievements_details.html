@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+
+        <div class="bg_star_box over_flow">
+            <div class="mdiv bread_card">
+                <div class="breadcrumb">当前位置：
+                    <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">技术成果汇</span>
+                    <i class="bread_card_line"></i>
+                    <span class="breadcrumb__item">成果详情</span>
+                </div>
+            </div>
+            <img class="width_100 list_bg_star_img" src="/style/images/technologyMarket/list_bg_star.jpg" />
+        </div>
+        <div class="mdiv margin_top_20 margin_bot_20 bg_fff padding_20">
+
+
+            <div class="fl details_left_tag border_ececec">
+                <el-image class="border_ca investment_img_box" :src="getImgPath(ZMProjectVO.projectImgPath)"
+                    fit="cover">
+                    <div slot="placeholder" class="image-slot">
+                        加载中<span class="dot">...</span>
+                    </div>
+                </el-image>
+            </div>
+            <div class="fl details_right_content">
+                <div class="list_details_title clear">
+                    <h3 class="fl">{{ZMProjectVO.title}}</h3>
+                    <a class="fr">
+                        <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                            收藏
+                        </span>
+                        <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                            已收藏
+                        </span>
+
+                    </a>
+                </div>
+                <div class="list_details_content margin_top_20">
+                    <div class="clear">
+                        <div class="ell_nowrap width_50 fl">
+                            行业类型：
+                            <span
+                                v-if="ZMProjectVO.projectIndustryType">{{ZMProjectVO.projectIndustryType.map(item=>item.name).join(',')}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">标签：
+                            <span v-if="ZMProjectVO.title">{{ZMProjectVO.tags.map(item=>item.name).join(',')}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">成果类型：
+                            <span v-if="ZMProjectVO.projectType_display">{{ZMProjectVO.projectType_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">需要附加服务：
+                            <span
+                                v-if="ZMProjectVO.zMProjectAdditionalList">{{ZMProjectVO.zMProjectAdditionalList[0].additionalService_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">意向价格(元)：
+                            <span v-if="ZMProjectVO.budget">{{ZMProjectVO.budget}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">合作方式：
+                            <span
+                                v-if="ZMProjectVO.cooperationMode_display">{{ZMProjectVO.cooperationMode_display}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">面向地区：
+                            <span v-if="ZMProjectVO.province">{{ZMProjectVO.province}}</span>
+                            <span v-else>-</span>
+                        </div>
+                        <div class="ell_nowrap width_50 fl">团队牵头人：
+                            <span v-if="ZMProjectVO.teamFirstName">{{ZMProjectVO.teamFirstName}}</span>
+                            <span v-else>-</span>
+                        </div>
+                    </div>
+                    <div class="clear margin_top_20">
+                        <a class="fl list_details_btn bg_orange color_fff" @click.stop="invitation">邀约交流</a>
+                        <!-- <span class="list_collection fr">收藏：12</span>
+                        <i class="details_title_line fr"></i> -->
+                        <span class="list_browse fr">浏览：{{ZMProjectVO.readCount}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- <div class="list_details_title clear">
+                <h3 class="fl">{{ZMProjectVO.title}}</h3>
+                <span class="list_browse margin_left_20">浏览：{{ZMProjectVO.readCount}}</span>
+                <div class="fr">
+                    <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                        收藏
+                    </span>
+                    <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
+                        已收藏
+                    </span>
+                    <a class="fl list_details_btn bg_orange color_fff" @click.stop="invitation">邀约交流</a>
+                </div>
+            </div> -->
+
+
+
+
+            <!-- <div class="list_details_table margin_top_20">
+                <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                    <tr>
+                        <td class="td_title">行业类型：</td>
+                        <td class="td_content">{{ZMProjectVO.projectIndustryType_display}}</td>
+                        <td class="td_title">关键字：</td>
+                        <td class="td_content">{{ZMProjectVO.title}}</td>
+                    </tr>
+                    <tr>
+                        <td class="td_title">成果类型：</td>
+                        <td class="td_content">{{ZMProjectVO.projectType_display}}</td>
+                        <td class="td_title">需要附加服务：</td>
+                        <td class="td_content">{{ZMProjectVO.zMProjectAdditional}}</td>
+                    </tr>
+            
+                    <tr>
+                        <td class="td_title">意向价格(元)：</td>
+                        <td class="td_content">{{ZMProjectVO.budget}}</td>
+                        <td class="td_title">合作方式：</td>
+                        <td class="td_content">{{ZMProjectVO.cooperationMode_display}}</td>
+                    </tr>
+           
+                    <tr>
+                        <td class="td_title">面向地区：</td>
+                        <td class="td_content">{{ZMProjectVO.province}}</td>
+                        <td class="td_title">团队牵头人：</td>
+                        <td class="td_content">{{ZMProjectVO.teamFirstName}}</td>
+                    </tr>
+                </table>
+            </div> -->
+        </div>
+
+        <div class="mdiv margin_top_20 margin_bot_20   padding_bottom_20">
+
+            <div class="width_25 fl bg_fff">
+                <div class="bg_dadada padding_15_20">投资机构列表</div>
+                <ul class="details_page_list_ul">
+                    <li class="padding_15_0  border_bot_ededed margin_lr_20" v-for="(item, index) in techDataList"
+                        :key="index">
+                        <a class="padding_15_0 display_inl_blo width_100"
+                            :href="'tech_achievements_details.html?id='+item.id">
+                            <div class="ell_nowrap padding_bottom_10">{{item.title}}</div>
+                            <div class="ell_nowrap color_999 font_14">
+                                所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</div>
+                            <div class="ell_nowrap margin_top_4 color_999 font_14">转让方式：{{item.cooperationMode_display}}
+                            </div>
+                        </a>
+                    </li>
+                    <!-- <li class="padding_15_0  border_bot_ededed margin_lr_20">
+                        <div class="ell_nowrap padding_bottom_10">标题</div>
+                        <div class="ell_nowrap color_999 font_14">行业领域：行业领域：行业领域：行业领域：</div>
+                        <div class="ell_nowrap margin_top_4 color_999 font_14">喜好阶段：喜好阶段：喜好阶段：喜好阶段：喜好阶段：</div>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="width_73 fr">
+                <div class="bg_fff">
+                    <div class="details_tab_title" style=" border-bottom: #13c9ef 3px solid;">
+                        <ul class="clear">
+                            <li v-for="(tab, i) in tabs" :key="i" @click="selecedTab(i)"
+                                :class="{active: tab.selected,hide:!infos.profession && i === 6}" v-text="tab.label">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details_tab_content">
+                        <template v-if="tabs[0].selected">
+                            <div class="article padding_15_20" v-html="ZMProjectVO.projectDes"></div>
+                        </template>
+
+                        <template v-if="tabs[1].selected">
+                            <!-- <el-link v-if="ZMProjectVO.certificateFilesPath" download="附件" type="primary" icon="el-icon-document"
+                            :href="getImgPath(ZMProjectVO.certificateFilesPath)">附件</el-link> -->
+                            <div class="padding_15_20">
+                                <div class="clear ">
+                                    <div class="width_125 fl padding_06_0">
+                                        团队牵头人:
+                                    </div>
+                                    <div class="width_100_125 fl padding_06_0">{{ZMProjectVO.teamFirstName}}</div>
+                                </div>
+                                <div class="clear">
+                                    <div class="width_125 fl padding_06_0">
+                                        牵头人介绍:
+                                    </div>
+                                    <div class="width_100_125 fl padding_06_0" v-html="ZMProjectVO.teamFirstNameDes">
+                                    </div>
+                                </div>
+
+                                <div class="clear">
+                                    <div class="width_125 fl padding_06_0">
+                                        团队成员:
+                                    </div>
+                                    <div class="width_100_125 fl padding_06_0">{{ZMProjectVO.teamMember}}</div>
+                                </div>
+
+                                <div class="clear">
+                                    <div class="width_125 fl padding_06_0">
+                                        团队成员介绍:
+                                    </div>
+                                    <div class="width_100_125 fl padding_06_0" v-html="ZMProjectVO.teamMemberDes">
+                                    </div>
+                                </div>
+
+                                <div class="clear">
+                                    <div class="width_125 fl padding_06_0">
+                                        联系人:
+                                    </div>
+                                    <div class="width_100_125 fl padding_06_0">{{ZMProjectVO.contactPerson}}</div>
+                                </div>
+
+                                <div class="clear">
+                                    <div class="width_125 fl padding_06_0">
+                                        联系电话:
+                                    </div>
+                                    <div class="width_100_125 fl padding_06_0">{{ZMProjectVO.contactPhone}}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <template v-if="tabs[2].selected">
+                            <div class="padding_15_20">
+                                <el-link v-if="ZMProjectVO.certificateFilesPath" download="附件" type="primary"
+                                    icon="el-icon-document" :href="getImgPath(ZMProjectVO.certificateFilesPath)">证书附件
+                                </el-link>
+
+                                <div v-else>
+                                    暂无证书附件
+                                </div>
+                            </div>
+                        </template>
+                        <!-- <template v-if="tabs[3].selected">
+                            <div class="padding_15_20">
+                                <el-link v-if="ZMProjectVO.businessFilesPath" download="附件" type="primary"
+                                    icon="el-icon-document" :href="getImgPath(ZMProjectVO.businessFilesPath)">商业计划附件
+                                </el-link>
+                            </div>
+                        </template> -->
+                        <template v-if="tabs[3].selected">
+                            <div class="article padding_15_20" v-if="ZMProjectVO.projectVideoPath">
+                                <video controls="controls" :src="getImgPath(ZMProjectVO.projectVideoPath)"></video>
+                            </div>
+                            <div v-else class="padding_15_20">
+                                暂无视频
+                            </div>
+                        </template>
+                        <template v-if="tabs[4].selected">
+                            <div class="padding_15_20">
+                                <!-- <el-link v-if="ZMProjectVO.projectImgPath" download="附件" type="primary"
+                                    icon="el-icon-document" :href="getImgPath(ZMProjectVO.projectImgPath)">成果图片
+                                </el-link> -->
+                                <template v-if="ZMProjectVO.projectImgSecondary.length>0">
+                                    <el-image v-for="(item,index) of ZMProjectVO.projectImgSecondary" class="border_ca "
+                                        style="max-width: 400px;max-height: 400px;" :src="getImgPath(item.url)"
+                                        fit="cover">
+                                        <div slot="placeholder" class="image-slot">
+                                            加载中<span class="dot">...</span>
+                                        </div>
+                                    </el-image>
+                                </template>
+                                <template v-else>
+                                    <div>暂无</div>
+                                </template>
+
+                            </div>
+                        </template>
+                        <!-- <template v-if="tabs[5].selected">
+                            <div class="padding_15_20">
+                                <el-link v-if="ZMProjectVO.projectVideoPath" download="附件" type="primary"
+                                    icon="el-icon-document" :href="getImgPath(ZMProjectVO.projectVideoPath)">附件
+                                </el-link>
+                            </div>
+                        </template> -->
+                        <template v-if="tabs[5].selected">
+                            <!-- <el-link v-if="ZMProjectVO.projectVideoPath" download="附件" type="primary"
+                            icon="el-icon-document" :href="getImgPath(ZMProjectVO.projectVideoPath)">附件</el-link> -->
+                            <div v-if="ZMProjectVO.zMProjectPatentList.length>0">
+                                <ul>
+                                    <li v-for="(item, index) in ZMProjectVO.zMProjectPatentList" :key="index"
+                                        class="border_bot_ededed padding_15_20">
+                                        <div class="padding_06_0">
+                                            <span class="fl width_125">专利名称：</span>
+                                            <span class="width_100_125 fr padding_left_20">{{item.patentName}}
+                                            </span>
+                                        </div>
+                                        <div class="padding_06_0">
+
+                                            <span class="fl width_125">技术领域：</span>
+                                            <span class="width_100_125 fr padding_left_20">{{item.patentArea}}
+                                            </span>
+
+
+                                        </div>
+                                        <div class="clear padding_06_0">
+                                            <div class="width_50 fl">
+                                                <span class="fl width_125">专利类型：</span>
+                                                <span
+                                                    class="width_100_125 fr padding_left_20">{{item.patentType_display}}
+                                                </span>
+                                            </div>
+                                            <div class="width_50 fl">
+                                                <span class="fl width_125">申请号：</span>
+                                                <span class="width_100_125 fr padding_left_20">{{item.appNo}}
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <div class="clear padding_06_0">
+                                            <div class="width_50 fl">
+                                                <span class="fl width_125">发明人：</span>
+                                                <span class="width_100_125 fr padding_left_20">{{item.inventorName}}
+                                                </span>
+                                            </div>
+                                            <div class="width_50 fl">
+                                                <span class="fl width_125">专利权人：</span>
+                                                <span class="width_100_125 fr padding_left_20">{{item.applicantName}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="clear padding_06_0">
+                                            <div class="width_100">
+                                                <span class="fl width_125">摘要：</span>
+                                                <span class="width_100_125 fr padding_left_20"
+                                                    style="display: inline-block; " v-html="item.pubAbstract"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div v-else class="padding_15_20">
+                                暂无专利信息
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <div class="bg_fff">
+                    <div class="details_tab_title margin_top_20" style=" border-bottom: #13c9ef 3px solid;">
+                        <ul class="clear">
+                            <li v-for="(tab, i) in tabs1" :key="i" @click="selecedTab1(i)"
+                                :class="{active: tab.selected,hide:!infos1.profession && i === 6}" v-text="tab.label">
+                                {{tab.label}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details_tab_content">
+                        <template v-if="tabs1[0].selected">
+                            <div class="article padding_15_20">
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">意向转让方式：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.patentTransactionType_display}}
+                                        </span>
+                                    </div>
+                                    <div class="width_50 fl"><span class="fl width_125">预计投入资金：</span>
+                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.budget}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">预计所需场地：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectRequiredSite}}
+                                        </span>
+                                    </div>
+                                    <div class="width_50 fl"><span class="fl width_125">意向合作单位：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.intentionCooperationUnit}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">对合作方(投资方)的其他要求：</span>
+                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.otherRequire}}
+                                        </span>
+                                    </div>
+                                    <div class="width_50 fl">
+                                        <span class="fl width_125">已有合作单位：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.existingCooperationUnit}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">已形成的合作案例：</span>
+                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.formCooperation}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-if="tabs1[1].selected">
+                            <div class="article padding_15_20">
+                                <div class="clear padding_06_0">
+                                    <div class="width_100">
+                                        <span class="fl width_125">具体产品/服务描述：</span>
+                                        <span class="width_100_125 fr padding_left_20" style="display: inline-block; "
+                                            v-html="ZMProjectVO.specificProducts"></span>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">预计单品成本：</span>
+                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectedCost}}
+                                        </span>
+                                    </div>
+                                    <div class="width_50 fl"><span class="fl width_125">预计单品售价：</span>
+                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectedPrice}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">预计市场容量：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectedMarketCapacity}}
+                                        </span>
+                                    </div>
+                                    <div class="width_50 fl"><span class="fl width_125">预计市场占有率：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectedMarketShare}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">预计投产周期：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectedProductionCycle}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clear padding_06_0">
+                                    <div class="width_100">
+                                        <span class="fl width_125">产业化团队介绍：</span>
+                                        <span class="width_100_125 fr padding_left_20" style="display: inline-block; "
+                                            v-html="ZMProjectVO.industryTeamDes"></span>
+                                    </div>
+                                </div>
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_100">
+                                        <span class="fl width_125">市场推广策略：</span>
+                                        <span class="width_100_125 fr padding_left_20" style="display: inline-block; "
+                                            v-html="ZMProjectVO.marketingStrategy"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">融资额度及用途：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.financingAmountPurpose}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clear padding_06_0">
+                                    <div class="width_100">
+                                        <span class="fl width_125">五年财务预测：</span>
+                                        <span class="width_100_125 fr padding_left_20" style="display: inline-block; "
+                                            v-html="ZMProjectVO.projectionsFiveYears"></span>
+                                    </div>
+                                </div>
+
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">预计社会经济效益：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectedSocialBenefits}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">商业计划书：</span>
+                                        <span class="width_100_125 fr padding_left_20">
+                                            <el-link v-if="ZMProjectVO.businessFilesPath" download="附件" type="primary"
+                                                icon="el-icon-document"
+                                                :href="getImgPath(ZMProjectVO.businessFilesPath)">商业计划附件
+                                            </el-link>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/tech_achievements_details.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+
+        .first_level,
+        .second_level {
+            min-width: 180px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #606266;
+            background: #fff;
+            min-height: 260px;
+
+        }
+
+        .first_level {
+            width: 30%;
+            float: left;
+        }
+
+
+        .second_level {
+            border-left: 1px solid #ddd;
+            width: 60%;
+            float: left;
+        }
+
+        .third_level {
+            min-width: 300px;
+        }
+
+        .first_level li.first_li {
+            position: relative;
+            height: 34px;
+            line-height: 34px;
+        }
+
+
+        .first_li.active,
+        .third_li.active {
+            color: #70adf1;
+        }
+
+        .first_a {
+            display: block;
+            padding: 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .second_a {
+            font-weight: 600;
+            padding: 10px 5px 5px;
+            display: block;
+            font-size: 0.9rem;
+
+        }
+
+        .third_a {
+            font-size: 0.9rem;
+        }
+
+        li.third_li {
+            float: left;
+            margin: 5px 10px 5px 0;
+        }
+
+        .first_a i,
+        .second_a i,
+        .third_a i {
+            height: 34px;
+            line-height: 34px;
+        }
+
+        .model_a {
+            min-width: 150px;
+        }
+
+        .third_a:hover {
+
+            color: #70adf1;
+        }
+
+        .title_list_a {
+            background: #70adf1;
+            margin: 5px;
+            border-radius: 4px;
+            padding: 0px 4px;
+            color: #fff;
+            display: inline-block;
+            line-height: 26px;
+        }
+
+        .all_screen {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .tag_tree_style {
+            width: 600px;
+            height: 400px;
+            background: #fff;
+            position: fixed;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            border: 1px solid #f4f4f4;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .selected_over {
+            border-bottom: 1px solid #ddd;
+            line-height: 40px;
+            padding-bottom: 5px;
+        }
+
+        .icon_close {
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1001;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html" class="active"><i
+                                class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i> 班级报名管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="width_100  margin_tb_10 clear">
+                <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>标签：</span>
+                <!-- <el-input v-model="edit_key_words" class="width_100_115" placeholder="请输入关键字"
+                                        v-if="tech_type==0">
+                                    </el-input>
+                                    <el-input v-model="key_words" class="width_100_115" placeholder="请输入关键字" v-if="tech_type==1">
+                                    </el-input> -->
+
+                <a class="el-input__inner model_a width_100_115" style="font-size: 14px;" @click.stop="openMenuList">
+                    <span class="" v-for="(item,index) in textList" :key="index">{{item.name}},
+                        <!-- <i class="el-icon-close" @click.stop="removeSingle(index)"></i> -->
+                    </span>
+                </a>
+
+
+                <div class="tag_tree_style padding_20" v-if="firstShow">
+                    <div class="all_screen" @click.stop="closeAllLevel"></div>
+                    <i class="el-icon-close icon_close" @click.stop="closeAllLevel"></i>
+                    <div class="selected_over clear" style="position: relative;z-index: 1000;">
+                        已选择：
+                        <span class="title_list_a " v-for="(item,index) in textList" :key="index">
+                            {{item.name}}
+                            <i class="el-icon-close" @click.stop="removeSingle(index)"></i>
+                        </span>
+                    </div>
+                    <div style="position: relative;z-index: 1000;">
+                        <div class="first_level fl">
+                            <ul>
+                                <li class="first_li clear" :class="item.active?'active':''"
+                                    v-for="(item,index) in options" :key="index" @click="openFirstLevel(item,index)">
+                                    <a class="first_a"> {{item.name}}
+                                        <i class=" el-icon-arrow-right fr"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="second_level fl">
+                            <ul>
+                                <li class="second_li clear" v-for="(item,index) in secondOptions" :key="index">
+                                    <a class="second_a">{{item.name}}</a>
+                                    <div class="third_level clear">
+                                        <ul>
+                                            <li class="third_li" :class="item.active?'active':''"
+                                                v-for="(item1,index1) in item.children" :key="index1"
+                                                @click="openThirdLevel(item1,index1)">
+                                                <a class="third_a padding_06_1">{{item1.name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <ly-minifooter></ly-minifooter>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketAuth.js"></script>
+</body>
+
+</html>

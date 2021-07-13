@@ -1,6 +1,6 @@
 <template>
   <div class="toper">
-    <div class="mdiv" v-if='userInfo && userInfo.userName'>
+    <div class="mdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
         <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>！</div>
@@ -13,16 +13,14 @@
         >易智网</a>-专业的技术成果摆渡人
       </div> -->
       <div class="fr">
-        <div
-          class="usermin"
-          v-if='userInfo && userInfo.userName'
-        >
+        <div class="usermin" v-if="userInfo && userInfo.userName">
           <span v-text="userInfo.userName"></span>
           <a
             v-show="userInfo && userInfo.userId"
             @click="exitClick"
             class="logout"
-          >[退出]</a>
+            >[退出]</a
+          >
         </div>
         <!--        <div-->
         <!--                v-else-->
@@ -35,50 +33,59 @@
         <!--          >请登录</a>-->
         <!--        </div>-->
         <div class="links">
+          <a v-if="userInfo && !userInfo.userName" href="/common/reg.html"
+            >免费注册</a
+          >
+          <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>
           <a
-            v-if='userInfo && !userInfo.userName'
-            href="/common/reg.html"
-          >免费注册</a>
-          <a
-            v-if='userInfo && userInfo.userName'
-            @click="msgChlick"
-          >消息</a>
-          <a
-            v-if='userInfo && userInfo.userName'
+            v-if="userInfo && userInfo.userName"
             href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"
-          >收藏</a>
-          <a
-            v-if='userInfo && userInfo.userName'
-            @click="yhzxClick"
-          >用户中心</a>
-          <a
-            v-if='userInfo && userInfo.userName'
-            @click="fwsClick"
-          >{{isSeller ? '卖家中心': '服务商入驻'}}</a>
+            >收藏</a
+          >
+          <a v-if="userInfo && userInfo.userName" @click="yhzxClick"
+            >用户中心</a
+          >
+          <a v-if="userInfo && userInfo.userName" @click="fwsClick">{{
+            isSeller ? "卖家中心" : "服务商入驻"
+          }}</a>
         </div>
-        <div class="official-account"><span class="show">关注易智网</span>
+        <div class="official-account">
+          <span class="show">关注易智网</span>
           <span class="avater">
-            <img
-              src="/style/images/index/qrcode.jpg"
-              alt=""
-            ><span class="avater-text">易智网</span>
-          </span></div>
-        <div class="official-account"><span class="show">小程序</span><span class="avater">
-            <img
-              src="/style/images/footerCode1.jpg"
-              alt=""
-            ><span class="avater-text">政策惠</span>
-            <img
-              src="/style/images/footerCode2.jpg"
-              alt=""
-            ><span class="avater-text">易智动</span>
-          </span></div>
+            <img src="/style/images/index/qrcode.jpg" alt="" /><span
+              class="avater-text"
+              >易智网</span
+            >
+          </span>
+        </div>
+        <div class="official-account">
+          <span class="show">小程序</span
+          ><span class="avater">
+            <img src="/style/images/footerCode1.jpg" alt="" /><span
+              class="avater-text"
+              >政策惠</span
+            >
+            <img src="/style/images/footerCode2.jpg" alt="" /><span
+              class="avater-text"
+              >易智动</span
+            >
+          </span>
+        </div>
       </div>
     </div>
     <div class="mdiv" v-else>
       <div class="fl toper-left">
-        <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
-        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>！</div>
+        <div class="">
+          <span class="iconfont icon-dingwei"></span>重庆市<span class="cut"
+            >[切换]</span
+          >
+        </div>
+        <div class="">
+          Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a
+            href="/index.html"
+            >易智网</a
+          >！
+        </div>
       </div>
       <div class="fr toper-right">
         <div class="loginbox">
@@ -86,96 +93,96 @@
           <a href="/common/reg.html">注册</a>
         </div>
 
-        <div class="official-account"><span class="show">关注易智网</span>
+        <div class="official-account">
+          <span class="show">关注易智网</span>
           <span class="avater">
-            <img
-              src="/style/images/index/qrcode.jpg"
-              alt=""
-            ><span class="avater-text">易智网</span>
-          </span></div>
-        <div class="official-account"><span class="show">小程序</span><span class="avater">
-            <img
-              src="/style/images/footerCode1.jpg"
-              alt=""
-            ><span class="avater-text">政策惠</span>
-            <img
-              src="/style/images/footerCode2.jpg"
-              alt=""
-            ><span class="avater-text">易智动</span>
-          </span></div>
+            <img src="/style/images/index/qrcode.jpg" alt="" /><span
+              class="avater-text"
+              >易智网</span
+            >
+          </span>
+        </div>
+        <div class="official-account">
+          <span class="show">小程序</span
+          ><span class="avater">
+            <img src="/style/images/footerCode1.jpg" alt="" /><span
+              class="avater-text"
+              >政策惠</span
+            >
+            <img src="/style/images/footerCode2.jpg" alt="" /><span
+              class="avater-text"
+              >易智动</span
+            >
+          </span>
+        </div>
       </div>
     </div>
     <chat-im :userinfo="userInfo"></chat-im>
-    <div
-              class="c-hover-menu"
-              v-if="userInfo && userInfo.userId"
-      >
-          <chat-history
-                  :userinfo="userInfo"
-                  @clearmsg="clearUnreadMsg"
-          ></chat-history>
-          <div
-                  class="c-hover-item"
-                  @click="action('message')"
+    <div class="c-hover-menu" v-if="userInfo && userInfo.userId">
+      <chat-history
+        :userinfo="userInfo"
+        @clearmsg="clearUnreadMsg"
+      ></chat-history>
+      <div class="c-hover-item" @click="action('message')">
+        <div class="c-hover-icon">
+          <span class=""
+            ><img src="/style/images/index/toper_1.png" alt=""
+          /></span>
+          <span
+            v-if="menuInfo.messageCount"
+            class="c-hover-count"
+            v-html="menuInfo.messageCount"
+            >15</span
           >
-              <div class="c-hover-icon">
-                <span class=""><img src="/style/images/index/toper_1.png" alt=""></span>
-                <span
-                          v-if="menuInfo.messageCount"
-                          class="c-hover-count"
-                          v-html="menuInfo.messageCount"
-                  >15</span>
-              </div>
-              <div class="c-hover-txt">
-                  <span>消息</span>
-              </div>
-          </div>
-          <div
-                  class="c-hover-item"
-                  @click="action('cart')"
-          >
-              <div class="c-hover-icon">
-                <span class=""><img src="/style/images/index/toper_3.png" alt=""></span>
-                  <span
-                          v-if="menuInfo.cartCount"
-                          class="c-hover-count"
-                          v-html="menuInfo.cartCount"
-                  ></span>
-              </div>
-              <div class="c-hover-txt">
-                  <span>购物车</span>
-              </div>
-          </div>
-          <div
-              class="c-hover-item"
-              onclick="window.open('http://www5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"
-          >
-            <div class="c-hover-icon">
-              <span class="icon-fuwu iconfont"></span>
-            </div>
-            <div class="c-hover-txt">
-              <span>客服</span>
-            </div>
-          </div>
-          <div
-                  class="c-hover-item"
-                  @click="action('top')"
-          >
-              <div class="c-hover-icon">
-                <span class=""><img src="/style/images/index/toper_4.png" alt=""></span>
-              </div>
-              <div class="c-hover-txt">
-                  <span>回到顶部</span>
-              </div>
-          </div>
+        </div>
+        <div class="c-hover-txt">
+          <span>消息</span>
+        </div>
       </div>
+      <div class="c-hover-item" @click="action('cart')">
+        <div class="c-hover-icon">
+          <span class=""
+            ><img src="/style/images/index/toper_3.png" alt=""
+          /></span>
+          <span
+            v-if="menuInfo.cartCount"
+            class="c-hover-count"
+            v-html="menuInfo.cartCount"
+          ></span>
+        </div>
+        <div class="c-hover-txt">
+          <span>购物车</span>
+        </div>
+      </div>
+      <div
+        class="c-hover-item"
+        onclick="window.open('http://www5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"
+      >
+        <div class="c-hover-icon">
+          <span class="icon-fuwu iconfont"></span>
+        </div>
+        <div class="c-hover-txt">
+          <span>客服</span>
+        </div>
+      </div>
+      <div class="c-hover-item" @click="action('top')">
+        <div class="c-hover-icon">
+          <span class=""
+            ><img src="/style/images/index/toper_4.png" alt=""
+          /></span>
+        </div>
+        <div class="c-hover-txt">
+          <span>回到顶部</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 module.exports = {
   props: ["hidenuser", "topClass", "codeUrl", "codeTitle"],
-  data: function() {
+  data: function () {
     return {
       toper: "toper", //组件引用判断
       url: "/common/login.html",
@@ -188,40 +195,43 @@ module.exports = {
       urlIsCheckBuyer: false,
       menuInfo: {
         cartCount: 0,
-        messageCount: 0
+        messageCount: 0,
       }, //悬浮菜单项
       protocol: [
         {
           title: "注册协议",
           protocolType: 1,
-          content: ""
+          content: "",
         },
         {
           title: "隐私保护协议",
           protocolType: 5,
-          content: ""
-        }
-      ]
+          content: "",
+        },
+      ],
     };
   },
-  created: function() {
-      //百度统计
-      if(location.host.indexOf('liyantech')<0){
-          var _hmt = _hmt || [];
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?021c67d64bfbb621d1ad064cff9409df";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-      }
+  created: function () {
+    //百度统计
+    if (location.host.indexOf("liyantech") < 0) {
+      var _hmt = _hmt || [];
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?021c67d64bfbb621d1ad064cff9409df";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    }
     var vm = this;
     var pathname = location.pathname;
     var saasid = localStorage.getItem("saasId");
+    console.log("saasid:" + saasid);
     // 当前用户信息
     var auser = JSON.parse(localStorage.getItem("USER_INFO"));
+    console.log(auser);
     // cookie用户信息
     var userInfo = (this.userInfo = JSON.parse(
       vm.$utils.getCookie("USER_INFO")
     ));
+    console.log(userInfo);
     this.urlIsType = [
       "/common/seller/",
       "/common/buyer",
@@ -229,15 +239,15 @@ module.exports = {
       "/common/activity/",
       "/common/activityTopic/",
       "/common/servicetrade/",
-      "/demand"
-    ].some(function(text) {
+      "/demand",
+    ].some(function (text) {
       return (
         pathname.indexOf(text) !== -1 &&
         pathname.indexOf("demanddetail") === -1 &&
         pathname.indexOf("demand_list") === -1
       );
     });
-    this.urlIsCheckSeller = ["/common/seller/"].some(function(text) {
+    this.urlIsCheckSeller = ["/common/seller/"].some(function (text) {
       return (
         pathname.indexOf(text) !== -1 &&
         pathname.indexOf("demanddetail") === -1 &&
@@ -250,8 +260,8 @@ module.exports = {
       "/common/activity/",
       "/common/activityTopic/",
       "/common/servicetrade/",
-      "/demand"
-    ].some(function(text) {
+      "/demand",
+    ].some(function (text) {
       return (
         pathname.indexOf(text) !== -1 &&
         pathname.indexOf("demanddetail") === -1 &&
@@ -266,6 +276,7 @@ module.exports = {
       userInfo.saasId !== auser.saasId ||
       userInfo.userId !== auser.userId
     ) {
+      console.log("用户ID  站点ID 没有站点ID  发生变化都要重新获取用户信息");
       this.getWebInfo();
     } else if (this.urlIsType) {
       if (!userInfo) {
@@ -296,20 +307,24 @@ module.exports = {
     }
   },
   methods: {
-    isHomePage: function(e) {
+    isHomePage: function (e) {
       if (location.pathname === "/" || location.pathname === "/index.html") {
         e.preventDefault();
       }
     },
-    getWebInfo: function() {
+    /**
+     * 用户ID  站点ID 没有站点ID  发生变化都要重新获取用户信息
+     */
+    getWebInfo: function () {
       var vm = this;
-      this.$httpCom.webCommonUser().then(function(res) {
+      this.$httpCom.webCommonUser().then(function (res) {
         if (res.code === "rest.success") {
           vm.userInfo = res.result;
           if (vm.urlIsType && !vm.userInfo.userId) {
             console.log("没有登录");
             window.location.href = "/common/login.html";
           } else {
+            console.log("重新获取用户信息成功");
             if (vm.userInfo.userId) {
               vm.initSeller();
             } else {
@@ -319,7 +334,9 @@ module.exports = {
                 // vm.openBuyerConfirm()
               }
             }
+            console.log("重新获取用户信息成功后，保存用户信息到缓存");
             vm.accessSave();
+            vm.setCookiePhone();
             vm.$utils.delCookie("USER_INFO");
             vm.$utils.setCookie("USER_INFO", res.result);
             localStorage.setItem("saasId", res.result.saasId);
@@ -330,22 +347,37 @@ module.exports = {
         }
       });
     },
-    clearUnreadMsg: function() {
+    setCookiePhone: function () {
+      var vm = this;
+      vm.$httpCom
+        .webCommonUserPhone()
+        .then(function (res) {
+          console.log("phone", res);
+          if (res.code === true) {
+            localStorage.setItem("userPhone", res.data.phone);
+          }
+        })
+        .catch(function (res) {
+          console.log(res);
+        });
+    },
+
+    clearUnreadMsg: function () {
       this.menuInfo.messageCount = 0;
     },
     //获取未读消息数量
-    getUnreadMsgCount: function() {
+    getUnreadMsgCount: function () {
       var $this = this;
       this.$http
         .get(httpUrl.baseUrl + "/im/getUnreadMsgCount")
-        .then(function(res) {
+        .then(function (res) {
           $this.menuInfo.messageCount = res.result;
         });
     },
-    updateCartInfo: function() {
+    updateCartInfo: function () {
       //获取消息，购物车的消息通知数字
       var $this = this;
-      this.$http.get(httpUrl.baseUrl + "/shopcar/total").then(function(res) {
+      this.$http.get(httpUrl.baseUrl + "/shopcar/total").then(function (res) {
         var count = parseInt(res.result);
         //最大显示99
         if (count > 99) {
@@ -354,7 +386,7 @@ module.exports = {
         $this.menuInfo.cartCount = count;
       });
     },
-    action: function(type) {
+    action: function (type) {
       switch (type) {
         case "message":
           this.$root.$chat_history.showDlg();
@@ -385,7 +417,7 @@ module.exports = {
           break;
       }
     },
-    initSeller: function() {
+    initSeller: function () {
       this.updateCartInfo();
       this.getUnreadMsgCount();
       if (this.userInfo.userTypes) {
@@ -396,7 +428,7 @@ module.exports = {
         }
       }
     },
-    msgChlick: function() {
+    msgChlick: function () {
       if (!this.userInfo.userId) {
         window.location.href = "/common/login.html";
         return;
@@ -404,21 +436,21 @@ module.exports = {
         window.location.href = "/common/usercenter/user_message.html";
       }
     },
-    getProtocol: function(type) {
+    getProtocol: function (type) {
       var vm = this;
       var protocolType = vm.protocol[type].protocolType;
       vm.$httpCom
         .protocol({
-          protocolType: protocolType
+          protocolType: protocolType,
         })
-        .then(function(res) {
+        .then(function (res) {
           if (res.result) {
             vm.protocol[type].content = res.result.protocolContact;
             vm.openProtocolConfirm(type);
           }
         });
     },
-    openProtocolConfirm: function(type) {
+    openProtocolConfirm: function (type) {
       var vm = this;
       var protocol = vm.protocol[type];
       var options = {
@@ -428,16 +460,16 @@ module.exports = {
         buttons: [
           {
             label: "确认阅读",
-            fun: function() {
+            fun: function () {
               jQuery("#protocol")[0].checked = true;
               return 1;
-            }
-          }
-        ]
+            },
+          },
+        ],
       };
       vm.$dialog.confirm2(options);
     },
-    openSellerConfirm: function() {
+    openSellerConfirm: function () {
       var vm = this;
       var options = {
         title: "温馨提示",
@@ -447,23 +479,24 @@ module.exports = {
         buttons: [
           {
             label: "放弃",
-            fun: function() {
+            fun: function () {
               location.href = "/index.html";
               return 1;
-            }
+            },
           },
           {
             label: "现在就去",
-            fun: function() {
+            fun: function () {
               location.href = "/common/seller/store_agreement.html";
               return 1;
-            }
-          }
-        ]
+            },
+          },
+        ],
       };
       this.$dialog.confirm2(options);
     },
-    openBuyerConfirm: function() {
+    openBuyerConfirm: function () {
+      return;
       var vm = this;
       var options = {
         title: "买家身份确认",
@@ -473,21 +506,21 @@ module.exports = {
         buttons: [
           {
             label: "取消",
-            fun: function() {
+            fun: function () {
               location.href = "/index.html";
               return 1;
-            }
+            },
           },
           {
             label: "同意",
-            fun: function() {
+            fun: function () {
               if ($("#protocol").is(":checked")) {
                 vm.$httpCom
                   .becomeBuyer({ protocolReadFlag: 1 })
-                  .then(function(res) {
+                  .then(function (res) {
                     if (res.code === "rest.success") {
                       // 延迟请求 避免数据库写入延迟导致的数据无法查询
-                      setTimeout(function() {
+                      setTimeout(function () {
                         vm.getWebInfo();
                       }, 300);
                     } else {
@@ -499,16 +532,16 @@ module.exports = {
                 vm.$dialog.showToast("请先选择相关协议！");
                 return 0;
               }
-            }
-          }
+            },
+          },
         ],
-        closeCallback: function() {
+        closeCallback: function () {
           location.href = "/index.html";
           return 1;
-        }
+        },
       };
       this.$dialog.confirm2(options);
-      jQuery("#protocolView").on("click", function(e) {
+      jQuery("#protocolView").on("click", function (e) {
         e.stopPropagation();
         e.preventDefault();
         var type = e.target.innerText === "《注册协议》" ? 0 : 1;
@@ -517,7 +550,7 @@ module.exports = {
           : vm.getProtocol(type);
       });
     },
-    yhzxClick: function() {
+    yhzxClick: function () {
       if (!this.userInfo.userId) {
         window.location.href = "/common/login.html";
         return;
@@ -528,10 +561,11 @@ module.exports = {
         window.location.href = "/common/buyer/index.html";
       } else {
         this.urlType = "/common/buyer/index.html";
-        this.openBuyerConfirm();
+        window.location.href = "/common/buyer/index.html";
+        // this.openBuyerConfirm();
       }
     },
-    fwsClick: function() {
+    fwsClick: function () {
       if (!this.userInfo.userId) {
         window.location.href = "/common/login.html";
         return;
@@ -542,22 +576,24 @@ module.exports = {
         window.location.href = "/common/seller/store_agreement.html";
       }
     },
-    exitClick: function() {
+    exitClick: function () {
+      console.log("logout-------------------------------");
       this.$utils.delCookie("USER_INFO");
       this.$utils.delCookie("LOGIN_INFO");
       localStorage.removeItem("USER_INFO");
       localStorage.removeItem("saasId");
+      localStorage.removeItem("userPhone");
       window.location.href = "/common/login.html";
     },
-    accessSave: function() {
+    accessSave: function () {
       var data = {};
       if (this.userInfo && this.userInfo.userId) {
         data["userId"] = this.userInfo.userId;
         data["userName"] = this.userInfo.userName;
       }
       this.$httpCom.accessSave(data);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -571,8 +607,8 @@ module.exports = {
   display: flex;
   height: 40px;
 }
-.toper-left a{
-  color:#01c8f2;
+.toper-left a {
+  color: #01c8f2;
 }
 .toper-left .iconfont {
   color: #01c8f2;
@@ -686,7 +722,7 @@ module.exports = {
   padding: 8px 5px;
   cursor: pointer;
   user-select: none;
-  color:#ffffff;
+  color: #ffffff;
 }
 .c-hover-icon {
   position: relative;

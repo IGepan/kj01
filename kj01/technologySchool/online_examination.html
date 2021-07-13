@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智学堂</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_school_header name="易智学堂"></tech_school_header>
+        <div class="bg_star_box">
+            <img class="width_100" src="/style/images/technologyMarket/bg_star.jpg" />
+            <div class="placeBox">
+                <div class="mdiv">
+                    <div class="breadcrumb">当前位置：
+                        <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                        <i class="bread_card_line"></i>
+                        <span class="breadcrumb__item">在线考试</span>
+                    </div>
+                </div>
+            </div>
+            <div class="page_title">
+                在线考试
+            </div>
+        </div>
+        <div class="mdiv">
+            <div class="searchListBox margin_bot_20 border_bot_e9e9e9 padding_bottom_0">
+                <div class="search-row ">
+                    <ul class="clear">
+                        <!-- 
+                        <li class="fl active searchkey">时间</li>
+                        <li class="fl searchkey">热度</li> -->
+                        <li class="fl searchkey">排序：</li>
+                        <li v-for="(item,index) in sortList" @click.stop="orderClick(item.id,index)"
+                            class="fl searchkey" :class="{active: index === sortActive}">{{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="clear">
+                <li class="classify_list bg_fff fl" v-for="(item,index) in examList" :key="index">
+                    <a @click="turnPageNextCourse(item)">
+                        <div class="line_gradient"></div>
+                        <div class="class_bottom_text padding_20 border_bot_f7f7f7">
+                            <h4 class="">{{item.name}}</h4>
+                            <div class="margin_top_4">试卷标题：{{item.title}}</div>
+                            <div class="margin_top_4">可做次数：
+                                <span
+                                    v-if="'0'==item.joinFrequency || null == item.joinFrequency || ''==item.joinFrequency">
+                                    无限次</span>
+                                <span v-else>{{item.joinFrequency}} 次</span>
+                            </div>
+                            <div class="margin_top_4">总题数：{{item.qstCount}}题</div>
+                        </div>
+                        <div class="clear padding_20">
+                            <!-- <span class="fl color_999 font_9">120人参与考试</span> -->
+                            <a class="color_13c9ef fr font_9">立即前往</a>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!--  -->
+
+            <div class="pages">
+                <el-pagination background layout="prev, pager, next" :pager-count="7" @current-change="changePage"
+                    :current-page.sync="currentPage" :page-size.sync="pageSize" :total="allTotal">
+                </el-pagination>
+            </div>
+        </div>
+
+        <div class="margin_bot_long"></div>
+
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologySchool/online_examination.js"></script>
+</body>
+
+</html>

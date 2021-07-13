@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+
+        <div class="bg_star_box">
+            <img class="width_100" src="/style/images/technologyMarket/bg_star.jpg" />
+            <div class="placeBox">
+                <div class="mdiv">
+                    <div class="breadcrumb">当前位置：
+                        <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                        <i class="bread_card_line"></i>
+                        <span class="breadcrumb__item">投资机构</span>
+                    </div>
+                </div>
+            </div>
+            <div class="page_title">
+                投资机构
+            </div>
+        </div>
+
+        <div class="mdiv">
+            <div class="searchListBox">
+                <div class="search-row">
+                    <div class="search_list_head clear">
+                        <div class="fl">
+                            <ul class="clear">
+                                <li class="fl searchkey">排序：</li>
+                                <li v-for="(item,index) in sortList" @click.stop="orderClick(item.id,index)"
+                                    class="fl searchkey" :class="{active: index === sortActive}">{{item.name}}
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="fr">
+                        <a class="operation_button bg_13c9ef color_fff">找经纪人</a>
+                        <a class="operation_button bg_orange color_fff">发布成果</a>
+                    </div> -->
+                    </div>
+                </div>
+                <template v-for="(item,key,i) in conditionsList">
+                    <div class="search-row" :key="key" v-if="item.id!='industryType'">
+                        <label class="search-label">{{item.name}}</label>
+                        <div class="searchkeys">
+                            <span class="searchkey" v-for="(dict,index) in item.dictCodes"
+                                @click="clickCondition(key,item.id, dict.dictValue, index)"
+                                :class="item.index===index?'active':''" :key="index">{{dict.display}}</span>
+                        </div>
+                    </div>
+                    <div class="search-row" :key="key" v-if="item.id=='industryType'">
+                        <label class="search-label">{{item.name}}</label>
+                        <div class="searchkeys">
+                            <span class="searchkey" v-for="(dict,index) in item.dictCodes"
+                                :class="item.index===index?'active':''"
+                                @click="openProjectList(key,item.id, dict.dictValue, index)"
+                                :key="index">{{dict.name}}</span>
+                        </div>
+                        <div v-if="industrySecondShow" class="searchListBoxs">
+                            <span v-for="(dict,index) in IndustryTypeChildren"
+                                @click="clickConditionChild(key,item.id, dict.dictValue, index)"
+                                :class="dict.index===index?'active':''" class="searchkey ">{{dict.display}}</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="mmdiv margin_top_20 margin_bot_20">
+            <!-- <div class="project_title_more clear">
+            <h3 class="fl">技术成果</h3>
+            <div class="fr view_more color_13c9ef">
+                查看更多
+                <span class="view_more_icon">
+                    <span class="arrow"></span>
+                </span>
+            </div>
+        </div> -->
+            <ul class="clear">
+                <li class="classify_list bg_fff  fl" v-for="(item,index) in dataList" :key="index">
+                    <div class="pro_top_img_box border_bot_f2f2f2" style="position: relative;">
+                        <el-image class="border_ca investment_img_box" :src="getImgPath(item.logoPath)" fit="cover">
+                            <div slot="placeholder" class="image-slot">
+                                加载中<span class="dot">...</span>
+                            </div>
+                        </el-image>
+                        <!-- <span class="company_type border_13c9ef color_13c9ef">引导基金</span> -->
+                    </div>
+                    <div class="pro_bottom_text padding_right_20 padding_bottom_20 padding_left_20">
+                        <h4 class="ell_nowrap">{{item.investmentName}}</h4>
+                        <!--                    <div class="ell_nowrap">行业领域：{{item.industryType_display}}</div>-->
+                        <div class="ell_nowrap" :title="item.industryType.map(item=>item.name).join(',')">
+                            行业领域：{{item.industryType.map(item=>item.name).join(',')}}</div>
+                        <div class="ell_nowrap margin_top_4">喜好阶段：{{item.financeStage_display}}</div>
+                        <a class="margin_top_15 pro_list_button bg_orange color_fff"
+                            :href="'investment_institutions_details.html?id='+item.id">投递项目</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="pages">
+            <el-pagination background layout="prev, pager, next" :pager-count="7"
+                :current-page.sync="queryModel.pageParam.current" :page-size.sync="queryModel.pageParam.size"
+                :total="total">
+            </el-pagination>
+        </div>
+
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/investment_institutions.js"></script>
+</body>
+
+</html>

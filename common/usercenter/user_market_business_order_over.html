@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html" class="active"><i
+                                class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff ">
+                <!-- <div class=" border_bot_f2f2f2">
+                    <a class="market_title active">邀约交流</a>
+                    <a class="market_title">投递成果</a>
+                </div> -->
+                <div class="margin_20">
+                    <div class="margin_bot_20 clear">
+
+                    </div>
+                    <div class="pro_details">
+
+
+                        <div class="clear">
+                            <div class="width_100  margin_tb_10 clear">
+                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red"></i>订单编号：</span>
+                                <span>{{id}}</span>
+                            </div>
+                            <div class="width_100  margin_tb_10 clear">
+                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>完成描述：</span>
+                                <el-input type="textarea" :rows="9" v-model="resultDes" value="resultDes"
+                                    class="achi_form_textarea width_100_115 fl" placeholder="请输入完成描述"></el-input>
+                            </div>
+                            <div class="user_center_submit clear">
+                                <a class="bg_70adf1 color_fff" @click="handleEnd">提交审核</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <ly-minifooter></ly-minifooter>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMmarketBusinessOrderOver.js"></script>
+</body>
+
+</html>

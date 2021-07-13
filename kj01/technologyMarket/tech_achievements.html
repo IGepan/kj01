@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+
+        <div class="bg_star_box">
+            <img class="width_100" src="/style/images/technologyMarket/bg_star.jpg" />
+            <div class="placeBox">
+                <div class="mdiv">
+                    <div class="breadcrumb">当前位置：
+                        <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                        <i class="bread_card_line"></i>
+                        <span class="breadcrumb__item">技术成果汇</span>
+                    </div>
+                </div>
+            </div>
+            <div class="page_title">
+                技术成果汇
+            </div>
+        </div>
+
+        <div class="mdiv">
+            <div class="searchListBox">
+                <div class="search-row">
+                    <div class="search_list_head clear">
+                        <div class="fl">
+                            <ul class="clear">
+                                <li class="fl searchkey">排序：</li>
+                                <li v-for="(item,index) in sortList" @click.stop="orderClick(item.id,index)"
+                                    class="fl searchkey" :class="{active: index === sortActive}">{{item.name}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr">
+                            <a class="operation_button bg_13c9ef color_fff"
+                                href="/technologyMarket/technical_manager.html">找经纪人</a>
+                            <a class="operation_button bg_orange color_fff" @click="release_project">发布成果</a>
+                        </div>
+                    </div>
+                </div>
+                <template v-for="(item,key,i) in conditionsList">
+                    <div class="search-row" :key="key" v-if="item.id!='projectIndustryType'">
+                        <label class="search-label">{{item.name}}</label>
+                        <div class="searchkeys">
+                            <span class="searchkey" v-for="(dict,index) in item.dictCodes"
+                                @click="clickCondition(key,item.id, dict.dictValue, index)"
+                                :class="item.index===index?'active':''" :key="index">{{dict.display}}</span>
+                        </div>
+                    </div>
+                    <div class="search-row" :key="key" v-if="item.id=='projectIndustryType'">
+                        <label class="search-label">{{item.name}}</label>
+                        <div class="searchkeys">
+                            <span class="searchkey" v-for="(dict,index) in item.dictCodes"
+                                :class="item.index===index?'active':''"
+                                @click="openProjectList(key,item.id, dict.dictValue, index)"
+                                :key="index">{{dict.name}}</span>
+                        </div>
+                        <div v-if="industrySecondShow" class="searchListBoxs">
+                            <span v-for="(dict,index) in IndustryTypeChildren"
+                                @click="clickConditionChild(key,item.id, dict.dictValue, index)"
+                                :class="dict.index===index?'active':''" class="searchkey ">{{dict.display}}</span>
+                        </div>
+                    </div>
+                </template>
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">成果来源</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" v-for="(item,index) in project_source_list"-->
+                <!--                            @click="clickProject_source(item,index)" :class="item.active?'active':''"-->
+                <!--                            :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">行业领域</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" v-for="(item,index) in industry_area_list"-->
+                <!--                            @click="clickIndustryArea(item,index)" :class="item.active?'active':''"-->
+                <!--                            :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">成熟度</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
+                <!--                            @click="clickachievementMaturity(item,index)"-->
+                <!--                            v-for="(item,index) in achievement_maturity_list" :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">权属性质</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
+                <!--                            @click="clickachievementBelong(item,index)" v-for="(item,index) in achievement_belong_list"-->
+                <!--                            :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">合作方式</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
+                <!--                            @click="clickachievementCooperation(item,index)"-->
+                <!--                            v-for="(item,index) in achievement_cooperation_list" :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">意向价格</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
+                <!--                            v-for="(item,index) in price_range_list" @click="clickpriceRange(item,index)"-->
+                <!--                            :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="search-row">-->
+                <!--                    <label class="search-label">商业计划书</label>-->
+                <!--                    <div class="searchkeys">-->
+                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
+                <!--                            v-for="(item,index) in business_plan_list" @click="clickbusinessPlan(item,index)"-->
+                <!--                            :key="index">{{item.display}}</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+        <div class="mmdiv margin_top_20">
+            <ul class="clear">
+                <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in dataList" :key="index">
+                    <!-- @mouseover.stop="toggleShow(cascade.value)" -->
+                    <!--                    <div class="pro_top_img_box border_ca">-->
+                    <!--                        <img src="/style/images/technologyMarket/pro_img.png" />-->
+                    <!--                    </div>-->
+                    <el-image class="border_ca achi_img_box " :src="getImgPath(item.projectImgPath)">
+                        <div slot="placeholder" class="image-slot">
+                            加载中<span class="dot">...</span>
+                        </div>
+                    </el-image>
+                    <div class="pro_bottom_text">
+                        <h4 class="ell_nowrap">{{item.title}}</h4>
+                        <!--                        <div class="ell_nowrap">所属领域：{{item.projectIndustryType_display}}</div>-->
+                        <div class="ell_nowrap" :title="item.projectIndustryType.map(item=>item.name).join(',')">
+                            所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</div>
+                        <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
+                            标签：{{item.tags.map(item=>item.name).join(',')}}</div>
+                        <div class="margin_top_4">
+                            <span
+                                class="width_max_70 ell_nowrap display_inl_blo">转让方式：{{item.cooperationMode_display}}</span>
+                            <span class="fr">价格：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                        </div>
+                    </div>
+                    <a class="margin_top_15 pro_list_button bg_orange color_fff"
+                        :href="'tech_achievements_details.html?id='+item.id">邀约交流</a>
+                </li>
+            </ul>
+        </div>
+        <div class="pages">
+            <el-pagination background layout="prev, pager, next" :pager-count="7"
+                :current-page.sync="queryModel.pageParam.current" :page-size.sync="queryModel.pageParam.size"
+                :total="total">
+            </el-pagination>
+        </div>
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/tech_achievements.js"></script>
+
+</body>
+
+</html>

@@ -19,9 +19,9 @@ require(['/common/js/require.config.js'], function () {
         isSubmitDisabled: false,
         codeTime: 60,
         captchaData: {},
-        m_host: ['kj01.liyantech.cn', 'kj.kjy01.com', 'www.kj01.cn','intell.liyantech.cn','www.znhpt.com','www.yzw.com'],
+        m_host: ['kj01.liyantech.cn', 'kj.kjy01.com', 'www.kj01.cn', 'intell.liyantech.cn', 'www.znhpt.com', 'www.yzw.com'],
         codeBtnText: '发送验证码',
-        webInfo:''
+        webInfo: ''
       },
       components: {
         'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),
@@ -33,7 +33,7 @@ require(['/common/js/require.config.js'], function () {
       },
       mounted: function () {
         var that = this;
-        if(location.href.indexOf('/site/')>-1){
+        if (location.href.indexOf('/site/') > -1) {
           that.getPublicDetail()
         }
         $(".slider").on("mousedown", function () {
@@ -64,9 +64,9 @@ require(['/common/js/require.config.js'], function () {
         });
       },
       methods: {
-        getPublicDetail(){
-          let vm=this;
-          this.$httpCom.publicDetail().then(function(res) {
+        getPublicDetail() {
+          let vm = this;
+          this.$httpCom.publicDetail().then(function (res) {
             if (res.code === "rest.success") {
               vm.webInfo = res.result;
               vm.monitorSetItem('webInfo', JSON.stringify(vm.webInfo));
@@ -90,9 +90,9 @@ require(['/common/js/require.config.js'], function () {
           }
           this.$utils.openNewTable(url);
         },
-				/**
-				 * 验证成功
-				 */
+        /**
+         * 验证成功
+         */
         toSuccess: function (m) {
           this.form.token = m.token;
           this.form.code = m.code;
@@ -102,18 +102,18 @@ require(['/common/js/require.config.js'], function () {
             type: "success"
           })
         },
-				/**
-				 * 清除验证信息
-				 */
+        /**
+         * 清除验证信息
+         */
         cleanMsg: function () {
           this.showMsg({
             msg: ""
           });
           $("#captcha").find("canvas").fadeOut(500);
         },
-				/**
-				 * 显示验证信息
-				 */
+        /**
+         * 显示验证信息
+         */
         showMsg: function (d) {
           var defaults = {
             msg: "",
@@ -123,9 +123,9 @@ require(['/common/js/require.config.js'], function () {
           var cln = opts.type == "error" ? "error" : opts.type == "success" ? "success" : "";
           $('#msg').removeClass().addClass(cln).html(opts.msg);
         },
-				/**
-				 * 登录方式切换点击
-				 */
+        /**
+         * 登录方式切换点击
+         */
         tabsClick: function (index, event) {
           var i = index;
           this.form.username = '';
@@ -140,9 +140,9 @@ require(['/common/js/require.config.js'], function () {
           $(event.srcElement).addClass("active").siblings("li").removeClass("active");
           $(".login_form").find(".form_item").eq(i).fadeIn(200).siblings(".form_item").hide();
         },
-				/**
-				 * 点击登录
-				 */
+        /**
+         * 点击登录
+         */
         loginClick: function (event) {
           var vm = this;
           $("#login_form").validate({
@@ -189,9 +189,9 @@ require(['/common/js/require.config.js'], function () {
             }
           })
         },
-				/**
-				 * 校验手机
-				 */
+        /**
+         * 校验手机
+         */
         validatePhone: function () {
           var phone = this.form.username;
           this.isPhoneError = false;
@@ -226,9 +226,9 @@ require(['/common/js/require.config.js'], function () {
             })
           }
         },
-				/**
-				 * 发送短信
-				 */
+        /**
+         * 发送短信
+         */
         sendClick: function (event) {
           event.preventDefault() //阻止form表单默认提交
           this.validatePhone();
@@ -243,10 +243,11 @@ require(['/common/js/require.config.js'], function () {
             }
           }, 200)
         },
-				/**
-				 * 滑块验证成功
-				 */
+        /**
+         * 滑块验证成功
+         */
         onSuccess: function (captchaData) {
+          console.log("滑块验证成功");
           var vm = this;
           vm.isShowDialog = false;
           vm.isDisabled = true
@@ -291,42 +292,68 @@ require(['/common/js/require.config.js'], function () {
             var suffixUrl = url.substring(url.indexOf('?') + 1);
 
           }
-          location.href=this.$pathPrefix+'/common/reg.html'+'?'+suffixUrl
+          location.href = this.$pathPrefix + '/common/reg.html' + '?' + suffixUrl
         },
+
+
+        setCookiePhone: function () {
+          var vm = this;
+          vm.$httpCom.webCommonUserPhone().then(function (res) {
+            console.log('phone', res)
+            if (res.code === true) {
+              localStorage.setItem("userPhone", res.data.phone);
+            }
+          }).catch(function (res) {
+            console.log(res)
+          })
+        },
+
         loginSubmit: function () {
+          console.log("执行登录");
           var vm = this;
           vm.form.token = this.captchaData.token;
           vm.form.code = this.captchaData.code;
           var param = JSON.parse(JSON.stringify(vm.form));
-          !vm.isSubmitDisabled && (this.isSubmitDisabled = true,
-            param.password = $.base64.encode(param.password),
+          console.log("封装参数param:");
+          console.log(param);
+          !vm.isSubmitDisabled && (this.isSubmitDisabled = true, param.password = $.base64.encode(param.password),
             httpLogin.oauth(param).then(function (data) {
+              console.log(data)
               if (data.code == 'rest.success') {
                 vm.$utils.delCookie(dic.locaKey.LOGIN_INFO);
+                console.log("保存登录用户成功后用户登录信息到cookie，key:" + dic.locaKey.LOGIN_INFO + ",value:" + JSON.stringify(data.result));
                 vm.$utils.setCookie(dic.locaKey.LOGIN_INFO, data.result);
+                console.log("请求后台获取用户信息>>>");
+                console.log(vm.$utils.getCookie(dic.locaKey.LOGIN_INFO));
+                console.log("请求后台获取用户信息>>>webCommonUser");
                 vm.$httpCom.webCommonUser().then(function (res) {
+                  console.log(res.code);
+                  //校验获取用户信息是否成功
                   if (res.code === 'rest.success') {
-
                     var referrer = document.referrer
                     var toUrl = referrer
-                    window.location.href = toUrl
+                    //直接跳转到index.html????
+                    //window.location.href = toUrl
+                    console.log("保存登录用户成功后用户基本信息到cookie，key:" + dic.locaKey.USER_INFO + ",value:" + JSON.stringify(res.result));
                     vm.$utils.delCookie(dic.locaKey.USER_INFO);
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
-                    localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
+                    localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
+                    vm.setCookiePhone();
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
-                      var url = this.window.location.href
+                      var url = this.window.location.href;
                       if (url.indexOf('?') > 0) {
-                        var suffixUrl=url.substring(url.indexOf('?')+1);
-                         if (suffixUrl.indexOf('=')) {toUrl=location.host+suffixUrl.substring(suffixUrl.indexOf('=')+1)
+                        var suffixUrl = url.substring(url.indexOf('?') + 1);
+                        if (suffixUrl.indexOf('=')) {
+                          toUrl = location.host + suffixUrl.substring(suffixUrl.indexOf('=') + 1)
                         }
-                      }else {
-                        toUrl = this.$pathPrefix+'/index.html'
+                      } else {
+                        toUrl = this.$pathPrefix + '/index.html'
                       }
                     }
                     // 判断是否有return url
-                    if(location.search.indexOf('return')>-1){
-                        toUrl = location.search.replace('?return=','')
+                    if (location.search.indexOf('return') > -1) {
+                      toUrl = location.search.replace('?return=', '')
                     }
 
                     window.location.href = toUrl

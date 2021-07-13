@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+    <link href="css/element_index.css" rel="stylesheet" type="text/css">
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html" class="active"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+                <div class="user_market_title border_bot_f2f2f2">
+                    <span class="market_title">专利信息</span>
+                    <a :href="'/common/usercenter/user_market_tech_patent_form.html?proId='+id"
+                        class="fr go_study color_70adf1">+
+                        添加专利</a>
+                </div>
+                <div class="margin_20">
+                    <!-- <div class="margin_bot_20 clear">
+                        <input class="padding_06_1 width_50_115 border_efefef margin_tb_10 fl"
+                            placeholder="请输入你想查找的成果名称">
+                        <a class="bg_70adf1 color_fff fl margin_tb_10 border_70adf1"
+                            style="padding: 0.52rem 2rem;">检索</a>
+                    </div> -->
+
+
+                    <div class="pro_details">
+                        <el-table :data="tech_patent_list" style="width: 100%">
+                            <el-table-column label="专利名称">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">
+                                        {{ scope.row.patentName }}
+                                        <!-- <a @click="changePageView(scope.row)" class="color_13c9ef"></a> -->
+                                    </span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="专利类型">
+                                <template slot-scope="scope">
+                                    {{scope.row.patentType_display}}
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="申请号">
+                                <template slot-scope="scope">
+                                    {{scope.row.appNo}}
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="公布(公告)号">
+                                <template slot-scope="scope">
+                                    <!-- <i class="el-icon-time"></i> -->
+                                    <span style="margin-left: 10px">{{ scope.row.pubNo }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="专利权人">
+                                <template slot-scope="scope">
+                                    <!-- <i class="el-icon-time"></i> -->
+                                    <span style="margin-left: 10px">{{ scope.row.applicantName }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <!-- <el-table-column label="审核结果">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">
+                                        <span v-if="scope.row.certificationFlag==1">待审核</span>
+                                        <span v-else-if="scope.row.certificationFlag==2">通过</span>
+                                        <span v-else-if="scope.row.certificationFlag==3" style="color:red">不通过</span>
+                                    </span>
+                                </template>
+                            </el-table-column> -->
+
+                            <!-- certification_flag -->
+
+                            <el-table-column label="创建日期" width="180">
+                                <template slot-scope="scope">
+                                    <!-- <i class="el-icon-time"></i> -->
+                                    <span style="margin-left: 10px">{{ scope.row.createTime }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="操作">
+                                <template slot-scope="scope">
+                                    <el-dropdown @command="handleCommand">
+                                        <span class="el-dropdown-link">
+                                            展开<i class="el-icon-arrow-down el-icon--right"></i>
+                                        </span>
+                                        <el-dropdown-menu slot="dropdown">
+                                            <el-dropdown-item v-if="scope.row.certificationFlag!=1"
+                                                :command="HandleButtonEdit(scope.$index, scope.row,0)">
+                                                <el-button size="mini">编辑
+                                                </el-button>
+                                            </el-dropdown-item>
+                                            <el-dropdown-item :command="handleButtonDel(scope.$index, scope.row,1)">
+                                                <el-button size="mini" type="danger">
+                                                    删除</el-button>
+                                            </el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div class="pages">
+                            <el-pagination background layout="prev, pager, next" :pager-count="7" :page-size="pageSize"
+                                :total="allTotal" @current-change="handleCurrentChange">
+                            </el-pagination>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="margin_bot_long"></div> -->
+            </div>
+        </div>
+
+        <ly-minifooter></ly-minifooter>
+    </div>
+
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketTechPatentList.js"></script>
+</body>
+
+</html>

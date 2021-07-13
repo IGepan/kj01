@@ -285,9 +285,7 @@ require(['/common/js/require.config.js'], function () {
                       vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                       localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                       localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
-                      window.setTimeout(function () {
-                        window.location.reload();
-                      },2000)
+                      vm.initData()
                     }
                   })
                 } else {
@@ -352,6 +350,7 @@ require(['/common/js/require.config.js'], function () {
         // 图片上传回调
         imgUploadSuccess: function (id, url, type) {
           this.formData.headImg = id;
+          console.log(url);
           this.$set(this.formData, 'attachmentIdUrl', url);
         },
         // 地图点击后回调

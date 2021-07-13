@@ -46,7 +46,8 @@
                   <td>
                     <div class="head" v-viewer
                       :style="{backgroundImage: formData.attachmentIdUrl?'url('+formData.attachmentIdUrl+')':'url(/common/images/defaultImg/default.gif)'}">
-                      <img :src="formData.attachmentIdUrl || '/common/images/defaultImg/default.gif'" class="opacityZero">
+                      <img :src="formData.attachmentIdUrl || '/common/images/defaultImg/default.gif'"
+                        class="opacityZero">
                     </div>
                     <img-uploader :option="imgOption"></img-uploader>
                   </td>
@@ -87,12 +88,12 @@
                   <th>统一社会信用代码</th>
                   <td>
                     <div class="ipt">
-                      <input class="required" v-model="formData.code"
-                        type="text" data-valid="isNonEmpty" data-error='不能为空'>
+                      <input class="required" v-model="formData.code" type="text" data-valid="isNonEmpty"
+                        data-error='不能为空'>
                     </div>
                   </td>
                   <td class="form_msg"></td>
-                </tr>                
+                </tr>
                 <tr class="form_item" v-if="formData.identityType === '01'">
                   <th>真实姓名：</th>
                   <td>
@@ -101,7 +102,7 @@
                         data-tip="" maxlength="20">
                     </div>
                     <div class="select showname">
-                      <select name="" :disabled="isCertificationed"  v-model="formData.visibleFlag">
+                      <select name="" :disabled="isCertificationed" v-model="formData.visibleFlag">
                         <option value="1">仅自己可见</option>
                         <option value="0">所有可见</option>
                       </select>
@@ -113,16 +114,16 @@
                   <th>企业名称：</th>
                   <td>
                     <div class="ipt">
-                      <input  v-model="formData.companyName" type="text"
-                             maxlength="20"/>
+                      <input v-model="formData.companyName" type="text" maxlength="20" />
                     </div>
                   </td>
                   <td class="form_msg"></td>
-                </tr> <tr class="form_item" v-if="formData.identityType === '01'">
+                </tr>
+                <tr class="form_item" v-if="formData.identityType === '01'">
                   <th>职务：</th>
                   <td>
                     <div class="ipt ">
-                      <input  v-model="formData.job" type="text" maxlength="20"/>
+                      <input v-model="formData.job" type="text" maxlength="20" />
                     </div>
                   </td>
                   <td class="form_msg"></td>
@@ -207,7 +208,7 @@
                     </label>
                   </td>
                   <td ref="servicesMsg" class="form_msg"></td>
-                </tr>           
+                </tr>
                 <tr class="form_item" v-if="formData.identityType === '02'">
                   <th>企业资质：</th>
                   <td>
@@ -238,7 +239,7 @@
                     </label>
                   </td>
                   <td class="form_msg"></td>
-                </tr>                
+                </tr>
                 <tr v-if="formData.identityType === '03' || formData.identityType === '05'">
                   <th>成立时间：</th>
                   <td>
@@ -253,7 +254,8 @@
                     <div class="ipt">
                       <input v-model="formData.contacts" type="text" data-valid="maxLength:20" data-error='内容过长'>
                     </div>
-                    <div v-if="!formData.contactsPhone" style="height: 30px;line-height:30px;font-size:12px;color:red;">提示：没有联系人将影响政策推送消息接收</div>
+                    <div v-if="!formData.contactsPhone" style="height: 30px;line-height:30px;font-size:12px;color:red;">
+                      提示：没有联系人将影响政策推送消息接收</div>
                   </td>
                   <td class="form_msg"></td>
                 </tr>
@@ -262,9 +264,10 @@
                   <td>
                     <div class="ipt">
                       <input v-model="formData.contactsPhone" maxlength="11" type="text" class="required"
-                        data-valid="isMobile" data-error='手机号不正确'>                       
+                        data-valid="isMobile" data-error='手机号不正确'>
                     </div>
-                    <div v-if="!formData.contactsPhone" style="height: 30px;line-height:30px;font-size:12px;color:red;">提示：没有手机号码将影响政策推送消息接收</div>
+                    <div v-if="!formData.contactsPhone" style="height: 30px;line-height:30px;font-size:12px;color:red;">
+                      提示：没有手机号码将影响政策推送消息接收</div>
                   </td>
                   <td class="form_msg"></td>
                 </tr>
@@ -300,7 +303,8 @@
                 <tr class="btns">
                   <td></td>
                   <td><button class="btn primary" :disabled="isSubmitDisabled" @click="submitClick">保存</button>
-                    <button class="btn">取消</button></td>
+                    <button class="btn">取消</button>
+                  </td>
                 </tr>
               </table>
             </div>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+
+                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html" class="active"><i
+                                class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+                <div class="user_market_title border_bot_f2f2f2">
+                    <span class="market_title">收藏</span>
+                </div>
+                <div class="margin_20">
+                    <!-- <div class="margin_bot_20 clear">
+                        <input class="padding_06_1 width_50_115 border_efefef margin_tb_10 fl"
+                            placeholder="请输入你想查找的技术名称">
+                        <a class="bg_70adf1 color_fff fl margin_tb_10 border_70adf1"
+                            style="padding: 0.52rem 2rem;">检索</a>
+                    </div> -->
+                    <div class="pro_details">
+                        <el-table :data="tech_collection_list" style="width: 100%">
+                            <el-table-column label="标题">
+                                <template slot-scope="scope">
+                                    <!-- <i class="el-icon-time"></i> -->
+                                    <span>{{ scope.row.title }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <!-- <el-table-column label="收藏类型">
+                                <template slot-scope="scope">
+                                    {{scope.row.favoriteType}}
+                                </template>
+                            </el-table-column> -->
+                            <el-table-column label="收藏时间">
+                                <template slot-scope="scope">
+                                    {{scope.row.createTime}}
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作">
+                                <template slot-scope="scope">
+                                    <span @click.stop="addFavorite(scope.row.id)"> 取消收藏</span>
+                                </template>
+                            </el-table-column>
+
+                        </el-table>
+                        <!-- <div class="pages">
+                            <el-pagination background layout="prev, pager, next" :pager-count="7" :page-size="pageSize"
+                                :total="allTotal" @current-change="handleCurrentChange">
+                            </el-pagination>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ly-minifooter></ly-minifooter>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketTechCollection.js"></script>
+</body>
+
+</html>

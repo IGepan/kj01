@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技术市场</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/market.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="index_box" class="box grayBgbox" v-cloak>
+        <ly-toper></ly-toper>
+        <tech_market_header name="技术市场"></tech_market_header>
+
+        <div class="bg_star_box">
+            <img class="width_100" src="/style/images/technologyMarket/bg_star.jpg" />
+            <div class="placeBox">
+                <div class="mdiv">
+                    <div class="breadcrumb">当前位置：
+                        <span class="breadcrumb__item"><a href="/" style="color:#fff">首页</a></span>
+                        <i class="bread_card_line"></i>
+                        <span class="breadcrumb__item">技术需求汇</span>
+                    </div>
+                </div>
+            </div>
+            <div class="page_title">
+                技术需求汇
+            </div>
+        </div>
+
+        <div class="mdiv">
+            <div class="searchListBox">
+                <div class="search-row">
+                    <div class="search_list_head clear">
+                        <div class="fl">
+                            <ul class="clear">
+                                <li class="fl searchkey">排序：</li>
+                                <li v-for="(item,index) in sortList" @click.stop="orderClick(item.id,index)"
+                                    class="fl searchkey" :class="{active: index === sortActive}">{{item.name}}
+                                </li>
+                                <!-- <li class="fl searchkey">人气</li> -->
+                            </ul>
+                        </div>
+                        <div class="fr">
+                            <a class="operation_button bg_13c9ef color_fff"
+                                href="/technologyMarket/technical_manager.html">找经纪人</a>
+                            <a class="operation_button bg_orange color_fff" @click="release_project">发布需求</a>
+                        </div>
+                    </div>
+                </div>
+                <template v-for="(item,key,i) in conditionsList">
+                    <div class="search-row" :key="key" v-if="item.id!='demandIndustryType'">
+                        <label class="search-label">{{item.name}}</label>
+                        <div class="searchkeys">
+                            <span class="searchkey" v-for="(dict,index) in item.dictCodes"
+                                @click="clickCondition(key,item.id, dict.dictValue, index)"
+                                :class="item.index===index?'active':''" :key="index">{{dict.display}}</span>
+                        </div>
+                    </div>
+                    <div class="search-row" :key="key" v-if="item.id=='demandIndustryType'">
+                        <label class="search-label">{{item.name}}</label>
+                        <div class="searchkeys">
+                            <span class="searchkey" v-for="(dict,index) in item.dictCodes"
+                                :class="item.index===index?'active':''"
+                                @click="openProjectList(key,item.id, dict.dictValue, index)"
+                                :key="index">{{dict.name}}</span>
+                        </div>
+                        <div v-if="industrySecondShow" class="searchListBoxs">
+                            <span v-for="(dict,index) in IndustryTypeChildren"
+                                @click="clickConditionChild(key,item.id, dict.dictValue, index)"
+                                :class="dict.index===index?'active':''" class="searchkey ">{{dict.display}}</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="mmdiv margin_top_20 margin_bot_20">
+            <!-- <div class="project_title_more clear">
+                <h3 class="fl">技术成果</h3>
+                <div class="fr view_more color_13c9ef">
+                    查看更多
+                    <span class="view_more_icon">
+                        <span class="arrow"></span>
+                    </span>
+                </div>
+            </div> -->
+            <ul class="clear">
+                <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in dataList" :key="index">
+                    <div class="pro_bottom_text">
+                        <h4 class="ell_nowrap">{{item.title}}</h4>
+                        <div>
+                            <!--                            <span class="width_max_70 ell_nowrap display_inl_blo">行业领域：{{item.demandIndustryType_display}}</span>-->
+                            <div class="ell_nowrap" :title="item.demandIndustryType.map(item=>item.name).join(',')">
+                                行业领域：{{item.demandIndustryType.map(item=>item.name).join(',')}}</div>
+                            <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
+                                标签：{{item.tags.map(item=>item.name).join(',')}}</div>
+                            <span class="fr">预算：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                        </div>
+                        <div class="ell_nowrap">需求类型：{{item.demandType_display}}</div>
+                        <div class="ell_nowrap margin_top_4">合作方式：{{item.cooperationMode_display}}</div>
+                    </div>
+                    <a class="margin_top_15 pro_list_button bg_orange color_fff"
+                        :href="'tech_requirements_details.html?id='+item.id">投递成果</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="pages">
+            <el-pagination background layout="prev, pager, next" :pager-count="7"
+                :current-page.sync="queryModel.pageParam.current" :page-size.sync="queryModel.pageParam.size"
+                :total="total">
+            </el-pagination>
+        </div>
+
+        <web-footer></web-footer>
+    </div>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script type="text/javascript" src="/style/js/technologyMarket/tech_requirements.js"></script>
+</body>
+
+</html>

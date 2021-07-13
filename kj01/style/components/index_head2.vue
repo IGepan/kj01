@@ -38,16 +38,16 @@
 module.exports = {
   props: {
     isfixed: {
-      type: Boolean
+      type: Boolean,
     },
     navIndex: {
       type: [String, Number],
-      default: 0
-    }
+      default: 0,
+    },
   },
   data: function () {
     return {
-      searchKey: '',
+      searchKey: "",
       navs: [
         {
           label: '首页',
@@ -61,9 +61,9 @@ module.exports = {
         //   label: '科技服务',
         //   url: '/service'
         // },
-         {
-           label: '技术转移',
-         url: '/market/index.html'
+        {
+          label: "技术转移",
+          url: "/technologyMarket/index.html",
         },
         // {
         //   label: '科技金融',
@@ -102,101 +102,101 @@ module.exports = {
       ]
     }
   },
-  created: function() {
+  created: function () {
     this.navs[this.navIndex].active = 1;
   },
   watch: {
-    navIndex: function(v) {
-      this.navs.forEach(function(item, i) {
+    navIndex: function (v) {
+      this.navs.forEach(function (item, i) {
         item.active = v === i;
       });
-    }
+    },
   },
   methods: {
     // alerta: function (i) {
     //   alert(i)
     // },
     searchFull: function () {
-      location.href = '/search/?title=' + this.searchKey
+      location.href = "/search/?title=" + this.searchKey;
       // this.$dialog.showToast('敬请期待！')
       // this.$emit('search-full', this.getData())
     },
-  }
-}
+  },
+};
 </script>
 
 <style>
 .headerBox {
- background-color: #ffffff;
+  background-color: #ffffff;
 }
 .headers {
- display: flex;
- width: 100%;
- height: 100px;
- justify-content: space-between;
- align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
 }
 .header-logo {
- display: flex;
+  display: flex;
 }
 .header-logo {
- display: flex;
- align-items: center;
+  display: flex;
+  align-items: center;
 }
 .header-logo a {
- display: flex;
- width: 170px;
- height: 50px;
- align-items: center;
- justify-content: center;
- margin-right: 18px;
+  display: flex;
+  width: 170px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 18px;
 }
 .header-logo a img {
- width: 100%;
+  width: 100%;
 }
 .header-text {
- font-family: XinYeNianTi;
- font-size: 24px;
- color: #01c8f2;
+  font-family: XinYeNianTi;
+  font-size: 24px;
+  color: #01c8f2;
 }
 .searchBox {
- display: flex;
- align-items: center;
+  display: flex;
+  align-items: center;
 }
 .searchBox a {
- font-size: 18px;
- color: #1f2024;
- margin-right: 40px;
+  font-size: 18px;
+  color: #1f2024;
+  margin-right: 40px;
 }
-.searchBox .active{
- color: #01c8f2;
- font-weight: 600;
- position: relative;
+.searchBox .active {
+  color: #01c8f2;
+  font-weight: 600;
+  position: relative;
 }
-.searchBox .active::after{
- position: absolute;
- content: "";
- display: block;
- margin-top: 10px;
- width: 100%;
- height: 2px;
- border-radius: 1px;
- background-color: #01c8f2;
+.searchBox .active::after {
+  position: absolute;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #01c8f2;
 }
 .searchBox a:hover {
- position: relative;
- color: #01c8f2;
- font-weight: 600;
+  position: relative;
+  color: #01c8f2;
+  font-weight: 600;
 }
 .searchBox a:hover::after {
- position: absolute;
- content: "";
- display: block;
- margin-top: 10px;
- width: 100%;
- height: 2px;
- border-radius: 1px;
- background-color: #01c8f2;
+  position: absolute;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #01c8f2;
 }
 .search {
 	background-color: #ddf9ff;
@@ -206,39 +206,39 @@ module.exports = {
  align-items: center;
 }
 .search .iconfont {
- width: 58px;
- height: 38px;
- line-height: 43px;
- display: inline-flex;
- color: #11cbf2;
- font-size: 24px;
- justify-content: center;
- cursor: pointer;
- border-radius: 20px;
+  width: 58px;
+  height: 38px;
+  line-height: 43px;
+  display: inline-flex;
+  color: #11cbf2;
+  font-size: 24px;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
 }
 .search:hover {
- position: relative;
- border-radius: 0 20px 20px 0;
- border: solid 1px #11cbf2;
- border-left: none;
+  position: relative;
+  border-radius: 0 20px 20px 0;
+  border: solid 1px #11cbf2;
+  border-left: none;
 }
 .search:hover .input {
- position: absolute;
- display: inline-block;
- height: 40px;
- width: 336px;
- right: 55px;
- border-radius: 20px 0 0 20px;
- background-color: #ddf9ff;
- border: solid 1px #11cbf2;
- border-right: none;
- z-index: 9999;
+  position: absolute;
+  display: inline-block;
+  height: 40px;
+  width: 336px;
+  right: 55px;
+  border-radius: 20px 0 0 20px;
+  background-color: #ddf9ff;
+  border: solid 1px #11cbf2;
+  border-right: none;
+  z-index: 9999;
 }
 .search .input::-webkit-input-placeholder {
- font-size: 14px;
- color: #7b7e8a;
+  font-size: 14px;
+  color: #7b7e8a;
 }
 .search .input {
- display: none;
+  display: none;
 }
 </style>

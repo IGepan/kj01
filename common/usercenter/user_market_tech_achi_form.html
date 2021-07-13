@@ -1,0 +1,692 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+
+        .first_level,
+        .second_level {
+            min-width: 180px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #606266;
+            background: #fff;
+            min-height: 260px;
+
+        }
+
+        .first_level {
+            width: 30%;
+            float: left;
+        }
+
+
+        .second_level {
+            border-left: 1px solid #ddd;
+            width: 60%;
+            float: left;
+        }
+
+        .third_level {
+            min-width: 300px;
+        }
+
+        .first_level li.first_li {
+            position: relative;
+            height: 34px;
+            line-height: 34px;
+        }
+
+
+        .first_li.active,
+        .second_li a.active,
+        .third_li.active {
+            color: #70adf1;
+        }
+
+        .first_a {
+            display: block;
+            padding: 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .second_a {
+            font-weight: 600;
+            padding: 10px 5px 5px;
+            display: block;
+            font-size: 0.9rem;
+
+        }
+
+        .third_a {
+            font-size: 0.9rem;
+        }
+
+        li.third_li {
+            float: left;
+            margin: 5px 10px 5px 0;
+        }
+
+        .first_a i,
+        .second_a i,
+        .third_a i {
+            height: 34px;
+            line-height: 34px;
+        }
+
+        .model_a {
+            min-width: 150px;
+        }
+
+        .third_a:hover {
+            color: #70adf1;
+        }
+
+        .title_list_a {
+            background: #70adf1;
+            margin: 5px;
+            border-radius: 4px;
+            padding: 0px 4px;
+            color: #fff;
+            display: inline-block;
+            line-height: 26px;
+        }
+
+        .all_screen {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .tag_tree_style {
+            width: 600px;
+            height: 400px;
+            background: #fff;
+            position: fixed;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            border: 1px solid #f4f4f4;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .selected_over {
+            border-bottom: 1px solid #ddd;
+            line-height: 40px;
+            padding-bottom: 5px;
+        }
+
+        .icon_close {
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1001;
+            padding: 15px;
+        }
+
+
+
+
+        .inputbox-max {
+            width: 435px;
+        }
+
+        .inputbox-well {
+            width: 350px;
+            margin-right: 13px;
+        }
+
+        .selectarea select {
+            margin-right: 8px;
+        }
+
+        .selectarea .expsltlb:after,
+        .selectbox:after {
+            right: 8px;
+        }
+
+        .inputbox-date:after {
+            right: 345px;
+        }
+
+        .form .inputbox-add {
+            width: 765px;
+        }
+
+        .form .inputbox-add span {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .selectbox-max {
+            width: 435px;
+            padding-right: 25px;
+        }
+
+        .selectbox.ptrt:after {
+            top: 2px;
+            width: 30px;
+            height: 20px;
+            background-color: #ffffff;
+            right: -32px;
+        }
+
+        .ainline {
+            border: 1px solid #ccc;
+            width: 435px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id='index_box'>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+
+
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html" class="active"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+                <div class="user_market_title border_bot_f2f2f2">
+                    <span class="market_title" v-if="tech_type==0">编辑成果</span>
+                    <span class="market_title" v-if="tech_type==1">添加成果</span>
+                </div>
+                <!-- <div>
+                    <div class="head" style="height: 100px;width: 100px;;" v-viewer
+                        :style="{backgroundImage: formData.attachmentIdUrl?'url('+formData.attachmentIdUrl+')':'url(/common/images/defaultImg/default.gif)'}">
+                        <img :src="formData.attachmentIdUrl || '/common/images/defaultImg/default.gif'"
+                            class="opacityZero">
+                    </div>
+                    <img-uploader :option="imgOption"></img-uploader>
+                </div> -->
+
+                <div class="clear margin_20 border_bot_f2f2f2">
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 ">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>成果名称：</span>
+                            <el-input v-model="basicProjectList.title" class="width_100_115"
+                                placeholder="请输入成果名称,最大50字符" maxlength="50">
+                            </el-input>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="width_100 margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>行业类型：</span>
+                            <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
+                                @click.stop="openMenuListIndustry">
+                                <span class="" v-for="(item,index) in textIndustryList" :key="index">{{item.name}},
+                                </span>
+                            </a>
+
+                            <div class="tag_tree_style padding_20" id="industry_tree_style" style="display: none;">
+                                <div class="all_screen" @click.stop="closeAllLevelIndustry"></div>
+                                <i class="el-icon-close icon_close" @click.stop="closeAllLevelIndustry"></i>
+                                <div class="selected_over clear" style="position: relative;z-index: 1000;">
+                                    已选择：
+                                    <span class="title_list_a " v-for="(item,index) in textIndustryList" :key="index">
+                                        {{item.name}}
+                                        <i class="el-icon-close" @click.stop="removeSingleIndustry(index)"></i>
+                                    </span>
+                                </div>
+                                <div style="position: relative;z-index: 1000;">
+                                    <div class="first_level fl">
+                                        <ul>
+                                            <li class="first_li clear" :class="item.active?'active':''"
+                                                v-for="(item,index) in optionsIndustry" :key="index"
+                                                @click="openFirstLevelIndustry(item,index)">
+                                                <a class="first_a"> {{item.name}}
+                                                    <i class="el-icon-arrow-right fr"></i></a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="second_level fl">
+                                        <ul>
+                                            <li class="second_li clear">
+                                                <a class="padding_06_1 font_9 display_inl_blo fl"
+                                                    :class="item2.active?'active':''"
+                                                    v-for="(item2,index2) in secondIndustryOptions" :key="index2"
+                                                    @click="openSecondLevelIndustry(item2,index2)">{{item2.name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>标签：</span>
+                        <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
+                            @click.stop="openMenuList">
+                            <span class="" v-for="(item,index) in textList" :key="index">{{item.name}},
+                            </span>
+                        </a>
+
+
+                        <div class="tag_tree_style padding_20" id="tag_tree_style" style="display: none;">
+                            <div class="all_screen" @click.stop="closeAllLevel"></div>
+                            <i class="el-icon-close icon_close" @click.stop="closeAllLevel"></i>
+                            <div class="selected_over clear" style="position: relative;z-index: 1000;">
+                                已选择：
+                                <span class="title_list_a " v-for="(item,index) in textList" :key="index">
+                                    {{item.name}}
+                                    <i class="el-icon-close" @click.stop="removeSingle(index)"></i>
+                                </span>
+                            </div>
+                            <div style="position: relative;z-index: 1000;">
+                                <div class="first_level fl">
+                                    <ul>
+                                        <li class="first_li clear" :class="item.active?'active':''"
+                                            v-for="(item,index) in options" :key="index"
+                                            @click="openFirstLevel(item,index)">
+                                            <a class="first_a"> {{item.name}}
+                                                <i class="el-icon-arrow-right fr"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="second_level fl">
+                                    <ul>
+                                        <li class="second_li clear" v-for="(item2,index2) in secondOptions"
+                                            :key="index2">
+                                            <a class="second_a">{{item2.name}}</a>
+                                            <div class="third_level clear">
+                                                <ul>
+                                                    <li class="third_li" :class="item3.active?'active':''"
+                                                        v-for="(item3,index3) in item2.children" :key="index3"
+                                                        @click="openThirdLevel(item3,index3)">
+                                                        <a class="third_a padding_06_1">{{item3.name}}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="f_w_50 fl margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>成果类型：</span>
+                        <el-select v-model="basicProjectList.projectType" placeholder="请选择" class="width_100_115">
+                            <el-option v-for="item in achievement_demand_type_list" :key="item.id" :label="item.display"
+                                :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="f_w_50 fr margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>附加服务：</span>
+                        <el-select v-model="basicProjectList.additionalService" placeholder="请选择附加服务"
+                            class="width_100_115">
+                            <el-option v-for="item in additional_service_list" :key="item.id" :label="item.display"
+                                :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="f_w_50 fl margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>意向价格(元)：</span>
+                        <el-input type="number" maxlength="8" v-model="basicProjectList.budget" class="width_100_115"
+                            placeholder="请输入意向价格">
+                        </el-input>
+                    </div>
+                    <div class="f_w_50 fr margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>合作方式：</span>
+                        <el-select v-model="basicProjectList.cooperationMode" placeholder="请选择合作方式"
+                            class="width_100_115">
+                            <el-option v-for="item in cooperation_mode_list" :key="item.id" :label="item.display"
+                                :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+
+
+                    <div class="f_w_50 fl margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>权属性质：</span>
+                        <el-select v-model="basicProjectList.achievementBelong" placeholder="请选择权属性质"
+                            class="width_100_115">
+                            <el-option v-for="item in achievement_belong_list" :key="item.id" :label="item.display"
+                                :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="f_w_50 fr margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>成熟度：</span>
+
+                        <el-select v-model="basicProjectList.achievementMaturity" placeholder="请选择成熟度"
+                            class="width_100_115">
+                            <el-option v-for="item in achievement_maturity_list" :key="item.id" :label="item.display"
+                                :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+
+
+
+                    <!-- <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>面向地区：</span>
+                            <el-select v-model="basicProjectList.country" placeholder="请选择国家" style="width: 18%;"
+                                @change="changeCountry">
+                                <el-option v-for="item in country_list" :key="item.value" :label="item.display"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+
+
+                            <el-select v-model="basicProjectList.provinces" placeholder="请选择省" style="width: 18%;"
+                                @change="changeProvinces">
+                                <el-option v-for="item in province_list" :key="item.id" :label="item.display"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <el-select v-model="basicProjectList.citys" placeholder="请选择市" style="width: 18%;" @change="changeCity">
+                                <el-option v-for="item in city_list" :key="item.id" :label="item.display"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <el-select v-model="basicProjectList.district" placeholder="请选择区/县" style="width: 18%;">
+                                <el-option v-for="item in district_list" :key="item.id" :label="item.display"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div> -->
+
+
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>成果描述：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="basicProjectList.projectDes" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>团队牵头人：</span>
+                            <el-input v-model="basicProjectList.teamFirstName" class="width_100_115"
+                                placeholder="请输入团队牵头人">
+                            </el-input>
+
+                        </div>
+                    </div>
+
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>团队牵头人介绍：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="basicProjectList.teamFirstNameDes" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>团队成员：</span>
+                            <el-input v-model="basicProjectList.teamMember" class="width_100_115" placeholder="请输入团队成员">
+                            </el-input>
+
+                        </div>
+                    </div>
+
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>团队成员介绍：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="basicProjectList.teamMemberDes" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>团队简介：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="basicProjectList.teamDes" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>联系人：</span>
+                            <el-input v-model="basicProjectList.contactPerson" class="width_100_115"
+                                placeholder="请输入团队成员">
+                            </el-input>
+
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>联系电话：</span>
+                            <el-input v-model="basicProjectList.contactPhone" class="width_100_115"
+                                placeholder="请输入团队成员">
+                            </el-input>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14 "><i class="color_red">*</i>成果主图：</span>
+                        <div class="width_100_115 fl padding_06_0">
+                            <div v-if="personImg.length>0">
+                                <div class="head upload_img fl margin_right_20 position_relative" v-viewer
+                                    :style="{backgroundImage: personImg?'url('+personImg+')':'url(/common/images/defaultImg/default.gif)'}">
+                                    <img :src="personImg || '/common/images/defaultImg/default.gif'"
+                                        class="opacityZero">
+                                    <i class="iconfont icon-shanchuguanbicha2 icon_del"
+                                        @click="delProvesPhotoClick(index)"></i>
+                                </div>
+                            </div>
+                            <div class="fl">
+                                <img-uploader :option="imgOption" title="上传成果主图">
+                                </img-uploader>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>成果附图：</span>
+                        <div class="width_100_115 fl padding_06_0">
+                            <div v-if="personImgFigures.length>0">
+                                <div class="head upload_img fl margin_right_20 position_relative" v-viewer
+                                    v-for="(item, index) in personImgFigures"
+                                    :style="{backgroundImage: item.url?'url('+item.url+')':'url(/common/images/defaultImg/default.gif)'}">
+                                    <img :src="item.url || '/common/images/defaultImg/default.gif'" class="opacityZero">
+                                    <i class="iconfont icon-shanchuguanbicha2 icon_del"
+                                        @click="delFiguresPhotoClick(index)"></i>
+                                </div>
+                            </div>
+                            <div class="fl">
+                                <img-uploader :option="imgOption1" title="上传成果附图">
+                                </img-uploader>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="clear">
+                        <div class="width_100 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>证书附件：</span>
+
+                            <div class="width_100_115 fl padding_06_0">
+                                <div class="inputbox">
+                                    <label class="exbtn">
+                                        <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess1'
+                                            style="position: absolute;right: 10000px;" type='file' :nopro="true"
+                                            :header='{}' :url='fileUploadUrl' :data='uploadData'>
+                                        </ly-upload>
+                                        <span class="el-button--small el-button--primary">上传证书附件</span>
+                                    </label>
+                                    <span class="el-upload__tip" style="color:red; margin-left: 20px;">
+                                        <!-- 附件文件名称最长50个汉字，附件文件大小最大10M -->
+                                    </span>
+                                </div>
+                                <div>
+                                    <ul class="filelist clear margin_top_15">
+                                        <li v-for="(item, index) in business_files1" v-cloak>
+                                            <span class="signfile">
+                                                <span v-text="item.name"></span>
+                                                <i class="iconfont icon-shanchuguanbicha2 icon_del"
+                                                    @click="handleDelFile1(index)"></i>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>商业计划书：</span>
+
+                            <div class="width_100_115 fl padding_06_0">
+                                <div class="inputbox">
+                                    <label class="exbtn">
+                                        <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess2'
+                                            style="position: absolute;right: 10000px;" type='file' :nopro="true"
+                                            :header='{}' :url='fileUploadUrl' :data='uploadData'>
+                                        </ly-upload>
+                                        <span class="el-button--small el-button--primary">上传商业计划书</span>
+                                    </label>
+                                    <span class="el-upload__tip" style="color:red; margin-left: 20px;">
+                                    </span>
+                                </div>
+                                <div>
+                                    <ul class="filelist clear margin_top_15">
+                                        <li v-for="(item, index) in business_files2" v-cloak>
+                                            <span class="signfile">
+                                                <span v-text="item.name"></span>
+                                                <i class="iconfont icon-shanchuguanbicha2 icon_del"
+                                                    @click="handleDelFile2(index)"></i>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>视频附件：</span>
+
+                            <div class="width_100_115 fl padding_06_0">
+                                <div class="inputbox">
+                                    <label class="exbtn">
+                                        <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess3'
+                                            style="position: absolute;right: 10000px;" type='file' :nopro="true"
+                                            :header='{}' :url='fileUploadUrl' :data='uploadData'>
+                                        </ly-upload>
+                                        <span class="el-button--small el-button--primary">上传视频附件</span>
+                                    </label>
+                                    <span class="el-upload__tip" style="color:red; margin-left: 20px;">
+                                        <!-- 附件文件名称最长50个汉字，附件文件大小最大10M -->
+                                    </span>
+                                </div>
+                                <div>
+                                    <ul class="filelist clear margin_top_15">
+                                        <li v-for="(item, index) in business_files3" v-cloak>
+                                            <span class="signfile">
+                                                <span v-text="item.name"></span>
+                                                <i class="iconfont icon-shanchuguanbicha3 icon_del"
+                                                    @click="handleDelFile3(index)"></i>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="user_center_submit clear">
+                    <a class="bg_70adf1 color_fff" @click="submitAuditResults()">提交审核</a>
+                </div>
+                <!-- <div class="margin_bot_long"></div> -->
+            </div>
+        </div>
+
+        <ly-minifooter></ly-minifooter>
+    </div>
+    <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketTechAchiForm.js"></script>
+
+    <!-- <script src="js/userinfo.js"></script> -->
+</body>
+
+</html>
