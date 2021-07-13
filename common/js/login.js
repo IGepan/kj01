@@ -371,7 +371,7 @@ require(['/common/js/require.config.js'], function () {
 
                       }
                       if (isSchool) {
-                        this.handleSchool();
+                        vm.handleSchool();
                       }else {
                         window.location.href = toUrl;
                       }
