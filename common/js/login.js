@@ -360,11 +360,18 @@ require(['/common/js/require.config.js'], function () {
                       }
                     }
                     // 判断是否有return url
+                    //判断是否是来自益智学堂
+                    var isSchool = false;
                     if (location.search.indexOf('return') > -1) {
-                      toUrl = location.search.replace('?return=', '')
-                    }
+                      // toUrl = location.search.replace('?return=', '')
+                      isSchool = true;
 
-                    window.location.href = toUrl
+                    }
+                    if (isSchool) {
+                      this.handleSchool();
+                    }else {
+                      window.location.href = toUrl;
+                    }
                   }
                   vm.isSubmitDisabled = false
                 }).catch(function () {
@@ -378,7 +385,19 @@ require(['/common/js/require.config.js'], function () {
               vm.isSubmitDisabled = false
             })
           )
-        }
+        },
+        //技术经理人学院
+        handleSchool: function () {
+          var userPhone = localStorage.getItem("userPhone");
+          if (null == userPhone && "" == userPhone || undefined == userPhone) {
+            window.location.href = '/common/login.html';
+          }
+          var url = httpUrl.baseSchoolOutUrl ;
+          var password = "YVc1NFpXUjFZVmMxTkZwWFVqRlpWbU14VGtad1dGVnFSbHBXYlUxNFZHdGFkMWRHVm5GU2JIQlhZbFV4TkZaSGRHRmtNV1JIVm01R1UxZEhhRTlaVjNOM1pERlNjMVZ0Um1oU2JHOHlWbXhTUTFkSFNraFZiRkpWVm10Vk5WVkdaRWRYUlRWVlZXMUdWMDFWYkRSWlZtTXhUa1p3V0ZWcVJUMWhWelUwV2xkU01RPT1hVzU0WldSMQ==";
+          var query = "password=" + password + "&account=" + userPhone + "&ipForget=true&url=" + url;
+          // window.open();
+          return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
+        },
       }
     });
   });
