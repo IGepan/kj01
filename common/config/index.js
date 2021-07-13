@@ -61,6 +61,10 @@ define(function () {
       //正式环境
       authUrl: 'https://ts-zuul.kj01.cn/tsOauth2',  // ts zuul
       baseUrl: 'https://ts-zuul.kj01.cn/tsAdmin',// ts zuul
+      baseMarketUrl: 'https://ts-zuul.kj01.cn/z-ts',//8901 ts 8900 tm ||
+      baseSchoolUrl: 'https://ts-zuul.kj01.cn/yzxt',//学堂
+      baseSchoolOutUrl: 'https://study.kj01.cn/',//学堂跳转外网
+      fileShowUrl: 'https://fs.kj01.cn/', // 文件查看地址 配置域名
       assisUrl: 'https://ts-zuul.kj01.cn/tsAssistant', // ts zuul
       statisticsUrl: 'https://www.kj01.cn/asapi', // 统计地址
       imgUploadUrl: 'https://fs.kj01.cn', // 文件上传服务
