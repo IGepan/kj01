@@ -360,19 +360,23 @@ require(['/common/js/require.config.js'], function () {
                         toUrl = this.$pathPrefix + '/index.html'
                       }
                     }
-                    // 判断是否有return url
-                    //判断是否是来自益智学堂
-                    var isSchool = false;
-                    if (location.search.indexOf('return') > -1) {
-                      // toUrl = location.search.replace('?return=', '')
-                      isSchool = true;
+                    //同步登录注册易智学堂
+                    httpLogin.yzxtCheckPhone({phone: localStorage.getItem("userPhone")}).then(res => {
+                      // 判断是否有return url
+                      //判断是否是来自益智学堂
+                      var isSchool = false;
+                      if (location.search.indexOf('return') > -1) {
+                        // toUrl = location.search.replace('?return=', '')
+                        isSchool = true;
 
-                    }
-                    if (isSchool) {
-                      this.handleSchool();
-                    }else {
-                      window.location.href = toUrl;
-                    }
+                      }
+                      if (isSchool) {
+                        this.handleSchool();
+                      }else {
+                        window.location.href = toUrl;
+                      }
+                    });
+
                   }
                   vm.isSubmitDisabled = false
                 }).catch(function () {

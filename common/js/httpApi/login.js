@@ -24,6 +24,10 @@ define(['httpUrl', 'http', 'base64'], function (httpUrl, Http, base64) {
     checkPhone: function (param) {
       return Http.getNoToast(httpUrl.baseUrl + '/user/checkPhone', param)
     },
+    //一直学堂检查手机号
+    yzxtCheckPhone: function (param) {
+      return Http.post(httpUrl.baseSchoolUrl+'/front/ajax/checkUser',param)
+    },
     // 用户详情
     userDetail: function (param) {
       return Http.get(httpUrl.baseUrl + '/user/detail', param)
