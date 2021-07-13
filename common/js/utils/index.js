@@ -58,7 +58,7 @@ define(['jquery'], function ($) {
     },
     keys: function () {
       var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
-      for (var nLen = aKeys.length, nIdx = 0;nIdx < nLen;nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
+      for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
       return aKeys;
     }
   };
@@ -72,7 +72,7 @@ define(['jquery'], function ($) {
       return null;
     },
     getShopCode: function () {
-      return window.$pathPrefix.indexOf('/site/')===-1?location.pathname.split('/')[3]:location.pathname.split('/')[5]
+      return window.$pathPrefix.indexOf('/site/') === -1 ? location.pathname.split('/')[3] : location.pathname.split('/')[5]
     },
     endWith: function (str, s) {
       var d = str.length - s.length;
@@ -98,13 +98,21 @@ define(['jquery'], function ($) {
       docCookies.removeItem(name, '/', domain.join('.'))
     },
     setCookie: function (name, value) {
+      console.log("location:" + location);
       var exp = new Date();
-      var domain = location.hostname.split('.')
-      domain[0] = ''
+      //只获取出域名部分的内容
+      console.log("location.hostname:" + location.hostname)
+      var domain = location.hostname.split('.');
+      //开发过程中，做本地化处理
+      if (domain[0] != "192") {
+        domain[0] = ''
+      }
       exp.setTime(exp.getTime() + this.expiresTime);
       var time = exp.toGMTString()
       value.expires = time;
-      docCookies.setItem(name, JSON.stringify(value), time, '/', domain.join('.'));
+      var currentDomain = domain.join('.');
+      console.log("currentDomain:" + currentDomain)
+      docCookies.setItem(name, JSON.stringify(value), time, '/', currentDomain);
     },
     openNewTable: function (url, target) {
       target = target || '_blank'
@@ -112,6 +120,43 @@ define(['jquery'], function ($) {
       var e = document.createEvent('MouseEvents');
       e.initEvent('click', true, true);
       a.dispatchEvent(e);
+    },
+
+    // 非空
+    validatesEmpty: function (val) {
+      if (val === null || val === "" || undefined === val) {
+        return false;
+      }
+      return true;
+    },
+
+    // 根据dictValue（id） 返回display(文字)
+    forEachDisplay: function (arrayList, id) {
+      var value = ""
+      arrayList.forEach(function (element) {
+        if (id == element.dictValue) {
+          value = element.display
+        }
+      });
+      return value;
+    },
+
+
+
+    // 取出上级页面传来的参数
+    urlPathParameters: function () {
+      var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+      var theRequest = new Object();
+      if (url.indexOf("?") != -1) {
+        var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+        var strs = str.split("&");
+        for (var i = 0; i < strs.length; i++) {
+          theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+        }
+        console.log(theRequest); //此时的theRequest就是我们需要的参数； 
+        return theRequest;
+      }
     }
+
   }
 })
