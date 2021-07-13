@@ -371,9 +371,9 @@ require(['/common/js/require.config.js'], function () {
 
                       }
                       if (isSchool) {
-                        vm.handleSchool(true);
+                        vm.handleSchool();
                       }else {
-                        vm.handleSchool(false)
+
                         window.location.href = toUrl;
                       }
                     });
@@ -393,7 +393,7 @@ require(['/common/js/require.config.js'], function () {
           )
         },
         //技术经理人学院
-        handleSchool: function (flag) {
+        handleSchool: function () {
           var userPhone = localStorage.getItem("userPhone");
           if (null == userPhone && "" == userPhone || undefined == userPhone) {
             window.location.href = '/common/login.html';
@@ -402,11 +402,8 @@ require(['/common/js/require.config.js'], function () {
           var password = "YVc1NFpXUjFZVmMxTkZwWFVqRlpWbU14VGtad1dGVnFSbHBXYlUxNFZHdGFkMWRHVm5GU2JIQlhZbFV4TkZaSGRHRmtNV1JIVm01R1UxZEhhRTlaVjNOM1pERlNjMVZ0Um1oU2JHOHlWbXhTUTFkSFNraFZiRkpWVm10Vk5WVkdaRWRYUlRWVlZXMUdWMDFWYkRSWlZtTXhUa1p3V0ZWcVJUMWhWelUwV2xkU01RPT1hVzU0WldSMQ==";
           var query = "password=" + password + "&account=" + userPhone + "&ipForget=true&url=" + url;
           // window.open();
-          if (flag) {
-            return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query,_self);
-          }else {
-           window.get(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query)
-          }
+            return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
+
         },
       }
     });
