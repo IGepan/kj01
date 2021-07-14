@@ -346,7 +346,9 @@ require(['/common/js/require.config.js'], function () {
                     console.log("保存登录用户成功后用户基本信息到cookie，key:" + dic.locaKey.USER_INFO + ",value:" + JSON.stringify(res.result));
                     vm.$utils.delCookie(dic.locaKey.USER_INFO);
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
-                    localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
+                    //将登录用户收集存入cookie方便易智学堂取出登录 TODO
+                    vm.$utils.setCookie('yzwUserPhone', res.data.phone);
+                    // localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     vm.setCookiePhone();
                     console.log('--v--')
@@ -375,7 +377,7 @@ require(['/common/js/require.config.js'], function () {
                       if (isSchool) {
                         vm.handleSchool();
                       }else {
-                        document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
+                        // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
                         window.location.href = toUrl;
                       }
                     });
