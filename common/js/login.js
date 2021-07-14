@@ -336,7 +336,7 @@ require(['/common/js/require.config.js'], function () {
                 console.log(vm.$utils.getCookie(dic.locaKey.LOGIN_INFO));
                 console.log("请求后台获取用户信息>>>webCommonUser");
                 vm.$httpCom.webCommonUser().then(function (res) {
-                  console.log(res.code);
+                  console.log(res.code, 'code--');
                   //校验获取用户信息是否成功
                   if (res.code === 'rest.success') {
                     var referrer = document.referrer
@@ -349,7 +349,9 @@ require(['/common/js/require.config.js'], function () {
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     vm.setCookiePhone();
+                    console.log('--v--')
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
+                      console.log('进入页面过滤方法')
                       var url = this.window.location.href;
                       if (url.indexOf('?') > 0) {
                         var suffixUrl = url.substring(url.indexOf('?') + 1);
@@ -368,8 +370,8 @@ require(['/common/js/require.config.js'], function () {
                       if (location.search.indexOf('return') > -1) {
                         // toUrl = location.search.replace('?return=', '')
                         isSchool = true;
-
                       }
+                      console.log(isSchool, 'isSchool')
                       if (isSchool) {
                         vm.handleSchool();
                       }else {
@@ -401,7 +403,7 @@ require(['/common/js/require.config.js'], function () {
           var password = "YVc1NFpXUjFZVmMxTkZwWFVqRlpWbU14VGtad1dGVnFSbHBXYlUxNFZHdGFkMWRHVm5GU2JIQlhZbFV4TkZaSGRHRmtNV1JIVm01R1UxZEhhRTlaVjNOM1pERlNjMVZ0Um1oU2JHOHlWbXhTUTFkSFNraFZiRkpWVm10Vk5WVkdaRWRYUlRWVlZXMUdWMDFWYkRSWlZtTXhUa1p3V0ZWcVJUMWhWelUwV2xkU01RPT1hVzU0WldSMQ==";
           var query = "password=" + password + "&account=" + userPhone + "&ipForget=true&url=" + url;
           // window.open();
-          return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query,_self);
+          return location.href = (httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query,_self);
         },
       }
     });
