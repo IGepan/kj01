@@ -403,7 +403,7 @@ require(['/common/js/require.config.js'], function () {
           var password = "YVc1NFpXUjFZVmMxTkZwWFVqRlpWbU14VGtad1dGVnFSbHBXYlUxNFZHdGFkMWRHVm5GU2JIQlhZbFV4TkZaSGRHRmtNV1JIVm01R1UxZEhhRTlaVjNOM1pERlNjMVZ0Um1oU2JHOHlWbXhTUTFkSFNraFZiRkpWVm10Vk5WVkdaRWRYUlRWVlZXMUdWMDFWYkRSWlZtTXhUa1p3V0ZWcVJUMWhWelUwV2xkU01RPT1hVzU0WldSMQ==";
           var query = "password=" + password + "&account=" + userPhone + "&ipForget=true&url=" + url;
           // window.open();
-          return location.href = (httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query,_self);
+          return location.href = (httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
         },
       }
     });
