@@ -1365,13 +1365,14 @@ require(['/common/js/require.config.js'], function () {
                     handleSchool: function () {
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            // window.location.href = '/common/login.html';
+                          return window.location.href = httpUrl.baseSchoolOutUrl
                         }
                         var url = httpUrl.baseSchoolOutUrl ;
                         var password = "YVc1NFpXUjFZVmMxTkZwWFVqRlpWbU14VGtad1dGVnFSbHBXYlUxNFZHdGFkMWRHVm5GU2JIQlhZbFV4TkZaSGRHRmtNV1JIVm01R1UxZEhhRTlaVjNOM1pERlNjMVZ0Um1oU2JHOHlWbXhTUTFkSFNraFZiRkpWVm10Vk5WVkdaRWRYUlRWVlZXMUdWMDFWYkRSWlZtTXhUa1p3V0ZWcVJUMWhWelUwV2xkU01RPT1hVzU0WldSMQ==";
                         var query = "password=" + password + "&account=" + userPhone + "&ipForget=true&url=" + url;
                         // window.open();
-                        return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
+                        return window.location.href =(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
                     },
 					getMailGoods: function (idx) {
 						var vm = this

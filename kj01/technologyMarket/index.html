@@ -17,7 +17,7 @@
     <div id="index_box" class="box grayBgbox" v-cloak>
         <ly-toper></ly-toper>
         <tech_market_header name="技术转移"></tech_market_header>
-        <a onclick="window.open(httpUrl.baseSchoolOutUrl)" target="_blank">
+        <a @click="handleSchool" target="_blank">
             <div class="bannerBox" style="background: url(/style/images/technologyMarket/banner1.png)"></div>
         </a>
 
