@@ -38,7 +38,7 @@ define(function () {
       imgVerify: 'http://192.168.0.200:8720/', // 滑块验证码 配置域名
       cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
-      bigData: 'http://47.105.63.195:801/',
+      bigData: 'https://47.105.63.195:801/',
       datacq: 'https://www.datacq.com.cn/'
     },
     {
@@ -55,7 +55,7 @@ define(function () {
       imgVerify: 'https://222.180.163.242:8720/', // 滑块验证码 配置域名
       // cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
-      bigData: 'http://47.105.63.195:801/',
+      bigData: 'https://47.105.63.195:801/',
       datacq: 'https://www.datacq.com.cn/'
     }, {
       //正式环境
