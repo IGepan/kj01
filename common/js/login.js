@@ -375,6 +375,7 @@ require(['/common/js/require.config.js'], function () {
                       if (isSchool) {
                         vm.handleSchool();
                       }else {
+                        document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
                         window.location.href = toUrl;
                       }
                     });
