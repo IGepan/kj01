@@ -43,16 +43,16 @@ define(function () {
     },
     {
       //测试环境
-      authUrl: 'http://222.180.163.242:9769/tsOauth2',
-      baseUrl: 'http://222.180.163.242:9769/tsAdmin',
-      baseMarketUrl: 'http://222.180.163.242:9769/z-ts',//8901 ts 8900 tm ||
-      baseSchoolUrl: 'http://222.180.163.230:8905',//学堂
-      baseSchoolOutUrl: 'http://222.180.163.238:5555',//学堂跳转外网
-      fileShowUrl: 'http://testweb.kj01.cn/', // 文件查看地址 配置域名
-      assisUrl: 'http://222.180.163.242:9769/tsAssistant',
-      statisticsUrl: 'http://testweb.kj01.cn/as', // 统计地址 配置域名
-      imgUploadUrl: 'http://222.180.163.230:8710', // 文件上传服务 配置域名
-      imgVerify: 'http://222.180.163.242:8720/', // 滑块验证码 配置域名
+      authUrl: 'https://222.180.163.242:9769/tsOauth2',
+      baseUrl: 'https://222.180.163.242:9769/tsAdmin',
+      baseMarketUrl: 'https://222.180.163.242:9769/z-ts',//8901 ts 8900 tm ||
+      baseSchoolUrl: 'https://222.180.163.230:8905',//学堂
+      baseSchoolOutUrl: 'https://222.180.163.238:5555',//学堂跳转外网
+      fileShowUrl: 'https://testweb.kj01.cn/', // 文件查看地址 配置域名
+      assisUrl: 'https://222.180.163.242:9769/tsAssistant',
+      statisticsUrl: 'https://testweb.kj01.cn/as', // 统计地址 配置域名
+      imgUploadUrl: 'https://222.180.163.230:8710', // 文件上传服务 配置域名
+      imgVerify: 'https://222.180.163.242:8720/', // 滑块验证码 配置域名
       // cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'http://47.105.63.195:801/',
