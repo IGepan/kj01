@@ -224,7 +224,7 @@
                     <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
                             我的订单</a>
                     </li>
-                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-custom"></i>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
                             经纪人培训管理</a></li>
                     <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>
                             班级报名管理</a></li>
@@ -279,21 +279,23 @@
                             <div class="f_w_50 fl margin_tb_10">
                                 <span class="width_115 fl padding_06_0 font_14">认证类型：</span>
                                 <span class="width_100_115 padding_06_0 fl"
-                                    v-if="certification_type=='TECH_BROKER' && certification_list.techNo==0 ">平台技术经纪人</span>
+                                    v-if="certification_type=='TECH_BROKER'">平台技术经纪人</span>
                                 <span class="width_100_115 padding_06_0 fl"
-                                    v-if="certification_type=='TECH_BROKER' && certification_list.techNo!=0">异地技术经纪人</span>
+                                    v-if="certification_type=='TECH_BROKER_REMOTE'">异地技术经纪人</span>
                                 <span class="width_100_115 padding_06_0 fl"
                                     v-if="certification_type=='TECH_ORGAN'">技术转移机构
                                 </span>
                                 <span class="width_100_115 padding_06_0 fl"
                                     v-if="certification_type=='INVESTMENT'">投资机构</span>
                             </div>
-                            <div class="f_w_50 fr margin_tb_10"
-                                v-if="certification_type=='TECH_BROKER_REMOTE' || certification_type=='TECH_BROKER'">
-                                <span class="width_100_115 padding_06_0 fr">
-                                    <el-button size="mini" type="primary" @click="matchingNeedsAchievements">匹配
-                                    </el-button>
-                                </span>
+                            <div v-if="certification_list.certificationFlag==2 ">
+                                <div class="f_w_50 fr margin_tb_10"
+                                    v-if="certification_type=='TECH_BROKER_REMOTE' || certification_type=='TECH_BROKER'">
+                                    <span class="width_100_115 padding_06_0 fr">
+                                        <el-button size="mini" type="primary" @click="matchingNeedsAchievements">匹配
+                                        </el-button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div v-if="hasFormData">
@@ -316,11 +318,11 @@
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14">
                                         <i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>
                                         真实姓名：</span>
                                     <el-input class="width_100_115" v-model="brokerPlatform.brokerName"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         placeholder="请输入真实姓名">
                                     </el-input>
                                     <span class="width_100_115 fl padding_06_0"
@@ -328,11 +330,11 @@
                                 </div>
                                 <div class="f_w_50 fr margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>身份证号：</span>
                                     <el-input class="width_100_115" v-model="brokerPlatform.brokerIdCard"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3" placeholder="请输入身份证号"
-                                        maxLength="20">
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
+                                        placeholder="请输入身份证号" maxLength="20">
                                     </el-input>
                                     <span class="width_100_115 fl padding_06_0"
                                         v-else>{{brokerPlatform.brokerIdCard}}</span>
@@ -342,10 +344,10 @@
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>毕业学校：</span>
                                     <el-input class="width_100_115" v-model="brokerPlatform.brokerSchool"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         placeholder="请输入毕业学校">
                                     </el-input>
                                     <span class="width_100_115 fl padding_06_0"
@@ -353,10 +355,10 @@
                                 </div>
                                 <div class="f_w_50 fr margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>所学专业：</span>
                                     <el-input class="width_100_115" v-model="brokerPlatform.industryArea"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         placeholder="请输入所学专业">
                                     </el-input>
                                     <span class="width_100_115 fl padding_06_0"
@@ -366,12 +368,12 @@
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>最高学历：</span>
 
 
                                     <el-select v-model="brokerPlatform.academicDegree" placeholder="请选择最高学历"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         class="width_100_115">
                                         <el-option v-for="item in academic_degree_list" :key="item.id"
                                             :label="item.display" :value="item.dictValue">
@@ -385,12 +387,12 @@
 
                                 <div class="f_w_50 fr margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>附加服务：</span>
 
 
                                     <el-select v-model="brokerPlatform.additionalService" placeholder="请选择附加服务"
-                                        @change="changeA" v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        @change="changeA" v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         class="width_100_115">
                                         <el-option v-for="item in additional_service_list" :key="item.id"
                                             :label="item.display" :value="item.dictValue">
@@ -402,7 +404,6 @@
                                         v-else>{{brokerPlatform.additionalService_display}}</span>
                                 </div>
 
-
                             </div>
 
 
@@ -410,10 +411,10 @@
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>电子邮箱：</span>
                                     <el-input class="width_100_115" v-model="brokerPlatform.brokerEmail"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         placeholder="请输入电子邮箱">
                                     </el-input>
                                     <span class="width_100_115 fl padding_06_0"
@@ -421,11 +422,11 @@
                                 </div>
                                 <div class="f_w_50 fr margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>联系电话：</span>
                                     <el-input class="width_100_115" v-model="brokerPlatform.brokerPhone" maxLength='11'
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3" placeholder="请输入联系电话"
-                                        maxLength="15">
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
+                                        placeholder="请输入联系电话" maxLength="15">
                                     </el-input>
                                     <span class="width_100_115 fl padding_06_0"
                                         v-else>{{brokerPlatform.brokerPhone}}</span>
@@ -438,7 +439,7 @@
 
                                     <el-select v-model="brokerPlatform.agentType" placeholder="请选择经纪人类型"
                                         class="width_100_115" disabled
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3">
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                         <el-option v-for="item in agent_type_list" :key="item.id" :label="item.display"
                                             :value="item.dictValue">
                                         </el-option>
@@ -450,9 +451,9 @@
                                 <div class="f_w_50 fr margin_tb_10" v-if="brokerPlatform.organId!=0">
                                     <span class="width_115 fl padding_06_0 font_14">所属机构：</span>
                                     <span class="width_100_115 fl padding_06_0"
-                                        v-if="brokerPlatform.certificationFlag!=3">{{brokerPlatform.organName}}</span>
-                                    <el-input class="width_100_115" v-model="edit_belong_organ_name"
-                                        v-if="brokerPlatform.certificationFlag==3" placeholder="请输入所属服务机构">
+                                        v-if="brokerPlatform.certificationFlag==1">{{brokerPlatform.organName}}</span>
+                                    <el-input class="width_100_115" v-model="brokerPlatform.organName"
+                                        v-if="brokerPlatform.certificationFlag !=1" placeholder="请输入所属服务机构">
                                     </el-input>
                                 </div>
                             </div>
@@ -472,22 +473,22 @@
                                 </div> -->
                                 <div class="f_w_50 fl margin_tb_10" v-if="!hasFormData && certeinId=='1'">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>证书编号：</span>
                                     <el-input class="width_100_115" value="您已获得证书" disabled v-if="certificate_or_not">
                                     </el-input>
                                     <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"
-                                        @click="turnPageClassSign" target="_blank">前往学习,获得证书</a>
+                                        href="/technologySchool/index.html" target="_blank">前往学习,获得证书</a>
                                 </div>
 
                                 <div class="f_w_50 fl margin_tb_10" v-if="certeinId=='2'">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>证书编号：</span>
 
                                     <el-input class="width_100_115" v-model="brokerPlatform.techNo"
                                         placeholder="请输入证书编号" maxLength="20"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3">
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                     </el-input>
 
                                     <span class="width_100_115 fl padding_06_0" v-else>{{brokerPlatform.techNo}}</span>
@@ -499,10 +500,10 @@
                             <div class="clear">
                                 <div class="width_100 margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>行业类型：</span>
                                     <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                         @click.stop="openMenuListIndustry">
                                         <span class="" v-for="(item,index) in textIndustryList"
                                             :key="index">{{item.name}},
@@ -558,10 +559,10 @@
                             <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14">
                                     <i class="color_red"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                     <i class="color_red" v-else style="display: none;">*</i>标签：</span>
                                 <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
-                                    v-if="!hasFormData || brokerPlatform.certificationFlag==3"
+                                    v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
                                     @click.stop="openMenuList">
                                     <span class="" v-for="(item,index) in textList" :key="index">{{item.name}},
                                     </span>
@@ -620,11 +621,11 @@
                                 <div class="width_100  margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
                                             style="visibility: hidden;"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>自我描述：</span>
 
                                     <div class="width_100_115 fl"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3">
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                         <vue-ueditor-wrap v-model="brokerPlatform.brokerDes" :config="ueditorConfig"
                                             class="exptextarea">
                                         </vue-ueditor-wrap>
@@ -638,10 +639,10 @@
 
                             <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag==3">*</i>
+                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                     <i class="color_red" v-else style="display: none;">*</i>个人封面：</span>
                                 <div class="width_100_115 fl padding_06_0"
-                                    v-if="!hasFormData || brokerPlatform.certificationFlag==3">
+                                    v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                     <div class="head upload_img fl margin_right_20" v-viewer
                                         :style="{backgroundImage: certification_list.logo?'url('+certification_list.logo+')':'url(/common/images/defaultImg/default.gif)'}">
                                         <img :src="certification_list.logo || '/common/images/defaultImg/default.gif'"
@@ -660,7 +661,7 @@
                                 </div>
                             </div>
                             <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20"
-                                v-if="!hasFormData || brokerPlatform.certificationFlag==3">
+                                v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                 <a class="bg_70adf1 color_fff" @click="submitAuditBrokerResults">提交认证</a>
                             </div>
                         </div>
@@ -669,10 +670,10 @@
                             <div class="clear">
                                 <div class="width_100  margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || transferAgencyForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || transferAgencyForm.certificationFlag!=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>机构名称：</span>
                                     <el-input v-model="transferAgencyForm.organName"
-                                        v-if="!hasFormData || transferAgencyForm.certificationFlag==3"
+                                        v-if="!hasFormData || transferAgencyForm.certificationFlag !=1"
                                         class="achi_form_textarea width_100_115 fl" placeholder="请输入机构名称"></el-input>
                                     <span class="width_100_115 fl padding_06_0"
                                         v-else>{{transferAgencyForm.organName}}</span>
@@ -681,10 +682,10 @@
                             <div class="clear">
                                 <div class="width_100  margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || transferAgencyForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || transferAgencyForm.certificationFlag!=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>机构描述：</span>
                                     <div class="width_100_115 fl"
-                                        v-if="!hasFormData || transferAgencyForm.certificationFlag==3">
+                                        v-if="!hasFormData || transferAgencyForm.certificationFlag !=1">
                                         <vue-ueditor-wrap v-model="transferAgencyForm.organDes" :config="ueditorConfig"
                                             class="exptextarea">
                                         </vue-ueditor-wrap>
@@ -695,10 +696,10 @@
                             </div>
                             <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                        v-if="!hasFormData || transferAgencyForm.certificationFlag==3">*</i>
+                                        v-if="!hasFormData || transferAgencyForm.certificationFlag!=1">*</i>
                                     <i class="color_red" v-else style="display: none;">*</i>机构logo：</span>
                                 <div class="width_100_115 fl padding_06_0"
-                                    v-if="!hasFormData || transferAgencyForm.certificationFlag==3">
+                                    v-if="!hasFormData || transferAgencyForm.certificationFlag !=1">
                                     <div class="head upload_img fl margin_right_20" v-viewer
                                         :style="{backgroundImage: certification_list.logo?'url('+certification_list.logo+')':'url(/common/images/defaultImg/default.gif)'}">
                                         <img :src="certification_list.logo || '/common/images/defaultImg/default.gif'"
@@ -716,7 +717,7 @@
 
                             </div>
                             <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20"
-                                v-if="!hasFormData || transferAgencyForm.certificationFlag==3">
+                                v-if="!hasFormData || transferAgencyForm.certificationFlag !=1">
                                 <a class="bg_70adf1 color_fff" @click="submitAuditOrgan">提交认证</a>
                             </div>
                         </div>
@@ -724,11 +725,11 @@
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>机构名称：</span>
 
                                     <el-input v-model="InvestmentForm.investmentName"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3"
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag!=1"
                                         class="achi_form_textarea width_100_115 fl" placeholder="请输入机构名称"></el-input>
 
                                     <span class="width_100_115 fl padding_06_0"
@@ -736,10 +737,10 @@
                                 </div>
                                 <div class="f_w_50 fr margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>投资人类型：</span>
                                     <el-select v-model="InvestmentForm.investorType" placeholder="请选择投资人类型"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3"
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag !=1"
                                         class="width_100_115">
                                         <el-option v-for="item in investor_type_list" :key="item.id"
                                             :label="item.display" :value="item.dictValue">
@@ -755,10 +756,10 @@
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>融资阶段：</span>
                                     <el-select v-model="InvestmentForm.financeStage" placeholder="请选择融资阶段"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3"
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag !=1"
                                         class="width_100_115">
                                         <el-option v-for="item in finance_stage_list" :key="item.id"
                                             :label="item.display" :value="item.dictValue">
@@ -769,10 +770,10 @@
                                 </div>
                                 <div class="f_w_50 fr margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>投资范围：</span>
                                     <el-select v-model="InvestmentForm.institutionalQuota" placeholder="请选择投资额度范围"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3"
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag !=1"
                                         class="width_100_115">
                                         <el-option v-for="item in institutional_quota_list" :key="item.id"
                                             :label="item.display" :value="item.dictValue">
@@ -788,17 +789,17 @@
                             <div class="clear">
                                 <div class="width_100 margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>行业类型：</span>
 
                                     <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3"
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag !=1"
                                         @click.stop="openMenuListIndustry">
                                         <span class="" v-for="(item,index) in textIndustryList"
                                             :key="index">{{item.name}},
                                         </span>
                                     </a>
-
+                                    <!-- {{item.projectIndustryType.map(item=>item.name).join(',')}} -->
                                     <a class="width_100_115 padding_06_0 fl" v-else>
                                         <span class="" v-for="(item,index) in textIndustryList"
                                             :key="index">{{item.name}},
@@ -851,10 +852,10 @@
                             <div class="clear">
                                 <div class="width_100  margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                            v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>机构描述：</span>
                                     <div class="width_100_115 fl"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3">
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag !=1">
                                         <vue-ueditor-wrap v-model="InvestmentForm.investmentDes" :config="ueditorConfig"
                                             class="exptextarea">
                                         </vue-ueditor-wrap>
@@ -865,10 +866,10 @@
                             </div>
                             <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                        v-if="!hasFormData || InvestmentForm.certificationFlag==3">*</i>
+                                        v-if="!hasFormData || InvestmentForm.certificationFlag !=1">*</i>
                                     <i class="color_red" v-else style="display: none;">*</i>机构logo：</span>
                                 <div class="width_100_115 fl padding_06_0"
-                                    v-if="!hasFormData || InvestmentForm.certificationFlag==3">
+                                    v-if="!hasFormData || InvestmentForm.certificationFlag !=1">
                                     <div class="head upload_img fl margin_right_20" v-viewer
                                         :style="{backgroundImage: certification_list.logo?'url('+certification_list.logo+')':'url(/common/images/defaultImg/default.gif)'}">
                                         <img :src="certification_list.logo || '/common/images/defaultImg/default.gif'"
@@ -884,7 +885,7 @@
                                 </div>
                             </div>
                             <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20">
-                                <a v-if="!hasFormData || InvestmentForm.certificationFlag==3"
+                                <a v-if="!hasFormData || InvestmentForm.certificationFlag !=1"
                                     class="bg_70adf1 color_fff" @click="submitAuditInvest">提交认证</a>
                             </div>
                         </div>

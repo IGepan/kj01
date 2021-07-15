@@ -253,15 +253,15 @@ require(['/common/js/require.config.js'], function () {
                         console.log(newName)
                         console.log(oldName)
                         this.certeinId = newName;
-                        this.textIndustryList = [];
-                        this.textList = [];
-                        if (newName == 1 || newName == 2) {
-                            this.showType = 1
-                        } else if (newName == 3) {
-                            this.showType = 2
-                        } else if (newName == 4) {
-                            this.showType = 3
-                        }
+                        // this.textIndustryList = [];
+                        // this.textList = [];
+                        // if (newName == "1" || newName == "2") {
+                        //     this.showType = 1
+                        // } else if (newName == "3") {
+                        //     this.showType = 2
+                        // } else if (newName == "4") {
+                        //     this.showType = 3
+                        // }
                     }
                 },
                 methods: {
@@ -296,9 +296,14 @@ require(['/common/js/require.config.js'], function () {
                             }
                             var data = res.data;
                             console.log(data);
+                            console.log(_this.showType)
                             _this.userInfoType = data;
                             if (_this.userInfoType.accountType === '02') {
-                                _this.authentication_type = '3'
+                                if (_this.showType == 2) {
+                                    _this.authentication_type = '3'
+                                } else {
+                                    _this.authentication_type = '4'
+                                }
                             } else {
                                 _this.authentication_type = '1'
                             }
@@ -567,6 +572,8 @@ require(['/common/js/require.config.js'], function () {
                             if (res.data.length > 0) {
                                 _this.certificate_or_not = true
                             }
+
+                            console.log(_this.certificate_or_not)
                         })
                     },
 
@@ -679,6 +686,8 @@ require(['/common/js/require.config.js'], function () {
                         form.industryType = _this.industryList;
 
                         var tech_num = "";
+
+                        console.log(_this.certificate_or_not)
                         if (_this.certeinId == "1") {
                             if (_this.certificate_or_not == true) {
                                 tech_num = 0;
@@ -703,8 +712,6 @@ require(['/common/js/require.config.js'], function () {
 
                             })
                         }
-
-
                     },
 
 
@@ -834,11 +841,9 @@ require(['/common/js/require.config.js'], function () {
                         // if (_this.$utils.validatesEmpty(_this.certification_list) && _this.$utils.validatesEmpty(_this.certification_type)) {
                         //     _this.inputDataType = true;
                         // }
-
                         // if (_this.showType === 2) {
                         //     _this.noEmptyOrganAuth();
                         // }
-
                         // var form = {
                         //     "id": _this.inputDataType ? _this.proId : "",
                         //     "organName": _this.inputDataType ? _this.edit_organ_name : _this.organ_name,  //  机构名称：
@@ -993,28 +998,34 @@ require(['/common/js/require.config.js'], function () {
 
                                 _this.certification_list = dataForm;
                                 if (_this.$utils.validatesEmpty(dataForm.industryType)) {
-                                    if (dataForm.certificationFlag != 3 || dataForm.industryType.length > 0) {
-                                        var textBox = [];
-                                        console.log(dataForm.industryType)
-                                        if (_this.$utils.validatesEmpty(dataForm.industryType)) {
-                                            dataForm.industryType.forEach(element => {
-                                                textBox.push(element.name)
-                                            });
-                                        }
-                                    } else if (dataForm.certificationFlag = 3 || dataForm.industryType.length > 0) {
-                                        _this.textIndustryList = dataForm.industryType;
-                                    }
+
+
+
+                                    // if (dataForm.certificationFlag == 1 || dataForm.industryType.length > 0) {
+                                    //     var textBox = [];
+                                    //     console.log(dataForm.industryType)
+                                    //     if (_this.$utils.validatesEmpty(dataForm.industryType)) {
+                                    //         dataForm.industryType.forEach(element => {
+                                    //             textBox.push(element.name)
+                                    //         });
+                                    //     }
+                                    // } else if (dataForm.certificationFlag != 1 || dataForm.industryType.length > 0) {
+                                    //     _this.textIndustryList = dataForm.industryType;
+                                    // }
 
                                     if (dataForm.industryType.length > 0 && typeof (dataForm.industryType[0]) == "object") {
                                         _this.textIndustryList = dataForm.industryType;
                                         _this.industryList = dataForm.industryType;
                                     }
+
+
+
                                 }
 
                                 if (_this.$utils.validatesEmpty(dataForm.tags)) {
 
 
-                                    if (dataForm.certificationFlag != 3 || dataForm.tags.length > 0) {
+                                    if (dataForm.certificationFlag == 1 || dataForm.tags.length > 0) {
                                         var textBox = [];
                                         console.log(dataForm.tags)
                                         if (_this.$utils.validatesEmpty(dataForm.tags)) {
@@ -1056,14 +1067,15 @@ require(['/common/js/require.config.js'], function () {
                                     _this.showType = 1;
 
                                     _this.brokerPlatform = dataForm;
-                                    if (_this.certification_type == 'TECH_BROKER_REMOTE') {
-                                        _this.certeinId = 1
-                                    }
-                                    if (_this.certification_type == 'TECH_BROKER' && dataForm.techNo == 0) {
+
+                                    // if (_this.certification_type == 'TECH_BROKER_REMOTE') {
+                                    //     _this.certeinId = 1
+                                    // }
+                                    if (_this.certification_type == 'TECH_BROKER') {
                                         _this.certeinId = 1
                                     }
 
-                                    if (_this.certification_type == 'TECH_BROKER' && dataForm.techNo != 0) {
+                                    if (_this.certification_type == 'TECH_BROKER_REMOTE') {
                                         _this.certeinId = 2
                                     }
 
@@ -1076,8 +1088,9 @@ require(['/common/js/require.config.js'], function () {
                                     _this.InvestmentForm = dataForm;
                                 }
 
+                                console.log("_this.showType", _this.showType)
                                 console.log("_this.certeinId", _this.certeinId)
-                                console.log("_this.hasFormData", _this.hasFormData)
+                                console.log("_this.textIndustryList", _this.textIndustryList)
                             }
                         })
                     },
