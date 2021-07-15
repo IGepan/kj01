@@ -67,6 +67,11 @@
                             <span v-if="ZMTechBrokerVO.academicDegree">{{ZMTechBrokerVO.academicDegree_display}}</span>
                             <span v-else>-</span>
                         </div>
+                        <div class="ell_nowrap width_50 fl">荣誉等级：
+                            <span
+                                v-if="ZMTechBrokerVO.capabilityLevel_display">{{ZMTechBrokerVO.honorLevel_display}}</span>
+                            <span v-else>-</span>
+                        </div>
                         <div class="ell_nowrap width_50 fl">执业等级：
                             <span
                                 v-if="ZMTechBrokerVO.techWorkLevel_display">{{ZMTechBrokerVO.techWorkLevel_display}}</span>
@@ -85,15 +90,17 @@
                                 v-if="ZMTechBrokerVO.creditLevel_display">{{ZMTechBrokerVO.creditLevel_display}}</span>
                             <span v-else>-</span>
                         </div>
-                        <div class="ell_nowrap width_50 fl">所在机构：
-                            <span v-if="ZMTechBrokerVO.organName_display">{{ZMTechBrokerVO.organName_display}}</span>
-                            <span v-else>-</span>
+                        <div class="ell_nowrap width_50 fl" v-if="ZMTechBrokerVO.organId !='0'">
+                            所在机构：
+                            <a class="color_13c9ef"
+                                :href="'service_organization_details.html?id='+ZMTechBrokerVO.organId">{{ZMTechBrokerVO.organName}}</a>
                         </div>
                         <div class="ell_nowrap width_50 fl">能力等级：
                             <span
                                 v-if="ZMTechBrokerVO.capabilityLevel_display">{{ZMTechBrokerVO.capabilityLevel_display}}</span>
                             <span v-else>-</span>
                         </div>
+
                         <div class=" width_100 fl">擅长行业与领域：
                             <span
                                 v-if="ZMTechBrokerVO.industryType">{{ZMTechBrokerVO.industryType.map(item=>item.name).join(',')}}
@@ -102,33 +109,25 @@
                         </div>
                     </div>
                     <div class="clear margin_top_20">
-                        <!-- <a class="fl list_details_btn bg_78c837 color_fff">及时通信</a> -->
-                        <!-- <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn"
-                                            @click.stop="addFavorite">
-                                            收藏
-                                        </span>
-                                        <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn"
-                                            @click.stop="addFavorite">
-                                            已收藏
-                                        </span> -->
-                        <!-- <span class="color_78c837 fl small_active_btn">X通信</span> -->
-                        <!-- <a class="fl list_details_btn bg_13c9ef color_fff" @click.stop="linkProject">投递项目</a> -->
-                        <a class="fl list_details_btn bg_13c9ef color_fff margin_right_20"
-                            @click.stop="invitation">邀约交流</a>
-                        <a class="fl list_details_btn bg_orange color_fff margin_right_20"
-                            @click.stop="sendEntrustPro">委托成果</a>
-                        <a class="fl list_details_btn bg_orange color_fff"
-                            @click.stop="sendEntrustRequirements">委托需求</a>
+                        <span v-if="!userInfoIdSame">
+                            <a class="fl list_details_btn bg_13c9ef color_fff margin_right_20"
+                                @click.stop="invitation">邀约交流</a>
+                            <a class="fl list_details_btn bg_orange color_fff margin_right_20"
+                                @click.stop="sendEntrustPro">委托成果</a>
+                            <a class="fl list_details_btn bg_orange color_fff"
+                                @click.stop="sendEntrustRequirements">委托需求</a>
+                        </span>
 
-                        <!-- <span class="list_collection fr">收藏：12</span>
-                        <i class="details_title_line fr"></i> -->
+                        <span v-else>
+                            <a class="fl list_details_btn bg_dadada color_fff margin_right_20">邀约交流</a>
+                            <a class="fl list_details_btn bg_dadada color_fff margin_right_20">委托成果</a>
+                            <a class="fl list_details_btn bg_dadada color_fff">委托需求</a>
+                        </span>
                         <span class="list_browse fr">浏览：{{ZMTechBrokerVO.readCount}}</span>
                     </div>
 
                 </div>
             </div>
-
-
 
             <!-- <div class="fl details_right_content">
                 <div class="list_details_title clear">
@@ -213,7 +212,9 @@
                                         :colors="colors" score-template="{value}" disabled-void-color="#c6d1de">
                                     </el-rate>
                                 </span>
-                                <a class="fr list_details_btn bg_orange color_fff" @click="evaluateEvent">我要评价</a>
+                                <a v-if="!userInfoIdSame" class="fr list_details_btn bg_orange color_fff"
+                                    @click="evaluateEvent">我要评价</a>
+                                <a v-else class="fr list_details_btn bg_dadada color_fff">我要评价</a>
                             </div>
                             <div class="block">
                                 <div>

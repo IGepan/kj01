@@ -83,6 +83,8 @@ require(['/common/js/require.config.js'], function () {
                             capabilityLevel: null,
                         },
                     },
+                    "userInfoId": "",
+                    "userInfoIdSame": false,
 
                 },
                 components: {
@@ -109,14 +111,15 @@ require(['/common/js/require.config.js'], function () {
                     this.findqueryAverageScore(this.id);//查询平均分
                     // 技术成果列表查询
                     this.queryList();
+                    this.get_certification();
 
                 },
                 methods: {
 
-                    // 列表
 
+                    // 列表
                     queryList() {
-                        let _this = this;
+                        let vm = this;
                         indexApi.selectPageZMTechBrokerVOTrans(this.queryModel).
                             then(function (res) {
                                 if (!res.code) {
@@ -124,8 +127,8 @@ require(['/common/js/require.config.js'], function () {
                                     return;
                                 }
                                 let data = res.data;
-                                _this.dataList = data.records;
-                                _this.dataList.forEach(el => {
+                                vm.dataList = data.records;
+                                vm.dataList.forEach(el => {
                                     el.zMTechBrokerAdditionalList.forEach(element => {
                                         if (el.zMProjectAdditional == undefined) {
                                             el.zMProjectAdditional = '';
@@ -139,7 +142,7 @@ require(['/common/js/require.config.js'], function () {
                                             el.zMProjectAdditional.length - 1);
                                     }
                                 });
-                                _this.total = data.total;
+                                vm.total = data.total;
                             });
                     },
 
@@ -147,7 +150,7 @@ require(['/common/js/require.config.js'], function () {
 
                     // 查询平均分
                     findqueryAverageScore: function (id) {
-                        var _this = this;
+                        var vm = this;
 
                         indexApi.queryAverageScore(id).then(function (res) {
                             console.log(res);
@@ -155,15 +158,15 @@ require(['/common/js/require.config.js'], function () {
                                 toast.showToast(res.message);
                                 return;
                             }
-                            _this.averageValue = res.data;
-                            console.log(_this.averageValue)
+                            vm.averageValue = res.data;
+                            console.log(vm.averageValue)
                         });
                     },
                     // 点击评价按钮
                     evaluateEvent: function () {
-                        var _this = this;
+                        var vm = this;
                         if (this.userInfo && this.userInfo.userName) {
-                            _this.evaluation_pop_show = true;
+                            vm.evaluation_pop_show = true;
                         } else {
                             toast.showToast("请先登录")
                             setTimeout(function () {
@@ -175,24 +178,24 @@ require(['/common/js/require.config.js'], function () {
                     // 评价
                     keep_evaluation_pop: function () {
 
-                        var _this = this;
+                        var vm = this;
 
-                        if (_this.evaluationScore < 1 || !_this.$utils.validatesEmpty(_this.evaluationScore)) {
+                        if (vm.evaluationScore < 1 || !vm.$utils.validatesEmpty(vm.evaluationScore)) {
                             // alert("请选择评分")
                             toast.showToast("请选择评分");
                             return;
                         }
-                        if (!_this.$utils.validatesEmpty(_this.evaluationDes)) {
+                        if (!vm.$utils.validatesEmpty(vm.evaluationDes)) {
                             // alert("评价为空")
                             toast.showToast("评价为空");
                             return;
                         }
 
                         var form = {
-                            "businessId": _this.id, // 业务Id
+                            "businessId": this.id, // 业务Id
                             "evaluationType": 1, //评价类型 1	评价技术经纪人  2	评价技术转移机构 3	评价投资机构
-                            "evaluationScore": _this.evaluationScore, // 评价分数
-                            "evaluationDes": _this.evaluationDes, //描述
+                            "evaluationScore": vm.evaluationScore, // 评价分数
+                            "evaluationDes": vm.evaluationDes, //描述
                         }
 
                         indexApi.createEvaluation(form).then(function (res) {
@@ -202,14 +205,14 @@ require(['/common/js/require.config.js'], function () {
                                 return;
                             }
                             toast.showToast("评价成功！")
-                            _this.evaluation_pop_show = false;
-                            _this.findPageQueryEvaluation();
+                            vm.evaluation_pop_show = false;
+                            vm.findPageQueryEvaluation();
                         });
                     },
 
                     // 查询评价
                     findPageQueryEvaluation: function () {
-                        var _this = this;
+                        var vm = this;
                         var form = {
                             "pageParam": {
                                 "current": 1,
@@ -217,7 +220,7 @@ require(['/common/js/require.config.js'], function () {
                                 "size": 10,
                                 "sort": "id"
                             },
-                            "payload": _this.id
+                            "payload": this.id
                         };
 
                         indexApi.pageQueryEvaluation(form).then(function (res) {
@@ -226,7 +229,7 @@ require(['/common/js/require.config.js'], function () {
                                 toast.showToast(res.message);
                                 return;
                             }
-                            _this.evaluationList = res.data.records;
+                            vm.evaluationList = res.data.records;
                         });
 
                     },
@@ -247,16 +250,37 @@ require(['/common/js/require.config.js'], function () {
                         console.log(id)
                         this.id = id;
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)));
+
+
+
                     },
+
+                    get_certification: function () {
+                        var vm = this;
+                        indexApi.get_certification().then(function (res) {
+                            if (!res.code) {
+                                toast.showToast(res.message);
+                                return;
+                            }
+                            console.log(res)
+                            vm.userInfoId = res.data.info ? res.data.info.id : "";
+                            if (vm.userInfoId === vm.id) {
+                                vm.userInfoIdSame = true;
+                            }
+                        })
+                    },
+
+
+
 
 
                     //初始化收藏按钮
                     initFavorite: function () {
-                        var _this = this;
+                        var vm = this;
                         if (this.userInfo && this.userInfo.userName) {
                             var form =
                             {
-                                "businessId": _this.id,
+                                "businessId": this.id,
                                 "delFlag": 0,
                                 "favoriteType": 3,
                             };
@@ -268,7 +292,7 @@ require(['/common/js/require.config.js'], function () {
                                     return;
                                 }
                                 //  "favoriteFlag":0,//未收藏
-                                _this.favoriteFlag = res.data ? 1 : 0;
+                                vm.favoriteFlag = res.data ? 1 : 0;
                             })
                         }
 
@@ -276,13 +300,13 @@ require(['/common/js/require.config.js'], function () {
                     },
                     //收藏
                     addFavorite: function () {
-                        var _this = this;
+                        var vm = this;
                         if (this.userInfo && this.userInfo.userName) {
                             var form =
                             {
-                                "businessId": _this.id,
+                                "businessId": this.id,
                                 "favoriteType": 3,
-                                "delFlag": _this.favoriteFlag
+                                "delFlag": vm.favoriteFlag
                             };
 
                             indexApi.editZMFavorite(form).then(function (res) {
@@ -292,7 +316,7 @@ require(['/common/js/require.config.js'], function () {
                                     return;
                                 }
                                 //  "favoriteFlag":0,//未收藏
-                                _this.favoriteFlag = _this.favoriteFlag == 0 ? 1 : 0;
+                                vm.favoriteFlag = vm.favoriteFlag == 0 ? 1 : 0;
                             })
                         } else {
                             window.location.href = '/common/login.html';
@@ -304,7 +328,6 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = '/technologyMarket/technical_manager_entrustment.html?id=' + vm.id;
 
                         } else {
-
                             window.location.href = '/common/login.html';
                         }
                     },
@@ -336,7 +359,6 @@ require(['/common/js/require.config.js'], function () {
                                 // alert("您的邀约交流已提交，请等待审核");
                             })
                         } else {
-
                             window.location.href = '/common/login.html';
                         }
                     },
@@ -357,9 +379,9 @@ require(['/common/js/require.config.js'], function () {
                     },
                     // 技术成果列表查询
                     getTechAchiList: function () {
-                        var _this = this;
+                        var vm = this;
                         var form = {
-                            "id": _this.id
+                            "id": this.id
                         }
 
                         console.log(form)
@@ -369,14 +391,14 @@ require(['/common/js/require.config.js'], function () {
                                 toast.showToast(res.message);
                                 return;
                             }
-                            _this.ZMTechBrokerVO = res.data;
-                            console.log(_this.ZMTechBrokerVO);
-                            _this.ZMTechBrokerVO.zMTechBrokerAdditional = "";
-                            _this.ZMTechBrokerVO.zMTechBrokerAdditionalList.forEach(element => {
-                                _this.ZMTechBrokerVO.zMTechBrokerAdditional += element.additionalService + ","
+                            vm.ZMTechBrokerVO = res.data;
+                            console.log(vm.ZMTechBrokerVO);
+                            vm.ZMTechBrokerVO.zMTechBrokerAdditional = "";
+                            vm.ZMTechBrokerVO.zMTechBrokerAdditionalList.forEach(element => {
+                                vm.ZMTechBrokerVO.zMTechBrokerAdditional += element.additionalService + ","
                             });
-                            if (_this.ZMTechBrokerVO.zMTechBrokerAdditional.length > 0) {
-                                _this.ZMTechBrokerVO.zMTechBrokerAdditional = _this.ZMTechBrokerVO.zMTechBrokerAdditional.substr(0, _this.ZMTechBrokerVO.zMTechBrokerAdditional.length - 1);
+                            if (vm.ZMTechBrokerVO.zMTechBrokerAdditional.length > 0) {
+                                vm.ZMTechBrokerVO.zMTechBrokerAdditional = vm.ZMTechBrokerVO.zMTechBrokerAdditional.substr(0, vm.ZMTechBrokerVO.zMTechBrokerAdditional.length - 1);
                             }
 
                         })

@@ -322,6 +322,23 @@ require(['/common/js/require.config.js'], function () {
                         window.open("../../technologyMarket/technical_manager_details.html?id=" + item.brokerId);
                     },
 
+                    changePagerevoke: function (item) {
+                        console.log(item)
+                        var _this = this;
+                        userCenterApi.removeTechBrokerBind(item.brokerId).then(function (res) {
+                            if (!res.code) {
+                                _this.$dialog.showToast(res.message);
+                                return;
+                            }
+                            console.log(res);
+                            _this.$dialog.showToast("撤销技术经理人成功");
+                            _this.search_project_list_one(_this.projectId);
+                            _this.search_project_list_two(_this.projectId);
+                        })
+
+
+                    },
+
 
                     //////////// 审核/////////////
 

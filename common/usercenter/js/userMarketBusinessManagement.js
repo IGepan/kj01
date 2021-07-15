@@ -24,6 +24,13 @@ require(['/common/js/require.config.js'], function () {
                     "allTotal_1": 0, //总条数
                     "currentPage_1": 1,//当前页
                     "pageSize_1": 10,//每页显示条数
+
+                    "techTableEntrustList": [],//委托列表
+                    "allTotal_2": 0, //总条数
+                    "currentPage_2": 1,//当前页
+                    "pageSize_2": 10,//每页显示条数
+
+
                     tabs: [
                         {
                             label: '邀约交流',
@@ -32,11 +39,16 @@ require(['/common/js/require.config.js'], function () {
                         {
                             label: '投递成果',
                             selected: false
+                        },
+                        {
+                            label: '委托成果/需求',
+                            selected: false
                         }
 
                     ], infos: {
                         comment0: "0xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf",
-                        comment1: "1xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf"
+                        comment1: "1xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf",
+                        comment2: "1xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf"
                     }
                 },
                 provide: {
@@ -49,6 +61,8 @@ require(['/common/js/require.config.js'], function () {
                     // this.checkUserMarketPart('jishurenzheng');
                     this.search_receive_project_list();
                     this.search_receive_invitation_list();
+                    this.search_receive_Entrust_list();
+
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
@@ -111,6 +125,24 @@ require(['/common/js/require.config.js'], function () {
                         console.log(form)
                         // 技术成果列表查询
                         _this.getTechReceiveInvitation(form);
+
+                    },
+
+                    // 翻页 邀约
+                    handleCurrentChange_2: function (page) {
+                        var _this = this;
+                        console.log(page)
+                        var form = {
+                            // "pageParam": {
+                            "current": page,
+                            "size": _this.pageSize_2,
+                            "order": "desc",
+                            "sort": "id",
+                            "dictCode": "string",
+                        }
+                        console.log(form)
+                        // 技术成果列表查询
+                        _this.search_receive_Entrust_list(form);
 
                     },
 
@@ -202,6 +234,39 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
+                    // 分页查询
+                    search_receive_Entrust_list: function () {
+                        var _this = this;
+                        var form = {
+                            // "pageParam": {
+                            "current": _this.currentPage_2,
+                            "size": _this.pageSize_2,
+                            "order": "desc",
+                            "sort": "id",
+                            "dictCode": "string",
+                        }
+                        console.log(form)
+                        // 我接收的邀约信息
+                        _this.getTechReceiveEntrust(form);
+                    },
+
+                    // 我接收的邀约信息列表查询
+                    getTechReceiveEntrust: function (form) {
+                        var _this = this;
+                        userCenterApi.pageListMySendDelegation(form).then(function (res) {
+                            console.log(res)
+                            if (!res.code) {
+                                _this.$dialog.showToast(res.message);
+                                return;
+                            }
+                            var datalist = res.data;
+                            console.log(datalist)
+
+                            _this.techTableEntrustList = datalist.records;
+                            _this.allTotal_2 = datalist.total;
+                        })
+                    },
+
 
                     /////////////////////////////////
                     // 邀约接受
@@ -218,6 +283,7 @@ require(['/common/js/require.config.js'], function () {
                             _this.$dialog.showToast("接收成功");
                             _this.search_receive_project_list();
                             _this.search_receive_invitation_list();
+                            this.search_receive_Entrust_list();
                         })
 
                     },
@@ -237,6 +303,8 @@ require(['/common/js/require.config.js'], function () {
 
                             _this.search_receive_project_list();
                             _this.search_receive_invitation_list();
+                            this.search_receive_Entrust_list();
+
                         })
                     },
 

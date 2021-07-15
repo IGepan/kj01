@@ -59,11 +59,12 @@
                         <div class="ell_nowrap width_50 fl">
                             行业类型：
                             <span
-                                v-if="ZMProjectVO.projectIndustryType">{{ZMProjectVO.projectIndustryType.map(item=>item.name).join(',')}}</span>
+                                v-if="ZMProjectVO.projectIndustryType">{{ZMProjectVO.projectIndustryType?ZMProjectVO.projectIndustryType.map(item=>item.name).join(','):""}}</span>
                             <span v-else>-</span>
                         </div>
                         <div class="ell_nowrap width_50 fl">标签：
-                            <span v-if="ZMProjectVO.title">{{ZMProjectVO.tags.map(item=>item.name).join(',')}}</span>
+                            <span
+                                v-if="ZMProjectVO.title">{{ZMProjectVO.tags?ZMProjectVO.tags.map(item=>item.name).join(','):""}}</span>
                             <span v-else>-</span>
                         </div>
                         <div class="ell_nowrap width_50 fl">成果类型：
@@ -72,7 +73,7 @@
                         </div>
                         <div class="ell_nowrap width_50 fl">需要附加服务：
                             <span
-                                v-if="ZMProjectVO.zMProjectAdditionalList">{{ZMProjectVO.zMProjectAdditionalList[0].additionalService_display}}</span>
+                                v-if="ZMProjectVO.zMProjectAdditionalList">{{ZMProjectVO.zMProjectAdditionalList.length>0?ZMProjectVO.zMProjectAdditionalList[0].additionalService_display:""}}</span>
                             <span v-else>-</span>
                         </div>
                         <div class="ell_nowrap width_50 fl">意向价格(元)：
@@ -164,7 +165,8 @@
                             :href="'tech_achievements_details.html?id='+item.id">
                             <div class="ell_nowrap padding_bottom_10">{{item.title}}</div>
                             <div class="ell_nowrap color_999 font_14">
-                                所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</div>
+                                所属领域：{{item.projectIndustryType?item.projectIndustryType.map(item=>item.name).join(','):""}}
+                            </div>
                             <div class="ell_nowrap margin_top_4 color_999 font_14">转让方式：{{item.cooperationMode_display}}
                             </div>
                         </a>
@@ -272,9 +274,9 @@
                                     icon="el-icon-document" :href="getImgPath(ZMProjectVO.projectImgPath)">成果图片
                                 </el-link> -->
                                 <template v-if="ZMProjectVO.projectImgSecondary.length>0">
-                                    <el-image v-for="(item,index) of ZMProjectVO.projectImgSecondary" class="border_ca "
-                                        style="max-width: 400px;max-height: 400px;" :src="getImgPath(item.url)"
-                                        fit="cover">
+                                    <el-image v-for="(item,index) of ZMProjectVO.projectImgSecondary" :key="index"
+                                        class="border_ca" style="max-width: 400px;max-height: 400px;"
+                                        :src="getImgPath(item.url)" fit="cover">
                                         <div slot="placeholder" class="image-slot">
                                             加载中<span class="dot">...</span>
                                         </div>

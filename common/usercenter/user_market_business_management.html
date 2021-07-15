@@ -43,7 +43,8 @@
                     <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
                             我的订单</a>
                     </li>
-                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i> 经纪人培训管理</a></li>
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
                     <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>
                             班级报名管理</a></li>
                     <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
@@ -55,16 +56,10 @@
                 <div class=" border_bot_f2f2f2">
                     <ul class="user_center_transfer clear">
                         <li v-for="(tab, i) in tabs" :key="i" @click="selecedTab(i)" class="fl"
-                            :class="{active: tab.selected,hide:!infos.profession && i === 2}" v-text="tab.label"></li>
+                            :class="{active: tab.selected,hide:!infos.profession && i === 3}" v-text="tab.label"></li>
                     </ul>
                 </div>
                 <div class="margin_20">
-                    <!-- <div class="margin_bot_20 clear">
-                        <input class="padding_06_1 width_50_115 border_efefef margin_tb_10 fl"
-                            placeholder="请输入你想查找的需求名称">
-                        <a class="bg_70adf1 color_fff fl margin_tb_10 border_70adf1"
-                            style="padding: 0.52rem 2rem;">检索</a>
-                    </div> -->
                     <div class="pro_details">
                         <div class="details_tab_content margin_top_20">
                             <template v-if="tabs[0].selected">
@@ -72,7 +67,6 @@
                                     <el-table :data="techTableInvitatioList" style="width: 100%">
                                         <el-table-column label="接收人">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span>{{ scope.row.receiveUserName }}</span>
                                             </template>
                                         </el-table-column>
@@ -84,13 +78,11 @@
 
                                         <el-table-column label="邀约类型">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span>{{ scope.row.invitationType }}</span>
                                             </template>
                                         </el-table-column>
                                         <el-table-column label="处理状态">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span v-if="scope.row.requestState == 0">待处理</span>
                                                 <span v-else-if="scope.row.requestState == 1">已接收</span>
                                                 <span v-else-if="scope.row.requestState == 2">已拒绝</span>
@@ -99,7 +91,6 @@
 
                                         <el-table-column label="邀约时间">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span>{{ scope.row.createTime }}</span>
                                             </template>
                                         </el-table-column>
@@ -152,7 +143,6 @@
                                     <el-table :data="techTableProjectList" style="width: 100%">
                                         <el-table-column label="接收人">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span>{{ scope.row.receiveUserName }}</span>
                                             </template>
                                         </el-table-column>
@@ -164,20 +154,19 @@
 
                                         <el-table-column label="项目名称">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
-                                                <span>{{ scope.row.projectName }}</span>
+                                                <a class="color_13c9ef"
+                                                    :href="'/technologyMarket/tech_achievements_details.html?id=' + scope.row.projectId"
+                                                    target="_blank">{{ scope.row.projectName }}</a>
                                             </template>
                                         </el-table-column>
                                         <el-table-column label="投递类型">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span>{{ scope.row.sendType }}</span>
                                             </template>
                                         </el-table-column>
 
                                         <el-table-column label="处理状态">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span v-if="scope.row.requestState == 0">待处理</span>
                                                 <span v-else-if="scope.row.requestState == 1">已接收</span>
                                                 <span v-else-if="scope.row.requestState == 2">已拒绝</span>
@@ -185,47 +174,66 @@
                                         </el-table-column>
                                         <el-table-column label="投递时间">
                                             <template slot-scope="scope">
-                                                <!-- <i class="el-icon-time"></i> -->
                                                 <span>{{ scope.row.createTime }}</span>
                                             </template>
                                         </el-table-column>
-
-                                        <!-- <el-table-column label="操作">
-                                            <template slot-scope="scope">
-                                                <span v-if="scope.row.requestState == 0">
-                                                    <el-button size="mini" @click="handleAcccept( scope.row)">
-                                                        接受
-                                                    </el-button>
-                                                    <el-button size="mini" type="danger"
-                                                        @click="handleRefuseInvitatio( scope.row)">
-                                                        拒绝</el-button>
-                                                </span> -->
-
-
-                                        <!-- <el-dropdown @command="handleCommand">
-                                                    <span class="el-dropdown-link">
-                                                        展开<i class="el-icon-arrow-down el-icon--right"></i>
-                                                    </span>
-                                                    <el-dropdown-menu slot="dropdown">
-                                                        <el-dropdown-item
-                                                            :command="HandleAcceptDelivery(scope.$index, scope.row,0)">
-                                                            <el-button size="mini">接受
-                                                            </el-button>
-                                                        </el-dropdown-item>
-                                                        <el-dropdown-item
-                                                            :command="handleRefuseDelivery(scope.$index, scope.row,1)">
-                                                            <el-button size="mini" type="danger">
-                                                                拒绝</el-button>
-                                                        </el-dropdown-item>
-                                                    </el-dropdown-menu>
-                                                </el-dropdown> -->
-                                        <!-- </template>
-                                        </el-table-column> -->
-
                                     </el-table>
                                     <div class="pages margin_top_15">
                                         <el-pagination background layout="prev, pager, next" :pager-count="7"
                                             :page-size="pageSize" :total="allTotal"
+                                            @current-change="handleCurrentChange">
+                                        </el-pagination>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-if="tabs[2].selected">
+                                <div class="article">
+                                    <el-table :data="techTableEntrustList" style="width: 100%">
+                                        <el-table-column label="接收人">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.receiveUserName }}</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="接收人联系方式">
+                                            <template slot-scope="scope">
+                                                {{scope.row.receiveUserPhone}}
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="项目名称">
+                                            <template slot-scope="scope">
+                                                <a class="color_13c9ef" v-if="scope.row.requestType=='1'"
+                                                    :href="'/technologyMarket/tech_achievements_details.html?id=' + scope.row.projectId"
+                                                    target="_blank">{{
+                                                    scope.row.projectName }}</a>
+                                                <a class="color_13c9ef" v-else
+                                                    :href="'/technologyMarket/tech_requirements_details.html?id=' + scope.row.projectId"
+                                                    target="_blank">{{
+                                                    scope.row.projectName }}</a>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="投递类型">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.sendType }}</span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="处理状态">
+                                            <template slot-scope="scope">
+                                                <span v-if="scope.row.requestState == 0">待处理</span>
+                                                <span v-else-if="scope.row.requestState == 1">已接收</span>
+                                                <span v-else-if="scope.row.requestState == 2">已拒绝</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="投递时间">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.createTime }}</span>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+                                    <div class="pages margin_top_15">
+                                        <el-pagination background layout="prev, pager, next" :pager-count="7"
+                                            :page-size="pageSize_2" :total="allTotal_2"
                                             @current-change="handleCurrentChange">
                                         </el-pagination>
                                     </div>

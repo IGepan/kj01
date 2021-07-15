@@ -261,9 +261,21 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListReceivedInvitation', param);
         },
 
+
+
+        //分页查询我接收的 [需求 / 成果] 委托
+        pageListMyReceivedDelegation: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListMyReceivedDelegation', param);
+        },
+
         // /zMOrderRest/createOrder 接受
         accept_create_order: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMOrderRest/createOrder?requestId=' + param);
+        },
+
+        // 分页查询我发送的 [需求 / 成果] 委托
+        pageListMySendDelegation: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListMySendDelegation', param);
         },
 
 
@@ -305,5 +317,9 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/queryMatchInfo', param);
         },
 
+        //机构移除经纪人绑定
+        removeTechBrokerBind: function (param) {
+            return Http.get(httpUrl.baseMarketUrl + '/zMVerifyBindRest/removeTechBrokerBind/' + param);
+        },
     }
 })

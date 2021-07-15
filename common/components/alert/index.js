@@ -7,8 +7,10 @@ define(['jquery'], function ($) {
       var texts = options.texts || ''
       var html = "<div class='cover toast' type='toast'><div class='ctr'><div class='tips'>" + texts + "</div></div></div>"
       $('body').prepend(html)
+      $("[type=toast]").css("display", "table");
       setTimeout(function () {
         $("[type=toast]").remove();
+        $("[type=toast]").hide();
       }, 2000)
     },
     showToast: function (texts) {
@@ -107,10 +109,10 @@ define(['jquery'], function ($) {
       !options.index && $body.addClass('overflow').append(html)
       options.index && $body.append(html)
       options.$dom = $("[type=" + options.type + "]")
-        typeof options.onShow === 'function' && options.onShow(options);
+      typeof options.onShow === 'function' && options.onShow(options);
       options.$dom.on('click', function (e) {
         var $target = $(e.target)
-        if ($target.is('.close')||$target.parents('.close').length) {
+        if ($target.is('.close') || $target.parents('.close').length) {
           this.closeCallback ? (this.closeCallback() && this.off()) : this.off()
           return
         }
@@ -121,16 +123,16 @@ define(['jquery'], function ($) {
         }
       }.bind(options))
     },
-		/**
-		 * 显示loading
-		 */
+    /**
+     * 显示loading
+     */
     showLoading: function () {
       var html = '<div id="loader" class="loader cover"><div class="ctr"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div>'
       $('body').prepend(html)
     },
-		/**
-		 * 隐藏loading
-		 */
+    /**
+     * 隐藏loading
+     */
     hideLoading: function () {
       $('#loader').remove();
     },

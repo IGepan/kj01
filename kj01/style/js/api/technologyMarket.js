@@ -181,5 +181,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/zMEvaluationRest/queryAverageScore?id=' + param);
 
         },
+
+
+        //  查詢是否有认证
+        get_certification: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/certification/get', param);
+        },
+
+
     }
 })
