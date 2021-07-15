@@ -585,7 +585,7 @@ module.exports = {
       localStorage.removeItem("saasId");
       localStorage.removeItem("userPhone");
       window.location.href = "/common/login.html";
-      this.$httpCom.exitYzxt();
+      // this.$httpCom.exitYzxt();
     },
     accessSave: function () {
       var data = {};
