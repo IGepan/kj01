@@ -85,6 +85,12 @@ module.exports = {
           href: "/technologyMarket/service_organization.html",
           impro: "service_organization",
         },
+        {
+          id: 6,
+          value: "认证入库",
+          href: "/technologySchool/certification_warehousing.html",
+          impro: "certification_warehousing",
+        },
       ],
     };
   },
