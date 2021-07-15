@@ -58,6 +58,12 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
       return Http.getNoToast(httpUrl.baseUrl + '/webCommon/user', param)
     },
     /**
+     * 同步退出易智学堂
+     */
+    exitYzxt: function (param) {
+      return Http.post(httpUrl.baseSchoolOutUrl+ '/uc/exit',param)
+    },
+    /**
      * 取得用户电话号码
      */
     webCommonUserPhone: function () {
