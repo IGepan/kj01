@@ -580,6 +580,7 @@ module.exports = {
       console.log("logout-------------------------------");
       this.$utils.delCookie("USER_INFO");
       this.$utils.delCookie("LOGIN_INFO");
+      this.$utils.delCookie("YZW_USER_PHONE");
       localStorage.removeItem("USER_INFO");
       localStorage.removeItem("saasId");
       localStorage.removeItem("userPhone");

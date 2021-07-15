@@ -66,6 +66,7 @@ require(['/common/js/require.config.js'], function () {
         if (location.search.indexOf('?return=schoolExit') >-1) {
           this.$utils.delCookie("USER_INFO");
           this.$utils.delCookie("LOGIN_INFO");
+          this.$utils.delCookie("YZW_USER_PHONE");
           localStorage.removeItem("USER_INFO");
           localStorage.removeItem("saasId");
           localStorage.removeItem("userPhone");
