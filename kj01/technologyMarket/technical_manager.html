@@ -92,8 +92,8 @@
 
                 <li class="classify_list bg_fff  fl" v-for="(item,index) in dataList" :key="index">
                     <div class="pro_top_img_box position_relative">
-                        <span class="color_13c9ef search_box"
-                            style="position: absolute;top: 20px; left: 20px;z-index: 10;">{{item.honorLevel_display}}</span>
+                        <span v-if="item.honorLevel_display"
+                            style="position: absolute;top: 0; left: 0;z-index: 10;background: rgb(0,52,195);padding: 5px;color: #fff;">{{item.honorLevel_display}}</span>
                         <el-image class="border_ca broker_img_box" :src="getImgPath(item.logoPath)" fit="cover">
                             <div slot="placeholder" class="image-slot">
                                 加载中<span class="dot">...</span>

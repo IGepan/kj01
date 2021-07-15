@@ -111,7 +111,7 @@ require(['/common/js/require.config.js'], function () {
                     this.findqueryAverageScore(this.id);//查询平均分
                     // 技术成果列表查询
                     this.queryList();
-                    this.get_certification();
+
 
                 },
                 methods: {
@@ -250,10 +250,11 @@ require(['/common/js/require.config.js'], function () {
                         console.log(id)
                         this.id = id;
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)));
-
-
-
+                        if (this.userInfo && this.userInfo.userName) {
+                            this.get_certification();
+                        }
                     },
+
 
                     get_certification: function () {
                         var vm = this;

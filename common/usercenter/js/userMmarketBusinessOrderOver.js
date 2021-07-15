@@ -24,6 +24,7 @@ require(['/common/js/require.config.js'], function () {
                     "allTotal": 0, //总条数
                     "currentPage": 1,//当前页
                     "pageSize": 4,//每页显示条数
+                    "price": "",
                 },
                 provide: {
                     httpUser: httpUser,
@@ -90,14 +91,22 @@ require(['/common/js/require.config.js'], function () {
 
                     handleEnd: function () {
                         var _this = this;
+                        if ("" == _this.price || null == _this.price) {
+                            _this.$dialog.showToast("请输入价格");
+                            return;
+                        }
+
                         if ("" == _this.resultDes || null == _this.resultDes) {
                             _this.$dialog.showToast("请填写完成描述");
                             return;
                         }
+
                         var form = {
                             "id": _this.id,
                             "resultDes": _this.resultDes,
+                            "price": _this.price
                         };
+
                         userCenterApi.finishOrder(form).then(function (res) {
                             console.log(res)
                             if (!res.code) {

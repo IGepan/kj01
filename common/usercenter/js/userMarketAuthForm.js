@@ -42,6 +42,7 @@ require(['/common/js/require.config.js'], function () {
                         "brokerIdCard": "",
                         "brokerName": "",
                         "brokerPhone": "",
+                        "graduationYear": "",
                         "brokerSchool": "",
                         "budget": "",
                         "id": "",
@@ -765,6 +766,12 @@ require(['/common/js/require.config.js'], function () {
                             _this.$dialog.showToast("附加服务必填");
                             return false;
                         }
+
+                        if (!_this.$utils.validatesEmpty(form.graduationYear)) {
+                            _this.$dialog.showToast("从业年限必填");
+                            return false;
+                        }
+
 
                         if (form.industryType.length < 1) {
                             _this.$dialog.showToast("行业类型必填");

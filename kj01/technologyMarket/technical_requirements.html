@@ -48,7 +48,7 @@
                         <tr v-for="(item,index) in techAchiList" :key="index">
                             <td class="color_orange">{{item.title}}</td>
                             <td>{{item.projectIndustryType.map(item=>item.name).join(',')}} </td>
-                            <td>{{item.cooperationMode}}</td>
+                            <td>{{item.cooperationMode_display}}</td>
                             <td>{{item.budget}}</td>
                             <!-- <td>2021-06-02 15:21:10</td> -->
                             <td>

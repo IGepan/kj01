@@ -77,7 +77,9 @@
             <ul class="clear">
 
                 <li class="classify_list bg_fff  fl" v-for="(item,index) in dataList" :key="index">
-                    <div class="pro_top_img_box border_bot_f2f2f2">
+                    <div class="pro_top_img_box border_bot_f2f2f2 position_relative">
+                        <span v-if="item.honorLevel_display"
+                            style="position: absolute;top: 0; left: 0;z-index: 10;background: rgb(0,52,195);padding: 5px;color: #fff;">{{item.honorLevel_display}}</span>
                         <el-image class="border_ca organ_img_box" :src="getImgPath(item.logoPath)">
                             <div slot="placeholder" class="image-slot">
                                 加载中<span class="dot">...</span>

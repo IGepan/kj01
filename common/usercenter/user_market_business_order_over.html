@@ -68,12 +68,21 @@
                         <div class="clear">
                             <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red"></i>订单编号：</span>
-                                <span>{{id}}</span>
+                                <span class="padding_06_0 fl">{{id}}</span>
                             </div>
+                            <div class="width_100  margin_tb_10 clear">
+                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>价格：</span>
+                                <el-input type="number" v-model="price" value="price"
+                                    class="achi_form_textarea width_100_115 fl padding_06_0" maxlength="8"
+                                    placeholder="请输入价格">
+                                </el-input>
+                            </div>
+
                             <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>完成描述：</span>
                                 <el-input type="textarea" :rows="9" v-model="resultDes" value="resultDes"
-                                    class="achi_form_textarea width_100_115 fl" placeholder="请输入完成描述"></el-input>
+                                    class="achi_form_textarea width_100_115 fl padding_06_0" placeholder="请输入完成描述">
+                                </el-input>
                             </div>
                             <div class="user_center_submit clear">
                                 <a class="bg_70adf1 color_fff" @click="handleEnd">提交审核</a>

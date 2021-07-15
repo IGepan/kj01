@@ -501,6 +501,22 @@
                             </div>
 
 
+                            <div class="clear" v-if="hasFormData">
+                                <div class="f_w_50 fl margin_tb_10">
+                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                        <i class="color_red" v-else style="display: none;">*</i>从业年限：</span>
+                                    <span class="width_100_115 fl padding_06_0"
+                                        v-if="brokerPlatform.certificationFlag==1">{{brokerPlatform.graduationYear}}</span>
+                                    <el-input type="number" class="width_100_115"
+                                        v-model="brokerPlatform.graduationYear"
+                                        v-if="brokerPlatform.certificationFlag !=1" placeholder="请输入从业年限">
+                                    </el-input>
+                                </div>
+                            </div>
+
+
+
                             <div class="clear">
                                 <div class="width_100 margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
