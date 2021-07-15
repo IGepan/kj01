@@ -19,7 +19,8 @@ define([], function () {
       USER_INFO: 'USER_INFO',
       LOGIN_INFO: 'LOGIN_INFO',
       SAASID: 'saasId',
-      AUTHORITY: 'AUTHORITY'
+      AUTHORITY: 'AUTHORITY',
+      YZW_USER_PHONE:'YZW_USER_PHONE'
     },
 		/**
 		 * 附件类型字典
