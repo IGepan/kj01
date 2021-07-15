@@ -308,9 +308,11 @@ e {
 }
 
 .navs_list a {
-    margin-right: 50px !important;
+    margin-right: 40px !important;
 }
-
+.navs_list a:last-child{
+    margin-right: 10px!important;
+}
 .classify_list {
     width: -moz-calc((100% - 60px)/4);
     width: -webkit-calc((100% - 60px)/4);

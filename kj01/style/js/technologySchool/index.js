@@ -20,7 +20,7 @@ require(['/common/js/require.config.js'], function () {
           //插入市场
           'market_header': httpVueLoader('/style/components/market_header.vue'),
           'tech_school_header': httpVueLoader('/style/components/tech_school_header.vue'),
-
+          'tech_market_header': httpVueLoader('/style/components/tech_market_header.vue'),
           //插入脚信息
           'web-footer': httpVueLoader('/style/components/web_footer.vue')
         },
