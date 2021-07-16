@@ -168,28 +168,43 @@ require(['/common/js/require.config.js'], function () {
 							return '面议'
 						}if(flag == "3"){
 							return '查看价格详情'
-						}else {
+						}
+						// else {
+						// 	if (typeof v !== 'undefined' ) {
+						// 		if (v >= 10000) {
+						// 			return  '￥'+((v / 10000).toFixed(2) + '万元');
+						// 		}else {
+						// 			return '￥'+ v + '元'
+						// 		}
+						// 	} else if (!v && !m ) {
+						// 		if (n >= 10000) {
+						// 			return  '￥'+((n / 10000).toFixed(2)+"万元");
+						// 		}else {
+						// 			return  '￥'+n+"元";
+						// 		}
+						// 	} else {
+						// 		if(n >= 100 && m >=10000 ){
+						// 			return '￥'+((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)+'万元');
+						// 		}else if (n < 100 && m >= 10000) {
+						// 			return '￥'+((n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(2)+'万元');
+						// 		} else {
+						// 			return '￥' + (n + '-' + m + '元');
+						// 		}
+						//
+						// 	}
+						// }
+						else {
 							if (typeof v !== 'undefined' ) {
-								if (v >= 10000) {
-									return  '￥'+((v / 10000).toFixed(2) + '万元');
-								}else {
-									return '￥'+ v + '元'
-								}
-							} else if (!v && !m ) {
-								if (n >= 10000) {
-									return  '￥'+((n / 10000).toFixed(2)+"万元");
-								}else {
-									return  '￥'+n+"元";
-								}
-							} else {
-								if(n >= 100 && m >=10000 ){
-									return '￥'+((n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)+'万元');
-								}else if (n < 100 && m >= 10000) {
-									return '￥'+((n / 10000).toFixed(3) + '-' + (m / 10000).toFixed(2)+'万元');
-								} else {
-									return '￥' + (n + '-' + m + '元');
-								}
 
+								return '￥'+ v
+
+							} else if (!v && !m ) {
+
+								return  '￥'+ n
+
+							} else if(n && m) {
+
+								return '￥' + n + '~' + m
 							}
 						}
 					},
