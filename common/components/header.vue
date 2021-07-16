@@ -44,7 +44,7 @@
         <a
             :href="$pathPrefix + '/common/usercenter/user_market_auth_form.html'"
             :class="{ active: type === 'market' }"
-            v-if="location.href.indexOf('/site/') < 0"
+            v-if="isNotSite"
         >技术转移</a
         >
         <a
@@ -69,6 +69,7 @@ module.exports = {
   props: ["type", "http"],
   data: function () {
     return {
+      isNotSite: true,
       isConference: true,
       internal: "",
       webInfo: "",
@@ -104,6 +105,7 @@ module.exports = {
         url: this.$pathPrefix + "/common/buyer/index.html",
       };
     }
+    this.checkSite();
   },
   components: {
     "ly-searchbox": httpVueLoader(
@@ -119,6 +121,14 @@ module.exports = {
           vm.monitorSetItem("webInfo", JSON.stringify(vm.webInfo));
         }
       });
+    },
+    //检查是否分站点
+    checkSite: function () {
+     var url = window.location.href
+      var vm = this;
+      if (url.indexOf('/site/') > 0) {
+        vm.isNotSite = false;
+      }
     },
     eventSearchFull: function (d) {
       if (d.type !== "resource" && d.type !== "ticket") {
