@@ -202,7 +202,7 @@ require(['/common/js/require.config.js'], function () {
 
 								return  '￥'+ n
 
-							} else if(n && m) {
+							} else if(n >= 0 && m) {
 
 								return '￥' + n + '~' + m
 							}
