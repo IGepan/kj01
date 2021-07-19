@@ -90,10 +90,7 @@ require(['/common/js/require.config.js'], function () {
             if (this.userInfo && this.userInfo.userName) {
               window.location.href='/common/usercenter/user_market_auth_form.html'
             }else {
-              toast.showToast("请先登录")
-              setTimeout(function () {
                 window.location.href = '/common/login.html';
-              }, 2000)
             }
          },
 
