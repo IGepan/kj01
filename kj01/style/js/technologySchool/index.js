@@ -88,8 +88,8 @@ require(['/common/js/require.config.js'], function () {
           },
 
           handleAuthentication: function () {
-            console.log(this.$utils.getCookie(dic.locaKey.USER_INFO));
-            if (this.userInfo) {
+            var auser = localStorage.getItem("userPhone");
+            if (auser) {
               window.location.href='/common/usercenter/user_market_auth_form.html'
             }else {
                 window.location.href = '/common/login.html';
