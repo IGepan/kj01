@@ -96,6 +96,7 @@ require(['/common/js/require.config.js'], function () {
 
                     "authentication_type": "1",  //  认证类型：
                     "showType": 1,
+                    "showRadio": 1,
                     "certeinId": "1",
 
 
@@ -254,15 +255,16 @@ require(['/common/js/require.config.js'], function () {
                         console.log(newName)
                         console.log(oldName)
                         this.certeinId = newName;
+                        this.showRadio = newName;
                         // this.textIndustryList = [];
                         // this.textList = [];
-                        // if (newName == "1" || newName == "2") {
-                        //     this.showType = 1
-                        // } else if (newName == "3") {
-                        //     this.showType = 2
-                        // } else if (newName == "4") {
-                        //     this.showType = 3
-                        // }
+                        if (newName == "1" || newName == "2") {
+                            this.showType = 1
+                        } else if (newName == "3") {
+                            this.showType = 2
+                        } else if (newName == "4") {
+                            this.showType = 3
+                        }
                     }
                 },
                 methods: {
@@ -300,11 +302,11 @@ require(['/common/js/require.config.js'], function () {
                             console.log(_this.showType)
                             _this.userInfoType = data;
                             if (_this.userInfoType.accountType === '02') {
-                                if (_this.showType == 2) {
-                                    _this.authentication_type = '3'
-                                } else {
-                                    _this.authentication_type = '4'
-                                }
+                                _this.authentication_type = '3'
+                                // if (_this.showType == 2) {
+                                // } else {
+                                //     _this.authentication_type = '4'
+                                // }
                             } else {
                                 _this.authentication_type = '1'
                             }
