@@ -1931,7 +1931,8 @@ margin: 0}
 /*精选资源*/
 
 .jingxuan {
-    background-image: url(../images/index/jingxuan_bg.png);
+    background: url(../images/index/jingxuan_bg.png) no-repeat ;
+    background-size: cover;
     /*background:#f6fdff;*/
     width: 100%;
     padding-bottom: 80px;
