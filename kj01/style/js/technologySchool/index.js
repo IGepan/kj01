@@ -6,6 +6,7 @@ require(['/common/js/require.config.js'], function () {
 
         // style\js\api\technologySchool.js
         data: {
+          userInfo: {},
           "allTotal": 0, //总条数
           "currentPage": 1,//当前页
           "pageSize": 4,//每页显示条数
@@ -87,7 +88,8 @@ require(['/common/js/require.config.js'], function () {
           },
 
           handleAuthentication: function () {
-            if (this.$utils.getCookie(dic.locaKey.USER_INFO)) {
+            console.log(this.$utils.getCookie(dic.locaKey.USER_INFO));
+            if (this.userInfo) {
               window.location.href='/common/usercenter/user_market_auth_form.html'
             }else {
                 window.location.href = '/common/login.html';
