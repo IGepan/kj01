@@ -17,25 +17,16 @@ require(['/common/js/require.config.js'], function () {
                     httpCom: httpCom,
                     jquery: $,
                     http: httpUser,
-                    //   list: [],
-                    //   activeIndex: 0,
-                    //   isAll: false,
-                    //   userInfo: {},
-                    //   page: 1,
-                    //   pageSize: 20,
-                    //   totalPage: 1,
-                    //   sels: [],
-                    //   sysUnread: '',
-                    //   busUnread: ''        
+
                     ueditorConfig: {
                         initialFrameHeight: 180,
                         maximumWords: 5000
                     },
-                    "brokerPlatform_additionalService": "2",
+                    // "brokerPlatform_additionalService": "2",
                     //  技术经纪人
                     "brokerPlatform": {
                         "academicDegree": "",
-                        "additionalService": "2",
+                        "additionalService": "",
                         "agentType": "",
                         "brokerDes": "",
                         "brokerEmail": "",
@@ -95,17 +86,7 @@ require(['/common/js/require.config.js'], function () {
                     "industryListText": "",
 
                     "authentication_type": "1",  //  认证类型：
-                    "showType": 1,
                     "showRadio": 1,
-                    "certeinId": "1",
-
-
-
-
-                    // "broker_name": "",  //  真实姓名：
-                    // "idcard_number": "",  //  身份证号：
-                    // "broker_school": "",  //  毕业学校：
-                    // "industry_area": "",  //  所学专业：
 
                     //   学历
                     "academic_degree_list": [],
@@ -120,14 +101,6 @@ require(['/common/js/require.config.js'], function () {
                     "graduation_certificate": "",  //  毕业证书
                     "broker_certificate": "",  //  经纪人证书
                     "personal_cover": "",  //  个人封面
-                    // "academic_degree": "",  //  学历                    
-
-                    // "title": "421",
-                    // "tech_no": "",  //  证书编号：
-                    // "agent_type": "",  //  经纪人类型：
-                    // "organ_name": "",  //  所属机构：
-                    // "broker_email": "",  //  电子邮箱：
-                    // "broker_phone": "",  //  联系电话：
 
                     //   技术转移机构
                     "organ_name": '',  //  机构名称：
@@ -137,16 +110,6 @@ require(['/common/js/require.config.js'], function () {
                     "investor_type_list": [],  //  投资人类型
                     "finance_stage_list": [],  //  融资阶段
                     "institutional_quota_list": [],  //  投资范围investment_des
-
-                    //   投资机构
-                    // "investment_name": "",   //  机构名称
-                    // "investment_industry_type": "",  //  擅长行业类型
-                    // "investor_type": "",  //  投资人类型
-                    // "finance_stage": "",  //  融资阶段
-                    // "institutional_quota": "",  //  投资范围
-                    // "investment_des": "",  //  机构描述
-                    // "investment_logo": "",  //  机构logo
-
 
 
                     "inputType": true,  //  返回 true 才访问后台
@@ -201,7 +164,6 @@ require(['/common/js/require.config.js'], function () {
                     "matchShow": false,
                     "matchDate1": [],
                     "userInfoType": {},
-                    fullscreenLoading: true,
 
                 },
                 provide: {
@@ -254,21 +216,19 @@ require(['/common/js/require.config.js'], function () {
                     authentication_type(newName, oldName) {
                         console.log(newName)
                         console.log(oldName)
-                        this.certeinId = newName;
                         this.showRadio = newName;
                         // this.textIndustryList = [];
                         // this.textList = [];
-                        if (newName == "1" || newName == "2") {
-                            this.showType = 1
-                        } else if (newName == "3") {
-                            this.showType = 2
-                        } else if (newName == "4") {
-                            this.showType = 3
-                        }
+                        // if (newName == "1" || newName == "2") {
+                        //     this.showType = 1
+                        // } else if (newName == "3") {
+                        //     this.showType = 2
+                        // } else if (newName == "4") {
+                        //     this.showType = 3
+                        // }
                     }
                 },
                 methods: {
-
                     initData: function () {
                         let d = new Date()
                         let dy = d.getFullYear()
@@ -279,9 +239,7 @@ require(['/common/js/require.config.js'], function () {
                         this.id = id;
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)));
                         if (this.userInfo && this.userInfo.userName) {
-                            this.myCertificateBrokerDetails(); // 查询经纪人证书详情
-                            this.myCertificagetUserInfo();//用户信息
-
+                            this.myCertificateBrokerDetails(); // 查询经纪人证书详情                            
                         } else {
                             window.location.href = '/common/login.html';
                         }
@@ -310,7 +268,6 @@ require(['/common/js/require.config.js'], function () {
                             } else {
                                 _this.authentication_type = '1'
                             }
-                            _this.fullscreenLoading = false;
                         })
                     },
 
@@ -690,8 +647,9 @@ require(['/common/js/require.config.js'], function () {
 
                         var tech_num = "";
 
+                        console.log(_this.authentication_type)
                         console.log(_this.certificate_or_not)
-                        if (_this.certeinId == "1") {
+                        if (_this.authentication_type == "1") {
                             if (_this.certificate_or_not == true) {
                                 tech_num = 0;
                             } else {
@@ -743,13 +701,7 @@ require(['/common/js/require.config.js'], function () {
                             return false;
                         }
 
-                        // if (_this.certeinId == '1') {
-                        //     if (!_this.$utils.validatesEmpty(_this.certificate_or_not)) {
-                        //         _this.$dialog.showToast("请前去学习，获得证书");
-                        //     }
-                        // }
-
-                        if (_this.certeinId == "2") {
+                        if (_this.authentication_type == "2") {
                             if (!_this.$utils.validatesEmpty(form.techNo)) {
                                 _this.$dialog.showToast("证书编号必填");
                                 return false;
@@ -989,6 +941,7 @@ require(['/common/js/require.config.js'], function () {
                             if (!_this.$utils.validatesEmpty(data.info)) {
                                 _this.hasFormData = false;  // 判断显示是否显示输入框或者文本框
                                 // _this.hasFormDataJudg = false;  //没有数据，第一次填写
+                                _this.myCertificagetUserInfo();//用户信息
                             } else {
                                 _this.hasFormData = true;
 
@@ -1004,36 +957,17 @@ require(['/common/js/require.config.js'], function () {
                                 dataForm.financeStage_display = _this.forEachDisplay(_this.finance_stage_list, dataForm.financeStage);
                                 dataForm.institutionalQuota_display = _this.forEachDisplay(_this.institutional_quota_list, dataForm.institutionalQuota);
 
-
+                                // 行业类型
                                 _this.certification_list = dataForm;
                                 if (_this.$utils.validatesEmpty(dataForm.industryType)) {
-
-
-
-                                    // if (dataForm.certificationFlag == 1 || dataForm.industryType.length > 0) {
-                                    //     var textBox = [];
-                                    //     console.log(dataForm.industryType)
-                                    //     if (_this.$utils.validatesEmpty(dataForm.industryType)) {
-                                    //         dataForm.industryType.forEach(element => {
-                                    //             textBox.push(element.name)
-                                    //         });
-                                    //     }
-                                    // } else if (dataForm.certificationFlag != 1 || dataForm.industryType.length > 0) {
-                                    //     _this.textIndustryList = dataForm.industryType;
-                                    // }
 
                                     if (dataForm.industryType.length > 0 && typeof (dataForm.industryType[0]) == "object") {
                                         _this.textIndustryList = dataForm.industryType;
                                         _this.industryList = dataForm.industryType;
                                     }
-
-
-
                                 }
-
+                                // 标签
                                 if (_this.$utils.validatesEmpty(dataForm.tags)) {
-
-
                                     if (dataForm.certificationFlag == 1 || dataForm.tags.length > 0) {
                                         var textBox = [];
                                         console.log(dataForm.tags)
@@ -1051,13 +985,11 @@ require(['/common/js/require.config.js'], function () {
                                     }
 
                                 }
-
+                                // 附加服务
                                 console.log("dataForm.additionalService", dataForm.zMTechBrokerAdditionalList)
                                 if (_this.$utils.validatesEmpty(dataForm.zMTechBrokerAdditionalList) && dataForm.zMTechBrokerAdditionalList.length > 0) {
                                     dataForm.additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
-                                    console.log(dataForm.additionalService);
-                                    console.log(3);
-                                    brokerPlatform_additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
+                                    // brokerPlatform_additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
                                     dataForm.additionalService_display = _this.forEachDisplay(_this.additional_service_list, dataForm.zMTechBrokerAdditionalList[0].additionalService);
                                 }
 
@@ -1067,38 +999,27 @@ require(['/common/js/require.config.js'], function () {
                                 }
 
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
-
                                     _this.headImg = dataForm.logo;
                                 }
 
+                                if (_this.certification_type == 'TECH_BROKER') {
+                                    _this.authentication_type = 1;
+                                    _this.brokerPlatform = dataForm;
+                                } else if (_this.certification_type == 'TECH_BROKER_REMOTE') {
 
-                                if (_this.certification_type == 'TECH_BROKER_REMOTE' || _this.certification_type == 'TECH_BROKER') {
-                                    _this.showType = 1;
-
+                                    _this.authentication_type = 2;
                                     _this.brokerPlatform = dataForm;
 
-                                    // if (_this.certification_type == 'TECH_BROKER_REMOTE') {
-                                    //     _this.certeinId = 1
-                                    // }
-                                    if (_this.certification_type == 'TECH_BROKER') {
-                                        _this.certeinId = 1
-                                    }
-
-                                    if (_this.certification_type == 'TECH_BROKER_REMOTE') {
-                                        _this.certeinId = 2
-                                    }
-
                                 } else if (_this.certification_type == 'TECH_ORGAN') {
-                                    _this.showType = 2;
+                                    _this.authentication_type = 3;
                                     _this.transferAgencyForm = dataForm;
 
                                 } else if (_this.certification_type == 'INVESTMENT') {
-                                    _this.showType = 3;
+                                    _this.authentication_type = 4;
                                     _this.InvestmentForm = dataForm;
                                 }
 
-                                console.log("_this.showType", _this.showType)
-                                console.log("_this.certeinId", _this.certeinId)
+                                console.log("_this.authentication_type", _this.authentication_type)
                                 console.log("_this.textIndustryList", _this.textIndustryList)
                             }
                         })
@@ -1129,8 +1050,6 @@ require(['/common/js/require.config.js'], function () {
                     forEachDisplay: function (arrayList, id) {
                         var value = ""
                         arrayList.forEach(function (element) {
-                            //   console.log(element);
-                            //   console.log(id);
                             if (id == element.dictValue) {
                                 value = element.display
                             }

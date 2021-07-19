@@ -238,15 +238,12 @@
 
                 </ul>
             </div>
+
             <div class="fl user_market_box_fr bg_fff border_top_70adf1">
-                <!-- v-if="!hasFormData" -->
                 <div>
                     <div class="user_market_title border_bot_f2f2f2">
                         <span class="market_title">资格认证</span>
-                        <!-- <span class="fr go_study">还不是技术经纪人，<a href="/technologySchool/index.html"
-                                class="color_70adf1">前往学习</a></span> -->
                         <span v-if="certification_type=='TECH_BROKER_REMOTE' || certification_type=='TECH_BROKER'">
-                            <!-- && certification_list.organId==0 -->
                             <span class="fr go_study" v-if="certification_list.certificationFlag==2 " @click="open">
                                 <a class="color_70adf1"> <i class="el-icon-plus"></i> 绑定机构</a>
                             </span>
@@ -257,10 +254,7 @@
                             </span>
                         </span>
                     </div>
-
-                    <!-- <el-empty description="描述文字" v-if="emptyShow"></el-empty> -->
-                    <div class="margin_20" v-show="!fullscreenLoading" style="display: none;"
-                        :style="{'display':fullscreenLoading?'block':'none'}">
+                    <div class="margin_20">
                         <div class="f_w_100 clear margin_tb_10 clear" v-if="!hasFormData">
                             <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>认证类型：</span>
                             <el-radio class="user_center_radio" v-model="authentication_type" label="1"
@@ -317,7 +311,7 @@
                                 <span class="width_100_115 fl padding_06_0">{{certification_noPassReason}}</span>
                             </div>
                         </div>
-                        <div v-if="showType===1">
+                        <div v-if="authentication_type==1 || authentication_type == 2">
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14">
@@ -465,17 +459,7 @@
 
 
                             <div class="clear">
-                                <!-- <div class="f_w_50 fl margin_tb_10">
-                                    <span class="width_115 fl padding_06_0 font_14"><i
-                                            class="color_red">*</i>擅长领域：</span>
-                                    <el-select v-model="brokerPlatform.industryType" placeholder="请选择擅长领域"
-                                        class="width_100_115">
-                                        <el-option v-for="item in industry_type_list" :key="item.id"
-                                            :label="item.display" :value="item.dictValue">
-                                        </el-option>
-                                    </el-select>
-                                </div> -->
-                                <div class="f_w_50 fl margin_tb_10" v-if="!hasFormData && certeinId=='1'">
+                                <div class="f_w_50 fl margin_tb_10" v-if="!hasFormData && authentication_type=='1'">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
                                             v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>证书编号：</span>
@@ -485,7 +469,7 @@
                                        @click="turnPageClassSign" target="_blank">前往学习,获得证书</a>
                                 </div>
 
-                                <div class="f_w_50 fl margin_tb_10" v-if="certeinId=='2'">
+                                <div class="f_w_50 fl margin_tb_10" v-if="authentication_type=='2'">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
                                             v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
                                         <i class="color_red" v-else style="display: none;">*</i>证书编号：</span>
@@ -501,7 +485,7 @@
                             </div>
 
 
-                            <div class="clear" v-if="hasFormData">
+                            <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
                                             v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
@@ -672,10 +656,6 @@
                                         <img-uploader :option="imgOption" title="上传个人封面"></img-uploader>
                                     </div>
                                 </div>
-                                <!-- <div class="width_100_115 fl padding_06_0">
-
-                                </div> -->
-
                                 <div class="width_100_115 fl padding_06_0" v-else>
                                     <img :src="personImg" style="width: 300px;" />
                                 </div>
@@ -686,7 +666,7 @@
                             </div>
                         </div>
 
-                        <div v-if="showType===2">
+                        <div v-if="authentication_type==3">
                             <div class="clear">
                                 <div class="width_100  margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
@@ -741,7 +721,7 @@
                                 <a class="bg_70adf1 color_fff" @click="submitAuditOrgan">提交认证</a>
                             </div>
                         </div>
-                        <div v-if="showType===3">
+                        <div v-if="authentication_type==4">
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
