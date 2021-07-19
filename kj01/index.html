@@ -830,38 +830,38 @@
         </div>
 
     </div>
-    <div class="jingxuan">
-        <div class="mdiv boxtitle">
-            <div class="boxtitle-text">
-               <a href="/resources" style="color: black;">精选资源</a> </div>
-            <div class="boxtitle-subtext">汇聚科技资源，协同创造价值</div>
-        </div>
-        <div class="mdiv jingxuan-top">
-            <div class="item-box" :class="'item-box'+index" v-for="(item,index) in sources">
-                <div class="title-box">
-                    <div class="titles">{{item.name}}</div>
-                    <div class="title-desc">{{item.subName}}</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-item" v-for="items in item.list">
-                        <div class="info-item-title">
-                            <a v-if="items.url" :href="items.url">
-                                <i class="iconfont icon-gengduo"></i>
-                                <span>{{items.name}}</span>
-                            </a>
-                            <a v-else @click="handleTips">
-                                <i class="iconfont icon-gengduo"></i>
-                                <span>{{items.name}}</span>
-                            </a>
-                        </div>
-                        <div class="info-item-number" v-if="items.number">{{items.number}}</div>
-                        <div class="info-item-desc" v-if="items.desc.length>0">
-                            <div v-for="itemss in items.desc">{{itemss}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="jingxuan" style="padding-top: 80px">
+<!--        <div class="mdiv boxtitle">-->
+<!--            <div class="boxtitle-text">-->
+<!--               <a href="/resources" style="color: black;">精选资源</a> </div>-->
+<!--            <div class="boxtitle-subtext">汇聚科技资源，协同创造价值</div>-->
+<!--        </div>-->
+<!--        <div class="mdiv jingxuan-top">-->
+<!--            <div class="item-box" :class="'item-box'+index" v-for="(item,index) in sources">-->
+<!--                <div class="title-box">-->
+<!--                    <div class="titles">{{item.name}}</div>-->
+<!--                    <div class="title-desc">{{item.subName}}</div>-->
+<!--                </div>-->
+<!--                <div class="info-box">-->
+<!--                    <div class="info-item" v-for="items in item.list">-->
+<!--                        <div class="info-item-title">-->
+<!--                            <a v-if="items.url" :href="items.url">-->
+<!--                                <i class="iconfont icon-gengduo"></i>-->
+<!--                                <span>{{items.name}}</span>-->
+<!--                            </a>-->
+<!--                            <a v-else @click="handleTips">-->
+<!--                                <i class="iconfont icon-gengduo"></i>-->
+<!--                                <span>{{items.name}}</span>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="info-item-number" v-if="items.number">{{items.number}}</div>-->
+<!--                        <div class="info-item-desc" v-if="items.desc.length>0">-->
+<!--                            <div v-for="itemss in items.desc">{{itemss}}</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="mdiv jingxuan-bottom">
             <a class="nav-box" href="https://www.qiyekexie.com" target="_blank">
                 <div>
