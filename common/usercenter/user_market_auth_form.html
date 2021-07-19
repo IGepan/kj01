@@ -264,17 +264,17 @@
                         <div class="f_w_100 clear margin_tb_10 clear" v-if="!hasFormData">
                             <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>认证类型：</span>
                             <el-radio class="user_center_radio" v-model="authentication_type" label="1"
-                                v-if="userInfoType.accountType !='02'">平台技术经纪人
+                                v-if="userInfoType.identityType =='01'">平台技术经纪人
                             </el-radio>
                             <el-radio class="user_center_radio" v-model="authentication_type" label="2"
-                                v-if="userInfoType.accountType !='02'">异地技术经纪人
+                                v-if="userInfoType.identityType =='01'">异地技术经纪人
                             </el-radio>
                             <el-radio class="user_center_radio" v-model="authentication_type" label="3"
-                                v-if="userInfoType.accountType==='02'">
+                                v-if="userInfoType.identityType !='01'">
                                 技术转移机构
                             </el-radio>
                             <el-radio class="user_center_radio" v-model="authentication_type" label="4"
-                                v-if="userInfoType.accountType==='02'">投资机构
+                                v-if="userInfoType.identityType !='01'">投资机构
                             </el-radio>
                         </div>
 

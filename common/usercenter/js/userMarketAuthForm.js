@@ -301,7 +301,7 @@ require(['/common/js/require.config.js'], function () {
                             console.log(data);
                             console.log(_this.showType)
                             _this.userInfoType = data;
-                            if (_this.userInfoType.accountType === '02') {
+                            if (_this.userInfoType.identityType != '01') {
                                 _this.authentication_type = '3'
                                 // if (_this.showType == 2) {
                                 // } else {
