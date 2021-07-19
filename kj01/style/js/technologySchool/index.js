@@ -87,7 +87,7 @@ require(['/common/js/require.config.js'], function () {
           },
 
           handleAuthentication: function () {
-            if (this.userInfo && this.userInfo.userName) {
+            if (this.$utils.getCookie(dic.locaKey.USER_INFO)) {
               window.location.href='/common/usercenter/user_market_auth_form.html'
             }else {
                 window.location.href = '/common/login.html';
