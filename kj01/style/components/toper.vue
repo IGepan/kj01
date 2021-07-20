@@ -4,15 +4,16 @@
       <div class="fl toper-left">
         <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>
-        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" ><a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;区县分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>
-          <div class="seediv" ref="acp">
-            <ul>
-              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>
-              <li><a href="#" >万州</a></li>
-              <!--              <li><a href="">梁平</a></li>-->
-            </ul>
-          </div>
-        </div>
+<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
+<!--&lt;!&ndash;          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;区县分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>&ndash;&gt;-->
+<!--          <div class="seediv" ref="acp">-->
+<!--            <ul>-->
+<!--              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>-->
+<!--              <li><a href="#" >万州</a></li>-->
+<!--              &lt;!&ndash;              <li><a href="">梁平</a></li>&ndash;&gt;-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
       <!-- <div class="fl">
         <a
@@ -95,15 +96,16 @@
             >易智网</a
           >！
         </div>
-        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" ><a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;区县分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>
-          <div class="seediv" ref="acp">
-            <ul>
-              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>
-              <li><a href="#" >万州</a></li>
-<!--              <li><a href="">梁平</a></li>-->
-            </ul>
-          </div>
-        </div>
+<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
+<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;区县分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
+<!--          <div class="seediv" ref="acp">-->
+<!--            <ul>-->
+<!--              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>-->
+<!--              <li><a href="#" >万州</a></li>-->
+<!--&lt;!&ndash;              <li><a href="">梁平</a></li>&ndash;&gt;-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
 
       </div>
       <div class="fr toper-right">
