@@ -7,10 +7,10 @@ require(['/common/js/require.config.js'], function () {
                 data: {
                     saasId: '',
                     breadcrumb: [
-                        {
-                            url: '/aindex.html',
-                            label: '活动'
-                        },
+                        // {
+                        //     url: '/aindex.html',
+                        //     label: '活动'
+                        // },
                         {
                             url: '/alist.html',
                             label: '活动列表'

@@ -8,10 +8,10 @@ require(['/common/js/require.config.js'], function () {
           cmsUrl: httpUrl.cmsUrl,
           saasId: '',
           breadcrumb: [
-            {
-              url: '/aindex.html',
-              label: '活动'
-            },
+            // {
+            //   url: '/aindex.html',
+            //   label: '活动'
+            // },
             {
               url: '/atList.html',
               label: '品牌活动列表'
