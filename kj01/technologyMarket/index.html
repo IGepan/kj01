@@ -87,15 +87,14 @@
             </div>
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techAchiList" :key="index">
-                    <!-- @mouseover.stop="toggleShow(cascade.value)" -->
-                    <!--                    <div class="pro_top_img_box border_ca">-->
-                    <!--                    </div>-->
-                    <el-image class="border_ca achi_img_box" :src="getImgPath(item.projectImgPath)" fit="cover">
+                    <el-image v-if="item.projectImgPath" class="border_ca achi_img_box"
+                        :src="getImgPath(item.projectImgPath)" fit="cover">
                         <div slot="placeholder" class="image-slot">
                             加载中<span class="dot">...</span>
                         </div>
                     </el-image>
-
+                    <img v-else class="border_ca achi_img_box"
+                        src="../style/images/technologyMarket/tech_achievements.jpg">
                     <div class="pro_bottom_text">
                         <h4 class="ell_nowrap">{{item.title}}</h4>
                         <div class="ell_nowrap" :title="item.projectIndustryType.map(item=>item.name).join(',')">
@@ -116,11 +115,8 @@
         </div>
 
         <div class="padding_top_20 mmdiv">
-<!--            <a>-->
-<!--                <img  src="/style/images/technologyMarket/ad_banner.jpg" height="100"/>-->
-<!--            </a>-->
-            <a  href="https://www.yunyao365.com/book_preview/SKmvox28i4ml" target="_blank">
-                <img  class="width_100" src="../style/images/index/fenghui.png">
+            <a href="https://www.yunyao365.com/book_preview/SKmvox28i4ml" target="_blank">
+                <img class="width_100" src="../style/images/index/fenghui.png">
             </a>
         </div>
 
@@ -141,8 +137,6 @@
                     <div class="pro_bottom_text">
                         <h4 class="ell_nowrap">{{item.title}}</h4>
                         <div>
-                            <!--                            <span-->
-                            <!--                                class="width_max_70 ell_nowrap display_inl_blo">技术领域：{{item.demandIndustryType_display}}</span>-->
                             <div class="ell_nowrap" :title="item.demandIndustryType.map(item=>item.name).join(',')">
                                 技术领域：{{item.demandIndustryType.map(item=>item.name).join(',')}}</div>
                             <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
@@ -162,7 +156,7 @@
 
         <div class="padding_top_20 mmdiv">
             <a>
-                <img class="width_100" src="/style/images/technologyMarket/ad_banner1.jpg" height="100"/>
+                <img class="width_100" src="/style/images/technologyMarket/ad_banner1.jpg" height="100" />
             </a>
         </div>
 
@@ -180,16 +174,18 @@
             </div>
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techManagerList" :key="index">
-                    <!--                    <div class="pro_top_img_box border_ca">-->
-                    <!--                    </div>-->
-                    <el-image class="border_ca broker_img_box" :src="getImgPath(item.logoPath)" fit="cover">
+                    <el-image v-if="item.logoPath" class="border_ca broker_img_box" :src="getImgPath(item.logoPath)"
+                        fit="cover">
                         <div slot="placeholder" class="image-slot">
                             加载中<span class="dot">...</span>
                         </div>
                     </el-image>
+                    <img v-else class="border_ca achi_img_box"
+                        src="../style/images/technologyMarket/technical_manager.jpg">
                     <div class="pro_bottom_text">
                         <div>
-                            <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.brokerName}}</h4>
+                            <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.brokerName}}
+                            </h4>
                             <span class="fr search_box color_13c9ef margin_15">{{item.agentType_display}}</span>
                         </div>
                         <div class="ell_nowrap" :title="item.industryType.map(item=>item.name).join(',')">
