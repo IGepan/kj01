@@ -8,7 +8,7 @@
         <div class="subhead-up">
           <div class="logobox">
             <a
-              href="/index.html"
+              href="/alist.html"
               class="sublogo"
             >
               <img

@@ -75,7 +75,7 @@ module.exports = {
         },
         {
           label: '活动中心',
-          url: '/alist.html?type=218340665862391473'
+          url: '/alist.html'
         },
         // {
         //   label: '创新资源',
