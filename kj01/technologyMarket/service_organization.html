@@ -80,14 +80,16 @@
                     <div class="pro_top_img_box border_bot_f2f2f2 position_relative">
                         <span v-if="item.honorLevel_display"
                             style="position: absolute;top: 0; left: 0;z-index: 10;background: rgb(0,52,195);padding: 5px;color: #fff;">{{item.honorLevel_display}}</span>
-                        <el-image class="border_ca organ_img_box" :src="getImgPath(item.logoPath)">
+                        <el-image v-if="item.logoPath" class="border_ca organ_img_box" :src="getImgPath(item.logoPath)">
                             <div slot="placeholder" class="image-slot">
                                 加载中<span class="dot">...</span>
                             </div>
                         </el-image>
+                        <img v-else class="border_ca achi_img_box"
+                            src="../style/images/technologyMarket/service_organization.jpg">
                     </div>
                     <div class="pro_bottom_text padding_right_20 padding_bottom_20 padding_left_20">
-                        <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.organName}}</h4>
+                        <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.organName}}++{{item.logoPath}}</h4>
                         <!-- <div class="ell_nowrap">简介：{{item.organDes}}</div> -->
                         <div class="ell_nowrap">能力等级：
                             <span v-if="item.capabilityLevel_display">{{item.capabilityLevel_display}}</span>

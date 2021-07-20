@@ -77,79 +77,22 @@
                         </div>
                     </div>
                 </template>
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">成果来源</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" v-for="(item,index) in project_source_list"-->
-                <!--                            @click="clickProject_source(item,index)" :class="item.active?'active':''"-->
-                <!--                            :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">行业领域</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" v-for="(item,index) in industry_area_list"-->
-                <!--                            @click="clickIndustryArea(item,index)" :class="item.active?'active':''"-->
-                <!--                            :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">成熟度</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
-                <!--                            @click="clickachievementMaturity(item,index)"-->
-                <!--                            v-for="(item,index) in achievement_maturity_list" :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">权属性质</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
-                <!--                            @click="clickachievementBelong(item,index)" v-for="(item,index) in achievement_belong_list"-->
-                <!--                            :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">合作方式</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
-                <!--                            @click="clickachievementCooperation(item,index)"-->
-                <!--                            v-for="(item,index) in achievement_cooperation_list" :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">意向价格</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
-                <!--                            v-for="(item,index) in price_range_list" @click="clickpriceRange(item,index)"-->
-                <!--                            :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="search-row">-->
-                <!--                    <label class="search-label">商业计划书</label>-->
-                <!--                    <div class="searchkeys">-->
-                <!--                        <span class="searchkey" :class="item.active?'active':''"-->
-                <!--                            v-for="(item,index) in business_plan_list" @click="clickbusinessPlan(item,index)"-->
-                <!--                            :key="index">{{item.display}}</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
             </div>
         </div>
         <div class="mmdiv margin_top_20">
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in dataList" :key="index">
-                    <!-- @mouseover.stop="toggleShow(cascade.value)" -->
-                    <!--                    <div class="pro_top_img_box border_ca">-->
-                    <!--                        <img src="/style/images/technologyMarket/pro_img.png" />-->
-                    <!--                    </div>-->
-                    <el-image class="border_ca achi_img_box " :src="getImgPath(item.projectImgPath)">
+                    <el-image v-if="item.projectImgPath" class="border_ca achi_img_box "
+                        :src="getImgPath(item.projectImgPath)">
                         <div slot="placeholder" class="image-slot">
                             加载中<span class="dot">...</span>
                         </div>
                     </el-image>
+
+                    <img v-else class="border_ca achi_img_box"
+                        src="../style/images/technologyMarket/tech_achievements.jpg">
                     <div class="pro_bottom_text">
                         <h4 class="ell_nowrap">{{item.title}}</h4>
-                        <!--                        <div class="ell_nowrap">所属领域：{{item.projectIndustryType_display}}</div>-->
                         <div class="ell_nowrap" :title="item.projectIndustryType.map(item=>item.name).join(',')">
                             所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</div>
                         <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
