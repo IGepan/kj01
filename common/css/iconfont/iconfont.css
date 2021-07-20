@@ -736,7 +736,9 @@
 .icon-jishuzhichizhichizhinengzhinengfuwufuwuke:before {
   content: "\e615";
 }
-
+.el-icon-arrow-up:before {
+  content: "\e6e1";
+}
 .icon-jinggao:before {
   content: "\e62b";
 }

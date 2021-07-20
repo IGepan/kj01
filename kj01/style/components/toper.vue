@@ -3,7 +3,7 @@
     <div class="mdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
         <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
-        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>！</div>
+        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a></div>
       </div>
       <!-- <div class="fl">
         <a
@@ -86,6 +86,16 @@
             >易智网</a
           >！
         </div>
+        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" ><a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;区县分平台<img class="icom" src="common/images/up.png" ref="icom"></a>
+          <div class="seediv" ref="acp">
+            <ul>
+              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>
+              <li><a href="#" >万州</a></li>
+<!--              <li><a href="">梁平</a></li>-->
+            </ul>
+          </div>
+        </div>
+
       </div>
       <div class="fr toper-right">
         <div class="loginbox">
@@ -209,6 +219,7 @@ module.exports = {
           content: "",
         },
       ],
+      active:''
     };
   },
   created: function () {
@@ -307,6 +318,7 @@ module.exports = {
     }
   },
   methods: {
+
     isHomePage: function (e) {
       if (location.pathname === "/" || location.pathname === "/index.html") {
         e.preventDefault();
@@ -595,6 +607,18 @@ module.exports = {
       }
       this.$httpCom.accessSave(data);
     },
+    mouseOver() {
+       this.active ="font-weight: bold";
+       this.$refs.icom.style.transform='rotateX(180deg)'
+      // 操作dom 获取p标签改变其样式
+      this.$refs.acp.style.display='block'
+    },
+    // 移出
+    mouseLeave() {
+      this.active ="";
+      this.$refs.icom.style.transform='rotateX(0deg)'
+      this.$refs.acp.style.display='none'
+    }
   },
 };
 </script>
@@ -630,6 +654,41 @@ module.exports = {
 .toper-right div {
   margin-left: 30px;
 }
+/*.showdiv a:hover{*/
+/*  font-weight: bold;*/
+/*}*/
+/*.showdiv a:hover .icom{*/
+/*  -webkit-transform: rotateX(180deg);*/
+/*   -ms-transform: rotateX(180deg);*/
+/*  -o-transform: rotateX(180deg);*/
+/*  transform: rotateX(180deg);*/
+/*}*/
+
+.icom{
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.seediv{
+  display: none;
+  width: 360px;
+  height: 150px;
+  overflow-y: scroll;
+  background: #FFFFff;
+  border: 1px solid #0b3b8a;
+  position: absolute;
+  z-index: 99;
+  top:40px;
+  left:500px;
+  padding: 10px;
+  /*background: url(/common/images/bg.jpg) no-repeat;*/
+  /*background-size: cover;*/
+}
+.seediv ul li{float: left;margin-right: 15px}
+.seediv ul li:nth-child(4n){
+  margin-right: 0;
+}
+.seediv ul li a{padding: 5px 20px!important;background: #0b3b8a;color: #FFFFff}
+.seediv ul li a:hover{background: #fc7f10;}
 .loginbox a {
   display: inline-block;
   margin-right: 5px;

@@ -819,6 +819,16 @@ require(['/common/js/require.config.js'], function () {
                     window.removeEventListener("scroll", this.handleScroll)
                 },
                 methods: {
+                    Pricre: function (v){
+
+                        if (typeof v !== 'undefined' ) {
+                            if (v >= 10000) {
+                                return  (v / 10000).toFixed(2) + '万元';
+                            }else {
+                                return  v + '元'
+                            }
+                        }
+                    },
                     //价格判断
                     formatPrice: function (flag, v, n, m) {
                         if (flag == '2') {
