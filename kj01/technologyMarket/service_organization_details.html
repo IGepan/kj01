@@ -179,11 +179,14 @@
 
                     <li class="classify_list bg_fff  fl" v-for="(item,index) in techBrokerList" :key="index">
                         <div class="pro_top_img_box">
-                            <el-image class="border_ca broker_img_box" :src="getImgPath(item.logoPath)" fit="cover">
+                            <el-image v-if="item.logoPath" class="border_ca broker_img_box"
+                                :src="getImgPath(item.logoPath)" fit="cover">
                                 <div slot="placeholder" class="image-slot">
                                     加载中<span class="dot">...</span>
                                 </div>
                             </el-image>
+                            <img v-else class="border_ca broker_img_box"
+                                src="../style/images/technologyMarket/technical_manager.jpg">
                         </div>
                         <div class="pro_bottom_text padding_right_20 padding_bottom_20 padding_left_20">
                             <div>

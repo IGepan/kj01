@@ -34,12 +34,13 @@
 
 
             <div class="fl details_left_tag border_ececec">
-                <el-image class="border_ca investment_img_box" :src="getImgPath(ZMProjectVO.projectImgPath)"
-                    fit="cover">
+                <el-image v-if="ZMProjectVO.projectImgPath" class="border_ca investment_img_box"
+                    :src="getImgPath(ZMProjectVO.projectImgPath)" fit="cover">
                     <div slot="placeholder" class="image-slot">
                         加载中<span class="dot">...</span>
                     </div>
                 </el-image>
+                <img v-else class="border_ca achi_img_box" src="../style/images/technologyMarket/tech_achievements.jpg">
             </div>
             <div class="fl details_right_content">
                 <div class="list_details_title clear">
@@ -96,62 +97,11 @@
                     </div>
                     <div class="clear margin_top_20">
                         <a class="fl list_details_btn bg_orange color_fff" @click.stop="invitation">邀约交流</a>
-                        <!-- <span class="list_collection fr">收藏：12</span>
-                        <i class="details_title_line fr"></i> -->
                         <span class="list_browse fr">浏览：{{ZMProjectVO.readCount}}</span>
                     </div>
 
                 </div>
             </div>
-
-
-            <!-- <div class="list_details_title clear">
-                <h3 class="fl">{{ZMProjectVO.title}}</h3>
-                <span class="list_browse margin_left_20">浏览：{{ZMProjectVO.readCount}}</span>
-                <div class="fr">
-                    <span v-if="favoriteFlag==0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
-                        收藏
-                    </span>
-                    <span v-if="favoriteFlag!=0" class="color_orange fl small_active_btn" @click.stop="addFavorite">
-                        已收藏
-                    </span>
-                    <a class="fl list_details_btn bg_orange color_fff" @click.stop="invitation">邀约交流</a>
-                </div>
-            </div> -->
-
-
-
-
-            <!-- <div class="list_details_table margin_top_20">
-                <table width="100%" border="0" cellspacing="1" cellpadding="0">
-                    <tr>
-                        <td class="td_title">行业类型：</td>
-                        <td class="td_content">{{ZMProjectVO.projectIndustryType_display}}</td>
-                        <td class="td_title">关键字：</td>
-                        <td class="td_content">{{ZMProjectVO.title}}</td>
-                    </tr>
-                    <tr>
-                        <td class="td_title">成果类型：</td>
-                        <td class="td_content">{{ZMProjectVO.projectType_display}}</td>
-                        <td class="td_title">需要附加服务：</td>
-                        <td class="td_content">{{ZMProjectVO.zMProjectAdditional}}</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="td_title">意向价格(元)：</td>
-                        <td class="td_content">{{ZMProjectVO.budget}}</td>
-                        <td class="td_title">合作方式：</td>
-                        <td class="td_content">{{ZMProjectVO.cooperationMode_display}}</td>
-                    </tr>
-           
-                    <tr>
-                        <td class="td_title">面向地区：</td>
-                        <td class="td_content">{{ZMProjectVO.province}}</td>
-                        <td class="td_title">团队牵头人：</td>
-                        <td class="td_content">{{ZMProjectVO.teamFirstName}}</td>
-                    </tr>
-                </table>
-            </div> -->
         </div>
 
         <div class="mdiv margin_top_20 margin_bot_20   padding_bottom_20">
@@ -165,12 +115,14 @@
                             :href="'tech_achievements_details.html?id='+item.id">
                             <div class="width_25 fl manager_img"
                                 style="width: 50px;height: 50px;border-radius: 50%;overflow: hidden;">
-                                <el-image style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"
-                                    :src="getImgPath(item.projectImgPath)" fit="cover">
+                                <el-image v-if="item.projectImgPath" style="max-width: 100%;max-height: 100%;"
+                                    class="border_ca broker_img_box" :src="getImgPath(item.projectImgPath)" fit="cover">
                                     <div slot="placeholder" class="image-slot">
                                         加载中<span class="dot">...</span>
                                     </div>
                                 </el-image>
+                                <img v-else style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"
+                                    src="../style/images/technologyMarket/tech_achievements.jpg">
                             </div>
                             <div class="width_73 fr">
                                 <div class="ell_nowrap padding_bottom_10" style="color:#13c9ef">{{item.title}}</div>
@@ -185,11 +137,6 @@
                             </div>
                         </a>
                     </li>
-                    <!-- <li class="padding_15_0  border_bot_ededed margin_lr_20">
-                        <div class="ell_nowrap padding_bottom_10">标题</div>
-                        <div class="ell_nowrap color_999 font_14">行业领域：行业领域：行业领域：行业领域：</div>
-                        <div class="ell_nowrap margin_top_4 color_999 font_14">喜好阶段：喜好阶段：喜好阶段：喜好阶段：喜好阶段：</div>
-                    </li> -->
                 </ul>
             </div>
             <div class="width_73 fr">
