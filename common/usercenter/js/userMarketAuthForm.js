@@ -257,14 +257,14 @@ require(['/common/js/require.config.js'], function () {
                             }
                             var data = res.data;
                             console.log(data);
-                            console.log(_this.showType)
                             _this.userInfoType = data;
-                            if (_this.userInfoType.identityType != '01') {
+                            if (_this.userInfoType.identityType == '' || _this.userInfoType.identityType == undefined || _this.userInfoType.identityType == null) {
+                                _this.$dialog.showToast("请先绑定个人信息");
+                                setTimeout(function () {
+                                    window.location.href = '/common/usercenter/user_information.html';
+                                }, 1000)
+                            } else if (_this.userInfoType.identityType != '01') {
                                 _this.authentication_type = '3'
-                                // if (_this.showType == 2) {
-                                // } else {
-                                //     _this.authentication_type = '4'
-                                // }
                             } else {
                                 _this.authentication_type = '1'
                             }
