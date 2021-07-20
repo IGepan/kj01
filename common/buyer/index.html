@@ -26,40 +26,40 @@
               <span>我的需求</span>
               <strong>发需求</strong>
             </a>
-            <a class="red" v-if="isConference" @click.stop="handleShowTips">
-              <i class="iconfont icon-tool"></i>
-              <span>我的技术</span>
-              <strong>找技术</strong>
-            </a>
-            <a v-else class="red"
-              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=technology'">
+<!--            <a class="red" v-if="isConference" @click.stop="handleShowTips">-->
+<!--              <i class="iconfont icon-tool"></i>-->
+<!--              <span>我的技术</span>-->
+<!--              <strong>找技术</strong>-->
+<!--            </a>-->
+            <a class="red"
+              :href="$pathPrefix+'/technologyMarket/index.html'">
               <i class="iconfont icon-tool"></i>
               <span>我的技术</span>
               <strong>找技术</strong>
             </a>
 
-            <a class="blue" v-if="isConference" @click.stop="handleShowTips">
-              <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
-              <span>我的需求</span>
-              <strong>找服务</strong>
-            </a>
-            <a v-else class="blue" href="/searchList.html?type=service">
+<!--            <a class="blue" v-if="isConference" @click.stop="handleShowTips">-->
+<!--              <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>-->
+<!--              <span>我的需求</span>-->
+<!--              <strong>找服务</strong>-->
+<!--            </a>-->
+            <a class="blue" :href="$pathPrefix+'/mall/index.html'">
               <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
               <span>我的需求</span>
               <strong>找服务</strong>
             </a>
 
-            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">
-              <i class="iconfont icon-chanpin"></i>
-              <span>我的产品</span>
-              <strong>找产品</strong>
-            </a>
-            <a v-else class="aqua"
-              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=product'">
-              <i class="iconfont icon-chanpin"></i>
-              <span>我的产品</span>
-              <strong>找产品</strong>
-            </a>
+<!--            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">-->
+<!--              <i class="iconfont icon-chanpin"></i>-->
+<!--              <span>我的产品</span>-->
+<!--              <strong>找产品</strong>-->
+<!--            </a>-->
+<!--            <a v-else class="aqua"-->
+<!--              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=product'">-->
+<!--              <i class="iconfont icon-chanpin"></i>-->
+<!--              <span>我的产品</span>-->
+<!--              <strong>找产品</strong>-->
+<!--            </a>-->
             <a class="steelblue" @click.stop="handleShowTips">
               <i class="iconfont icon-ziyuanjk"></i>
               <span>我的资源</span> <strong>找资源</strong>
@@ -141,7 +141,7 @@
           <div class="rightbox">
             <div class="card mt20 adlink">
               <a v-if="isConference" @click.stop="handleShowTips"
-                style="background-image: url('/common/images/userCenterAd.jpg')"></a>
+                style="background-image: url('/common/images/userCenterAd.png')"></a>
               <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>
             </div>
             <div class="card partner mt20">
@@ -155,14 +155,12 @@
             <div class="card servicecard mt20">
               <div class="title">快捷服务</div>
               <div class="servicelist clear">
-                <a target="_blank" href="http://ip.kjy01.com"><i class="iconfont icon-zhishichanquan"></i>知识产权质押融资服务</a>
-                <a target="_blank" href="http://gis.kjy01.com/"><i
-                    class="iconfont icon-zhongchuangkongjian-"></i>创新创业互动</a>
-                <a target="_blank" href="http://zc.kjy01.com/"><i class="iconfont icon-woyaozhongchou"></i>知识产权服务</a>
-                <a target="_blank" href="http://pgpx.kj01.cn/"><i class="iconfont icon-guanli"></i>创新活动</a>
-                <a target="_blank" href="#"><i class="iconfont icon-peixunfazhan"></i>科技人才服务</a>
-                <a target="_blank" href="http://www.kjy01.com/index/default/zscq.html"><i
-                    class="iconfont icon-gengduo"></i>更多服务</a>
+                <a target="_blank" href="https://www.kj01.cn/policyMatchLogin.html"><i><img src="/common/images/zhipei.png" width="40"></i>政策智配</a>
+                <a target="_blank" href="https://www.kj01.cn/answer/autoanswer.html"><i><img src="/common/images/daren.png" width="40"></i>政策答人</a>
+                <a target="_blank" href="https://www.kj01.cn/common/buyer/index.html"><i><img src="/common/images/sudi.png" width="40"></i>政策速递</a>
+                <a target="_blank" href="https://www.kj01.cn/common/activity/list.html?code=001.004.001.001"><i><img src="/common/images/huodong.png" width="40"></i>活动发布</a>
+                <a target="_blank" href="https://www.kj01.cn/mall/index.html"><i><img src="/common/images/shangcheng.png" width="40"></i>易智商城</a>
+                <a target="_blank" href="http://www.kjy01.com/index/default/zscq.html"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>
               </div>
             </div>
           </div>
