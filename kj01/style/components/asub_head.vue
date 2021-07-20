@@ -111,18 +111,18 @@ module.exports = {
           label: '首页',
           url: '/'
         },
-        {
-          label: '企业学堂',
-          url: '/alist.html?type=218340665862391473'
-        },
-        {
-          label: '品牌活动',
-          url: '/atList.html'
-        },
-        {
-          label: '主题活动',
-          url: '/alist.html?type=218340665912723126'
-        }
+        // {
+        //   label: '企业学堂',
+        //   url: '/alist.html?type=218340665862391473'
+        // },
+        // {
+        //   label: '品牌活动',
+        //   url: '/atList.html'
+        // },
+        // {
+        //   label: '主题活动',
+        //   url: '/alist.html?type=218340665912723126'
+        // }
       ]
     }
   },

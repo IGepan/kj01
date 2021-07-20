@@ -27,8 +27,8 @@ define(['jquery', 'httpUrl', 'http'], function ($, httpUrl, Http) {
     getActiveStatistics: function (param) {
       return Http.get(httpUrl.baseUrl + '/active/getActiveStatistics', param);
     },
-     //活动首页-服务机构，技术成果，政策资源统计
-     getGraphStatistics: function (param) {
+    //活动首页-服务机构，技术成果，政策资源统计
+    getGraphStatistics: function (param) {
       return Http.post(httpUrl.baseUrl + '/graph/statistics', param);
     },
     // 活动列表-门户
@@ -55,24 +55,32 @@ define(['jquery', 'httpUrl', 'http'], function ($, httpUrl, Http) {
     selectIssueToday: function (param) {
       return Http.post(httpUrl.baseUrl + '/active/selectIssueToday', param);
     },
-		/**
-		 * 收藏商品(鉴权)
-		 * storeId: 商品id或店铺id
-		 * type：收藏类型01：商品 02：店铺(字典表：
-		 */
+    /**
+     * 收藏商品(鉴权)
+     * storeId: 商品id或店铺id
+     * type：收藏类型01：商品 02：店铺(字典表：
+     */
     selected: function (param) {
       return Http.post(httpUrl.baseUrl + '/collection/selected', param)
     },
-		/**
-		 * 取消商品收藏(鉴权)
-		 * goodsId: 商品ID
-		 */
+    /**
+     * 取消商品收藏(鉴权)
+     * goodsId: 商品ID
+     */
     cancel: function (param) {
       return Http.get(httpUrl.baseUrl + '/collection/cancel', param)
     },
     // 获取通用多级树(鉴权)
     getTree: function (param) {
       return Http.post(httpUrl.baseUrl + '/treeMapSaas/getTree', param);
+    },
+    // 系列活动列表-门户
+    selectPortalPage: function (param) {
+      return Http.post(httpUrl.baseUrl + '/topic/selectPortalPage', param);
+    },
+    //品牌活动
+    selectActive: function (param) {
+      return Http.post(httpUrl.baseUrl + '/dict/selectList', param);
     },
     // 评价项目
     activeEvaluate: function (param) {
