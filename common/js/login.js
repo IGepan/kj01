@@ -367,7 +367,7 @@ require(['/common/js/require.config.js'], function () {
                     //同步登录注册易智学堂
                     var userPhone=localStorage.getItem("userPhone")
                     console.log(userPhone,'易智学堂登录')
-                    httpLogin.yzxtCheckPhone({phone: userPhone}).then(res => {
+                    httpLogin.yzxtCheckPhone(userPhone).then(res => {
                       // 判断是否有return url
                       //判断是否是来自益智学堂
                       var isSchool = false;
