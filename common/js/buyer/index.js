@@ -26,7 +26,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         attentionList: [],
         hotList: [],
         hotType: '105',
-        policyList: []
+        policyList: [],
+        isNotSite: true
       },
       filters: {
         filtersTips: function (v, evaluated) {
@@ -75,8 +76,16 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.getAmountList('010')
         this.getSelectShopByPage('105')
         this.getUserInfo();
+        this.checkSite();
       },
       methods: {
+        checkSite: function () {
+          var url = window.location.href
+          var vm = this;
+          if (url.indexOf('/site/') > 0) {
+            vm.isNotSite = false;
+          }
+        },
         // 订单信息
         getOrderList: function () {
           var vm = this

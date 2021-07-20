@@ -31,8 +31,14 @@
 <!--              <span>我的技术</span>-->
 <!--              <strong>找技术</strong>-->
 <!--            </a>-->
-            <a class="red"
+            <a class="red" v-if="isNotSite"
               :href="$pathPrefix+'/technologyMarket/index.html'">
+              <i class="iconfont icon-tool"></i>
+              <span>我的技术</span>
+              <strong>找技术</strong>
+            </a>
+            <a class="red" v-else-if
+               href="/scienceResult.html">
               <i class="iconfont icon-tool"></i>
               <span>我的技术</span>
               <strong>找技术</strong>
@@ -43,12 +49,16 @@
 <!--              <span>我的需求</span>-->
 <!--              <strong>找服务</strong>-->
 <!--            </a>-->
-            <a class="blue" :href="$pathPrefix+'/mall/index.html'">
+            <a class="blue"  v-if="isNotSite" :href="$pathPrefix+'/mall/index.html'">
               <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
               <span>我的需求</span>
               <strong>找服务</strong>
             </a>
-
+            <a class="blue"  v-else-if  href="/scienceService.html">
+              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
+              <span>我的需求</span>
+              <strong>找服务</strong>
+            </a>
 <!--            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">-->
 <!--              <i class="iconfont icon-chanpin"></i>-->
 <!--              <span>我的产品</span>-->
