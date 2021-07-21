@@ -74,6 +74,28 @@
 }
 
 /* 查询行 */
+.icon-box{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-flow: row;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  background-color: #FFFFff;
+  margin-right: 12px;
+  padding: 10px 20px;
+  height: 120px;
+  width: 32.65%;
+}
+.icon-box:hover{
+  box-shadow:0px 0px 11px rgba(0,0,0,0.2);
+}
+.icon-box:last-child{margin-right: 0}
+.icon-box img{
+  width: 64px;
+  margin-right: 40px;
+}
 .search-row {
   padding: 0 20px;
 }

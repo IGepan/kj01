@@ -1,6 +1,7 @@
 <template>
   <div class="number-grow-warp">
     <span :style="styles" ref="numberGrow" :data-time="time" class="number-grow" :data-value="value">0</span>
+
   </div>
 </template>
 
@@ -68,12 +69,13 @@ module.exports = {
 .number-grow-warp{
   transform: translateZ(0);
   margin-right: 10px;
+  float: left;
 }
 .number-grow {
 	font-family: MicrosoftYaHei;
 	font-size: 24px;
   line-height: 24px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 	letter-spacing: 0px;
   margin:0;
   display: block;

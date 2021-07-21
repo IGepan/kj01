@@ -21,6 +21,36 @@ require(['/common/js/require.config.js'], function () {
               { code: 'yes_no', label: '线上活动', operationType: 'select', valueKey: 'onLineFlag', valueType: 'string', isTop: 0 },
               { code: 'active_status', group: 'wx', label: '活动状态', operationType: 'select', valueKey: 'status', valueType: 'string', isTop: 0 },
             ],
+            numberCounts: [
+              {
+                url: '/style/images/aindex/huod.png',
+                count: 0,
+                unit: '场',
+                key: 'activeNum',
+                label: '活动场次'
+              },
+              {
+                url: '/style/images/aindex/fuwu.png',
+                count: 0,
+                unit: '次',
+                key: 'serverNum',
+                label: '服务人次'
+              },
+              {
+                url: '/style/images/aindex/qiye.png',
+                count: 0,
+                unit: '家',
+                key: 'orgServerNum',
+                label: '服务企业'
+              },
+              // {
+              //   icon: 'icon-duijie',
+              //   count: 0,
+              //   unit: '次',
+              //   key: 'signNum',
+              //   label: '活动对接'
+              // }
+            ],
             searchtitle:{
               type: String,
               default: ''
@@ -83,16 +113,25 @@ require(['/common/js/require.config.js'], function () {
           components: {
             'ly-toper': httpVueLoader('/style/components/toper.vue'),
             'sub-head': httpVueLoader('/style/components/asub_head.vue'),
+            'number-grow': httpVueLoader('/style/components/number.vue'),
             'pages': httpVueLoader('/style/components/pages.vue'),
             'web-footer': httpVueLoader('/style/components/web_footer.vue')
           },
           created: function () {
             this.initData()
+            this.getNumbers();
             // this.getNewList()
             this.searchtitle && (this.searchValue = this.searchtitle)
           },
           methods: {
-
+            getNumbers: function () {
+              var vm = this;
+              indexApi.getActiveStatistics({}).then(function (res) {
+                res.result && vm.$data.numberCounts.forEach(function(item) {
+                  item.count = res.result[item.key] || 0
+                })
+              })
+            },
             handleSearch: function () {
               if (location.pathname === '/alist.html') {
                 this.$emit('search', this.searchValue)
