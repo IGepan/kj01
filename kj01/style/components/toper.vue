@@ -4,17 +4,17 @@
       <div class="fl toper-left">
         <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>
-        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >
-          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;重庆各区县分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>
-          <div class="seediv" ref="acp">
-            <ul>
-              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>
-              <li><a href="#" >万州</a></li>
-              <li><a href="">梁平</a></li>
-              <li><a href="">两江</a></li>
-            </ul>
-        </div>
-        </div>
+<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
+<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
+<!--          <div class="seediv" ref="acp">-->
+<!--            <ul>-->
+<!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
+<!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
+<!--              <li><a class="no-color" href="">万州</a></li>-->
+<!--              <li><a class="no-color" href="">梁平</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        </div>-->
       </div>
       <!-- <div class="fl">
         <a
@@ -97,17 +97,18 @@
             >易智网</a
           >！
         </div>
-        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >
-          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;重庆各区县分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>
-          <div class="seediv" ref="acp">
-            <ul>
-              <li><a href="https://www.kj01.cn/site/qijiang/" >綦江</a></li>
-              <li><a href="#" >万州</a></li>
-              <li><a href="">梁平</a></li>
-              <li><a href="">两江</a></li>
-            </ul>
-          </div>
-        </div>
+<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
+<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
+<!--          <div class="seediv" ref="acp">-->
+<!--            <ul>-->
+<!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
+<!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
+<!--              <li><a class="no-color"  href="">万州</a></li>-->
+<!--              <li><a class="no-color"  href="">梁平</a></li>-->
+
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
       <div class="fr toper-right">
         <div class="loginbox">
@@ -687,17 +688,25 @@ module.exports = {
   position: absolute;
   z-index: 99;
   top:40px;
-  left:500px;
-  padding: 10px 15px;
-  background: url(/common/images/bg.jpg) no-repeat;
-  background-size: cover;
+  left:550px;
+  padding:15px;
+  border: 1px solid #dddddd;
+  border-top: 0;
+  /*background: url(/common/images/bg.jpg) no-repeat;*/
+  /*background-size: cover;*/
+  background: #FFFFff;
 }
-.seediv ul li{float: left;margin-right: 15px}
+.no-color{
+  background: #dddddd;
+  pointer-events: none;
+}
+.seediv ul li{float: left;margin-right: 12px;width: 22%;margin-bottom: 10px}
 .seediv ul li:nth-child(4n){
   margin-right: 0;
 }
-.seediv ul li a{padding: 5px 20px!important;background: rgba(0,0,0,0.7);color: #FFFFff}
-.seediv ul li a:hover{color: #fc7f10;}
+.seediv ul li a{border: 1px solid #dddddd;color: #6a6e7d;width: 100%;display: inline-block;height: 35px;line-height: 35px;text-align: center}
+.seediv ul li a:hover{color:#fc7f10;
+  border: 1px solid #fc7f10}
 .loginbox a {
   display: inline-block;
   margin-right: 5px;
