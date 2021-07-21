@@ -461,17 +461,19 @@
                                         <i class="color_red" v-else style="display: none;">*</i>
                                         证书编号：</span>
 
-                                    <el-input class="width_100_115" disabled v-if="certificate_or_not">
-                                    </el-input>
-                                    <template v-if="!certificate_or_not" v-for="item in certificateList" >
-                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"
-                                           @click="turnPageClassSign" target="_blank">前往学习,获得证书</a>
-                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">{{item.certificateNu}}</span>
+<!--                                    <el-input class="width_100_115" disabled v-if="certificate_or_not">-->
+<!--                                        -->
+<!--                                    </el-input>-->
+                                    <template v-if="certificate_or_not" v-for="item in certificateList" >
+
+                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">{{item.className +'：'+ item.certificateNu}}</span>
                                         <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
-                                                                               @click="turnPageClassSign" target="_blank">证书申请已提交，等待平台审核</a>
+                                                                               @click="turnPageClassSign" target="_blank">{{item.className + '：证书申请已提交，等待平台审核'}}</a>
                                         <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"
-                                           @click="turnPageClassSign" target="_blank">您提交的证书申请被拒绝，请重新学习或提交</a>
+                                           @click="turnPageClassSign" target="_blank">{{item.className + '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>
                                     </template>
+                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"
+                                       @click="turnPageClassSign" target="_blank">前往学习,获得证书</a>
 <!--                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"-->
 <!--                                       @click="turnPageClassSign" target="_blank">证书申请已提交，等待平台审核</a>-->
 <!--                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"-->
