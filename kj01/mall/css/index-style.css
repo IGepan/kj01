@@ -881,7 +881,23 @@ a:hover {
   background: url(../images/rebg.png) no-repeat 50% 50%;
   background-size: cover;
 }
-
+.icon-box{
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+}
+.boxlist{
+  border-right: 1px solid #dddddd;
+  text-align: center;
+  width: 14.28%;
+}
+.boxlist:last-child{
+  border: 0
+}
+.boxlist img{
+  width: 64px;
+  margin-bottom: 10px;
+}
 .rightbox-list {
   position: fixed;
   z-index: 999;

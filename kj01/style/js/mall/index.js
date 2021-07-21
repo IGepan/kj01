@@ -57,6 +57,7 @@ require(['/common/js/require.config.js'], function () {
                     bgcolor:[
                         'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7','bg6','bg8','bg9','bg10'
                     ],
+                    url:['/mall/images/icon1.png','/mall/images/icon2.png','/mall/images/icon3.png','/mall/images/icon4.png','/mall/images/icon5.png','/mall/images/icon6.png','/mall/images/icon7.png'],
                     scrollList:[]
                 },
                 // filters: {
@@ -325,6 +326,7 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.selectMailGoods({type: item.id,orderBy:'homePageFlag desc,createTime desc'}).then(function (res) {
                             //设置数据列表
                             item.goodList  =  res.result.list || []
+                            item.total = res.result.total
                             //判断是否循环完
                             if(idx < vm.typeList.length - 1)vm.getMailServiceData(idx + 1)
 

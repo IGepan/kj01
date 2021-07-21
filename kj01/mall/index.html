@@ -193,15 +193,22 @@
             </div>
         </div>
         <div class="icon-box">
-            <template v-for="(item, ni) in Counts">
-                <div  :key="ni">
-                        <img :src="item.url">
+            <template v-for="(item, ni) in typeList">
+                <div class="boxlist fl" :key="ni">
+                        <img :src="url[ni]">
                     <div>
-                        <div style="margin-bottom: 15px;font-size: 16px">{{Count.label}}</div>
-                        <span class="number-grow fl" style="color:rgb(52, 51, 52)">{{numberCount.unit}}</span>
+                        <div >{{item.name}}</div>
+                        <span  style="color:rgb(52, 51, 52);font-size: 24px">{{item.total}}个</span>
                     </div>
                 </div>
             </template>
+            <div class="boxlist fl" >
+                <img src="/mall/images/icon7.png">
+                <div>
+                    <div >设备</div>
+                    <span  style="color:rgb(52, 51, 52);font-size: 24px">10个</span>
+                </div>
+            </div>
         </div>
     </div>
         <div class="container floor">
