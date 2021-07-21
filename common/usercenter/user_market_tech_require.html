@@ -168,6 +168,18 @@
                                                 <el-button size="mini" type="primary">匹配
                                                 </el-button>
                                             </el-dropdown-item>
+                                            <el-dropdown-item v-if="scope.row.delFlag !=2"
+                                                :command="HandleButtonDeflag(scope.row.delFlag==0?1:0, scope.row.id,3)">
+                                                <el-button size="mini" type="primary">
+                                                    <span v-if="scope.row.delFlag==0">下架</span>
+                                                    <span v-if="scope.row.delFlag==1">上架</span>
+                                                </el-button>
+                                            </el-dropdown-item>
+                                            <el-dropdown-item v-if="scope.row.delFlag ==2">
+                                                <el-button size="mini" type="primary" disabled="true">
+                                                    管理员下架
+                                                </el-button>
+                                            </el-dropdown-item>
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </template>

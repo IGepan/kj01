@@ -259,16 +259,24 @@ require(['/common/js/require.config.js'], function () {
                             var data = res.data;
                             console.log(data);
                             _this.userInfoType = data;
-                            if (_this.userInfoType.identityType == '' || _this.userInfoType.identityType == undefined || _this.userInfoType.identityType == null) {
-                                _this.$dialog.showToast("请先绑定个人信息");
-                                setTimeout(function () {
-                                    window.location.href = '/common/usercenter/user_information.html';
-                                }, 1000)
-                            } else if (_this.userInfoType.identityType != '01') {
-                                _this.authentication_type = '3'
-                            } else {
-                                _this.authentication_type = '1'
-                            }
+
+                            // organizationName: "高新技术企业申报（步扬科技）"
+                            // phone: "15923168725"
+                            // realName: ""
+                            _this.brokerPlatform.brokerName = data.realName;
+                            _this.transferAgencyForm.organName = data.organizationName;
+                            _this.InvestmentForm.investmentName = data.organizationName;
+
+                            // if (_this.userInfoType.identityType == '' || _this.userInfoType.identityType == undefined || _this.userInfoType.identityType == null) {
+                            //     _this.$dialog.showToast("请先绑定个人信息");
+                            //     setTimeout(function () {
+                            //         window.location.href = '/common/usercenter/user_information.html';
+                            //     }, 1000)
+                            // } else if (_this.userInfoType.identityType != '01') {
+                            //     _this.authentication_type = '3'
+                            // } else {
+                            //     _this.authentication_type = '1'
+                            // }
                         })
                     },
 

@@ -171,6 +171,18 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
+        //上架下架成果数据
+        techShelves: function (param) {
+            return Http.get(httpUrl.baseMarketUrl + '/zMProjectRest/shelves?flag=' + param.flag + "&id=" + param.id);
+        },
+
+
+        //  上架下架需求数据
+        demandShelves: function (param) {
+            return Http.get(httpUrl.baseMarketUrl + '/zMDemandRest/shelves?flag=' + param.flag + "&id=" + param.id);
+        },
+
+
         //////////////////////////////////////////技术成果填写信息///////////////////////////////////////////////////////
 
         // 查询技术成果分类字典

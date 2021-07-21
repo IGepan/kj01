@@ -173,15 +173,19 @@
                 </div>
             </div>
             <ul class="clear">
-                <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techManagerList" :key="index">
-                    <el-image v-if="item.logoPath" class="border_ca broker_img_box" :src="getImgPath(item.logoPath)"
-                        fit="cover">
-                        <div slot="placeholder" class="image-slot">
-                            加载中<span class="dot">...</span>
-                        </div>
-                    </el-image>
-                    <img v-else class="border_ca achi_img_box"
-                        src="../style/images/technologyMarket/technical_manager.jpg">
+                <li class="classify_list bg_fff padding_20 fl " v-for="(item,index) in techManagerList" :key="index">
+                    <div class="position_relative">
+                        <span v-if="item.honorLevel_display"
+                            style="position: absolute;top: 0; left: 0;z-index: 10;background: rgb(0,52,195);padding: 5px;color: #fff;">{{item.honorLevel_display}}</span>
+                        <el-image v-if="item.logoPath" class="border_ca broker_img_box" :src="getImgPath(item.logoPath)"
+                            fit="cover">
+                            <div slot="placeholder" class="image-slot">
+                                加载中<span class="dot">...</span>
+                            </div>
+                        </el-image>
+                        <img v-else class="border_ca achi_img_box"
+                            src="../style/images/technologyMarket/technical_manager.jpg">
+                    </div>
                     <div class="pro_bottom_text">
                         <div>
                             <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.brokerName}}
