@@ -14,6 +14,7 @@ require(['/common/js/require.config.js'], function () {
                 el: '#index_box',
                 mixins: [userCenter],
                 data: {
+                    certificateList: [],
                     httpCom: httpCom,
                     jquery: $,
                     http: httpUser,
@@ -531,6 +532,7 @@ require(['/common/js/require.config.js'], function () {
 
                             if (res.data.length > 0) {
                                 _this.certificate_or_not = true
+                                _this.certificateList = res.data;
                             }
 
                             console.log(_this.certificate_or_not)
