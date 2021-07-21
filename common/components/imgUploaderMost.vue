@@ -41,7 +41,7 @@ module.exports = {
       wa = parseInt(wh[0]) * 2.5 + parseInt(20) + 40;
       ha = parseInt(wh[1]) * 1.5 + parseInt(74) + 40;
     }
-    console.log(111111111111111);
+    // console.log(111111111111111);
     _this.after(
       '<div class="cover"><div class="ctr"><div class="imguploader" style="width:' +
         wa +

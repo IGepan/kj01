@@ -116,28 +116,7 @@ require(['/common/js/require.config.js'], function () {
                                 "sort": "id",
                             },
                             "payload": {
-                                // "achievementBelong": 0,
-                                // "achievementMaturity": 0,
-                                // "budget": 0,
-                                // "businessPlanProportion": 0,
-                                // "certificationFlag": 0,
-                                // "city": "string",
-                                // "cooperationMode": 0,
-                                // "createUserId": 0,
-                                // "delFlag": 0,
-                                // "district": "string",
-                                // "id": 0,
-                                // "platformOrder": 0,
-                                // "projectIndustryType": 0,
-                                // "projectType": 0,
-                                // "province": "string",
-                                // "readCount": 0,
-                                // "saasId": 0,
-                                // "status": "string",
-                                // "title": "string",
-                                // "topMark": 0,
-                                // "updateUserId": 0,
-                                // "version": 0
+
                             }
                         }
 
@@ -256,10 +235,24 @@ require(['/common/js/require.config.js'], function () {
                         } else if (type == 3) {
                             window.location.href = "/common/usercenter/user_market_tech_achi_trans_form.html?proId=" + id;
                         } else if (type == 4) {
-                            // window.location.href = "/common/usercenter/user_market_tech_achi_trans_form.html?proId=" + id;
                             _this.matchShow = true;
                             _this.getBrokerListPage(id);
                             _this.getDemandListPage(id);
+                        } else if (type == 5) {
+                            var form = {
+                                "flag": command.index,
+                                "id": command.command
+                            }
+                            userCenterApi.techShelves(form).then(function (res) {
+                                console.log(res)
+                                if (!res.code) {
+                                    _this.$dialog.showToast(res.message);
+                                    return;
+                                }
+                                _this.$dialog.showToast(command.index == 0 ? "上架成功！" : "下架成功！");
+                                _this.find_tech_list_page();
+                            })
+
                         }
                     },
 
@@ -301,6 +294,14 @@ require(['/common/js/require.config.js'], function () {
                         return {
                             'command': item,
                             "index": index,
+                            "num": num
+                        }
+                    },
+                    // 上架下架
+                    HandleButtonDeflag(deflag, id, num) {
+                        return {
+                            'command': id,
+                            "index": deflag,
                             "num": num
                         }
                     },

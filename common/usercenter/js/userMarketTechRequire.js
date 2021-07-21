@@ -241,6 +241,21 @@ require(['/common/js/require.config.js'], function () {
                             _this.getBrokerListPage(id);
                             _this.getProjectListPage(id);
                             _this.matchShow = true;
+                        } else if (type == 3) {
+                            var form = {
+                                "flag": command.index,
+                                "id": command.command
+                            }
+                            userCenterApi.demandShelves(form).then(function (res) {
+                                console.log(res)
+                                if (!res.code) {
+                                    _this.$dialog.showToast(res.message);
+                                    return;
+                                }
+                                _this.$dialog.showToast(command.index == 0 ? "上架成功！" : "下架成功！");
+                                _this.find_tech_list_page();
+                            })
+
                         }
                     },
 
@@ -268,6 +283,14 @@ require(['/common/js/require.config.js'], function () {
                         return {
                             'command': item,
                             "index": index,
+                            "num": num
+                        }
+                    },
+                    // 上架下架
+                    HandleButtonDeflag(deflag, id, num) {
+                        return {
+                            'command': id,
+                            "index": deflag,
                             "num": num
                         }
                     },
