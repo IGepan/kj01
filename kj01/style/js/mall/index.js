@@ -132,6 +132,7 @@ require(['/common/js/require.config.js'], function () {
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
                     'index-head': httpVueLoader('/style/components/index_head.vue'),
+                    'number-grow': httpVueLoader('/style/components/number.vue'),
                     'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'validate-dialog-mall': httpVueLoader('/common/components/validateDialogmall.vue'),
                 },
@@ -327,7 +328,7 @@ require(['/common/js/require.config.js'], function () {
                             //设置数据列表
                             item.goodList  =  res.result.list || []
                             item.total = res.result.total
-                            //判断是否循环完
+                            //判断是否循环
                             if(idx < vm.typeList.length - 1)vm.getMailServiceData(idx + 1)
 
                         })

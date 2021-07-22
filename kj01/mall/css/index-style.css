@@ -891,6 +891,15 @@ a:hover {
   text-align: center;
   width: 14.28%;
 }
+.boxs{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
 .boxlist:last-child{
   border: 0
 }

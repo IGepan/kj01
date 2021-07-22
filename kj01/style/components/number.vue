@@ -69,7 +69,6 @@ module.exports = {
 .number-grow-warp{
   transform: translateZ(0);
   margin-right: 10px;
-  float: left;
 }
 .number-grow {
 	font-family: MicrosoftYaHei;
