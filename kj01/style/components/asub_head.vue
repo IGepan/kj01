@@ -1,67 +1,69 @@
 <template>
   <div class="subhead">
     <div
-      class="wbg"
-      :class="{borderBottom: bottomBorder}"
+        class="wbg"
+        :class="{borderBottom: bottomBorder}"
     >
       <div class="mdiv">
         <div class="subhead-up">
           <div class="logobox">
             <a
-              href="/alist.html"
-              class="sublogo"
+                class="sublogo"
             >
               <img
-                src="/style/images/logos/bsublogo.png"
-                alt=""
+                  src="/style/images/logos/bsublogo.png"
+                  alt=""
               >
             </a>
-            <label
-              class="sublogo-label"
-              v-text="name"
-            ></label>
+            <a href="/newalist.html"><label
+                class="sublogo-label"
+                v-text="name"
+            ></label></a>
+
           </div>
           <div class="navbox">
-            <nav class="menus">
-              <template v-for="(nav, ni) in navs">
+            <nav class="menus" >
+              <template v-for="(nav, index) in navs">
                 <li
-                  :class="{active: nav.active}"
-                  :key="ni"
-                ><a :href="nav.url">{{nav.label}}</a></li>
+                    :class="{active:Aindex == index}"
+                    :key="index"
+                    @click="navIndex(index)"
+                > <a v-if="nav.id == '-1'" href="/index.html">首页</a>
+                  <a v-else :href="'/alist.html?type='+nav.id" >{{nav.objName}}</a>
+                </li>
               </template>
             </nav>
             <div class="searchbox">
-<!--              <input-->
-<!--                class="input-search"-->
-<!--                v-model="searchValue"-->
-<!--                placeholder="搜索感兴趣的活动"-->
-<!--                type="text"-->
-<!--              >-->
-<!--              <button-->
-<!--                class="btn-search"-->
-<!--                type="button"-->
-<!--                @click.stop="handleSearch"-->
-<!--              >全 站 搜 索</button>-->
+              <!--              <input-->
+              <!--                class="input-search"-->
+              <!--                v-model="searchValue"-->
+              <!--                placeholder="搜索感兴趣的活动"-->
+              <!--                type="text"-->
+              <!--              >-->
+              <!--              <button-->
+              <!--                class="btn-search"-->
+              <!--                type="button"-->
+              <!--                @click.stop="handleSearch"-->
+              <!--              >全 站 搜 索</button>-->
               <input type="text" class="input-search" placeholder="请输入关键词搜索" v-model="searchKey">
               <button class="btn-search" type="button" @click="searchFull">全 站 搜 索</button>
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div
-      v-if="breadcrumb.length"
-      class="mdiv breadcrumb"
-    >当前位置：<span class="breadcrumb__item"><a href="/">首页</a></span> <template v-for="(item, i) in breadcrumb">
+        v-if="breadcrumb.length"
+        class="mdiv breadcrumb"
+    >当前位置：<span class="breadcrumb__item"><a href="/index.html">首页</a></span> <template v-for="(item, i) in breadcrumb">
         <span
-          class="breadcrumb__item"
-          :key="i"
+            class="breadcrumb__item"
+            :key="i"
         ><a
             v-if="item.url"
             :href="item.url"
-          >{{item.label}}</a><template v-else>{{item.label}}</template></span>
-      </template> </div>
+        >{{item.label}}</a><template v-else>{{item.label}}</template></span>
+    </template> </div>
   </div>
 </template>
 <script>
@@ -71,10 +73,10 @@ module.exports = {
       type: String,
       default: ''
     },
-    'navIndex': {
-      type: [String, Number],
-      default: 0
-    },
+    // 'navIndex': {
+    //   type: [String, Number],
+    //   default: 0
+    // },
     'name': {
       type: String,
       default: '活动'
@@ -92,41 +94,53 @@ module.exports = {
   },
 
   watch: {
-    navIndex: function (v) {
-      this.navs.forEach(function (item, i) {
-        item.active = v === i
-      })
-    }
+    // navIndex: function (ni) {
+    //   this.navs.forEach(function (item, i) {
+    //     item.active = ni === i
+    //   })
+    // }
   },
   created: function () {
     this.searchtitle && (this.searchValue = this.searchtitle)
-    this.navs[this.navIndex].active = 1
+    // this.navs[this.navIndex].active = 1
+    this.getIndex()
+
   },
   data: function () {
     return {
       searchKey: '',
       searchValue: '',
+      Aindex:'',
       navs: [
-        {
-          label: '首页',
-          url: '/'
-        },
+        // {
+        //   label: '首页',
+        //   url: '/index.html'
+        // },
         // {
         //   label: '企业学堂',
         //   url: '/alist.html?type=218340665862391473'
         // },
         // {
-        //   label: '品牌活动',
-        //   url: '/atList.html'
-        // },
-        // {
         //   label: '主题活动',
         //   url: '/alist.html?type=218340665912723126'
-        // }
+        // },
+        // {
+        //   label: '培训课程',
+        //   url: '/alist.html?type=235442740417007107'
+        // },
+        // {
+        //   label: '品牌活动',
+        //   url: '/alist.html?type=390092837996355585'
+        // },
+
       ]
     }
   },
   methods: {
+    //导航索引
+    navIndex:function (index){
+      this.Aindex = index
+    },
     //全站搜索
     searchFull: function () {
       location.href = '/search/?title=' + this.searchKey
@@ -139,6 +153,23 @@ module.exports = {
       } else {
         location.href = '/alist.html?title=' + this.searchValue
       }
+    },
+    getIndex: function (){
+      var vm = this
+      this.$http.post(httpUrl.baseUrl + '/treeMapSaas/getTree',[{'type': "11"}]).then(function (res) {
+        if (res.code === 'rest.success') {
+          //给导航数组加入首页
+          var list = [{"id":-1,id: -1,objName:"首页",type: "11"}]
+          vm.navs = list.concat(res.result[0] || [])
+          var type = vm.$utils.getReqStr('type')//获取当前页面链接type值
+          vm.navs.forEach(function (item,idx){
+            if(type == item.id)
+            {
+              vm.Aindex = idx
+            }
+          })
+        }
+      })
     }
   }
 }
@@ -166,7 +197,7 @@ module.exports = {
 .sublogo-label {
   display: inline-block;
   vertical-align: middle;
-  font-family: 'XinYeNianTi'; 
+  font-family: 'XinYeNianTi';
   font-size: 42px;
   font-weight: bold;
   line-height: 54px;
