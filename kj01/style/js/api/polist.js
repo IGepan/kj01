@@ -22,7 +22,12 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     // 条件取得数据字典
     getPolicyQRCodeById: function (param) {
       return Http.get(httpUrl.baseUrl + '/wxApp/policy/getPolicyQRCodeById', param)
+
     },
+      // 活动类型参与人数统计(鉴权)
+      getWebPolicyStatistics: function (param) {
+          return Http.get(httpUrl.baseUrl + '/wxApp/policy/countPolicy', param);
+      },
 		/**
 		 * 收藏商品(鉴权)
 		 * storeId: 商品id或店铺id

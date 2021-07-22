@@ -10,13 +10,65 @@
   <link href="/style/css/button.css" rel="stylesheet" type="text/css">
   <link href="/style/css/polist.css" rel="stylesheet" type="text/css">
   <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
-</head>
 
+</head>
+<style>
+  .countBox__number .number-grow-warp .number-grow {
+    font-size: 24px;
+    line-height: 24px;}
+  .countBox img{
+    width: 64px;
+  }
+
+  .countBox{
+    text-align: center;
+    display: block;
+
+  }
+  .countBox:after{
+    top:25%
+  }
+  .topNumber{
+    padding: 15px 0px;
+   height: auto;
+  }
+  .countBox__number{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .mt10{
+    margin-top: 10px;
+  }
+</style>
 <body>
   <div class="box grayBgbox" v-cloak id='index_box'>
     <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
     <sub-head name="政策资讯" :breadcrumb="breadcrumb"  @search="bindSearchValue" :nav-index="0"></sub-head>
+    <div class="bgw" style="background: #FFFFff;margin-top: 20px">
+      <div class="mdiv topNumber">
+        <template v-for="(numberCount, ni) in numberCounts">
+          <div class="countBox" :key="ni">
+            <img :src="numberCount.url">
+<!--            <div class="countBox_icon">-->
+<!--              <i class="iconfont" :class="numberCount.icon"></i>-->
+<!--            </div>-->
+            <div>
+              <div class="mt10" style="color: #6a6e7d">{{numberCount.label}}</div>
+              <div class="countBox__number mt10">
+                <number-grow :value="numberCount.count" color="#343334" :time="1" ></number-grow>
+                <span class="number-grow" style="color:rgb(52, 51, 52)">个</span>
+              </div>
 
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
     <div class="mdiv commonCententBox">
       <div class="fl mainBox">
         <div class="searchListBox">

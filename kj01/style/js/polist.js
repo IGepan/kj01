@@ -16,6 +16,43 @@ require(['/common/js/require.config.js'], function () {
               label: '政策惠'
             }
           ],
+          numberCounts: [
+            {
+              url: '/style/images/poindex/shenbao.png',
+              count: 0,
+              unit: '条',
+              key: 'declarationNotice',
+              label: '申报通知'
+            },
+            {
+              url: '/style/images/poindex/jiedu.png',
+              count: 0,
+              unit: '条',
+              key: 'policyInterpretation',
+              label: '政策解读'
+            },
+            {
+              url: '/style/images/poindex/minglu.png',
+              count: 0,
+              unit: '场',
+              key: 'publiDirectory',
+              label: '公示名录'
+            },
+            {
+              url: '/style/images/poindex/wenjian.png',
+              count: 0,
+              unit: '次',
+              key: 'governmenDocuments',
+              label: '政府文件'
+            },
+            {
+              url: '/style/images/poindex/jingyao.png',
+              count: 0,
+              unit: '次',
+              key: 'policyEssentials',
+              label: '政策精要'
+            }
+          ],
           recommendList: [],
           dicOptsSet: [
             { code: 'policy_file_type', label: '文件类型', operationType: 'select', valueKey: 'policyFileType', valueType: 'array' },
@@ -85,10 +122,12 @@ require(['/common/js/require.config.js'], function () {
           'ly-toper': httpVueLoader('/style/components/toper.vue'),
           'sub-head': httpVueLoader('/style/components/sub-head.vue'),
           'pages': httpVueLoader('/style/components/pages.vue'),
+          'number-grow': httpVueLoader('/style/components/number.vue'),
           'web-footer': httpVueLoader('/style/components/web_footer.vue'),
           'right-navs': httpVueLoader('/style/components/right_navs.vue'),
         },
         created: function () {
+          this.getNumbers();
           var title = this.$utils.getReqStr('title')
           title && (this.searchForm.title = title);
           var fileType = this.$utils.getReqStr('fileType')
@@ -115,8 +154,17 @@ require(['/common/js/require.config.js'], function () {
             value: 'publishDate-desc',
             display: '时间'
           })
+
         },
         methods: {
+          getNumbers: function () {
+            var vm = this;
+            indexApi.getWebPolicyStatistics({}).then(function (res) {
+              res.result && vm.$data.numberCounts.forEach(function (item) {
+                item.count = res.result[item.key] || 0
+              })
+            })
+          },
           getInnerHtml: function () {
             var labels = $.map($('.cityCode option:selected'), function (el, index) {
               return el.innerHTML !== '省级' && el.innerHTML !== '市级' && el.innerHTML !== '区级' && el.innerHTML || '';
