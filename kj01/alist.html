@@ -22,7 +22,7 @@
   <ly-toper top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
   <sub-head name="活动中心" :bottom-border="true" :searchtitle="searchtitle" :breadcrumb="breadcrumb"
             @search="bindSearchValue" :Aindex="Aindex"></sub-head>
-  <div class="mdiv searchListBox" style="background-color:inherit;">
+  <div class="mdiv searchListBox" style="background-color:inherit;padding-top: 0">
     <template v-for="(numberCount, ni) in numberCounts">
       <div class="icon-box fl" :key="ni">
           <div class="fl">
@@ -40,7 +40,7 @@
     </template>
   </div>
 
-  <div class="mdiv searchListBox">
+  <div class="mdiv searchListBox" >
     <div class="search-row">
       <asearch :searchtitle="searchtitle"  @search="bindSearchValue"></asearch>
     </div>
