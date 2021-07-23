@@ -669,7 +669,7 @@ require(['/common/js/require.config.js'], function () {
 
 
                             var userFrom = {
-                                "mobile": form.brokerPhone, //电话号码
+                                "mobile": localStorage.getItem("userPhone"), //电话号码
                                 "realNameYzw": form.brokerName,//真实姓名
                                 "IDCard": form.brokerIdCard,//身份证
                             }
