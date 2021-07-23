@@ -129,7 +129,7 @@ require(['/common/js/require.config.js'], function () {
                     "personImg": " ",  //  个人封面
                     "inputDataType": false,
                     "dictionaryState": false,
-                    "certificate_or_not": false,
+                    // "certificate_or_not": false,
 
                     imgOption: {
                         size: '400,300',
@@ -240,7 +240,7 @@ require(['/common/js/require.config.js'], function () {
                         this.id = id;
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)));
                         if (this.userInfo && this.userInfo.userName) {
-                            this.myCertificateBrokerDetails(); // 查询经纪人证书详情                            
+                            // this.myCertificateBrokerDetails(); // 查询经纪人证书详情                            
                         } else {
                             window.location.href = '/common/login.html';
                         }
@@ -529,7 +529,7 @@ require(['/common/js/require.config.js'], function () {
                         var form = {
                             "mobile": userPhone,
                         };
-                        _this.certificate_or_not = false;
+                        // _this.certificate_or_not = false;
 
                         userCenterApi.myCertificateBrokerDetails(form).then(function (res) {
                             console.log(res);
@@ -654,22 +654,7 @@ require(['/common/js/require.config.js'], function () {
 
                         form.tags = _this.tagList;
                         form.industryType = _this.industryList;
-
-                        var tech_num = "";
-
-                        console.log(_this.authentication_type)
-                        console.log(_this.certificate_or_not)
-                        if (_this.authentication_type == "1") {
-                            if (_this.certificate_or_not == true) {
-                                tech_num = 0;
-                            } else {
-                                _this.$dialog.showToast("请前往学习，获得证书");
-                                return;
-                            }
-
-                            form.techNo = tech_num;
-                        }
-
+                        form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
                         if (_this.noEmptyInputAuth(form)) {
                             console.log("form", form)
                             userCenterApi.edit_broker_form(form).then(function (res) {
@@ -680,7 +665,18 @@ require(['/common/js/require.config.js'], function () {
                                 }
                                 _this.$dialog.showToast("提交成功");
                                 _this.find_certification_type();
+                            })
 
+
+                            var userFrom = {
+                                "mobile": form.brokerPhone, //电话号码
+                                "realNameYzw": form.brokerName,//真实姓名
+                                "IDCard": form.brokerIdCard,//身份证
+                            }
+                            console.log(userFrom);
+
+                            userCenterApi.eduUserInfo(userFrom).then(function (res) {
+                                console.log(res)
                             })
                         }
                     },

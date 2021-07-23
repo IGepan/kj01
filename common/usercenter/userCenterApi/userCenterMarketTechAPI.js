@@ -182,6 +182,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.get(httpUrl.baseMarketUrl + '/zMDemandRest/shelves?flag=' + param.flag + "&id=" + param.id);
         },
 
+        //更新用户信息
+        eduUserInfo: function (param) {
+            return Http.post(httpUrl.baseSchoolUrl + '/update/eduUserInfo', param);
+        },
 
         //////////////////////////////////////////技术成果填写信息///////////////////////////////////////////////////////
 

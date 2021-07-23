@@ -224,14 +224,10 @@
                     <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
                             我的订单</a>
                     </li>
-<!--                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-custom"></i>-->
-<!--                            我的培训</a></li>-->
-<!--                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>-->
-<!--                            我的考试</a></li>-->
-                    <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
-                                                    我的培训</a></li>
-<!--                    <li><a href="https://study.kj01.cn/uc/ucTimedExam" target="_blank"><i class="el-icon-s-management"></i>-->
-<!--                                                    我的考试</a></li>-->
+                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>
+                            经纪人培训管理</a></li>
+                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>
+                            班级报名管理</a></li>
                     <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
                             收藏</a>
                     </li>
@@ -268,7 +264,6 @@
                             </el-radio>
                         </div>
 
-
                         <div class="f_w_100 clear margin_tb_10 clear" v-if="hasFormData">
                             <div class="f_w_50 fl margin_tb_10">
                                 <span class="width_115 fl padding_06_0 font_14">认证类型：</span>
@@ -292,11 +287,18 @@
                                 </div>
                             </div>
                         </div>
+
                         <div v-if="hasFormData">
                             <div class="clear padding_06_0">
                                 <span class="width_115 fl padding_06_0 font_14">审核状态：</span>
                                 <span v-if="certification_list.certificationFlag==1"
-                                    class="width_100_115 fl padding_06_0">待审核</span>
+                                    class="width_100_115 fl padding_06_0">待审核
+                                    <span v-if="certification_type=='TECH_BROKER'">
+                                        <a class="width_100_115 font_14 padding_left_20 color_13c9ef"
+                                            href="/technologySchool/index.html" target="_blank">如果没有证书，请前往学习</a>
+                                    </span>
+
+                                </span>
                                 <span v-if="certification_list.certificationFlag==2"
                                     class="width_100_115 fl padding_06_0">审核通过</span>
                                 <span v-if="certification_list.certificationFlag==3"
@@ -455,27 +457,6 @@
 
 
                             <div class="clear">
-                                <div class="f_w_50 fl margin_tb_10" v-if="!hasFormData && authentication_type=='1'" style="width: 100%">
-                                    <span class="width_115 fl padding_06_0 font_14">
-                                        <i class="color_red" v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
-                                        <i class="color_red" v-else style="display: none;">*</i>
-                                        证书编号：</span>
-
-<!--                                    <el-input class="width_100_115" disabled v-if="certificate_or_not">-->
-<!--                                        -->
-<!--                                    </el-input>-->
-                                    <template v-if="certificate_or_not" v-for="item in certificateList" >
-
-                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">{{item.className +'：'+ item.certificateNu}}</span>
-                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
-                                                                               @click="turnPageClassSign" target="_blank">{{item.className + '：证书申请已提交，等待平台审核'}}</a>
-                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"
-                                           @click="turnPageClassSign" target="_blank">{{item.className + '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>
-                                    </template>
-                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"
-                                       @click="turnPageClassSign" target="_blank">前往学习,获得证书</a>
-                                </div>
-
                                 <div class="f_w_50 fl margin_tb_10" v-if="authentication_type=='2'">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
                                             v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
