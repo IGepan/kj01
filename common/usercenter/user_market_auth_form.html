@@ -295,10 +295,10 @@
                                 <span class="width_115 fl padding_06_0 font_14">审核状态：</span>
                                 <span v-if="certification_list.certificationFlag==1"
                                     class="width_100_115 fl padding_06_0">待审核
-                                    <span v-if="certification_type=='TECH_BROKER'">
-                                        <a class="width_100_115 font_14 padding_left_20 color_13c9ef"
-                                            href="/technologySchool/index.html" target="_blank">如果没有证书，请前往学习</a>
-                                    </span>
+<!--                                    <span v-if="certification_type=='TECH_BROKER'">-->
+<!--                                        <a class="width_100_115 font_14 padding_left_20 color_13c9ef"-->
+<!--                                            href="/technologySchool/index.html" target="_blank">如果没有证书，请前往学习</a>-->
+<!--                                    </span>-->
 
                                 </span>
                                 <span v-if="certification_list.certificationFlag==2"
@@ -459,17 +459,19 @@
 
 
                             <div class="clear">
-                                <div class="f_w_50 fl margin_tb_10" v-if="authentication_type=='2'">
-                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                            v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
-                                        <i class="color_red" v-else style="display: none;">*</i>证书编号：</span>
+                                <div class="f_w_50 fl margin_tb_10" v-if="certification_type=='TECH_BROKER'">
+                                    <span class="width_115 fl padding_06_0 font_14">
+                                        证书编号：</span>
+                                    <template v-if="certification_type=='TECH_BROKER'" v-for="item in certificateList" >
 
-                                    <el-input class="width_100_115" v-model="brokerPlatform.techNo"
-                                        placeholder="请输入证书编号" maxLength="20"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
-                                    </el-input>
-
-                                    <span class="width_100_115 fl padding_06_0" v-else>{{brokerPlatform.techNo}}</span>
+                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">{{item.className +'：'+ item.certificateNu}}</span>
+                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
+                                           @click="turnPageClassSign" target="_blank">{{item.className + '：证书申请已提交，等待平台审核'}}</a>
+                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"
+                                           @click="turnPageClassSign" target="_blank">{{item.className + '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>
+                                    </template>
+                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!certificate_or_not"
+                                       @click="turnPageClassSign" target="_blank">前往学习,获得证书</a>
                                 </div>
 
                             </div>

@@ -240,7 +240,7 @@ require(['/common/js/require.config.js'], function () {
                         this.id = id;
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)));
                         if (this.userInfo && this.userInfo.userName) {
-                            // this.myCertificateBrokerDetails(); // 查询经纪人证书详情                            
+                            this.myCertificateBrokerDetails(); // 查询经纪人证书详情
                         } else {
                             window.location.href = '/common/login.html';
                         }
@@ -539,11 +539,9 @@ require(['/common/js/require.config.js'], function () {
                             }
 
                             if (res.data.length > 0) {
-                                _this.certificate_or_not = true
+                                // _this.certificate_or_not = true
                                 _this.certificateList = res.data;
                             }
-
-                            console.log(_this.certificate_or_not)
                         })
                     },
 
