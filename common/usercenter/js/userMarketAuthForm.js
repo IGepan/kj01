@@ -246,7 +246,9 @@ require(['/common/js/require.config.js'], function () {
                         }
                     },
 
-
+                    getImgPath(path) {
+                        return httpUrl.fileShowUrl + '/resource/' + path;
+                    },
                     // 查询用户信息
                     myCertificagetUserInfo: function () {
                         var _this = this;
@@ -541,6 +543,7 @@ require(['/common/js/require.config.js'], function () {
                             if (res.data.length > 0) {
                                 // _this.certificate_or_not = true
                                 _this.certificateList = res.data;
+
                             }
                         })
                     },

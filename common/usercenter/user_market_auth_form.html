@@ -199,7 +199,7 @@
 </head>
 
 <body>
-    <div class="box" id='index_box'>
+    <div class="box" id='index_box' v-cloak>
         <ly-toper></ly-toper>
         <header-bar type='market' :http="httpCom"></header-bar>
 
@@ -264,6 +264,25 @@
                             </el-radio>
                             <el-radio class="user_center_radio" v-model="authentication_type" label="4">投资机构
                             </el-radio>
+                            <div class="width_100  margin_tb_10 clear" v-if="authentication_type==1 || authentication_type == 2">
+                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                   v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                    <i class="color_red" v-else style="display: none;">*</i>个人封面：</span>
+                                <div class="width_100_115 fl padding_06_0"
+                                     v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
+                                    <div class="head upload_img fl margin_right_20" v-viewer
+                                         :style="{backgroundImage: certification_list.logo?'url('+certification_list.logo+')':'url(/common/images/defaultImg/default.gif)'}">
+                                        <img :src="certification_list.logo || '/common/images/defaultImg/default.gif'"
+                                             class="opacityZero">
+                                    </div>
+                                    <div class="fl">
+                                        <img-uploader :option="imgOption" title="上传个人封面"></img-uploader>
+                                    </div>
+                                </div>
+<!--                                <div class="width_100_115 fl padding_06_0" v-else>-->
+<!--                                    <img :src="personImg" style="width: 300px;" />-->
+<!--                                </div>-->
+                            </div>
                         </div>
 
                         <div class="f_w_100 clear margin_tb_10 clear" v-if="hasFormData">
@@ -278,15 +297,33 @@
                                 </span>
                                 <span class="width_100_115 padding_06_0 fl"
                                     v-if="certification_type=='INVESTMENT'">投资机构</span>
-                            </div>
-                            <div v-if="certification_list.certificationFlag==2 ">
-                                <div class="f_w_50 fr margin_tb_10"
-                                    v-if="certification_type=='TECH_BROKER_REMOTE' || certification_type=='TECH_BROKER'">
-                                    <span class="width_100_115 padding_06_0 fr">
+                                <div v-if="certification_list.certificationFlag==2 ">
+                                    <div class="fl padding_06_0 " style="margin-left: 115px"
+                                         v-if="certification_type=='TECH_BROKER_REMOTE' || certification_type=='TECH_BROKER'">
+                                    <span >
                                         <el-button size="mini" type="primary" @click="matchingNeedsAchievements">匹配
                                         </el-button>
                                     </span>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="f_w_50  margin_tb_10 fr" v-if="certification_type=='TECH_BROKER' || certification_type=='TECH_BROKER_REMOTE'">
+                                <span class="width_115 fl padding_06_0 font_14">
+                                    <i class="color_red"  style="display: none;">*</i>个人封面：</span>
+                                <div class=" fl padding_06_0"
+                                     v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
+                                    <div class="head upload_img fl margin_right_20" v-viewer
+                                         :style="{backgroundImage: certification_list.logo?'url('+certification_list.logo+')':'url(/common/images/defaultImg/default.gif)'}">
+                                        <img :src="certification_list.logo || '/common/images/defaultImg/default.gif'"
+                                             class="opacityZero">
+                                    </div>
+                                    <div class="fl">
+                                        <img-uploader :option="imgOption" title="上传个人封面"></img-uploader>
+                                    </div>
+                                </div>
+                                <!--                                <div class="width_100_115 fl padding_06_0" v-else>-->
+                                <!--                                    <img :src="personImg" style="width: 300px;" />-->
+                                <!--                                </div>-->
                             </div>
                         </div>
 
@@ -632,26 +669,34 @@
                                 </div>
                             </div>
 
+                            <div class="clear">
+                                <div class="f_w_50 fl margin_tb_10" v-if="certification_type=='TECH_BROKER'"
+                                     style="width: 100%">
+                                                                <span class="width_115 fl padding_06_0 font_14">
+                                                                    结业证书：</span>
 
-                            <div class="width_100  margin_tb_10 clear">
-                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                        v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
-                                    <i class="color_red" v-else style="display: none;">*</i>个人封面：</span>
-                                <div class="width_100_115 fl padding_06_0"
-                                    v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
-                                    <div class="head upload_img fl margin_right_20" v-viewer
-                                        :style="{backgroundImage: certification_list.logo?'url('+certification_list.logo+')':'url(/common/images/defaultImg/default.gif)'}">
-                                        <img :src="certification_list.logo || '/common/images/defaultImg/default.gif'"
-                                            class="opacityZero">
-                                    </div>
-                                    <div class="fl">
-                                        <img-uploader :option="imgOption" title="上传个人封面"></img-uploader>
-                                    </div>
+
+                                    <template v-for="item in certificateList">
+
+<!--                                        <span class="width_100_115 fl padding_06_0" >-->
+<!--                                            {{item.className +'：'+ item.certificateNu}}-->
+<!--                                        </span>-->
+                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">
+                                            <img :src="getImgPath(item.imgUrl)" width="200" height="140">
+                                    </span>
+                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
+                                           @click="turnPageClassSign" target="_blank">{{item.className +
+                                            '：证书申请已提交，等待平台审核'}}</a>
+                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"
+                                           @click="turnPageClassSign" target="_blank">{{item.className +
+                                            '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>
+                                    </template>
+                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!item"
+                                       @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>
                                 </div>
-                                <div class="width_100_115 fl padding_06_0" v-else>
-                                    <img :src="personImg" style="width: 300px;" />
-                                </div>
+
                             </div>
+
                             <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20"
                                 v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                 <a class="bg_70adf1 color_fff" @click="submitAuditBrokerResults">提交认证</a>
