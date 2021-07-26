@@ -247,7 +247,7 @@ require(['/common/js/require.config.js'], function () {
                     },
 
                     getCertificateImg(path) {
-                        return httpUrl.baseSchoolOutUrl + path;
+                        return httpUrl.baseSchoolOutUrl + path+'?response-content-type=application/octet-stream';
                     },
                     // 查询用户信息
                     myCertificagetUserInfo: function () {
