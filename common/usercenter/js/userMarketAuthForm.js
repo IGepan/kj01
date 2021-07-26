@@ -263,7 +263,6 @@ require(['/common/js/require.config.js'], function () {
                     download(link,picName) {
                         let img = new Image()
                         img.setAttribute('crossOrigin', 'Anonymous')
-                        img.setAttribute('Access-Control-Allow-Origin', 'https://www.kj01.cn')
                         img.onload = function(){
                             let canvas = document.createElement('canvas')
                             let context = canvas.getContext('2d')
