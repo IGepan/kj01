@@ -80,7 +80,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
         getZmImg(param) {
-            return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/downloadImg',param);
+            return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/downloadImg',param);
         },
 
         ///////////////////////////////////////// 业务管理/////////////////////////////////////////////////////////
