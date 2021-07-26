@@ -195,6 +195,22 @@
             border: 1px solid #ccc;
             width: 435px;
         }
+        .studybox{
+            position: fixed;
+            right: 280px;
+            top:40%;
+            z-index: 99;
+            width: 140px;
+            height: 130px;
+            background: url(/common/usercenter/images/box.png) no-repeat;
+            background-size: cover;
+            display: block;
+            padding-top:55px;
+            font-size: 18px;
+            text-align: center;
+            color: #FFFFff!important;
+        }
+        .studybox:hover{color: #f0ad4e!important;}
     </style>
 </head>
 
@@ -683,7 +699,8 @@
                                             <a :href="getCertificateImg(item.imgUrl)" target="_blank">
                                                 <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
                                             </a>
-                                            <a style="display: block;color: #409EFF" @click="getZmImg(item.imgUrl)" >下载证书</a>
+                                            <a style="display: block;color: #409EFF" @click="downloadImg(item.imgUrl)" >下载证书</a>
+
                                         </span>
 <!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"-->
 <!--                                           @click="turnPageClassSign" target="_blank">{{item.className +-->
@@ -695,6 +712,11 @@
 <!--                                           @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>-->
                                     </template>
                                 </div>
+
+                            </div>
+                            <div>
+                                <a class="studybox"
+                                   @click="turnPageClassSign" target="_blank">参加培训考试<br>获得证书</a>
                             </div>
                             <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20"
                                 v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
