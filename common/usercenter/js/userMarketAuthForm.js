@@ -253,7 +253,10 @@ require(['/common/js/require.config.js'], function () {
                     //下载证书图片
                     getZmImg(path) {
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
-                        userCenterApi.getZmImg({imgUrl:imgUrl})
+                        userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
+                            saveAs(res, '活动证书' + '.png', { type: 'image/png;charset=utf-8' })
+                        });
+
                     },
                     // 查询用户信息
                     myCertificagetUserInfo: function () {
