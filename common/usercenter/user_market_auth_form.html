@@ -458,23 +458,23 @@
 
 
 
-                            <div class="clear">
-                                <div class="f_w_50 fl margin_tb_10" v-if="certification_type=='TECH_BROKER'" style="width: 100%">
-                                    <span class="width_115 fl padding_06_0 font_14">
-                                        证书编号：</span>
-                                    <template v-for="item in certificateList" >
+<!--                            <div class="clear">-->
+<!--                                <div class="f_w_50 fl margin_tb_10" v-if="certification_type=='TECH_BROKER'" style="width: 100%">-->
+<!--                                    <span class="width_115 fl padding_06_0 font_14">-->
+<!--                                        证书编号：</span>-->
+<!--                                    <template v-for="item in certificateList" >-->
 
-                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">{{item.className +'：'+ item.certificateNu}}</span>
-                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
-                                           @click="turnPageClassSign" target="_blank">{{item.className + '：证书申请已提交，等待平台审核'}}</a>
-                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"
-                                           @click="turnPageClassSign" target="_blank">{{item.className + '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>
-                                    </template>
-                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!item"
-                                       @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>
-                                </div>
+<!--                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">{{item.className +'：'+ item.certificateNu}}</span>-->
+<!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"-->
+<!--                                           @click="turnPageClassSign" target="_blank">{{item.className + '：证书申请已提交，等待平台审核'}}</a>-->
+<!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"-->
+<!--                                           @click="turnPageClassSign" target="_blank">{{item.className + '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>-->
+<!--                                    </template>-->
+<!--                                    <a class="padding_06_0 width_100_115 fl font_14" v-if="!item"-->
+<!--                                       @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>-->
+<!--                                </div>-->
 
-                            </div>
+<!--                            </div>-->
 
 
                             <div class="clear">
