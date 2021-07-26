@@ -79,6 +79,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/certification/getUserInfo');
         },
 
+        getZmImg(param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/downloadImg',param);
+        },
+
         ///////////////////////////////////////// 业务管理/////////////////////////////////////////////////////////
 
 
@@ -150,6 +154,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         find_list_tag_tree: function (param) {
             return Http.get(httpUrl.baseMarketUrl + '/zMTagRest/listTagTree/' + param);
         },
+
 
 
         // // 技术成果专利分页查询

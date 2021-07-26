@@ -249,6 +249,12 @@ require(['/common/js/require.config.js'], function () {
                     getCertificateImg(path) {
                         return httpUrl.baseSchoolOutUrl + path;
                     },
+
+                    //下载证书图片
+                    getZmImg(path) {
+                       var imgUrl = httpUrl.baseSchoolOutUrl + path;
+                        userCenterApi.getZmImg(imgUrl)
+                    },
                     // 查询用户信息
                     myCertificagetUserInfo: function () {
                         var _this = this;
