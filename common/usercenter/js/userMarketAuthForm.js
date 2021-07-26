@@ -254,14 +254,16 @@ require(['/common/js/require.config.js'], function () {
                     getZmImg(path) {
                         // var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
-                        userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
-                           this.download(imgUrl,1)
-                        });
+                        this.download(imgUrl,1)
+                        // userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
+                        //
+                        // });
 
                     },
                     download(link,picName) {
                         let img = new Image()
                         img.setAttribute('crossOrigin', 'Anonymous')
+                        img.setAttribute('Access-Control-Allow-Origin', 'https://www.kj01.cn')
                         img.onload = function(){
                             let canvas = document.createElement('canvas')
                             let context = canvas.getContext('2d')
