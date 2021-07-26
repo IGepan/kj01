@@ -682,7 +682,7 @@
 <!--                                            {{item.className +'：'+ item.certificateNu}}-->
 <!--                                        </span>-->
                                         <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">
-                                            <img :src="getImgPath(item.imgUrl)" width="200" height="140">
+                                            <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
                                     </span>
                                         <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
                                            @click="turnPageClassSign" target="_blank">{{item.className +
