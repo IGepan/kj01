@@ -680,8 +680,10 @@
                                         <!--                                            {{item.className +'：'+ item.certificateNu}}-->
                                         <!--                                        </span>-->
                                         <span class="fl padding_06_0  margin_right_20" style="text-align: center;">
-                                            <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
-                                            <a style="display: block;color: #409EFF" :href="getCertificateImg(item.imgUrl)" download>下载证书</a>
+                                            <a :href="getCertificateImg(item.imgUrl)">
+                                                <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
+                                            </a>
+                                            <a style="display: block;color: #409EFF" @click="downloadImg(item.imgUrl)" >下载证书</a>
                                         </span>
 <!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"-->
 <!--                                           @click="turnPageClassSign" target="_blank">{{item.className +-->
