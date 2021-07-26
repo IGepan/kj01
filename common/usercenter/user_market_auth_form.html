@@ -672,18 +672,17 @@
                             <div class="clear">
                                 <div class="f_w_50 fl margin_tb_10" v-if="certification_type=='TECH_BROKER'"
                                      style="width: 100%">
-                                                                <span class="width_115 fl padding_06_0 font_14">
+                                    <span class="width_115 fl padding_06_0 font_14">
                                                                     结业证书：</span>
-
-
                                     <template v-for="item in certificateList">
 
 <!--                                        <span class="width_100_115 fl padding_06_0" >-->
 <!--                                            {{item.className +'：'+ item.certificateNu}}-->
 <!--                                        </span>-->
-                                        <span class="width_100_115 fl padding_06_0" v-if="item.state == 'pass'">
+                                        <span class="fl padding_06_0  margin_right_20" style="text-align: center;" v-if="item.state == 'pass'">
                                             <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
-                                    </span>
+                                            <a style="display: block;color: #409EFF" :href="getCertificateImg(item.imgUrl)" download="">下载证书</a>
+                                        </span>
                                         <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"
                                            @click="turnPageClassSign" target="_blank">{{item.className +
                                             '：证书申请已提交，等待平台审核'}}</a>
