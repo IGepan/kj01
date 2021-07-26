@@ -252,7 +252,7 @@ require(['/common/js/require.config.js'], function () {
 
                     //下载证书图片
                     getZmImg(path) {
-                        var uuid = "cms"+mydate.getDay()+ mydate.getHours()+ mydate.getMinutes()+mydate.getSeconds()+mydate.getMilliseconds()+ Math.round(Math.random() * 10000);
+                        var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
                         userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
                            this.download(imgUrl,uuid)
