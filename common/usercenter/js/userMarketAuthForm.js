@@ -252,12 +252,32 @@ require(['/common/js/require.config.js'], function () {
 
                     //下载证书图片
                     getZmImg(path) {
+                        var uuid = "cms"+mydate.getDay()+ mydate.getHours()+ mydate.getMinutes()+mydate.getSeconds()+mydate.getMilliseconds()+ Math.round(Math.random() * 10000);
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
                         userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
-                            saveAs(res, '活动证书' + '.png', { type: 'image/png;charset=utf-8' })
+                           this.download(imgUrl,uuid)
                         });
 
                     },
+                    download(link,picName) {
+                        let img = new Image()
+                        img.setAttribute('crossOrigin', 'Anonymous')
+                        img.onload = function(){
+                            let canvas = document.createElement('canvas')
+                            let context = canvas.getContext('2d')
+                            canvas.width = img.width
+                            canvas.height = img.height
+                            context.drawImage(img, 0, 0, img.width, img.height)
+                            let url = canvas.toDataURL('images/png')
+                            let a = document.createElement('a')
+                            let event = new MouseEvent('click')
+                            a.download = picName || 'default.png'
+                            a.href = url
+                            a.dispatchEvent(event)
+                        }
+                        img.src = link + '?v=' + Date.now()
+                    },
+
                     // 查询用户信息
                     myCertificagetUserInfo: function () {
                         var _this = this;
