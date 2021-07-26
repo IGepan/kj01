@@ -676,9 +676,9 @@
                                                                     结业证书：</span>
                                     <template v-for="item in certificateList">
 
-<!--                                        <span class="width_100_115 fl padding_06_0" >-->
-<!--                                            {{item.className +'：'+ item.certificateNu}}-->
-<!--                                        </span>-->
+                                        <!--                                        <span class="width_100_115 fl padding_06_0" >-->
+                                        <!--                                            {{item.className +'：'+ item.certificateNu}}-->
+                                        <!--                                        </span>-->
                                         <span class="fl padding_06_0  margin_right_20" style="text-align: center;" v-if="item.state == 'pass'">
                                             <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
                                             <a style="display: block;color: #409EFF" :href="getCertificateImg(item.imgUrl)" download="">下载证书</a>
@@ -693,9 +693,7 @@
                                            @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>
                                     </template>
                                 </div>
-
                             </div>
-
                             <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20"
                                 v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
                                 <a class="bg_70adf1 color_fff" @click="submitAuditBrokerResults">提交认证</a>
