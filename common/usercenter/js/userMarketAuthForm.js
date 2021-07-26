@@ -247,7 +247,7 @@ require(['/common/js/require.config.js'], function () {
                     },
 
                     getImgPath(path) {
-                        return httpUrl.baseSchoolOutUrl + '/resource/' + path;
+                        return httpUrl.baseSchoolOutUrl+ path;
                     },
                     // 查询用户信息
                     myCertificagetUserInfo: function () {
