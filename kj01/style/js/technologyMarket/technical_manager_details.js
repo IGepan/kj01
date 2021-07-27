@@ -85,7 +85,27 @@ require(['/common/js/require.config.js'], function () {
                     },
                     "userInfoId": "",
                     "userInfoIdSame": false,
-
+                    paramDTOTech: {
+                        "current": 1,
+                        "dictCode": "string",
+                        "id": 0,
+                        "order": "desc",
+                        "size": 6,
+                        "sort": "id"
+                    },
+                    paramDTODemand: {
+                        "current": 1,
+                        "dictCode": "string",
+                        "id": 0,
+                        "order": "desc",
+                        "size": 6,
+                        "sort": "id"
+                    },
+                    techsReceiveList: [],
+                    demandsReceiveList: [],
+                    allTotalTech: 0,
+                    allTotalDemand: 0,
+                    createUserId: "",
                 },
                 components: {
                     //插入头信息
@@ -113,8 +133,10 @@ require(['/common/js/require.config.js'], function () {
                     this.queryList();
 
 
+
                 },
                 methods: {
+
 
 
                     // 列表
@@ -145,6 +167,7 @@ require(['/common/js/require.config.js'], function () {
                                 vm.total = data.total;
                             });
                     },
+
 
 
 
@@ -392,7 +415,12 @@ require(['/common/js/require.config.js'], function () {
                                 toast.showToast(res.message);
                                 return;
                             }
+
                             vm.ZMTechBrokerVO = res.data;
+                            vm.techReceiveList(vm.ZMTechBrokerVO.createUserId);
+                            vm.demandReceiveList(vm.ZMTechBrokerVO.createUserId);
+                            vm.createUserId = vm.ZMTechBrokerVO.createUserId;
+
                             console.log(vm.ZMTechBrokerVO);
                             vm.ZMTechBrokerVO.zMTechBrokerAdditional = "";
                             vm.ZMTechBrokerVO.zMTechBrokerAdditionalList.forEach(element => {
@@ -404,6 +432,89 @@ require(['/common/js/require.config.js'], function () {
 
                         })
                     },
+
+
+                    techReceiveList(id) {
+                        let vm = this;
+                        var form = {
+                            id: id,
+                            paramDTO: vm.paramDTOTech
+                        }
+                        indexApi.pageListTechBrokerReceivedProjectDelegation(form).then(function (res) {
+                            if (!res.code) {
+                                toast.showToast(res.message);
+                                return;
+                            }
+                            console.log(res)
+                            vm.techsReceiveList = res.data.records;
+                            vm.allTotalTech = res.data.total;
+                        })
+                    },
+
+
+                    // 翻页
+                    handleCurrentChange1: function (page) {
+                        var vm = this;
+                        console.log(page)
+
+                        vm.paramDTOTech.current = page;
+                        // 技术成果列表查询
+                        var form = {
+                            id: vm.createUserId,
+                            paramDTO: vm.paramDTOTech
+                        }
+                        indexApi.pageListTechBrokerReceivedProjectDelegation(form).then(function (res) {
+                            if (!res.code) {
+                                toast.showToast(res.message);
+                                return;
+                            }
+                            console.log(res)
+                            vm.techsReceiveList = res.data.records;
+                            vm.allTotalTech = res.data.total;
+                        })
+                    },
+
+
+
+                    demandReceiveList(id) {
+                        let vm = this;
+                        var form = {
+                            id: id,
+                            paramDTO: vm.paramDTODemand
+                        }
+                        indexApi.pageListTechBrokerReceivedDemandDelegation(form).then(function (res) {
+                            if (!res.code) {
+                                toast.showToast(res.message);
+                                return;
+                            }
+                            console.log(res)
+                            vm.demandsReceiveList = res.data.records;
+                            vm.allTotalDemand = res.data.total;
+                        })
+                    },
+
+                    // 翻页
+                    handleCurrentChange2: function (page) {
+                        var vm = this;
+                        console.log(page)
+
+                        vm.paramDTODemand.current = page;
+                        // 技术成果列表查询
+                        var form = {
+                            id: vm.createUserId,
+                            paramDTO: vm.paramDTODemand
+                        }
+                        indexApi.pageListTechBrokerReceivedDemandDelegation(form).then(function (res) {
+                            if (!res.code) {
+                                toast.showToast(res.message);
+                                return;
+                            }
+                            console.log(res)
+                            vm.demandsReceiveList = res.data.records;
+                            vm.allTotalDemand = res.data.total;
+                        })
+                    },
+
 
                     //数组变型得到新数组 JS数组根据字段进行分组
                     arryGroupMatch(arr) {

@@ -30,6 +30,14 @@ require(['/common/js/require.config.js'], function () {
                     // sels: [],
                     // sysUnread: '',
                     // busUnread: '',
+
+                    "intended_price_list": [
+                        { "name": "金额", "value": 0 },
+                        { "name": "面议", "value": 1 },
+                    ],
+                    "intended_price": 0,
+
+
                     // 筛选
                     "demand_case_list": [
                         { "id": 0, "display": "未委托经纪人" },
@@ -55,7 +63,16 @@ require(['/common/js/require.config.js'], function () {
                     "inputEntifyReqType": true,
 
 
-                    "proRequireForm": { "demandIndustryType": [] }, // 需求d对象
+                    "proRequireForm": {
+                        "demandIndustryType": [],
+                        "title": "",
+                        "demandType": "",
+                        "budget": "",
+                        "cooperationMode": "",
+                        "demandDes": "",
+                        "technicalNorm": "",
+                        "otherDes": "",
+                    }, // 需求d对象
 
 
                     "secondOptions": [],
@@ -74,6 +91,14 @@ require(['/common/js/require.config.js'], function () {
                 provide: {
                     httpUser: httpUser,
                     httpUrl: httpUrl
+                },
+                watch: {
+                    intended_price(newName, oldName) {
+                        var _this = this;
+                        console.log(newName)
+                        _this.proRequireForm.budget = newName == 1 ? 0 : ""
+                    },
+
                 },
                 created: function () {
                     var _this = this;
@@ -351,9 +376,12 @@ require(['/common/js/require.config.js'], function () {
                         _this.industryList.forEach(element => {
                             form.demandIndustryType.push(element);
                         });
+                        form.budget = _this.intended_price == 1 ? 0 : _this.proRequireForm.budget;
 
                         console.log('form', form)
                         if (_this.noEmptyInputReq(form)) {
+                            console.log('form', form)
+
                             userCenterApi.save_technology_require_results(form).then(function (res) {
                                 console.log(res)
                                 if (!res.code) {
@@ -390,6 +418,17 @@ require(['/common/js/require.config.js'], function () {
                             _this.$dialog.showToast("需求类型必填");
                             return false;
                         }
+
+                        if (!_this.$utils.validatesEmpty(form.budget)) {
+                            _this.$dialog.showToast("请输入需求预算或选择面议");
+                            return false;
+                        }
+
+                        if (Number(form.budget) < 0) {
+                            _this.$dialog.showToast("请输入正确的预算");
+                            return false;
+                        }
+
                         if (!_this.$utils.validatesEmpty(form.cooperationMode)) {
                             _this.$dialog.showToast("合作方式必填");
                             return false;
@@ -428,7 +467,7 @@ require(['/common/js/require.config.js'], function () {
                             _this.industryList = dataForm.demandIndustryType;
 
                             _this.proRequireForm = dataForm;
-
+                            _this.intended_price = dataForm.budget == 0 ? 1 : 0;
                             console.log(_this.proRequireForm)
                             // _this.title = dataForm.title;//需求名称：
                             // _this.demand_case = dataForm.demandCase;//需求来源

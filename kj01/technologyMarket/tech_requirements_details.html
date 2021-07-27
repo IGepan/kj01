@@ -83,8 +83,11 @@
                     <tr>
                         <td class="td_title">意向合作方式：</td>
                         <td class="td_content">{{detail.cooperationMode_display}}</td>
-                        <td class="td_title"></td>
-                        <td class="td_content"></td>
+                        <td class="td_title">预算：</td>
+                        <td class="td_content">
+                            <span v-if="detail.budget==0">面议</span>
+                            <span v-else>{{detail.budget}}</span>
+                        </td>
                     </tr>
                 </table>
             </div>
