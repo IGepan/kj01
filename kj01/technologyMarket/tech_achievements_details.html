@@ -78,8 +78,8 @@
                             <span v-else>-</span>
                         </div>
                         <div class="ell_nowrap width_50 fl">意向价格(元)：
-                            <span v-if="ZMProjectVO.budget">{{ZMProjectVO.budget}}</span>
-                            <span v-else>-</span>
+                            <span v-if="ZMProjectVO.budget==0">面议</span>
+                            <span v-else>{{ZMProjectVO.budget}}</span>
                         </div>
                         <div class="ell_nowrap width_50 fl">合作方式：
                             <span

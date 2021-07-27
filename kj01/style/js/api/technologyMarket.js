@@ -188,6 +188,15 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/certification/get', param);
         },
 
+        //  分页查询经纪人接收的 成果 委托
+        pageListTechBrokerReceivedProjectDelegation: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListTechBrokerReceivedProjectDelegation?id=' + param.id, param.paramDTO);
+        },
+
+        //  分页查询经纪人接收的 [需求] 委托
+        pageListTechBrokerReceivedDemandDelegation: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListTechBrokerReceivedDemandDelegation?id=' + param.id, param.paramDTO);
+        },
 
     }
 })

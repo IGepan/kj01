@@ -192,6 +192,12 @@
             border: 1px solid #ccc;
             width: 435px;
         }
+
+        .width_100_150 {
+            width: -moz-calc(100% - 150px);
+            width: -webkit-calc(100% - 150px);
+            width: calc(100% - 150px);
+        }
     </style>
 </head>
 
@@ -356,10 +362,23 @@
                         <div class="f_w_50 fr margin_tb_10">
                             <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
                                     style="visibility: hidden;">*</i>需求预算：</span>
-                            <input v-model="proRequireForm.budget" type="number"
-                                class="width_100_115 fl border_efefef padding_06_1" placeholder="请输入需求预算" maxlength="8">
+                            <span class="width_100_115 fl">
+                                <el-radio-group v-model="intended_price" class="fl" style="width:150px">
+                                    <el-radio v-for="(item,index) in intended_price_list" :key="index"
+                                        style="padding: 11px 0px;margin-right:0;width:50%" class="user_center_radio"
+                                        :label="item.value">
+                                        {{item.name}}</el-radio>
+                                </el-radio-group>
+                                <el-input class="fl width_100_150" type="number" maxlength="8" v-if="intended_price==0"
+                                    v-model="proRequireForm.budget" placeholder="请输入意向价格">
+                                </el-input>
+                            </span>
+
+
+                            <!-- <input v-model="proRequireForm.budget" type="number"
+                                class="width_100_115 fl border_efefef padding_06_1" placeholder="请输入需求预算" maxlength="8"> -->
                         </div>
-                        <div class="f_w_50 fl margin_tb_10">
+                        <div class="f_w_50 fl margin_tb_10 clear">
                             <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>合作方式：</span>
                             <el-select v-model="proRequireForm.cooperationMode" placeholder="请选择合作方式"
                                 class="width_100_115">
