@@ -202,7 +202,7 @@
 </head>
 
 <body>
-<div class="box" id='index_box' v-cloak>
+    <div class="box" id='index_box' v-cloak>
         <ly-toper></ly-toper>
         <header-bar type='market' :http="httpCom"></header-bar>
 
@@ -228,12 +228,12 @@
                     <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
                             我的订单</a>
                     </li>
-<!--                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>-->
-<!--                            经纪人培训管理</a></li>-->
-<!--                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>-->
-<!--                            班级报名管理</a></li>-->
+                    <!--                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>-->
+                    <!--                            经纪人培训管理</a></li>-->
+                    <!--                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>-->
+                    <!--                            班级报名管理</a></li>-->
                     <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
-                        我的培训</a></li>
+                            我的培训</a></li>
                     <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
                             收藏</a>
                     </li>
@@ -370,7 +370,7 @@
                                         {{item.name}}</el-radio>
                                 </el-radio-group>
                                 <el-input class="fl width_100_150" type="number" maxlength="8" v-if="intended_price==0"
-                                    v-model="proRequireForm.budget" placeholder="请输入意向价格">
+                                    v-model="proRequireForm.budget" placeholder="请输入需求预算">
                                 </el-input>
                             </span>
 
