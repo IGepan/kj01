@@ -102,7 +102,12 @@ require(['/common/js/require.config.js'], function () {
                         this.nowIndex = i;
                         this.getcmsList();
                         this.detailActive=0;
-                    }
+                    },
+                    handleFileSaveAs: function (i) {
+                        var fileInfo = this.detail.files[i]
+                        saveAs(httpUrl.imgUploadUrl + '/file/download?filePath=' + fileInfo.path, fileInfo.name)
+                        // target="_blank" : href = "baseFilePath + '/file/download?filePath=' + adjunct.url"
+                    },
                 }
             })
         })
