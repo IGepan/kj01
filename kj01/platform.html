@@ -11,7 +11,26 @@
     <link href="./style/css/icon/iconfont.css" rel="stylesheet">
     <link href="/style/css/platform.css" rel="stylesheet" type="text/css">
 </head>
-
+<style>
+    .article-files-title .title-text {
+        position: relative;
+        border-left: 4px solid #018fff;
+        font-size: 14px;
+        text-indent: 1em;
+        display: inline-block;
+        line-height: 1.5em;
+    }
+    .article-files-body {
+        padding: 20px;
+    }
+    .article-file .svg-icon {
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .article-file .line {
+        color: #018fff;
+    }
+</style>
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
@@ -122,7 +141,8 @@
                             <span>发布时间：{{details.releaseDate|formatTime}}</span>
                             <span>来源：{{details.origin}}</span>
                         </div>
-                        <div class="detail-content" v-html="details.txt"></div>
+                        <div class="detail-content" v-html="details.txt">
+                        </div>
                         <template v-if="!detail.viewType && detail.files && detail.files.length">
                             <div class="article-files">
                                 <div class="article-files-title"><span class="title-text">附件</span></div>
