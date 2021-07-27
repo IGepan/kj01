@@ -261,7 +261,7 @@ require(['/common/js/require.config.js'], function () {
                             console.log(res)
                            saveAs(res,"证书"+imgName,{ type: 'image/png;charset=utf-8' })
                         });
-                       // saveAs(imgUrl,"证书"+imgName,{ type: 'image/png;charset=utf-8' })
+
 
                     },
                     // download(link,picName) {
