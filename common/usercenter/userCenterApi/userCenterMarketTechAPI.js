@@ -79,7 +79,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/certification/getUserInfo');
         },
 
-        getZmImg(param) {
+        getZmImg:function(param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/downloadImg',param);
         },
 

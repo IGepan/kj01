@@ -1,7 +1,7 @@
 //   JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver','./userCenterApi/userCenterMarketTechAPI.js'],
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver','../userCenterApi/userCenterMarketTechAPI.js'],
         function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom,fileSaver, userCenterApi) {
 
             Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
@@ -255,10 +255,9 @@ require(['/common/js/require.config.js'], function () {
                         // var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
                         // this.download(imgUrl,1)
-                        var lastIndex = path.lastIndexOf("/")
-                        var imgName = path.substring(lastIndex)
-                        userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
-                            console.log(res)
+                        var lastIndex = path.lastIndexOf("/");
+                        var imgName = path.substring(lastIndex);
+                        userCenterApi.getZmImg({imgUrl: imgUrl}).then( function (res){
                            saveAs(res,"证书"+imgName,{ type: 'image/png;charset=utf-8' })
                         });
 
