@@ -263,6 +263,7 @@ require(['/common/js/require.config.js'], function () {
                     download(link,picName) {
                         let img = new Image()
                         img.setAttribute('crossOrigin', 'Anonymous')
+                        img.crossOrigin
                         img.onload = function(){
                             let canvas = document.createElement('canvas')
                             let context = canvas.getContext('2d')
@@ -276,7 +277,7 @@ require(['/common/js/require.config.js'], function () {
                             a.href = url
                             a.dispatchEvent(event)
                         }
-                        img.src = link + '?v=' + Date.now()
+                        img.src = link
                     },
 
                     // 查询用户信息
