@@ -1,8 +1,8 @@
 //   JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', './userCenterApi/userCenterMarketTechAPI.js'],
-        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom, userCenterApi) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver','./userCenterApi/userCenterMarketTechAPI.js'],
+        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom,fileSaver, userCenterApi) {
 
             Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
@@ -254,10 +254,12 @@ require(['/common/js/require.config.js'], function () {
                     getZmImg(path) {
                         // var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
-                        this.download(imgUrl,1)
-                        // userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
-                        //
-                        // });
+                        // this.download(imgUrl,1)
+                        var lastIndex = path.lastIndexOf("/")
+                        var imgName = path.substring(lastIndex)
+                        userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
+                           saveAs(res,"证书"+imgName)
+                        });
 
                     },
                     download(link,picName) {
