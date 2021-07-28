@@ -12,6 +12,12 @@
     <link href="/style/css/platform.css" rel="stylesheet" type="text/css">
 </head>
 <style>
+    .article-files {
+        position: relative;
+        margin: 0 -30px 0;
+        padding: 40px 30px 0;
+        border-top: solid 1px #e6e7f1;
+    }
     .article-files-title .title-text {
         position: relative;
         border-left: 4px solid #018fff;
@@ -143,18 +149,25 @@
                         </div>
                         <div class="detail-content" v-html="details.txt">
                         </div>
-                        <template v-if="!detail.viewType && detail.files && detail.files.length">
-                            <div class="article-files">
-                                <div class="article-files-title"><span class="title-text">附件</span></div>
-                                <div class="article-files-body">
-                                    <template v-for="(tfile, fi) in detail.files">
-                                        <div class="article-file" @click.stop="handleFileSaveAs(fi)"><svg class="vaMiddle jsicon svg-icon" aria-hidden="true">
-                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>
-                                        </svg><span class="vaMiddle line">{{tfile.name}}</span></div>
-                                    </template>
-                                </div>
-                            </div>
-                        </template>
+<!--                        <template v-if="!detail.viewType && detail.files && detail.files.length">-->
+<!--                            <div class="article-files">-->
+<!--                                <div class="article-files-title"><span class="title-text">附件</span></div>-->
+<!--                                <div class="article-files-body">-->
+<!--                                    <template >-->
+<!--                                        <div class="article-file" @click.stop="handleFileSaveAs(fi)">-->
+<!--                                            <img class="vaMiddle " src="/image/word.svg">-->
+<!--&lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>-->
+<!--                                            <span class="vaMiddle line">征集行业专家入驻易智网.docx</span>-->
+<!--                                        </div>-->
+<!--                                        <div class="article-file" @click.stop="handleFileSaveAs(fi)">-->
+<!--                                            <img class="vaMiddle " src="/image/word.svg">-->
+<!--                                            &lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>-->
+<!--                                            <span class="vaMiddle line">征集科技服务机构入驻易智商城.docx</span>-->
+<!--                                        </div>-->
+<!--                                    </template>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </template>-->
                     </div>
                 </div>
             </div>
