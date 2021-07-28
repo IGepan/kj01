@@ -204,6 +204,18 @@ require(['/common/js/require.config.js'], function () {
                     this.queryList()
                 },
                 methods: {
+                    Pricre: function (v) {
+
+                        if (typeof v !== 'undefined') {
+
+                            if (v >= 10000) {
+                                return (v / 10000).toFixed(2) + '万元';
+                            } else {
+                                return v + '元'
+                            }
+                        }
+
+                    },
                     // 列表
                     queryList() {
                         let _this = this;

@@ -66,6 +66,18 @@ require(['/common/js/require.config.js'], function () {
               (this.userInfo = JSON.parse(
                 localStorage.getItem(dic.locaKey.USER_INFO)));
           },
+          Pricre: function (v) {
+
+            if (typeof v !== 'undefined') {
+
+              if (v >= 10000) {
+                return (v / 10000).toFixed(2) + '万元';
+              } else {
+                return v + '元'
+              }
+            }
+
+          },
           sendProject: function () {
             var vm = this;
             if (this.userInfo && this.userInfo.userName) {
