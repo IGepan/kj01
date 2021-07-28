@@ -132,7 +132,18 @@ require(['/common/js/require.config.js'], function () {
                 localStorage.getItem(dic.locaKey.USER_INFO)));
           },
 
+          Pricre: function (v) {
 
+            if (typeof v !== 'undefined') {
+
+              if (v >= 10000) {
+                return (v / 10000).toFixed(2) + '万元';
+              } else {
+                return v + '元'
+              }
+            }
+
+          },
           getImgPath(path) {
             return httpUrl.fileShowUrl + '/resource/' + path;
           },

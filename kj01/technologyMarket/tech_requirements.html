@@ -102,7 +102,7 @@
                                 标签：{{item.tags.map(item=>item.name).join(',')}}</div>
                             <span class="fr">预算：
                                 <i class="color_orange" v-if="item.budget==0">面议</i>
-                                <span v-else><i class="color_orange">{{item.budget}}</i>(元)</span>
+                                <span v-else><i class="color_orange">{{Pricre(item.budget)}}</i></span>
                             </span>
                         </div>
                         <div class="ell_nowrap">需求类型：{{item.demandType_display}}</div>

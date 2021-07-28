@@ -425,8 +425,9 @@
                                     <span v-if="index < good.projectIndustryType.length - 1">, </span>
                                 </div>
                                 <div class="clear">转让方式：{{good.cooperationMode_display}}</div>
-                                <div >价格：<span
-                                        class="price-red">{{Pricre(good.budget)}}</span>
+                                <div >价格：
+                                    <span class="price-red" v-if="good.budget==0">面议</span>
+                                    <span v-else class="price-red">{{Pricre(good.budget)}}</span>
                                 </div>
                             </div>
                         </a>
