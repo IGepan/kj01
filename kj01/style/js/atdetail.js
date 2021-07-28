@@ -40,11 +40,11 @@ require(['/common/js/require.config.js'], function () {
             isFixed: false,
             tabsNav: [
               {
-                label: '活动介绍',
+                label: '活动计划',
                 active: true
               },
               {
-                label: '活动计划',
+                label: '活动介绍',
                 active: false
               }
             ],
