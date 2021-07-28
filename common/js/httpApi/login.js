@@ -20,6 +20,10 @@ define(['httpUrl', 'http', 'base64'], function (httpUrl, Http, base64) {
     register: function (param) {
       return Http.post(httpUrl.baseUrl + '/user/register', param)
     },
+    //创新服务部专用注册
+    registerForOurself: function (param) {
+      return Http.post(httpUrl.baseUrl + '/user/insert', param)
+    },
     // 检查手机号
     checkPhone: function (param) {
       return Http.getNoToast(httpUrl.baseUrl + '/user/checkPhone', param)
