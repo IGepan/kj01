@@ -350,6 +350,7 @@ require(['/common/js/require.config.js'], function () {
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                     // localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
+                    console.log()
                     vm.setCookiePhone();
                     console.log('--v--')
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
@@ -365,24 +366,27 @@ require(['/common/js/require.config.js'], function () {
                       }
                     }
                     //同步登录注册易智学堂
-                    var userPhone=localStorage.getItem("userPhone")
-                    console.log(userPhone,'易智学堂登录')
-                    httpLogin.yzxtCheckPhone(userPhone).then(res => {
-                      // 判断是否有return url
-                      //判断是否是来自益智学堂
-                      var isSchool = false;
-                      if (location.search.indexOf('return') > -1) {
-                        // toUrl = location.search.replace('?return=', '')
-                        isSchool = true;
-                      }
-                      console.log(isSchool, 'isSchool')
-                      if (isSchool) {
-                        vm.handleSchool();
-                      }else {
-                        // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
-                        window.location.href = toUrl;
-                      }
-                    });
+                    var userPhone=param.username
+                    console.log(param.username,'易智学堂登录')
+                    if (userPhone !== null) {
+
+                      httpLogin.yzxtCheckPhone(userPhone).then(res => {
+                        // 判断是否有return url
+                        //判断是否是来自益智学堂
+                        var isSchool = false;
+                        if (location.search.indexOf('return') > -1) {
+                          // toUrl = location.search.replace('?return=', '')
+                          isSchool = true;
+                        }
+                        console.log(isSchool, 'isSchool')
+                        if (isSchool) {
+                          vm.handleSchool();
+                        }else {
+                          // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
+                          window.location.href = toUrl;
+                        }
+                      });
+                    }
 
                   }
                   vm.isSubmitDisabled = false
