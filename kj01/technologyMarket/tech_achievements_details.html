@@ -77,9 +77,9 @@
                                 v-if="ZMProjectVO.zMProjectAdditionalList">{{ZMProjectVO.zMProjectAdditionalList.length>0?ZMProjectVO.zMProjectAdditionalList[0].additionalService_display:""}}</span>
                             <span v-else>-</span>
                         </div>
-                        <div class="ell_nowrap width_50 fl">意向价格(元)：
-                            <span v-if="ZMProjectVO.budget">{{ZMProjectVO.budget}}</span>
-                            <span v-else>-</span>
+                        <div class="ell_nowrap width_50 fl">意向价格：
+                            <span v-if="ZMProjectVO.budget==0">面议</span>
+                            <span v-else>{{Pricre(ZMProjectVO.budget)}}</span>
                         </div>
                         <div class="ell_nowrap width_50 fl">合作方式：
                             <span
@@ -337,28 +337,17 @@
                                             class="width_100_125 fr padding_left_20">{{ZMProjectVO.patentTransactionType_display}}
                                         </span>
                                     </div>
-                                    <div class="width_50 fl"><span class="fl width_125">预计投入资金：</span>
-                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.budget}}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="clear padding_06_0">
                                     <div class="width_50 fl"><span class="fl width_125">预计所需场地：</span>
                                         <span
                                             class="width_100_125 fr padding_left_20">{{ZMProjectVO.expectRequiredSite}}
                                         </span>
                                     </div>
-                                    <div class="width_50 fl"><span class="fl width_125">意向合作单位：</span>
-                                        <span
-                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.intentionCooperationUnit}}
-                                        </span>
-                                    </div>
                                 </div>
 
                                 <div class="clear padding_06_0">
-                                    <div class="width_50 fl"><span class="fl width_125">对合作方(投资方)的其他要求：</span>
-                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.otherRequire}}
+                                    <div class="width_50 fl"><span class="fl width_125">意向合作单位：</span>
+                                        <span
+                                            class="width_100_125 fr padding_left_20">{{ZMProjectVO.intentionCooperationUnit}}
                                         </span>
                                     </div>
                                     <div class="width_50 fl">
@@ -368,7 +357,12 @@
                                         </span>
                                     </div>
                                 </div>
+
                                 <div class="clear padding_06_0">
+                                    <div class="width_50 fl"><span class="fl width_125">对合作方(投资方)的其他要求：</span>
+                                        <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.otherRequire}}
+                                        </span>
+                                    </div>
                                     <div class="width_50 fl"><span class="fl width_125">已形成的合作案例：</span>
                                         <span class="width_100_125 fr padding_left_20">{{ZMProjectVO.formCooperation}}
                                         </span>

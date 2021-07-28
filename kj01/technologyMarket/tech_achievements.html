@@ -100,7 +100,10 @@
                         <div class="margin_top_4">
                             <span
                                 class="width_max_70 ell_nowrap display_inl_blo">转让方式：{{item.cooperationMode_display}}</span>
-                            <span class="fr">价格：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                            <span class="fr">价格：
+                                <i class="color_orange" v-if="item.budget==0">面议</i>
+                                <span v-else><i class="color_orange">{{Pricre(item.budget)}}</i></span>
+                            </span>
                         </div>
                     </div>
                     <a class="margin_top_15 pro_list_button bg_orange color_fff"

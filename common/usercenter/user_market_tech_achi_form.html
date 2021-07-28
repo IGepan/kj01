@@ -143,7 +143,11 @@
         }
 
 
-
+        .width_100_150 {
+            width: -moz-calc(100% - 150px);
+            width: -webkit-calc(100% - 150px);
+            width: calc(100% - 150px);
+        }
 
         .inputbox-max {
             width: 435px;
@@ -193,11 +197,24 @@
             border: 1px solid #ccc;
             width: 435px;
         }
+
+        .discuss_personally {
+            width: 18%;
+            display: inline-block;
+            text-align: center;
+            line-height: 36px;
+            border-radius: 4px;
+            border: 1px solid #DCDFE6;
+        }
+
+        .el-radio__label {
+            padding-left: 4px;
+        }
     </style>
 </head>
 
 <body>
-<div class="box" id='index_box' v-cloak>
+    <div class="box" id='index_box'>
         <ly-toper></ly-toper>
         <header-bar type='market' :http="httpCom"></header-bar>
 
@@ -379,9 +396,17 @@
                     </div>
                     <div class="f_w_50 fl margin_tb_10">
                         <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>意向价格(元)：</span>
-                        <el-input type="number" maxlength="8" v-model="basicProjectList.budget" class="width_100_115"
-                            placeholder="请输入意向价格">
-                        </el-input>
+                        <span class="width_100_115 fl">
+                            <el-radio-group v-model="intended_price" class="fl" style="width:150px">
+                                <el-radio v-for="(item,index) in intended_price_list" :key="index"
+                                    style="padding: 11px 0px;margin-right:0;width:50%" class="user_center_radio"
+                                    :label="item.value">
+                                    {{item.name}}</el-radio>
+                            </el-radio-group>
+                            <el-input class="fl width_100_150" type="number" maxlength="8" v-if="intended_price==0"
+                                v-model="basicProjectList.budget" placeholder="请输入意向价格">
+                            </el-input>
+                        </span>
                     </div>
                     <div class="f_w_50 fr margin_tb_10">
                         <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>合作方式：</span>

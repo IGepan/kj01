@@ -104,7 +104,7 @@
                         <div class="margin_top_4">
                             <span
                                 class="width_max_70 ell_nowrap display_inl_blo">转让方式：{{item.cooperationMode_display}}</span>
-                            <span class="fr">价格：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                            <span class="fr">价格：<i class="color_orange">{{Pricre(item.budget)}}</i></span>
                         </div>
                     </div>
                     <a class="margin_top_15 pro_list_button bg_orange color_fff"
@@ -141,7 +141,7 @@
                                 技术领域：{{item.demandIndustryType.map(item=>item.name).join(',')}}</div>
                             <div class="ell_nowrap" :title="item.tags.map(item=>item.name).join(',')">
                                 标签：{{item.tags.map(item=>item.name).join(',')}}</div>
-                            <span class="fr">预算：<i class="color_orange">{{item.budget}}</i>(元)</span>
+                            <span class="fr">预算：<i class="color_orange">{{Pricre(item.budget)}}</i></span>
                         </div>
                         <div class="ell_nowrap">需求类型：{{item.demandType_display}}</div>
                         <div class="ell_nowrap margin_top_4">合作方式：{{item.cooperationMode_display}}</div>

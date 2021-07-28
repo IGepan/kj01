@@ -31,6 +31,18 @@ require(['/common/js/require.config.js'], function () {
           this.resourceStatistics();
         },
         methods: {
+          Pricre: function (v) {
+
+            if (typeof v !== 'undefined') {
+
+              if (v >= 10000) {
+                return (v / 10000).toFixed(2) + '万元';
+              } else {
+                return v + '元'
+              }
+            }
+
+          },
           resourceStatistics: function () {
             var _this = this;
             indexApi.resourceStatistics().then(function (res) {

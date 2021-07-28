@@ -1,8 +1,8 @@
 //   JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', './userCenterApi/userCenterMarketTechAPI.js'],
-        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom, userCenterApi) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver','./userCenterApi/userCenterMarketTechAPI.js'],
+        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom,fileSaver, userCenterApi) {
 
             Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
@@ -254,30 +254,35 @@ require(['/common/js/require.config.js'], function () {
                     getZmImg(path) {
                         // var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
-                        this.download(imgUrl,1)
-                        // userCenterApi.getZmImg({imgUrl: imgUrl}).then(res => {
-                        //
-                        // });
+                        // this.download(imgUrl,1)
+                        var lastIndex = path.lastIndexOf("/");
+                        var imgName = path.substring(lastIndex);
+
+                        userCenterApi.getZmImg({imgUrl: imgUrl}).then( function (res){
+                           saveAs(res,"证书"+imgName,{ type: 'image/png;charset=utf-8' })
+                        });
+
 
                     },
-                    download(link,picName) {
-                        let img = new Image()
-                        img.setAttribute('crossOrigin', 'Anonymous')
-                        img.onload = function(){
-                            let canvas = document.createElement('canvas')
-                            let context = canvas.getContext('2d')
-                            canvas.width = img.width
-                            canvas.height = img.height
-                            context.drawImage(img, 0, 0, img.width, img.height)
-                            let url = canvas.toDataURL('images/png')
-                            let a = document.createElement('a')
-                            let event = new MouseEvent('click')
-                            a.download = picName || 'default.png'
-                            a.href = url
-                            a.dispatchEvent(event)
-                        }
-                        img.src = link + '?v=' + Date.now()
-                    },
+                    // download(link,picName) {
+                    //     let img = new Image()
+                    //     img.setAttribute('crossOrigin', 'Anonymous')
+                    //     img.crossOrigin
+                    //     img.onload = function(){
+                    //         let canvas = document.createElement('canvas')
+                    //         let context = canvas.getContext('2d')
+                    //         canvas.width = img.width
+                    //         canvas.height = img.height
+                    //         context.drawImage(img, 0, 0, img.width, img.height)
+                    //         let url = canvas.toDataURL('images/png')
+                    //         let a = document.createElement('a')
+                    //         let event = new MouseEvent('click')
+                    //         a.download = picName || 'default.png'
+                    //         a.href = url
+                    //         a.dispatchEvent(event)
+                    //     }
+                    //     img.src = link
+                    // },
 
                     // 查询用户信息
                     myCertificagetUserInfo: function () {

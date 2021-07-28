@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/captcha/img_captcha.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+</head>
+
+<body>
+  <div class="box" id="reg_box">
+    <validate-dialog v-if='isShowDialog' @onsuccess='onSuccess' @onclose='isShowDialog = false' ref='validateRef'>
+    </validate-dialog>
+    <div class="login_header">
+        <div class="mdiv">
+            <div class="logo"><a :href=$pathPrefix+"/index.html"><img
+                    :src="webInfo.logoUrl?webInfo.logoUrl:'/style/images/logos/blue-h66.png'" alt=""/></a></div>
+            <div class="l_title">注册</div>
+        </div>
+        <div class="tips">
+            依据《网络安全法》，为保障您相关功能的正常使用，会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！
+        </div>
+    </div>
+    <div class="mdiv center">
+        <div class="login_box">
+            <ul class="tabs">
+                <li class="active">手机注册</li>
+            </ul>
+            <form class="login_form" id="reg_form">
+                <div class="input password">
+                    <input  name='userName' v-model="form.userName" type="text"
+                            placeholder="请输入公司名称">
+                </div>
+
+                    <div class="clear"></div>
+                    <div class="clear"></div>
+                <div class="form_item active">
+                    <div class="input phone">
+                        <input name="phone" v-model="form.phone" @change="phoneChange" type="text" maxlength="11"
+                               placeholder="请输入常用手机号">
+                        <span v-text="phoneErrorMsg" class="form_error"></span>
+                    </div>
+                </div>
+                <div id="msg"></div>
+                <button class="btn reg" @click='regClick()'>一键注册</button>
+            </form>
+        </div>
+    </div>
+    <ly-footer></ly-footer>
+  </div>
+  <script src="/common/js/reg_forPQ.js"></script>
+</body>
+
+</html>

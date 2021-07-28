@@ -33,8 +33,30 @@ require(['/common/js/require.config.js'], function () {
                             initialFrameHeight: 180,
                             maximumWords: 5000
                         },
+                        "basicProjectList": {
+                            "title": "",//成果名称：
+                            "projectType": "",
+                            "additionalService": "",
+                            "budget": "",
+                            "cooperationMode": "",
+                            "achievementBelong": "",
+                            "achievementMaturity": "",
+                            "projectDes": "",//成果描述：
+                            "teamFirstName": "",
+                            "teamFirstNameDes": "",
+                            "teamMember": "",
+                            "teamMemberDes": "",
+                            "teamDes": "",//团队介绍
+                            "contactPerson": "",
+                            "contactPhone": "",
 
-                        "title": "",//成果名称：
+                        }, // 赋值数组
+                        "intended_price_list": [
+                            { "name": "金额", "value": 0 },
+                            { "name": "面议", "value": 1 },
+                        ],
+                        "intended_price": 0,
+
                         "industry_area_list": [],//行业类型
                         "industry_area": '',//行业类型下拉选择框选中值
                         "key_words": "",//关键字：
@@ -51,7 +73,6 @@ require(['/common/js/require.config.js'], function () {
                         "additional_service": "",//附加服务：
                         "additional_service_list": [],//附加服务：
                         "team_first_name": "",//团队领头人
-                        "budget": "",//意向价格
                         "cooperation_mode_list": [],//合作方式
                         "cooperation_mode": "",//合作方式
 
@@ -68,8 +89,7 @@ require(['/common/js/require.config.js'], function () {
                         "province_city_type": "",//1国家 2省 3市
                         "province_city_value": "",///1国家 2省 3市
                         "appNo": "",//专利申请号：
-                        "projectDes": "",//成果描述：
-                        "teamDes": "",//团队介绍
+
 
                         // "imageUrl": '',//图片
                         // "certificateUrl": "",//证书附件
@@ -146,7 +166,7 @@ require(['/common/js/require.config.js'], function () {
                         "optionsIndustry": [],
                         "industryList": [],
 
-                        "basicProjectList": {}, // 赋值数组
+
 
                     };
                 },
@@ -161,7 +181,11 @@ require(['/common/js/require.config.js'], function () {
                         // this.fullName = newName + ' ' + this.lastName;
                         console.log(newName)
                     },
-
+                    intended_price(newName, oldName) {
+                        var _this = this;
+                        console.log(newName)
+                        _this.basicProjectList.budget = newName == 1 ? 0 : ""
+                    },
 
                 },
                 provide: {
@@ -512,8 +536,7 @@ require(['/common/js/require.config.js'], function () {
                                 });
                                 _this.headImgFigures = idForm;
                             }
-
-
+                            _this.intended_price = data.budget == 0 ? 1 : 0;
                             _this.basicProjectList = data;
                             _this.textList = data.tags;
                             _this.tagList = data.tags;
@@ -599,21 +622,10 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
 
-
-
-
-                    //     url: 
-                    // },
-                    // // 附件上传
-                    // fileUploadUrl: ,
-
                     // 提交审核结果
                     submitAuditResults: function () {
                         var _this = this;
-
-
                         var form = _this.basicProjectList;
-
                         // 转标签
                         if (_this.tagList.length > 0 && typeof (_this.tagList[0]) == "object") {
                             var idForm = [];
@@ -632,7 +644,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.industryList = industryForm;
                         }
 
-
                         form.tags = _this.tagList; // 标签
                         form.projectIndustryType = _this.industryList; // 行业类型
                         form.zMProjectAdditionalList = [];
@@ -642,10 +653,11 @@ require(['/common/js/require.config.js'], function () {
                         form.certificateFiles = _this.business_files1[0] ? _this.business_files1[0].id : "";  // 证书附件
                         form.businessFiles = _this.business_files2[0] ? _this.business_files2[0].id : "";  // 商业计划书（只支持pdf和doc丶docx三种格式）
                         form.projectVideo = _this.business_files3[0] ? _this.business_files3[0].id : "";  // 证书附件
+                        form.budget = _this.intended_price == 1 ? 0 : _this.basicProjectList.budget;
+                        console.log(form)
 
                         if (_this.noEmptyInputAuth(form)) {
                             console.log(form)
-
                             userCenterApi.save_technology_results(form).then(function (res) {
                                 console.log(res)
                                 if (!res.code) {
@@ -699,11 +711,14 @@ require(['/common/js/require.config.js'], function () {
                         }
 
                         if (!_this.$utils.validatesEmpty(form.budget)) {
-                            _this.$dialog.showToast("意向价格必填");
+                            _this.$dialog.showToast("请输入意向价格或选择面议");
                             return false;
                         }
 
-
+                        if (Number(form.budget) < 0) {
+                            _this.$dialog.showToast("请输入正确的价格");
+                            return false;
+                        }
                         if (!_this.$utils.validatesEmpty(form.cooperationMode)) {
                             _this.$dialog.showToast("合作方式必填");
                             return false;
