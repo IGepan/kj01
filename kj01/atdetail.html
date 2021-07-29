@@ -62,17 +62,7 @@
       padding: 0;
     }
     .activity-info-state {
-      display: block;
-      height: 26px;
-      color: #fff;
-      margin-right: 9px;
-      padding: 0 10px;
-      line-height: 26px;
-      font-size: 14px;
-      text-align: center;
-      background-color: #597dfa;
-      border-radius: 0;
-      white-space: nowrap;
+     margin-right: 0!important;
     }
   </style>
 </head>
@@ -150,8 +140,9 @@
                         <div class="address" v-if="!plan.onLineFlag"><i
                                 class="iconfont icon-dingweixian"></i>{{plan.provinceDisplay||''}}{{plan.cityDisplay||''}}{{plan.districtDisplay||''}}{{plan.location||''}}
                         </div>
-                        <div class="onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动
-                          <span class="activity-info-state" :type="plan.statusCode">{{plan.statusDisplay}}</span>
+                        <div class="onLine" v-else style="display: flex;justify-content: space-between">
+                            <span ><i class="iconfont icon-xianshanghuodong "></i>线上活动</span>
+                            <span class="activity-info-state" :type="plan.statusCode">{{plan.statusDisplay}}</span>
                         </div>
                         <div class="sponsor"><i class="iconfont icon-neirongtuisong"></i>发布方：{{plan.userName}}</div>
                       </div>
