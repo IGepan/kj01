@@ -15,7 +15,31 @@
 </head>
 <style>
   .ashow{display: none}
-
+  .activity-info-state1{
+    display: block;
+    height: 26px;
+    color: #fff;
+    margin-right: 9px;
+    padding: 0 10px;
+    line-height: 26px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #597dfa;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+  .activity-info-state1[type="03"] {
+    background-color: #597dfa;
+  }
+  /* 回放 */
+  .activity-info-state1[type="0305"] {
+    background-color: #28c917;
+  }
+  /* 结束 */
+  .activity-info-state1[type="0304"] {
+    background-color: #eff1fe;
+    color: #9496a5;
+  }
 </style>
 <body>
 <div class="box grayBgbox" v-cloak id='index_box'>
@@ -112,8 +136,9 @@
             <div class="topic-item-info">
               <h4 class="topic-item-info-title line">{{item.title}}</h4>
               <div class="topic-item-info-line line mt state"><span><i
-                      class="iconfont icon-lishijilu"></i>{{item.activeStartTime}} {{item.weekday}}</span> <span
-                      class="activity-info-state" :type="item.statusCode">{{item.statusDisplay}}</span></div>
+                      class="iconfont icon-lishijilu"></i>{{item.activeStartTime}} {{item.weekday}}</span>
+                <span class="activity-info-state"v-if="!item.statusByUrl" :type="item.statusCode">{{item.statusDisplay}}</span>
+                <span class="activity-info-state1"v-if="item.statusByUrl" :type="item.statusByUrl">{{item.statusDisplay}}</span></div>
               <div class="topic-item-info-line line address" v-if="item.onLineFlag === '0' && item.cityShow"><i
                       class="iconfont icon-dingweixian"></i>{{item.cityShow|formatCity('')}}</div>
               <div class="topic-item-info-line line onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动
