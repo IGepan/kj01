@@ -30,19 +30,19 @@
                 <li class="active">手机注册</li>
             </ul>
             <form class="login_form" id="reg_form">
-                <div class="input password">
-                    <input  name='userName' v-model="form.userName" type="text"
-                            placeholder="请输入公司名称">
+                <div class="input phone">
+                    <input name="phone" v-model="form.phone" @change="phoneChange" type="text" maxlength="11"
+                           placeholder="请输入常用手机号">
+                    <span v-text="phoneErrorMsg" class="form_error"></span>
                 </div>
-
                     <div class="clear"></div>
                     <div class="clear"></div>
                 <div class="form_item active">
-                    <div class="input phone">
-                        <input name="phone" v-model="form.phone" @change="phoneChange" type="text" maxlength="11"
-                               placeholder="请输入常用手机号">
-                        <span v-text="phoneErrorMsg" class="form_error"></span>
+                    <div class="input password">
+                        <input  name='userName' v-model="form.userName" type="text"
+                                placeholder="请输入公司名称">
                     </div>
+
                 </div>
                 <div id="msg"></div>
                 <button class="btn reg" @click='regClick()'>一键注册</button>
