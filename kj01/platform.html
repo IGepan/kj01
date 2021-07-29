@@ -36,6 +36,9 @@
     .article-file .line {
         color: #018fff;
     }
+    .vaMiddle:hover{
+        color: #f0ad4e;
+    }
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
@@ -149,25 +152,20 @@
                         </div>
                         <div class="detail-content" v-html="details.txt">
                         </div>
-<!--                        <template v-if="!detail.viewType && detail.files && detail.files.length">-->
-<!--                            <div class="article-files">-->
-<!--                                <div class="article-files-title"><span class="title-text">附件</span></div>-->
-<!--                                <div class="article-files-body">-->
-<!--                                    <template >-->
-<!--                                        <div class="article-file" @click.stop="handleFileSaveAs(fi)">-->
-<!--                                            <img class="vaMiddle " src="/image/word.svg">-->
-<!--&lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>-->
-<!--                                            <span class="vaMiddle line">征集行业专家入驻易智网.docx</span>-->
-<!--                                        </div>-->
-<!--                                        <div class="article-file" @click.stop="handleFileSaveAs(fi)">-->
-<!--                                            <img class="vaMiddle " src="/image/word.svg">-->
-<!--                                            &lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>-->
-<!--                                            <span class="vaMiddle line">征集科技服务机构入驻易智商城.docx</span>-->
-<!--                                        </div>-->
-<!--                                    </template>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </template>-->
+                        <template v-if="details.fileId">
+                            <div class="article-files">
+                                <div class="article-files-title"><span class="title-text">附件</span></div>
+                                <div class="article-files-body">
+                                    <template >
+                                        <div class="article-file">
+                                            <img class="vaMiddle " src="/image/file.svg">
+<!--                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>--></img>
+                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>
