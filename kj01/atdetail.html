@@ -61,6 +61,22 @@
       margin: 0;
       padding: 0;
     }
+    .activity-info-state {
+     margin-right: 0!important;
+    }
+    /* 已发布 */
+    .activity-info-state[type="03"] {
+      background-color: #597dfa;
+    }
+    /* 回放 */
+    .activity-info-state[type="0305"] {
+      background-color: #28c917;
+    }
+    /* 结束 */
+    .activity-info-state[type="0304"] {
+      background-color: #eff1fe;
+      color: #9496a5;
+    }
   </style>
 </head>
 
@@ -120,9 +136,6 @@
             </template>
           </div>
           <template v-if="tabsIndex === 0">
-            <div class="content-box" v-html="detail.activeText"></div>
-          </template>
-          <template v-if="tabsIndex === 1">
             <div class="planList">
               <template v-for="(plan, pi) in detail.topicDtls">
                 <div class="plan-item">
@@ -138,16 +151,22 @@
                       <div class="vaMiddle infos-box">
                         <h4 class="line2 plan-title">{{plan.activeName}}</h4>
                         <div class="address" v-if="!plan.onLineFlag"><i
-                          class="iconfont icon-dingweixian"></i>{{plan.provinceDisplay||''}}{{plan.cityDisplay||''}}{{plan.districtDisplay||''}}{{plan.location||''}}
-                      </div>
-                      <div class="onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动</div>
-                      <div class="sponsor"><i class="iconfont icon-neirongtuisong"></i>发布方：{{plan.userName}}</div>
+                                class="iconfont icon-dingweixian"></i>{{plan.provinceDisplay||''}}{{plan.cityDisplay||''}}{{plan.districtDisplay||''}}{{plan.location||''}}
+                        </div>
+                        <div class="onLine" v-else style="display: flex;justify-content: space-between">
+                            <span ><i class="iconfont icon-xianshanghuodong "></i>线上活动</span>
+                            <span class="activity-info-state" :type="plan.statusByUrl">{{plan.statusDisplayByUrl}}</span>
+                        </div>
+                        <div class="sponsor"><i class="iconfont icon-neirongtuisong"></i>发布方：{{plan.userName}}</div>
                       </div>
                     </div>
                   </a>
                 </div>
               </template>
             </div>
+          </template>
+          <template v-if="tabsIndex === 1">
+            <div class="content-box" v-html="detail.activeText"></div>
           </template>
           <template v-if="recommendList.length">
             <div class="linebox">
