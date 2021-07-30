@@ -129,8 +129,8 @@
                       <div class="state" v-text="order.orderStatusDisplay"></div>
                       <div class="operation">
                         <a target="_blank" :href="$pathPrefix+'/common/buyer/order/detail.html?id=' + order.id">订单详情</a>
-                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"
-                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>
+<!--                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"-->
+<!--                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>-->
                         <button v-if="order.orderStatus === '001'" class="acceptance"
                           @click="setCancelInfo(order.id, order.version)">取消订单</button>
                         <template v-if="order.orderType === '001' || order.orderType === '002'">
