@@ -118,20 +118,12 @@ require(['/common/js/require.config.js'], function () {
             'web-footer': httpVueLoader('/style/components/web_footer.vue')
           },
           created: function () {
-            this.initData()
+            this.initData();
             this.getNumbers();
             // this.getNewList()
             this.searchtitle && (this.searchValue = this.searchtitle)
           },
           methods: {
-            getNumbers: function () {
-              var vm = this;
-              indexApi.getActiveStatistics({}).then(function (res) {
-                res.result && vm.$data.numberCounts.forEach(function(item) {
-                  item.count = res.result[item.key] || 0
-                })
-              })
-            },
             handleSearch: function () {
               if (location.pathname === '/alist.html') {
                 this.$emit('search', this.searchValue)
@@ -167,6 +159,14 @@ require(['/common/js/require.config.js'], function () {
                     value: "01"
                   }
               )
+            },
+            getNumbers: function () {
+              var vm = this;
+              indexApi.getActiveStatistics({}).then(function (res) {
+                res.result && vm.$data.numberCounts.forEach(function(item) {
+                  item.count = res.result[item.key] || 0
+                })
+              })
             },
             getDataList: function (call) {
               var vm = this;

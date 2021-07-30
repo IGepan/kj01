@@ -127,7 +127,6 @@ require(['/common/js/require.config.js'], function () {
           'right-navs': httpVueLoader('/style/components/right_navs.vue'),
         },
         created: function () {
-          this.getNumbers();
           var title = this.$utils.getReqStr('title')
           title && (this.searchForm.title = title);
           var fileType = this.$utils.getReqStr('fileType')
@@ -154,17 +153,9 @@ require(['/common/js/require.config.js'], function () {
             value: 'publishDate-desc',
             display: '时间'
           })
-
+          this.getNumbers()
         },
         methods: {
-          getNumbers: function () {
-            var vm = this;
-            indexApi.getWebPolicyStatistics({}).then(function (res) {
-              res.result && vm.$data.numberCounts.forEach(function (item) {
-                item.count = res.result[item.key] || 0
-              })
-            })
-          },
           getInnerHtml: function () {
             var labels = $.map($('.cityCode option:selected'), function (el, index) {
               return el.innerHTML !== '省级' && el.innerHTML !== '市级' && el.innerHTML !== '区级' && el.innerHTML || '';
@@ -262,6 +253,14 @@ require(['/common/js/require.config.js'], function () {
                 vm.options.searchOpts = opts;
                 vm.initTime()
               }
+            })
+          },
+          getNumbers: function () {
+            var vm = this;
+            indexApi.getWebPolicyStatistics({}).then(function (res) {
+              res.result && vm.$data.numberCounts.forEach(function (item) {
+                item.count = res.result[item.key] || 0
+              })
             })
           },
           getPList: function (data, dataKey) {
