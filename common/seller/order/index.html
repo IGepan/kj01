@@ -140,8 +140,8 @@
                         <template v-if="order.orderType === '001' || order.orderType === '002'">
                           <button v-if="order.orderStatus === '002' || order.orderStatus === '003'"
                             @click="setAcceptOrderInfo(order)" class="acceptance">申请验收</button>
-                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="contract"
-                            @click="notFun">签订合同</button>
+<!--                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="contract"-->
+<!--                            @click="notFun">签订合同</button>-->
                         </template>
                         <template v-if="order.orderType === '003'">
                           <button v-if="order.orderStatus === '003'" @click="shipments(order.id)"
