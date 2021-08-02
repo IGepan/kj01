@@ -819,7 +819,7 @@ require(['/common/js/require.config.js'], function () {
                         document.getElementById("showbg").style.display="none"
 
 
-                    },10000);
+                    },5000);
                 },
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
