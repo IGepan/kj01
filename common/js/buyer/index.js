@@ -96,6 +96,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           })
         },
+        evaluate: function (id) {
+          location.href = this.$pathPrefix+'/common/buyer/evaluate/orderDetail.html?code=001.001.001.001&id=' + id
+        },
         // 行业关注
         getAmountList: function (code) {
           var vm = this
