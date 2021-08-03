@@ -1189,8 +1189,8 @@
 }
 /*//新增样式*/
 .el-text .el-input{
-    width: 30%!important;}
-.el-form-item__label{width: 180px!important;font-size: 16px!important;text-align: left!important;}
+    width: 70%!important;}
+.el-form-item__label{font-size: 16px!important;text-align: left!important;width: 100%}
 .el-radio-group {
     font-size: 16px!important;
     height: 40px;

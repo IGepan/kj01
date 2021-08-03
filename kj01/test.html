@@ -1,0 +1,659 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/normalize.min.css">
+    <link rel='stylesheet' href='./style/css/flatpickr.min.css'>
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+</head>
+<style>
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+        margin: 30px 0
+    }
+    .leftbox{
+        float: left;
+        width: 50%;
+    }
+    .form__group{
+        margin-top: 0!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-bottom: 10px;
+        /*margin-left: 10px;*/
+        vertical-align: bottom;
+    }
+    legend{
+        width: 100%;
+        font-size: 18px!important;
+        line-height: 36px!important;
+        color: #2c82f1;
+        font-weight: bold;
+        border-bottom:2px solid #2c82f1;
+        margin-bottom: 30px!important;
+    }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <!--  <index-head :nav-index="8"></index-head>-->
+
+    <div class="mdiv">
+        <h1 class="title-h2">两江新区企业科技创新情况调查问卷</h1>
+        <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" style="border-radius: 20px;margin-bottom: 50px">
+            <fieldset class="form__group" >
+                <legend>》企业基本信息</legend>
+                <el-form-item label="企业名称" prop="companyName" class="el-text">
+                    <el-input placeholder="请输入企业名称"
+                              v-model="formData.companyName"
+                              clearable></el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="经营地址" prop="address" class="el-text leftbox">
+                    <el-input placeholder="请输入经营地址"
+                              v-model="formData.address"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="date" label="企业注册时间" class="el-text leftbox">
+                    <el-date-picker placeholder="企业注册时间"  type="date"
+                                     format="yyyy-MM-dd" value-format="yyyy-MM-dd"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="联系人姓名及职务" prop="contact" class="el-text leftbox ">
+                    <el-input placeholder="请输入联系人姓名及职务"
+                              v-model="formData.contact"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="联系电话" prop="phone" class="el-text leftbox">
+                    <el-input placeholder="请输入联系电话"
+                              v-model="formData.phone"
+                              maxlength="11"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="是否入科技型企业库" prop="warehousing"class="el-text leftbox">
+                    <el-radio-group v-model="formData.warehousing">
+                        <el-radio  label="1">是</el-radio>
+                        <el-radio  label="2">否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text leftbox">
+                    <el-radio-group v-model="formData.plan">
+                        <el-radio  label="1">是</el-radio>
+                        <el-radio  label="2">否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否是高新技术企业" prop="hightech" class="el-text leftbox ">
+                    <el-radio-group v-model="formData.hightech">
+                        <el-radio  label="1">是</el-radio>
+                        <el-radio  label="2">否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否计划申报高新技术企业" prop="declare" class="el-text leftbox">
+                    <el-radio-group v-model="formData.declare">
+                        <el-radio  label="1">是</el-radio>
+                        <el-radio  label="2">否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》经营情况</legend>
+                <el-form-item label="1、2020年度营业收入（万元）" prop="Operation1" class="el-text leftbox">
+                    <el-input placeholder="请输入"
+                              v-model="formData.Operation1"
+                              clearable></el-input>
+
+                </el-form-item>
+                <el-form-item label="2、2020年度研发投入（万元）" prop="Operation2" class="el-text leftbox">
+                    <el-input placeholder="请输入"
+                              v-model="formData.Operation2"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="3、2020年末从业人员（个）" prop="Operation3" class="el-text leftbox">
+                    <el-input placeholder="请输入"
+                              v-model="formData.Operation3"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="4、2020年末研发人员（个）" prop="Operation4" class="el-text leftbox">
+                    <el-input placeholder="请输入"
+                              v-model="formData.Operation4"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》已有科技成果</legend>
+                <el-form-item label="5、国际/国内领先技术（项/技术名称）" prop="achievement5" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="6、行业领先或重大产业关键技术创新（项/技术名称）" prop="achievement6" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="7、自主知识产权拥有量（项）" prop="achievement7" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="8、发明专利拥有量（项）" prop="achievement8" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》已有科技资源</legend>
+                <el-form-item label="9、市级以上科技研发平台（个/平台名称、认证机构）" prop="resources9" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="10、国家级创新平台（个/平台名称、认证机构）" prop="resources10" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="11、引进国际科技创新平台（个/平台名称、认证机构）" prop="resources11" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="12、主导成立的产业技术创新联盟（个/名称）" prop="resources12" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="13、参加的产业技术创新联盟（个/名称）" prop="resources13" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》计划建设的研发平台</legend>
+                <el-form-item label="14、大科学装置（个/名称）" prop="platform14" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="15、国家实验室（个/名称）" prop="platform15" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="16、国家重点实验室（个/名称）" prop="platform16" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="17、国家技术创新中心（个/名称）" prop="platform17" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="18、重庆市重点实验室（个/名称）" prop="platform18" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="19、重庆市技术转移中心（个/名称）" prop="platform19" class="el-text leftbox">
+
+                <el-input
+                        class="input-new-tag"
+                        v-model="formData.inputValue"
+                        ref="save"
+                        @keyup.enter.native="handleInputConfirm"
+                        @blur="handleInputConfirm">
+                </el-input>
+                <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                <br>
+                <el-tag
+                        :key="ni"
+                        v-for="(tag,ni) in dynamicTags"
+                        closable
+                        :disable-transitions="false"
+                        @close="handleClose(tag)">
+                    {{tag}}
+                </el-tag>
+            </el-form-item>
+                <el-form-item label="20、重庆市技术创新中心（个/名称）" prop="platform20" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="21、其他：（个/名称）" prop="platform21" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》计划申报的研发项目</legend>
+                <el-form-item label="22、科技部重大研发专项（个/名称）" prop="projects22" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="23、重庆市科技型企业技术创新与应用发展专项（个/名称）" prop="projects23" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="24、重庆市基础研究与前沿探索专项（个/名称）" prop="projects24" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="25、重庆市技术创新与应用发展专项（个/名称）" prop="projects25" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="26、自主或主导参与的关键核心技术研发攻关计划（项/技术名称）" prop="projects26" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+                <el-form-item label="27、其他：（个/名称）" prop="projects27" class="el-text leftbox">
+
+                    <el-input
+                            class="input-new-tag"
+                            v-model="formData.inputValue"
+                            ref="save"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm">
+                    </el-input>
+                    <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+                    <br>
+                    <el-tag
+                            :key="ni"
+                            v-for="(tag,ni) in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose(tag)">
+                        {{tag}}
+                    </el-tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="产学研合作需求及合作形式" prop="cooperation" class="el-text">
+
+                        <vue-ueditor-wrap v-model="formData.cooperation" :config="ueditorConfig" class="exptextarea">
+                        </vue-ueditor-wrap>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+            <el-form-item label="以上是否涉及保密项目" prop="secrecy" class="el-text">
+                <el-radio-group v-model="formData.secrecy">
+                    <el-radio  label="1">是</el-radio>
+                    <el-radio  label="2">否</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="企业发展中的问题、困难或对两江新区的建议" prop="idea" class="el-text">
+                    <vue-ueditor-wrap v-model="formData.idea" :config="ueditorConfig" class="exptextarea">
+                    </vue-ueditor-wrap>
+                </el-form-item>
+            </fieldset>
+            <div class="form__submit">
+                <p class="form__validation" data-validation="submit" role="alert" aria-live="assertive"></p>
+<!--                <button class="button" @click="submit()" id="save">提交</button>-->
+                <el-button type="primary" @click="submit('fromData')" :loading="false" style="width: 160px">提交</el-button>
+            </div>
+        </el-form>
+    </div>
+    <web-footer></web-footer>
+</div>
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/test.js"></script>
+<!--<script src="/common/js/libs/vue.js"></script>-->
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+</body>
+
+</html>
