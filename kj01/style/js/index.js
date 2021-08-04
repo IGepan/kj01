@@ -1108,6 +1108,16 @@ require(['/common/js/require.config.js'], function () {
                     handlePTabsNavMore: function (url) {
                         location.href = url
                     },
+                    // handleTest: function () {
+                    //     if (this.userInfo && this.userInfo.userName) {
+                    //         // window.location.href = '/common/login.html';
+                    //         window.open('/test.html');
+                    //     }else {
+                    //         window.location.href = '/common/login.html';
+                    //     }
+                    //     // window.open();
+                    //
+                    // },
                     getAList: function (id) {
                         var vm = this;
                         indexApi.selectActiveByPage({
