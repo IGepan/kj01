@@ -1,6 +1,6 @@
 require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js','ELEMENT'],
-        function ($, Vue, httpVueLoader, httpUrl, indexApi,ELEMENT) {
+        function ($, Vue, httpVueLoader, httpUrl, indexApi, ELEMENT) {
             Vue.component('vue-ueditor-wrap', VueUeditorWrap)
             new Vue({
                 el: '#index_box',
@@ -367,18 +367,19 @@ require(['/common/js/require.config.js'], function () {
                         //         window.location.href=$pathPrefix+'/index.html'
                         //     }
                         // });
-                        this.$confirm('确认提交后不可修改, 是否继续提交?', '提示', {
+                        this.$confirm('此次提交后不可修改, 是否继续提交?', '提示', {
                             confirmButtonText: '确定',
                             cancelButtonText: '取消',
-                            type: 'warning'
+                            type: 'warning',
+                            center: true
                         }).then(() => {
                             this.$refs.form.validate((valid) => {
                                 console.log(valid,'valid')
                                 if (valid) {
                                     indexApi.submit(this.formData).then((res) => {
                                         if (res.code == 'rest.success') {
-                                            this.$message({
-                                                type: 'success',
+                                            this.$notify.success({
+                                                title:'成功！',
                                                 message: '问卷提交成功!'
                                             });
                                         } else {
@@ -387,7 +388,10 @@ require(['/common/js/require.config.js'], function () {
                                         }
                                     });
                                 }else {
-                                    this.$message.success('请完善信息');
+                                    this.$notify.error({
+                                        title:'提示！',
+                                        message: '请先完善信息填写!'
+                                    });
                                 }
                             });
                         }).catch(() => {

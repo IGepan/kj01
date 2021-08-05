@@ -66,6 +66,13 @@
         height: auto!important;
         word-wrap: break-word!important;
     }
+    .disabled{
+        pointer-events: none;
+    }
+    input[type="text"]:disabled
+    {
+        background-color: #dddddd;
+    }
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>

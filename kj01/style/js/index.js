@@ -1108,16 +1108,13 @@ require(['/common/js/require.config.js'], function () {
                     handlePTabsNavMore: function (url) {
                         location.href = url
                     },
-                    // handleTest: function () {
-                    //     if (this.userInfo && this.userInfo.userName) {
-                    //         // window.location.href = '/common/login.html';
-                    //         window.open('/test.html');
-                    //     }else {
-                    //         window.location.href = '/common/login.html';
-                    //     }
-                    //     // window.open();
-                    //
-                    // },
+                    handleTest: function () {
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?return=/test.html";
+                        } else {
+                            window.location.href = "/test.html";
+                        }
+                    },
                     getAList: function (id) {
                         var vm = this;
                         indexApi.selectActiveByPage({
