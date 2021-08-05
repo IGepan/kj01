@@ -144,6 +144,12 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseUrl + '/questionnaire/insert', param);
         },
         /**
+         * 问卷调查回显
+         */
+        selectQuestionnaire: function () {
+            return Http.get(httpUrl.baseUrl + '/questionnaire/selectByUserId');
+        },
+        /**
          *
          * 成果展示
          */

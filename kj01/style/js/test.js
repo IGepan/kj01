@@ -63,6 +63,8 @@ require(['/common/js/require.config.js'], function () {
                             isSecrecy:'1',//以上是否涉及保密项目
                             proposal:'',//企业发展中的问题、困难或对两江新区的建议
                             inputValue: '',//项目名称
+                            delFlag: '0',
+                            version: '0'
                         },
 
                         rules: {
@@ -337,6 +339,9 @@ require(['/common/js/require.config.js'], function () {
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'tag':httpVueLoader('/style/components/tag.vue')
+                },
+                created() {
+                    indexApi.selectQuestionnaire()
                 },
                 methods: {
                     handleClose(tag) {

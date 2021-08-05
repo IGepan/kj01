@@ -658,7 +658,8 @@ require(['/common/js/require.config.js'], function () {
                         '/style/images/index/tab-bg3.png',
                         '/style/images/index/tab-bg4.png',
                         '/style/images/index/tab-bg5.png',
-                        '/style/images/index/tab-bg6.png']
+                        '/style/images/index/tab-bg6.png'],
+                    boxActive:false
                 },
                 computed: {
                     text() {
@@ -814,11 +815,17 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
+                    setTimeout(function(){
+                        document.getElementById("showbg").style.display="none"
+                    },5000);
                 },
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
                 },
                 methods: {
+                    qiehuan:function (){
+                        this.boxActive=true
+                    },
                     Pricre: function (v){
 
                         if (typeof v !== 'undefined' ) {
