@@ -67,7 +67,7 @@ require(['/common/js/require.config.js'], function () {
                             version: '0'
                         },
                         isActive:false,
-
+                        isSubmit:'',
                         rules: {
                             companyName: [
                                 { required: true, message: '请输入企业名称', trigger: 'blur' },
@@ -86,7 +86,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             contactPhone: [
                                 {required: true, message: '请填写联系电话', trigger: 'blur'},
-                                {pattern:/^1[34578]\d{9}$/,message: '请填写正确的电话号码', trigger: 'blur'}
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/,message: '请填写正确的电话号码', trigger: 'blur'}
                             ],
                         businessIncome: [
                                 { required: true, message: '请输入营业收入', trigger: 'blur' },
@@ -102,7 +102,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         leadingTechnologyList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.leadingTechnologyList.length <= 0) {
+                                        if (!this.formData.leadingTechnologyList || this.formData.leadingTechnologyList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -111,7 +111,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         technologicalInnovationList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.technologicalInnovationList.length <= 0) {
+                                        if (!this.formData.technologicalInnovationList || this.formData.technologicalInnovationList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -120,7 +120,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         intellectualPropertyList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.intellectualPropertyList.length <= 0) {
+                                        if (!this.formData.intellectualPropertyList || this.formData.intellectualPropertyList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -129,7 +129,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         inventionPatentList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.inventionPatentList.length <= 0) {
+                                        if (!this.formData.inventionPatentList || this.formData.inventionPatentList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -139,7 +139,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             rdPlatformList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.rdPlatformList.length <= 0) {
+                                        if (!this.formData.rdPlatformList || this.formData.rdPlatformList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -148,7 +148,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         nationalInnovationPlatformList: [
                             { required: true,validator:(rule, value, callback) => {
-                                    if (this.formData.nationalInnovationPlatformList.length <= 0) {
+                                    if (!this.formData.nationalInnovationPlatformList || this.formData.nationalInnovationPlatformList.length <= 0) {
                                         callback(new Error('请输入名称，没有则填写无'));
                                     }else {
                                         callback();
@@ -157,7 +157,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         technologicalInnovationPlatformList: [
                             { required: true,validator:(rule, value, callback) => {
-                                    if (this.formData.technologicalInnovationPlatformList.length <= 0) {
+                                    if (!this.formData.technologicalInnovationPlatformList || this.formData.technologicalInnovationPlatformList.length <= 0) {
                                         callback(new Error('请输入名称，没有则填写无'));
                                     }else {
                                         callback();
@@ -166,7 +166,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         leadingInnovationAllianceList: [
                                 {required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.leadingInnovationAllianceList.length <= 0) {
+                                        if (!this.formData.leadingInnovationAllianceList || this.formData.leadingInnovationAllianceList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -176,7 +176,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         innovationAllianceList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.innovationAllianceList.length <= 0) {
+                                        if (!this.formData.innovationAllianceList || this.formData.innovationAllianceList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -186,7 +186,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         deviceList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.deviceList.length <= 0) {
+                                        if (!this.formData.deviceList || this.formData.deviceList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -196,7 +196,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         nationalLaboratoryList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.nationalLaboratoryList.length <= 0) {
+                                        if (!this.formData.nationalLaboratoryList || this.formData.nationalLaboratoryList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -206,7 +206,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         nationalKeyLaboratoryList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.nationalKeyLaboratoryList.length <= 0) {
+                                        if (!this.formData.nationalKeyLaboratoryList || this.formData.nationalKeyLaboratoryList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -216,7 +216,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         nationalTechnologicalList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.nationalTechnologicalList.length <= 0) {
+                                        if (!this.formData.nationalTechnologicalList || this.formData.nationalTechnologicalList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -226,7 +226,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         cqKeyLaboratoryList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.cqKeyLaboratoryList.length <= 0) {
+                                        if (!this.formData.cqKeyLaboratoryList || this.formData.cqKeyLaboratoryList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -236,7 +236,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         cqTechnologyTransferCenterList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.cqTechnologyTransferCenterList.length <= 0) {
+                                        if (!this.formData.cqTechnologyTransferCenterList || this.formData.cqTechnologyTransferCenterList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -246,7 +246,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         cqTechnologicalInnovationList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.cqTechnologicalInnovationList.length <= 0) {
+                                        if (!this.formData.cqTechnologicalInnovationList || this.formData.cqTechnologicalInnovationList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -256,7 +256,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         otherPlatformList: [
                         { required: true,validator:(rule, value, callback) => {
-                                if (this.formData.otherPlatformList.length <= 0) {
+                                if (!this.formData.otherPlatformList || this.formData.otherPlatformList.length <= 0) {
                                     callback(new Error('请输入名称，没有则填写无'));
                                 }else {
                                     callback();
@@ -266,7 +266,7 @@ require(['/common/js/require.config.js'], function () {
                     ],
                             kjbDevelopmentList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.kjbDevelopmentList.length <= 0) {
+                                        if (!this.formData.kjbDevelopmentList || this.formData.kjbDevelopmentList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -276,7 +276,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         rdProjectList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.rdProjectList.length <= 0) {
+                                        if (!this.formData.rdProjectList || this.formData.rdProjectList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -286,7 +286,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         exploreList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.exploreList.length <= 0) {
+                                        if (!this.formData.exploreList || this.formData.exploreList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -296,7 +296,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         applicationDevelopmentList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.applicationDevelopmentList.length <= 0) {
+                                        if (!this.formData.applicationDevelopmentList || this.formData.applicationDevelopmentList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -306,7 +306,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         corePlanList: [
                                 { required: true, validator:(rule, value, callback) => {
-                                        if (this.formData.corePlanList.length <= 0) {
+                                        if (!this.formData.corePlanList || this.formData.corePlanList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -316,7 +316,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                         otherItemsList: [
                                 { required: true,validator:(rule, value, callback) => {
-                                        if (this.formData.otherItemsList.length <= 0) {
+                                        if (!this.formData.otherItemsList || this.formData.otherItemsList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         }else {
                                             callback();
@@ -347,11 +347,33 @@ require(['/common/js/require.config.js'], function () {
                 methods: {
                     getData(){
                         indexApi.selectQuestionnaire().then((res) => {
-                            if (res.code == 'rest.success' && res.result) {
+                            if (res.code == 'rest.success' && res.result ) {
                                 this.formData = res.result
-                                this.isActive = true
+                                if(this.formData.isSubmit == 1){
+                                    this.isActive = true
+                                }else {
+                                    this.isActive = false
+                                }
                             }
                         })
+                    },
+                    keep(){
+                        indexApi.submit(this.formData).then((res) => {
+                            if (res.code == 'rest.success') {
+                                this.$notify.success({
+                                    title:'成功！',
+                                    message: '问卷保存成功!',
+                                    duration:2000
+                                });
+
+                                setTimeout(function(){
+                                    window.location.href = "/test.html";
+                                },2000);
+                            } else {
+                                this.$dialog.showToast('系统错误');
+
+                            }
+                        });
                     },
                     //提交表单
                     submit() {
@@ -370,6 +392,7 @@ require(['/common/js/require.config.js'], function () {
                             this.$refs.form.validate((valid) => {
                                 console.log(valid,'valid')
                                 if (valid) {
+                                    this.formData.isSubmit = 1
                                     indexApi.submit(this.formData).then((res) => {
                                         if (res.code == 'rest.success') {
                                             this.$notify.success({
@@ -393,6 +416,7 @@ require(['/common/js/require.config.js'], function () {
                                 }
                             });
                         }).catch(() => {
+                            console.log("diandaolezheli ")
                             this.$message({
                                 type: 'info',
                                 message: '已取消提交'

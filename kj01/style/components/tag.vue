@@ -16,7 +16,7 @@
       closable
       :disable-transitions="false"
       @close="handleClose(tag)">
-    {{tag}}
+   {{tag}}
   </el-tag>
 </div>
 </template>
@@ -41,6 +41,7 @@ module.exports = {
   },
   data: function () {
     return {
+      temp:"&amp;",
       inputValue: '',
       dynamicTags: []//关键字数组
     }
