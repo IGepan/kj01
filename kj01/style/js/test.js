@@ -16,10 +16,10 @@ require(['/common/js/require.config.js'], function () {
                             date:'',//注册时间
                             contactName:'',//联系人姓名及职务
                             contactPhone:'',//联系电话
-                            isJoinDepository:'1',//是否入科技型企业库
-                            plan:'1',//是否计划入科技型企业库
-                            highTech:'1',//是否是高新技术企业
-                            declare:'1',//是否计划申报高新技术企业
+                            isJoinDepository: 1,//是否入科技型企业库
+                            plan:1,//是否计划入科技型企业库
+                            highTech:1,//是否是高新技术企业
+                            declare:1,//是否计划申报高新技术企业
                             businessIncome:'',//营业收入
                             rdInvestment:'',//研发投入
                             employees:'',// 从业人员个数
@@ -60,7 +60,7 @@ require(['/common/js/require.config.js'], function () {
                                 otherItemsList:[],// 其他（研发项目）
                             // },
                             cooperation:'',//合作形式
-                            isSecrecy:'1',//以上是否涉及保密项目
+                            isSecrecy:1,//以上是否涉及保密项目
                             proposal:'',//企业发展中的问题、困难或对两江新区的建议
                             inputValue: '',//项目名称
                             delFlag: '0',
@@ -342,17 +342,16 @@ require(['/common/js/require.config.js'], function () {
                     'tag':httpVueLoader('/style/components/tag.vue')
                 },
                 created() {
-                        this.getData()
+                    this.getData()
                 },
                 methods: {
                     getData(){
                         indexApi.selectQuestionnaire().then((res) => {
-                            if (res.code == 'rest.success') {
+                            if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
                                 this.isActive = true
                             }
                         })
-
                     },
                     //提交表单
                     submit() {
@@ -377,6 +376,9 @@ require(['/common/js/require.config.js'], function () {
                                                 title:'成功！',
                                                 message: '问卷提交成功!'
                                             });
+                                            setTimeout(function(){
+                                                window.location.href = "/test.html";
+                                            },4500);
                                         } else {
                                             this.$dialog.showToast('系统错误');
 
