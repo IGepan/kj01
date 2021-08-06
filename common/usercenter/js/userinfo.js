@@ -1,7 +1,8 @@
 // JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom'],
+      function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom) {
 
     window.vueDom = new Vue({
       el: '#index_box',
@@ -127,6 +128,7 @@ require(['/common/js/require.config.js'], function () {
         }
       },
       created: function () {
+        this.userNameValid();
         this.baseFormData = JSON.parse(JSON.stringify(this.formData));
         this.$httpCom.dict({ code: 'qualification' }).then(function (res) {
           if (res.code === 'rest.success') {
@@ -152,7 +154,7 @@ require(['/common/js/require.config.js'], function () {
         'auth-left': httpVueLoader('/common/components/authLeft.vue'),
         'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
         'address-map': httpVueLoader('/common/components/addressMap.vue'),
-        'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
+        'ly-select-level': httpVueLoader('/common/components/selectLevel1.vue'),
         'ly-select-level2': httpVueLoader('/common/components/select2level.vue'),
         'ly-mulselect': httpVueLoader('/common/seller/components/technology/mulSelect.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -294,7 +296,6 @@ require(['/common/js/require.config.js'], function () {
               }).catch(function () {
                 vm.isSubmitDisabled = false
               })
-            } else {
             }
           });
         },
