@@ -366,8 +366,8 @@ require(['/common/js/require.config.js'], function () {
                       }
                     }
                   // 判断是否有return url
-                  if(location.search.indexOf('return')>-1){
-                    toUrl = location.search.replace('?return=','')
+                  if(location.search.indexOf('back')>-1){
+                    toUrl = location.search.replace('?back=','')
                   }
                     window.location.href = toUrl
                     localStorage.removeItem("userPhone")

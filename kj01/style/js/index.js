@@ -1117,7 +1117,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handleTest: function () {
                         if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?return=/test.html";
+                            window.location.href = "/common/login.html?back=/test.html";
                         } else {
                             window.location.href = "/test.html";
                         }
