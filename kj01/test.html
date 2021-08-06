@@ -103,7 +103,7 @@
                               clearable></el-input>
                 </el-form-item>
                 <el-form-item prop="date" label="企业注册时间" class="el-text rightbox">
-                    <el-date-picker placeholder="开始时间" type="date"
+                    <el-date-picker placeholder="企业注册时间" type="date"
                                     v-model="formData.date" format="yyyy-MM-dd" value-format="yyyy-MM-dd"></el-date-picker>
                 </el-form-item>
 
@@ -226,11 +226,11 @@
                 <el-form-item label="19、重庆市技术转移中心（名称）" prop="cqTechnologyTransferCenterList" class="el-text">
                     <tag v-model="formData.cqTechnologyTransferCenterList"></tag>
             </el-form-item>
-                <el-form-item label="20、重庆市技术创新中心（个/名称）" prop="cqTechnologicalInnovationList" class="el-text">
+                <el-form-item label="20、重庆市技术创新中心（名称）" prop="cqTechnologicalInnovationList" class="el-text">
 
                     <tag v-model="formData.cqTechnologicalInnovationList"></tag>
                 </el-form-item>
-                <el-form-item label="21、其他：（个/名称）" prop="otherPlatformList" class="el-text">
+                <el-form-item label="21、其他：（名称）" prop="otherPlatformList" class="el-text">
                     <tag v-model="formData.otherPlatformList"></tag>
                 </el-form-item>
 
@@ -259,9 +259,10 @@
             </fieldset>
             <fieldset class="form__group">
                 <legend>》产学研合作需求及合作形式</legend>
+                <p style="color: red">请填写产学研合作需求及合作形式，没有则填写无</p>
                 <el-form-item prop="cooperation" class="el-text">
 
-                        <vue-ueditor-wrap v-model="formData.cooperation" :config="ueditorConfig" class="exptextarea">
+                        <vue-ueditor-wrap v-model="formData.cooperation" :config="ueditorConfig" class="exptextarea" >
                         </vue-ueditor-wrap>
                 </el-form-item>
             </fieldset>
@@ -276,6 +277,7 @@
             </fieldset>
             <fieldset class="form__group">
                 <legend>》企业发展中的问题、困难或对两江新区的建议</legend>
+                <p style="color: red">请填写企业发展中的问题、困难或对两江新区的建议，没有则填写无</p>
                 <el-form-item label="" prop="idea" class="el-text">
                     <vue-ueditor-wrap v-model="formData.proposal" :config="ueditorConfig" class="exptextarea">
                     </vue-ueditor-wrap>

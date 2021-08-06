@@ -4,6 +4,7 @@
       class="input-new-tag"
       v-model="inputValue"
       ref="save"
+      placeholder="请输入名称，没有则填写无"
       @keyup.enter.native="handleInputConfirm"
       @blur="handleInputConfirm">
   </el-input>
