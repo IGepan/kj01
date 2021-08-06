@@ -81,7 +81,18 @@ module.exports = {
       this.initValue(val)
     },
     selectList: function (val) {
-      this.$emit('input', val);
+      console.log('--v--')
+        if (val.length==1 &&!val[0].tagType){
+          console.log('-----')
+          for(var i=0;i<=this.itemList.length; i++ ){
+
+            for(var v=0;v<=this.itemList[i].tagList.length;v++){
+              val.push(this.itemList[i].tagList[v])
+            }
+          }
+        }
+      this.$emit('input',val);
+      console.log(val)
     }
   },
   created: function () {

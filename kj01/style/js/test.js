@@ -66,6 +66,7 @@ require(['/common/js/require.config.js'], function () {
                             delFlag: '0',
                             version: '0'
                         },
+                        isActive:false,
 
                         rules: {
                             companyName: [
@@ -341,28 +342,17 @@ require(['/common/js/require.config.js'], function () {
                     'tag':httpVueLoader('/style/components/tag.vue')
                 },
                 created() {
-                    indexApi.selectQuestionnaire()
+                        this.getData()
                 },
                 methods: {
-                    handleClose(tag) {
-                        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
-                    },
+                    getData(){
+                        indexApi.selectQuestionnaire().then((res) => {
+                            if (res.code == 'rest.success') {
+                                this.formData = res.result
+                                this.isActive = true
+                            }
+                        })
 
-                    showInput() {
-                        // this.inputVisible = true;
-                        this.$nextTick(_ => {
-                            this.$refs.save.focus();
-                            console.log(this.$refs.save.focus())
-                        });
-                    },
-
-                    handleInputConfirm() {
-                        let inputValue = this.formData.inputValue;
-                        if (inputValue) {
-                            this.dynamicTags.push(inputValue);
-                        }
-                        // this.inputVisible = false;
-                        this.inputValue = '';
                     },
                     //提交表单
                     submit() {
