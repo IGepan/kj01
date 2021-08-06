@@ -374,11 +374,12 @@ require(['/common/js/require.config.js'], function () {
                                         if (res.code == 'rest.success') {
                                             this.$notify.success({
                                                 title:'成功！',
-                                                message: '问卷提交成功!'
+                                                message: '问卷提交成功!',
+                                                duration:2000
                                             });
                                             setTimeout(function(){
                                                 window.location.href = "/test.html";
-                                            },4500);
+                                            },2000);
                                         } else {
                                             this.$dialog.showToast('系统错误');
 
