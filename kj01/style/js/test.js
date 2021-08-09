@@ -72,35 +72,35 @@ require(['/common/js/require.config.js'], function () {
                         isSubmit: '',
                         rules: {
                             companyName: [
-                                {required: true, message: '请输入企业名称', trigger: 'blur'},
+                                {required: true, message: '请输入企业名称'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             address: [
-                                {required: true, message: '请输入经营地址', trigger: 'blur'},
+                                {required: true, message: '请输入经营地址'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             date: [
-                                {type: 'string', required: true, message: '请选择企业注册时间', trigger: 'blur'},
+                                {type: 'string', required: true, message: '请选择企业注册时间'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             contactName: [
                                 {required: true, message: '请输入联系人姓名及职务', trigger: 'blur'},
                             ],
                             contactPhone: [
-                                {required: true, message: '请填写联系电话', trigger: 'blur'},
-                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码', trigger: 'blur'}
+                                {required: true, message: '请填写联系电话'},
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
                             ],
                             businessIncome: [
-                                {required: true, message: '请输入营业收入', trigger: 'blur'},
+                                {required: true, message: '请输入营业收入'},
                             ],
                             rdInvestment: [
-                                {required: true, message: '请输入研发投入', trigger: 'blur'},
+                                {required: true, message: '请输入研发投入'},
                             ],
                             employees: [
-                                {required: true, message: '请输入从业人员个数', trigger: 'blur'},
+                                {required: true, message: '请输入从业人员个数'},
                             ],
                             rdPersonnel: [
-                                {required: true, message: '请输入研发人员个数', trigger: 'blur'},
+                                {required: true, message: '请输入研发人员个数'},
                             ],
                             leadingTechnologyList: [
                                 {
@@ -110,7 +110,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, field: 'formData.achievement.leadingTechnologyList', trigger: 'blur'
+                                    }
                                 }
                             ],
                             technologicalInnovationList: [
@@ -121,7 +121,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 }
                             ],
                             intellectualPropertyList: [
@@ -132,7 +132,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 }
                             ],
                             inventionPatentList: [
@@ -143,7 +143,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 }
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -155,7 +155,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 }
                             ],
                             nationalInnovationPlatformList: [
@@ -166,7 +166,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 }
                             ],
                             technologicalInnovationPlatformList: [
@@ -177,7 +177,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 }
                             ],
                             leadingInnovationAllianceList: [
@@ -188,7 +188,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -200,7 +200,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -212,7 +212,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -224,7 +224,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -236,7 +236,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -248,7 +248,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
 
                             ],
@@ -260,7 +260,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
 
                             ],
@@ -272,7 +272,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
 
                             ],
@@ -284,7 +284,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
 
                             ],
@@ -296,7 +296,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -308,7 +308,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -320,7 +320,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -332,7 +332,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -344,7 +344,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -356,7 +356,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -368,16 +368,16 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    }, trigger: 'blur'
+                                    }
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             proposal: [
-                                {required: true, message: '请填写企业发展建议，没有则填写无', trigger: 'blur'},
+                                {required: true, message: '请填写企业发展建议，没有则填写无'}
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             cooperation: [
-                                {required: true, message: '请填写合作方式，没有则填写无', trigger: 'blur'}
+                                {required: true, message: '请填写合作方式，没有则填写无'}
                             ],
                         },
 

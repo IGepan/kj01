@@ -7,11 +7,11 @@
       placeholder="请输入名称，没有则填写无"
   >
   </el-input>
-  <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
+  <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px" >增加</el-button>
   <br>
   <el-tag style="white-space: normal"
       :key="ni"
-      v-for="(tag,ni) in dynamicTags"
+      v-for="(tag,ni) in keyword"
       closable
       :disable-transitions="false"
       @close="handleClose(tag)">
@@ -31,7 +31,7 @@ module.exports = {
       immediate:true,
       handler(value){
         if(value){
-          this.dynamicTags = this.value
+          this.keyword = this.value
         }
       }
     }
@@ -42,7 +42,8 @@ module.exports = {
     return {
       temp:"&amp;",
       inputValue: '',
-      dynamicTags: []//关键字数组
+      keyword: [],//关键字数组
+      save:'',
     }
   },
   created: function () {
@@ -50,26 +51,27 @@ module.exports = {
   },
   methods: {
     handleClose(tag) {
-      this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+      this.keyword.splice(this.keyword.indexOf(tag), 1);
     },
 
     showInput() {
       // this.inputVisible = true;
-      this.$nextTick(_ => {
+      this.$nextTick(() => {
         this.$refs.save.focus();
         console.log(this.$refs.save.focus())
       });
       this.handleInputConfirm()
+      this.$emit('input', this.keyword)
     },
 
     handleInputConfirm() {
-      let inputValue = this.inputValue;
-      if (inputValue) {
-        this.dynamicTags.push(inputValue);
+      // let inputValue = this.inputValue;
+      if (this.inputValue) {
+        this.keyword.push(this.inputValue);
       }
-      // this.inputVisible = false;
+
       this.inputValue = '';
-      this.$emit('input', this.dynamicTags)
+
     },
   }
 }
