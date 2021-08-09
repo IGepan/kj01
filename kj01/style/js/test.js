@@ -18,10 +18,10 @@ require(['/common/js/require.config.js'], function () {
                             date: '',//注册时间
                             contactName: '',//联系人姓名及职务
                             contactPhone: '',//联系电话
-                            isJoinDepository: 1,//是否入科技型企业库
-                            plan: 2,//是否计划入科技型企业库
-                            highTech: 1,//是否是高新技术企业
-                            declare: 2,//是否计划申报高新技术企业
+                            isJoinDepository: 2,//是否入科技型企业库
+                            plan: 1,//是否计划入科技型企业库
+                            highTech: 2,//是否是高新技术企业
+                            declare: 1,//是否计划申报高新技术企业
                             businessIncome: '',//营业收入
                             rdInvestment: '',//研发投入
                             employees: '',// 从业人员个数
@@ -104,13 +104,13 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             leadingTechnologyList: [
                                 {
-                                    required: true, validator: (rule, value, callback) => {
+                                    required: false, validator: (rule, value, callback) => {
                                         if (!this.formData.leadingTechnologyList || this.formData.leadingTechnologyList.length <= 0) {
                                             callback(new Error('请输入名称，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                             ],
                             technologicalInnovationList: [
@@ -121,7 +121,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                             ],
                             intellectualPropertyList: [
@@ -132,7 +132,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                             ],
                             inventionPatentList: [
@@ -143,7 +143,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -155,7 +155,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                             ],
                             nationalInnovationPlatformList: [
@@ -166,7 +166,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                             ],
                             technologicalInnovationPlatformList: [
@@ -177,7 +177,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 }
                             ],
                             leadingInnovationAllianceList: [
@@ -188,7 +188,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -200,7 +200,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -212,7 +212,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -224,7 +224,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -236,7 +236,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -248,7 +248,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
 
                             ],
@@ -260,7 +260,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
 
                             ],
@@ -272,7 +272,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
 
                             ],
@@ -284,7 +284,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
 
                             ],
@@ -296,7 +296,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -308,7 +308,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -320,7 +320,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -332,7 +332,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -344,7 +344,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -356,7 +356,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -368,7 +368,7 @@ require(['/common/js/require.config.js'], function () {
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'change'
+                                    },trigger:'click'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
