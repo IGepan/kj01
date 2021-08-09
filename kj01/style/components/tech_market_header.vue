@@ -3,7 +3,7 @@
     <div class="mmdiv">
       <div class="headers">
         <div class="header-logo">
-          <a href="/technologyMarket/index.html" class="header-logo_box">
+          <a href="/index.html" class="header-logo_box">
             <img src="/style/images/logos/bsublogo.png" alt="" />
           </a>
           <span class="header-logo_text" v-text="name"></span>
