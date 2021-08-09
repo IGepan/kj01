@@ -15,7 +15,7 @@
                   alt=""
               >
             </a>
-            <a href="/newalist.html"><label
+            <a href="/index.html"><label
                 class="sublogo-label"
                 v-text="name"
             ></label></a>
