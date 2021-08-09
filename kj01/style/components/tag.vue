@@ -5,8 +5,6 @@
       v-model="inputValue"
       ref="save"
       placeholder="请输入名称，没有则填写无"
-      @change="showInput"
-      @blur="showInput"
   >
   </el-input>
   <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
