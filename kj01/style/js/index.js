@@ -817,8 +817,6 @@ require(['/common/js/require.config.js'], function () {
                     this.getNewActiveList() //最新活动
                     setTimeout(function(){
                         document.getElementById("showbg").style.display="none"
-
-
                     },5000);
                 },
                 beforeDestroy: function () {
@@ -1116,6 +1114,13 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handlePTabsNavMore: function (url) {
                         location.href = url
+                    },
+                    handleTest: function () {
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/test.html";
+                        } else {
+                            window.location.href = "/test.html";
+                        }
                     },
                     getAList: function (id) {
                         var vm = this;

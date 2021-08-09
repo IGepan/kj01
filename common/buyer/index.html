@@ -7,7 +7,28 @@
   <link href="/common/css/main.css" rel="stylesheet" type="text/css">
   <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
 </head>
-
+<style>
+  .info .evaluate:hover {
+    background-color: #ccc;
+    border-color: #939393;
+  }
+  .info .operation button {
+    margin: 10px auto;
+    padding: 0 10px;
+    height: 25px;
+    line-height: 23px;
+    cursor: pointer;
+  }
+  .info .evaluate {
+    border: 1px solid #c9c9c9;
+    background-color: #eee;
+    color: #505050;
+    margin-top: -10px;
+    line-height: 20px;
+    padding: 0px 10px;
+    margin-right: -60px;
+  }
+</style>
 <body>
   <div class="box" id='index_box' v-cloak>
     <div class="header">
@@ -97,9 +118,13 @@
                   </div>
                   <div class="info">
                     <a target="_blank" :href="$pathPrefix+'/common/buyer/order/detail.html?id=' + order.id">查看详情</a>
+
                     <div class="tips" v-text="$options.filters.filtersTips(order.orderStatus, order.evaluated)">
                       您的订单正在处理中，请耐心等待...</div>
-                    <div class="time" v-text="order.orderCreateTime"></div>
+                    <div class="time" v-text="order.orderCreateTime">
+                    </div>
+                    <button v-if="queryForm.orderStatusFilter === '05'" class="evaluate fr"
+                            @click="evaluate(order.id)">评价</button>
                   </div>
                 </li>
               </ul>

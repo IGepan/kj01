@@ -133,15 +133,15 @@
                         <a target="_blank" :href="$pathPrefix+'/common/seller/order/detail.html?id=' + order.id">订单详情</a>
                         <a v-if=" order.orderStatus==='001'" target="_blank"
                           :href="$pathPrefix+'/common/seller/order/detail.html?id=' + order.id">确认订单</a>
-                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"
-                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>
+<!--                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"-->
+<!--                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>-->
                         <button v-if="order.orderStatus === '001'" class="acceptance"
                           @click="setCancelInfo(order.id, order.version)">取消订单</button>
                         <template v-if="order.orderType === '001' || order.orderType === '002'">
                           <button v-if="order.orderStatus === '002' || order.orderStatus === '003'"
                             @click="setAcceptOrderInfo(order)" class="acceptance">申请验收</button>
-                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="contract"
-                            @click="notFun">签订合同</button>
+<!--                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="contract"-->
+<!--                            @click="notFun">签订合同</button>-->
                         </template>
                         <template v-if="order.orderType === '003'">
                           <button v-if="order.orderStatus === '003'" @click="shipments(order.id)"

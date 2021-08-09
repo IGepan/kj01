@@ -1,57 +1,57 @@
 <template>
   <div
-    class="select_box"
-    @click.stop="boxClick"
+      class="select_box"
+      @click.stop="boxClick"
   >
     <div
-      class="select_content"
-      v-for="(item,index) in selectList"
-      :key="index"
+        class="select_content"
+        v-for="(item,index) in selectList"
+        :key="index"
     >
       <span v-text="item.name"></span>
       <i
-        class="iconfont icon-cuowu"
-        aria-hidden="true"
-        @click.stop="removeSeleced(item.tagId)"
+          class="iconfont icon-cuowu"
+          aria-hidden="true"
+          @click.stop="removeSeleced(item.tagId)"
       ></i>
     </div>
     <div
-      class="content"
-      v-if="isShowDialog"
+        class="content"
+        v-if="isShowDialog"
     >
       <ul class="item">
         <li
-          :class="{active: index == activeIndex}"
-          v-for="(item, index) in oneLevelList"
-          @click="itemClick(item,index)"
-          :key="index"
+            :class="{active: index == activeIndex}"
+            v-for="(item, index) in oneLevelList"
+            @click="itemClick(item,index)"
+            :key="index"
         >
           <span
-            class="text hand"
-            v-text="item.display"
+              class="text hand"
+              v-text="item.display"
           ></span>
         </li>
       </ul>
       <ul class="item">
         <li
-          v-for="(item, itemIndex) in itemList"
-          :key="itemIndex"
+            v-for="(item, itemIndex) in itemList"
+            :key="itemIndex"
         >
           <span
-            class="text hand"
-            :class="{active: selectedIds[item.id]}"
+              class="text hand"
+              :class="{active: selectedIds[item.id]}"
           ><strong
               v-text="item.name"
               @click="valueClick(item, secondType)"
-            ></strong></span>
+          ></strong></span>
           <span class="level">
             <span
-              class="level_text hand"
-              :class="{active: selectedIds[level3.tagId], disabel: disabelList[level3.tagId]}"
-              @click="valueClick(level3)"
-              v-for="(level3,index) in item.tagList"
-              v-text="level3.name"
-              :key="index"
+                class="level_text hand"
+                :class="{active: selectedIds[level3.tagId], disabel: disabelList[level3.tagId]}"
+                @click="valueClick(level3)"
+                v-for="(level3,index) in item.tagList"
+                v-text="level3.name"
+                :key="index"
             ></span>
           </span>
         </li>
@@ -81,18 +81,7 @@ module.exports = {
       this.initValue(val)
     },
     selectList: function (val) {
-      console.log('--v--')
-        if (val.length==1 &&!val[0].tagType){
-          console.log('-----')
-          for(var i=0;i<=this.itemList.length; i++ ){
-
-            for(var v=0;v<=this.itemList[i].tagList.length;v++){
-              val.push(this.itemList[i].tagList[v])
-            }
-          }
-        }
-      this.$emit('input',val);
-      console.log(val)
+      this.$emit('input', val);
     }
   },
   created: function () {
@@ -161,42 +150,29 @@ module.exports = {
     getItemListSelect: function (val) {
       var vm = this;
       this.type === 'service' ? this.$httpCom.servicesSelect({
-        servicesLevel1Type: val
-      }).then(function (res) {
-        vm.filterBackDisabel(res.result);
-        vm.itemList = res.result;
-      }) :
-        // 行业数据获取
-        this.$httpCom.industrySelect({
-          industryLevel1Type: val
-        }).then(function (res) {
-          vm.filterBackDisabel(res.result);
-          vm.itemList = res.result;
-        })
+            servicesLevel1Type: val
+          }).then(function (res) {
+            vm.filterBackDisabel(res.result);
+            vm.itemList = res.result;
+          }) :
+          // 行业数据获取
+          this.$httpCom.industrySelect({
+            industryLevel1Type: val
+          }).then(function (res) {
+            vm.filterBackDisabel(res.result);
+            vm.itemList = res.result;
+          })
     },
     // 点击分类
     itemClick: function (item, index) {
       this.activeIndex = index;
       this.initData();
-      let exist=false;
-      this.selectList.forEach(o => {if(o.name==item.display) exist=true})
-      if(!exist){ this.selectList.push({
-        name: item.display,
-        tagId: item.id
-      })}
     },
     // 选择值
     valueClick: function (item, type) {
       var that = this
       var key = type === this.secondType ? 'id' : 'tagId'
       var tagType
-      // 删除一级标签的内容
-      let templist = []
-      let parent = this.oneLevelList[this.activeIndex]
-      for (let o of this.selectList) {
-        if(o.name != parent.display) templist.push(o)
-      }
-      this.selectList = templist
       // 可选中
       if (!this.disabelList[item[key]]) {
         // 存在选中
@@ -229,7 +205,6 @@ module.exports = {
         name: tagName
       });
     },
-    // 输入框标签删除
     removeSeleced: function (tagId) {
       var i = this.isSelected(tagId)
       var tagType = this.selectList[i].tagType
@@ -244,7 +219,6 @@ module.exports = {
         })
       }
       this.selectList.splice(i, 1);
-      this.activeIndex=0;
     },
     setDisabel: function (arr) {
       var that = this
@@ -279,8 +253,8 @@ module.exports = {
     }
   },
 }
-  </script>
-  <style scoped>
+</script>
+<style scoped>
 .hand {
   cursor: hand;
 }

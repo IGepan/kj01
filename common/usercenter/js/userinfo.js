@@ -1,7 +1,8 @@
 // JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom'],
+      function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom) {
 
     window.vueDom = new Vue({
       el: '#index_box',
@@ -127,6 +128,7 @@ require(['/common/js/require.config.js'], function () {
         }
       },
       created: function () {
+        this.userNameValid();
         this.baseFormData = JSON.parse(JSON.stringify(this.formData));
         this.$httpCom.dict({ code: 'qualification' }).then(function (res) {
           if (res.code === 'rest.success') {
@@ -152,7 +154,7 @@ require(['/common/js/require.config.js'], function () {
         'auth-left': httpVueLoader('/common/components/authLeft.vue'),
         'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
         'address-map': httpVueLoader('/common/components/addressMap.vue'),
-        'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
+        'ly-select-level': httpVueLoader('/common/components/selectLevel1.vue'),
         'ly-select-level2': httpVueLoader('/common/components/select2level.vue'),
         'ly-mulselect': httpVueLoader('/common/seller/components/technology/mulSelect.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
@@ -184,9 +186,11 @@ require(['/common/js/require.config.js'], function () {
 				 * 数据校验自定义方法
 				 */
         userNameValid: function (v, o, callback) {
+
           httpUser.checkUserNameOnly({
-            userName: v
+            userName:this.formData.userName
           }).then(function (res) {
+
             if (res.code === 'rest.success') {
               if (res.result) {
                 callback(o)
@@ -259,44 +263,49 @@ require(['/common/js/require.config.js'], function () {
         submitClick: function () {
           this.getAddressValue();
           var vm = this;
-          // 异步获取验证信息
-          $('.valiform').validate('submitValidate', function (val) {
-            // 验证成功
-            if (val && !vm.isSubmitDisabled) {
-              var data = vm.formData
-              var formData = {}
-              vm.isSubmitDisabled = true
-              vm.alias.subDatas[data.identityType].map(function (key) {
-                formData[key] = data[key] !== undefined ? data[key] : ''
-              })
-              formData.focusPolicy = data.focusPolicy ? data.focusPolicy.map(item => item.tagId).join(',') : '';
-              formData.focusPolicyName = data.focusPolicy ? data.focusPolicy.map(item => item.name).join(',') : '';
-              formData.code = data.code;
-              formData.companyName = data.companyName;
-              formData.job = data.job;
-              console.log(formData, formData.code)
-              httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
+          console.log('____',vm.formData)
+            // 异步获取验证信息
+            $('.valiform').validate('submitValidate', function (val) {
+              console.log(val)
+              // 验证成功
+              if (val && !vm.isSubmitDisabled) {
 
-                if (resp.code == 'rest.success') {
-                  vm.$dialog.showToast('保存成功');
-                  vm.$httpCom.webCommonUser().then(function (res) {
-                    if (res.code === 'rest.success') {
-                      vm.$utils.delCookie(dic.locaKey.USER_INFO);
-                      vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
-                      localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
-                      localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
-                      vm.initData()
-                    }
-                  })
-                } else {
+                var data = vm.formData
+                var formData = {}
+                vm.isSubmitDisabled = true
+                vm.alias.subDatas[data.identityType].map(function (key) {
+                  formData[key] = data[key] !== undefined ? data[key] : ''
+                })
+                formData.focusPolicy = data.focusPolicy ? data.focusPolicy.map(item => item.tagId).join(',') : '';
+                formData.focusPolicyName = data.focusPolicy ? data.focusPolicy.map(item => item.name).join(',') : '';
+                formData.code = data.code;
+                formData.companyName = data.companyName;
+                formData.job = data.job;
+                console.log(formData, formData.code)
+                httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
+
+                  if (resp.code == 'rest.success') {
+                    vm.$dialog.showToast('保存成功');
+                    vm.$httpCom.webCommonUser().then(function (res) {
+                      if (res.code === 'rest.success') {
+                        vm.$utils.delCookie(dic.locaKey.USER_INFO);
+                        vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
+                        localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
+                        localStorage.setItem(dic.locaKey.USER_INFO, JSON.stringify(res.result));
+                        vm.initData()
+                      }
+                    })
+                  } else {
+                    vm.isSubmitDisabled = false
+                  }
+                }).catch(function () {
                   vm.isSubmitDisabled = false
-                }
-              }).catch(function () {
-                vm.isSubmitDisabled = false
-              })
-            } else {
-            }
-          });
+                })
+              }
+              console.log('____',vm.formData)
+            });
+
+
         },
         identityTypeChange: function (val) {
           if (val === this.initIdentityType) {

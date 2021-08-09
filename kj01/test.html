@@ -1,0 +1,303 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+</head>
+<style>
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+        margin: 30px 0
+    }
+    .leftbox{
+        float: left;
+        width: 50%;
+    }
+    .rightbox{
+        float: right;
+        width: 50%;
+    }
+    .form__group{
+        margin-top: 0!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-bottom: 10px;
+        /*margin-left: 10px;*/
+        vertical-align: bottom;
+    }
+    legend{
+        width: 100%;
+        font-size: 18px!important;
+        line-height: 36px!important;
+        color: #2c82f1;
+        font-weight: bold;
+        border-bottom:2px solid #2c82f1;
+        margin-bottom: 30px!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        max-width: 100%;
+        height: auto!important;
+        word-wrap: break-word!important;
+    }
+    .disabled{
+        pointer-events: none;
+    }
+    .bgcolor{
+        background:#dddddd;
+        border-color: #dddddd;
+    }
+ .form{
+     border-radius: 20px;margin-bottom: 50px
+ }
+    .el-radio.is-bordered{
+        padding: 10px 20px 0 10px!important;
+    }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <!--  <index-head :nav-index="8"></index-head>-->
+
+    <div class="mdiv" :class="{disabled:isActive}">
+        <h1 class="title-h2">两江新区企业科技创新情况调查问卷</h1>
+        <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
+            <fieldset class="form__group" >
+                <legend>》企业基本信息</legend>
+                <el-form-item label="企业名称" prop="companyName" class="el-text">
+                    <el-input placeholder="请输入企业名称"
+                              v-model="formData.companyName"
+                              clearable></el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="经营地址" prop="address" class="el-text leftbox">
+                    <el-input placeholder="请输入经营地址"
+                              v-model="formData.address"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="date" label="企业注册时间" class="el-text rightbox">
+                    <el-date-picker placeholder="企业注册时间" type="date"
+                                    v-model="formData.date" format="yyyy-MM-dd" value-format="yyyy-MM-dd"></el-date-picker>
+                </el-form-item>
+
+                <el-form-item label="联系人姓名及职务" prop="contactName" class="el-text leftbox clear">
+                    <el-input placeholder="请输入联系人姓名及职务"
+                              v-model="formData.contactName"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="联系电话" prop="contactPhone" class="el-text rightbox">
+                    <el-input placeholder="请输入联系电话"
+                              v-model="formData.contactPhone"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="是否入科技型企业库" prop="isJoinDepository"class="el-text leftbox">
+                    <el-radio-group v-model="formData.isJoinDepository">
+                        <el-radio :label="1"  border>是</el-radio>
+                        <el-radio :label="2"  border>否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox">
+                    <el-radio-group v-model="formData.plan">
+                        <el-radio :label="1" border>是</el-radio>
+                        <el-radio :label="2"  border>否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否是高新技术企业" prop="highTech" class="el-text leftbox ">
+                    <el-radio-group v-model="formData.highTech">
+                        <el-radio :label="1" border>是</el-radio>
+                        <el-radio :label="2"  border>否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否计划申报高新技术企业" prop="declare" class="el-text  rightbox">
+                    <el-radio-group v-model="formData.declare">
+                        <el-radio :label="1" border>是</el-radio>
+                        <el-radio :label="2"  border>否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》经营情况</legend>
+                <el-form-item label="1、2020年度营业收入（万元）" prop="businessIncome" class="el-text leftbox">
+                    <el-input placeholder="营业收入"
+                              v-model="formData.businessIncome"
+                              clearable></el-input>
+
+                </el-form-item>
+                <el-form-item label="2、2020年度研发投入（万元）" prop="rdInvestment" class="el-text leftbox">
+                    <el-input placeholder="研发投入"
+                              v-model="formData.rdInvestment"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="3、2020年末从业人员（个）" prop="employees" class="el-text leftbox clear">
+                    <el-input placeholder="从业人员个数"
+                              v-model="formData.employees"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="4、2020年末研发人员（个）" prop="rdPersonnel" class="el-text leftbox">
+                    <el-input placeholder="研发人员个数"
+                              v-model="formData.rdPersonnel"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》已有科技成果</legend>
+                <el-form-item label="5、国际/国内领先技术（技术名称）" prop="leadingTechnologyList" class="el-text ">
+                 <tag v-model="formData.leadingTechnologyList"></tag>
+                </el-form-item>
+                <el-form-item label="6、行业领先或重大产业关键技术创新（技术名称）" prop="technologicalInnovationList" class="el-text ">
+                    <tag v-model="formData.technologicalInnovationList"></tag>
+                </el-form-item>
+                <el-form-item label="7、自主知识产权拥有量（产权名称）" prop="intellectualPropertyList" class="el-text">
+                    <tag v-model="formData.intellectualPropertyList"></tag>
+                </el-form-item>
+                <el-form-item label="8、发明专利拥有量（专利名称）" prop="inventionPatentList" class="el-text">
+
+                    <tag v-model="formData.inventionPatentList"></tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》已有科技资源</legend>
+                <el-form-item label="9、市级以上科技研发平台（平台名称、认证机构）" prop="rdPlatformList" class="el-text">
+                    <tag v-model="formData.rdPlatformList"></tag>
+                </el-form-item>
+                <el-form-item label="10、国家级创新平台（平台名称、认证机构）" prop="nationalInnovationPlatformList" class="el-text ">
+                    <tag v-model="formData.nationalInnovationPlatformList"></tag>
+                </el-form-item>
+                <el-form-item label="11、引进国际科技创新平台（平台名称、认证机构）" prop="technologicalInnovationPlatformList" class="el-text ">
+                    <tag v-model="formData.technologicalInnovationPlatformList"></tag>
+                </el-form-item>
+                <el-form-item label="12、主导成立的产业技术创新联盟（名称）" prop="leadingInnovationAllianceList" class="el-text ">
+                    <tag v-model="formData.leadingInnovationAllianceList"></tag>
+                </el-form-item>
+                <el-form-item label="13、参加的产业技术创新联盟（名称）" prop="innovationAllianceList" class="el-text ">
+                    <tag v-model="formData.innovationAllianceList"></tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》计划建设的研发平台</legend>
+                <el-form-item label="14、大科学装置（名称）" prop="deviceList" class="el-text ">
+
+                    <tag v-model="formData.deviceList"></tag>
+                </el-form-item>
+                <el-form-item label="15、国家实验室（名称）" prop="nationalLaboratoryList" class="el-text ">
+                    <tag v-model="formData.nationalLaboratoryList"></tag>
+                </el-form-item>
+                <el-form-item label="16、国家重点实验室（名称）" prop="nationalKeyLaboratoryList" class="el-text ">
+                    <tag v-model="formData.nationalKeyLaboratoryList"></tag>
+                </el-form-item>
+                <el-form-item label="17、国家技术创新中心（名称）" prop="nationalTechnologicalList" class="el-text">
+                    <tag v-model="formData.nationalTechnologicalList"></tag>
+                </el-form-item>
+                <el-form-item label="18、重庆市重点实验室（名称）" prop="cqKeyLaboratoryList" class="el-text">
+                    <tag v-model="formData.cqKeyLaboratoryList"></tag>
+                </el-form-item>
+                <el-form-item label="19、重庆市技术转移中心（名称）" prop="cqTechnologyTransferCenterList" class="el-text">
+                    <tag v-model="formData.cqTechnologyTransferCenterList"></tag>
+            </el-form-item>
+                <el-form-item label="20、重庆市技术创新中心（名称）" prop="cqTechnologicalInnovationList" class="el-text">
+
+                    <tag v-model="formData.cqTechnologicalInnovationList"></tag>
+                </el-form-item>
+                <el-form-item label="21、其他：（名称）" prop="otherPlatformList" class="el-text">
+                    <tag v-model="formData.otherPlatformList"></tag>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》计划申报的研发项目</legend>
+                <el-form-item label="22、科技部重大研发专项（名称）" prop="kjbDevelopmentList" class="el-text ">
+                    <tag v-model="formData.kjbDevelopmentList"></tag>
+                </el-form-item>
+                <el-form-item label="23、重庆市科技型企业技术创新与应用发展专项（名称）" prop="rdProjectList" class="el-text ">
+                    <tag v-model="formData.rdProjectList"></tag>
+                </el-form-item>
+                <el-form-item label="24、重庆市基础研究与前沿探索专项（名称）" prop="exploreList" class="el-text ">
+                    <tag v-model="formData.exploreList"></tag>
+                </el-form-item>
+                <el-form-item label="25、重庆市技术创新与应用发展专项（名称）" prop="applicationDevelopmentList" class="el-text">
+                    <tag v-model="formData.applicationDevelopmentList"></tag>
+                </el-form-item>
+                <el-form-item label="26、自主或主导参与的关键核心技术研发攻关计划（技术名称）" prop="corePlanList" class="el-text">
+
+                    <tag v-model="formData.corePlanList"></tag>
+                </el-form-item>
+                <el-form-item label="27、其他：（研发项目名称）" prop="otherItemsList" class="el-text">
+                    <tag v-model="formData.otherItemsList"></tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》产学研合作需求及合作形式</legend>
+                <p style="color: red">请填写产学研合作需求及合作形式，没有则填写无</p>
+                <el-form-item prop="cooperation" class="el-text">
+
+                        <vue-ueditor-wrap v-model="formData.cooperation" :config="ueditorConfig" class="exptextarea" >
+                        </vue-ueditor-wrap>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+
+            <el-form-item label="以上是否涉及保密项目" prop="isSecrecy" class="el-text">
+                <el-radio-group v-model="formData.isSecrecy">
+                    <el-radio :label="1" border>是</el-radio>
+                    <el-radio :label="2"  border>否</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>》企业发展中的问题、困难或对两江新区的建议</legend>
+                <p style="color: red">请填写企业发展中的问题、困难或对两江新区的建议，没有则填写无</p>
+                <el-form-item label="" prop="proposal" class="el-text">
+                    <vue-ueditor-wrap v-model="formData.proposal" :config="ueditorConfig" class="exptextarea">
+                    </vue-ueditor-wrap>
+                </el-form-item>
+            </fieldset>
+            <div class="form__submit" style="margin-left: 395px">
+                <p class="form__validation" data-validation="submit" role="alert" aria-live="assertive"></p>
+<!--                <button class="button" @click="submit()" id="save">提交</button>-->
+                <el-button type="primary" @click="keep('fromData')" :loading="false" style="width: 160px;font-size: 18px" >保存</el-button>
+                <el-button type="primary" @click="submit('fromData')" :loading="false" style="width: 160px;font-size: 18px" :class="{bgcolor:isActive}">提交</el-button>
+            </div>
+
+        </el-form>
+    </div>
+    <web-footer></web-footer>
+</div>
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/test.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+</body>
+
+</html>

@@ -133,8 +133,21 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
          * 成果发布
          */
         //分页查询商品列表
+        // submit: function (param) {
+        //     return Http.post(httpUrl.baseUrl + '/result/submit', param);
+        // },
+        /**
+         *
+         * 问卷调查
+         */
         submit: function (param) {
-            return Http.post(httpUrl.baseUrl + '/result/submit', param);
+            return Http.post(httpUrl.baseUrl + '/questionnaire/insert', param);
+        },
+        /**
+         * 问卷调查回显
+         */
+        selectQuestionnaire: function () {
+            return Http.get(httpUrl.baseUrl + '/questionnaire/selectByUserId');
         },
         /**
          *

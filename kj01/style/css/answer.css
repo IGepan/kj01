@@ -1189,19 +1189,19 @@
 }
 /*//新增样式*/
 .el-text .el-input{
-    width: 30%!important;}
-.el-form-item__label{width: 180px!important;font-size: 16px!important;text-align: left!important;}
+    width: 80%!important;}
+.el-form-item__label{font-size: 16px!important;text-align: left!important;width: 100%}
 .el-radio-group {
     font-size: 16px!important;
     height: 40px;
     line-height: 40px!important;
 }
 .exptextarea{
-    width: 70%!important;display: inline-block}
+    width: 100%!important;display: inline-block}
 .el-form-item__error{
     font-size: 14px!important;
     position: initial!important;
-    display: inline-block!important;
+    display: block!important;
     padding-left: 10px;
 }
 .el-radio__inner{width: 20px!important;height: 20px!important;}
@@ -11257,7 +11257,7 @@
     background-color: #ecf5ff;
     border-color: #d9ecff;
     display: inline-block;
-    height: 32px;
+    /*height: 32px;*/
     padding: 0 10px;
     line-height: 30px;
     font-size: 12px;
@@ -11266,7 +11266,7 @@
     border-style: solid;
     border-radius: 4px;
     box-sizing: border-box;
-    white-space: nowrap
+    /*white-space: nowrap*/
 }
 
 .el-tag.is-hit {

@@ -365,6 +365,11 @@ require(['/common/js/require.config.js'], function () {
                         toUrl = this.$pathPrefix + '/index.html'
                       }
                     }
+                  // 判断是否有return url
+                  if(location.search.indexOf('back')>-1){
+                    toUrl = location.search.replace('?back=','')
+                  }
+                    window.location.href = toUrl
                     localStorage.removeItem("userPhone")
                     vm.$httpCom.webCommonUserPhone().then(function (res) {
                       console.log('phone', res)
