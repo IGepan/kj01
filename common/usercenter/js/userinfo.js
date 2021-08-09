@@ -154,7 +154,7 @@ require(['/common/js/require.config.js'], function () {
         'auth-left': httpVueLoader('/common/components/authLeft.vue'),
         'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
         'address-map': httpVueLoader('/common/components/addressMap.vue'),
-        'ly-select-level': httpVueLoader('/common/components/selectLevel1.vue'),
+        'ly-select-level': httpVueLoader('/common/components/selectlevel1.vue'),
         'ly-select-level2': httpVueLoader('/common/components/select2level.vue'),
         'ly-mulselect': httpVueLoader('/common/seller/components/technology/mulSelect.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
