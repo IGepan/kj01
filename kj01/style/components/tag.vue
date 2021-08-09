@@ -5,8 +5,8 @@
       v-model="inputValue"
       ref="save"
       placeholder="请输入名称，没有则填写无"
-      @keyup.enter.native="handleInputConfirm"
-      @blur="handleInputConfirm">
+
+  >
   </el-input>
   <el-button type="primary" icon="el-icon-plus" @click="showInput" style="margin-bottom: 10px">增加</el-button>
   <br>
@@ -60,6 +60,7 @@ module.exports = {
         this.$refs.save.focus();
         console.log(this.$refs.save.focus())
       });
+      this.handleInputConfirm()
     },
 
     handleInputConfirm() {
