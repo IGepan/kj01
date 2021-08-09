@@ -89,7 +89,7 @@
         <h1 class="title-h2">两江新区企业科技创新情况调查问卷</h1>
         <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
             <fieldset class="form__group" >
-                <legend>》企业基本信息</legend>
+                <legend>一、企业基本信息</legend>
                 <el-form-item label="企业名称" prop="companyName" class="el-text">
                     <el-input placeholder="请输入企业名称"
                               v-model="formData.companyName"
@@ -126,10 +126,16 @@
                         <el-radio :label="2"  border>否</el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox">
-                    <el-radio-group v-model="formData.plan">
+                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox" v-if="formData.isJoinDepository == 1">
+                    <el-radio-group v-model="formData.plan"  disabled>
                         <el-radio :label="1" border>是</el-radio>
                         <el-radio :label="2"  border>否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox" v-else>
+                    <el-radio-group v-model="formData.plan" >
+                        <el-radio :label="1" border >是</el-radio>
+                        <el-radio :label="2"  border >否</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="是否是高新技术企业" prop="highTech" class="el-text leftbox ">
@@ -146,7 +152,7 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <legend>》经营情况</legend>
+                <legend>二、经营情况</legend>
                 <el-form-item label="1、2020年度营业收入（万元）" prop="businessIncome" class="el-text leftbox">
                     <el-input placeholder="营业收入"
                               v-model="formData.businessIncome"
@@ -171,7 +177,7 @@
 
             </fieldset>
             <fieldset class="form__group">
-                <legend>》已有科技成果</legend>
+                <legend>三、已有科技成果</legend>
                 <el-form-item label="5、国际/国内领先技术（技术名称）" prop="leadingTechnologyList" class="el-text ">
                  <tag v-model="formData.leadingTechnologyList"></tag>
                 </el-form-item>
@@ -187,7 +193,7 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <legend>》已有科技资源</legend>
+                <legend>四、已有科技资源</legend>
                 <el-form-item label="9、市级以上科技研发平台（平台名称、认证机构）" prop="rdPlatformList" class="el-text">
                     <tag v-model="formData.rdPlatformList"></tag>
                 </el-form-item>
@@ -205,7 +211,7 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <legend>》计划建设的研发平台</legend>
+                <legend>五、计划建设的研发平台</legend>
                 <el-form-item label="14、大科学装置（名称）" prop="deviceList" class="el-text ">
 
                     <tag v-model="formData.deviceList"></tag>
@@ -235,7 +241,7 @@
 
             </fieldset>
             <fieldset class="form__group">
-                <legend>》计划申报的研发项目</legend>
+                <legend>六、计划申报的研发项目</legend>
                 <el-form-item label="22、科技部重大研发专项（名称）" prop="kjbDevelopmentList" class="el-text ">
                     <tag v-model="formData.kjbDevelopmentList"></tag>
                 </el-form-item>
@@ -257,7 +263,7 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <legend>》产学研合作需求及合作形式</legend>
+                <legend>七、产学研合作需求及合作形式</legend>
                 <p style="color: red">请填写产学研合作需求及合作形式，没有则填写无</p>
                 <el-form-item prop="cooperation" class="el-text">
 
@@ -275,7 +281,7 @@
             </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <legend>》企业发展中的问题、困难或对两江新区的建议</legend>
+                <legend>八、企业发展中的问题、困难或对两江新区的建议</legend>
                 <p style="color: red">请填写企业发展中的问题、困难或对两江新区的建议，没有则填写无</p>
                 <el-form-item label="" prop="proposal" class="el-text">
                     <vue-ueditor-wrap v-model="formData.proposal" :config="ueditorConfig" class="exptextarea">
