@@ -65,13 +65,12 @@ module.exports = {
     },
 
     handleInputConfirm() {
+        if (this.inputValue) {
+          this.keyword.push(this.inputValue);
+        }
+        this.inputValue = '';
+
       // let inputValue = this.inputValue;
-      if (this.inputValue) {
-        this.keyword.push(this.inputValue);
-      }
-
-      this.inputValue = '';
-
     },
   }
 }
