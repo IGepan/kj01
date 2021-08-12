@@ -20,6 +20,7 @@
         .block-service .swiper-container-multirow-column>.swiper-wrapper{flex-direction: row!important; }
         .block-service .swiper-slide{margin-top: 0!important;margin-bottom: 30px}
         .block-service .card-body{width: 70%}
+        .list-group{display: block!important;}
     </style>
 </head>
 <body>
@@ -54,18 +55,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item" v-for="ch in serviceType.children" :key="ch.id">
+                                            <li class="list-group-item fl" v-for="ch in serviceType.children" :key="ch.id">
                                                 <a :href="'sub1.html?type='+ch.id">{{ch.name}}</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </li>
-<!--                        <li class="has-sub-menu">-->
-<!--                            <a class="main-link">科技金融</a>-->
-<!--                            <a class="sub-link" >债权融资</a>-->
-<!--                            <a class="sub-link" >股权融资</a>-->
-<!--                        </li>-->
 <!--                        <li class="has-sub-menu">-->
 <!--                            <a class="main-link">研发设计</a>-->
 <!--                            <a class="sub-link" >网站建设</a>-->

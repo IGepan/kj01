@@ -8,31 +8,31 @@
         <div class="subhead-up">
           <div class="logobox">
             <a
-                class="sublogo"
+                class="sublogo" href="/index.html"
             >
               <img
                   src="/style/images/logos/bsublogo.png"
                   alt=""
               >
             </a>
-            <a href="/newalist.html"><label
+            <a href="/index.html"><label
                 class="sublogo-label"
                 v-text="name"
             ></label></a>
 
           </div>
           <div class="navbox">
-            <nav class="menus" >
-              <template v-for="(nav, index) in navs">
-                <li
-                    :class="{active:Aindex == index}"
-                    :key="index"
-                    @click="navIndex(index)"
-                > <a v-if="nav.id == '-1'" href="/index.html">首页</a>
-                  <a v-else :href="'/alist.html?type='+nav.id" >{{nav.objName}}</a>
-                </li>
-              </template>
-            </nav>
+<!--            <nav class="menus" >-->
+<!--              <template v-for="(nav, index) in navs">-->
+<!--                <li-->
+<!--                    :class="{active:Aindex == index}"-->
+<!--                    :key="index"-->
+<!--                    @click="navIndex(index)"-->
+<!--                > <a v-if="nav.id == '-1'" href="/index.html">首页</a>-->
+<!--                  <a v-else :href="'/alist.html?type='+nav.id" >{{nav.objName}}</a>-->
+<!--                </li>-->
+<!--              </template>-->
+<!--            </nav>-->
             <div class="searchbox">
               <!--              <input-->
               <!--                class="input-search"-->
