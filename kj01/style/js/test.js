@@ -26,6 +26,8 @@ require(['/common/js/require.config.js'], function () {
                             rdInvestment: '',//研发投入
                             employees: '',// 从业人员个数
                             rdPersonnel: '',//研发人员个数
+                            Region:'',//所属区域
+
                             //已有科技成果5-8
                             // achievement: {
                             leadingTechnologyList: [{type: 'leadingTechnology', value:''}],//国际/国内领先技术
@@ -76,6 +78,26 @@ require(['/common/js/require.config.js'], function () {
                         },
                         isActive: false,
                         isSubmit: '',
+                        RegionList: [{
+                            value: '01',
+                            label: '水土'
+                        }, {
+                            value: '02',
+                            label: '鱼复'
+                        }, {
+                            value: '03',
+                            label: '龙兴'
+                        }, {
+                            value: '04',
+                            label: '照母山片区'
+                        }, {
+                            value: '05',
+                            label: '寸滩保税港'
+                        },
+                            {
+                                value: '06',
+                                label: '其他'
+                            }],
                         rules: {
                             companyName: [
                                 {required: true, message: '请输入企业名称',trigger: 'blur'},
@@ -83,6 +105,10 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             address: [
                                 {required: true, message: '请输入经营地址',trigger: 'blur'},
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            Region: [
+                                {required: true, message: '请选择所属区域',trigger: 'blur'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             date: [

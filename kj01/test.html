@@ -79,6 +79,10 @@
     .el-radio.is-bordered{
         padding: 10px 20px 0 10px!important;
     }
+    .el-form-item__error{
+        clear: both;
+         }
+
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
@@ -90,10 +94,14 @@
         <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
             <fieldset class="form__group" >
                 <legend>一、企业基本信息</legend>
-                <el-form-item label="企业名称" prop="companyName" class="el-text">
+                <el-form-item label="企业名称" prop="companyName" class="el-text leftbox">
                     <el-input placeholder="请输入企业名称"
                               v-model="formData.companyName"
                               clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="date" label="企业注册时间" class="el-text rightbox">
+                    <el-date-picker placeholder="企业注册时间" type="date"
+                                    v-model="formData.date" format="yyyy-MM-dd" value-format="yyyy-MM-dd"></el-date-picker>
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
@@ -102,9 +110,16 @@
                               v-model="formData.address"
                               clearable></el-input>
                 </el-form-item>
-                <el-form-item prop="date" label="企业注册时间" class="el-text rightbox">
-                    <el-date-picker placeholder="企业注册时间" type="date"
-                                    v-model="formData.date" format="yyyy-MM-dd" value-format="yyyy-MM-dd"></el-date-picker>
+                <el-form-item label="所属区域" prop="Region" class="el-text leftbox">
+                    <el-select v-model="formData.Region" placeholder="请选择所属区域" class="fl">
+                        <el-option
+                                v-for="(item,index) in RegionList"
+                                :key="index"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                    <label class="leftbox" style="line-height: 20px;color: red">备注：照母山片区包含鸳鸯、人和、天宫殿、翠云、大竹林、礼嘉、金山、康美街道</label>
                 </el-form-item>
 
                 <el-form-item label="联系人姓名及职务" prop="contactName" class="el-text leftbox clear">
