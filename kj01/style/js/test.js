@@ -26,7 +26,7 @@ require(['/common/js/require.config.js'], function () {
                             rdInvestment: '',//研发投入
                             employees: '',// 从业人员个数
                             rdPersonnel: '',//研发人员个数
-                            Region:'',//所属区域
+                            region:'',//所属区域
 
                             //已有科技成果5-8
                             // achievement: {
@@ -78,7 +78,7 @@ require(['/common/js/require.config.js'], function () {
                         },
                         isActive: false,
                         isSubmit: '',
-                        RegionList: [{
+                        regionList: [{
                             value: '01',
                             label: '水土'
                         }, {
@@ -107,7 +107,7 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入经营地址',trigger: 'blur'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
-                            Region: [
+                            region: [
                                 {required: true, message: '请选择所属区域',trigger: 'blur'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
