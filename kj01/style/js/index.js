@@ -815,9 +815,9 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
-                    setTimeout(function(){
-                        document.getElementById("showbg").style.display="none"
-                    },5000);
+                    // setTimeout(function(){
+                    //     document.getElementById("showbg").style.display="none"
+                    // },5000);
                 },
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)

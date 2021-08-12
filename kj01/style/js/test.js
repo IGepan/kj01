@@ -28,43 +28,49 @@ require(['/common/js/require.config.js'], function () {
                             rdPersonnel: '',//研发人员个数
                             //已有科技成果5-8
                             // achievement: {
-                            leadingTechnologyList: [],//国际/国内领先技术
-                            technologicalInnovationList: [],//行业领先或重大产业关键技术创新
-                            intellectualPropertyList: [],//自主知识产权拥有量
-                            inventionPatentList: [],//发明专利拥有量
+                            leadingTechnologyList: [{type: 'leadingTechnology', value:''}],//国际/国内领先技术
+                            technologicalInnovationList: [{type: 'technologicalInnovation', value:''}],//行业领先或重大产业关键技术创新
+                            intellectualProperty: '',//自主知识产权拥有量
+                            inventionPatent: '',//发明专利拥有量
                             // },
                             //已有科技资源9-13
                             // resources:{
-                            rdPlatformList: [],// 市级以上科技研发平台
-                            nationalInnovationPlatformList: [],// 国家级创新平台
-                            technologicalInnovationPlatformList: [],//引进国际科技创新平台
-                            leadingInnovationAllianceList: [],//主导成立的产业技术创新联盟
-                            innovationAllianceList: [],//参加的产业技术创新联盟
+                            rdPlatformList: [{type: 'rdPlatform', value:''}],// 市级以上科技研发平台
+                            nationalInnovationPlatformList: [{type: 'nationalInnovationPlatform', value:''}],// 国家级创新平台
+                            technologicalInnovationPlatformList: [
+                                {type: 'technologicalInnovationPlatform', value:''}
+                            ],//引进国际科技创新平台
+                            leadingInnovationAllianceList: [{type: 'leadingInnovationAlliance', value:''}],//主导成立的产业技术创新联盟
+                            innovationAllianceList: [{type: 'innovationAlliance', value:''}],//参加的产业技术创新联盟
                             // },
                             //计划建设的研发平台14-21
                             // platform:{
-                            deviceList: [],//大科学装置
-                            nationalLaboratoryList: [],//国家实验室
-                            nationalKeyLaboratoryList: [],//国家重点实验室
-                            nationalTechnologicalList: [],//国家技术创新中心
-                            cqKeyLaboratoryList: [],//重庆市重点实验室
-                            cqTechnologyTransferCenterList: [],// 重庆市技术转移中心
-                            cqTechnologicalInnovationList: [],//重庆市技术创新中心
-                            otherPlatformList: [],//其他（研发平台）
+                            deviceList: [
+                                {type: 'device', value:''}
+                            ],//大科学装置
+                            nationalLaboratoryList: [{type: 'nationalLaboratory', value:''}],//国家实验室
+                            nationalKeyLaboratoryList: [{type: 'nationalKeyLaboratory', value:''}],//国家重点实验室
+                            nationalTechnologicalList: [{type: 'nationalTechnological', value:''}],//国家技术创新中心
+                            cqKeyLaboratoryList: [{type: 'cqKeyLaboratory', value:''}],//重庆市重点实验室
+                            cqTechnologyTransferCenterList: [{type: 'cqTechnologyTransferCenter', value:''}],// 重庆市技术转移中心
+                            cqTechnologicalInnovationList: [{type: 'cqTechnologicalInnovation', value:''}],//重庆市技术创新中心
+                            otherPlatformList: [{type:'otherPlatform', value:''}],//其他（研发平台）
                             // },
                             //计划申报的研发项目22-27
                             // projects:{
-                            kjbDevelopmentList: [],//科技部重大研发专项
-                            rdProjectList: [],//重庆市科技型企业技术创新与应用发展专项
-                            exploreList: [],//重庆市基础研究与前言探索专项
-                            applicationDevelopmentList: [],//重庆市技术创新与应用发展专项
-                            corePlanList: [],// 自主或主导参与的关键核心技术研发攻关计划
-                            otherItemsList: [],// 其他（研发项目）
+                            kjbDevelopmentList: [{type:'kjbDevelopment', value:''}],//科技部重大研发专项
+                            rdProjectList: [{type:'rdProject', value:''}],//重庆市科技型企业技术创新与应用发展专项
+                            exploreList: [{type:'explore', value:''}],//重庆市基础研究与前言探索专项
+                            applicationDevelopmentList: [{type:'applicationDevelopment', value:''}],//重庆市技术创新与应用发展专项
+                            corePlanList: [{type:'corePlan', value:''}],// 自主或主导参与的关键核心技术研发攻关计划
+                            otherItemsList: [
+                                {type:'otherItems', value:''}
+                            ],// 其他（研发项目）
                             // },
                             cooperation: '',//合作形式
                             isSecrecy: 1,//以上是否涉及保密项目
                             proposal: '',//企业发展中的问题、困难或对两江新区的建议
-                            inputValue: '',//项目名称
+
                             delFlag: '0',
                             version: '0'
                         },
@@ -103,272 +109,258 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入研发人员个数',trigger: 'blur'},
                             ],
                             leadingTechnologyList: [
-                                {
-                                    required: false, validator: (rule, value, callback) => {
-                                        if (!this.formData.leadingTechnologyList || this.formData.leadingTechnologyList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                {required: true, validator: (rule, value, callback) => {
+                                        if (this.formData.leadingTechnologyList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
-                                }
+                                    } ,trigger:'blur'}
                             ],
                             technologicalInnovationList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.technologicalInnovationList || this.formData.technologicalInnovationList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.technologicalInnovationList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger:'blur'
                                 }
                             ],
-                            intellectualPropertyList: [
+                            intellectualProperty: [
                                 {
-                                    required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.intellectualPropertyList || this.formData.intellectualPropertyList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
-                                        } else {
-                                            callback();
-                                        }
-                                    },trigger:'click'
+                                    required: true, message: '自主知识产权拥有量',trigger: 'blur'
                                 }
                             ],
-                            inventionPatentList: [
+                            inventionPatent: [
                                 {
-                                    required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.inventionPatentList || this.formData.inventionPatentList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
-                                        } else {
-                                            callback();
-                                        }
-                                    },trigger:'click'
+                                    required: true, message: '请输入发明专利拥有量',trigger: 'blur'
                                 }
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             rdPlatformList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.rdPlatformList || this.formData.rdPlatformList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.rdPlatformList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 }
                             ],
                             nationalInnovationPlatformList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.nationalInnovationPlatformList || this.formData.nationalInnovationPlatformList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.nationalInnovationPlatformList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 }
                             ],
                             technologicalInnovationPlatformList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.technologicalInnovationPlatformList || this.formData.technologicalInnovationPlatformList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.technologicalInnovationPlatformList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 }
                             ],
                             leadingInnovationAllianceList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.leadingInnovationAllianceList || this.formData.leadingInnovationAllianceList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.leadingInnovationAllianceList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             innovationAllianceList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.innovationAllianceList || this.formData.innovationAllianceList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.innovationAllianceList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             deviceList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.deviceList || this.formData.deviceList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.deviceList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             nationalLaboratoryList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.nationalLaboratoryList || this.formData.nationalLaboratoryList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.nationalLaboratoryList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             nationalKeyLaboratoryList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.nationalKeyLaboratoryList || this.formData.nationalKeyLaboratoryList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.nationalKeyLaboratoryList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             nationalTechnologicalList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.nationalTechnologicalList || this.formData.nationalTechnologicalList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.nationalTechnologicalList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
 
                             ],
                             cqKeyLaboratoryList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.cqKeyLaboratoryList || this.formData.cqKeyLaboratoryList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.cqKeyLaboratoryList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
 
                             ],
                             cqTechnologyTransferCenterList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.cqTechnologyTransferCenterList || this.formData.cqTechnologyTransferCenterList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.cqTechnologyTransferCenterList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
 
                             ],
                             cqTechnologicalInnovationList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.cqTechnologicalInnovationList || this.formData.cqTechnologicalInnovationList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.cqTechnologicalInnovationList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
 
                             ],
                             otherPlatformList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.otherPlatformList || this.formData.otherPlatformList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.otherPlatformList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             kjbDevelopmentList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.kjbDevelopmentList || this.formData.kjbDevelopmentList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.kjbDevelopmentList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             rdProjectList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.rdProjectList || this.formData.rdProjectList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.rdProjectList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             exploreList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.exploreList || this.formData.exploreList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.exploreList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             applicationDevelopmentList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.applicationDevelopmentList || this.formData.applicationDevelopmentList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.applicationDevelopmentList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             corePlanList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.corePlanList || this.formData.corePlanList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData.corePlanList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             otherItemsList: [
                                 {
                                     required: true, validator: (rule, value, callback) => {
-                                        if (!this.formData.otherItemsList || this.formData.otherItemsList.length <= 0) {
-                                            callback(new Error('请输入名称，没有则填写无'));
+                                        if (this.formData. otherItemsList[0].value =="") {
+                                            callback(new Error('请按（名称、简介、建设时间）填写，没有则填写无'));
                                         } else {
                                             callback();
                                         }
-                                    },trigger:'click'
+                                    },trigger: 'blur'
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
@@ -377,7 +369,7 @@ require(['/common/js/require.config.js'], function () {
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             cooperation: [
-                                {required: false, message: '请填写合作方式，没有则填写无',trigger: 'blur'}
+                                {required:true, message: '请填写合作方式，没有则填写无',trigger: 'blur'}
                             ],
                         },
 
