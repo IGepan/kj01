@@ -3,7 +3,9 @@
     <el-button type="primary" icon="el-icon-plus" @click="add" style="float:right;position: absolute;right: 0;z-index: 99;
     top: 0;" >增加</el-button>
     <div v-for="(tag,ni) in keywords" :key="ni">
-      <el-button icon="el-icon-close" circle  class="closebox" size="mini" @click="handleClose(tag)"></el-button>
+      <el-button
+          v-if="ni>0"
+          icon="el-icon-close" circle  class="closebox" size="mini" @click="handleClose(tag)"></el-button>
       <el-input
          type="textarea"
           v-model="tag.value"
