@@ -77,7 +77,8 @@ require(['/common/js/require.config.js'], function () {
                             version: '0'
                         },
                         isActive: false,
-                        isSubmit: '',
+                        isClose:false,
+                        isSubmit:'',
                         regionList: [{
                             value: '01',
                             label: '水土'
@@ -437,7 +438,6 @@ require(['/common/js/require.config.js'], function () {
                                     message: '问卷保存成功!',
                                     duration: 2000
                                 });
-
                                 setTimeout(function () {
                                     window.location.href = "/test.html";
                                 }, 2000);

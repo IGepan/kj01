@@ -4,7 +4,7 @@
     top: 0;" >增加</el-button>
     <div v-for="(tag,ni) in keywords" :key="ni">
       <el-button
-          v-if="ni>0"
+          v-if="isSubmit || ni>0"
           icon="el-icon-close" circle  class="closebox" size="mini" @click="handleClose(tag)"></el-button>
       <el-input
          type="textarea"
@@ -31,7 +31,8 @@
 module.exports = {
   props: {
     value: Array,
-    type: String
+    type: String,
+    isSubmit:String
   },
 
   watch: {
@@ -85,8 +86,10 @@ module.exports = {
   }
 }
 </script>
-
-<style>
+<style >
+.noshow{
+  display: none;
+}
 .closebox{
   float: right;
   margin-bottom: -40px;
@@ -94,7 +97,7 @@ module.exports = {
   position: relative;
   background-color: rgb(221, 221, 221);
   margin-top: 10px;
-  margin-right: -10px;font-size: 16px
+  margin-right: -10px;font-size: 16px;
 }
 .el-textarea textarea{
   min-height: 200px!important;
