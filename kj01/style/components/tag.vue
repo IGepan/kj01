@@ -2,14 +2,17 @@
   <div>
     <el-button type="primary" icon="el-icon-plus" @click="add" style="float:right;position: absolute;right: 0;z-index: 99;
     top: 0;" >增加</el-button>
+    <div v-for="(tag,ni) in keywords" :key="ni">
+      <el-button icon="el-icon-close" circle  class="closebox" size="mini" @click="handleClose(tag)"></el-button>
       <el-input
-          v-for="(tag,ni) in keywords" :key="ni"
-          type="textarea"
+         type="textarea"
           v-model="tag.value"
           ref="save"
           placeholder="请按（名称、简介、建设时间）填写，没有则填写无"
       >
       </el-input>
+    </div>
+
 
 <!--  <el-tag style="white-space: normal"-->
 <!--      :key="ni"-->
@@ -52,9 +55,8 @@ module.exports = {
   },
   methods: {
     handleClose(tag) {
-      this.keyword.splice(this.keyword.indexOf(tag), 1);
+      this.keywords.splice(this.keywords.indexOf(tag), 1);
     },
-
     showInput() {
       // this.inputVisible = true;
       // this.$nextTick(() => {
@@ -83,11 +85,19 @@ module.exports = {
 </script>
 
 <style>
+.closebox{
+  float: right;
+  margin-bottom: -40px;
+  z-index: 999;
+  position: relative;
+  background-color: rgb(221, 221, 221);
+  margin-top: 10px;
+  margin-right: -10px;font-size: 16px
+}
 .el-textarea textarea{
   min-height: 200px!important;
-  margin-top: 10px;
+  margin-top: 20px;
 }
-
 .el-tag {
   margin-right: 10px;
   margin-bottom: 10px;
