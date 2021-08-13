@@ -188,10 +188,10 @@
             <fieldset class="form__group">
                 <legend>三、已有科技成果</legend>
                 <el-form-item label="5、国际/国内领先技术（名称、简介、建设时间）" prop="leadingTechnologyList" class="el-text ">
-                 <tag v-model="formData.leadingTechnologyList" type="leadingTechnology" :issubmit="formData.isSubmit"></tag>
+                 <tag v-model="formData.leadingTechnologyList" type="leadingTechnology" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="6、行业领先或重大产业关键技术创新（名称、简介、建设时间）" prop="technologicalInnovationList" class="el-text ">
-                    <tag v-model="formData.technologicalInnovationList" type="technologicalInnovation" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.technologicalInnovationList" type="technologicalInnovation" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="7、自主知识产权拥有量（项）" prop="intellectualProperty" class="el-text leftbox">
                     <el-input placeholder="自主知识产权拥有量"
@@ -207,70 +207,70 @@
             <fieldset class="form__group">
                 <legend>四、已有科技资源</legend>
                 <el-form-item label="9、市级以上科技研发平台（名称、简介、建设时间）" prop="rdPlatformList" class="el-text">
-                    <tag v-model="formData.rdPlatformList" type="rdPlatform" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.rdPlatformList" type="rdPlatform" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="10、国家级创新平台（名称、简介、建设时间）" prop="nationalInnovationPlatformList" class="el-text ">
                     <tag v-model="formData.nationalInnovationPlatformList" type="nationalInnovationPlatform" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="11、引进国际科技创新平台（名称、简介、建设时间）" prop="technologicalInnovationPlatformList" class="el-text ">
-                    <tag v-model="formData.technologicalInnovationPlatformList" type="technologicalInnovationPlatform" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.technologicalInnovationPlatformList" type="technologicalInnovationPlatform" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="12、主导成立的产业技术创新联盟（名称、简介、建设时间）" prop="leadingInnovationAllianceList" class="el-text ">
-                    <tag v-model="formData.leadingInnovationAllianceList" type="leadingInnovationAlliance" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.leadingInnovationAllianceList" type="leadingInnovationAlliance" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="13、参加的产业技术创新联盟（名称、简介、建设时间）" prop="innovationAllianceList" class="el-text ">
-                    <tag v-model="formData.innovationAllianceList" type="innovationAlliance" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.innovationAllianceList" type="innovationAlliance" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
                 <legend>五、计划建设的研发平台</legend>
                 <el-form-item label="14、大科学装置（名称、简介、建设时间）" prop="deviceList" class="el-text ">
 
-                    <tag v-model="formData.deviceList" type="device" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.deviceList" type="device" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="15、国家实验室（名称、简介、建设时间）" prop="nationalLaboratoryList" class="el-text ">
-                    <tag v-model="formData.nationalLaboratoryList" type="nationalLaboratory" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.nationalLaboratoryList" type="nationalLaboratory" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="16、国家重点实验室（名称、简介、建设时间）" prop="nationalKeyLaboratoryList" class="el-text ">
-                    <tag v-model="formData.nationalKeyLaboratoryList" type="nationalKeyLaboratory" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.nationalKeyLaboratoryList" type="nationalKeyLaboratory" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="17、国家技术创新中心（名称、简介、建设时间）" prop="nationalTechnologicalList" class="el-text">
-                    <tag v-model="formData.nationalTechnologicalList" type="nationalTechnological" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.nationalTechnologicalList" type="nationalTechnological" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="18、重庆市重点实验室（名称、简介、建设时间）" prop="cqKeyLaboratoryList" class="el-text">
-                    <tag v-model="formData.cqKeyLaboratoryList" tyepe="cqKeyLaboratory" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.cqKeyLaboratoryList" tyepe="cqKeyLaboratory" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="19、重庆市技术转移中心（名称、简介、建设时间）" prop="cqTechnologyTransferCenterList" class="el-text">
-                    <tag v-model="formData.cqTechnologyTransferCenterList" typr="cqTechnologyTransferCenter" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.cqTechnologyTransferCenterList" typr="cqTechnologyTransferCenter" ::issubmit="formData.isSubmit"></tag>
             </el-form-item>
                 <el-form-item label="20、重庆市技术创新中心（名称、简介、建设时间）" prop="cqTechnologicalInnovationList" class="el-text">
-                    <tag v-model="formData.cqTechnologicalInnovationList" type="cqTechnologicalInnovation" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.cqTechnologicalInnovationList" type="cqTechnologicalInnovation" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="21、其他：（名称、简介、建设时间）" prop="otherPlatformList" class="el-text">
-                    <tag v-model="formData.otherPlatformList" type="otherPlatform" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.otherPlatformList" type="otherPlatform" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
 
             </fieldset>
             <fieldset class="form__group">
                 <legend>六、计划申报的研发项目</legend>
                 <el-form-item label="22、科技部重大研发专项（名称、简介、建设时间）" prop="kjbDevelopmentList" class="el-text ">
-                    <tag v-model="formData.kjbDevelopmentList" type="kjbDevelopment" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.kjbDevelopmentList" type="kjbDevelopment" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="23、重庆市科技型企业技术创新与应用发展专项（名称、简介、建设时间）" prop="rdProjectList" class="el-text ">
-                    <tag v-model="formData.rdProjectList" type="rdProject" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.rdProjectList" type="rdProject" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="24、重庆市基础研究与前沿探索专项（名称、简介、建设时间）" prop="exploreList" class="el-text ">
-                    <tag v-model="formData.exploreList" type="explore" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.exploreList" type="explore" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="25、重庆市技术创新与应用发展专项（名称、简介、建设时间）" prop="applicationDevelopmentList" class="el-text">
-                    <tag v-model="formData.applicationDevelopmentList" type="applicationDevelopment" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.applicationDevelopmentList" type="applicationDevelopment" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="26、自主或主导参与的关键核心技术研发攻关计划（名称、简介、建设时间）" prop="corePlanList" class="el-text">
 
-                    <tag v-model="formData.corePlanList" type="corePlan" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.corePlanList" type="corePlan" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
                 <el-form-item label="27、其他：（名称、简介、建设时间）" prop="otherItemsList" class="el-text">
-                    <tag v-model="formData.otherItemsList" type="otherItems" :issubmit="formData.isSubmit"></tag>
+                    <tag v-model="formData.otherItemsList" type="otherItems" ::issubmit="formData.isSubmit"></tag>
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
