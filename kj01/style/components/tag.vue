@@ -4,7 +4,7 @@
     top: 0;" >增加</el-button>
     <div v-for="(tag,ni) in keywords" :key="ni">
       <el-button
-          v-if="isSubmit || ni>0"
+          v-if="issubmit!==1 && ni>0"
           icon="el-icon-close" circle  class="closebox" size="mini" @click="handleClose(tag)"></el-button>
       <el-input
          type="textarea"
@@ -32,7 +32,7 @@ module.exports = {
   props: {
     value: Array,
     type: String,
-    isSubmit:String
+    issubmit: Number
   },
 
   watch: {
@@ -73,7 +73,8 @@ module.exports = {
     add(tag){
       this.keywords.push({type:this.type,value:''});
       this.$emit('input',this.keywords)
-      console.log(this.keywords)
+      console.log(isSubmit)
+
     },
     handleInputConfirm() {
         if (this.inputValue) {

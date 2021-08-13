@@ -72,13 +72,13 @@ require(['/common/js/require.config.js'], function () {
                             cooperation: '',//合作形式
                             isSecrecy: 1,//以上是否涉及保密项目
                             proposal: '',//企业发展中的问题、困难或对两江新区的建议
-
                             delFlag: '0',
-                            version: '0'
+                            version: '0',
+                            isSubmit:1,
                         },
+
                         isActive: false,
                         isClose:false,
-                        isSubmit:'',
                         regionList: [{
                             value: '01',
                             label: '水土'
@@ -431,6 +431,7 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     keep() {
+                        this.formData.isSubmit = 0
                         indexApi.submit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
                                 this.$notify.success({
