@@ -419,8 +419,11 @@
                     </div>
                     <div class="technology-lists">
                         <a :href="'/technologyMarket/tech_achievements_details.html?id=' + good.id" v-for="(good,index) in goodsList" :key="index">
-                            <div class="technology-avatar">
+                            <div class="technology-avatar" v-if="good.projectImgPath">
                                 <img :src="getImgPath(good.projectImgPath)" alt="">
+                            </div>
+                            <div class="technology-avatar" v-else>
+                                <img src="../style/images/technologyMarket/tech_achievements.jpg" alt="">
                             </div>
                             <div class="technology-name" >{{good.title}}</div>
                             <div class="technology-type">
@@ -501,7 +504,8 @@
                                                          class="iconfont icon-gengduo"></a></div>
                         <div class="supplier-list">
                             <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">
-                                <div class="supplier-avatar"><img :src="getImgPath(shop.logoPath)" alt=""></div>
+                                <div class="supplier-avatar" v-if="shop.logoPath"><img :src="getImgPath(shop.logoPath)" alt=""></div>
+                                <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/service_organization.jpg" alt=""></div>
                                 <div class="supplier-name" >{{shop.organName}}</div>
                             </a>
                         </div>
@@ -511,7 +515,8 @@
                                                           class="iconfont icon-gengduo"></a></div>
                         <div class="supplier-list">
                             <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
-                                <div class="supplier-avatar"><img :src="getImgPath(Man.logoPath)" alt=""></div>
+                                <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt=""></div>
+                                <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg" alt=""></div>
                                 <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}
                                     <br>
                                     <div style="font-size: 12px">({{Man.agentType_display}})
