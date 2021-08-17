@@ -143,7 +143,7 @@ require(['/common/js/require.config.js'], function () {
               type && (this.navIndex = this.options.navIndexOpts[type]);
               this.getDicList(this.dicOptsSet);
               if(this.searchForm.activeType == '390092837996355585'){
-                this.searchForm.activeIndex = '4'
+                this.searchForm.activeTypeDisplay === '品牌活动'
               }
               this.getDataList(function(){
                 // 首次进入页面，展开二级导航
@@ -170,7 +170,7 @@ require(['/common/js/require.config.js'], function () {
             },
             getDataList: function (call) {
               var vm = this;
-              if (this.searchForm.activeIndex === '4') {
+              if (this.searchForm.activeTypeDisplay === '品牌活动') {
                 this.isActive = true//隐藏默认排序
                 //品牌活动
                 var searchForm = this.searchForm
