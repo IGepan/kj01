@@ -368,11 +368,6 @@ require(['/common/js/require.config.js'], function () {
 
 
                     localStorage.removeItem("userPhone")
-                    // if(location.search.indexOf('back')>-1){
-                    //   debugger
-                    //   toUrl = location.search.replace('?back=','')
-                    //   window.location.href = toUrl
-                    // }
                     vm.$httpCom.webCommonUserPhone().then(function (res) {
                       console.log('phone', res)
                       if (res.code === true) {
@@ -394,7 +389,10 @@ require(['/common/js/require.config.js'], function () {
                             if (isSchool) {
                               vm.handleSchool();
                             }else {
-                              // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
+                              if(location.search.indexOf('back')>-1){
+                                debugger
+                                toUrl = location.search.replace('?back=','')
+                              }
                               window.location.href = toUrl;
                             }
                           });
@@ -420,7 +418,10 @@ require(['/common/js/require.config.js'], function () {
                         if (isSchool) {
                           vm.handleSchool();
                         }else {
-                          // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
+                          if(location.search.indexOf('back')>-1){
+                            debugger
+                            toUrl = location.search.replace('?back=','')
+                          }
                           window.location.href = toUrl;
                         }
                       });
@@ -443,7 +444,7 @@ require(['/common/js/require.config.js'], function () {
         //技术经理人学院
         handleSchool: function () {
           var userPhone = localStorage.getItem("userPhone");
-          vm.$utils.setCookie(dic.locaKey.YZW_USER_PHONE, res.data.phone);
+          this.$utils.setCookie(dic.locaKey.YZW_USER_PHONE, res.data.phone);
           if (null == userPhone && "" == userPhone || undefined == userPhone) {
             window.location.href = '/common/login.html';
           }
