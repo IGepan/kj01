@@ -205,9 +205,8 @@
                 </div>
               </div>
             </div>
+
             <div class="mt20 clear" v-if="cancelOrderForm.cancelReason==03">
-            </div>
-            <div class="mt20 clear" v-else>
               <div class="iptline fl">
                 <span class="fl mt5"><i>*</i>备注：</span>
                 <div class="inputContent">
@@ -216,6 +215,8 @@
                         class="vlt form_msg"></span>
                 </div>
               </div>
+            </div>
+            <div class="mt20 clear" v-else>
             </div>
             <div class="mt40 textcenter">
               <button class="alertbtn" type="button" :disabled="isSubmitDisabled" @click="saveCancelInfo">提交</button>
