@@ -444,7 +444,6 @@ require(['/common/js/require.config.js'], function () {
         //技术经理人学院
         handleSchool: function () {
           var userPhone = localStorage.getItem("userPhone");
-          this.$utils.setCookie(dic.locaKey.YZW_USER_PHONE, res.data.phone);
           if (null == userPhone && "" == userPhone || undefined == userPhone) {
             window.location.href = '/common/login.html';
           }
