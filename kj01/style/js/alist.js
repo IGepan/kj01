@@ -143,7 +143,7 @@ require(['/common/js/require.config.js'], function () {
               type && (this.navIndex = this.options.navIndexOpts[type]);
               this.getDicList(this.dicOptsSet);
               if(this.searchForm.activeType == '390092837996355585'){
-                this.searchForm.activeTypeDisplay === '4'
+                this.searchForm.activeIndex === '5'
               }
               this.getDataList(function(){
                 // 首次进入页面，展开二级导航
@@ -170,13 +170,13 @@ require(['/common/js/require.config.js'], function () {
             },
             getDataList: function (call) {
               var vm = this;
-              if (this.searchForm.activeTypeDisplay === '4') {
+              if (this.searchForm.activeTypeDisplay === '品牌活动') {
                 this.isActive = true//隐藏默认排序
                 //品牌活动
                 var searchForm = this.searchForm
                 // 检查二级是否点击 topicCustomTag
                 try {
-                  for(let item of vm.options.searchOpts[0].dictIInfos[4].children){
+                  for(let item of vm.options.searchOpts[0].dictIInfos[5].children){
                     item.selected ? searchForm.topicCustomTag = item.value:''
                   }
                 }catch (e){}
@@ -427,7 +427,7 @@ require(['/common/js/require.config.js'], function () {
                   if (res.code === 'rest.success') {
                     //子集加入不限
                     var list = [{"id":-1,id: -1,"name":"不限","selected":true,"display":"不限"}]
-                    vm.options.searchOpts[0].dictIInfos[4].children = list.concat(res.result[0].dictIInfos || [])
+                    vm.options.searchOpts[0].dictIInfos[5].children = list.concat(res.result[0].dictIInfos || [])
 
                   }
                 })
