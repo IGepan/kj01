@@ -427,7 +427,7 @@ require(['/common/js/require.config.js'], function () {
                   if (res.code === 'rest.success') {
                     //子集加入不限
                     var list = [{"id":-1,id: -1,"name":"不限","selected":true,"display":"不限"}]
-                    vm.options.searchOpts[0].dictIInfos[5].children = list.concat(res.result[0].dictIInfos || [])
+                    vm.options.searchOpts[0].dictIInfos[4].children = list.concat(res.result[0].dictIInfos || [])
 
                   }
                 })
