@@ -419,7 +419,6 @@ require(['/common/js/require.config.js'], function () {
                           vm.handleSchool();
                         }else {
                           if(location.search.indexOf('back')>-1){
-                            debugger
                             toUrl = location.search.replace('?back=','')
                           }
                           window.location.href = toUrl;
