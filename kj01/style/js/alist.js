@@ -170,7 +170,7 @@ require(['/common/js/require.config.js'], function () {
             },
             getDataList: function (call) {
               var vm = this;
-              if (this.searchForm.activeTypeDisplay === '4') {
+              if (this.searchForm.activeIndex === '4') {
                 this.isActive = true//隐藏默认排序
                 //品牌活动
                 var searchForm = this.searchForm
