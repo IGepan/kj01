@@ -796,7 +796,7 @@ require(['/common/js/require.config.js'], function () {
                 },
                 created: function () {
                     this.startMove();
-                    this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
+                    (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))) &&  this.$utils.getCookie(dic.locaKey.USER_INFO)
                     this.getNumbers2()
                     this.getNumbers3()
                     this.getAList('005')
@@ -1116,6 +1116,7 @@ require(['/common/js/require.config.js'], function () {
                         location.href = url
                     },
                     handleTest: function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
                             window.location.href = "/common/login.html?back=/test.html";
                         } else {
