@@ -467,12 +467,18 @@ require(['/common/js/require.config.js'], function () {
                             sortType: "02",
                             topicCustomTag: '01'
                         },
+                        // {
+                        //     label: '主题活动',
+                        //     active: false,
+                        //     activeType: '218340665912723126',
+                        //     sortType: "01"
+                        // },
                         {
-                            label: '主题活动',
+                            label: '技术转移',
                             active: false,
-                            activeType: '218340665912723126',
+                            activeType: '218340665862395555',
                             sortType: "01"
-                        }
+                        },
                     ],
                     technologyTabs: [
                         {
