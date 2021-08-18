@@ -44,7 +44,7 @@ define(function () {
     {
       //测试环境
       authUrl: 'http://222.180.163.242:9769/tsOauth2',
-      baseUrl: 'http://222.180.163.242:9769/tsAdmin',
+      baseUrl: 'http://127.0.0.1:9769/tsAdmin',
       baseMarketUrl: 'http://222.180.163.242:9769/z-ts',//8901 ts 8900 tm ||
       baseSchoolUrl: 'http://222.180.163.230:8905',//学堂
       baseSchoolOutUrl: 'http://222.180.163.238:5555',//学堂跳转外网
