@@ -16,188 +16,6 @@
             padding-bottom: 100px;
         }
 
-        .first_level,
-        .second_level {
-            min-width: 180px;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            color: #606266;
-            background: #fff;
-            min-height: 260px;
-
-        }
-
-        .first_level {
-            width: 30%;
-            float: left;
-        }
-
-
-        .second_level {
-            border-left: 1px solid #ddd;
-            width: 60%;
-            float: left;
-        }
-
-        .third_level {
-            min-width: 300px;
-        }
-
-        .first_level li.first_li {
-            position: relative;
-            height: 34px;
-            line-height: 34px;
-        }
-
-
-        .first_li.active,
-        .second_li a.active,
-        .third_li.active {
-            color: #70adf1;
-        }
-
-        .first_a {
-            display: block;
-            padding: 0 20px;
-            font-size: 0.9rem;
-        }
-
-        .second_a {
-            font-weight: 600;
-            padding: 10px 5px 5px;
-            display: block;
-            font-size: 0.9rem;
-
-        }
-
-        .third_a {
-            font-size: 0.9rem;
-        }
-
-        li.third_li {
-            float: left;
-            margin: 5px 10px 5px 0;
-        }
-
-        .first_a i,
-        .second_a i,
-        .third_a i {
-            height: 34px;
-            line-height: 34px;
-        }
-
-        .model_a {
-            min-width: 150px;
-        }
-
-        .third_a:hover {
-            color: #70adf1;
-        }
-
-        .title_list_a {
-            background: #70adf1;
-            margin: 5px;
-            border-radius: 4px;
-            padding: 0px 4px;
-            color: #fff;
-            display: inline-block;
-            line-height: 26px;
-        }
-
-        .all_screen {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .tag_tree_style {
-            width: 600px;
-            height: 400px;
-            background: #fff;
-            position: fixed;
-            margin: auto;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-            border: 1px solid #f4f4f4;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .selected_over {
-            border-bottom: 1px solid #ddd;
-            line-height: 40px;
-            padding-bottom: 5px;
-        }
-
-        .icon_close {
-            position: absolute;
-            right: 1px;
-            top: 1px;
-            z-index: 1001;
-            padding: 15px;
-        }
-
-
-        .width_100_150 {
-            width: -moz-calc(100% - 150px);
-            width: -webkit-calc(100% - 150px);
-            width: calc(100% - 150px);
-        }
-
-        .inputbox-max {
-            width: 435px;
-        }
-
-        .inputbox-well {
-            width: 350px;
-            margin-right: 13px;
-        }
-
-        .selectarea select {
-            margin-right: 8px;
-        }
-
-        .selectarea .expsltlb:after,
-        .selectbox:after {
-            right: 8px;
-        }
-
-        .inputbox-date:after {
-            right: 345px;
-        }
-
-        .form .inputbox-add {
-            width: 765px;
-        }
-
-        .form .inputbox-add span {
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-
-        .selectbox-max {
-            width: 435px;
-            padding-right: 25px;
-        }
-
-        .selectbox.ptrt:after {
-            top: 2px;
-            width: 30px;
-            height: 20px;
-            background-color: #ffffff;
-            right: -32px;
-        }
-
-        .ainline {
-            border: 1px solid #ccc;
-            width: 435px;
-        }
-
         .discuss_personally {
             width: 18%;
             display: inline-block;
@@ -241,12 +59,12 @@
                     <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
                             我的订单</a>
                     </li>
-<!--                    <li><a @click="turnPageClassSign"  target="_blank"><i class="el-icon-s-custom"></i>-->
-<!--                            经纪人培训管理</a></li>-->
-<!--                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>-->
-<!--                            班级报名管理</a></li>-->
+                    <!--                    <li><a @click="turnPageClassSign"  target="_blank"><i class="el-icon-s-custom"></i>-->
+                    <!--                            经纪人培训管理</a></li>-->
+                    <!--                    <li><a @click="turnPageClassSign" target="_blank"><i class="el-icon-s-management"></i>-->
+                    <!--                            班级报名管理</a></li>-->
                     <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
-                        我的培训</a></li>
+                            我的培训</a></li>
                     <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
                             收藏</a>
                     </li>
@@ -290,22 +108,24 @@
                                 <i class="el-icon-close icon_close" @click.stop="closeAllLevelIndustry"></i>
                                 <div class="selected_over clear" style="position: relative;z-index: 1000;">
                                     已选择：
-                                    <span class="title_list_a " v-for="(item,index) in textIndustryList" :key="index">
+                                    <span class="title_list_a" v-for="(item,index) in textIndustryList" :key="index">
                                         {{item.name}}
                                         <i class="el-icon-close" @click.stop="removeSingleIndustry(index)"></i>
                                     </span>
                                 </div>
                                 <div style="position: relative;z-index: 1000;">
-                                    <div class="first_level fl">
+                                    <div class="first_level fl clear">
                                         <ul>
                                             <li class="first_li clear" :class="item.active?'active':''"
                                                 v-for="(item,index) in optionsIndustry" :key="index"
                                                 @click="openFirstLevelIndustry(item,index)">
-                                                <a class="first_a"> {{item.name}}
+                                                <a class="first_a">
+                                                    <span
+                                                        style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 85%;display: inline-block;"
+                                                        :title="item.name">{{item.name}}</span>
                                                     <i class="el-icon-arrow-right fr"></i></a>
                                             </li>
                                         </ul>
-
                                     </div>
                                     <div class="second_level fl">
                                         <ul>
@@ -342,12 +162,15 @@
                                 </span>
                             </div>
                             <div style="position: relative;z-index: 1000;">
-                                <div class="first_level fl">
+                                <div class="first_level fl clear">
                                     <ul>
                                         <li class="first_li clear" :class="item.active?'active':''"
-                                            v-for="(item,index) in options" :key="index"
-                                            @click="openFirstLevel(item,index)">
-                                            <a class="first_a"> {{item.name}}
+                                            v-for="(item,index) in optionsIndustry" :key="index"
+                                            @click="openFirstLevelIndustry(item,index)">
+                                            <a class="first_a">
+                                                <span
+                                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 85%;display: inline-block;"
+                                                    :title="item.name">{{item.name}}</span>
                                                 <i class="el-icon-arrow-right fr"></i></a>
                                         </li>
                                     </ul>
