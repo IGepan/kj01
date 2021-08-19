@@ -399,7 +399,6 @@ require(['/common/js/require.config.js'], function () {
                                 {required:true, message: '请填写合作方式，没有则填写无',trigger: 'blur'}
                             ],
                         },
-
                     }
                 },
                 components: {
@@ -409,6 +408,7 @@ require(['/common/js/require.config.js'], function () {
                     'tag': httpVueLoader('/style/components/tag.vue')
                 },
                 created() {
+                    window.location.href="https://www.kj01.cn/test.html"
                     this.getData()
                 },
                 methods: {
