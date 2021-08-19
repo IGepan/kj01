@@ -143,7 +143,7 @@ require(['/common/js/require.config.js'], function () {
               type && (this.navIndex = this.options.navIndexOpts[type]);
               this.getDicList(this.dicOptsSet);
               if(this.searchForm.activeType == '390092837996355585'){
-                this.searchForm.activeIndex === '4'
+                this.searchForm.activeIndex === '3'
               }
               this.getDataList(function(){
                 // 首次进入页面，展开二级导航
