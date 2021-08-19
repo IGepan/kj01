@@ -125,8 +125,6 @@
                                 <span class="" v-for="(item,index) in textList" :key="index">{{item.name}},
                                 </span>
                             </a>
-
-
                             <div class="tag_tree_style padding_20" id="tag_tree_style" style="display: none;">
                                 <div class="all_screen" @click.stop="closeAllLevel"></div>
                                 <i class="el-icon-close icon_close" @click.stop="closeAllLevel"></i>
@@ -141,8 +139,8 @@
                                     <div class="first_level fl clear">
                                         <ul>
                                             <li class="first_li clear" :class="item.active?'active':''"
-                                                v-for="(item,index) in optionsIndustry" :key="index"
-                                                @click="openFirstLevelIndustry(item,index)">
+                                                v-for="(item,index) in options" :key="index"
+                                                @click.stop="openFirstLevel(item,index)">
                                                 <a class="first_a">
                                                     <span
                                                         style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 85%;display: inline-block;"
