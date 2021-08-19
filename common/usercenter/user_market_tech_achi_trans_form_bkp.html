@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="css/element_index.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box" id='index_box' v-cloak>
+        <ly-toper></ly-toper>
+        <header-bar type='market' :http="httpCom"></header-bar>
+
+        <div class="mdiv clear margin_bot_20 margin_top_20">
+            <div class="fl user_market_box_fl bg_fff ">
+                <ul>
+                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_achievements.html" class="active"><i
+                                class="el-icon-s-finance"></i>技术成果管理</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
+                            技术需求管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
+                            技转业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_management.html"><i
+                                class="el-icon-s-cooperation"></i>
+                            我的业务管理</a>
+                    </li>
+                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
+                            我的订单</a>
+                    </li>
+<!--                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>-->
+<!--                            经纪人培训管理</a></li>-->
+<!--                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>-->
+<!--                            班级报名管理</a></li>-->
+                    <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
+                        我的培训</a></li>
+                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
+                            收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+                <div class="user_market_title border_bot_f2f2f2">
+                    <span class="market_title">成果转化</span>
+                    <!-- <a href="/common/usercenter/user_market_tech_achi_form.html" class="fr go_study color_70adf1">+
+                        添加成果</a> -->
+                </div>
+
+                <h4 class="margin_20">成果转化信息</h4>
+                <div class="clear margin_20">
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red">*</i>意向转让方式：</span>
+                        <div class="width_100_125 fl">
+                            <el-radio-group v-model="patentForm.patentTransactionType" class="width_100">
+                                <el-radio v-for="(item,index) in patent_transaction_type_list" :key="item.id"
+                                    class="user_center_radio" :label="item.dictValue">{{item.display}}</el-radio>
+                            </el-radio-group>
+
+                        </div>
+                    </div>
+
+
+                    <div class="clear">
+                        <!-- <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_125 fl padding_06_0 font_14 "><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计投入资金：</span>
+                            <el-input type="number" v-model="patentForm.budget" class="width_100_125"
+                                placeholder="请输入预计投入资金" maxlength="8">
+                            </el-input>
+                        </div> -->
+                        <div class="f_w_100 margin_tb_10 clear">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计所需场地：</span>
+                            <el-input v-model="patentForm.expectRequiredSite" class="width_100_125 fl"
+                                placeholder="请输入预计所需场地,最大100字符" maxlength="100">
+                            </el-input>
+                        </div>
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>意向合作单位：</span>
+                        <el-input v-model="patentForm.intentionCooperationUnit" class="width_100_125 fl"
+                            placeholder="请输入意向合作单位,最大100字符" maxlength="100">
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>对合作方(投资方)的其他要求：</span>
+                        <el-input v-model="patentForm.otherRequire" class="width_100_125 fl padding_06_0"
+                            placeholder="请输入对合作方(投资方)的其他要求,最大100字符" maxlength="100">
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>已有合作单位：</span>
+                        <el-input v-model="patentForm.existingCooperationUnit" class="width_100_125 fl"
+                            placeholder="请输入已有合作单位,最大100字符" maxlength="100">
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>已形成的合作案例：</span>
+                        <el-input v-model="patentForm.formCooperation" class="width_100_125 fl padding_06_0"
+                            placeholder="请输入已形成的合作案例,最大100字符" maxlength="100">
+                    </div>
+                    <h4 class="margin_tb_20">成果转化商业分析</h4>
+
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>具体产品/服务描述：</span>
+                            <div class=" width_100_125 fl">
+                                <vue-ueditor-wrap v-model="patentForm.specificProducts" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_125 fl padding_06_0 font_14 "><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计单品成本：</span>
+                            <el-input type="number" v-model="patentForm.expectedCost" class="width_100_125"
+                                placeholder="请输入预计单品成本" maxlength="8">
+                            </el-input>
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计单品售价：</span>
+                            <el-input type="number" v-model="patentForm.expectedPrice" class="width_100_125"
+                                placeholder="请输入预计单品售价" maxlength="8">
+                            </el-input>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_125 fl padding_06_0 font_14 "><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计市场容量：</span>
+                            <el-input v-model="patentForm.expectedMarketCapacity" class="width_100_125"
+                                placeholder="请输入预计市场容量,最大50字符" maxlength="50">
+                            </el-input>
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计市场占有率：</span>
+                            <el-input v-model="patentForm.expectedMarketShare" class="width_100_125"
+                                placeholder="请输入预计市场占有率,最大50字符" maxlength="50">
+                            </el-input>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="f_w_50 fl margin_tb_10">
+                            <span class="width_125 fl padding_06_0 font_14 "><i class="color_red"
+                                    style="visibility: hidden;">*</i>预计投产周期：</span>
+                            <el-input v-model="patentForm.expectedProductionCycle" class="width_100_125"
+                                placeholder="请输入预计投产周期,最大50字符" maxlength="50">
+                            </el-input>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>产业化团队介绍：</span>
+                            <div class=" width_100_125 fl">
+                                <vue-ueditor-wrap v-model="patentForm.industryTeamDes" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>市场推广策略：</span>
+                            <div class=" width_100_125 fl">
+                                <vue-ueditor-wrap v-model="patentForm.marketingStrategy" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>融资额度及用途：</span>
+                        <el-input v-model="patentForm.financingAmountPurpose" class="width_100_125 fl"
+                            placeholder="请输入融资额度及用途,最大100字符" maxlength="100">
+                    </div>
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>五年财务预测：</span>
+                            <div class=" width_100_125 fl">
+                                <vue-ueditor-wrap v-model="patentForm.projectionsFiveYears" :config="ueditorConfig"
+                                    class="exptextarea">
+                                </vue-ueditor-wrap>
+                                <span class="color_999 font_14">（收入、成本、利润、现金流量等）</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_125 fl padding_06_0 font_14"><i class="color_red"
+                                style="visibility: hidden;">*</i>预计社会经济效益：</span>
+                        <el-input v-model="patentForm.expectedSocialBenefits" class="width_100_125 fl padding_06_0"
+                            placeholder="请输入预计社会经济效益,最大100字符" maxlength="100">
+                    </div>
+
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                    style="visibility: hidden;">*</i>商业计划书：</span>
+
+                            <div class="width_100_115 fl padding_06_0">
+                                <div class="inputbox">
+                                    <label class="exbtn">
+                                        <ly-upload :exp="{type: 'secrecy'}" @success='handleUploadSuccess2'
+                                            style="position: absolute;right: 10000px;" type='file' :nopro="true"
+                                            :header='{}' :url='fileUploadUrl' :data='uploadData'>
+                                        </ly-upload>
+                                        <span class="el-button--small el-button--primary">上传商业计划书</span>
+                                    </label>
+                                    <span class="el-upload__tip" style="color:red; margin-left: 20px;">
+                                        <!-- 附件文件名称最长50个汉字，附件文件大小最大10M -->
+                                    </span>
+                                </div>
+                                <div>
+                                    <ul class="filelist clear margin_top_15">
+                                        <li v-for="(item, index) in business_files2" v-cloak>
+                                            <span class="signfile" style="position: relative;">
+                                                <span v-text="item.name"></span>
+                                                <i class="iconfont icon-shanchuguanbicha2 icon_del"
+                                                    @click="handleDelFile2(index)" style="right: -30px;top: 4px;"></i>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20">
+                        <a class="bg_70adf1 color_fff" @click.stop="save_tech_project_patent">提交</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ly-minifooter></ly-minifooter>
+    </div>
+    <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+    <script type="text/javascript" src="/common/js/libs/require.js"></script>
+    <script src="js/userMarketTechAchiTransForm.js"></script>
+</body>
+
+</html>
