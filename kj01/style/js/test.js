@@ -74,7 +74,7 @@ require(['/common/js/require.config.js'], function () {
                             proposal: '',//企业发展中的问题、困难或对两江新区的建议
                             delFlag: '0',
                             version: '0',
-                            isSubmit:1,
+                            isSubmit:2,
                         },
 
                         isActive: false,
@@ -414,7 +414,10 @@ require(['/common/js/require.config.js'], function () {
                 methods: {
                     getData() {
                         indexApi.selectQuestionnaire().then((res) => {
-                            if (res.code == 'rest.success' && res.result) {
+                            if(res.code !== 'rest.success'){
+                                window.location.href = "/common/login.html?back=/test.html";
+                            }
+                           if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
                                 if (res.result.isJoinDepository == 1) {
                                     this.isDisabledPlan = true;
@@ -443,8 +446,13 @@ require(['/common/js/require.config.js'], function () {
                                     window.location.href = "/test.html";
                                 }, 2000);
                             } else {
-                                this.$dialog.showToast('系统错误');
-
+                                this.$notify.error({
+                                    title: '提示！',
+                                    message: '请先登录!'
+                                });
+                                setTimeout(function () {
+                                    window.location.href = "/common/login.html?back=/test.html";
+                                }, 1000);
                             }
                         });
                     },
@@ -477,8 +485,13 @@ require(['/common/js/require.config.js'], function () {
                                                 window.location.href = "/test.html";
                                             }, 2000);
                                         } else {
-                                            this.$dialog.showToast('系统错误');
-
+                                            this.$notify.error({
+                                                title: '提示！',
+                                                message: '请先登录!'
+                                            });
+                                            setTimeout(function () {
+                                                window.location.href = "/common/login.html?back=/test.html";
+                                            }, 1000);
                                         }
                                     });
                                 } else {
