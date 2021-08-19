@@ -80,23 +80,23 @@ require(['/common/js/require.config.js'], function () {
                         isActive: false,
                         isClose:false,
                         regionList: [{
-                            value: '01',
+                            value: '水土',
                             label: '水土'
                         }, {
-                            value: '02',
+                            value: '鱼复',
                             label: '鱼复'
                         }, {
-                            value: '03',
+                            value: '龙兴',
                             label: '龙兴'
                         }, {
-                            value: '04',
+                            value: '照母山片区',
                             label: '照母山片区'
                         }, {
-                            value: '05',
+                            value: '寸滩保税港',
                             label: '寸滩保税港'
                         },
                             {
-                                value: '06',
+                                value: '其他',
                                 label: '其他'
                             }],
                         rules: {
