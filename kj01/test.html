@@ -302,7 +302,18 @@
             </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <legend>八、企业发展中的问题、困难或对两江新区的建议</legend>
+                <legend>八、科创版上市计划</legend>
+                <el-form-item  prop="listing" >
+                    <el-input  style="width: 100%;min-height: 200px"
+                               type="textarea"
+                               v-model="formData.listing"
+                               placeholder="请填写科创版上市计划，没有则填写无"
+                    >
+                    </el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>九、企业发展中的问题、困难或对两江新区的建议</legend>
                 <el-form-item  prop="proposal" >
                         <el-input  style="width: 100%;min-height: 200px"
                                    type="textarea"
@@ -312,17 +323,7 @@
                         </el-input>
                 </el-form-item>
             </fieldset>
-            <fieldset class="form__group">
-                <legend>九、科创版上市计划</legend>
-                <el-form-item  prop="proposal" >
-                        <el-input  style="width: 100%;min-height: 200px"
-                                   type="textarea"
-                                   v-model="formData.listing"
-                                   placeholder="请填写科创版上市计划，没有则填写无"
-                        >
-                        </el-input>
-                </el-form-item>
-            </fieldset>
+
             <div class="form__submit" style="margin-left: 395px">
                 <p class="form__validation" data-validation="submit" role="alert" aria-live="assertive"></p>
 <!--                <button class="button" @click="submit()" id="save">提交</button>-->

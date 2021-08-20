@@ -392,6 +392,9 @@ require(['/common/js/require.config.js'], function () {
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
+                            listing: [
+                                {required:true, message: '请填写科创版上市计划，没有则填写无',trigger: 'blur'}
+                            ],
                             proposal: [
                                 {required: true, message: '请填写企业发展建议，没有则填写无',trigger: 'blur'}
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
@@ -399,9 +402,7 @@ require(['/common/js/require.config.js'], function () {
                             cooperation: [
                                 {required:true, message: '请填写合作方式，没有则填写无',trigger: 'blur'}
                             ],
-                            listing: [
-                                {required:true, message: '请填写科创版上市计划，没有则填写无',trigger: 'blur'}
-                            ],
+
                         },
 
                     }
