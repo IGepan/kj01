@@ -72,6 +72,7 @@ require(['/common/js/require.config.js'], function () {
                             cooperation: '',//合作形式
                             isSecrecy: 1,//以上是否涉及保密项目
                             proposal: '',//企业发展中的问题、困难或对两江新区的建议
+                            listing: '',//科创版上市计划
                             delFlag: '0',
                             version: '0',
                             isSubmit:2,
@@ -397,6 +398,9 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             cooperation: [
                                 {required:true, message: '请填写合作方式，没有则填写无',trigger: 'blur'}
+                            ],
+                            listing: [
+                                {required:true, message: '请填写科创版上市计划，没有则填写无',trigger: 'blur'}
                             ],
                         },
 
