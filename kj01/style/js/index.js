@@ -464,6 +464,7 @@ require(['/common/js/require.config.js'], function () {
                         {
                             label: '品牌活动',
                             active: false,
+                            activeType:'390092837996355585',
                             sortType: "02",
                             topicCustomTag: '01'
                         },
