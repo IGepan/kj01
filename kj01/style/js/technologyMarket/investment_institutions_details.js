@@ -245,8 +245,8 @@ require(['/common/js/require.config.js'], function () {
                 toast.showToast(res.message);
                 return;
               }
+              var textNameList = [];
               if (_this.$utils.validatesEmpty(res.data.industryType) && res.data.industryType.length > 0) {
-                var textNameList = [];
                 res.data.industryType.forEach(element => {
                   textNameList.push(element.name);
                 });

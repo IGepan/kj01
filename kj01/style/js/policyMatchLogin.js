@@ -18,7 +18,9 @@ require(['/common/js/require.config.js'], function () {
           var _this = this;
           this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
           httpUser.detail().then(function (res) {
-            _this.companyList.push({name: res.result.organizationName, isCheck: true})
+            if (res.result.organizationName) {
+              _this.companyList.push({name: res.result.organizationName, isCheck: true});
+            }
           });
         }
       })
