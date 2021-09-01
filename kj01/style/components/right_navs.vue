@@ -53,7 +53,9 @@ module.exports =  {
     } 
   },
   created() {
-   this.$utils.getCookie('USER_INFO') && (this.userInfo = JSON.parse(localStorage.getItem('USER_INFO')))				
+
+   this.$utils.getCookie('USER_INFO') && (this.userInfo = JSON.parse(localStorage.getItem('USER_INFO')))
+   console.log('查看：-----------------------》',this.userInfo)
   }
 }
 </script>
