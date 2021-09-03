@@ -1,36 +1,31 @@
 <template>
-  <div class="headerBox" :class="{fixed: isfixed}">
-   <div class="mdiv">
+  <div class="headerBox">
+   <div style="padding-left: 60px">
     <div class="headers">
      <div class="header-logo">
-      <a href="">
+      <a >
        <img src="./style/images/logos/bsublogo.png" alt="">
       </a>
-      <div class="header-text" v-if="navIndex === 0">
-       <div>科技创新</div>
-       <div>综合服务平台</div>
-      </div>
-<!--      <div class="header-text" v-else-if="navIndex===6">-->
-<!--       <div style="font-size: 35px;font-weight: bold;">平台动态</div>-->
+<!--      <div class="header-text" v-if="navIndex === 0">-->
+<!--       <div>科技创新</div>-->
+<!--       <div>综合服务平台</div>-->
 <!--      </div>-->
-<!--       <div class="header-text" v-if="navIndex===7">-->
+<!--       <div class="header-text" v-else-if="navIndex===7">-->
+<!--         <div style="font-size: 35px;font-weight: bold;">平台动态</div>-->
+<!--       </div>-->
+<!--       <div class="header-text" v-if="navIndex===8">-->
 <!--         <div style="font-size: 35px;font-weight: bold;">关于我们</div>-->
 <!--       </div>-->
-       <div class="header-text" v-else-if="navIndex===7">
-         <div style="font-size: 35px;font-weight: bold;">平台动态</div>
-       </div>
-       <div class="header-text" v-if="navIndex===8">
-         <div style="font-size: 35px;font-weight: bold;">关于我们</div>
-       </div>
      </div>
      <div class="searchBox">
-       <a :href="nav.url" :class="{active: nav.active}" v-for="(nav,index) in navs" :key="index">{{ nav.label }}</a>
-      <div class="search">
-       <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">
-       <span class="iconfont icon-fangdajing" @click="searchFull"></span>
-      </div>
+       <ul><li v-for="(nav,index) in navs" :key="index"><a :href="nav.url" :class="{active: nav.active}" >{{ nav.label }}</a></li></ul>
+<!--      <div class="search">-->
+<!--       <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">-->
+<!--       <span class="iconfont icon-fangdajing" @click="searchFull"></span>-->
+<!--      </div>-->
      </div>
     </div>
+
    </div>
   </div>
 </template>
@@ -132,8 +127,8 @@ module.exports = {
 .headers {
   display: flex;
   width: 100%;
-  height: 100px;
-  justify-content: space-between;
+  height: 65px;
+  /*justify-content: space-between;*/
   align-items: center;
 }
 .header-logo {
@@ -162,14 +157,20 @@ module.exports = {
 .searchBox {
   display: flex;
   align-items: center;
+  margin-left: 50px;
+}
+.searchBox ul li{
+  margin-right: 20px;
+  float: left;
 }
 .searchBox a {
   font-size: 18px;
   color: #1f2024;
-  margin-right: 40px;
+  padding: 0 10px;
+
 }
 .searchBox .active {
-  color: #01c8f2;
+  color: #ff5e06;
   font-weight: 600;
   position: relative;
 }
@@ -177,26 +178,26 @@ module.exports = {
   position: absolute;
   content: "";
   display: block;
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 2px;
   border-radius: 1px;
-  background-color: #01c8f2;
+  background-color: #ff5e06;
 }
 .searchBox a:hover {
   position: relative;
-  color: #01c8f2;
+  color: #ff5e06;
   font-weight: 600;
 }
 .searchBox a:hover::after {
   position: absolute;
   content: "";
   display: block;
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 2px;
   border-radius: 1px;
-  background-color: #01c8f2;
+  background-color: #ff5e06;
 }
 .search {
 	background-color: #ddf9ff;

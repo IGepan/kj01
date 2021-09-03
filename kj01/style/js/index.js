@@ -885,7 +885,7 @@ require(['/common/js/require.config.js'], function () {
                     scroll: function () {
                         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
                         let offSetTop = setTimeout(function () {
-                            document.querySelector('.headerBox').offsetTop + 100;
+                            document.querySelector('.header-box').offsetTop + 65;
                         }, 60);
                         this.isFixed = scrollTop > offSetTop ? true : false;
                     },
