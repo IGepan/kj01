@@ -460,25 +460,72 @@ require(['/common/js/require.config.js'], function () {
                             active: true,
                             activeType: '218340665862391473',
                             sortType: "01",
+                            tabList:[
+                                {
+                                label: '政策直播间',
+                                active: true,
+                                activeType: '218340665870780082',
+                                sortType: "01",
+                            },
+                                {
+                                    label: '创新课堂',
+                                    active: false,
+                                    activeType: '218340665883362995',
+                                    sortType: "01",
+                                }, {
+                                    label: '管理学院',
+                                    active: false,
+                                    activeType: '218340665891751604',
+                                    sortType: "01",
+                                },]
+                        },
+                        {
+                            label: '技术转移',
+                            active: false,
+                            activeType: '218340665862395555',
+                            sortType: "01",
+                            tabList: [
+                                {
+                                    label: '易智成果汇',
+                                    active: false,
+                                    activeType: '218340665862395556',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '易智人才汇',
+                                    active: false,
+                                    activeType: '218340665862395557',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '易智排行榜',
+                                    active: false,
+                                    activeType: '218340665862395558',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '易智大咖荟',
+                                    active: false,
+                                    activeType: '218340665862395559',
+                                    sortType: "01",
+                                },
+                            ]
                         },
                         {
                             label: '品牌活动',
                             active: false,
                             activeType:'390092837996355585',
                             sortType: "02",
-                            topicCustomTag: '01'
-                        },
-                        // {
-                        //     label: '主题活动',
-                        //     active: false,
-                        //     activeType: '218340665912723126',
-                        //     sortType: "01"
-                        // },
-                        {
-                            label: '技术转移',
-                            active: false,
-                            activeType: '218340665862395555',
-                            sortType: "01"
+                            topicCustomTag: '01',
+                            tabList: [
+                                {
+                                    label: '智汇两江',
+                                    active: false,
+                                    activeType:'01',
+                                    topicCustomTag: '01',
+                                    sortType: "01",
+                                }
+                            ]
                         },
                     ],
                     technologyTabs: [
@@ -559,7 +606,7 @@ require(['/common/js/require.config.js'], function () {
                     activeLists: [],
                     activeParams: {
                         pageNum: 1,
-                        pageSize: 4,
+                        pageSize: 10,
                         sortType: "01",
                         activeType: '218340665862391473',
                     },
@@ -688,24 +735,16 @@ require(['/common/js/require.config.js'], function () {
                         }
                         return v || '';
                     },
-                    // formatPrice2: function (flag, v, n, m) {
-                    //     if (flag === '2') {
-                    //         return '面议'
-                    //     }if(flag === "3"){
-                    //         return '查看价格详情'
-                    //     }else {
-                    //         if (typeof v !== 'undefined') {
-                    //             return (v / 10000).toFixed(2)
-                    //         } else if (!v && !m) {
-                    //             return (n / 10000).toFixed(2)
-                    //         } else {
-                    //             return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                    //         }
-                    //     }
-                    // },
                 },
                 mounted: function () {
                     var _this = this
+                    // 获取类型板块
+                        _this.getMailServiceType(function (){
+                                //递归板块数据，从第一个板块开始
+                                _this.getMailGoods(0)
+                            }
+                        );
+
                     $('#hotImgBox').owlCarousel({
                         items: 1,
                         autoplay: true,
@@ -717,6 +756,39 @@ require(['/common/js/require.config.js'], function () {
                         callbacks: true,
                         beforeMove: true
                     });
+                    setTimeout(function (){
+                        var swiperbox = new Swiper ('.swiper-container', {
+                            loop: true,
+                            // 如果需要分页器
+                            slidesPerView: 4,
+                            loopFillGroupWithBlank: true,
+                            // delay: 3000,// 3秒切换一次
+                            pagination: '.swiper-pagination',
+                            // 如果需要前进后退按钮
+                            nextButton: '.swiper-next',
+                            prevButton: '.swiper-prev',
+                            navigation: {
+                                nextEl: '.swiper-next',
+                                prevEl: '.swiper-prev',
+                            },
+                            // 如果需要滚动条
+                            // scrollbar: '.swiper-scrollbar',
+                            //如果需要自动切换海报
+                            // autoplay: {
+                            //   delay: 1000,//时间 毫秒
+                            //   disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                            // },
+                        })
+                        $('.swiper-container').mouseenter(function () {
+                            // 鼠标悬停停止播放
+                            swiperbox.autoplay.stop();
+                        })
+                        $('.swiper-container').mouseleave(function () {
+                            // 鼠标移除开启自动播放
+                            swiperbox.autoplay.start();
+                        })
+                    },1000)
+
                     var swiperEntity = new Swiper('#swiper-containerIndex', {
                         loop: true, // 循环模式选项
                         autoplay: true, // 可选选项，自动滑动
@@ -762,16 +834,11 @@ require(['/common/js/require.config.js'], function () {
                         titCell: ".hd ul",
                         mainCell: ".bd ul",
                         autoPage: true,
-                        effect: "top",
+                        effect: "left",
                         autoPlay: true,
-                        vis: 1
+                        vis: 5
                     });
-                    // 获取类型板块
-                    _this.getMailServiceType(function (){
-                            //递归板块数据，从第一个板块开始
-                            _this.getMailGoods(0)
-                        }
-                    );
+
                     //知识产权
 					// this.goodFormData.type = '371977891599065088';
 					// this.getMailGoods('incubationTypeList')
@@ -795,7 +862,7 @@ require(['/common/js/require.config.js'], function () {
 					// this.getMailGoods('knowledgeTypeList');
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'number-grow': httpVueLoader('/style/components/number2.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
@@ -889,11 +956,11 @@ require(['/common/js/require.config.js'], function () {
                         }, 60);
                         this.isFixed = scrollTop > offSetTop ? true : false;
                     },
-                    handleactivity: function (val) {
+                    handle: function (val) {
                         if (val.activeType) {
                             location.href = '/alist.html?type=' + val.activeType
                         } else {
-                            location.href = '/atList.html?type=' + val.topicCustomTag
+                            location.href = '/alist.html?type=' + val.topicCustomTag
                         }
                     },
                     /**
@@ -905,10 +972,17 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handleactivityTabs: function (val, i) {
                         var vm = this
+                        //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
-                            item.active = ti === i
+                            item.active = ti == i
+                            vm.item.tabList.forEach(function (tab, idx) {
+                                tab.active = tab.label == val.label
+                            })
                         })
-                        if (i === 1) {
+                        //二级循环
+
+
+                        if (i == 2) {
                             vm.getBrandList()
                         } else {
                             vm.activeParams.activeType = val.activeType
@@ -919,7 +993,7 @@ require(['/common/js/require.config.js'], function () {
                         let vm = this
                         let params = {
                             pageNum: 1,
-                            pageSize: 4,
+                            pageSize: 10,
                             topicCustomTag: '01'
                         };
                         indexApi.selectPortalPage(params).then(function (res) {
@@ -1045,7 +1119,7 @@ require(['/common/js/require.config.js'], function () {
                     getDemandList: function () {
                         var vm = this
                         indexApi.demandSelectbByPage({
-                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            pageParam: {current: 1, size: 6, order: "desc", sort: "id"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
@@ -1062,7 +1136,7 @@ require(['/common/js/require.config.js'], function () {
                     getGoodsList: function () {
                         var vm = this
                         indexApi.goodsSelectbByPage({
-                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            pageParam: {current: 1, size: 6, order: "desc", sort: "id"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
@@ -1191,7 +1265,7 @@ require(['/common/js/require.config.js'], function () {
                     getcmsList: function (channelId) {
                         var vm = this;
                         indexApi.contentList({
-                            pageNum: 1, pageSize: 10, limit: 10, policyFileType: ["07"],
+                            pageNum: 1, pageSize: 16, limit: 16, policyFileType: ["07"],
                             orderBy: "publishDate-desc"
                         }).then(function (res) {
                             res.result.list && res.result.list.forEach(function (item) {
@@ -1239,6 +1313,41 @@ require(['/common/js/require.config.js'], function () {
                             vm.countNumbers[2].num = parseInt(result.techCount) || 0
                             vm.countNumbers[3].num = parseInt(result.policyNum) || 0
                         })
+                    },
+                    handleMall:function(){
+                        if (this.userInfo.userTypes) {
+                            for (var it of this.userInfo.userTypes) {
+                                if (it === "002") {
+                                    this.isSeller = true;
+                                }
+                            }
+                        }
+
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html";
+                            return;
+                        }
+                        if (this.isSeller) {
+                            window.location.href = "/common/seller/index.html";
+                        } else {
+                            window.location.href = "/common/seller/store_agreement.html";
+                        }
+                    },
+                    handleOne:function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/user_market_tech_achievements.html";
+                        } else {
+                            window.location.href = "/common/usercenter/user_market_tech_achievements.html";
+                        }
+                    },
+                    handleTwo:function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/user_market_tech_require.html";
+                        } else {
+                            window.location.href = "/common/usercenter/user_market_tech_require.html";
+                        }
                     },
                     handleUrlBtn: function (e) {
                         var url = e.currentTarget.dataset ? e.currentTarget.dataset.url : e.currentTarget.getAttribute('data-url');
@@ -1387,10 +1496,8 @@ require(['/common/js/require.config.js'], function () {
                             //     })[0];
                             // }
 
-                                var List = res.result || [];
-                                var list = List.slice(0,6);
+                            var list = res.result || [];
                             //设置板块数据
-
                             for( var key in list){
                                 list[key].goodList = [];
                             }

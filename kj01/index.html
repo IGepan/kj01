@@ -23,43 +23,12 @@
 
 </head>
 <style>
-    .studybox{
-        position: absolute;
-        left: calc((100vw - 1450px)/2 + 1450px);
-        top:55px;
-        z-index: 999;
-        display: block;
-        width: 180px;
-        height: 150px;
-        text-align: center;
-        background: url(/style/images/index/box.png)no-repeat;
-        background-size: cover;
-        padding: 10px 20px;
-    }
-    /*.studybox a{*/
-    /*    height: 70px;*/
-    /*    float: left;*/
-    /*    line-height: 30px;*/
-    /*    font-size: 18px;*/
-    /*    color: #FFFFff;*/
-    /*    display:block;*/
-    /*   border-bottom: 2px solid #FFFFff;*/
 
-    /*}*/
-    /*.studybox a:hover{*/
-    /*    color: #f0ad4e;*/
-    /*}*/
-    /*.studybox a:last-child{*/
-    /*    clear: both;*/
-    /*    border: 0;*/
-    /*    padding:0 ;*/
-    /*}*/
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
     <img src="/style/images/index/top.png" width="100%" height="60"/>
     <div class="header-box" style="background: #fff;height: 65px;box-shadow: 0 1px 10px rgba(6, 22, 76,0.5);position: relative">
-
        <div class="fl"> <index-head></index-head></div>
         <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>
     </div>
@@ -126,15 +95,17 @@
 <!--            </div>-->
 <!--        </div>-->
         <div class="boxlink">
-            <div class="mdiv">
-                <ul>
-                    <li><a><h4>问卷调查</h4>两江新区企业科技创新情况</a></li>
-                    <li><a><h4>问卷调查</h4>两江新区企业科技创新情况</a></li>
-                    <li><a><h4>问卷调查</h4>两江新区企业科技创新情况</a></li>
-                    <li><a><h4>问卷调查</h4>两江新区企业科技创新情况</a></li>
-                    <li><a><h4>问卷调查</h4>两江新区企业科技创新情况</a></li>
-
-                </ul>
+            <div class="mdiv slideTxtBox">
+                    <div class="bd">
+                        <ul>
+                            <li><a @click="handleTest"><h3>问卷调查</h3>两江新区企业科技创新情况</a></li>
+                            <li><a href="technologyMarket/technical_manager.html"><h3>找技术经纪人</h3>全网寻找技术经纪人活动开启</a></li>
+                            <li><a @click="handleMall"><h3>入住易智商城</h3>诚邀专业技术服务机构和人才入驻</a></li>
+                            <li><a @click="handleOne"><h3>技术成果发布</h3>快速发布您的科技成果</a></li>
+                            <li><a @click="handleTwo"><h3>技术需求发布</h3>快速发布您的技术需求</a></li>
+<!--                            <li><a href="https://www.yunyao365.com/book_preview/SKmvox28i4ml"><h3>重庆科技成果转移转化峰会</h3></a></li>-->
+                        </ul>
+                    </div>
             </div>
         </div>
         <div class="nav">
@@ -247,14 +218,18 @@
 
                 <div class="policy">
                     <div class="policy-left">
-                        <div class="policy-title">政策直播间<a href="/alist.html?type=218340665870780082"
-                                                          class="iconfont icon-gengduo"></a></div>
+                        <div class="policy-title">政策直播间
+                            <a href="/alist.html?type=218340665870780082">更多></a>
+                        </div>
                         <div id="activeHots" class="studioBox owl-carousel owl-theme">
                             <a :href="item.itemUrl" class="studio" :key="index" v-for="(item,index) in activeHot">
                                 <img :src="item.itemImg" alt="">
                                 <div class="studio-info">
                                     <div class="studio-info_left">
-                                        <div class="infoImg"><img src="/style/images/index/play.png" alt=""></div>
+                                        <div class="infoImg">
+<!--                                            <img src="/style/images/index/play.png" alt="">-->
+                                            直播
+                                        </div>
                                         <div class="infoBox">
                                             <div class="infoname" v-text="item.title" :title="item.title"></div>
                                             <div class="infodate">活动时间：{{item.activeStartTime|formatTime1}}</div>
@@ -266,15 +241,16 @@
                         </div>
                         <div class="studio-lists">
                             <a :href="active.itemUrl" :title="active.title" v-for="(active,index) in activeList"
-                               :key="index" v-text="active.title"></a>
+                               :key="index"><span>回放</span>{{active.title}}</a>
                         </div>
                     </div>
                     <div class="policy-center">
                         <div class="policy-title">
                             <!--                                <span :class="{active: tab.active}" v-for="(tab,index) in ptabsNavs" :key="'tab'+index"-->
-                            <!--                                    @mouseover.stop="handlePTabsNav(index)" @click="handlePTabsNavMore(tab.url)">{{tab.label}}</span>-->
-                            <span :class="{active: tab.active}" v-for="(tab,index) in ptabsNavs" :key="'tab'+index"
-                                  @click="handlePTabsNavMore(tab.url)">{{tab.label}}</span>
+                            <!--
+                                                           @mouseover.stop="handlePTabsNav(index)" @click="handlePTabsNavMore(tab.url)">{{tab.label}}</span>-->
+                            政策惠
+                            <a class="fr" href="/alist.html">更多></a>
                         </div>
                         <div class="policy-center_lists">
                             <a :title="policy.title" v-for="(policy,index) in policyList"
@@ -291,33 +267,44 @@
                 </div>
             </div>
         </div>
-        <div class="activityBox">
 
-            <div class="mmdiv">
-                <div class="plate-title">
+
+        <div class="activityBox">
+            <div class="plate-title">
                     <h2>活动中心</h2>
                     <p>互联网+科技创新活动</p>
-                </div>
+            </div>
+            <div class="mmdiv">
                 <div class="title">
 
                     <div class="title-center">
-                            <span :class="{active: item.active}" v-for="(item,index) in activityTabs"
-                                  @mouseover.stop="handleactivityTabs(item,index)"
-                                  @click="handleactivity(item)">{{item.label}}</span>
+                            <span :class="{active: item.active}"
+                                  v-for="(item,index) in activityTabs">{{item.label}}
+                                <div class="tablist">
+                            <a :class="{active: tab.active}"
+                               @click="handleactivityTabs(tab,index)"
+                               v-for="tab in item.tabList">
+                                {{tab.label}}
+                            </a>
+                                </div>
+                            </span>
+
                     </div>
-                    <div class="issue">
-                        <a @click.stop="handleUrlBtn" data-url="/common/activity/add.html?code=001.004.001.001">发布活动</a>
-                    </div>
+<!--                    <div class="issue">-->
+<!--                        <a @click.stop="handleUrlBtn" data-url="/common/activity/add.html?code=001.004.001.001">发布活动</a>-->
+<!--                    </div>-->
                 </div>
-                <div class="activity">
+            </div>
+                <div class="actbg">
+                <div class="activity mmdiv">
                     <a :href="item.tagName ? '/atdetail.html?id=' + item.id : '/adetail.html?id=' + item.id"
                        class="activity-list" v-for="(item,index) in activeLists" :key="index">
                         <div class="activity-img">
                             <img :src="item.posterUrl" alt="">
                             <div class="activity-imgitem" v-if="item.liveFlag === 1">直播</div>
                         </div>
-                        <div class="activity-info">
-                            <div class="activity-name" :title="item.title">{{item.title}}</div>
+                        <div class="activity-info" style="padding: 0">
+<!--                            <div class="activity-name" :title="item.title">{{item.title}}</div>-->
                             <div class="activity-type activity-date"><span
                                     class="iconfont icon-lishijilu"></span><span>{{item.activeStartTimeDisplay[9]}}
                                         {{item.weekday}}</span>
@@ -328,24 +315,32 @@
                                 <div class="count-type" v-if="item.activeTypeDisplay">
                                     {{item.activeTypeDisplay?item.activeTypeDisplay[0].name:''}}
                                 </div>
+                                <div class="count-type" v-if="item.tagName">
+                                    {{item.tagName}}
+                                </div>
                                 <div class="count-num"><span class="people">{{item.joinNumTotal}}人浏览</span>
-                                    <span class="avatar" v-for="items in item.headers"><img :src="items" alt=""></span>
+<!--                                    <span class="avatar" v-for="items in item.headers"><img :src="items" alt=""></span>-->
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-            </div>
+                </div>
+
         </div>
     </div>
     <div class="technologyBox">
+        <div class="plate-title" style="background: #fff">
+            <a href="/technologyMarket/index.html"><h2>技术转移</h2></a>
+            <p>助力企业创新能力提升与变现</p>
+        </div>
         <div class="mmdiv">
-            <div class="title">
-                <div class="title-left">
-                    <a href="/technologyMarket/index.html" style="color: white">技术转移</a>
-                    <span>助力企业创新能力提升与变现</span>
-                </div>
-            </div>
+<!--            <div class="title">-->
+<!--                <div class="title-left">-->
+<!--                    <a href="/technologyMarket/index.html" style="color: white">技术转移</a>-->
+<!--                    <span>助力企业创新能力提升与变现</span>-->
+<!--                </div>-->
+<!--            </div>-->
 <!--            <div class="technology">-->
 <!--                <div class="technology-left">-->
 <!--                    <div class="achievement">-->
@@ -435,13 +430,15 @@
                 <div class="technology-left">
                     <div class="achievement">
                         <div class="technology-title">
-                            <div class="policy-title">技术成果汇<a href="/technologyMarket/tech_achievements.html"
-                                                             class="iconfont icon-gengduo"></a></div>
+                            <div class="policy-title" style="padding-bottom: 0">技术成果汇<a href="/technologyMarket/tech_achievements.html" class="iconfont icon-gengduo"></a></div>
                             <!--                            <div class="technology-lable">-->
                             <!--                                    <span :class={active:item.active} v-for="(item,index) in technologyTabs"-->
                             <!--                                          :key="index"-->
                             <!--                                          @click.stop="handletechnology(item.industryLevel,index)">{{item.label}}</span>-->
                             <!--                            </div>-->
+                            <div class="release fr">
+                                <a @click="handleOne">发布成果+</a>
+                            </div>
                         </div>
                     </div>
                     <div class="technology-lists">
@@ -460,16 +457,21 @@
                                     <span v-if="index < good.projectIndustryType.length - 1">, </span>
                                 </div>
                                 <div class="clear">转让方式：{{good.cooperationMode_display}}</div>
-                                <div >价格：
+                                <div style="margin-top: 10px"><sapn style="color: #333;background: #ffd790;padding: 5px;border-radius: 0px 0px 10px 0px">会员价</sapn>
                                     <span class="price-red" v-if="good.budget==0">面议</span>
                                     <span v-else class="price-red">{{Pricre(good.budget)}}</span>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="title-border">
-                        <div class="policy-title">技术需求汇<a href="/technologyMarket/tech_requirements.html"
-                                                         class="iconfont icon-gengduo"></a></div>
+                    <div style="padding-left: 20px">
+                        <div class="policy-title" style="float: inherit">技术需求汇<a href="/technologyMarket/tech_requirements.html"
+                                                         class="iconfont icon-gengduo"></a>
+                            <div class="release fr" style="margin-right: 20px">
+                            <a @click="handleTwo">发布需求+</a>
+                        </div>
+
+                        </div>
                     </div>
                     <div class="technology-lists market-demand">
                         <a :href="'/technologyMarket/tech_requirements_details.html?id=' + demand.id" v-for="(demand,index) in demandList" style="display: block">
@@ -480,7 +482,8 @@
                                     <div class="fl">{{item.name}}
                                         <span v-if="index < demand.demandIndustryType.length - 1">, </span></div>
                                 </template>
-                                <div class="clear">需求类型：{{demand.demandType_display}}</div>
+                                <br>
+                                <div class="clear" style="border:1px solid #ff5e06;padding:0px 5px;color:#ff5e06;background:#fff5f0;margin-right: 5px;margin-bottom:5px; display: inline-block">{{demand.demandType_display}}</div>
                             </div>
                         </a>
 
@@ -501,59 +504,61 @@
                     <!--                            </div>-->
                     <!--                        </a>-->
                     <!--                    </div>-->
-                </div>
-                <div class="technology-right">
-                    <div class="technology-serve">
-                        <div class="technology-serve_list">
-                            <a @click="handleSchool"  target="_blank">
-                                <div class="iconfont icon-xianshanghuodong"></div>
-                                <div class="serve-right">
-                                    <div class="serve-name">技术经理人学院</div>
-                                    <div class="serve-type">在线考试，成为技术经理人</div>
-                                </div>
-                            </a>
-                            <a href="http://www.chttc.com" target="_blank">
-                                <div class="iconfont icon-xianshanghuodong"></div>
-                                <div class="serve-right">
-                                    <div class="serve-name">国际技术转移服务</div>
-                                    <div class="serve-type">面向全球，服务世界</div>
-                                </div>
-                            </a>
+                    <div class="technology-right">
+                        <div class="technology-serve">
+<!--                            <div class="technology-serve_list">-->
+<!--                                <a @click="handleSchool"  target="_blank">-->
+<!--                                    <div class="iconfont icon-xianshanghuodong"></div>-->
+<!--                                    <div class="serve-right">-->
+<!--                                        <div class="serve-name">技术经理人学院</div>-->
+<!--                                        <div class="serve-type">在线考试，成为技术经理人</div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                                <a href="http://www.chttc.com" target="_blank">-->
+<!--                                    <div class="iconfont icon-xianshanghuodong"></div>-->
+<!--                                    <div class="serve-right">-->
+<!--                                        <div class="serve-name">国际技术转移服务</div>-->
+<!--                                        <div class="serve-type">面向全球，服务世界</div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+                            <a @click="handleSchool"  target="_blank"><img src="/style/images/index/studyschool.png" width="100%"/></a>
+                            <!--                        <div class="technology-info">-->
+                            <!--                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"-->
+                            <!--                               :data-url="button.url"><span class="iconfont"-->
+                            <!--                                                            :class="button.icon"></span><span>{{button.label}}</span></a>-->
+                            <!--                        </div>-->
                         </div>
-                        <!--                        <div class="technology-info">-->
-                        <!--                            <a @click.stop="handleUrlBtn" v-for="(button, bi) in buttons" :key="bi"-->
-                        <!--                               :data-url="button.url"><span class="iconfont"-->
-                        <!--                                                            :class="button.icon"></span><span>{{button.label}}</span></a>-->
-                        <!--                        </div>-->
-                    </div>
-                    <div class="supplier">
-                        <div class="policy-title">技术机构<a href="/technologyMarket/service_organization.html"
-                                                         class="iconfont icon-gengduo"></a></div>
-                        <div class="supplier-list">
-                            <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">
-                                <div class="supplier-avatar" v-if="shop.logoPath"><img :src="getImgPath(shop.logoPath)" alt=""></div>
-                                <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/service_organization.jpg" alt=""></div>
-                                <div class="supplier-name" >{{shop.organName}}</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="supplier">
-                        <div class="policy-title">技术经纪人<a href="/technologyMarket/technical_manager.html"
-                                                          class="iconfont icon-gengduo"></a></div>
-                        <div class="supplier-list">
-                            <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
-                                <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt=""></div>
-                                <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg" alt=""></div>
-                                <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}
-                                    <br>
-                                    <div style="font-size: 12px">({{Man.agentType_display}})
-                                    </div>
-                                </div>
+<!--                        <div class="supplier">-->
+<!--                            <div class="policy-title">技术机构<a href="/technologyMarket/service_organization.html"-->
+<!--                                                             class="iconfont icon-gengduo"></a></div>-->
+<!--                            <div class="supplier-list">-->
+<!--                                <a :href="'/technologyMarket/service_organization_details.html?id=' + shop.id" v-for="(shop,index) in shopList" :key="index">-->
+<!--                                    <div class="supplier-avatar" v-if="shop.logoPath"><img :src="getImgPath(shop.logoPath)" alt=""></div>-->
+<!--                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/service_organization.jpg" alt=""></div>-->
+<!--                                    <div class="supplier-name" >{{shop.organName}}</div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="supplier">
+                            <div class="policy-title">技术经纪人<a href="/technologyMarket/technical_manager.html"
+                                                              class="iconfont icon-gengduo"></a></div>
+                            <div class="supplier-list">
+                                <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
+                                    <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt=""></div>
+                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg" alt=""></div>
+<!--                                    <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}-->
+<!--                                        <br>-->
+<!--                                        <div style="font-size: 12px">({{Man.agentType_display}})-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -680,54 +685,109 @@
 <!--                            </div>-->
 <!--                        </template>-->
 <!--                    </div>-->
-        <div class="mdiv boxtitle">
-            <div class="boxtitle-text">
-            <a href="/mall/index.html" style="color: black">易智商城</a>
-            </div>
-            <div class="boxtitle-subtext">一站式科技服务商城，为科技企业保驾护航</div>
+        <div class="plate-title" style="background: #fff">
+            <a href="/mall/index.html"><h2>易智商城</h2></a>
+            <p>一站式科技服务商城，为科技企业保驾护航</p>
         </div>
-        <div class="mdiv pinpai-bottom server">
-            <!-- 知识产权-->
-            <div class="mallItem" v-for="(type,index) in typeList">
-                <div class="mallItem-imgBox">
-                    <img :src="bgImg[index]">
-<!--                    <img src="/style/images/index/tab-bg1.png">-->
-                    <span class="mallItem-imgBox-title">{{type.name}}</span>
-                    <a class="mallItem-imgBox-url" :href="'/mall/sub1.html?type='+type.id">查看更多 &gt;&gt;</a>
+<!--        <div class="mdiv boxtitle">-->
+<!--&lt;!&ndash;            <div class="boxtitle-text">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a href="/mall/index.html" style="color: black">易智商城</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="boxtitle-subtext">一站式科技服务商城，为科技企业保驾护航</div>&ndash;&gt;-->
+<!--        </div>-->
+        <div class="mmdiv">
+            <div class="title-text fl">
+                <span><p>夏日钜惠, </p>
+                    新品首发，低至<b style="color:#ff5e06;font-weight: normal;font-size: 28px " >0</b>元起</span>
+                <ul>
+                    <li>
+                        ○“法治体检”服务免费
+                    </li>
+                    <li>○&nbsp;&nbsp;&nbsp;知识产权服务礼包 2700元即可享受</li>
+                    <li>○“产业方阵”长达1年半免费试用</li>
+                </ul>
+                <a href="/mall/index.html">进入专区</a>
+            </div>
+            <div class="about">
 
-                </div>
-                <div class="mallItem-infoBox">
-                    <div class="col-card" v-for="goods in type.goodList" >
-                        <a :href="'/mall/shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
-                            <div class="card-item">
-                                <div class="technology-avatar"><img :src="goods.goodsImg.url" class=""
-                                                                    alt="...">
-                                </div>
+            </div>
+            <div class=" pinpai-bottom server fr">
+                <div class="swiper-container" style="padding-top: 20px;height: 551px;width: 100%">
+                    <div class="swiper-next fr"><i class="el-icon-arrow-right"></i></div>
+                    <div class="swiper-prev fr"><i class="el-icon-arrow-left"></i></div>
 
-                                <div class="card-title">{{goods.goodsName}}</div>
-                                <div class="addition">
-                                    <div class="quoted-price">{{formatPrice(goods.choosePriceTag,goods.price, goods.minPrice,
-                                        goods.maxPrice)}}
-                                    </div>
-                                    <div class="short-text">
-                                        <p><i class="iconfont icon-biaoqian"></i>{{goods.typeName}}</p>
-                                        <p><i class="iconfont icon-dingweixian"></i>{{goods.shopName}}</p>
-                                    </div>
-                                </div>
+                    <div class="swiper-wrapper">
+                        <div class="mallItem swiper-slide" v-for="(type,index) in typeList">
+                            <div class="top-text">
+                                <!--                                                <img :src="bgImg[index]">-->
+                                <!--                    <img src="/style/images/index/tab-bg1.png">-->
+                                <span>{{type.name}}</span>
+                                <ul><li v-for="(title,index) in type.children">{{title.name}}<template v-if="index + 1 < type.children.length">/ </template></li></ul>
+                                <a class="fr" :href="'/mall/sub1.html?type='+type.id">更多 &gt;</a>
+
                             </div>
-                        </a>
+                            <div class="mallItem-infoBox clear">
+
+
+                                <div class="col-card" v-for="goods in type.goodList">
+                                    <a :href="'/mall/shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
+                                        <div class="card-item">
+                                            <!--                                <div class="technology-avatar">-->
+                                            <!--                                    <img :src="goods.goodsImg.url" class=""-->
+                                            <!--                                                                    alt="...">-->
+                                            <!--                                </div>-->
+
+                                            <div class="card-title">{{goods.goodsName}}</div>
+                                            <div class="addition">
+                                                <div class="shop-text">
+<!--                                                    <p><i class="iconfont icon-biaoqian"></i>{{goods.typeName}}</p>-->
+<!--                                                    <p><i class="iconfont icon-dingweixian"></i>{{goods.shopName}}</p>-->
+                                                    {{goods.shopName}}
+                                                </div>
+                                                <div style="margin-top: 10px;">
+                                                    <sapn class="fl"
+                                                            style="color: rgb(51, 51, 51); background: rgb(255, 215, 144); padding: 5px; border-radius: 0px 0px 10px;font-size: 12px">会员价</sapn>
+
+                                                <div class="price-red fl" style="font-size: 16px">{{formatPrice(goods.choosePriceTag,goods.price,
+                                                    goods.minPrice,
+                                                    goods.maxPrice)}}
+                                                </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+                    <!-- 如果需要分页器 -->
+<!--                    <div class="swiper-pagination"></div>-->
 
+                    <!-- 如果需要导航按钮 -->
+
+
+                    <!-- 如果需要滚动条 -->
+                    <!--    <div class="swiper-scrollbar"></div>-->
                 </div>
-            </div>
 
+
+
+                <!-- 知识产权-->
+
+
+
+            </div>
         </div>
 
-    </div>
-    <div class="zhuanjia">
-        <div class="mdiv"> <span>易智专家荟</span></div>
+
 
     </div>
+<!--    <div class="zhuanjia">-->
+<!--        <div class="mdiv"> <span>易智专家荟</span></div>-->
+
+<!--    </div>-->
     <div class="jingxuan" style="padding-top: 40px">
 <!--        <div class="mdiv boxtitle">-->
 <!--            <div class="boxtitle-text">-->

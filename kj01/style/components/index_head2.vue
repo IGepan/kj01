@@ -19,10 +19,10 @@
      </div>
      <div class="searchBox">
        <ul><li v-for="(nav,index) in navs" :key="index"><a :href="nav.url" :class="{active: nav.active}" >{{ nav.label }}</a></li></ul>
-<!--      <div class="search">-->
-<!--       <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">-->
-<!--       <span class="iconfont icon-fangdajing" @click="searchFull"></span>-->
-<!--      </div>-->
+      <div class="search">
+       <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">
+       <span class="iconfont icon-fangdajing" @click="searchFull"></span>
+      </div>
      </div>
     </div>
 

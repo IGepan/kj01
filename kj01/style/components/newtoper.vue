@@ -1,20 +1,45 @@
 <template>
-  <div class="toper">
-    <div class="mdiv" v-if="userInfo && userInfo.userName">
+  <div class="toper" style="padding-right: 60px">
+    <div  v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
-        <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
-        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>
-        <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
-        <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
-        <!--          <div class="seediv" ref="acp">-->
-        <!--            <ul>-->
-        <!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
-        <!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
-        <!--              <li><a class="no-color" href="">万州</a></li>-->
-        <!--              <li><a class="no-color" href="">梁平</a></li>-->
-        <!--            </ul>-->
-        <!--        </div>-->
-        <!--        </div>-->
+        <el-dropdown>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">綦江分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/banan/" target="_blank">巴南分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiang/" target="_blank">两江协同创新区分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" arget="_blank">开州分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" target="_blank">潼南分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" target="_blank">科学城分支基地</el-link>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+<!--        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>-->
+<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
+<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
+<!--          <div class="seediv" ref="acp">-->
+<!--            <ul>-->
+<!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
+<!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
+<!--              <li><a class="no-color" href="">万州</a></li>-->
+<!--              <li><a class="no-color" href="">梁平</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        </div>-->
       </div>
       <!-- <div class="fl">
         <a
@@ -27,10 +52,10 @@
         <div class="usermin" v-if="userInfo && userInfo.userName">
           <span v-text="userInfo.userName"></span>
           <a
-              v-show="userInfo && userInfo.userId"
-              @click="exitClick"
-              class="logout"
-          >[退出]</a
+            v-show="userInfo && userInfo.userId"
+            @click="exitClick"
+            class="logout"
+            >[退出]</a
           >
         </div>
         <!--        <div-->
@@ -43,72 +68,93 @@
         <!--                  href="/common/login.html"-->
         <!--          >请登录</a>-->
         <!--        </div>-->
-        <div class="links">
+        <div class="links" style="height: 65px;">
           <a v-if="userInfo && !userInfo.userName" href="/common/reg.html"
-          >免费注册</a
+            >免费注册</a
           >
           <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>
           <a
-              v-if="userInfo && userInfo.userName"
-              href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"
-          >收藏</a
+            v-if="userInfo && userInfo.userName"
+            href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"
+            >收藏</a
           >
           <a v-if="userInfo && userInfo.userName" @click="yhzxClick"
-          >用户中心</a
+            >用户中心</a
           >
           <a v-if="userInfo && userInfo.userName" @click="fwsClick">{{
-              isSeller ? "卖家中心" : "服务商入驻"
-            }}</a>
+            isSeller ? "卖家中心" : "服务商入驻"
+          }}</a>
         </div>
         <div class="official-account">
           <span class="show">关注易智网</span>
           <span class="avater">
             <img src="/style/images/index/qrcode.jpg" alt="" /><span
               class="avater-text"
-          >易智网</span
-          >
+              >易智网</span
+            >
           </span>
         </div>
         <div class="official-account">
           <span class="show">小程序</span
           ><span class="avater">
             <img src="/style/images/footerCode1.jpg" alt="" /><span
-            class="avater-text"
-        >政策惠</span
-        >
+              class="avater-text"
+              >政策惠</span
+            >
             <img src="/style/images/footerCode2.jpg" alt="" /><span
-            class="avater-text"
-        >易智动</span
-        >
+              class="avater-text"
+              >易智动</span
+            >
           </span>
         </div>
       </div>
     </div>
-    <div class="mdiv" v-else>
+    <div  v-else>
       <div class="fl toper-left">
-        <div class="">
-          <span class="iconfont icon-dingwei"></span>重庆市<span class="cut"
-        >[切换]</span
-        >
-        </div>
-        <div class="">
-          Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a
-            href="/index.html"
-        >易智网</a
-        >！
-        </div>
-        <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
-        <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
-        <!--          <div class="seediv" ref="acp">-->
-        <!--            <ul>-->
-        <!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
-        <!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
-        <!--              <li><a class="no-color"  href="">万州</a></li>-->
-        <!--              <li><a class="no-color"  href="">梁平</a></li>-->
+        <el-dropdown>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">綦江分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/banan/" target="_blank">巴南分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiang/" target="_blank">两江协同创新区分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" arget="_blank">开州分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" target="_blank">潼南分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" target="_blank">科学城分支基地</el-link>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+<!--        <div class="">-->
+<!--          Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a-->
+<!--            href="/index.html"-->
+<!--            >易智网</a-->
+<!--          >！-->
+<!--        </div>-->
+<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
+<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
+<!--          <div class="seediv" ref="acp">-->
+<!--            <ul>-->
+<!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
+<!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
+<!--              <li><a class="no-color"  href="">万州</a></li>-->
+<!--              <li><a class="no-color"  href="">梁平</a></li>-->
 
-        <!--            </ul>-->
-        <!--          </div>-->
-        <!--        </div>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
       <div class="fr toper-right">
         <div class="loginbox">
@@ -121,21 +167,21 @@
           <span class="avater">
             <img src="/style/images/index/qrcode.jpg" alt="" /><span
               class="avater-text"
-          >易智网</span
-          >
+              >易智网</span
+            >
           </span>
         </div>
         <div class="official-account">
           <span class="show">小程序</span
           ><span class="avater">
             <img src="/style/images/footerCode1.jpg" alt="" /><span
-            class="avater-text"
-        >政策惠</span
-        >
+              class="avater-text"
+              >政策惠</span
+            >
             <img src="/style/images/footerCode2.jpg" alt="" /><span
-            class="avater-text"
-        >易智动</span
-        >
+              class="avater-text"
+              >易智动</span
+            >
           </span>
         </div>
       </div>
@@ -143,19 +189,19 @@
     <chat-im :userinfo="userInfo"></chat-im>
     <div class="c-hover-menu" v-if="userInfo && userInfo.userId">
       <chat-history
-          :userinfo="userInfo"
-          @clearmsg="clearUnreadMsg"
+        :userinfo="userInfo"
+        @clearmsg="clearUnreadMsg"
       ></chat-history>
       <div class="c-hover-item" @click="action('message')">
         <div class="c-hover-icon">
           <span class=""
-          ><img src="/style/images/index/toper_1.png" alt=""
+            ><img src="/style/images/index/toper_1.png" alt=""
           /></span>
           <span
-              v-if="menuInfo.messageCount"
-              class="c-hover-count"
-              v-html="menuInfo.messageCount"
-          >15</span
+            v-if="menuInfo.messageCount"
+            class="c-hover-count"
+            v-html="menuInfo.messageCount"
+            >15</span
           >
         </div>
         <div class="c-hover-txt">
@@ -165,12 +211,12 @@
       <div class="c-hover-item" @click="action('cart')">
         <div class="c-hover-icon">
           <span class=""
-          ><img src="/style/images/index/toper_3.png" alt=""
+            ><img src="/style/images/index/toper_3.png" alt=""
           /></span>
           <span
-              v-if="menuInfo.cartCount"
-              class="c-hover-count"
-              v-html="menuInfo.cartCount"
+            v-if="menuInfo.cartCount"
+            class="c-hover-count"
+            v-html="menuInfo.cartCount"
           ></span>
         </div>
         <div class="c-hover-txt">
@@ -178,8 +224,8 @@
         </div>
       </div>
       <div
-          class="c-hover-item"
-          onclick="window.open('http://www.5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"
+        class="c-hover-item"
+        onclick="window.open('http://www.5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"
       >
         <div class="c-hover-icon">
           <span class="icon-fuwu iconfont"></span>
@@ -191,7 +237,7 @@
       <div class="c-hover-item" @click="action('top')">
         <div class="c-hover-icon">
           <span class=""
-          ><img src="/style/images/index/toper_4.png" alt=""
+            ><img src="/style/images/index/toper_4.png" alt=""
           /></span>
         </div>
         <div class="c-hover-txt">
@@ -253,7 +299,7 @@ module.exports = {
     console.log(auser);
     // cookie用户信息
     var userInfo = (this.userInfo = JSON.parse(
-        vm.$utils.getCookie("USER_INFO")
+      vm.$utils.getCookie("USER_INFO")
     ));
     console.log(userInfo);
     this.urlIsType = [
@@ -266,16 +312,16 @@ module.exports = {
       "/demand",
     ].some(function (text) {
       return (
-          pathname.indexOf(text) !== -1 &&
-          pathname.indexOf("demanddetail") === -1 &&
-          pathname.indexOf("demand_list") === -1
+        pathname.indexOf(text) !== -1 &&
+        pathname.indexOf("demanddetail") === -1 &&
+        pathname.indexOf("demand_list") === -1
       );
     });
     this.urlIsCheckSeller = ["/common/seller/"].some(function (text) {
       return (
-          pathname.indexOf(text) !== -1 &&
-          pathname.indexOf("demanddetail") === -1 &&
-          pathname.indexOf("demand_list") === -1
+        pathname.indexOf(text) !== -1 &&
+        pathname.indexOf("demanddetail") === -1 &&
+        pathname.indexOf("demand_list") === -1
       );
     });
     this.urlIsCheckBuyer = [
@@ -287,18 +333,18 @@ module.exports = {
       "/demand",
     ].some(function (text) {
       return (
-          pathname.indexOf(text) !== -1 &&
-          pathname.indexOf("demanddetail") === -1 &&
-          pathname.indexOf("demand_list") === -1
+        pathname.indexOf(text) !== -1 &&
+        pathname.indexOf("demanddetail") === -1 &&
+        pathname.indexOf("demand_list") === -1
       );
     });
     // 用户ID  站点ID 没有站点ID  发生变化都要重新获取用户信息
     if (
-        !saasid ||
-        !auser ||
-        !userInfo ||
-        userInfo.saasId !== auser.saasId ||
-        userInfo.userId !== auser.userId
+      !saasid ||
+      !auser ||
+      !userInfo ||
+      userInfo.saasId !== auser.saasId ||
+      userInfo.userId !== auser.userId
     ) {
       console.log("用户ID  站点ID 没有站点ID  发生变化都要重新获取用户信息");
       this.getWebInfo();
@@ -307,12 +353,12 @@ module.exports = {
         this.getWebInfo();
       } else {
         if (
-            (this.urlIsCheckSeller &&
-                userInfo["userTypes"] &&
-                userInfo["userTypes"].indexOf("002") !== -1) ||
-            (this.urlIsCheckBuyer &&
-                userInfo["userTypes"] &&
-                userInfo["userTypes"].indexOf("001") !== -1)
+          (this.urlIsCheckSeller &&
+            userInfo["userTypes"] &&
+            userInfo["userTypes"].indexOf("002") !== -1) ||
+          (this.urlIsCheckBuyer &&
+            userInfo["userTypes"] &&
+            userInfo["userTypes"].indexOf("001") !== -1)
         ) {
           userInfo && userInfo.userId && this.initSeller();
           this.accessSave();
@@ -362,9 +408,11 @@ module.exports = {
             console.log("重新获取用户信息成功后，保存用户信息到缓存");
             vm.accessSave();
             vm.setCookiePhone();
+
             vm.$utils.delCookie("USER_INFO");
             vm.$utils.setCookie("USER_INFO", res.result);
             localStorage.setItem("saasId", res.result.saasId);
+
             localStorage.setItem("USER_INFO", JSON.stringify(res.result));
             // vm.urlType ? (location.href = vm.urlType) : location.reload(true);
             vm.urlType = false;
@@ -375,16 +423,16 @@ module.exports = {
     setCookiePhone: function () {
       var vm = this;
       vm.$httpCom
-          .webCommonUserPhone()
-          .then(function (res) {
-            console.log("phone", res);
-            if (res.code === true) {
-              localStorage.setItem("userPhone", res.data.phone);
-            }
-          })
-          .catch(function (res) {
-            console.log(res);
-          });
+        .webCommonUserPhone()
+        .then(function (res) {
+          console.log("phone", res);
+          if (res.code === true) {
+            localStorage.setItem("userPhone", res.data.phone);
+          }
+        })
+        .catch(function (res) {
+          console.log(res);
+        });
     },
 
     clearUnreadMsg: function () {
@@ -394,10 +442,10 @@ module.exports = {
     getUnreadMsgCount: function () {
       var $this = this;
       this.$http
-          .get(httpUrl.baseUrl + "/im/getUnreadMsgCount")
-          .then(function (res) {
-            $this.menuInfo.messageCount = res.result;
-          });
+        .get(httpUrl.baseUrl + "/im/getUnreadMsgCount")
+        .then(function (res) {
+          $this.menuInfo.messageCount = res.result;
+        });
     },
     updateCartInfo: function () {
       //获取消息，购物车的消息通知数字
@@ -418,9 +466,9 @@ module.exports = {
           break;
         case "server":
           window.open(
-              "http://www.kj01.cn/service.htm?arg=10113491&style=4&kflist=off&kf=edwinzuo&zdkf_type=1&lnk_overflow=0&callback_id6ds=10152438&language=zh-cn&charset=gbk&referer={hz6d_referer}&keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&tfrom=1&tpl=crystal_blue",
-              "_blank",
-              "height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no"
+            "http://www.kj01.cn/service.htm?arg=10113491&style=4&kflist=off&kf=edwinzuo&zdkf_type=1&lnk_overflow=0&callback_id6ds=10152438&language=zh-cn&charset=gbk&referer={hz6d_referer}&keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&tfrom=1&tpl=crystal_blue",
+            "_blank",
+            "height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no"
           );
           break;
         case "help":
@@ -431,8 +479,8 @@ module.exports = {
           break;
         case "cart":
           if (
-              this.userInfo.userTypes &&
-              this.userInfo.userTypes.indexOf("001") !== -1
+            this.userInfo.userTypes &&
+            this.userInfo.userTypes.indexOf("001") !== -1
           ) {
             this.$utils.openNewTable("/common/servicetrade/shopping_cart.html");
           } else {
@@ -465,15 +513,15 @@ module.exports = {
       var vm = this;
       var protocolType = vm.protocol[type].protocolType;
       vm.$httpCom
-          .protocol({
-            protocolType: protocolType,
-          })
-          .then(function (res) {
-            if (res.result) {
-              vm.protocol[type].content = res.result.protocolContact;
-              vm.openProtocolConfirm(type);
-            }
-          });
+        .protocol({
+          protocolType: protocolType,
+        })
+        .then(function (res) {
+          if (res.result) {
+            vm.protocol[type].content = res.result.protocolContact;
+            vm.openProtocolConfirm(type);
+          }
+        });
     },
     openProtocolConfirm: function (type) {
       var vm = this;
@@ -499,7 +547,7 @@ module.exports = {
       var options = {
         title: "温馨提示",
         texts:
-            '<p style="padding: 0 20px;">你没有该站点卖家身份，请开通卖家身份?<p>',
+          '<p style="padding: 0 20px;">你没有该站点卖家身份，请开通卖家身份?<p>',
         width: "500px",
         buttons: [
           {
@@ -526,7 +574,7 @@ module.exports = {
       var options = {
         title: "买家身份确认",
         texts:
-            '<p style="padding: 0 20px;">你没有该站点买家身份，如继续操作，则需同意成为该站点买家?<p><div style="text-align: center;padding-bottom: 20px;"><label for="protocol"><input id="protocol" type="checkbox"><span>我已阅读并同意<a id="protocolView"> <span style="color: blue">《注册协议》</span> <span style="color: blue">《隐私保护协议》</span></a></span></label></div>',
+          '<p style="padding: 0 20px;">你没有该站点买家身份，如继续操作，则需同意成为该站点买家?<p><div style="text-align: center;padding-bottom: 20px;"><label for="protocol"><input id="protocol" type="checkbox"><span>我已阅读并同意<a id="protocolView"> <span style="color: blue">《注册协议》</span> <span style="color: blue">《隐私保护协议》</span></a></span></label></div>',
         width: "500px",
         buttons: [
           {
@@ -541,17 +589,17 @@ module.exports = {
             fun: function () {
               if ($("#protocol").is(":checked")) {
                 vm.$httpCom
-                    .becomeBuyer({ protocolReadFlag: 1 })
-                    .then(function (res) {
-                      if (res.code === "rest.success") {
-                        // 延迟请求 避免数据库写入延迟导致的数据无法查询
-                        setTimeout(function () {
-                          vm.getWebInfo();
-                        }, 300);
-                      } else {
-                        vm.$dialog.showToast(res.desc);
-                      }
-                    });
+                  .becomeBuyer({ protocolReadFlag: 1 })
+                  .then(function (res) {
+                    if (res.code === "rest.success") {
+                      // 延迟请求 避免数据库写入延迟导致的数据无法查询
+                      setTimeout(function () {
+                        vm.getWebInfo();
+                      }, 300);
+                    } else {
+                      vm.$dialog.showToast(res.desc);
+                    }
+                  });
                 return 1;
               } else {
                 vm.$dialog.showToast("请先选择相关协议！");
@@ -571,8 +619,8 @@ module.exports = {
         e.preventDefault();
         var type = e.target.innerText === "《注册协议》" ? 0 : 1;
         vm.protocol[type].content
-            ? vm.openProtocolConfirm(type)
-            : vm.getProtocol(type);
+          ? vm.openProtocolConfirm(type)
+          : vm.getProtocol(type);
       });
     },
     yhzxClick: function () {
@@ -580,8 +628,8 @@ module.exports = {
         window.location.href = "/common/login.html";
         return;
       } else if (
-          this.userInfo.userTypes &&
-          this.userInfo.userTypes.indexOf("001") !== -1
+        this.userInfo.userTypes &&
+        this.userInfo.userTypes.indexOf("001") !== -1
       ) {
         window.location.href = "/common/buyer/index.html";
       } else {
@@ -621,8 +669,8 @@ module.exports = {
       this.$httpCom.accessSave(data);
     },
     mouseOver() {
-      this.active ="font-weight: bold";
-      this.$refs.icom.style.transform='rotateX(180deg)'
+       this.active ="font-weight: bold";
+       this.$refs.icom.style.transform='rotateX(180deg)'
       // 操作dom 获取p标签改变其样式
       this.$refs.acp.style.display='block'
     },
@@ -637,20 +685,21 @@ module.exports = {
 </script>
 <style scoped>
 .toper {
-  height: 40px;
-  line-height: 40px;
-  background-color: #eaf8fb;
+  height: 65px;
+  line-height: 65px;
+  background-color: #fff;
   color: #6a6e7d;
 }
 .toper-left {
   display: flex;
   height: 40px;
 }
+
 .toper-left a {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 .toper-left .iconfont {
-  color: #01c8f2;
+  color: #ff5e06;
   margin-right: 5px;
 }
 .toper-left .cut {
@@ -659,7 +708,7 @@ module.exports = {
   cursor: pointer;
 }
 .toper-left .cut:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 .toper-right {
   display: flex;
@@ -713,7 +762,7 @@ module.exports = {
   color: #6a6e7d;
 }
 .loginbox a:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 .loginbox a:hover::after {
   color: #6a6e7d;
@@ -735,8 +784,8 @@ module.exports = {
 .official-account .avater {
   display: block;
   position: absolute;
-  right: -140px;
-  top: 5px;
+  /*left:-140px;*/
+  top: 50px;
   padding: 5px;
   width: 134px;
   opacity: 0;
@@ -748,11 +797,20 @@ module.exports = {
   z-index: 999;
   pointer-events: none;
 }
+.official-account:last-child .avater{
+  left:-40px;
+}
+.official-account .show:hover{
+  color:#ff5e06 ;
+}
 .official-account .show:hover + .avater {
   opacity: 1;
 }
 .official-account .avater img {
   max-width: 100%;
+}
+.official-account:last-child .avater::before{
+
 }
 .official-account .avater::before {
   content: "";
@@ -761,10 +819,11 @@ module.exports = {
   background-color: white;
   width: 10px;
   height: 10px;
-  top: 10px;
-  left: -5px;
+  left:40px;
+  top: -5px;
   transform: rotateZ(45deg);
 }
+
 .avater-text {
   display: inline-block;
   font-size: 14px;
@@ -782,7 +841,6 @@ module.exports = {
   float: left;
   margin-left: 20px;
 }
-
 .toper .links a {
   border-right: 1px solid rgb(106, 110, 125);
 }
