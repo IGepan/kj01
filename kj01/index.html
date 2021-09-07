@@ -23,11 +23,25 @@
 
 </head>
 <style>
-
+    .toper-bg i{
+        z-index: 999;
+        position: absolute;
+        color: #FFFFff;
+        font-size: 18px;
+        right: 30px;
+        top:10px
+    }
+    .toper-bg a img{
+        width: 100%;
+    }
+    .toper-bg.nodiv{display: none}
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
-    <img src="/style/images/index/top.png" width="100%" height="60"/>
+    <div class="toper-bg" v-bind:class="{ nodiv: boxActive}">
+       <i class="el-icon-circle-close" @click="qiehuan"></i>
+        <a href="https://mp.weixin.qq.com/s/FpV_On45pMP8UgbWBhMdcg" target="_blank"><img src="/style/images/index/top.png" width="100%" height="60"/></a>
+    </div>
     <div class="header-box" style="background: #fff;height: 65px;box-shadow: 0 1px 10px rgba(6, 22, 76,0.5);position: relative">
        <div class="fl"> <index-head></index-head></div>
         <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>

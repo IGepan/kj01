@@ -200,7 +200,7 @@ module.exports = {
   background-color: #ff5e06;
 }
 .search {
-	background-color: #ddf9ff;
+	background-color: #fff5f0;
 	border-radius: 20px;
  display: flex;
   /*display: none;*/
@@ -211,7 +211,7 @@ module.exports = {
   height: 38px;
   line-height: 43px;
   display: inline-flex;
-  color: #11cbf2;
+  color: #ff5e06;
   font-size: 24px;
   justify-content: center;
   cursor: pointer;
@@ -220,7 +220,7 @@ module.exports = {
 .search:hover {
   position: relative;
   border-radius: 0 20px 20px 0;
-  border: solid 1px #11cbf2;
+  border: solid 1px #ff5e06;
   border-left: none;
 }
 .search:hover .input {
@@ -230,8 +230,8 @@ module.exports = {
   width: 336px;
   right: 55px;
   border-radius: 20px 0 0 20px;
-  background-color: #ddf9ff;
-  border: solid 1px #11cbf2;
+  background-color: #fff5f0;
+  border: solid 1px #ff5e06;
   border-right: none;
   z-index: 9999;
 }

@@ -975,7 +975,7 @@ require(['/common/js/require.config.js'], function () {
                         //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
                             item.active = ti == i
-                            vm.item.tabList.forEach(function (tab, idx) {
+                            item.tabList.forEach(function (tab, idx) {
                                 tab.active = tab.label == val.label
                             })
                         })
