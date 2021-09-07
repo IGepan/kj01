@@ -1334,7 +1334,13 @@ min-width: 25%;
     color: #7b7e8a;
     line-height: 24px;
 }
-
+.technology-type .over{
+    ext-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
 .technology-type_classify {
     text-overflow: ellipsis;
     display: -webkit-box;

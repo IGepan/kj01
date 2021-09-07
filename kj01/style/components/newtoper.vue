@@ -6,26 +6,26 @@
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">綦江分支基地</el-link>
+              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/banan/" target="_blank">巴南分支基地</el-link>
+              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiang/" target="_blank">两江协同创新区分支基地</el-link>
+              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" arget="_blank">开州分支基地</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" target="_blank">潼南分支基地</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" target="_blank">科学城分支基地</el-link>
-            </el-dropdown-item>
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" target="_blank">潼南分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" target="_blank">科学城分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
 <!--        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>-->
@@ -72,12 +72,12 @@
           <a v-if="userInfo && !userInfo.userName" href="/common/reg.html"
             >免费注册</a
           >
-          <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>
-          <a
-            v-if="userInfo && userInfo.userName"
-            href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"
-            >收藏</a
-          >
+<!--          <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>-->
+<!--          <a-->
+<!--            v-if="userInfo && userInfo.userName"-->
+<!--            href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"-->
+<!--            >收藏</a-->
+<!--          >-->
           <a v-if="userInfo && userInfo.userName" @click="yhzxClick"
             >用户中心</a
           >
@@ -115,26 +115,26 @@
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">綦江分支基地</el-link>
+              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/banan/" target="_blank">巴南分支基地</el-link>
+              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiang/" target="_blank">两江协同创新区分支基地</el-link>
+              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" arget="_blank">开州分支基地</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" target="_blank">潼南分支基地</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" target="_blank">科学城分支基地</el-link>
-            </el-dropdown-item>
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" target="_blank">潼南分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item>-->
+<!--              <el-link :underline="false" target="_blank">科学城分支基地</el-link>-->
+<!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
 <!--        <div class="">-->

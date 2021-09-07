@@ -293,7 +293,8 @@
 
                     <div class="title-center">
                             <span :class="{active: item.active}"
-                                  v-for="(item,index) in activityTabs">{{item.label}}
+                                  v-for="(item,index) in activityTabs"
+                                  @click="handleactivityTabs(tab,index)">{{item.label}}
                                 <div class="tablist">
                             <a :class="{active: tab.active}"
                                @click="handleactivityTabs(tab,index)"
@@ -465,11 +466,13 @@
                             </div>
                             <div class="technology-name" >{{good.title}}</div>
                             <div class="technology-type">
-                                <div class="fl">所属领域：</div>
 
-                                <div class="fl pad10" v-for="(item,index) in good.projectIndustryType"> {{item.name}}
-                                    <span v-if="index < good.projectIndustryType.length - 1">, </span>
-                                </div>
+                                    <div class="fl over">所属领域：
+                                    <div class="fl pad10" v-for="(item,index) in good.projectIndustryType"> {{item.name}}
+                                        <span v-if="index < good.projectIndustryType.length - 1">, </span>
+                                    </div>
+                                    </div>
+
                                 <div class="clear">转让方式：{{good.cooperationMode_display}}</div>
                                 <div style="margin-top: 10px"><sapn style="color: #333;background: #ffd790;padding: 5px;border-radius: 0px 0px 10px 0px">会员价</sapn>
                                     <span class="price-red" v-if="good.budget==0">面议</span>

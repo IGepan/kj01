@@ -157,7 +157,6 @@ module.exports = {
 .searchBox {
   display: flex;
   align-items: center;
-  margin-left: 50px;
 }
 .searchBox ul li{
   margin-right: 20px;
