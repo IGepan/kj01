@@ -761,7 +761,7 @@ require(['/common/js/require.config.js'], function () {
                             loop: true,
                             // 如果需要分页器
                             slidesPerView: 4,
-                            loopFillGroupWithBlank: true,
+                            loopFillGroupWithBlank: false,
                             // delay: 3000,// 3秒切换一次
                             pagination: '.swiper-pagination',
                             // 如果需要前进后退按钮
@@ -838,28 +838,6 @@ require(['/common/js/require.config.js'], function () {
                         autoPlay: true,
                         vis: 5
                     });
-
-                    //知识产权
-					// this.goodFormData.type = '371977891599065088';
-					// this.getMailGoods('incubationTypeList')
-					// //法律服务
-					// this.goodFormData.type = '371979747670859776';
-					// this.getMailGoods('designTypeList')
-					// //政策申报
-					// this.goodFormData.type = '371979827203252224';
-					// this.getMailGoods('checkTypeList')
-					// //工商财税
-					// this.goodFormData.type = '371979918089625600';
-					// this.getMailGoods('propertyTypeList')
-					// //检验检测
-					// this.goodFormData.type = '371980699979194368';
-					// this.getMailGoods('technologyTypeList')
-					// // //科技咨询
-					//  this.goodFormData.type = '371981659690475520';
-					//  this.getMailGoods('transferTypeList');
-					// //评估评价
-					// this.goodFormData.type = '371980018614509568';
-					// this.getMailGoods('knowledgeTypeList');
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
@@ -1464,38 +1442,6 @@ require(['/common/js/require.config.js'], function () {
                     getMailServiceType: function (call) {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
-                            // if (res.code === 'rest.success') {
-                            //     vm.mailServiceTypeList = res.result
-                            //     //知识产权
-                            //     vm.incubationType = res.result.filter(function (s) {
-                            //         return s.id == res.result[0].id;
-                            //     })[0];
-                            //     //法律服务
-                            //     vm.designType = res.result.filter(function (s) {
-                            //         return s.id == res.result[1].id;
-                            //     })[0];
-                            //     //政策申报
-                            //     vm.checkType = res.result.filter(function (s) {
-                            //         return s.id == res.result[2].id;
-                            //     })[0];
-                            //     //工商财税
-                            //     vm.propertyType = res.result.filter(function (s) {
-                            //         return s.id == res.result[3].id;
-                            //     })[0];
-                            //     //评估评价
-                            //     vm.technologyType = res.result.filter(function (s) {
-                            //         return s.id == res.result[4].id;
-                            //     })[0];
-                            //     //检验检测
-                            //     vm.transferType = res.result.filter(function (s) {
-                            //         return s.id == res.result[5].id;
-                            //     })[0];
-                            //     //科技咨询
-                            //     vm.knowledgeType = res.result.filter(function (s) {
-                            //         return s.id == res.result[6].id;
-                            //     })[0];
-                            // }
-
                             var list = res.result || [];
                             //设置板块数据
                             for( var key in list){
