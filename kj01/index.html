@@ -293,10 +293,11 @@
 
                     <div class="title-center">
                             <span :class="{active: item.active}"
+                                  @click.stop="handleactivityTabs(item,index)"
                                   v-for="(item,index) in activityTabs">{{item.label}}
                                 <div class="tablist">
                             <a :class="{active: tab.active}"
-                               @click="handleactivityTabs(tab,index)"
+                               @click.stop="handleactivityTabs(tab,index)"
                                v-for="tab in item.tabList">
                                 {{tab.label}}
                             </a>
@@ -466,7 +467,7 @@
                             <div class="technology-name" >{{good.title}}</div>
                             <div class="technology-type">
 
-                               <div class="over" style="text-align: left">所属领域： <span v-for="(item,index) in good.projectIndustryType"> {{item.name}}
+                               <div class="over" style="text-align: left">所属领域：<span v-for="(item,index) in good.projectIndustryType"> {{item.name}}
                                     <span v-if="index < good.projectIndustryType.length - 1">, </span>
                                </span>
                                </div>
