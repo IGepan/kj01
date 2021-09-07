@@ -293,11 +293,11 @@
 
                     <div class="title-center">
                             <span :class="{active: item.active}"
-                                  v-for="(item,index) in activityTabs"
-                                  @click="handleactivityTabs(tab,index)">{{item.label}}
+                                  @click.stop="handleactivityTabs(item,index)"
+                                  v-for="(item,index) in activityTabs">{{item.label}}
                                 <div class="tablist">
                             <a :class="{active: tab.active}"
-                               @click="handleactivityTabs(tab,index)"
+                               @click.stop="handleactivityTabs(tab,index)"
                                v-for="tab in item.tabList">
                                 {{tab.label}}
                             </a>
@@ -467,11 +467,14 @@
                             <div class="technology-name" >{{good.title}}</div>
                             <div class="technology-type">
 
-                                    <div class="fl over">所属领域：
-                                    <div class="fl pad10" v-for="(item,index) in good.projectIndustryType"> {{item.name}}
-                                        <span v-if="index < good.projectIndustryType.length - 1">, </span>
-                                    </div>
-                                    </div>
+                               <div class="over" style="text-align: left">所属领域：<span v-for="(item,index) in good.projectIndustryType"> {{item.name}}
+                                    <span v-if="index < good.projectIndustryType.length - 1">, </span>
+                               </span>
+                               </div>
+<!--                                    <div class="fl pad10" v-for="(item,index) in good.projectIndustryType"> {{item.name}}-->
+<!--                                        <span v-if="index < good.projectIndustryType.length - 1">, </span>-->
+<!--                                    </div>-->
+
 
                                 <div class="clear">转让方式：{{good.cooperationMode_display}}</div>
                                 <div style="margin-top: 10px"><sapn style="color: #333;background: #ffd790;padding: 5px;border-radius: 0px 0px 10px 0px">会员价</sapn>
@@ -494,11 +497,11 @@
                         <a :href="'/technologyMarket/tech_requirements_details.html?id=' + demand.id" v-for="(demand,index) in demandList" style="display: block">
                             <div class="technology-name">{{demand.title}}</div>
                             <div class="technology-type">
-                                <div class="fl">技术领域：</div>
-                                <template v-for="(item,index) in demand.demandIndustryType">
-                                    <div class="fl">{{item.name}}
-                                        <span v-if="index < demand.demandIndustryType.length - 1">, </span></div>
-                                </template>
+                                <div class="over" style="text-align: left">技术领域：
+                                <span v-for="(item,index) in demand.demandIndustryType">{{item.name}}
+                                        <span v-if="index < demand.demandIndustryType.length - 1">, </span>
+                                </span>
+                                </div>
                                 <br>
                                 <div class="clear" style="border:1px solid #ff5e06;padding:0px 5px;color:#ff5e06;background:#fff5f0;margin-right: 5px;margin-bottom:5px; display: inline-block">{{demand.demandType_display}}</div>
                             </div>
