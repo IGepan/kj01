@@ -414,6 +414,13 @@ require(['/common/js/require.config.js'], function () {
                     'tag': httpVueLoader('/style/components/tag.vue')
                 },
                 created() {
+                    // this.$alert('本次调查问卷已结束，感谢您的关注', '提示', {
+                    //     confirmButtonText: '确定',
+                    //     center: true,
+                    //     callback() {
+                    //         window.location.href = "/index.html"
+                    //     }
+                    // });
                     this.getData()
                 },
                 methods: {
