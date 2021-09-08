@@ -1,6 +1,6 @@
 <template>
-  <div class="toper" style="padding-right: 60px">
-    <div  v-if="userInfo && userInfo.userName">
+  <div class="toper" style="background: #fff5f0">
+    <div class=" mmdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
@@ -68,16 +68,16 @@
         <!--                  href="/common/login.html"-->
         <!--          >请登录</a>-->
         <!--        </div>-->
-        <div class="links" style="height: 65px;">
+        <div class="links">
           <a v-if="userInfo && !userInfo.userName" href="/common/reg.html"
             >免费注册</a
           >
-<!--          <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>-->
-<!--          <a-->
-<!--            v-if="userInfo && userInfo.userName"-->
-<!--            href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"-->
-<!--            >收藏</a-->
-<!--          >-->
+          <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>
+          <a
+            v-if="userInfo && userInfo.userName"
+            href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"
+            >收藏</a
+          >
           <a v-if="userInfo && userInfo.userName" @click="yhzxClick"
             >用户中心</a
           >
@@ -684,18 +684,18 @@ module.exports = {
 };
 </script>
 <style scoped>
-.usermin span{
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  width: 120px;
-  float: left;
-}
+/*.usermin span{*/
+/*  text-overflow: ellipsis;*/
+/*  display: -webkit-box;*/
+/*  -webkit-box-orient: vertical;*/
+/*  -webkit-line-clamp: 1;*/
+/*  overflow: hidden;*/
+/*  width: 120px;*/
+/*  float: left;*/
+/*}*/
 .toper {
-  height: 65px;
-  line-height: 65px;
+  height: 40px;
+  line-height: 40px;
   background-color: #fff;
   color: #6a6e7d;
 }
@@ -852,7 +852,6 @@ module.exports = {
 }
 .toper .links a {
   border-right: 1px solid rgb(106, 110, 125);
-  padding: 0 10px!important;
 }
 .c-hover-menu {
   position: fixed;

@@ -516,7 +516,6 @@ require(['/common/js/require.config.js'], function () {
                             active: false,
                             activeType:'390092837996355585',
                             sortType: "02",
-                            topicCustomTag: '01',
                             tabList: [
                                 {
                                     label: '智汇两江',
@@ -524,7 +523,14 @@ require(['/common/js/require.config.js'], function () {
                                     activeType:'01',
                                     topicCustomTag: '01',
                                     sortType: "01",
-                                }
+                                },
+                                {
+                                    label: '渝创渝新',
+                                    active: false,
+                                    activeType:'02',
+                                    topicCustomTag: '02',
+                                    sortType: "01",
+                                },
                             ]
                         },
                     ],
@@ -609,6 +615,13 @@ require(['/common/js/require.config.js'], function () {
                         pageSize: 10,
                         sortType: "01",
                         activeType: '218340665862391473',
+                    },
+                     params:{
+                        activeType: "390092837996355585",
+                        pageNum: 1,
+                        pageSize: 10,
+                         topicCustomTag: '01',
+
                     },
                     bannerList: [
                         {
@@ -912,12 +925,14 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
-                            item.active = ti == i
+                            item.active = ti === i
 
                             item.tabList.forEach(function (tab, idx) {
                                 tab.active = tab.label == val.label
                             })
-                            if (i == 2) {
+                            if (i === 2) {
+                                vm.params.activeType = val.activeType
+                                vm.params.topicCustomTag = val.topicCustomTag
                                 vm.getBrandList()
                             } else {
                                 vm.activeParams.activeType = val.activeType
@@ -927,14 +942,10 @@ require(['/common/js/require.config.js'], function () {
                         //二级循环
 
                     },
+                    //品牌活动
                     getBrandList: function () {
                         let vm = this
-                        let params = {
-                            pageNum: 1,
-                            pageSize: 10,
-                            topicCustomTag: '01'
-                        };
-                        indexApi.selectPortalPage(params).then(function (res) {
+                        indexApi.selectPortalPage(vm.params).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.$nextTick(function () {
                                     vm.activeLists = res.result.list
@@ -949,6 +960,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
+                    //企业学堂
                     getActiveList: function () {
                         var vm = this
                         indexApi.selectIssuePage(vm.activeParams).then(function (res) {

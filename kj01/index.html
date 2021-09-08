@@ -40,11 +40,13 @@
 <div class="box" id='index_box' v-cloak>
     <div class="toper-bg" v-bind:class="{ nodiv: boxActive}">
        <i class="el-icon-circle-close" @click="qiehuan"></i>
-        <a href="https://mp.weixin.qq.com/s/FpV_On45pMP8UgbWBhMdcg" target="_blank"><img src="/style/images/index/top.png" width="100%" height="60"/></a>
+       <img src="/style/images/index/top.png" width="100%" height="60"/>
     </div>
-    <div class="header-box" style="background: #fff;height: 65px;box-shadow: 0 1px 10px rgba(6, 22, 76,0.5);position: relative">
-       <div class="fl"> <index-head></index-head></div>
-        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="header-box " style="background: #fff;height: 65px;position: relative">
+
+       <index-head></index-head>
+<!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
     </div>
 
     <div class="slideshow">
@@ -114,7 +116,7 @@
                         <ul>
                             <li><a @click="handleTest"><h3>问卷调查</h3>两江新区企业科技创新情况</a></li>
                             <li><a href="technologyMarket/technical_manager.html"><h3>找技术经纪人</h3>全网寻找技术经纪人活动开启</a></li>
-                            <li><a @click="handleMall"><h3>入住易智商城</h3>诚邀专业技术服务机构和人才入驻</a></li>
+                            <li><a @click="handleMall"><h3>入驻易智商城</h3>诚邀专业技术服务机构和人才入驻</a></li>
                             <li><a @click="handleOne"><h3>技术成果发布</h3>快速发布您的科技成果</a></li>
                             <li><a @click="handleTwo"><h3>技术需求发布</h3>快速发布您的技术需求</a></li>
 <!--                            <li><a href="https://www.yunyao365.com/book_preview/SKmvox28i4ml"><h3>重庆科技成果转移转化峰会</h3></a></li>-->
@@ -565,8 +567,8 @@
                                                               class="iconfont icon-gengduo"></a></div>
                             <div class="supplier-list">
                                 <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
-                                    <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt=""></div>
-                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg" alt=""></div>
+                                    <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt="" width="80" height="80"></div>
+                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg" alt="" width="80" height="80"></div>
 <!--                                    <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}-->
 <!--                                        <br>-->
 <!--                                        <div style="font-size: 12px">({{Man.agentType_display}})-->
@@ -620,7 +622,6 @@
                                         <span v-for="(title,index) in type.children">{{title.name}}
                                             <span v-if="index + 1 < type.children.length">/</span>
                                         </span>
-
                                     </div>
 
                                 </div>

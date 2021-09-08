@@ -1,6 +1,6 @@
 <template>
-  <div class="headerBox">
-   <div style="padding-left: 50px">
+  <div class="headerBox mmdiv">
+   <div>
     <div class="headers">
      <div class="header-logo">
       <a >
@@ -157,6 +157,7 @@ module.exports = {
 .searchBox {
   display: flex;
   align-items: center;
+  margin-left: 50px;
 }
 .searchBox ul li{
   margin-right: 20px;
@@ -165,7 +166,7 @@ module.exports = {
 .searchBox a {
   font-size: 18px;
   color: #1f2024;
-  padding: 0 10px;
+  padding: 0 20px;
 
 }
 .searchBox .active {
