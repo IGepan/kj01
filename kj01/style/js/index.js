@@ -471,7 +471,7 @@ require(['/common/js/require.config.js'], function () {
                                     label: '创新课堂',
                                     active: false,
                                     activeType: '218340665883362995',
-                                    sortType: "01",
+                                    sortType: "02",
                                 }, {
                                     label: '管理学院',
                                     active: false,

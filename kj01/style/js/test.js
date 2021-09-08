@@ -421,7 +421,7 @@ require(['/common/js/require.config.js'], function () {
                     //         window.location.href = "/index.html"
                     //     }
                     // });
-                    window.location.href='https://www.kj01.cn/test.html'
+                    // window.location.href='https://www.kj01.cn/test.html'
                     this.getData()
                 },
                 methods: {
