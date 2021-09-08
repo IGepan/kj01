@@ -614,10 +614,14 @@
                                 <div class="top-text">
                                     <!--                                                <img :src="bgImg[index]">-->
                                     <!--                    <img src="/style/images/index/tab-bg1.png">-->
-                                    <span>{{type.name}}</span>
-                                    <p v-for="(title,index) in type.children">{{title.name}}
-                                        <i v-if="index + 1 < type.children.length">/ </i></p>
-                                    <a class="fr" :href="'/mall/sub1.html?type='+type.id">更多 &gt;</a>
+                                    <span>{{type.name}} <a :href="'/mall/sub1.html?type='+type.id"
+                                                           class="fr">更多 &gt;</a></span>
+                                    <div class="over">
+                                        <span v-for="(title,index) in type.children">{{title.name}}
+                                            <span v-if="index + 1 < type.children.length">/</span>
+                                        </span>
+
+                                    </div>
 
                                 </div>
                                 <div class="mallItem-infoBox clear">

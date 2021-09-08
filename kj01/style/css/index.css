@@ -2125,15 +2125,22 @@ margin-right: 10px;
 .top-text span{
     font-weight: bold;
     line-height: 30px;
-    display: block;
 }
-.top-text p{
-    float: left;
-    font-size: 14px;
-    margin: 0;
+.top-text .over{
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.top-text .over span{
+    font-weight: normal!important;
+    text-align: left;
+    font-size: 14px!important;
 }
 .top-text a{
     font-size: 14px;
+    font-weight: normal!important;
     color: #FFFFff;
 }
 .col-card{
