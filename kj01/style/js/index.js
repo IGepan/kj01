@@ -794,16 +794,7 @@ require(['/common/js/require.config.js'], function () {
                         autoPlay: true,
                         vis: 5
                     });
-                    setTimeout(function (){
-                        $(".swiperBox").slide({
-                            titCell: ".hd ul",
-                            mainCell: ".bd ul",
-                            autoPage: true,
-                            effect:"leftLoop",
-                            autoPlay: true,
-                            vis: 4
-                        });
-                    },1000)
+
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
@@ -1099,7 +1090,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getManagerList: function () {
                         var vm = this
-                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 10, order: "desc", sort: "id"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
@@ -1411,38 +1402,6 @@ require(['/common/js/require.config.js'], function () {
                     getMailServiceType: function (call) {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
-                            // if (res.code === 'rest.success') {
-                            //     vm.mailServiceTypeList = res.result
-                            //     //知识产权
-                            //     vm.incubationType = res.result.filter(function (s) {
-                            //         return s.id == res.result[0].id;
-                            //     })[0];
-                            //     //法律服务
-                            //     vm.designType = res.result.filter(function (s) {
-                            //         return s.id == res.result[1].id;
-                            //     })[0];
-                            //     //政策申报
-                            //     vm.checkType = res.result.filter(function (s) {
-                            //         return s.id == res.result[2].id;
-                            //     })[0];
-                            //     //工商财税
-                            //     vm.propertyType = res.result.filter(function (s) {
-                            //         return s.id == res.result[3].id;
-                            //     })[0];
-                            //     //评估评价
-                            //     vm.technologyType = res.result.filter(function (s) {
-                            //         return s.id == res.result[4].id;
-                            //     })[0];
-                            //     //检验检测
-                            //     vm.transferType = res.result.filter(function (s) {
-                            //         return s.id == res.result[5].id;
-                            //     })[0];
-                            //     //科技咨询
-                            //     vm.knowledgeType = res.result.filter(function (s) {
-                            //         return s.id == res.result[6].id;
-                            //     })[0];
-                            // }
-
                             var list = res.result || [];
                             //设置板块数据
                             for( var key in list){
@@ -1452,6 +1411,26 @@ require(['/common/js/require.config.js'], function () {
                             vm.typeList = list
                             //执行回调
                             typeof call == 'function' ? call():[]
+                            vm.$nextTick(function () {
+                                console.log('---------')
+                                //精选服务列表，只展示2的倍数
+                                if( vm.typeList.length % 4 !== 0 ) {
+                                    var list = vm.typeList
+                                    vm.typeList = list.splice(0, list.length - list.length % 4)
+
+                                }
+                            setTimeout(function (){
+                                $(".swiperBox").slide({
+                                    titCell: ".hd ul",
+                                    mainCell: ".bd ul",
+                                    autoPage: true,
+                                    effect:"leftLoop",
+                                    autoPlay: true,
+                                    vis: 4
+                                });
+                            },1000)
+
+                            })
                         })
                     },
                     //技术经理人学院
