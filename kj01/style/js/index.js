@@ -736,90 +736,48 @@ require(['/common/js/require.config.js'], function () {
                         return v || '';
                     },
                 },
+                watch:{
+                    preview_img() {
+                        this.hackReset = false;
+                        this.$nextTick(() => {
+                            this.hackReset = true;
+                        });
+                    }
+
+                },
                 mounted: function () {
-                    var _this = this
-                    // 获取类型板块
-                        _this.getMailServiceType(function (){
-                                //递归板块数据，从第一个板块开始
-                                _this.getMailGoods(0)
-                            }
-                        );
 
-                    $('#hotImgBox').owlCarousel({
-                        items: 1,
-                        autoplay: true,
-                        loop: true,
-                        autoplayHoverPause: true,
-                        autoHeight: true,
-                        transitionStyle: 'fade',
-                        dots: false,
-                        callbacks: true,
-                        beforeMove: true
-                    });
-                    setTimeout(function (){
-                        var swiperbox = new Swiper ('.swiper-container', {
-                            loop: true,
-                            // 如果需要分页器
-                            slidesPerView: 4,
-                            loopFillGroupWithBlank: false,
-                            // delay: 3000,// 3秒切换一次
-                            pagination: '.swiper-pagination',
-                            // 如果需要前进后退按钮
-                            nextButton: '.swiper-next',
-                            prevButton: '.swiper-prev',
-                            navigation: {
-                                nextEl: '.swiper-next',
-                                prevEl: '.swiper-prev',
-                            },
-                            // 如果需要滚动条
-                            // scrollbar: '.swiper-scrollbar',
-                            //如果需要自动切换海报
-                            // autoplay: {
-                            //   delay: 1000,//时间 毫秒
-                            //   disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-                            // },
-                        })
-                        $('.swiper-container').mouseenter(function () {
-                            // 鼠标悬停停止播放
-                            swiperbox.autoplay.stop();
-                        })
-                        $('.swiper-container').mouseleave(function () {
-                            // 鼠标移除开启自动播放
-                            swiperbox.autoplay.start();
-                        })
-                    },1000)
-
-                    var swiperEntity = new Swiper('#swiper-containerIndex', {
-                        loop: true, // 循环模式选项
-                        autoplay: true, // 可选选项，自动滑动
-                        delay: 3000,// 3秒切换一次
-                        // initialSlide: 2, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，有时想初始化时直接显示其他slide，可以做此设置。
-                        speed: 400, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
-                        watchSlidesProgress: true,
-                        watchSlidesVisibility: true,
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        on: {
-                            init: function () {
-                                animate.swiperAnimateCache(this); //隐藏动画元素
-                                animate.swiperAnimate(this); //初始化完成开始动画
-                                // this.emit('slideChangeTransitionEnd');//在初始化时触发一次slideChangeTransitionEnd事件
-                            },
-                            slideChange: function () {
-                                animate.swiperAnimate(this); // 每个slide切换结束时也运行当前slide动画
-                            }
-                        }
-                    })
-                    $('#swiper-containerIndex').mouseenter(function () {
-                        // 鼠标悬停停止播放
-                        swiperEntity.autoplay.stop();
-                    })
-                    $('#swiper-containerIndex').mouseleave(function () {
-                        // 鼠标移除开启自动播放
-                        swiperEntity.autoplay.start();
-                    })
+                    // var swiperEntity = new Swiper('#swiper-containerIndex', {
+                    //     loop: true, // 循环模式选项
+                    //     autoplay: true, // 可选选项，自动滑动
+                    //     delay: 3000,// 3秒切换一次
+                    //     // initialSlide: 2, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，有时想初始化时直接显示其他slide，可以做此设置。
+                    //     speed: 400, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
+                    //     watchSlidesProgress: true,
+                    //     watchSlidesVisibility: true,
+                    //     navigation: {
+                    //         nextEl: '.swiper-button-next',
+                    //         prevEl: '.swiper-button-prev',
+                    //     },
+                    //     on: {
+                    //         init: function () {
+                    //             animate.swiperAnimateCache(this); //隐藏动画元素
+                    //             animate.swiperAnimate(this); //初始化完成开始动画
+                    //             // this.emit('slideChangeTransitionEnd');//在初始化时触发一次slideChangeTransitionEnd事件
+                    //         },
+                    //         slideChange: function () {
+                    //             animate.swiperAnimate(this); // 每个slide切换结束时也运行当前slide动画
+                    //         }
+                    //     }
+                    // })
+                    // $('#swiper-containerIndex').mouseenter(function () {
+                    //     // 鼠标悬停停止播放
+                    //     swiperEntity.autoplay.stop();
+                    // })
+                    // $('#swiper-containerIndex').mouseleave(function () {
+                    //     // 鼠标移除开启自动播放
+                    //     swiperEntity.autoplay.start();
+                    // })
                     $('#honor').owlCarousel({
                         items: 1,
                         autoplay: true,
@@ -832,21 +790,32 @@ require(['/common/js/require.config.js'], function () {
                     window.addEventListener('scroll', this.scroll);
                     $(".slideTxtBox").slide({
                         titCell: ".hd ul",
+                        pnLoop:true,
                         mainCell: ".bd ul",
                         autoPage: true,
-                        effect: "left",
+                        effect:"leftLoop",
                         autoPlay: true,
                         vis: 5
                     });
+                    $(".swiperBox").slide({
+                        titCell: ".hd ul",
+                        mainCell: ".bd ul",
+                        autoPage: false,
+                        effect:"leftLoop",
+                        autoPlay: true,
+                        vis: 4
+                    });
+
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'number-grow': httpVueLoader('/style/components/number2.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
-                    'right-navs': httpVueLoader('/style/components/right_navs.vue'),
+                    'right-navs': httpVueLoader('/style/components/right.vue'),
                 },
                 created: function () {
+                    var _this = this
                     this.startMove();
                     (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))) &&  this.$utils.getCookie(dic.locaKey.USER_INFO)
                     this.getNumbers2()
@@ -867,6 +836,12 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
+                    // 获取类型板块
+                    _this.getMailServiceType(function (){
+                            //递归板块数据，从第一个板块开始
+                            _this.getMailGoods(0)
+                        }
+                    );
                     // setTimeout(function(){
                     //     document.getElementById("showbg").style.display="none"
                     // },5000);
@@ -924,6 +899,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     },
+
                     beforeMove: function () {
                         console.log('00')
                     },
@@ -953,19 +929,19 @@ require(['/common/js/require.config.js'], function () {
                         //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
                             item.active = ti == i
+
                             item.tabList.forEach(function (tab, idx) {
                                 tab.active = tab.label == val.label
                             })
+                            if (i == 2) {
+                                vm.getBrandList()
+                            } else {
+                                vm.activeParams.activeType = val.activeType
+                                vm.getActiveList()
+                            }
                         })
                         //二级循环
 
-
-                        if (i == 2) {
-                            vm.getBrandList()
-                        } else {
-                            vm.activeParams.activeType = val.activeType
-                            vm.getActiveList()
-                        }
                     },
                     getBrandList: function () {
                         let vm = this
@@ -1442,6 +1418,38 @@ require(['/common/js/require.config.js'], function () {
                     getMailServiceType: function (call) {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
+                            // if (res.code === 'rest.success') {
+                            //     vm.mailServiceTypeList = res.result
+                            //     //知识产权
+                            //     vm.incubationType = res.result.filter(function (s) {
+                            //         return s.id == res.result[0].id;
+                            //     })[0];
+                            //     //法律服务
+                            //     vm.designType = res.result.filter(function (s) {
+                            //         return s.id == res.result[1].id;
+                            //     })[0];
+                            //     //政策申报
+                            //     vm.checkType = res.result.filter(function (s) {
+                            //         return s.id == res.result[2].id;
+                            //     })[0];
+                            //     //工商财税
+                            //     vm.propertyType = res.result.filter(function (s) {
+                            //         return s.id == res.result[3].id;
+                            //     })[0];
+                            //     //评估评价
+                            //     vm.technologyType = res.result.filter(function (s) {
+                            //         return s.id == res.result[4].id;
+                            //     })[0];
+                            //     //检验检测
+                            //     vm.transferType = res.result.filter(function (s) {
+                            //         return s.id == res.result[5].id;
+                            //     })[0];
+                            //     //科技咨询
+                            //     vm.knowledgeType = res.result.filter(function (s) {
+                            //         return s.id == res.result[6].id;
+                            //     })[0];
+                            // }
+
                             var list = res.result || [];
                             //设置板块数据
                             for( var key in list){

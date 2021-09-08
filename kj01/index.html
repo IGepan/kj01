@@ -235,7 +235,7 @@
                         <div class="policy-title">政策直播间
                             <a href="/alist.html?type=218340665870780082">更多></a>
                         </div>
-                        <div id="activeHots" class="studioBox owl-carousel owl-theme">
+                        <div id="activeHots" class="studioBox owl-carousel owl-theme" style="height: 300px">
                             <a :href="item.itemUrl" class="studio" :key="index" v-for="(item,index) in activeHot">
                                 <img :src="item.itemImg" alt="">
                                 <div class="studio-info">
@@ -477,7 +477,7 @@
 
 
                                 <div class="clear">转让方式：{{good.cooperationMode_display}}</div>
-                                <div style="margin-top: 10px"><sapn style="color: #333;background: #ffd790;padding: 5px;border-radius: 0px 0px 10px 0px">会员价</sapn>
+                                <div style="margin-top: 10px"><span style="color: #333;background: #ffd790;padding: 5px;border-radius: 0px 0px 10px 0px">会员价</span>
                                     <span class="price-red" v-if="good.budget==0">面议</span>
                                     <span v-else class="price-red">{{Pricre(good.budget)}}</span>
                                 </div>
@@ -600,80 +600,65 @@
                 </ul>
                 <a href="/mall/index.html">进入专区</a>
             </div>
-<!--            <div class="swiperBox">-->
-<!--                <div class="bd">-->
-<!--                    <ul>-->
-<!--                        <li><a @click="handleTest"><h3>问卷调查</h3>两江新区企业科技创新情况</a></li>-->
-<!--                        <li><a href="technologyMarket/technical_manager.html"><h3>找技术经纪人</h3>全网寻找技术经纪人活动开启</a></li>-->
-<!--                        <li><a @click="handleMall"><h3>入住易智商城</h3>诚邀专业技术服务机构和人才入驻</a></li>-->
-<!--                        <li><a @click="handleOne"><h3>技术成果发布</h3>快速发布您的科技成果</a></li>-->
-<!--                        <li><a @click="handleTwo"><h3>技术需求发布</h3>快速发布您的技术需求</a></li>-->
-<!--                        &lt;!&ndash;                            <li><a href="https://www.yunyao365.com/book_preview/SKmvox28i4ml"><h3>重庆科技成果转移转化峰会</h3></a></li>&ndash;&gt;-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
-            <div class="fr ">
-<!--                    <div class="swiper-next fr"><i class="el-icon-arrow-right"></i></div>-->
-<!--                    <div class="swiper-prev fr"><i class="el-icon-arrow-left"></i></div>-->
+            <div class=" pinpai-bottom server fr ">
 
+                <div class="swiperBox">
 
-            </div>
+                    <div class="hd" style="height: 40px">
+                        <a class="swiper-next fr"><i class="el-icon-arrow-right"></i></a>
 
-        </div>
+                        <a class="swiper-prev fr"><i class="el-icon-arrow-left"></i></a>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <li class="mallItem fl" v-for="(type,index) in typeList">
+                                <div class="top-text">
+                                    <!--                                                <img :src="bgImg[index]">-->
+                                    <!--                    <img src="/style/images/index/tab-bg1.png">-->
+                                    <span>{{type.name}}</span>
+                                    <p v-for="(title,index) in type.children">{{title.name}}
+                                        <i v-if="index + 1 < type.children.length">/ </i></p>
+                                    <a class="fr" :href="'/mall/sub1.html?type='+type.id">更多 &gt;</a>
 
+                                </div>
+                                <div class="mallItem-infoBox clear">
 
+                                    <div class="col-card" v-for="goods in type.goodList">
+                                        <a :href="'/mall/shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
+                                            <div class="card-item">
+                                                <!--                                <div class="technology-avatar">-->
+                                                <!--                                    <img :src="goods.goodsImg.url" class=""-->
+                                                <!--                                                                    alt="...">-->
+                                                <!--                                </div>-->
 
-    </div>
-    <div class=" mdiv" id="swiperBox">
-        <div class="bd">
-            <ul>
-                <li v-for="(type,index) in typeList">
-                    <div class="mallItem fl" >
-                        <div class="top-text">
-                            <!--                                                <img :src="bgImg[index]">-->
-                            <!--                    <img src="/style/images/index/tab-bg1.png">-->
-                            <span>{{type.name}}</span>
-                            <ul><li v-for="(title,index) in type.children">{{title.name}}<template v-if="index + 1 < type.children.length">/ </template></li></ul>
-                            <a class="fr" :href="'/mall/sub1.html?type='+type.id">更多 &gt;</a>
-
-                        </div>
-                        <div class="mallItem-infoBox clear">
-
-                            <div class="col-card" v-for="goods in type.goodList">
-                                <a :href="'/mall/shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
-                                    <div class="card-item">
-                                        <!--                                <div class="technology-avatar">-->
-                                        <!--                                    <img :src="goods.goodsImg.url" class=""-->
-                                        <!--                                                                    alt="...">-->
-                                        <!--                                </div>-->
-
-                                        <div class="card-title">{{goods.goodsName}}</div>
-                                        <div class="addition">
-                                            <div class="shop-text">
-                                                <!--                                                    <p><i class="iconfont icon-biaoqian"></i>{{goods.typeName}}</p>-->
-                                                <!--                                                    <p><i class="iconfont icon-dingweixian"></i>{{goods.shopName}}</p>-->
-                                                {{goods.shopName}}
-                                            </div>
-                                            <div style="margin-top: 10px;">
+                                                <div class="card-title">{{goods.goodsName}}</div>
+                                                <div class="addition">
+                                                    <div class="shop-text">
+                                                        <!--                                                    <p><i class="iconfont icon-biaoqian"></i>{{goods.typeName}}</p>-->
+                                                        <!--                                                    <p><i class="iconfont icon-dingweixian"></i>{{goods.shopName}}</p>-->
+                                                        {{goods.shopName}}
+                                                    </div>
+                                                    <div style="margin-top: 10px;">
                                                         <span class="fl"
                                                               style="color: rgb(51, 51, 51); background: rgb(255, 215, 144); padding: 5px; border-radius: 0px 0px 10px;font-size: 12px">会员价</span>
 
-                                                <div class="price-red fl" style="font-size: 16px">{{formatPrice(goods.choosePriceTag,goods.price,
-                                                    goods.minPrice,
-                                                    goods.maxPrice)}}
+                                                        <div class="price-red fl" style="font-size: 16px">{{formatPrice(goods.choosePriceTag,goods.price,
+                                                            goods.minPrice,
+                                                            goods.maxPrice)}}
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
-
-                                        </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
 
-                        </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-
-            </ul>
+                </div>
+            </div>
 
         </div>
 
@@ -683,37 +668,6 @@
 
 <!--    </div>-->
     <div class="jingxuan" style="padding-top: 40px">
-<!--        <div class="mdiv boxtitle">-->
-<!--            <div class="boxtitle-text">-->
-<!--               <a href="/resources" style="color: black;">精选资源</a> </div>-->
-<!--            <div class="boxtitle-subtext">汇聚科技资源，协同创造价值</div>-->
-<!--        </div>-->
-<!--        <div class="mdiv jingxuan-top">-->
-<!--            <div class="item-box" :class="'item-box'+index" v-for="(item,index) in sources">-->
-<!--                <div class="title-box">-->
-<!--                    <div class="titles">{{item.name}}</div>-->
-<!--                    <div class="title-desc">{{item.subName}}</div>-->
-<!--                </div>-->
-<!--                <div class="info-box">-->
-<!--                    <div class="info-item" v-for="items in item.list">-->
-<!--                        <div class="info-item-title">-->
-<!--                            <a v-if="items.url" :href="items.url">-->
-<!--                                <i class="iconfont icon-gengduo"></i>-->
-<!--                                <span>{{items.name}}</span>-->
-<!--                            </a>-->
-<!--                            <a v-else @click="handleTips">-->
-<!--                                <i class="iconfont icon-gengduo"></i>-->
-<!--                                <span>{{items.name}}</span>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="info-item-number" v-if="items.number">{{items.number}}</div>-->
-<!--                        <div class="info-item-desc" v-if="items.desc.length>0">-->
-<!--                            <div v-for="itemss in items.desc">{{itemss}}</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="mdiv jingxuan-bottom">
             <a class="nav-box" href="https://www.qiyekexie.com" target="_blank">
                 <div>
@@ -780,5 +734,4 @@
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="./style/js/index.js"></script>
 </body>
-
 </html>
