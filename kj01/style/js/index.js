@@ -1414,11 +1414,11 @@ require(['/common/js/require.config.js'], function () {
                             vm.$nextTick(function () {
                                 console.log('---------')
                                 //精选服务列表，只展示2的倍数
-                                if( vm.typeList.length % 4 !== 0 ) {
-                                    var list = vm.typeList
-                                    vm.typeList = list.splice(0, list.length - list.length % 4)
-
-                                }
+                                // if( vm.typeList.length % 4 !== 0 ) {
+                                //     var list = vm.typeList
+                                //     vm.typeList = list.splice(0, list.length - list.length % 4)
+                                //
+                                // }
                             setTimeout(function (){
                                 $(".swiperBox").slide({
                                     titCell: ".hd ul",
