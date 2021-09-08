@@ -935,10 +935,14 @@ require(['/common/js/require.config.js'], function () {
                                 vm.params.activeType = val.activeType
                                 vm.params.topicCustomTag = val.topicCustomTag
                                 vm.getBrandList()
-                            } else {
+                            } else{
+                                if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
+
+                                }else {
                                     vm.activeParams.activeType = val.activeType
                                     vm.getActiveList()
                                 }
+                            }
                         })
                         //二级循环
 
