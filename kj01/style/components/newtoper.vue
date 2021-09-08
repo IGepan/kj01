@@ -1,6 +1,6 @@
 <template>
   <div class="toper" style="background: #fff5f0">
-    <div class=" mmdiv" v-if="userInfo && userInfo.userName">
+    <div class="mmdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    <div  v-else>
+    <div class="mmdiv" v-else>
       <div class="fl toper-left">
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>

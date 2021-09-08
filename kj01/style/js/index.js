@@ -930,14 +930,15 @@ require(['/common/js/require.config.js'], function () {
                             item.tabList.forEach(function (tab, idx) {
                                 tab.active = tab.label == val.label
                             })
+
                             if (i === 2) {
                                 vm.params.activeType = val.activeType
                                 vm.params.topicCustomTag = val.topicCustomTag
                                 vm.getBrandList()
                             } else {
-                                vm.activeParams.activeType = val.activeType
-                                vm.getActiveList()
-                            }
+                                    vm.activeParams.activeType = val.activeType
+                                    vm.getActiveList()
+                                }
                         })
                         //二级循环
 
