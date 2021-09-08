@@ -736,17 +736,14 @@ require(['/common/js/require.config.js'], function () {
                         return v || '';
                     },
                 },
-                watch:{
-                    preview_img() {
-                        this.hackReset = false;
-                        this.$nextTick(() => {
-                            this.hackReset = true;
-                        });
-                    }
-
-                },
                 mounted: function () {
-
+                    var _this = this
+                    // 获取类型板块
+                    _this.getMailServiceType(function (){
+                            //递归板块数据，从第一个板块开始
+                            _this.getMailGoods(0)
+                        }
+                    );
                     // var swiperEntity = new Swiper('#swiper-containerIndex', {
                     //     loop: true, // 循环模式选项
                     //     autoplay: true, // 可选选项，自动滑动
@@ -797,15 +794,16 @@ require(['/common/js/require.config.js'], function () {
                         autoPlay: true,
                         vis: 5
                     });
-                    $(".swiperBox").slide({
-                        titCell: ".hd ul",
-                        mainCell: ".bd ul",
-                        autoPage: false,
-                        effect:"leftLoop",
-                        autoPlay: true,
-                        vis: 4
-                    });
-
+                    setTimeout(function (){
+                        $(".swiperBox").slide({
+                            titCell: ".hd ul",
+                            mainCell: ".bd ul",
+                            autoPage: true,
+                            effect:"leftLoop",
+                            autoPlay: true,
+                            vis: 4
+                        });
+                    },1000)
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
@@ -815,7 +813,7 @@ require(['/common/js/require.config.js'], function () {
                     'right-navs': httpVueLoader('/style/components/right.vue'),
                 },
                 created: function () {
-                    var _this = this
+
                     this.startMove();
                     (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))) &&  this.$utils.getCookie(dic.locaKey.USER_INFO)
                     this.getNumbers2()
@@ -836,12 +834,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
-                    // 获取类型板块
-                    _this.getMailServiceType(function (){
-                            //递归板块数据，从第一个板块开始
-                            _this.getMailGoods(0)
-                        }
-                    );
+
                     // setTimeout(function(){
                     //     document.getElementById("showbg").style.display="none"
                     // },5000);

@@ -1806,17 +1806,17 @@ font-size: 14px;
 .el-icon-arrow-left,.el-icon-arrow-right{
     font-size: 18px;
 }
-.swiper-prev,.swiper-next{
+.prev,.next{
     border: 1px solid #ff5e06;
     color: #ff5e06;
     background: #FFFFff;
     padding: 3px;
 }
-.swiper-prev:hover,.swiper-next:hover{
+.prev:hover,.next:hover{
     background:#ff5e06 ;
     color: #FFFFff;
 }
-.swiper-prev{
+.prev{
 margin-right: 10px;
     margin-bottom: 10px;
 }
@@ -1824,7 +1824,7 @@ margin-right: 10px;
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    width: 80%;
+    width: 1152px;
 }
 
 .serverItem {
@@ -2073,7 +2073,7 @@ margin-right: 10px;
     position: relative;
     display: block;
     background-color: #fff;
-    width:25%!important;
+    width: 288px !important;
     overflow: hidden;
     height: 460px!important;
     background: url(/style/images/index/title-bg.png)no-repeat;

@@ -235,7 +235,7 @@
                         <div class="policy-title">政策直播间
                             <a href="/alist.html?type=218340665870780082">更多></a>
                         </div>
-                        <div id="activeHots" class="studioBox owl-carousel owl-theme" style="height: 300px">
+                        <div id="activeHots" class="studioBox owl-carousel owl-theme" style="height: 341px;overflow: hidden;">
                             <a :href="item.itemUrl" class="studio" :key="index" v-for="(item,index) in activeHot">
                                 <img :src="item.itemImg" alt="">
                                 <div class="studio-info">
@@ -604,10 +604,9 @@
 
                 <div class="swiperBox">
 
-                    <div class="hd" style="height: 40px">
-                        <a class="swiper-next fr"><i class="el-icon-arrow-right"></i></a>
-
-                        <a class="swiper-prev fr"><i class="el-icon-arrow-left"></i></a>
+                    <div class="hd" style="padding-top: 20px">
+                        <a class="next fr"><i class="el-icon-arrow-right"></i></a>
+                        <a class="prev fr"><i class="el-icon-arrow-left"></i></a>
                     </div>
                     <div class="bd">
                         <ul>
