@@ -2125,11 +2125,12 @@ margin-right: 10px;
 .top-text span{
     font-weight: bold;
     line-height: 30px;
+    display: block;
 }
-.top-text ul li{
+.top-text p{
     float: left;
     font-size: 14px;
-
+    margin: 0;
 }
 .top-text a{
     font-size: 14px;

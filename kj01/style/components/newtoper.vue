@@ -684,6 +684,15 @@ module.exports = {
 };
 </script>
 <style scoped>
+.usermin span{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  width: 120px;
+  float: left;
+}
 .toper {
   height: 65px;
   line-height: 65px;
@@ -843,6 +852,7 @@ module.exports = {
 }
 .toper .links a {
   border-right: 1px solid rgb(106, 110, 125);
+  padding: 0 10px!important;
 }
 .c-hover-menu {
   position: fixed;

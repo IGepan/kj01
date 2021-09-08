@@ -1,6 +1,6 @@
 <template>
   <div class="headerBox">
-   <div style="padding-left: 60px">
+   <div style="padding-left: 50px">
     <div class="headers">
      <div class="header-logo">
       <a >
