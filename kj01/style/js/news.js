@@ -9,7 +9,7 @@ require(['/common/js/require.config.js'], function () {
         breadcrumb: [
           {
             label: '资讯',
-            url: '/poindex.html'
+            url: '/polist.html'
           },
           {
             label: '科技动态'

@@ -24,8 +24,8 @@
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
     <policymatch-head current-step="1"></policymatch-head>
     <div class="matchContent mdiv">
-      <div class="">
-        <div class="title">请选择您要匹配的企业</div>
+      <div class="" >
+        <div class="title" v-if="companyList[0]">请选择您要匹配的企业</div>
         <div class="companyList">
           <div class="item" v-for="(item, index) in companyList" :key="index">{{item.name}}
             <div class="check"><i class="iconfont icon-querenduigougouhao"></i></div>

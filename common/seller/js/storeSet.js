@@ -6,7 +6,7 @@ require(['/common/js/require.config.js'], function () {
     Vue.component('ly-address-select', httpVueLoader('./components/sellerAddressSelect.vue'));
     Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
     Vue.component('address-map', httpVueLoader('/common/components/addressMap.vue'));
-    Vue.component('ly-select-level', httpVueLoader('/common/components/selectLevel.vue'));
+    Vue.component('ly-select-level', httpVueLoader('/common/components/selectlevel1.vue'));
     Vue.component('img-uploader', httpVueLoader('/common/components/imgUploader.vue'));
     Vue.component('vue-ueditor-wrap', VueUeditorWrap)
     window.vueDom = new Vue({

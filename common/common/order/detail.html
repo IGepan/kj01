@@ -38,18 +38,21 @@
             v-text="'下单时间：' + detailInfo.orderCreateTime"></span><span v-text="'卖家：' + detailInfo.shopName">
           </span></div>
         <div class="infotable">
-          <div class="title">联系人信息</div>
+          <div class="title">买家信息</div>
           <div class="tbody">
+            <div class="row">
+              <div class="item" v-if="detailInfo.buyerName">买家名称：{{detailInfo.buyerName}}</div>
+            </div>
             <div class="row">
               <div class="item" v-text="'联系人: ' + (detailInfo.contactsName || '')"></div>
               <div class="item" v-text="'联系电话：' + (detailInfo.mobile || '')"></div>
-              <div class="item" v-text="'Email：' + (detailInfo.email || '')"></div>
             </div>
             <div class="row">
               <div class="item" v-text="'联系地址：' + detailInfo.locationAll"></div>
             </div>
-            <div class="row">
-              <div class="item" v-text="'留言：' + (detailInfo.comment || '')"></div>
+            <div class="row" v-if="detailInfo.email||detailInfo.comment">
+              <div class="item" v-if="detailInfo.email">Email：{{detailInfo.email}}</div>
+              <div class="item" v-if="detailInfo.comment">留言：{{detailInfo.comment}}</div>
             </div>
           </div>
           <div

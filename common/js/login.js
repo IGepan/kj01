@@ -351,6 +351,8 @@ require(['/common/js/require.config.js'], function () {
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                     // localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
+                    console.log('--------------->',res.result)
+                    localStorage.setItem(dic.locaKey.USER_INFO,JSON.stringify(res.result))
                     console.log()
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
                       console.log('进入页面过滤方法')
