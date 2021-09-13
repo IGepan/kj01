@@ -37,10 +37,12 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted(){
                     this.detailActive = this.$utils.getReqStr('detailActive')?parseInt(this.$utils.getReqStr('detailActive')):0;
-                    this.id = parseInt(this.$utils.getReqStr('id'));
-                    if(this.id){
+                    this.id = this.$utils.getReqStr('id');
+                    if(this.id) {
                         this.goDetail(this.id)
                     }
+                    var nowIndex = this.$utils.getReqStr('nowIndex')
+                    if(nowIndex) this.nowIndex = parseInt(nowIndex);
                     this.getcmsList()
                 },
                 methods: {
