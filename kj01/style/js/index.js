@@ -1167,6 +1167,14 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/test.html";
                         }
                     },
+                    handleEnterpark:function (){
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/enterpark.html";
+                        } else {
+                            window.location.href = "/enterpark.html";
+                        }
+                    },
                     getAList: function (id) {
                         var vm = this;
                         indexApi.selectActiveByPage({

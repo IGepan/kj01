@@ -315,6 +315,14 @@
     color: #FFFFff!important;
 
 }
+.tanbox{
+  width: 100%;
+}
+.tanbox a{
+    width: 100%;
+    line-height: 25px;
+
+}
 .boxlink ul li a{
     display: block;
 }
