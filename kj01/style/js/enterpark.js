@@ -120,7 +120,7 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入场地特殊需求',trigger: 'blur'},
                             ],
                             service: [
-                                {required:true, message: '请输入需要提供的服务',trigger: 'blur'}
+                                {required:true, message: '请输选择需要提供的服务',trigger: 'blur'}
                             ],
                             businessLicense: [
                                 {required:true, message: '请上传营业执照副本',trigger: 'blur'}
@@ -201,7 +201,7 @@ require(['/common/js/require.config.js'], function () {
                             if (res.code == 'rest.success') {
                                 this.$notify.success({
                                     title: '成功！',
-                                    message: '问卷保存成功!',
+                                    message: '保存成功!',
                                     duration: 2000
                                 });
                                 setTimeout(function () {
