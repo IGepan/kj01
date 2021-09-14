@@ -303,6 +303,7 @@
                 <legend>三、上传附件</legend>
                 <el-form-item class="el-text " label="1、营业执照副本" prop="businessLicense">
                     <div
+                            v-if="this.formData.businessLicense!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFileLoad}"
@@ -311,6 +312,7 @@
                             :src="formData.businessLicense"
                             class="opacityZero"
                     ></div>
+                    <div v-else></div>
                     <label>
                         <ly-upload
                                 :exp="{type: 'Photo'}"
@@ -339,6 +341,7 @@
                 <fieldset class="form__group" v-if="formData.person==1">
                 <el-form-item label="身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
                     <div
+                            v-if="this.formData.attachmentIdUrl1!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile1Load}"
@@ -347,7 +350,7 @@
                             :src="formData.attachmentIdUrl1 "
                             class="opacityZero"
                     ></div>
-
+                    <div v-else></div>
                         <label><ly-upload
                                 :exp="{type: 'mainPhoto'}"
                                 @upstart="file1"
@@ -365,6 +368,7 @@
                 </el-form-item>
                 <el-form-item label="身份证背面" class="rightbox" prop="attachmentIdUrl2">
                     <div
+                            v-if="this.formData.attachmentIdUrl2!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile2Load}"
@@ -373,6 +377,7 @@
                             :src="formData.attachmentIdUrl2 "
                             class="opacityZero"
                     ></div>
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'secrecy'}"
                             @upstart="file2"
@@ -391,6 +396,7 @@
             <fieldset class="form__group" v-if="formData.person==2">
                 <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
                     <div
+                            v-if="this.formData.attachmentIdUrl1!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile1Load}"
@@ -399,7 +405,7 @@
                             :src="formData.attachmentIdUrl1"
                             class="opacityZero"
                     ></div>
-
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'mainPhoto'}"
                             @upstart="file1"
@@ -417,6 +423,7 @@
                 </el-form-item>
                 <el-form-item label="代理人身份证背面" class="rightbox" prop="attachmentIdUrl2">
                     <div
+                            v-if="this.formData.attachmentIdUrl2!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile2Load}"
@@ -424,6 +431,7 @@
                     ><img
                             :src="formData.attachmentIdUrl2 "
                             class="opacityZero" ></div>
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'secrecy'}"
                             @upstart="file2"
@@ -440,6 +448,7 @@
                 </el-form-item>
                 <el-form-item label="委托授权书" class="leftbox" prop="attachmentIdUrl3">
                     <div
+                            v-if="this.formData.attachmentIdUrl3!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile3Load}"
@@ -447,6 +456,7 @@
                     ><img
                             :src="formData.attachmentIdUrl3 "
                             class="opacityZero" ></div>
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'certificate'}"
                             @upstart="file3"
