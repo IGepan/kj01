@@ -240,7 +240,7 @@ require(['/common/js/require.config.js'], function () {
                                         if (res.code == 'rest.success') {
                                             this.$notify.success({
                                                 title: '成功！',
-                                                message: '问卷提交成功!',
+                                                message: '提交成功!',
                                                 duration: 2000
                                             });
                                             setTimeout(function () {
