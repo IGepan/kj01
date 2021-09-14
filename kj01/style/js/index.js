@@ -654,6 +654,11 @@ require(['/common/js/require.config.js'], function () {
                             alt_tip: '重庆市科学技术局',
                         },
                         {
+                            img: '/style/images/index/friend_link_4.png',
+                            href: 'http://dsjj.cq.gov.cn',
+                            alt_tip: '重庆市大数据应用发展管理局',
+                        },
+                        {
                             img: '/style/images/index/friend_link_2.png',
                             href: 'http://www.liangjiang.gov.cn',
                             alt_tip: '重庆两江新区',
@@ -663,11 +668,7 @@ require(['/common/js/require.config.js'], function () {
                             href: 'http://gxq.cq.gov.cn',
                             alt_tip: '重庆高新区',
                         },
-                        {
-                            img: '/style/images/index/friend_link_4.png',
-                            href: 'http://dsjj.cq.gov.cn',
-                            alt_tip: '重庆市大数据应用发展管理局',
-                        },
+
                         {
                             img: '/style/images/index/friend_link_5.png',
                             href: 'http://www.cqast.cn',
@@ -1166,6 +1167,14 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/test.html";
                         }
                     },
+                    handleEnterpark:function (){
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/enterpark.html";
+                        } else {
+                            window.location.href = "/enterpark.html";
+                        }
+                    },
                     getAList: function (id) {
                         var vm = this;
                         indexApi.selectActiveByPage({
@@ -1430,12 +1439,6 @@ require(['/common/js/require.config.js'], function () {
                             typeof call == 'function' ? call():[]
                             vm.$nextTick(function () {
                                 console.log('---------')
-                                //精选服务列表，只展示2的倍数
-                                // if( vm.typeList.length % 4 !== 0 ) {
-                                //     var list = vm.typeList
-                                //     vm.typeList = list.splice(0, list.length - list.length % 4)
-                                //
-                                // }
                             setTimeout(function (){
                                 $(".swiperBox").slide({
                                     titCell: ".hd ul",
