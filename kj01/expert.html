@@ -189,7 +189,7 @@
             <fieldset class="form__group">
                 <el-form-item class="el-text " label="专家照片" prop="expertPhotos">
                     <div
-                            v-if="this.formData.expertPhotos!==''"
+                            v-if="this.formData.expertPhotos!==''&&this.formData.expertPhotos"
                             class="head"
                             v-viewer
                             :class="{loading: isFileLoad}"

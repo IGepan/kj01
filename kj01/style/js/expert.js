@@ -50,7 +50,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             contactPhone: [
                                 {required: true, message: '请填写联系方式',trigger: 'blur'},
-                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             expertPhotos: [
                                 {required:true, message: '请上传专家照片',trigger: 'blur'}

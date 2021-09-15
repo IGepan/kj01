@@ -306,7 +306,7 @@
                 <legend>三、上传附件</legend>
                 <el-form-item class="el-text " label="1、营业执照副本" prop="businessLicense">
                     <div
-                            v-if="this.formData.businessLicense!==''"
+                            v-if="this.formData.businessLicense!==''&&this.formData.businessLicense"
                             class="head"
                             v-viewer
                             :class="{loading: isFileLoad}"
@@ -345,7 +345,7 @@
                 <fieldset class="form__group" v-if="formData.person==1">
                 <el-form-item label="身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
                     <div
-                            v-if="this.formData.attachmentIdUrl1!==''"
+                            v-if="this.formData.attachmentIdUrl1!==''&&this.formData.attachmentIdUrl1"
                             class="head"
                             v-viewer
                             :class="{loading: isFile1Load}"
@@ -374,7 +374,7 @@
                 </el-form-item>
                 <el-form-item label="身份证背面" class="rightbox" prop="attachmentIdUrl2">
                     <div
-                            v-if="this.formData.attachmentIdUrl2!==''"
+                            v-if="this.formData.attachmentIdUrl2!==''&&this.formData.attachmentIdUrl2"
                             class="head"
                             v-viewer
                             :class="{loading: isFile2Load}"
@@ -404,7 +404,7 @@
             <fieldset class="form__group" v-if="formData.person==2">
                 <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
                     <div
-                            v-if="this.formData.attachmentIdUrl1!==''"
+                            v-if="this.formData.attachmentIdUrl1!==''this.formData.attachmentIdUrl1"
                             class="head"
                             v-viewer
                             :class="{loading: isFile1Load}"
@@ -433,7 +433,7 @@
                 </el-form-item>
                 <el-form-item label="代理人身份证背面" class="rightbox" prop="attachmentIdUrl2">
                     <div
-                            v-if="this.formData.attachmentIdUrl2!==''"
+                            v-if="this.formData.attachmentIdUrl2!==''this.formData.attachmentIdUrl2"
                             class="head"
                             v-viewer
                             :class="{loading: isFile2Load}"
@@ -460,7 +460,7 @@
                 </el-form-item>
                 <el-form-item label="委托授权书" class="leftbox" prop="attachmentIdUrl3">
                     <div
-                            v-if="this.formData.attachmentIdUrl3!==''"
+                            v-if="this.formData.attachmentIdUrl3!==''this.formData.attachmentIdUrl3"
                             class="head"
                             v-viewer
                             :class="{loading: isFile3Load}"

@@ -106,15 +106,15 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             contactLandline: [
                                 {required: true,validator: validateNum,trigger: 'blur'},
-                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             contactPhone: [
                                 {required: true, validator: validateNum,trigger: 'blur'},
-                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             email: [
                                 {required: true, message: '请输入E-mail',trigger: 'blur'},
-                                {pattern: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/, message: '请填写正确的邮箱'}
+                                {pattern: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/, message: '请填写正确的邮箱',trigger: 'blur'}
                             ],
                             otherService: [
                                 {required:true, message: '请输入其他服务',trigger: 'blur'}
