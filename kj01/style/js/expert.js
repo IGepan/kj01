@@ -81,7 +81,11 @@ require(['/common/js/require.config.js'], function () {
                             }
                             if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
-                                this.formData.expertPhotos = res.result.expertPhotos.url
+                                if (res.result.expertPhotos.url) {
+                                    this.formData.expertPhotos = res.result.expertPhotos.url;
+                                }else {
+                                    this.formData.expertPhotos = ''
+                                }
                             }
                                 if (this.formData.isSubmit == 1) {
                                     this.isActive = true;
