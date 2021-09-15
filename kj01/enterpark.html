@@ -168,7 +168,7 @@
                               v-model="formData.companyType"
                               clearable></el-input>
                 </el-form-item>
-                <el-form-item label="注册资本" prop="capital" class="el-text rightbox">
+                <el-form-item label="注册资本（万元）" prop="capital" class="el-text rightbox">
                     <el-input placeholder="请输入注册资本"
                               v-model="formData.capital"
                               clearable></el-input>
@@ -176,9 +176,11 @@
             </fieldset>
                 <fieldset class="form__group">
                 <el-form-item label="经营范围" prop="businessScope" class="el-text leftbox">
-                    <el-input placeholder="请输入经营范围"
-                              v-model="formData.businessScope"
-                              clearable></el-input>
+                    <el-input  style="width:80%;min-height: 200px"
+                               type="textarea"
+                               v-model="formData.businessScope"
+                               placeholder="请输入经营范围">
+                    </el-input>
                 </el-form-item>
                 <el-form-item label="经营地址" prop="address" class="el-text rightbox">
                     <el-input placeholder="请输入经营地址"
@@ -260,7 +262,7 @@
                     </el-input>
 
                 </el-form-item>
-                <el-form-item label="2、需要场地面积" prop="siteArea" class="el-text rightbox">
+                <el-form-item label="2、需要场地面积（平方米）" prop="siteArea" class="el-text rightbox">
                     <el-input placeholder="场地面积"
                               v-model="formData.siteArea"
                               clearable></el-input>
@@ -316,7 +318,7 @@
                     <label>
                         <ly-upload
                                 :exp="{type: 'Photo'}"
-                                @upstart="file"
+                                @upstart="file4"
                                 @success='cimgUploadSuccess'
                                 style="position: absolute;right: 10000px;"
                                 type='file'

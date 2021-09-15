@@ -124,19 +124,19 @@ require(['/common/js/require.config.js'], function () {
                                 {required:true, message: '请输选择需要提供的服务',trigger: 'blur'}
                             ],
                             businessLicense: [
-                                {required:true, message: '请上传营业执照副本',trigger: 'blur'}
+                                {required:true, message: '请上传营业执照副本',trigger: 'click'}
                             ],
                             person: [
                                 {required:true, message: '请选择身份',trigger: 'blur'}
                             ],
                             attachmentIdUrl1: [
-                                {required:true, message: '请上传证件正面',trigger: 'blur'}
+                                {required:true, message: '请上传证件正面',trigger: 'click'}
                             ],
                             attachmentIdUrl2: [
-                                {required:true, message: '请上传证件反面',trigger: 'blur'}
+                                {required:true, message: '请上传证件反面',trigger: 'click'}
                             ],
                             attachmentIdUrl3: [
-                                {required:true, message: '请上传委托授权书',trigger: 'blur'}
+                                {required:true, message: '请上传委托授权书',trigger: 'click'}
                             ],
 
                         },
@@ -153,7 +153,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getData()
                 },
                 methods: {
-                    file:function(){
+                    file4:function(){
                         this.isFileLoad = true
             },
                     file3: function () {
@@ -175,7 +175,7 @@ require(['/common/js/require.config.js'], function () {
                                this.formData.businessLicense = res.result.businessLicense.url
                                this.formData.attachmentIdUrl1 = res.result.attachmentIdUrl1.url
                                this.formData.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
-                               if(res.result.attachmentIdUrl3){
+                               if(res.result.attachmentIdUrl3!==''){
                                    this.formData.attachmentIdUrl3 = res.result.attachmentIdUrl3.url
                                }
                                 if (this.formData.isJoinDepository == 1) {
@@ -199,6 +199,7 @@ require(['/common/js/require.config.js'], function () {
                         this.formData.isSubmit = 0
                         indexApi.ApplySubmit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
+
                                 this.$notify.success({
                                     title: '成功！',
                                     message: '保存成功!',
