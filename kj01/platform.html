@@ -39,11 +39,31 @@
     .vaMiddle:hover{
         color: #f0ad4e;
     }
+    .btn{
+        text-align: center;
+        padding:10px 15px;
+        font-size: 24px;
+        background: #018fff;
+        color: #FFFFff;
+        display: inline-block;
+        margin-left: calc((1440px - 200px)/2);
+    }
+    .btn:hover{
+        background: #f0ad4e;
+    }
+    .mmdiv{
+        width: 1440px;
+        margin: 0 auto;
+    }
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <index-head :nav-index="sIndex"></index-head>
+
+    <div class="header-box " style="background: #fff;height: 65px;position: relative;">
+        <index-head :nav-index="sIndex"></index-head>
+        <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+    </div>
     <div class="content">
         <div class="mdiv">
             <div class="right">
@@ -152,20 +172,21 @@
                         </div>
                         <div class="detail-content" v-html="details.txt">
                         </div>
-                        <template v-if="details.fileId">
-                            <div class="article-files">
-                                <div class="article-files-title"><span class="title-text">附件</span></div>
-                                <div class="article-files-body">
-                                    <template >
-                                        <div class="article-file">
-                                            <img class="vaMiddle " src="/image/file.svg">
-                                            <!--                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>--></img>
-                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>
-                                        </div>
-                                    </template>
-                                </div>
-                            </div>
-                        </template>
+                        <div v-if="details.id=='333717138270298112'"><a class="btn">易智网专家入驻</a></div>
+<!--                        <template v-if="details.fileId">-->
+<!--                            <div class="article-files">-->
+<!--                                <div class="article-files-title"><span class="title-text">附件</span></div>-->
+<!--                                <div class="article-files-body">-->
+<!--                                    <template >-->
+<!--                                        <div class="article-file">-->
+<!--                                            <img class="vaMiddle " src="/image/file.svg">-->
+<!--                                            &lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>-->
+<!--                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>-->
+<!--                                        </div>-->
+<!--                                    </template>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </template>-->
                     </div>
                 </div>
             </div>
