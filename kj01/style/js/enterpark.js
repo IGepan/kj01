@@ -199,17 +199,17 @@ require(['/common/js/require.config.js'], function () {
                            if (res.code == 'rest.success' && res.result) {
                                this.formData = res.result
 
-                               if (res.result.businessLicense.url) {
+                               if (res.result.businessLicense) {
                                    this.formData.businessLicense = res.result.businessLicense.url
                                }else {
                                    this.formData.businessLicense = '';
                                }
-                               if (res.result.attachmentIdUrl1.url) {
+                               if (res.result.attachmentIdUrl1) {
                                    this.formData.attachmentIdUrl1 = res.result.attachmentIdUrl1.url;
                                }else {
                                    this.formData.attachmentIdUrl1 = '';
                                }
-                               if (res.result.attachmentIdUrl2.url) {
+                               if (res.result.attachmentIdUrl2) {
                                    this.formData.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
                                }else {
                                    this.formData.attachmentIdUrl2 = '';
