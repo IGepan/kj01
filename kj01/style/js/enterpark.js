@@ -130,13 +130,13 @@ require(['/common/js/require.config.js'], function () {
                                 {required:true, message: '请选择身份',trigger: 'blur'}
                             ],
                             attachmentIdUrl1: [
-                                {required:true, message: '请上传证件正面',trigger: 'click'}
+                                {required:true, message: '请上传证件正面',trigger:  'blur'}
                             ],
                             attachmentIdUrl2: [
-                                {required:true, message: '请上传证件反面',trigger: 'click'}
+                                {required:true, message: '请上传证件反面',trigger:  'blur'}
                             ],
                             attachmentIdUrl3: [
-                                {required:true, message: '请上传委托授权书',trigger: 'click'}
+                                {required:true, message: '请上传委托授权书',trigger: 'blur'}
                             ],
 
                         },
