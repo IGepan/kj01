@@ -2,6 +2,7 @@ require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js', 'ELEMENT'],
         function ($, Vue, httpVueLoader, httpUrl, indexApi, ELEMENT) {
             Vue.component('vue-ueditor-wrap', VueUeditorWrap)
+            Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             new Vue({
                 el: '#index_box',
                 data: function () {
@@ -146,7 +147,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader('/style/components/toper.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
-                    'ly-upload': httpVueLoader('/common/components/upload.vue')
+                    // 'ly-upload': httpVueLoader('/common/components/upload.vue')
                 },
                 created() {
                     this.getData()
@@ -164,7 +165,6 @@ require(['/common/js/require.config.js'], function () {
                     file1: function () {
                         this.isFile1Load = true
                     },
-
                     getData() {
                         indexApi.selectQuest().then((res) => {
                             if(res.code !== 'rest.success'){

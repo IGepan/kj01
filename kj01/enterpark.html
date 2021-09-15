@@ -327,8 +327,9 @@
                         >
                         </ly-upload>
                         <span class="exbtn" :class="{Hide:isShow}" >上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i>
                     </label>
-
                 </el-form-item>
                 <el-form-item class="el-text " label="2、法人代表身份证正反面或法人代表和代理人身份证正反面及委托授权书"
                               prop="person">
@@ -363,7 +364,9 @@
                                 accept="image/*"
                         >
                         </ly-upload>
-                            <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                            <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                            <br>
+                            <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
 
                 </el-form-item>
                 <el-form-item label="身份证背面" class="rightbox" prop="attachmentIdUrl2">
@@ -390,7 +393,9 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group" v-if="formData.person==2">
@@ -418,7 +423,9 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
 
                 </el-form-item>
                 <el-form-item label="代理人身份证背面" class="rightbox" prop="attachmentIdUrl2">
@@ -444,7 +451,9 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
                 <el-form-item label="委托授权书" class="leftbox" prop="attachmentIdUrl3">
                     <div
@@ -469,7 +478,9 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
             </fieldset>
             <div class="form__submit" style="margin-left: 395px">
