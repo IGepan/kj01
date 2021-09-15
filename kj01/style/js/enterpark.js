@@ -46,6 +46,32 @@ require(['/common/js/require.config.js'], function () {
                                 value: '其他',
                                 label: '其他'
                             }],
+                        companyTypeList: [
+                            {
+                                value: '国有企业',
+                                label: '国有企业'
+                            }, {
+                                value: '集体企业',
+                                label: '集体企业'
+                            }, {
+                                value: '股份制企业',
+                                label: '股份制企业'
+                            }, {
+                                value: '港澳台企业',
+                                label: '港澳台企业'
+                            }, {
+                                value: '外商投资企业',
+                                label: '外商投资企业'
+                            },
+                            {
+                                value: '民营企业',
+                                label: '民营企业'
+                            },
+                            {
+                                value: '其他企业',
+                                label: '其他企业'
+                            }],
+
                         formData: {
                             id: '',
                             companyName: '',//企业名称
@@ -86,7 +112,7 @@ require(['/common/js/require.config.js'], function () {
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             companyType: [
-                                {required: true, message: '请输入企业类型',trigger: 'blur'},
+                                {required: true, message: '请选择企业类型',trigger: 'blur'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             capital: [
@@ -121,7 +147,7 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入场地特殊需求',trigger: 'blur'},
                             ],
                             service: [
-                                {required:true, message: '请输选择需要提供的服务',trigger: 'change'}
+                                {required:true, message: '请输选择需要提供的服务',trigger: 'blur'}
                             ],
                             businessLicense: [
                                 {required:true, message: '请上传营业执照副本',trigger: 'click'}
