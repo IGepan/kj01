@@ -4,9 +4,15 @@
 .headerBox {
     border-bottom: solid 1px #01c8f2;
 }
+.content{
+    overflow: hidden!important;
+    max-height: none!important;
+    height: auto!important;
+}
 .content .mdiv {
     padding: 40px 0;
     min-height:calc(100% - 540px);
+
 }
 .right{
 
