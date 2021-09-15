@@ -304,7 +304,7 @@
             </fieldset>
             <fieldset class="form__group">
                 <legend>三、上传附件</legend>
-                <el-form-item class="el-text " label="1、营业执照副本" prop="businessLicense">
+                <el-form-item class="el-text " label="1、营业执照副本" prop="this.businessLicense">
                     <div
                             v-if="this.businessLicense!==''"
                             class="head"
@@ -343,7 +343,7 @@
                 </el-form-item>
             </fieldset>
                 <fieldset class="form__group" v-if="formData.person==1">
-                <el-form-item label="身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
+                <el-form-item label="身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">
                     <div
                             v-if="this.attachmentIdUrl1!==''"
                             class="head"
@@ -372,7 +372,7 @@
                             <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
 
                 </el-form-item>
-                <el-form-item label="身份证背面" class="rightbox" prop="attachmentIdUrl2">
+                <el-form-item label="身份证背面" class="rightbox" prop="this.attachmentIdUrl2">
                     <div
                             v-if="this.attachmentIdUrl2!==''"
                             class="head"
@@ -402,7 +402,7 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group" v-if="formData.person==2">
-                <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
+                <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">
                     <div
                             v-if="this.attachmentIdUrl1!==''"
                             class="head"
@@ -431,7 +431,7 @@
                         <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
 
                 </el-form-item>
-                <el-form-item label="代理人身份证背面" class="rightbox" prop="attachmentIdUrl2">
+                <el-form-item label="代理人身份证背面" class="rightbox" prop="this.attachmentIdUrl2">
                     <div
                             v-if="this.attachmentIdUrl2!==''"
                             class="head"
@@ -458,7 +458,7 @@
                         <br>
                         <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
-                <el-form-item label="委托授权书" class="leftbox" prop="attachmentIdUrl3">
+                <el-form-item label="委托授权书" class="leftbox" prop="this.attachmentIdUrl3">
                     <div
                             v-if="this.attachmentIdUrl3!==''"
                             class="head"

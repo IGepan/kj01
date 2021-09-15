@@ -133,7 +133,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             contactPhone: [
                                 {required: true, message: '请填写联系方式',trigger: 'blur'},
-                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             companyProfile: [
                                 {required: true, message: '请输入企业简介',trigger: 'blur'},
