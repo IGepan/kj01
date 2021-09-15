@@ -127,6 +127,7 @@
                 <el-form-item label="联系人电话" prop="contactLandline" class="el-text rightbox ">
                     <el-input placeholder="请输入联系电话"
                               v-model="formData.contactLandline"
+                              maxlength="12"
                               clearable></el-input>
                 </el-form-item>
             </fieldset>
@@ -134,6 +135,7 @@
                 <el-form-item label="联系人手机" prop="contactPhone" class="el-text leftbox ">
                     <el-input placeholder="请输入联系手机"
                               v-model="formData.contactPhone"
+                              maxlength="12"
                               clearable></el-input>
                 </el-form-item>
                 <el-form-item label="E-mail" prop="email" class="el-text rightbox">
