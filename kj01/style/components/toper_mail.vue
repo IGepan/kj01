@@ -328,14 +328,6 @@ module.exports = {
     }
   },
   methods: {
-    msgChlick: function () {
-      if (!this.userInfo.userId) {
-        window.location.href = "/common/login.html";
-        return;
-      } else {
-        window.location.href = "/common/usercenter/user_message.html";
-      }
-    },
     isHomePage: function (e) {
       if (location.pathname === "/" || location.pathname === "/index.html") {
         e.preventDefault();

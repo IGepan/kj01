@@ -341,7 +341,17 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingle: function (index) {
                         var _this = this;
+                        let removeId = _this.textList[index].id
+                        console.log(_this.textList[index].id)
                         _this.textList.splice(index, 1);
+
+                        _this.secondOptions.forEach(function (item) {
+                            item.children.forEach(function (i) {
+                                if (i.id == removeId) {
+                                    i.active = false;
+                                }
+                            })
+                        })
                     },
                     // 关闭
                     closeAllLevel: function () {
@@ -420,7 +430,13 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingleIndustry: function (index) {
                         var _this = this;
+                        let removeId = _this.textIndustryList[index].id;
                         _this.textIndustryList.splice(index, 1);
+                        _this.secondIndustryOptions.forEach(function (item) {
+                            if (item.id == removeId) {
+                                item.active = false;
+                            }
+                        })
                     },
                     // 关闭
                     closeAllLevelIndustry: function () {

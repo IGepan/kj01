@@ -460,24 +460,78 @@ require(['/common/js/require.config.js'], function () {
                             active: true,
                             activeType: '218340665862391473',
                             sortType: "01",
+                            tabList:[
+                                {
+                                label: '政策直播间',
+                                active: true,
+                                activeType: '218340665870780082',
+                                sortType: "01",
+                            },
+                                {
+                                    label: '创新课堂',
+                                    active: false,
+                                    activeType: '218340665883362995',
+                                    sortType: "02",
+                                }, {
+                                    label: '管理学院',
+                                    active: false,
+                                    activeType: '218340665891751604',
+                                    sortType: "01",
+                                },]
                         },
-                        {
-                            label: '品牌活动',
-                            active: false,
-                            sortType: "02",
-                            topicCustomTag: '01'
-                        },
-                        // {
-                        //     label: '主题活动',
-                        //     active: false,
-                        //     activeType: '218340665912723126',
-                        //     sortType: "01"
-                        // },
                         {
                             label: '技术转移',
                             active: false,
                             activeType: '218340665862395555',
-                            sortType: "01"
+                            sortType: "01",
+                            tabList: [
+                                {
+                                    label: '易智成果汇',
+                                    active: false,
+                                    activeType: '218340665862395556',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '易智人才汇',
+                                    active: false,
+                                    activeType: '218340665862395557',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '易智排行榜',
+                                    active: false,
+                                    activeType: '218340665862395558',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '易智大咖荟',
+                                    active: false,
+                                    activeType: '218340665862395559',
+                                    sortType: "01",
+                                },
+                            ]
+                        },
+                        {
+                            label: '品牌活动',
+                            active: false,
+                            activeType:'390092837996355585',
+                            sortType: "02",
+                            tabList: [
+                                {
+                                    label: '智汇两江',
+                                    active: false,
+                                    activeType:'01',
+                                    topicCustomTag: '01',
+                                    sortType: "01",
+                                },
+                                {
+                                    label: '渝创渝新',
+                                    active: false,
+                                    activeType:'02',
+                                    topicCustomTag: '02',
+                                    sortType: "01",
+                                },
+                            ]
                         },
                     ],
                     technologyTabs: [
@@ -558,9 +612,16 @@ require(['/common/js/require.config.js'], function () {
                     activeLists: [],
                     activeParams: {
                         pageNum: 1,
-                        pageSize: 4,
-                        sortType: "01",
+                        pageSize: 10,
+                        sortType: "02",
                         activeType: '218340665862391473',
+                    },
+                     params:{
+                        activeType: "390092837996355585",
+                        pageNum: 1,
+                        pageSize: 10,
+                         topicCustomTag: '01',
+
                     },
                     bannerList: [
                         {
@@ -593,6 +654,11 @@ require(['/common/js/require.config.js'], function () {
                             alt_tip: '重庆市科学技术局',
                         },
                         {
+                            img: '/style/images/index/friend_link_4.png',
+                            href: 'http://dsjj.cq.gov.cn',
+                            alt_tip: '重庆市大数据应用发展管理局',
+                        },
+                        {
                             img: '/style/images/index/friend_link_2.png',
                             href: 'http://www.liangjiang.gov.cn',
                             alt_tip: '重庆两江新区',
@@ -602,11 +668,7 @@ require(['/common/js/require.config.js'], function () {
                             href: 'http://gxq.cq.gov.cn',
                             alt_tip: '重庆高新区',
                         },
-                        {
-                            img: '/style/images/index/friend_link_4.png',
-                            href: 'http://dsjj.cq.gov.cn',
-                            alt_tip: '重庆市大数据应用发展管理局',
-                        },
+
                         {
                             img: '/style/images/index/friend_link_5.png',
                             href: 'http://www.cqast.cn',
@@ -687,66 +749,46 @@ require(['/common/js/require.config.js'], function () {
                         }
                         return v || '';
                     },
-                    // formatPrice2: function (flag, v, n, m) {
-                    //     if (flag === '2') {
-                    //         return '面议'
-                    //     }if(flag === "3"){
-                    //         return '查看价格详情'
-                    //     }else {
-                    //         if (typeof v !== 'undefined') {
-                    //             return (v / 10000).toFixed(2)
-                    //         } else if (!v && !m) {
-                    //             return (n / 10000).toFixed(2)
-                    //         } else {
-                    //             return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                    //         }
-                    //     }
-                    // },
                 },
                 mounted: function () {
                     var _this = this
-                    $('#hotImgBox').owlCarousel({
-                        items: 1,
-                        autoplay: true,
-                        loop: true,
-                        autoplayHoverPause: true,
-                        autoHeight: true,
-                        transitionStyle: 'fade',
-                        dots: false,
-                        callbacks: true,
-                        beforeMove: true
-                    });
-                    var swiperEntity = new Swiper('#swiper-containerIndex', {
-                        loop: true, // 循环模式选项
-                        autoplay: true, // 可选选项，自动滑动
-                        delay: 3000,// 3秒切换一次
-                        // initialSlide: 2, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，有时想初始化时直接显示其他slide，可以做此设置。
-                        speed: 400, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
-                        watchSlidesProgress: true,
-                        watchSlidesVisibility: true,
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        on: {
-                            init: function () {
-                                animate.swiperAnimateCache(this); //隐藏动画元素
-                                animate.swiperAnimate(this); //初始化完成开始动画
-                                // this.emit('slideChangeTransitionEnd');//在初始化时触发一次slideChangeTransitionEnd事件
-                            },
-                            slideChange: function () {
-                                animate.swiperAnimate(this); // 每个slide切换结束时也运行当前slide动画
-                            }
+                    // 获取类型板块
+                    _this.getMailServiceType(function (){
+                            //递归板块数据，从第一个板块开始
+                            _this.getMailGoods(0)
                         }
-                    })
-                    $('#swiper-containerIndex').mouseenter(function () {
-                        // 鼠标悬停停止播放
-                        swiperEntity.autoplay.stop();
-                    })
-                    $('#swiper-containerIndex').mouseleave(function () {
-                        // 鼠标移除开启自动播放
-                        swiperEntity.autoplay.start();
-                    })
+                    );
+                    // var swiperEntity = new Swiper('#swiper-containerIndex', {
+                    //     loop: true, // 循环模式选项
+                    //     autoplay: true, // 可选选项，自动滑动
+                    //     delay: 3000,// 3秒切换一次
+                    //     // initialSlide: 2, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，有时想初始化时直接显示其他slide，可以做此设置。
+                    //     speed: 400, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
+                    //     watchSlidesProgress: true,
+                    //     watchSlidesVisibility: true,
+                    //     navigation: {
+                    //         nextEl: '.swiper-button-next',
+                    //         prevEl: '.swiper-button-prev',
+                    //     },
+                    //     on: {
+                    //         init: function () {
+                    //             animate.swiperAnimateCache(this); //隐藏动画元素
+                    //             animate.swiperAnimate(this); //初始化完成开始动画
+                    //             // this.emit('slideChangeTransitionEnd');//在初始化时触发一次slideChangeTransitionEnd事件
+                    //         },
+                    //         slideChange: function () {
+                    //             animate.swiperAnimate(this); // 每个slide切换结束时也运行当前slide动画
+                    //         }
+                    //     }
+                    // })
+                    // $('#swiper-containerIndex').mouseenter(function () {
+                    //     // 鼠标悬停停止播放
+                    //     swiperEntity.autoplay.stop();
+                    // })
+                    // $('#swiper-containerIndex').mouseleave(function () {
+                    //     // 鼠标移除开启自动播放
+                    //     swiperEntity.autoplay.start();
+                    // })
                     $('#honor').owlCarousel({
                         items: 1,
                         autoplay: true,
@@ -759,50 +801,26 @@ require(['/common/js/require.config.js'], function () {
                     window.addEventListener('scroll', this.scroll);
                     $(".slideTxtBox").slide({
                         titCell: ".hd ul",
+                        pnLoop:true,
                         mainCell: ".bd ul",
                         autoPage: true,
-                        effect: "top",
+                        effect:"leftLoop",
                         autoPlay: true,
-                        vis: 1
+                        vis: 5
                     });
-                    // 获取类型板块
-                    _this.getMailServiceType(function (){
-                            //递归板块数据，从第一个板块开始
-                            _this.getMailGoods(0)
-                        }
-                    );
-                    //知识产权
-					// this.goodFormData.type = '371977891599065088';
-					// this.getMailGoods('incubationTypeList')
-					// //法律服务
-					// this.goodFormData.type = '371979747670859776';
-					// this.getMailGoods('designTypeList')
-					// //政策申报
-					// this.goodFormData.type = '371979827203252224';
-					// this.getMailGoods('checkTypeList')
-					// //工商财税
-					// this.goodFormData.type = '371979918089625600';
-					// this.getMailGoods('propertyTypeList')
-					// //检验检测
-					// this.goodFormData.type = '371980699979194368';
-					// this.getMailGoods('technologyTypeList')
-					// // //科技咨询
-					//  this.goodFormData.type = '371981659690475520';
-					//  this.getMailGoods('transferTypeList');
-					// //评估评价
-					// this.goodFormData.type = '371980018614509568';
-					// this.getMailGoods('knowledgeTypeList');
+
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'number-grow': httpVueLoader('/style/components/number2.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
-                    'right-navs': httpVueLoader('/style/components/right_navs.vue'),
+                    'right-navs': httpVueLoader('/style/components/right.vue'),
                 },
                 created: function () {
+
                     this.startMove();
-                    this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
+                    (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))) &&  this.$utils.getCookie(dic.locaKey.USER_INFO)
                     this.getNumbers2()
                     this.getNumbers3()
                     this.getAList('005')
@@ -821,6 +839,7 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
+
                     // setTimeout(function(){
                     //     document.getElementById("showbg").style.display="none"
                     // },5000);
@@ -840,6 +859,13 @@ require(['/common/js/require.config.js'], function () {
                             }else {
                                 return  v + '元'
                             }
+                        }
+                    },
+                    hand:function (){
+                        for(var i = 0; i < 40; i++){
+                            console.log(1414980177918369807+i)
+
+
                         }
                     },
                     //价格判断
@@ -871,21 +897,22 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     },
+
                     beforeMove: function () {
                         console.log('00')
                     },
                     scroll: function () {
                         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
                         let offSetTop = setTimeout(function () {
-                            document.querySelector('.headerBox').offsetTop + 100;
+                            document.querySelector('.header-box').offsetTop + 65;
                         }, 60);
                         this.isFixed = scrollTop > offSetTop ? true : false;
                     },
-                    handleactivity: function (val) {
+                    handle: function (val) {
                         if (val.activeType) {
                             location.href = '/alist.html?type=' + val.activeType
                         } else {
-                            location.href = '/atList.html?type=' + val.topicCustomTag
+                            location.href = '/alist.html?type=' + val.topicCustomTag
                         }
                     },
                     /**
@@ -897,24 +924,34 @@ require(['/common/js/require.config.js'], function () {
                     },
                     handleactivityTabs: function (val, i) {
                         var vm = this
+                        //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
                             item.active = ti === i
+
+                            item.tabList.forEach(function (tab, idx) {
+                                tab.active = tab.label == val.label
+                            })
+
+                            if (i === 2) {
+                                vm.params.activeType = val.activeType
+                                vm.params.topicCustomTag = val.topicCustomTag
+                                vm.getBrandList()
+                            } else{
+                                if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
+
+                                }else {
+                                    vm.activeParams.activeType = val.activeType
+                                    vm.getActiveList()
+                                }
+                            }
                         })
-                        if (i === 1) {
-                            vm.getBrandList()
-                        } else {
-                            vm.activeParams.activeType = val.activeType
-                            vm.getActiveList()
-                        }
+                        //二级循环
+
                     },
+                    //品牌活动
                     getBrandList: function () {
                         let vm = this
-                        let params = {
-                            pageNum: 1,
-                            pageSize: 4,
-                            topicCustomTag: '01'
-                        };
-                        indexApi.selectPortalPage(params).then(function (res) {
+                        indexApi.selectPortalPage(vm.params).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.$nextTick(function () {
                                     vm.activeLists = res.result.list
@@ -929,6 +966,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                         })
                     },
+                    //企业学堂
                     getActiveList: function () {
                         var vm = this
                         indexApi.selectIssuePage(vm.activeParams).then(function (res) {
@@ -1037,7 +1075,7 @@ require(['/common/js/require.config.js'], function () {
                     getDemandList: function () {
                         var vm = this
                         indexApi.demandSelectbByPage({
-                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            pageParam: {current: 1, size: 6, order: "desc", sort: "id"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
@@ -1054,7 +1092,7 @@ require(['/common/js/require.config.js'], function () {
                     getGoodsList: function () {
                         var vm = this
                         indexApi.goodsSelectbByPage({
-                            pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                            pageParam: {current: 1, size: 6, order: "desc", sort: "id"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
@@ -1070,7 +1108,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getManagerList: function () {
                         var vm = this
-                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 4, order: "desc", sort: "id"},
+                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 10, order: "desc", sort: "id"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
@@ -1122,10 +1160,19 @@ require(['/common/js/require.config.js'], function () {
                         location.href = url
                     },
                     handleTest: function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
                             window.location.href = "/common/login.html?back=/test.html";
                         } else {
                             window.location.href = "/test.html";
+                        }
+                    },
+                    handleEnterpark:function (){
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/enterpark.html";
+                        } else {
+                            window.location.href = "/enterpark.html";
                         }
                     },
                     getAList: function (id) {
@@ -1182,7 +1229,7 @@ require(['/common/js/require.config.js'], function () {
                     getcmsList: function (channelId) {
                         var vm = this;
                         indexApi.contentList({
-                            pageNum: 1, pageSize: 10, limit: 10, policyFileType: ["07"],
+                            pageNum: 1, pageSize: 16, limit: 16, policyFileType: ["07"],
                             orderBy: "publishDate-desc"
                         }).then(function (res) {
                             res.result.list && res.result.list.forEach(function (item) {
@@ -1230,6 +1277,41 @@ require(['/common/js/require.config.js'], function () {
                             vm.countNumbers[2].num = parseInt(result.techCount) || 0
                             vm.countNumbers[3].num = parseInt(result.policyNum) || 0
                         })
+                    },
+                    handleMall:function(){
+                        if (this.userInfo.userTypes) {
+                            for (var it of this.userInfo.userTypes) {
+                                if (it === "002") {
+                                    this.isSeller = true;
+                                }
+                            }
+                        }
+
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html";
+                            return;
+                        }
+                        if (this.isSeller) {
+                            window.location.href = "/common/seller/index.html";
+                        } else {
+                            window.location.href = "/common/seller/store_agreement.html";
+                        }
+                    },
+                    handleOne:function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/user_market_tech_achievements.html";
+                        } else {
+                            window.location.href = "/common/usercenter/user_market_tech_achievements.html";
+                        }
+                    },
+                    handleTwo:function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/user_market_tech_require.html";
+                        } else {
+                            window.location.href = "/common/usercenter/user_market_tech_require.html";
+                        }
                     },
                     handleUrlBtn: function (e) {
                         var url = e.currentTarget.dataset ? e.currentTarget.dataset.url : e.currentTarget.getAttribute('data-url');
@@ -1346,42 +1428,8 @@ require(['/common/js/require.config.js'], function () {
                     getMailServiceType: function (call) {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
-                            // if (res.code === 'rest.success') {
-                            //     vm.mailServiceTypeList = res.result
-                            //     //知识产权
-                            //     vm.incubationType = res.result.filter(function (s) {
-                            //         return s.id == res.result[0].id;
-                            //     })[0];
-                            //     //法律服务
-                            //     vm.designType = res.result.filter(function (s) {
-                            //         return s.id == res.result[1].id;
-                            //     })[0];
-                            //     //政策申报
-                            //     vm.checkType = res.result.filter(function (s) {
-                            //         return s.id == res.result[2].id;
-                            //     })[0];
-                            //     //工商财税
-                            //     vm.propertyType = res.result.filter(function (s) {
-                            //         return s.id == res.result[3].id;
-                            //     })[0];
-                            //     //评估评价
-                            //     vm.technologyType = res.result.filter(function (s) {
-                            //         return s.id == res.result[4].id;
-                            //     })[0];
-                            //     //检验检测
-                            //     vm.transferType = res.result.filter(function (s) {
-                            //         return s.id == res.result[5].id;
-                            //     })[0];
-                            //     //科技咨询
-                            //     vm.knowledgeType = res.result.filter(function (s) {
-                            //         return s.id == res.result[6].id;
-                            //     })[0];
-                            // }
-
-                                var List = res.result || [];
-                                var list = List.slice(0,6);
+                            var list = res.result || [];
                             //设置板块数据
-
                             for( var key in list){
                                 list[key].goodList = [];
                             }
@@ -1389,6 +1437,20 @@ require(['/common/js/require.config.js'], function () {
                             vm.typeList = list
                             //执行回调
                             typeof call == 'function' ? call():[]
+                            vm.$nextTick(function () {
+                                console.log('---------')
+                            setTimeout(function (){
+                                $(".swiperBox").slide({
+                                    titCell: ".hd ul",
+                                    mainCell: ".bd ul",
+                                    autoPage: true,
+                                    effect:"leftLoop",
+                                    autoPlay: true,
+                                    vis: 4
+                                });
+                            },1000)
+
+                            })
                         })
                     },
                     //技术经理人学院

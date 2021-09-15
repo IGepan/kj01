@@ -18,14 +18,14 @@
             {{ item.value }}
           </a>
         </div>
-        <div class="search_box">
-          <input
-            type="text"
-            placeholder="请输入关键词搜索"
-            v-model="searchData.title"
-          />
-          <span class="iconfont icon-fangdajing"> 检索 </span>
-        </div>
+<!--        <div class="search_box">-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            placeholder="请输入关键词搜索"-->
+<!--            v-model="searchData.title"-->
+<!--          />-->
+<!--          <span class="iconfont icon-fangdajing"> 检索 </span>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ module.exports = {
         {
           id: 0,
           value: "首页",
-          href: "/index.html",
+          href: "/technologyMarket/index.html",
           impro: "index",
         },
         {

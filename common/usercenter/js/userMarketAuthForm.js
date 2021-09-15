@@ -1,8 +1,8 @@
 //   JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver','./userCenterApi/userCenterMarketTechAPI.js'],
-        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom,fileSaver, userCenterApi) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver', './userCenterApi/userCenterMarketTechAPI.js'],
+        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom, fileSaver, userCenterApi) {
 
             Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
@@ -253,13 +253,13 @@ require(['/common/js/require.config.js'], function () {
                     //下载证书图片
                     getZmImg(path) {
                         // var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
-                       var imgUrl = httpUrl.baseSchoolOutUrl + path;
+                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
                         // this.download(imgUrl,1)
                         var lastIndex = path.lastIndexOf("/");
                         var imgName = path.substring(lastIndex);
 
-                        userCenterApi.getZmImg({imgUrl: imgUrl}).then( function (res){
-                           saveAs(res,"证书"+imgName,{ type: 'image/png;charset=utf-8' })
+                        userCenterApi.getZmImg({ imgUrl: imgUrl }).then(function (res) {
+                            saveAs(res, "证书" + imgName, { type: 'image/png;charset=utf-8' })
                         });
 
 
@@ -430,8 +430,17 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingle: function (index) {
                         var _this = this;
+                        let removeId = _this.textList[index].id
                         _this.textList.splice(index, 1);
                         _this.tagList.splice(index, 1);
+
+                        _this.secondOptions.forEach(function (item) {
+                            item.children.forEach(function (i) {
+                                if (i.id == removeId) {
+                                    i.active = false;
+                                }
+                            })
+                        })
 
                     },
                     // 关闭
@@ -511,8 +520,14 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingleIndustry: function (index) {
                         var _this = this;
+                        let removeId = _this.textIndustryList[index].id;
                         _this.textIndustryList.splice(index, 1);
                         _this.industryList.splice(index, 1);
+                        _this.secondIndustryOptions.forEach(function (item) {
+                            if (item.id == removeId) {
+                                item.active = false;
+                            }
+                        })
                     },
                     // 关闭
 
