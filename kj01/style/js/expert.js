@@ -28,12 +28,12 @@ require(['/common/js/require.config.js'], function () {
                             introduction:'',//专家介绍
                             contactName: '',//联系人姓名及职务
                             contactPhone: '',//联系方式
-                            expertPhotos:'',//专家照片
                             expertPhotosId:'',
                             delFlag: '0',
                             version: '0',
                             isSubmit:0,
                         },
+                        expertPhotos:'',//专家照片
                         isActive: false,
                         isClose:false,
                         rules: {
@@ -82,9 +82,7 @@ require(['/common/js/require.config.js'], function () {
                             if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
                                 if (res.result.expertPhotos) {
-                                    this.formData.expertPhotos = res.result.expertPhotos.url;
-                                }else {
-                                    this.formData.expertPhotos = ''
+                                    this.expertPhotos = res.result.expertPhotos.url;
                                 }
                             }
                                 if (this.formData.isSubmit == 1) {

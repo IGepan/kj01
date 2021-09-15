@@ -91,11 +91,8 @@ require(['/common/js/require.config.js'], function () {
                             siteDemand:'',//场地特殊需求
                             service:'',//需要产业园提供服务
                             otherService:'',//其他服务
-                            businessLicense:'',//营业执照
+
                             businessLicenseId:'',
-                            attachmentIdUrl1: '',
-                            attachmentIdUrl2: '',
-                            attachmentIdUrl3: '',//法人身份证
                             attachmentIdUrl1Id:'',
                             attachmentIdUrl2Id:'',
                             attachmentIdUrl3Id:'',
@@ -104,6 +101,10 @@ require(['/common/js/require.config.js'], function () {
                             version: '0',
                             isSubmit:0,
                         },
+                        businessLicense:'',//营业执照
+                        attachmentIdUrl1: '',
+                        attachmentIdUrl2: '',
+                        attachmentIdUrl3: '',//法人身份证
                         isActive: false,
                         isClose:false,
                         rules: {
@@ -198,26 +199,17 @@ require(['/common/js/require.config.js'], function () {
                             }
                            if (res.code == 'rest.success' && res.result) {
                                this.formData = res.result
-
                                if (res.result.businessLicense) {
-                                   this.formData.businessLicense = res.result.businessLicense.url
-                               }else {
-                                   this.formData.businessLicense = '';
+                                   this.businessLicense = res.result.businessLicense.url
                                }
                                if (res.result.attachmentIdUrl1) {
-                                   this.formData.attachmentIdUrl1 = res.result.attachmentIdUrl1.url;
-                               }else {
-                                   this.formData.attachmentIdUrl1 = '';
+                                   this.attachmentIdUrl1 = res.result.attachmentIdUrl1.url;
                                }
                                if (res.result.attachmentIdUrl2) {
-                                   this.formData.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
-                               }else {
-                                   this.formData.attachmentIdUrl2 = '';
+                                   this.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
                                }
                                if(res.result.attachmentIdUrl3){
-                                   this.formData.attachmentIdUrl3 = res.result.attachmentIdUrl3.url
-                               }else{
-                                   this.formData.attachmentIdUrl3 = '';
+                                   this.attachmentIdUrl3 = res.result.attachmentIdUrl3.url
                                }
                                 if (this.formData.isJoinDepository == 1) {
                                     this.isDisabledPlan = true;
@@ -320,22 +312,22 @@ require(['/common/js/require.config.js'], function () {
                     cimgUploadSuccess (successInfo) {
                         if(successInfo.exp.type === 'Photo'){
                             this.formData.businessLicenseId = successInfo.data.id;
-                            this.formData.businessLicense = successInfo.data.url;
+                            this.businessLicense = successInfo.data.url;
                             this.isFileLoad = false
                         }//营业执照
                         if (successInfo.exp.type === 'mainPhoto') {
                             this.formData.attachmentIdUrl1Id = successInfo.data.id;
-                            this.formData.attachmentIdUrl1 = successInfo.data.url;
+                            this.attachmentIdUrl1 = successInfo.data.url;
                             this.isFile1Load = false
                         }
                         if (successInfo.exp.type === 'secrecy') {
                             this.formData.attachmentIdUrl2Id = successInfo.data.id;
-                            this.formData.attachmentIdUrl2 = successInfo.data.url;
+                            this.attachmentIdUrl2 = successInfo.data.url;
                             this.isFile2Load = false
                         }
                         if(successInfo.exp.type === 'certificate'){
                             this.formData.attachmentIdUrl3Id = successInfo.data.id;
-                            this.formData.attachmentIdUrl3 = successInfo.data.url;
+                            this.attachmentIdUrl3 = successInfo.data.url;
                             this.isFile3Load = false
                         }
                     },

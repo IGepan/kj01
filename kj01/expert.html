@@ -189,13 +189,13 @@
             <fieldset class="form__group">
                 <el-form-item class="el-text " label="专家照片" prop="expertPhotos">
                     <div
-                            v-if="this.formData.expertPhotos!==''&&this.formData.expertPhotos"
+                            v-if="this.expertPhotos!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFileLoad}"
-                            :style="{backgroundImage: formData.expertPhotos?'url('+formData.expertPhotos+')':''}"
+                            :style="{backgroundImage: expertPhotos?'url('+expertPhotos+')':''}"
                     ><img
-                            :src="formData.expertPhotos"
+                            :src="expertPhotos"
                             class="opacityZero"
                     ></div>
                     <div v-else></div>
