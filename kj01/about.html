@@ -11,11 +11,20 @@
   <link href="./style/css/icon/iconfont.css" rel="stylesheet">
   <link href="./style/css/about.css" rel="stylesheet" type="text/css">
 </head>
-
+<style>
+  .mmdiv{
+    width: 1440px;
+    margin: 0 auto;
+  }
+</style>
 <body>
 <div class="box" id='index_box' v-cloak>
   <ly-toper ref="lytoper" top-class="white"></ly-toper>
-  <index-head :nav-index="sIndex"></index-head>
+<!--  <index-head :nav-index="sIndex"></index-head>-->
+  <div class="header-box " style="background: #fff;height: 65px;position: relative;">
+    <index-head :nav-index="sIndex"></index-head>
+    <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+  </div>
   <div class="content">
     <div class="mdiv">
       <div class="left">

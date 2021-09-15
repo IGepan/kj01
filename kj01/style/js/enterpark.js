@@ -2,6 +2,7 @@ require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'httpVueLoader', 'httpUrl', '/style/js/api/index.js', 'ELEMENT'],
         function ($, Vue, httpVueLoader, httpUrl, indexApi, ELEMENT) {
             Vue.component('vue-ueditor-wrap', VueUeditorWrap)
+            Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             new Vue({
                 el: '#index_box',
                 data: function () {
@@ -120,19 +121,19 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入场地特殊需求',trigger: 'blur'},
                             ],
                             service: [
-                                {required:true, message: '请输入需要提供的服务',trigger: 'blur'}
+                                {required:true, message: '请输选择需要提供的服务',trigger: 'change'}
                             ],
                             businessLicense: [
-                                {required:true, message: '请上传营业执照副本',trigger: 'blur'}
+                                {required:true, message: '请上传营业执照副本',trigger: 'click'}
                             ],
                             person: [
                                 {required:true, message: '请选择身份',trigger: 'blur'}
                             ],
                             attachmentIdUrl1: [
-                                {required:true, message: '请上传证件正面',trigger: 'blur'}
+                                {required:true, message: '请上传证件正面',trigger:  'blur'}
                             ],
                             attachmentIdUrl2: [
-                                {required:true, message: '请上传证件反面',trigger: 'blur'}
+                                {required:true, message: '请上传证件反面',trigger:  'blur'}
                             ],
                             attachmentIdUrl3: [
                                 {required:true, message: '请上传委托授权书',trigger: 'blur'}
@@ -146,13 +147,13 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader('/style/components/toper.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
-                    'ly-upload': httpVueLoader('/common/components/upload.vue')
+                    // 'ly-upload': httpVueLoader('/common/components/upload.vue')
                 },
                 created() {
                     this.getData()
                 },
                 methods: {
-                    file:function(){
+                    file4:function(){
                         this.isFileLoad = true
             },
                     file3: function () {
@@ -164,7 +165,6 @@ require(['/common/js/require.config.js'], function () {
                     file1: function () {
                         this.isFile1Load = true
                     },
-
                     getData() {
                         indexApi.selectQuest().then((res) => {
                             if(res.code !== 'rest.success'){
@@ -175,7 +175,7 @@ require(['/common/js/require.config.js'], function () {
                                this.formData.businessLicense = res.result.businessLicense.url
                                this.formData.attachmentIdUrl1 = res.result.attachmentIdUrl1.url
                                this.formData.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
-                               if(res.result.attachmentIdUrl3){
+                               if(res.result.attachmentIdUrl3!==''){
                                    this.formData.attachmentIdUrl3 = res.result.attachmentIdUrl3.url
                                }
                                 if (this.formData.isJoinDepository == 1) {
@@ -199,9 +199,10 @@ require(['/common/js/require.config.js'], function () {
                         this.formData.isSubmit = 0
                         indexApi.ApplySubmit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
+
                                 this.$notify.success({
                                     title: '成功！',
-                                    message: '问卷保存成功!',
+                                    message: '保存成功!',
                                     duration: 2000
                                 });
                                 setTimeout(function () {
@@ -240,7 +241,7 @@ require(['/common/js/require.config.js'], function () {
                                         if (res.code == 'rest.success') {
                                             this.$notify.success({
                                                 title: '成功！',
-                                                message: '问卷提交成功!',
+                                                message: '提交成功!',
                                                 duration: 2000
                                             });
                                             setTimeout(function () {

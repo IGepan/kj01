@@ -149,7 +149,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         selectQuestionnaire: function () {
             return Http.get(httpUrl.baseUrl + '/questionnaire/selectByUserId');
         },
-// 入园申请表
+        // 入园申请表
         ApplySubmit: function (param) {
             return Http.post(httpUrl.baseUrl + '/Merchants/insertOrUpdate', param);
         },

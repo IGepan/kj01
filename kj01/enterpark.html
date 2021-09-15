@@ -156,28 +156,22 @@
         <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
             <fieldset class="form__group" >
                 <legend>一、企业基本信息</legend>
-                <el-form-item label="企业名称" prop="companyName" class="el-text">
+                <el-form-item label="企业名称" prop="companyName" class="el-text leftbox">
                     <el-input placeholder="请输入企业名称"
                               v-model="formData.companyName"
                               clearable></el-input>
                 </el-form-item>
-            </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="企业类型" prop="companyType" class="el-text leftbox">
+                <el-form-item label="企业类型" prop="companyType" class="el-text rightbox">
                     <el-input placeholder="请输入企业类型"
                               v-model="formData.companyType"
                               clearable></el-input>
                 </el-form-item>
-                <el-form-item label="注册资本" prop="capital" class="el-text rightbox">
+            </fieldset>
+            <fieldset class="form__group">
+
+                <el-form-item label="注册资本（万元）" prop="capital" class="el-text leftbox">
                     <el-input placeholder="请输入注册资本"
                               v-model="formData.capital"
-                              clearable></el-input>
-                </el-form-item>
-            </fieldset>
-                <fieldset class="form__group">
-                <el-form-item label="经营范围" prop="businessScope" class="el-text leftbox">
-                    <el-input placeholder="请输入经营范围"
-                              v-model="formData.businessScope"
                               clearable></el-input>
                 </el-form-item>
                 <el-form-item label="经营地址" prop="address" class="el-text rightbox">
@@ -185,6 +179,16 @@
                               v-model="formData.address"
                               clearable></el-input>
                 </el-form-item>
+            </fieldset>
+                <fieldset class="form__group">
+                <el-form-item label="经营范围" prop="businessScope" class="el-text ">
+                    <el-input  style="width:100%;min-height: 200px"
+                               type="textarea"
+                               v-model="formData.businessScope"
+                               placeholder="请输入经营范围">
+                    </el-input>
+                </el-form-item>
+
                 </fieldset>
 <!--                <el-form-item label="所属区域" prop="region" class="el-text leftbox">-->
 <!--                    <el-select v-model="formData.region" placeholder="请选择所属区域" class="fl" v-if="formData.isSubmit==1" disabled>-->
@@ -260,7 +264,7 @@
                     </el-input>
 
                 </el-form-item>
-                <el-form-item label="2、需要场地面积" prop="siteArea" class="el-text rightbox">
+                <el-form-item label="2、需要场地面积（平方米）" prop="siteArea" class="el-text rightbox">
                     <el-input placeholder="场地面积"
                               v-model="formData.siteArea"
                               clearable></el-input>
@@ -303,6 +307,7 @@
                 <legend>三、上传附件</legend>
                 <el-form-item class="el-text " label="1、营业执照副本" prop="businessLicense">
                     <div
+                            v-if="this.formData.businessLicense!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFileLoad}"
@@ -311,10 +316,11 @@
                             :src="formData.businessLicense"
                             class="opacityZero"
                     ></div>
+                    <div v-else></div>
                     <label>
                         <ly-upload
                                 :exp="{type: 'Photo'}"
-                                @upstart="file"
+                                @upstart="file4"
                                 @success='cimgUploadSuccess'
                                 style="position: absolute;right: 10000px;"
                                 type='file'
@@ -325,8 +331,9 @@
                         >
                         </ly-upload>
                         <span class="exbtn" :class="{Hide:isShow}" >上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i>
                     </label>
-
                 </el-form-item>
                 <el-form-item class="el-text " label="2、法人代表身份证正反面或法人代表和代理人身份证正反面及委托授权书"
                               prop="person">
@@ -339,6 +346,7 @@
                 <fieldset class="form__group" v-if="formData.person==1">
                 <el-form-item label="身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
                     <div
+                            v-if="this.formData.attachmentIdUrl1!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile1Load}"
@@ -347,7 +355,7 @@
                             :src="formData.attachmentIdUrl1 "
                             class="opacityZero"
                     ></div>
-
+                    <div v-else></div>
                         <label><ly-upload
                                 :exp="{type: 'mainPhoto'}"
                                 @upstart="file1"
@@ -360,11 +368,14 @@
                                 accept="image/*"
                         >
                         </ly-upload>
-                            <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                            <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                            <br>
+                            <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
 
                 </el-form-item>
                 <el-form-item label="身份证背面" class="rightbox" prop="attachmentIdUrl2">
                     <div
+                            v-if="this.formData.attachmentIdUrl2!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile2Load}"
@@ -373,6 +384,7 @@
                             :src="formData.attachmentIdUrl2 "
                             class="opacityZero"
                     ></div>
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'secrecy'}"
                             @upstart="file2"
@@ -385,12 +397,15 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group" v-if="formData.person==2">
                 <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="attachmentIdUrl1">
                     <div
+                            v-if="this.formData.attachmentIdUrl1!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile1Load}"
@@ -399,7 +414,7 @@
                             :src="formData.attachmentIdUrl1"
                             class="opacityZero"
                     ></div>
-
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'mainPhoto'}"
                             @upstart="file1"
@@ -412,11 +427,14 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
 
                 </el-form-item>
                 <el-form-item label="代理人身份证背面" class="rightbox" prop="attachmentIdUrl2">
                     <div
+                            v-if="this.formData.attachmentIdUrl2!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile2Load}"
@@ -424,6 +442,7 @@
                     ><img
                             :src="formData.attachmentIdUrl2 "
                             class="opacityZero" ></div>
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'secrecy'}"
                             @upstart="file2"
@@ -436,10 +455,13 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
                 <el-form-item label="委托授权书" class="leftbox" prop="attachmentIdUrl3">
                     <div
+                            v-if="this.formData.attachmentIdUrl3!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFile3Load}"
@@ -447,6 +469,7 @@
                     ><img
                             :src="formData.attachmentIdUrl3 "
                             class="opacityZero" ></div>
+                    <div v-else></div>
                     <label><ly-upload
                             :exp="{type: 'certificate'}"
                             @upstart="file3"
@@ -459,7 +482,9 @@
                             accept="image/*"
                     >
                     </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span></label>
+                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
+                        <br>
+                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
                 </el-form-item>
             </fieldset>
             <div class="form__submit" style="margin-left: 395px">
