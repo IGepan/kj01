@@ -156,37 +156,39 @@
         <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
             <fieldset class="form__group" >
                 <legend>一、企业基本信息</legend>
-                <el-form-item label="企业名称" prop="companyName" class="el-text">
+                <el-form-item label="企业名称" prop="companyName" class="el-text leftbox">
                     <el-input placeholder="请输入企业名称"
                               v-model="formData.companyName"
                               clearable></el-input>
                 </el-form-item>
-            </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="企业类型" prop="companyType" class="el-text leftbox">
+                <el-form-item label="企业类型" prop="companyType" class="el-text rightbox">
                     <el-input placeholder="请输入企业类型"
                               v-model="formData.companyType"
                               clearable></el-input>
                 </el-form-item>
-                <el-form-item label="注册资本（万元）" prop="capital" class="el-text rightbox">
+            </fieldset>
+            <fieldset class="form__group">
+
+                <el-form-item label="注册资本（万元）" prop="capital" class="el-text leftbox">
                     <el-input placeholder="请输入注册资本"
                               v-model="formData.capital"
                               clearable></el-input>
-                </el-form-item>
-            </fieldset>
-                <fieldset class="form__group">
-                <el-form-item label="经营范围" prop="businessScope" class="el-text leftbox">
-                    <el-input  style="width:80%;min-height: 200px"
-                               type="textarea"
-                               v-model="formData.businessScope"
-                               placeholder="请输入经营范围">
-                    </el-input>
                 </el-form-item>
                 <el-form-item label="经营地址" prop="address" class="el-text rightbox">
                     <el-input placeholder="请输入经营地址"
                               v-model="formData.address"
                               clearable></el-input>
                 </el-form-item>
+            </fieldset>
+                <fieldset class="form__group">
+                <el-form-item label="经营范围" prop="businessScope" class="el-text ">
+                    <el-input  style="width:100%;min-height: 200px"
+                               type="textarea"
+                               v-model="formData.businessScope"
+                               placeholder="请输入经营范围">
+                    </el-input>
+                </el-form-item>
+
                 </fieldset>
 <!--                <el-form-item label="所属区域" prop="region" class="el-text leftbox">-->
 <!--                    <el-select v-model="formData.region" placeholder="请选择所属区域" class="fl" v-if="formData.isSubmit==1" disabled>-->
