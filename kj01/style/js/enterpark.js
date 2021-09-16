@@ -46,6 +46,32 @@ require(['/common/js/require.config.js'], function () {
                                 value: '其他',
                                 label: '其他'
                             }],
+                        companyTypeList: [
+                            {
+                                value: '国有企业',
+                                label: '国有企业'
+                            }, {
+                                value: '集体企业',
+                                label: '集体企业'
+                            }, {
+                                value: '股份制企业',
+                                label: '股份制企业'
+                            }, {
+                                value: '港澳台企业',
+                                label: '港澳台企业'
+                            }, {
+                                value: '外商投资企业',
+                                label: '外商投资企业'
+                            },
+                            {
+                                value: '民营企业',
+                                label: '民营企业'
+                            },
+                            {
+                                value: '其他企业',
+                                label: '其他企业'
+                            }],
+
                         formData: {
                             id: '',
                             companyName: '',//企业名称
@@ -65,11 +91,8 @@ require(['/common/js/require.config.js'], function () {
                             siteDemand:'',//场地特殊需求
                             service:'',//需要产业园提供服务
                             otherService:'',//其他服务
-                            businessLicense:'',//营业执照
+
                             businessLicenseId:'',
-                            attachmentIdUrl1: '',
-                            attachmentIdUrl2: '',
-                            attachmentIdUrl3: '',//法人身份证
                             attachmentIdUrl1Id:'',
                             attachmentIdUrl2Id:'',
                             attachmentIdUrl3Id:'',
@@ -78,6 +101,10 @@ require(['/common/js/require.config.js'], function () {
                             version: '0',
                             isSubmit:0,
                         },
+                        businessLicense:'',//营业执照
+                        attachmentIdUrl1: '',
+                        attachmentIdUrl2: '',
+                        attachmentIdUrl3: '',//法人身份证
                         isActive: false,
                         isClose:false,
                         rules: {
@@ -86,7 +113,7 @@ require(['/common/js/require.config.js'], function () {
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             companyType: [
-                                {required: true, message: '请输入企业类型',trigger: 'blur'},
+                                {required: true, message: '请选择企业类型',trigger: 'blur'},
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             capital: [
@@ -106,7 +133,7 @@ require(['/common/js/require.config.js'], function () {
                             ],
                             contactPhone: [
                                 {required: true, message: '请填写联系方式',trigger: 'blur'},
-                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             companyProfile: [
                                 {required: true, message: '请输入企业简介',trigger: 'blur'},
@@ -121,7 +148,7 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入场地特殊需求',trigger: 'blur'},
                             ],
                             service: [
-                                {required:true, message: '请输选择需要提供的服务',trigger: 'change'}
+                                {required:true, message: '请输选择需要提供的服务',trigger: 'blur'}
                             ],
                             businessLicense: [
                                 {required:true, message: '请上传营业执照副本',trigger: 'click'}
@@ -172,11 +199,17 @@ require(['/common/js/require.config.js'], function () {
                             }
                            if (res.code == 'rest.success' && res.result) {
                                this.formData = res.result
-                               this.formData.businessLicense = res.result.businessLicense.url
-                               this.formData.attachmentIdUrl1 = res.result.attachmentIdUrl1.url
-                               this.formData.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
-                               if(res.result.attachmentIdUrl3!==''){
-                                   this.formData.attachmentIdUrl3 = res.result.attachmentIdUrl3.url
+                               if (res.result.businessLicense) {
+                                   this.businessLicense = res.result.businessLicense.url
+                               }
+                               if (res.result.attachmentIdUrl1) {
+                                   this.attachmentIdUrl1 = res.result.attachmentIdUrl1.url;
+                               }
+                               if (res.result.attachmentIdUrl2) {
+                                   this.attachmentIdUrl2 = res.result.attachmentIdUrl2.url
+                               }
+                               if(res.result.attachmentIdUrl3){
+                                   this.attachmentIdUrl3 = res.result.attachmentIdUrl3.url
                                }
                                 if (this.formData.isJoinDepository == 1) {
                                     this.isDisabledPlan = true;
@@ -279,22 +312,22 @@ require(['/common/js/require.config.js'], function () {
                     cimgUploadSuccess (successInfo) {
                         if(successInfo.exp.type === 'Photo'){
                             this.formData.businessLicenseId = successInfo.data.id;
-                            this.formData.businessLicense = successInfo.data.url;
+                            this.businessLicense = successInfo.data.url;
                             this.isFileLoad = false
                         }//营业执照
                         if (successInfo.exp.type === 'mainPhoto') {
                             this.formData.attachmentIdUrl1Id = successInfo.data.id;
-                            this.formData.attachmentIdUrl1 = successInfo.data.url;
+                            this.attachmentIdUrl1 = successInfo.data.url;
                             this.isFile1Load = false
                         }
                         if (successInfo.exp.type === 'secrecy') {
                             this.formData.attachmentIdUrl2Id = successInfo.data.id;
-                            this.formData.attachmentIdUrl2 = successInfo.data.url;
+                            this.attachmentIdUrl2 = successInfo.data.url;
                             this.isFile2Load = false
                         }
                         if(successInfo.exp.type === 'certificate'){
                             this.formData.attachmentIdUrl3Id = successInfo.data.id;
-                            this.formData.attachmentIdUrl3 = successInfo.data.url;
+                            this.attachmentIdUrl3 = successInfo.data.url;
                             this.isFile3Load = false
                         }
                     },

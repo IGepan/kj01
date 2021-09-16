@@ -46,7 +46,9 @@
         background: #018fff;
         color: #FFFFff;
         display: inline-block;
-        margin-left: calc((1440px - 200px)/2);
+        margin-left: calc((1440px - 126px)/2);
+        box-shadow: 0px 0px 11px #ddd;
+        border-radius: 10px;
     }
     .btn:hover{
         background: #f0ad4e;
@@ -172,7 +174,8 @@
                         </div>
                         <div class="detail-content" v-html="details.txt">
                         </div>
-                        <div v-if="details.id=='333717138270298112'"><a class="btn">易智网专家入驻</a></div>
+                        <div v-if="details.id=='424948758916173824'"><a class="btn" href="expert.html">立即申请</a></div>
+                        <div v-if="details.id=='424948649155432448'"><a class="btn" href="mechanism.html">立即申请</a></div>
 <!--                        <template v-if="details.fileId">-->
 <!--                            <div class="article-files">-->
 <!--                                <div class="article-files-title"><span class="title-text">附件</span></div>-->
