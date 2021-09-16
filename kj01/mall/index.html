@@ -189,7 +189,7 @@
             </div>
         </div>
         <div class="icon-box">
-            <template v-for="(item, ni) in typeList">
+            <template v-for="(item, ni) in typeList" v-if="ni>7">
                 <div class="boxlist fl" :key="ni">
                         <img :src="url[ni]">
                     <div>
