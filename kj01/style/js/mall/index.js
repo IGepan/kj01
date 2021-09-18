@@ -8,7 +8,7 @@ require(['/common/js/require.config.js'], function () {
                     saasId: '',
                     mailSite: {},
                     mailServiceTypeList: [],
-                    knowledgeTypeList:[],
+                    knowledgeTypeList: [],
                     incubationTypeList: [],
                     designTypeList: [],
                     checkTypeList: [],
@@ -26,7 +26,7 @@ require(['/common/js/require.config.js'], function () {
                     //精选服务
                     chooseGoods: [],
                     //最新入驻
-                    newShops:[],
+                    newShops: [],
                     goodFormData: {
                         chosenFlag: '',
                         pageSize: '',
@@ -50,49 +50,18 @@ require(['/common/js/require.config.js'], function () {
                     },
                     title: '',
                     userInfo: {},
-                    changeSelectStyle:'0',//索引样式
+                    changeSelectStyle: '0',//索引样式
                     isSeller: false,
-                    typeList:[],//板块列表
-                    goodList:[],//板块数据列表
-                    bgcolor:[
-                        'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7','bg6','bg8','bg9','bg10'
+                    typeList: [],//板块列表
+                    goodList: [],//板块数据列表
+                    bgcolor: [
+                        'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7', 'bg6', 'bg8', 'bg9', 'bg10'
                     ],
-                    url:['/mall/images/icon1.png','/mall/images/icon2.png','/mall/images/icon3.png','/mall/images/icon4.png','/mall/images/icon5.png','/mall/images/icon6.png','/mall/images/icon7.png'],
-                    scrollList:[]
+                    url: ['/mall/images/icon1.png', '/mall/images/icon2.png', '/mall/images/icon3.png', '/mall/images/icon4.png', '/mall/images/icon5.png', '/mall/images/icon6.png', '/mall/images/icon7.png',
+                        '/mall/images/icon7.png', '/mall/images/icon8.png',
+                    ],
+                    scrollList: [],
                 },
-                // filters: {
-                //     formatPrice: function (flag, v, n, m) {
-                //         if (flag === '2') {
-                //             return '面议'
-                //         }if(flag === "3"){
-                //             return '查看价格详情'
-                //         }else {
-                //             if (typeof v !== 'undefined') {
-                //                 return (v / 10000).toFixed(2)
-                //             } else if (!v && !m) {
-                //                 return (n / 10000).toFixed(2)
-                //             } else {
-                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                //             }
-                //         }
-                //     },
-                //     formatPrice2: function (flag, v, n, m) {
-                //         if (flag === '2') {
-                //             return '面议'
-                //         }if(flag === "3"){
-                //             return '查看价格详情'
-                //         }else {
-                //             if (typeof v !== 'undefined') {
-                //                 return (v / 10000).toFixed(2)
-                //             } else if (!v && !m) {
-                //                 return (n / 10000).toFixed(2)
-                //             } else {
-                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                //             }
-                //         }
-                //     },
-                // },
-
                 // filters: {
                 //     formatPrice: function (flag, v, n, m) {
                 //         if (flag === '2') {

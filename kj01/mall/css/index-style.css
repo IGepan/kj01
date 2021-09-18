@@ -882,14 +882,17 @@ a:hover {
   background-size: cover;
 }
 .icon-box{
-  display: inline-block;
+  display: flex;
   width: 100%;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
   padding: 10px 0;
 }
 .boxlist{
   border-right: 1px solid #dddddd;
   text-align: center;
-  width: 14.28%;
+ flex: 1;
 }
 .boxs{
   flex: 1;

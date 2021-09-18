@@ -10,11 +10,11 @@ module.exports = {
   props: {
     time: {
       type: Number,
-      default: 2
+      default: 1
     },
     value: {
       type: Number,
-      default: 720000
+      default: 10000
     },
     color: {
       type: String,
