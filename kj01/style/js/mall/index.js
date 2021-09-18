@@ -58,7 +58,7 @@ require(['/common/js/require.config.js'], function () {
                         'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7', 'bg6', 'bg8', 'bg9', 'bg10'
                     ],
                     url: ['/mall/images/icon1.png', '/mall/images/icon2.png', '/mall/images/icon3.png', '/mall/images/icon4.png', '/mall/images/icon5.png', '/mall/images/icon6.png', '/mall/images/icon7.png',
-                        '/mall/images/icon7.png', '/mall/images/icon8.png',
+                        '/mall/images/icon8.png', '/mall/images/icon9.png',
                     ],
                     scrollList: [],
                 },
