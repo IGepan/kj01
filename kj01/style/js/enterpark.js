@@ -82,10 +82,10 @@ require(['/common/js/require.config.js'], function () {
                             contactName: '',//联系人姓名及职务
                             contactPhone: '',//联系方式
                             companyProfile:'',//企业简介
-                            isJoinDepository: 2,//是否入科技型企业库
-                            plan: 1,//是否计划入科技型企业库
-                            highTech: 2,//是否是高新技术企业
-                            declare: 1,//是否计划申报高新技术企业
+                            // isJoinDepository: 2,//是否入科技型企业库
+                            // plan: 1,//是否计划入科技型企业库
+                            // highTech: 2,//是否是高新技术企业
+                            // declare: 1,//是否计划申报高新技术企业
                             officeStaff:'',//办公人数
                             siteArea:'',//场地面积
                             siteDemand:'',//场地特殊需求

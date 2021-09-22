@@ -228,32 +228,32 @@
                     </vue-ueditor-wrap>
                 </el-form-item>
             </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="是否入科技型企业库" prop="isJoinDepository"class="el-text leftbox">
-                    <el-radio-group v-model="formData.isJoinDepository" @change="handlePlan" >
-                            <el-radio :label="1"  border >是</el-radio>
-                            <el-radio :label="2"  border>否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox">
-                    <el-radio-group v-model="formData.plan" :disabled="isDisabledPlan">
-                            <el-radio :label="1"  border>是</el-radio>
-                            <el-radio :label="2"  border>否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="是否是高新技术企业" prop="highTech" class="el-text leftbox ">
-                    <el-radio-group v-model="formData.highTech" @change="handleDeclare" >
-                        <el-radio :label="1" border >是</el-radio>
-                        <el-radio :label="2"  border>否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="是否计划申报高新技术企业" prop="declare" class="el-text  rightbox">
-                    <el-radio-group v-model="formData.declare" :disabled="isDisabledDeclare">
-                        <el-radio :label="1" border>是</el-radio>
-                        <el-radio :label="2"  border>否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-            </fieldset>
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="是否入科技型企业库" prop="isJoinDepository"class="el-text leftbox">-->
+<!--                    <el-radio-group v-model="formData.isJoinDepository" @change="handlePlan" >-->
+<!--                            <el-radio :label="1"  border >是</el-radio>-->
+<!--                            <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox">-->
+<!--                    <el-radio-group v-model="formData.plan" :disabled="isDisabledPlan">-->
+<!--                            <el-radio :label="1"  border>是</el-radio>-->
+<!--                            <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="是否是高新技术企业" prop="highTech" class="el-text leftbox ">-->
+<!--                    <el-radio-group v-model="formData.highTech" @change="handleDeclare" >-->
+<!--                        <el-radio :label="1" border >是</el-radio>-->
+<!--                        <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="是否计划申报高新技术企业" prop="declare" class="el-text  rightbox">-->
+<!--                    <el-radio-group v-model="formData.declare" :disabled="isDisabledDeclare">-->
+<!--                        <el-radio :label="1" border>是</el-radio>-->
+<!--                        <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
             <fieldset class="form__group">
                 <legend>二、企业需求</legend>
                 <el-form-item label="1、拟常驻产业园人数（办公人数）" prop="officeStaff" class="el-text leftbox">
