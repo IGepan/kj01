@@ -132,20 +132,12 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <el-form-item label="联系人手机" prop="contactPhone" class="el-text leftbox ">
-                    <el-input placeholder="请输入联系手机"
-                              v-model="formData.contactPhone"
-                              maxlength="12"
-                              clearable></el-input>
-                </el-form-item>
-                <el-form-item label="E-mail" prop="email" class="el-text rightbox">
+                <el-form-item label="E-mail" prop="email" class="el-text leftbox">
                     <el-input placeholder="email"
                               v-model="formData.email"
                               clearable></el-input>
                 </el-form-item>
-            </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="服务类别" prop="service" class="el-text leftbox">
+                <el-form-item label="服务类别" prop="service" class="el-text rightbox">
                     <el-select v-model="formData.service" placeholder="请选择服务" class="fl" style="width: 100%" v-if="formData.isSubmit==1" disabled>
                         <el-option
                                 v-for="(item,index) in serviceList"
@@ -162,9 +154,10 @@
                                 :value="item.value">
                         </el-option>
                     </el-select>
-
                 </el-form-item>
-                <el-form-item label="其他" prop="otherService" class="el-text rightbox" v-if="formData.service=='其他'">
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="其他" prop="otherService" class="el-text" v-if="formData.service=='其他'">
                     <el-input placeholder="请输入其他服务"
                               v-model="formData.otherService"
                               clearable></el-input>
@@ -178,7 +171,7 @@
             </fieldset>
 
             <fieldset class="form__group">
-                <el-form-item label="获得专业服务资质情况" prop="qualifications" >
+                <el-form-item label="服务案例" prop="qualifications" >
                     <vue-ueditor-wrap v-model="formData.qualifications" :config="ueditorConfig" class="exptextarea">
                     </vue-ueditor-wrap>
                 </el-form-item>
