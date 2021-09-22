@@ -30,7 +30,7 @@ require(['/common/js/require.config.js'], function () {
                     // sels: [],
                     // sysUnread: '',
                     // busUnread: '',
-
+                    areaList: [],
                     "intended_price_list": [
                         { "name": "金额", "value": 0 },
                         { "name": "面议", "value": 1 },
@@ -72,6 +72,8 @@ require(['/common/js/require.config.js'], function () {
                         "demandDes": "",
                         "technicalNorm": "",
                         "otherDes": "",
+                        "area": "",
+                        "companyName": "",
                     }, // 需求d对象
 
 
@@ -109,7 +111,7 @@ require(['/common/js/require.config.js'], function () {
                     // 查询下拉框字典
                     _this.find_dictionary_type_list();
 
-
+                    _this.selectArea();
                     // 查询树状
                     _this.findTechPatentTree("tag");
                     _this.findTechIndustryType("industryType");
@@ -131,7 +133,12 @@ require(['/common/js/require.config.js'], function () {
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
                 },
                 methods: {
-
+                    //查询地区
+                    selectArea() {
+                        userCenterApi.selectAllArea().then(res => {
+                            this.areaList = res.result
+                        });
+                    },
                     ///////////查询三级级联////////
                     // 查询树状（标签）
                     findTechPatentTree: function (form) {
@@ -424,6 +431,10 @@ require(['/common/js/require.config.js'], function () {
                             _this.$dialog.showToast("需求名称必填");
                             return false;
                         }
+                        if (!_this.$utils.validatesEmpty(form.companyName)) {
+                            _this.$dialog.showToast("单位名称必填");
+                            return false;
+                        }
                         if (form.demandIndustryType.length < 1) {
                             _this.$dialog.showToast("行业类型必填");
                             return false;
@@ -449,6 +460,10 @@ require(['/common/js/require.config.js'], function () {
 
                         if (!_this.$utils.validatesEmpty(form.cooperationMode)) {
                             _this.$dialog.showToast("合作方式必填");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.area)) {
+                            _this.$dialog.showToast("所属区县必填");
                             return false;
                         }
                         if (!_this.$utils.validatesEmpty(form.demandDes)) {
