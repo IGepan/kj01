@@ -67,7 +67,12 @@
                                 placeholder="请输入需求名称,最大50字符" maxlength="50">
                             </el-input>
                         </div>
-
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>单位名称：</span>
+                            <el-input v-model="proRequireForm.companyName" value="title" class="width_100_115"
+                                      placeholder="请输入单位名称">
+                            </el-input>
+                        </div>
 
                         <div class="clear">
                             <div class="width_100 margin_tb_10 clear">
@@ -203,6 +208,15 @@
                                 class="width_100_115">
                                 <el-option v-for="item in cooperation_mode_list" :key="item.id" :label="item.display"
                                     :value="item.dictValue">
+                                </el-option>
+                            </el-select>
+                        </div>
+                        <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>所属区县：</span>
+                            <el-select v-model="proRequireForm.area" placeholder="所属区县"
+                                       class="width_100_115">
+                                <el-option v-for="item in areaList" :key="item.id" :label="item.display"
+                                           :value="item.display">
                                 </el-option>
                             </el-select>
                         </div>
