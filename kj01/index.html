@@ -34,13 +34,75 @@
     .toper-bg a img{
         width: 100%;
     }
-    .toper-bg.nodiv{display: none}
+    .toper-bg.nodiv{display: none;}
+
+    .studybox{
+        position: fixed;
+        z-index: 99;
+        right: 0;
+        width: 220px;
+        top:660px
+    }
+    .studybox img{
+        width: 100%;
+    }
+    .tanchuang.nodiv {
+       display:none;
+    }
+    .tanchuang{
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        -webkit-animation: fadelogIn .3s;
+        animation: fadelogIn .3s;
+    }
+    .ibox{
+        position: fixed;
+        z-index: 999;
+        left: 50%;
+        width: 600px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
+    .ibox i{
+        width: 100%;
+        font-size: 48px;
+        color: #FFFFff;
+        text-align: center;
+    }
+    @keyframes fadelogIn {
+        0% {
+            -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%,0);
+
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+    @-webkit-keyframes fadelogIn {
+        0% {
+            -webkit-transform: translate3d(0, -100%,0);
+        }
+        100% {
+            -webkit-transform: none;
+        }
+    }
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
     <div class="toper-bg" v-bind:class="{ nodiv: boxActive}">
        <i class="el-icon-circle-close" @click="qiehuan"></i>
-       <img src="/style/images/index/top.png" width="100%" height="60"/>
+       <a href="mall/article.html" target="_blank"><img src="/style/images/index/top.png" width="100%" height="60"/></a>
     </div>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
     <div class="header-box " style="background: #fff;height: 65px;position: relative">
@@ -48,7 +110,14 @@
        <index-head></index-head>
 <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
     </div>
-
+<!--    易智商城入驻弹窗-->
+     <div class="tanchuang dialogSlipToUp" v-bind:class="{ nodiv: iboxActive}" id="showbg">
+         <div class="ibox">
+             <i class="el-icon-circle-close" @click="Close"></i>
+             <a href="mall/article.html" target="_blank"><img src="/style/images/index/mall2.png"/>
+                 <img src="/style/images/index/mall.gif"/></a>
+         </div>
+     </div>
     <div class="slideshow">
         <div class="bannerBox" style="width:100%;height:388px;background: url(/style/images/index/banner.png)no-repeat center;background-size: cover"></div>
 <!--        <div class="bannerBox swiper-container" style="width:100%;height: 420px;" id="swiper-containerIndex">-->
@@ -114,25 +183,13 @@
             <div class="mdiv slideTxtBox">
                     <div class="bd">
                         <ul>
-                            <li><a href="enterpark.html"><h3>入园申请表</h3>云水苑数字经济产业园</a></li>
-                            <li><a href="test.html"><h3>问卷调查</h3>两江新区企业科技创新情况</a></li>
-
-<!--                           <li > <el-popover-->
-<!--                                   placement="top-start"-->
-<!--                                   width="100%"-->
-<!--                                   trigger="hover">-->
-<!--                                <div class="tanbox" >-->
-<!--                                    <el-button type="primary">易智网专家入驻</el-button>-->
-<!--                                    <el-button type="primary">易智网平台入驻</el-button>-->
-<!--                                </div>-->
-<!--                                <a @click="handleMall"  slot="reference"><h3>入驻易智商城</h3>诚邀专业技术服务机构和人才入驻</a>-->
-<!--                            </el-popover>-->
-<!--                            </li>-->
-                            <li> <a href="/platform.html?nowIndex=4&id=424948649155432448"><h3>平台入驻易智网</h3>诚邀专业技术服务机构入驻</a></li>
-                            <li> <a href="/platform.html?nowIndex=4&id=424948758916173824"><h3>专家入驻易智网</h3>诚邀专家入驻</a></li>
-                            <li><a href="technologyMarket/technical_manager.html"><h3>找技术经纪人</h3>全网寻找技术经纪人活动开启</a></li>
-                            <li><a @click="handleOne"><h3>技术成果发布</h3>快速发布您的科技成果</a></li>
-                            <li><a @click="handleTwo"><h3>技术需求发布</h3>快速发布您的技术需求</a></li>
+                            <li><a href="enterpark.html" target="_blank"><h3>入园申请表</h3>云水苑数字经济产业园</a></li>
+                            <li><a href="test.html" target="_blank"><h3>问卷调查</h3>两江新区企业科技创新情况</a></li>
+                            <li> <a><h3>入驻易智商城</h3>诚邀专业技术服务机构和人才入驻</a></li>
+<!--                            <li> <a href="/platform.html?nowIndex=4&id=424948758916173824"><h3>专家入驻易智网</h3>诚邀专家入驻</a></li>-->
+                            <li><a href="technologyMarket/technical_manager.html" target="_blank"><h3>找技术经纪人</h3>全网寻找技术经纪人活动开启</a></li>
+                            <li><a @click="handleOne" target="_blank"><h3>技术成果发布</h3>快速发布您的科技成果</a></li>
+                            <li><a @click="handleTwo" target="_blank"><h3>技术需求发布</h3>快速发布您的技术需求</a></li>
 <!--                            <li><a href="https://www.yunyao365.com/book_preview/SKmvox28i4ml"><h3>重庆科技成果转移转化峰会</h3></a></li>-->
                         </ul>
                     </div>
@@ -187,10 +244,10 @@
 <!--                <a href="platform.html">征集科技服务机构入驻易智商城</a>-->
 <!--            </div>-->
 <!--            <div class="mdiv">< a href=" " >< img  src="./style/images/index/achieve.png"><a class="achlink">点击查看更多</ a></ a></div>-->
-<!--            <div class="studybox">-->
-<!--                <a  class="fl" href="/platform.html?nowIndex=4&id=407233432439021568"><img src="/style/images/index/bg1.gif"></a>-->
+            <div class="studybox">
+                <a @click="handleTwo"><img src="/style/images/index/frbox.png"></a>
 <!--                <a class="fr" href="/platform.html?nowIndex=4&id=407233559568375808"><img src="/style/images/index/bg2.png"></a>-->
-<!--            </div>-->
+            </div>
         </div>
     </div>
     <div class="container-top">

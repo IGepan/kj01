@@ -183,19 +183,19 @@
                     </el-select>
                 </el-form-item>
             </fieldset>
-            <fieldset class="form__group">
+<!--            <fieldset class="form__group">-->
 
-                <el-form-item label="注册资本（万元）" prop="capital" class="el-text leftbox">
-                    <el-input placeholder="请输入注册资本"
-                              v-model="formData.capital"
-                              clearable></el-input>
-                </el-form-item>
-                <el-form-item label="经营地址" prop="address" class="el-text rightbox">
-                    <el-input placeholder="请输入经营地址"
-                              v-model="formData.address"
-                              clearable></el-input>
-                </el-form-item>
-            </fieldset>
+<!--                <el-form-item label="注册资本（万元）" prop="capital" class="el-text leftbox">-->
+<!--                    <el-input placeholder="请输入注册资本"-->
+<!--                              v-model="formData.capital"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="经营地址" prop="address" class="el-text rightbox">-->
+<!--                    <el-input placeholder="请输入经营地址"-->
+<!--                              v-model="formData.address"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
 
             <fieldset class="form__group">
                 <el-form-item label="联系人姓名及职务" prop="contactName" class="el-text leftbox clear">
@@ -211,16 +211,16 @@
                 </el-form-item>
 
             </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="经营范围" prop="businessScope" class="el-text ">
-                    <el-input  style="width:100%;min-height: 200px"
-                               type="textarea"
-                               v-model="formData.businessScope"
-                               placeholder="请输入经营范围">
-                    </el-input>
-                </el-form-item>
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="经营范围" prop="businessScope" class="el-text ">-->
+<!--                    <el-input  style="width:100%;min-height: 200px"-->
+<!--                               type="textarea"-->
+<!--                               v-model="formData.businessScope"-->
+<!--                               placeholder="请输入经营范围">-->
+<!--                    </el-input>-->
+<!--                </el-form-item>-->
 
-            </fieldset>
+<!--            </fieldset>-->
             <fieldset class="form__group">
                 <legend>企业简介（主营业务、产品及服务、规模布局等）</legend>
                 <el-form-item  prop="companyProfile" >
@@ -302,190 +302,190 @@
                               clearable></el-input>
                 </el-form-item>
             </fieldset>
-            <fieldset class="form__group">
-                <legend>三、上传附件</legend>
-                <el-form-item class="el-text " label="1、营业执照副本" prop="this.businessLicense">
-                    <div
-                            v-if="this.businessLicense!==''"
-                            class="head"
-                            v-viewer
-                            :class="{loading: isFileLoad}"
-                            :style="{backgroundImage:businessLicense?'url('+businessLicense+')':''}"
-                    ><img
-                            :src="businessLicense"
-                            class="opacityZero"
-                    ></div>
-                    <div v-else></div>
-                    <label>
-                        <ly-upload
-                                :exp="{type: 'Photo'}"
-                                @upstart="file4"
-                                @success='cimgUploadSuccess'
-                                style="position: absolute;right: 10000px;"
-                                type='file'
-                                :header='uploadHeader'
-                                :url='fileUploadUrl'
-                                :data='uploadData'
-                                accept="image/*"
-                        >
-                        </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}" >上传</span>
-                        <br>
-                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i>
-                    </label>
-                </el-form-item>
-                <el-form-item class="el-text " label="2、法人代表身份证正反面或法人代表和代理人身份证正反面及委托授权书"
-                              prop="person">
-                        <el-radio-group v-model="formData.person" >
-                            <el-radio :label="1"  border >法人</el-radio>
-                            <el-radio :label="2"  border>法人代表</el-radio>
-                        </el-radio-group>
-                </el-form-item>
-            </fieldset>
-                <fieldset class="form__group" v-if="formData.person==1">
-                <el-form-item label="身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">
-                    <div
-                            v-if="this.attachmentIdUrl1!==''"
-                            class="head"
-                            v-viewer
-                            :class="{loading: isFile1Load}"
-                            :style="{backgroundImage:attachmentIdUrl1?'url('+attachmentIdUrl1+')':''}"
-                    ><img
-                            :src="attachmentIdUrl1 "
-                            class="opacityZero"
-                    ></div>
-                    <div v-else></div>
-                        <label><ly-upload
-                                :exp="{type: 'mainPhoto'}"
-                                @upstart="file1"
-                                @success='cimgUploadSuccess'
-                                style="position: absolute;right: 10000px;"
-                                type='file'
-                                :header='uploadHeader'
-                                :url='fileUploadUrl'
-                                :data='uploadData'
-                                accept="image/*"
-                        >
-                        </ly-upload>
-                            <span class="exbtn" :class="{Hide:isShow}">上传</span>
-                            <br>
-                            <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
+<!--            <fieldset class="form__group">-->
+<!--                <legend>三、上传附件</legend>-->
+<!--                <el-form-item class="el-text " label="1、营业执照副本" prop="this.businessLicense">-->
+<!--                    <div-->
+<!--                            v-if="this.businessLicense!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFileLoad}"-->
+<!--                            :style="{backgroundImage:businessLicense?'url('+businessLicense+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="businessLicense"-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label>-->
+<!--                        <ly-upload-->
+<!--                                :exp="{type: 'Photo'}"-->
+<!--                                @upstart="file4"-->
+<!--                                @success='cimgUploadSuccess'-->
+<!--                                style="position: absolute;right: 10000px;"-->
+<!--                                type='file'-->
+<!--                                :header='uploadHeader'-->
+<!--                                :url='fileUploadUrl'-->
+<!--                                :data='uploadData'-->
+<!--                                accept="image/*"-->
+<!--                        >-->
+<!--                        </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}" >上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i>-->
+<!--                    </label>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item class="el-text " label="2、法人代表身份证正反面或法人代表和代理人身份证正反面及委托授权书"-->
+<!--                              prop="person">-->
+<!--                        <el-radio-group v-model="formData.person" >-->
+<!--                            <el-radio :label="1"  border >法人</el-radio>-->
+<!--                            <el-radio :label="2"  border>法人代表</el-radio>-->
+<!--                        </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+<!--                <fieldset class="form__group" v-if="formData.person==1">-->
+<!--                <el-form-item label="身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl1!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile1Load}"-->
+<!--                            :style="{backgroundImage:attachmentIdUrl1?'url('+attachmentIdUrl1+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl1 "-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                        <label><ly-upload-->
+<!--                                :exp="{type: 'mainPhoto'}"-->
+<!--                                @upstart="file1"-->
+<!--                                @success='cimgUploadSuccess'-->
+<!--                                style="position: absolute;right: 10000px;"-->
+<!--                                type='file'-->
+<!--                                :header='uploadHeader'-->
+<!--                                :url='fileUploadUrl'-->
+<!--                                :data='uploadData'-->
+<!--                                accept="image/*"-->
+<!--                        >-->
+<!--                        </ly-upload>-->
+<!--                            <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                            <br>-->
+<!--                            <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
 
-                </el-form-item>
-                <el-form-item label="身份证背面" class="rightbox" prop="this.attachmentIdUrl2">
-                    <div
-                            v-if="this.attachmentIdUrl2!==''"
-                            class="head"
-                            v-viewer
-                            :class="{loading: isFile2Load}"
-                            :style="{backgroundImage: attachmentIdUrl2?'url('+attachmentIdUrl2+')':''}"
-                    ><img
-                            :src="attachmentIdUrl2 "
-                            class="opacityZero"
-                    ></div>
-                    <div v-else></div>
-                    <label><ly-upload
-                            :exp="{type: 'secrecy'}"
-                            @upstart="file2"
-                            @success='cimgUploadSuccess'
-                            style="position: absolute;right: 10000px;"
-                            type='file'
-                            :header='uploadHeader'
-                            :url='fileUploadUrl'
-                            :data='uploadData'
-                            accept="image/*"
-                    >
-                    </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
-                        <br>
-                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
-                </el-form-item>
-            </fieldset>
-            <fieldset class="form__group" v-if="formData.person==2">
-                <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">
-                    <div
-                            v-if="this.attachmentIdUrl1!==''"
-                            class="head"
-                            v-viewer
-                            :class="{loading: isFile1Load}"
-                            :style="{backgroundImage: attachmentIdUrl1?'url('+attachmentIdUrl1+')':''}"
-                    ><img
-                            :src="attachmentIdUrl1"
-                            class="opacityZero"
-                    ></div>
-                    <div v-else></div>
-                    <label><ly-upload
-                            :exp="{type: 'mainPhoto'}"
-                            @upstart="file1"
-                            @success='cimgUploadSuccess'
-                            style="position: absolute;right: 10000px;"
-                            type='file'
-                            :header='uploadHeader'
-                            :url='fileUploadUrl'
-                            :data='uploadData'
-                            accept="image/*"
-                    >
-                    </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
-                        <br>
-                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
+<!--                </el-form-item>-->
+<!--                <el-form-item label="身份证背面" class="rightbox" prop="this.attachmentIdUrl2">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl2!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile2Load}"-->
+<!--                            :style="{backgroundImage: attachmentIdUrl2?'url('+attachmentIdUrl2+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl2 "-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'secrecy'}"-->
+<!--                            @upstart="file2"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+<!--            <fieldset class="form__group" v-if="formData.person==2">-->
+<!--                <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl1!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile1Load}"-->
+<!--                            :style="{backgroundImage: attachmentIdUrl1?'url('+attachmentIdUrl1+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl1"-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'mainPhoto'}"-->
+<!--                            @upstart="file1"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
 
-                </el-form-item>
-                <el-form-item label="代理人身份证背面" class="rightbox" prop="this.attachmentIdUrl2">
-                    <div
-                            v-if="this.attachmentIdUrl2!==''"
-                            class="head"
-                            v-viewer
-                            :class="{loading: isFile2Load}"
-                            :style="{backgroundImage:attachmentIdUrl2?'url('+attachmentIdUrl2+')':''}"
-                    ><img
-                            :src="attachmentIdUrl2"
-                            class="opacityZero" ></div>
-                    <div v-else></div>
-                    <label><ly-upload
-                            :exp="{type: 'secrecy'}"
-                            @upstart="file2"
-                            @success='cimgUploadSuccess'
-                            style="position: absolute;right: 10000px;"
-                            type='file'
-                            :header='uploadHeader'
-                            :url='fileUploadUrl'
-                            :data='uploadData'
-                            accept="image/*"
-                    >
-                    </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
-                        <br>
-                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
-                </el-form-item>
-                <el-form-item label="委托授权书" class="leftbox" prop="this.attachmentIdUrl3">
-                    <div
-                            v-if="this.attachmentIdUrl3!==''"
-                            class="head"
-                            v-viewer
-                            :class="{loading: isFile3Load}"
-                            :style="{backgroundImage: attachmentIdUrl3?'url('+attachmentIdUrl3+')':''}"
-                    ><img
-                            :src="attachmentIdUrl3 "
-                            class="opacityZero" ></div>
-                    <div v-else></div>
-                    <label><ly-upload
-                            :exp="{type: 'certificate'}"
-                            @upstart="file3"
-                            @success='cimgUploadSuccess'
-                            style="position: absolute;right: 10000px;"
-                            type='file'
-                            :header='uploadHeader'
-                            :url='fileUploadUrl'
-                            :data='uploadData'
-                            accept="image/*"
-                    >
-                    </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}">上传</span>
-                        <br>
-                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>
-                </el-form-item>
-            </fieldset>
+<!--                </el-form-item>-->
+<!--                <el-form-item label="代理人身份证背面" class="rightbox" prop="this.attachmentIdUrl2">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl2!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile2Load}"-->
+<!--                            :style="{backgroundImage:attachmentIdUrl2?'url('+attachmentIdUrl2+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl2"-->
+<!--                            class="opacityZero" ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'secrecy'}"-->
+<!--                            @upstart="file2"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="委托授权书" class="leftbox" prop="this.attachmentIdUrl3">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl3!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile3Load}"-->
+<!--                            :style="{backgroundImage: attachmentIdUrl3?'url('+attachmentIdUrl3+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl3 "-->
+<!--                            class="opacityZero" ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'certificate'}"-->
+<!--                            @upstart="file3"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
             <div class="form__submit" style="margin-left: 395px">
                 <p aria-live="assertive" class="form__validation" data-validation="submit" role="alert"></p>
                 <!--                <button class="button" @click="submit()" id="save">提交</button>-->

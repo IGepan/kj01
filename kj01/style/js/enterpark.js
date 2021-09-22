@@ -76,9 +76,9 @@ require(['/common/js/require.config.js'], function () {
                             id: '',
                             companyName: '',//企业名称
                             companyType:'',//企业类型
-                            capital:'',//注册资本
-                            businessScope:'',//经营范围
-                            address: '',//经营地址
+                            // capital:'',//注册资本
+                            // businessScope:'',//经营范围
+                            // address: '',//经营地址
                             contactName: '',//联系人姓名及职务
                             contactPhone: '',//联系方式
                             companyProfile:'',//企业简介
@@ -101,10 +101,10 @@ require(['/common/js/require.config.js'], function () {
                             version: '0',
                             isSubmit:0,
                         },
-                        businessLicense:'',//营业执照
-                        attachmentIdUrl1: '',
-                        attachmentIdUrl2: '',
-                        attachmentIdUrl3: '',//法人身份证
+                        // businessLicense:'',//营业执照
+                        // attachmentIdUrl1: '',
+                        // attachmentIdUrl2: '',
+                        // attachmentIdUrl3: '',//法人身份证
                         isActive: false,
                         isClose:false,
                         rules: {

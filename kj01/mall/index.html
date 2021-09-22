@@ -42,7 +42,7 @@
 
                     <ul class="dropdown-menu-main list-unstyled" >
 
-                        <li class="has-sub-menu" v-for="(serviceType,index) in mailServiceTypeList" v-if="index < 7"
+                        <li class="has-sub-menu" v-for="(serviceType,index) in mailServiceTypeList"
                             :key="serviceType.id">
 
                             <a class="main-link" :href="'sub1.html?type='+serviceType.id">{{serviceType.name}}</a>
@@ -196,19 +196,19 @@
                         <div >{{item.name}}</div>
 <!--                        <span  style="color:rgb(52, 51, 52);font-size: 24px">{{item.total}}个</span>-->
                         <div class="boxs">
-                        <number-grow :color="'#343334'" :value="item.total" :time="1" ></number-grow>
+                        <number-grow :color="'#343334'" :value="item.total" :time="0.5" ></number-grow>
                         <span class="number-grow fl" style="color:rgb(52, 51, 52)">个</span>
                         </div>
                     </div>
                 </div>
             </template>
 <!--            <div class="boxlist fl" >-->
-<!--                <img src="/mall/images/icon7.png">-->
-<!--                <div>-->
-<!--                    <div >设备</div>-->
-<!--                    <span  style="color:rgb(52, 51, 52);font-size: 24px">10个</span>-->
-<!--                </div>-->
+<!--            <img src="/mall/images/icon7.png">-->
+<!--            <div>-->
+<!--                <div >设备</div>-->
+<!--                <span  style="color:rgb(52, 51, 52);font-size: 24px">10个</span>-->
 <!--            </div>-->
+<!--        </div>-->
         </div>
     </div>
         <div class="container floor">
