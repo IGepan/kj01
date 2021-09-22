@@ -727,7 +727,8 @@ require(['/common/js/require.config.js'], function () {
                         '/style/images/index/tab-bg4.png',
                         '/style/images/index/tab-bg5.png',
                         '/style/images/index/tab-bg6.png'],
-                    boxActive:false
+                    boxActive:false,
+                    iboxActive:false
                 },
                 computed: {
                     text() {
@@ -838,10 +839,9 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
-
-                    // setTimeout(function(){
-                    //     document.getElementById("showbg").style.display="none"
-                    // },5000);
+                    setTimeout(function(){
+                        document.getElementById("showbg").style.display="none"
+                    },5000);
                 },
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
@@ -849,6 +849,9 @@ require(['/common/js/require.config.js'], function () {
                 methods: {
                     qiehuan:function (){
                         this.boxActive=true
+                    },
+                    Close:function (){
+                        this.iboxActive=true
                     },
                     Pricre: function (v){
 
@@ -1299,17 +1302,17 @@ require(['/common/js/require.config.js'], function () {
                     handleOne:function () {
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/user_market_tech_achievements.html";
+                            window.location.href = "/common/login.html?back=/common/usercenter/user_market_tech_achi_form.html";
                         } else {
-                            window.location.href = "/common/usercenter/user_market_tech_achievements.html";
+                            window.location.href = "/common/usercenter/user_market_tech_achi_form.html";
                         }
                     },
                     handleTwo:function () {
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/user_market_tech_require.html";
+                            window.location.href = "/common/login.html?back=/user_market_tech_require_form.html";
                         } else {
-                            window.location.href = "/common/usercenter/user_market_tech_require.html";
+                            window.location.href = "/common/usercenter/user_market_tech_require_form.html";
                         }
                     },
                     handleUrlBtn: function (e) {
