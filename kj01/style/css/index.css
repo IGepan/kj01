@@ -1120,6 +1120,7 @@ min-width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
     /*overflow: hidden;*/
 }
 
@@ -1133,7 +1134,7 @@ min-width: 25%;
     background-image: linear-gradient(#ff9f26, #ff5e06);
     color: #ffffff;
     font-size: 14px;
-    top: -15px;
+    top: -25px;
     right: -15px;
     padding: 6px 15px;
     border-radius: 0 0 0 20px;

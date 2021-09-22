@@ -1310,7 +1310,7 @@ require(['/common/js/require.config.js'], function () {
                     handleTwo:function () {
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/user_market_tech_require_form.html";
+                            window.location.href = "/common/login.html?back=/common/usercenter/user_market_tech_require_form.html";
                         } else {
                             window.location.href = "/common/usercenter/user_market_tech_require_form.html";
                         }
