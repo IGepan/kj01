@@ -68,7 +68,7 @@ require(['/common/js/require.config.js'], function () {
                             contactTitle:'',//联系人职务
                             wechatNumber:'',//微信号
                             contactLandline:'',//联系电话
-                            contactPhone: '',//联系手机
+                            // contactPhone: '',//联系手机
                             email:'',//邮箱
                             otherService:'',//其他服务
                             delFlag: '0',
@@ -93,7 +93,7 @@ require(['/common/js/require.config.js'], function () {
                                 {required:true, message: '请选择服务',trigger: 'blur'}
                             ],
                             qualifications: [
-                                {required: true, message: '请输入获得专业服务资质情况',trigger: 'blur'},
+                                {required: true, message: '请输入服务案例',trigger: 'blur'},
                             ],
                             contactName: [
                                 {required: true, message: '请输入联系人姓名', trigger: 'blur'},
@@ -105,11 +105,11 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入联系人微信号', trigger: 'blur'},
                             ],
                             contactLandline: [
-                                {required: true,validator: validateNum,trigger: 'blur'},
+                                {required: true,message: '请输入联系人电话',trigger: 'blur'},
                                 {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             contactPhone: [
-                                {required: true, validator: validateNum,trigger: 'blur'},
+                                {required: true, trigger: 'blur'},
                                 {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
                             ],
                             email: [
