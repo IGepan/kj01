@@ -99,29 +99,22 @@
                               v-model="formData.companyName"
                               clearable></el-input>
                 </el-form-item>
-                <el-form-item label="单位地址" prop="address" class="el-text rightbox">
-                    <el-input placeholder="请输入单位地址"
-                              v-model="formData.address"
+<!--                <el-form-item label="单位地址" prop="address" class="el-text rightbox">-->
+<!--                    <el-input placeholder="请输入单位地址"-->
+<!--                              v-model="formData.address"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+                <el-form-item label="联系人姓名" prop="contactName" class="el-text rightbox">
+                    <el-input placeholder="请输入联系人姓名"
+                              v-model="formData.contactName"
                               clearable></el-input>
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
 
-                <el-form-item label="联系人姓名" prop="contactName" class="el-text leftbox">
-                    <el-input placeholder="请输入联系人姓名"
-                              v-model="formData.contactName"
-                              clearable></el-input>
-                </el-form-item>
-                <el-form-item label="联系人职务" prop="contactTitle" class="el-text rightbox ">
+                <el-form-item label="联系人职务" prop="contactTitle" class="el-text leftbox ">
                     <el-input placeholder="请输入联系人职务"
                               v-model="formData.contactTitle"
-                              clearable></el-input>
-                </el-form-item>
-            </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="联系人微信号" prop="wechatNumber" class="el-text leftbox ">
-                    <el-input placeholder="请输入联系微信号"
-                              v-model="formData.wechatNumber"
                               clearable></el-input>
                 </el-form-item>
                 <el-form-item label="联系人电话" prop="contactLandline" class="el-text rightbox ">
@@ -132,51 +125,59 @@
                 </el-form-item>
             </fieldset>
             <fieldset class="form__group">
-                <el-form-item label="E-mail" prop="email" class="el-text leftbox">
-                    <el-input placeholder="email"
-                              v-model="formData.email"
-                              clearable></el-input>
-                </el-form-item>
-                <el-form-item label="服务类别" prop="service" class="el-text rightbox">
-                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl" style="width: 100%" v-if="formData.isSubmit==1" disabled>
-                        <el-option
-                                v-for="(item,index) in serviceList"
-                                :key="index"
-                                :label="item.label"
-                                :value="item.value">
-                        </el-option>
-                    </el-select>
-                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl"  style="width: 100%" v-else>
-                        <el-option
-                                v-for="(item,index) in serviceList"
-                                :key="index"
-                                :label="item.label"
-                                :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-            </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="其他" prop="otherService" class="el-text" v-if="formData.service=='其他'">
-                    <el-input placeholder="请输入其他服务"
-                              v-model="formData.otherService"
-                              clearable></el-input>
-                </el-form-item>
-            </fieldset>
-            <fieldset class="form__group">
-                <el-form-item label="单位简介" prop="companyProfile" >
-                    <vue-ueditor-wrap v-model="formData.companyProfile" :config="ueditorConfig" class="exptextarea">
-                    </vue-ueditor-wrap>
-                </el-form-item>
-            </fieldset>
-
-            <fieldset class="form__group">
-                <el-form-item label="服务案例" prop="qualifications" >
-                    <vue-ueditor-wrap v-model="formData.qualifications" :config="ueditorConfig" class="exptextarea">
-                    </vue-ueditor-wrap>
-                </el-form-item>
+<!--                <el-form-item label="联系人微信号" prop="wechatNumber" class="el-text leftbox ">-->
+<!--                    <el-input placeholder="请输入联系微信号"-->
+<!--                              v-model="formData.wechatNumber"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
 
             </fieldset>
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="E-mail" prop="email" class="el-text leftbox">-->
+<!--                    <el-input placeholder="email"-->
+<!--                              v-model="formData.email"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="服务类别" prop="service" class="el-text rightbox">-->
+<!--                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl" style="width: 100%" v-if="formData.isSubmit==1" disabled>-->
+<!--                        <el-option-->
+<!--                                v-for="(item,index) in serviceList"-->
+<!--                                :key="index"-->
+<!--                                :label="item.label"-->
+<!--                                :value="item.value">-->
+<!--                        </el-option>-->
+<!--                    </el-select>-->
+<!--                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl"  style="width: 100%" v-else>-->
+<!--                        <el-option-->
+<!--                                v-for="(item,index) in serviceList"-->
+<!--                                :key="index"-->
+<!--                                :label="item.label"-->
+<!--                                :value="item.value">-->
+<!--                        </el-option>-->
+<!--                    </el-select>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="其他" prop="otherService" class="el-text" v-if="formData.service=='其他'">-->
+<!--                    <el-input placeholder="请输入其他服务"-->
+<!--                              v-model="formData.otherService"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="单位简介" prop="companyProfile" >-->
+<!--                    <vue-ueditor-wrap v-model="formData.companyProfile" :config="ueditorConfig" class="exptextarea">-->
+<!--                    </vue-ueditor-wrap>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="服务案例" prop="qualifications" >-->
+<!--                    <vue-ueditor-wrap v-model="formData.qualifications" :config="ueditorConfig" class="exptextarea">-->
+<!--                    </vue-ueditor-wrap>-->
+<!--                </el-form-item>-->
+
+<!--            </fieldset>-->
 
             <div class="form__submit" style="margin-left: 395px">
                 <p aria-live="assertive" class="form__validation" data-validation="submit" role="alert"></p>
