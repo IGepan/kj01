@@ -155,7 +155,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.get(httpUrl.baseMarketUrl + '/zMTagRest/listTagTree/' + param);
         },
 
-
+        //查询地区
+        selectAllArea: function () {
+            return Http.get(httpUrl.baseUrl + '/dict/info/selectAllArea');
+        },
 
         // // 技术成果专利分页查询
 
