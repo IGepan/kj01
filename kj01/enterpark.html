@@ -277,30 +277,15 @@
                                placeholder="请填写场地特殊需求（网络宽带、用电、改造等）">
                     </el-input>
                 </el-form-item>
-                                <el-form-item label="4、需要产业园提供服务" prop="service" class="el-text leftbox">
-                                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl" style="width: 100%" v-if="formData.isSubmit==1" disabled>
-                                        <el-option
-                                                v-for="(item,index) in serviceList"
-                                                :key="index"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
-                                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl"style="width: 100%" v-else>
-                                        <el-option
-                                                v-for="(item,index) in serviceList"
-                                                :key="index"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
+                                <el-form-item label="4、需要产业园提供的服务" prop="service" class="el-text">
+                                    <el-input  style="width: 100%;min-height: 200px"
+                                               type="textarea"
+                                               v-model="formData.service"
+                                               placeholder="请填写需要产业园提供的服务（如：科技政策、法律顾问、知识产权、投融资、其他）">
+                                    </el-input>
 
                                 </el-form-item>
-                <el-form-item label="其他" prop="otherService" class="el-text rightbox" v-if="formData.service=='其他'">
-                    <el-input placeholder="请输入其他需要产业园提供服务"
-                              v-model="formData.otherService"
-                              clearable></el-input>
-                </el-form-item>
+
             </fieldset>
 <!--            <fieldset class="form__group">-->
 <!--                <legend>三、上传附件</legend>-->

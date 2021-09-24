@@ -148,7 +148,7 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入场地特殊需求',trigger: 'blur'},
                             ],
                             service: [
-                                {required:true, message: '请输选择需要提供的服务',trigger: 'blur'}
+                                {required:true, message: '请输入需要提供的服务',trigger: 'blur'}
                             ],
                             businessLicense: [
                                 {required:true, message: '请上传营业执照副本',trigger: 'click'}
