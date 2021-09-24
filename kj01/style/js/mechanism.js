@@ -60,17 +60,17 @@ require(['/common/js/require.config.js'], function () {
                         formData: {
                             id:'',
                             companyName: '',//单位名称
-                            address: '',//单位地址
-                            companyProfile:'',//单位简介
-                            service:'',//服务类型
-                            qualifications:'',//获得专业服务资质情况
+                            // address: '',//单位地址
+                            // companyProfile:'',//单位简介
+                            // service:'',//服务类型
+                            // qualifications:'',//获得专业服务资质情况
                             contactName: '',//联系人姓名
                             contactTitle:'',//联系人职务
-                            wechatNumber:'',//微信号
+                            // wechatNumber:'',//微信号
                             contactLandline:'',//联系电话
                             // contactPhone: '',//联系手机
-                            email:'',//邮箱
-                            otherService:'',//其他服务
+                            // email:'',//邮箱
+                            // otherService:'',//其他服务
                             delFlag: '0',
                             version: '0',
                             isSubmit:0,
