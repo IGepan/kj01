@@ -39,11 +39,33 @@
     .vaMiddle:hover{
         color: #f0ad4e;
     }
+    .btn{
+        text-align: center;
+        padding:10px 15px;
+        font-size: 24px;
+        background: #018fff;
+        color: #FFFFff;
+        display: inline-block;
+        margin-left: calc((1440px - 126px)/2);
+        box-shadow: 0px 0px 11px #ddd;
+        border-radius: 10px;
+    }
+    .btn:hover{
+        background: #f0ad4e;
+    }
+    .mmdiv{
+        width: 1440px;
+        margin: 0 auto;
+    }
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <index-head :nav-index="sIndex"></index-head>
+
+    <div class="header-box " style="background: #fff;height: 65px;position: relative;">
+        <index-head :nav-index="sIndex"></index-head>
+        <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+    </div>
     <div class="content">
         <div class="mdiv">
             <div class="right">
@@ -85,6 +107,10 @@
                             <span>来源：{{details.origin}}</span>
                         </div>
                         <div class="detail-content" v-html="details.txt"></div>
+                    </div>
+                    <div v-if="details.id=='429573921286627328'" style="text-align: center">
+                        <video controls src="/style/images/ship.mp4" height="500px" >
+                        </video>
                     </div>
                 </div>
                 <!--   媒体关注       -->
@@ -152,20 +178,22 @@
                         </div>
                         <div class="detail-content" v-html="details.txt">
                         </div>
-                        <template v-if="details.fileId">
-                            <div class="article-files">
-                                <div class="article-files-title"><span class="title-text">附件</span></div>
-                                <div class="article-files-body">
-                                    <template >
-                                        <div class="article-file">
-                                            <img class="vaMiddle " src="/image/file.svg">
-                                            <!--                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>--></img>
-                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>
-                                        </div>
-                                    </template>
-                                </div>
-                            </div>
-                        </template>
+                        <div v-if="details.id=='424948758916173824'"><a class="btn" href="expert.html">立即申请</a></div>
+                        <div v-if="details.id=='424948649155432448'"><a class="btn" href="mechanism.html">立即申请</a></div>
+<!--                        <template v-if="details.fileId">-->
+<!--                            <div class="article-files">-->
+<!--                                <div class="article-files-title"><span class="title-text">附件</span></div>-->
+<!--                                <div class="article-files-body">-->
+<!--                                    <template >-->
+<!--                                        <div class="article-file">-->
+<!--                                            <img class="vaMiddle " src="/image/file.svg">-->
+<!--                                            &lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>-->
+<!--                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>-->
+<!--                                        </div>-->
+<!--                                    </template>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </template>-->
                     </div>
                 </div>
             </div>

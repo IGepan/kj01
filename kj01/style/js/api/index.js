@@ -149,7 +149,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         selectQuestionnaire: function () {
             return Http.get(httpUrl.baseUrl + '/questionnaire/selectByUserId');
         },
-// 入园申请表
+        // 入园申请表
         ApplySubmit: function (param) {
             return Http.post(httpUrl.baseUrl + '/Merchants/insertOrUpdate', param);
         },
@@ -158,6 +158,23 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
          */
         selectQuest: function () {
             return Http.get(httpUrl.baseUrl + '/Merchants/detailInfo');
+        },
+        // 专家入驻
+        expertSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/proficient/insertOrUpdate',param);
+        },
+        // 回显
+        selectExpert: function () {
+            return Http.get(httpUrl.baseUrl + '/proficient/detailInfo');
+        },
+
+        // 服务机构
+        terraceSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/terrace/insertOrUpdate',param);
+        },
+        // 回显
+        selectTerrace: function () {
+            return Http.get(httpUrl.baseUrl + '/terrace/detailInfo');
         },
         /**
          *

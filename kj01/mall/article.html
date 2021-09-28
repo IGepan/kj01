@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>易智网 - 入驻易智商城</title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/iconfont.css">
+
+    <script src="js/swiper-bundle.min.js"></script>
+    <style>
+
+    </style>
+    <style>
+        .mmdiv {
+            width: 1440px;
+            margin: 0 auto;
+        }
+        .wenzhang{
+            width: 100%;justify-content: space-between;
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        .wenzhang p{
+            color: #000!important;
+        }
+        .article1,.article2{
+            height: 760px;
+            text-align: left;
+            background: #f2f2f2;
+            width: 45%;
+            padding: 20px;
+        }
+        .article1 h4,.article2 h4{
+            padding-top: 20px;
+            color: #000!important;
+        }
+        .article1 h6,.article2 h6{
+            color: #ff5e06!important;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        .btntest{
+            width: 100%;justify-content: space-between;
+            display: flex;
+            margin-top: 40px;
+            flex: 1;
+            align-items: center;
+            padding: 0 40px;
+        }
+        .article2 .btntest{
+            margin-top: 70px;
+        }
+        .btntest a{
+            background:#ff5e06 ;
+            color: #FFFFff!important;
+            font-size: 16px;
+            border-radius:25px;
+            text-align: center;
+            line-height: 42px;
+            width: 40%;
+            border: 1px solid #ff5e06;
+        }
+        .btntest a:last-child{
+            color:#ff5e06!important;
+            background: #FFFFff!important;
+        }
+        .btntest a:hover{
+            box-shadow: 0px 0px 10px #f0ad4e;
+        }
+        .icon-card{
+            width: 100%;
+            overflow: hidden;
+        }
+        .icon-card ul{
+            padding: 0;
+            margin: 0;
+        }
+        .icon-card li{
+            float: left;
+            width: 25%;
+            text-align: center;
+            margin-top: 20px;
+            display: inline-block;
+            padding-top: 40px;
+            color: #000;
+        }
+        /*.icon-card li i{*/
+        /*    display: block;*/
+        /*    width: 48px;*/
+        /*}*/
+        .icon-card li:nth-child(1){
+            background:url(./images/jishu.png) no-repeat top;
+        }
+        .icon-card li:nth-child(2){
+            background:url(./images/zhengce.png) no-repeat top;
+        }
+        .icon-card li:nth-child(3){
+            background:url(./images/zhishichanquan.png) no-repeat top;
+        }
+        .icon-card li:nth-child(4){
+            background:url(./images/caishui.png) no-repeat top;
+        }
+        .icon-card li:nth-child(5){
+            background:url(./images/falv2.png) no-repeat top;
+        }
+        .icon-card li:nth-child(6){
+            background:url(./images/qi.png) no-repeat top;
+        }
+        .icon-card li:nth-child(7){
+            background:url(./images/caishui_1.png) no-repeat top;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white" class="top_div"></ly-toper>
+    <header-mail ref="header_mail"></header-mail>
+    <img src="./images/banner1.png" width="100%" style="margin-top: 40px">
+    <div class="mmdiv">
+        <h6 style="margin-top: 10px"><a href="index.html" target="_blank"><i class="iconfont icon-jiantou-zuo"></i>返回易智商城</a></h6>
+        <h2 style="text-align: center;color: #ff5e06;">征集令</h2>
+        <div class="wenzhang">
+            <div class="article1">
+                <h4>行业专家</h4>
+                <h6>一、征集对象</h6>
+                <p>各高校、院所、企业具有本领域较高技术水平的个人。</p>
+                <h6>二、入库条件</h6>
+                <p>原则上不超过65周岁。在科技活动中无任何不良信用记录，没有违纪违法等不良记录，能有时间并切实面向企业开展相关咨询与服务等工作。</p>
+                <div class="icon-card">
+                    <ul>
+                        <li>技术专家</li>
+                        <li>政策专家</li>
+                        <li>知识产权专家</li>
+                        <li>财税专家</li>
+                        <li>法律专家</li>
+                        <li>企业管理/咨询/服务专家</li>
+                        <li>投资专家</li>
+                    </ul>
+                </div>
+                <h6>三、享有权益</h6>
+                <p>1.可优先作为易智网主办、承办、协办的相关会议、培训等活动的特邀专家；</p>
+                <p>2.可优先受邀作为易智网服务企业的专家人才；</p>
+                <p>3.可享受易智网人才宣传与业务匹配。</p>
+                <div class="btntest">
+                    <a @click="handleE" target="_blank">我要入驻</a>
+                    <a href="http://www11c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=" target="_blank">入驻咨询</a>
+                </div>
+            </div>
+            <div class="article2">
+                <h4>服务机构</h4>
+                <h6>一、征集对象</h6>
+                <p>专业服务能力强、机构信誉度高的科技服务机构，包括但不限于技术开发、技术服务、知识产权、法律服务、工商财税、检验检测等。</p>
+                <h6>二、入库条件</h6>
+                <p>1.具有独立法人资格、相关专业资质和专业服务能力；</p>
+                <p>2.机构信誉良好、管理规范、无不良商业记录；</p>
+                <p>3.在行业内有较高影响力的科技服务机构可优先入驻。</p>
+                <h6>三、享有权益</h6>
+                <p>入驻易智网，您可以获得：</p>
+                <p>1.免费的公共流动工位，用于服务机构人员临时办公，开展业务；</p>
+                <p>2.优先优惠使用培训教室、路演厅等服务场所及设施，免费使用业务洽谈场地；</p>
+                <p>3.优先参加易智网举办的各类活动；</p>
+                <p>4.免费在易智商城开设线上店铺，进行产品展示和推广。</p>
+                <div class="btntest">
+                    <a @click="handleM" target="_blank">我要入驻</a>
+                    <a href="http://www11c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=" target="_blank">入驻咨询</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <web-footer></web-footer>
+</div>
+</body>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/mall/article.js"></script>
+</html>

@@ -727,7 +727,8 @@ require(['/common/js/require.config.js'], function () {
                         '/style/images/index/tab-bg4.png',
                         '/style/images/index/tab-bg5.png',
                         '/style/images/index/tab-bg6.png'],
-                    boxActive:false
+                    boxActive:false,
+                    iboxActive:false
                 },
                 computed: {
                     text() {
@@ -752,12 +753,20 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted: function () {
                     var _this = this
+                    $(".slideTxtBox").slide({titCell: ".hd ul",
+                        mainCell: ".bd ul",
+                        effect: 'leftLoop',
+                        autoPlay: true,
+                        autoPage: false,
+                        vis: 5,
+                        scroll:1});
                     // 获取类型板块
-                    _this.getMailServiceType(function (){
+                    _this.getMailServiceType(function () {
                             //递归板块数据，从第一个板块开始
                             _this.getMailGoods(0)
                         }
                     );
+
                     // var swiperEntity = new Swiper('#swiper-containerIndex', {
                     //     loop: true, // 循环模式选项
                     //     autoplay: true, // 可选选项，自动滑动
@@ -799,15 +808,6 @@ require(['/common/js/require.config.js'], function () {
                         dots: false
                     });
                     window.addEventListener('scroll', this.scroll);
-                    $(".slideTxtBox").slide({
-                        titCell: ".hd ul",
-                        pnLoop:true,
-                        mainCell: ".bd ul",
-                        autoPage: true,
-                        effect:"leftLoop",
-                        autoPlay: true,
-                        vis: 5
-                    });
 
                 },
                 components: {
@@ -839,10 +839,9 @@ require(['/common/js/require.config.js'], function () {
                     this.getShopList() // 技术供应商
                     this.getActiveList() //活动中心
                     this.getNewActiveList() //最新活动
-
-                    // setTimeout(function(){
-                    //     document.getElementById("showbg").style.display="none"
-                    // },5000);
+                    setTimeout(function(){
+                        document.getElementById("showbg").style.display="none"
+                    },5000);
                 },
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
@@ -850,6 +849,9 @@ require(['/common/js/require.config.js'], function () {
                 methods: {
                     qiehuan:function (){
                         this.boxActive=true
+                    },
+                    Close:function (){
+                        this.iboxActive=true
                     },
                     Pricre: function (v){
 
@@ -1159,20 +1161,20 @@ require(['/common/js/require.config.js'], function () {
                     handlePTabsNavMore: function (url) {
                         location.href = url
                     },
-                    handleTest: function () {
-                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
-                        if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/test.html";
-                        } else {
-                            window.location.href = "/test.html";
-                        }
-                    },
                     handleEnterpark:function (){
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
                             window.location.href = "/common/login.html?back=/enterpark.html";
                         } else {
                             window.location.href = "/enterpark.html";
+                        }
+                    },
+                    handleTest: function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/test.html";
+                        } else {
+                            window.location.href = "/test.html";
                         }
                     },
                     getAList: function (id) {
@@ -1300,17 +1302,17 @@ require(['/common/js/require.config.js'], function () {
                     handleOne:function () {
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/user_market_tech_achievements.html";
+                            window.location.href = "/common/login.html?back=/common/usercenter/user_market_tech_achi_form.html";
                         } else {
-                            window.location.href = "/common/usercenter/user_market_tech_achievements.html";
+                            window.location.href = "/common/usercenter/user_market_tech_achi_form.html";
                         }
                     },
                     handleTwo:function () {
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/user_market_tech_require.html";
+                            window.location.href = "/common/login.html?back=/common/usercenter/user_market_tech_require_form.html";
                         } else {
-                            window.location.href = "/common/usercenter/user_market_tech_require.html";
+                            window.location.href = "/common/usercenter/user_market_tech_require_form.html";
                         }
                     },
                     handleUrlBtn: function (e) {

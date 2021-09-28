@@ -46,6 +46,22 @@ require(['/common/js/require.config.js'], function () {
                     this.getcmsList()
                 },
                 methods: {
+                    handleOne:function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/expert.html";
+                        } else {
+                            window.location.href = "/common/usercenter/expert.html";
+                        }
+                    },
+                    handleTwo:function () {
+                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
+                        if (!this.userInfo.userId) {
+                            window.location.href = "/common/login.html?back=/mechanism.html";
+                        } else {
+                            window.location.href = "/common/usercenter/mechanism.html";
+                        }
+                    },
                     goBack(){
                         location.href='/platform.html'
                     },
