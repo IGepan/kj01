@@ -9,6 +9,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             Vue.component('vue-ueditor-wrap', VueUeditorWrap);
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
 
             window.vueDom = new Vue({
@@ -52,8 +53,8 @@ require(['/common/js/require.config.js'], function () {
 
                         }, // 赋值数组
                         "intended_price_list": [
-                            { "name": "金额", "value": 0 },
-                            { "name": "面议", "value": 1 },
+                            {"name": "金额", "value": 0},
+                            {"name": "面议", "value": 1},
                         ],
                         "intended_price": 0,
 
@@ -95,8 +96,6 @@ require(['/common/js/require.config.js'], function () {
                         // "certificateUrl": "",//证书附件
                         // "businessUrl": "",//商业计划书
                         // "moveUrl": '',//视频
-
-
 
 
                         "edit_industry_area": '',//行业类型下拉选择框选中值
@@ -167,7 +166,6 @@ require(['/common/js/require.config.js'], function () {
                         "industryList": [],
 
 
-
                     };
                 },
                 watch: {
@@ -223,6 +221,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
                     'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                     // / imgUploaderMost.vue
                 },
 
@@ -272,7 +271,6 @@ require(['/common/js/require.config.js'], function () {
                             console.log(_this.optionsIndustry)
                         })
                     },
-
 
 
                     ///////////////////三级级联选择/////////////////////////
@@ -395,7 +393,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     //  选择第二层
                     openSecondLevelIndustry: function (item, index) {
                         var _this = this;
@@ -459,11 +456,9 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
-
                     imgUploadSuccess: function (id, url, type, prev, data) {
                         var _this = this;
-                        // 处理图片  
+                        // 处理图片
                         if (prev === 'main_picture' && data) {
                             // this.provesPhotoList.push({
                             //     id: data.id,
@@ -613,8 +608,7 @@ require(['/common/js/require.config.js'], function () {
                                 url = httpUrl.fileShowUrl + '/resource/' + res.data.path
                                 _this.personImg.push(url)//图片
                                 console.log(_this.personImg)
-                            }
-                            else if (type == 1) {
+                            } else if (type == 1) {
                                 var url = {}
                                 url = httpUrl.fileShowUrl + "/resource/" + res.data.path
                                 _this.business_files1.push(res.data);
@@ -695,12 +689,10 @@ require(['/common/js/require.config.js'], function () {
                         var _this = this;
 
 
-
                         if (!_this.$utils.validatesEmpty(form.title)) {
                             _this.$dialog.showToast("成果名称必填");
                             return false;
                         }
-
 
 
                         if (form.projectIndustryType.length < 1) {
@@ -938,8 +930,7 @@ require(['/common/js/require.config.js'], function () {
 
                                         _this.achievement_demand_type_list.push(element);
                                     });
-                                }
-                                else if (element.dictCode === "achievement_cooperation") {
+                                } else if (element.dictCode === "achievement_cooperation") {
                                     element.data.forEach(element => {
 
                                         _this.cooperation_mode_list.push(element);

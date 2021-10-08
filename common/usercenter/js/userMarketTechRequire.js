@@ -7,6 +7,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -71,10 +72,11 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
+
                 },
                 methods: {
-
 
 
                     turnPageClassSign: function () {
@@ -94,7 +96,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     // 翻页
                     handleCurrentChange: function (page) {
                         var _this = this;
@@ -106,9 +107,7 @@ require(['/common/js/require.config.js'], function () {
                                 "order": "desc",
                                 "sort": "id",
                             },
-                            "payload": {
-
-                            }
+                            "payload": {}
                         }
                         console.log(form)
                         // 技术成果列表查询
@@ -175,7 +174,7 @@ require(['/common/js/require.config.js'], function () {
                         return httpUrl.fileShowUrl + '/resource/' + path;
                     },
 
-                    // 跳转 
+                    // 跳转
                     handleMatchView: function (id, type) {
                         console.log(type)
                         if (type == 0) {
@@ -221,8 +220,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.matchDate1 = datalist.records;
                         })
                     },
-
-
 
 
                     ////////////////////////

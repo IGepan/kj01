@@ -10,7 +10,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             Vue.component('vue-ueditor-wrap', VueUeditorWrap);
-
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -54,7 +54,7 @@ require(['/common/js/require.config.js'], function () {
 
                     },   //   对象集合
                     "patent_transaction_type_list": [], //意向转化方式
-                    "project_patent_type": true, // 
+                    "project_patent_type": true, //
 
                 },
                 provide: {
@@ -84,7 +84,7 @@ require(['/common/js/require.config.js'], function () {
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
-
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
 
@@ -119,7 +119,7 @@ require(['/common/js/require.config.js'], function () {
 
 
 
-                    //   提交 
+                    //   提交
                     save_tech_project_patent: function (params) {
                         var _this = this;
 

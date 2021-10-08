@@ -48,7 +48,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-
         saveZMVerifyBind: function (param) {
 
             return Http.post(httpUrl.baseMarketUrl + '/zMVerifyBindRest/saveZMVerifyBind', param);
@@ -79,8 +78,8 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/certification/getUserInfo');
         },
 
-        getZmImg:function(param) {
-            return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/downloadImg',param);
+        getZmImg: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/downloadImg', param);
         },
 
         ///////////////////////////////////////// 业务管理/////////////////////////////////////////////////////////
@@ -118,8 +117,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-
-
         //////////////////////////////////////////技术成果///////////////////////////////////////////////////////
 
         // 查询技术成果 省市区分类字典
@@ -131,7 +128,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-        // 个人中心技术成果 分页查询 
+        // 个人中心技术成果 分页查询
         find_technology_pages: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/pageMyProjectInfo', param);
         },
@@ -145,7 +142,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         bindTechOrgan: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/bindTechOrgan' + param);
         },
-
 
 
         // 查询技术标签
@@ -202,7 +198,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseUrl + '/dict/select', param);
         },
 
-        //新增技术成果 
+        //新增技术成果
         save_technology_results: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/saveZMProject', param);
         },
@@ -218,17 +214,15 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-
-
         //////////////////////////////////////////班级报名 ClassSign///////////////////////////////////////////////////////
 
-        // 查询技术成果分类字典 
+        // 查询技术成果分类字典
         find_tech_transfer_list: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '//', param);
         },
 
         //////////////////////////////////////////收集 Collection///////////////////////////////////////////////////////
-        // 查询技术成果分类字典 
+        // 查询技术成果分类字典
         find_tech_collection_list: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMFavoriteRest/listZMFavoriteByDTO', param);
         },
@@ -245,14 +239,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-
         //////////////////////////////////////////需求 Require///////////////////////////////////////////////////////
 
 
         // 查询技术成果分类字典 国家省市区
 
 
-        // 个人中心技术需求 分页查询 
+        // 个人中心技术需求 分页查询
         find_technology_require_pages: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMDemandRest/pageMyDemandBaseInfo', param);
         },
@@ -264,7 +257,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-
         //  查询技术需求详情
         find_require_details_results: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMDemandRest/queryDetailsNative?id=' + param);
@@ -274,7 +266,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
 
         //////////////////////////////////////////技术转移 Transfer///////////////////////////////////////////////////////
 
-        // 分页查询我接收的项目投递  
+        // 分页查询我接收的项目投递
         find_my_receive_project: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListMyReceivedProject', param);
         },
@@ -286,11 +278,28 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         },
 
 
-
         //分页查询我接收的 [需求 / 成果] 委托
         pageListMyReceivedDelegation: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMRequestRest/pageListMyReceivedDelegation', param);
         },
+
+
+        // 新增修改日志
+        zMBusinessLogRest: function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMBusinessLogRest/saveLog', param);
+        },
+
+        // 删除日志
+        deleteTechBrokerBind: function (param) {
+            return Http.get(httpUrl.baseMarketUrl + '/zMBusinessLogRest/del/' + param);
+        },
+
+
+        // 分頁查询日志 分页查询日志,通过申请id
+        zMLogQueryPageRest: function (id, param) {
+            return Http.post(httpUrl.baseMarketUrl + '/zMBusinessLogRest/queryPageLog/' + id, param);
+        },
+
 
         // /zMOrderRest/createOrder 接受
         accept_create_order: function (param) {
@@ -333,7 +342,6 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         queryMatchInfoDemand: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMDemandRest/queryMatchInfo', param);
         },
-
 
 
         // 查询匹配的技术成果信息 通过技术经纪人id或需求id
