@@ -7,7 +7,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
-
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
             window.vueDom = new Vue({
                 el: '#index_box',
                 mixins: [userCenter],
@@ -68,10 +68,14 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
-
+                    // ? 打开日志列表
+                    openLogsList(item) {
+                        window.location.href = '/common/usercenter/user_market_logs_list.html?type=1&id=' + item.id;
+                    },
 
 
                     turnPageClassSign: function () {

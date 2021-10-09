@@ -1,5 +1,5 @@
 define(function () {
-  var isConfigIndex = ['192.168.0.31', 'dev.kj02.cn', 'testweb.kj01.cn', 'www.kj01.cn'].indexOf(location.host);
+  var isConfigIndex = ['fun-mi', 'dev.kj02.cn', 'testweb.kj01.cn', 'www.kj01.cn'].indexOf(location.host);
   //var isConfigIndex = ['dev.localhost.cn', 'dev.kj02.cn', 'testweb.kj01.cn', 'www.kj01.cn'].indexOf(location.host);
 
   var configs = [

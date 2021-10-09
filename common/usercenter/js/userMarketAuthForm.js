@@ -9,6 +9,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             Vue.component('vue-ueditor-wrap', VueUeditorWrap);
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -192,6 +193,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
                     'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 computed: {
 
@@ -643,7 +645,7 @@ require(['/common/js/require.config.js'], function () {
                             //     this.$message({
                             //       type: 'info',
                             //       message: '取消输入'
-                            //     });       
+                            //     });
                         });
                     },
                     //   上传成功
@@ -733,7 +735,7 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-                    //   提交经纪人时 非空验证 
+                    //   提交经纪人时 非空验证
                     noEmptyInputAuth: function (form) {
                         var _this = this;
 
@@ -1217,7 +1219,7 @@ require(['/common/js/require.config.js'], function () {
                         return httpUrl.fileShowUrl + '/resource/' + path;
                     },
 
-                    // 跳转 
+                    // 跳转
                     handleMatchView: function (id, type) {
                         console.log(type)
                         if (type == 0) {
