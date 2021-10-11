@@ -17,6 +17,12 @@
             <el-dropdown-item>
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
             </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
+            </el-dropdown-item>
 <!--            <el-dropdown-item>-->
 <!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
 <!--            </el-dropdown-item>-->
@@ -128,6 +134,12 @@
             </el-dropdown-item>
             <el-dropdown-item>
             <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
             </el-dropdown-item>
 <!--            <el-dropdown-item>-->
 <!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
