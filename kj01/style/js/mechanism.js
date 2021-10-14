@@ -141,44 +141,44 @@ require(['/common/js/require.config.js'], function () {
                     this.getData()
                 },
                 methods: {
-                    getData() {
-                        indexApi.selectTerrace().then((res) => {
-                            if(res.code !== 'rest.success'){
-                                window.location.href = "/common/login.html?back=/mechanism.html";
-                            }
-                           if (res.code == 'rest.success' && res.result) {
-                                this.formData = res.result
-                                if (this.formData.isSubmit == 1) {
-                                    this.isActive = true;
-                                } else {
-                                    this.isActive = false;
-                                }
-                            }
-                        })
-                    },
-                    keep() {
-                        this.formData.isSubmit = 0
-                        indexApi.terraceSubmit(this.formData).then((res) => {
-                            if (res.code == 'rest.success') {
-                                this.$notify.success({
-                                    title: '成功！',
-                                    message: '保存成功!',
-                                    duration: 2000
-                                });
-                                setTimeout(function () {
-                                    window.location.href = "/mechanism.html";
-                                }, 2000);
-                            } else {
-                                this.$notify.error({
-                                    title: '提示！',
-                                    message: '请先登录!'
-                                });
-                                setTimeout(function () {
-                                    window.location.href = "/common/login.html?back=/mechanism.html";
-                                }, 1000);
-                            }
-                        });
-                    },
+                    // getData() {
+                    //     indexApi.selectTerrace().then((res) => {
+                    //         if(res.code !== 'rest.success'){
+                    //             window.location.href = "/common/login.html?back=/mechanism.html";
+                    //         }
+                    //        if (res.code == 'rest.success' && res.result) {
+                    //             this.formData = res.result
+                    //             if (this.formData.isSubmit == 1) {
+                    //                 this.isActive = true;
+                    //             } else {
+                    //                 this.isActive = false;
+                    //             }
+                    //         }
+                    //     })
+                    // },
+                    // keep() {
+                    //     this.formData.isSubmit = 0
+                    //     indexApi.terraceSubmit(this.formData).then((res) => {
+                    //         if (res.code == 'rest.success') {
+                    //             this.$notify.success({
+                    //                 title: '成功！',
+                    //                 message: '保存成功!',
+                    //                 duration: 2000
+                    //             });
+                    //             setTimeout(function () {
+                    //                 window.location.href = "/mechanism.html";
+                    //             }, 2000);
+                    //         } else {
+                    //             this.$notify.error({
+                    //                 title: '提示！',
+                    //                 message: '请先登录!'
+                    //             });
+                    //             setTimeout(function () {
+                    //                 window.location.href = "/common/login.html?back=/mechanism.html";
+                    //             }, 1000);
+                    //         }
+                    //     });
+                    // },
                     //提交表单
                     Submit() {
                         // this.$alert('本次征集已结束', '提示', {
@@ -207,15 +207,16 @@ require(['/common/js/require.config.js'], function () {
                                             setTimeout(function () {
                                                 window.location.href = "/mechanism.html";
                                             }, 2000);
-                                        } else {
-                                            this.$notify.error({
-                                                title: '提示！',
-                                                message: '请先登录!'
-                                            });
-                                            setTimeout(function () {
-                                                window.location.href = "/common/login.html?back=/mechanism.html";
-                                            }, 1000);
                                         }
+                                        // else {
+                                        //     this.$notify.error({
+                                        //         title: '提示！',
+                                        //         message: '请先登录!'
+                                        //     });
+                                        //     setTimeout(function () {
+                                        //         window.location.href = "/common/login.html?back=/mechanism.html";
+                                        //     }, 1000);
+                                        // }
                                     });
                                 } else {
                                     this.$notify.error({
