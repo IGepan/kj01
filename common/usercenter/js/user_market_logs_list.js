@@ -68,7 +68,7 @@ require(['/common/js/require.config.js'], function () {
                         _this.details = item;
                     },
                     //删除日志
-                    changeAcccept(item, type) {
+                    deleteAcccept(item, type) {
                         let _this = this;
                         console.log(item);
                         //
@@ -77,8 +77,7 @@ require(['/common/js/require.config.js'], function () {
                         _this.logShowType = type;
                         _this.details = item;
                         // _this.textarea = item.logText;
-
-                    },
+                        },
                     //删除日志
                     handleClose() {
                         let _this = this;
@@ -99,6 +98,18 @@ require(['/common/js/require.config.js'], function () {
                             console.log(window.location.href.split("=")[1])
                             _this.getTechLogList(window.location.href.split("=")[1]);
                         })
+                    },
+
+                    //修改内容
+                    changeAcccept(item, type) {
+                        let _this = this;
+                        console.log(item);
+                        //
+                        _this.logTitle = "修改日志";
+                        _this.dialogTableVisible = true;
+                        _this.logShowType = type;
+                        _this.details = item;
+                        _this.textarea = item.logText;
                     },
 
                     //提交修改内容
