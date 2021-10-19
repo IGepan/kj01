@@ -20,287 +20,260 @@
 
 <body>
 <div class="box" id='index_box' v-cloak>
-        <ly-toper></ly-toper>
-        <header-bar type='market' :http="httpCom"></header-bar>
+    <ly-toper></ly-toper>
+    <header-bar type='market' :http="httpCom"></header-bar>
 
-        <div class="mdiv clear margin_bot_20 margin_top_20">
-            <div class="fl user_market_box_fl bg_fff ">
-                <ul>
-                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_tech_achievements.html"><i
-                                class="el-icon-s-finance"></i>技术成果管理</a></li>
-                    <li><a href="/common/usercenter/user_market_tech_require.html" class="active"><i
-                                class="el-icon-s-help"></i>
-                            技术需求管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
-                            技转业务管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_business_management.html"><i
-                                class="el-icon-s-cooperation"></i>
-                            我的业务管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
-                            我的订单</a>
-                    </li>
-<!--                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>-->
-<!--                            经纪人培训管理</a></li>-->
-<!--                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>-->
-<!--                            班级报名管理</a></li>-->
-                    <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
-                        我的培训</a></li>
-                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
-                            收藏</a>
-                    </li>
-                </ul>
+    <div class="mdiv clear margin_bot_20 margin_top_20">
+        <div class="fl user_market_box_fl bg_fff ">
+            <user-tech-menu :type='2'></user-tech-menu>
+        </div>
+        <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+            <div class="user_market_title border_bot_f2f2f2">
+                <span class="market_title">需求列表</span>
+                <a href="/common/usercenter/user_market_tech_require_form.html" class="fr go_study color_70adf1">+
+                    添加需求</a>
             </div>
-            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
-                <div class="user_market_title border_bot_f2f2f2">
-                    <span class="market_title">需求列表</span>
-                    <a href="/common/usercenter/user_market_tech_require_form.html" class="fr go_study color_70adf1">+
-                        添加需求</a>
-                </div>
-                <div class="margin_20">
-                    <!-- <div class="margin_bot_20 clear">
-                        <input class="padding_06_1 width_50_115 border_efefef margin_tb_10 fl"
-                            placeholder="请输入你想查找的需求名称">
-                        <a class="bg_70adf1 color_fff fl margin_tb_10 border_70adf1"
-                            style="padding: 0.52rem 2rem;">检索</a>
-                    </div> -->
-                    <div class="pro_details">
-                        <!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <thead class="bg_fafafa">
-                                <th>需求名称</th>
-                                <th>需求状态</th>
-                                <th>需求预算</th>
-                                <th>合作方式</th>
-                                <th>创建日期</th>
-                                <th>操作</th>
-                            </thead>
-                            <tbody class="">
-                                <tr>
-                                    <td class="color_orange">新型抗性淀粉基功能性口服片剂制备</td>
-                                    <td>工艺升级、技术支持</td>
-                                    <td>面议</td>
-                                    <td>技术购买、工艺改进</td>
-                                    <td>2021-06-02 15:21:10</td>
-                                    <td>
-                                        <a class="bg_orange color_fff details_pro_act_btn">投递成果</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="color_orange">新型抗性淀粉基功能性口服片剂制备</td>
-                                    <td>工艺升级、技术支持</td>
-                                    <td>面议</td>
-                                    <td>技术购买、工艺改进</td>
-                                    <td>2021-06-02 15:21:10</td>
-                                    <td>
-                                        <a class="bg_70adf1 color_fff details_pro_act_btn">展开</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table> -->
-                        <el-table :data="tech_table_require_list" style="width: 100%">
-                            <el-table-column label="需求名称">
-                                <template slot-scope="scope">
-                                    <!-- <i class="el-icon-time"></i> -->
-                                    <span><a @click="changePageView(scope.row)" class="color_13c9ef">{{ scope.row.title
+            <div class="margin_20">
+                <!-- <div class="margin_bot_20 clear">
+                    <input class="padding_06_1 width_50_115 border_efefef margin_tb_10 fl"
+                        placeholder="请输入你想查找的需求名称">
+                    <a class="bg_70adf1 color_fff fl margin_tb_10 border_70adf1"
+                        style="padding: 0.52rem 2rem;">检索</a>
+                </div> -->
+                <div class="pro_details">
+                    <!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <thead class="bg_fafafa">
+                            <th>需求名称</th>
+                            <th>需求状态</th>
+                            <th>需求预算</th>
+                            <th>合作方式</th>
+                            <th>创建日期</th>
+                            <th>操作</th>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <td class="color_orange">新型抗性淀粉基功能性口服片剂制备</td>
+                                <td>工艺升级、技术支持</td>
+                                <td>面议</td>
+                                <td>技术购买、工艺改进</td>
+                                <td>2021-06-02 15:21:10</td>
+                                <td>
+                                    <a class="bg_orange color_fff details_pro_act_btn">投递成果</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="color_orange">新型抗性淀粉基功能性口服片剂制备</td>
+                                <td>工艺升级、技术支持</td>
+                                <td>面议</td>
+                                <td>技术购买、工艺改进</td>
+                                <td>2021-06-02 15:21:10</td>
+                                <td>
+                                    <a class="bg_70adf1 color_fff details_pro_act_btn">展开</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <el-table :data="tech_table_require_list" style="width: 100%">
+                        <el-table-column label="需求名称">
+                            <template slot-scope="scope">
+                                <!-- <i class="el-icon-time"></i> -->
+                                <span><a @click="changePageView(scope.row)" class="color_13c9ef">{{ scope.row.title
                                             }}</a></span>
-                                </template>
-                            </el-table-column>
-                            <el-table-column label="需求状态">
-                                <template slot-scope="scope">
-                                    {{scope.row.demandType_display}}
-                                </template>
-                            </el-table-column>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="需求状态">
+                            <template slot-scope="scope">
+                                {{scope.row.demandType_display}}
+                            </template>
+                        </el-table-column>
 
-                            <el-table-column label="需求预算">
-                                <template slot-scope="scope">
-                                    <!-- <i class="el-icon-time"></i> -->
-                                    <!-- <span>{{ scope.row.budget }}</span> -->
-                                    <span v-if=" scope.row.budget==0">面议</span>
-                                    <span v-else>{{ scope.row.budget }}</span>
-                                </template>
-                            </el-table-column>
+                        <el-table-column label="需求预算">
+                            <template slot-scope="scope">
+                                <!-- <i class="el-icon-time"></i> -->
+                                <!-- <span>{{ scope.row.budget }}</span> -->
+                                <span v-if=" scope.row.budget==0">面议</span>
+                                <span v-else>{{ scope.row.budget }}</span>
+                            </template>
+                        </el-table-column>
 
-                            <el-table-column label="合作方式">
-                                <template slot-scope="scope">
-                                    <!-- <i class="el-icon-time"></i> -->
-                                    <span>{{ scope.row.cooperationMode_display }}</span>
-                                </template>
-                            </el-table-column>
+                        <el-table-column label="合作方式">
+                            <template slot-scope="scope">
+                                <!-- <i class="el-icon-time"></i> -->
+                                <span>{{ scope.row.cooperationMode_display }}</span>
+                            </template>
+                        </el-table-column>
 
-                            <el-table-column label="审核结果">
-                                <template slot-scope="scope">
+                        <el-table-column label="审核结果">
+                            <template slot-scope="scope">
                                     <span>
                                         <span v-if="scope.row.certificationFlag==1">待审核</span>
                                         <span v-else-if="scope.row.certificationFlag==2">通过</span>
                                         <span v-else-if="scope.row.certificationFlag==3">不通过</span>
                                         <span v-else>-</span>
                                     </span>
-                                </template>
-                            </el-table-column>
+                            </template>
+                        </el-table-column>
 
-                            <el-table-column label="创建日期" width="180">
-                                <template slot-scope="scope">
-                                    <!-- <i class="el-icon-time"></i> -->
-                                    <span>{{ scope.row.createTime }}</span>
-                                </template>
-                            </el-table-column>
+                        <el-table-column label="创建日期" width="180">
+                            <template slot-scope="scope">
+                                <!-- <i class="el-icon-time"></i> -->
+                                <span>{{ scope.row.createTime }}</span>
+                            </template>
+                        </el-table-column>
 
-                            <el-table-column label="操作">
-                                <template slot-scope="scope">
-                                    <el-dropdown @command="handleCommand">
+                        <el-table-column label="操作">
+                            <template slot-scope="scope">
+                                <el-dropdown @command="handleCommand">
                                         <span class="el-dropdown-link">
                                             展开<i class="el-icon-arrow-down el-icon--right"></i>
                                         </span>
-                                        <el-dropdown-menu slot="dropdown">
-                                            <el-dropdown-item v-if="scope.row.certificationFlag!=1"
-                                                :command="HandleButtonEdit(scope.$index, scope.row,0)">
-                                                <el-button size="mini" type="primary">编辑
-                                                </el-button>
-                                            </el-dropdown-item>
-                                            <el-dropdown-item :command="handleButtonView(scope.$index, scope.row,1)">
-                                                <el-button size="mini" type="primary">
-                                                    查看</el-button>
-                                            </el-dropdown-item>
-                                            <el-dropdown-item
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item v-if="scope.row.certificationFlag!=1"
+                                                          :command="HandleButtonEdit(scope.$index, scope.row,0)">
+                                            <el-button size="mini" type="primary">编辑
+                                            </el-button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item :command="handleButtonView(scope.$index, scope.row,1)">
+                                            <el-button size="mini" type="primary">
+                                                查看
+                                            </el-button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item
                                                 :command="HandleButtonMatching(scope.$index, scope.row,2)">
-                                                <el-button size="mini" type="primary">匹配
-                                                </el-button>
-                                            </el-dropdown-item>
-                                            <el-dropdown-item v-if="scope.row.delFlag !=2"
-                                                :command="HandleButtonDeflag(scope.row.delFlag==0?1:0, scope.row.id,3)">
-                                                <el-button size="mini" type="primary">
-                                                    <span v-if="scope.row.delFlag==0">下架</span>
-                                                    <span v-if="scope.row.delFlag==1">上架</span>
-                                                </el-button>
-                                            </el-dropdown-item>
-                                            <el-dropdown-item v-if="scope.row.delFlag ==2">
-                                                <el-button size="mini" type="primary" disabled="true">
-                                                    管理员下架
-                                                </el-button>
-                                            </el-dropdown-item>
-                                        </el-dropdown-menu>
-                                    </el-dropdown>
-                                </template>
-                            </el-table-column>
+                                            <el-button size="mini" type="primary">匹配
+                                            </el-button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item v-if="scope.row.delFlag !=2"
+                                                          :command="HandleButtonDeflag(scope.row.delFlag==0?1:0, scope.row.id,3)">
+                                            <el-button size="mini" type="primary">
+                                                <span v-if="scope.row.delFlag==0">下架</span>
+                                                <span v-if="scope.row.delFlag==1">上架</span>
+                                            </el-button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item v-if="scope.row.delFlag ==2">
+                                            <el-button size="mini" type="primary" disabled="true">
+                                                管理员下架
+                                            </el-button>
+                                        </el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </template>
+                        </el-table-column>
 
-                            <!-- <el-table-column label="操作">
-                                <template slot-scope="scope">
-                                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">
-                                        删除</el-button>
+                        <!-- <el-table-column label="操作">
+                            <template slot-scope="scope">
+                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">
+                                    删除</el-button>
 
-                                    <el-dropdown @command="handleCommand">
-                                        <span class="el-dropdown-link">
-                                            下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-                                        </span>
-                                        <el-dropdown-menu slot="dropdown">
-                                            <el-dropdown-item :command="beforeHandleCommand('a1',1111)">黄金糕
-                                            </el-dropdown-item>
-                                            <el-dropdown-item :command="beforeHandleCommand('b1',1111)">狮子头
-                                            </el-dropdown-item>
-                                            <el-dropdown-item :command="beforeHandleCommand('c1',1111)">螺蛳粉
-                                            </el-dropdown-item>
-                                            <el-dropdown-item :command="beforeHandleCommand('d1',1111)" disabled>双皮奶
-                                            </el-dropdown-item>
-                                            <el-dropdown-item :command="beforeHandleCommand('e1',1111)" divided>
-                                                蚵仔煎</el-dropdown-item>
-                                        </el-dropdown-menu>
-                                    </el-dropdown>
-                                </template>
-                            </el-table-column> -->
+                                <el-dropdown @command="handleCommand">
+                                    <span class="el-dropdown-link">
+                                        下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                                    </span>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item :command="beforeHandleCommand('a1',1111)">黄金糕
+                                        </el-dropdown-item>
+                                        <el-dropdown-item :command="beforeHandleCommand('b1',1111)">狮子头
+                                        </el-dropdown-item>
+                                        <el-dropdown-item :command="beforeHandleCommand('c1',1111)">螺蛳粉
+                                        </el-dropdown-item>
+                                        <el-dropdown-item :command="beforeHandleCommand('d1',1111)" disabled>双皮奶
+                                        </el-dropdown-item>
+                                        <el-dropdown-item :command="beforeHandleCommand('e1',1111)" divided>
+                                            蚵仔煎</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </template>
+                        </el-table-column> -->
 
 
-                        </el-table>
-                        <div class="pages">
-                            <el-pagination background layout="prev, pager, next" :pager-count="7" :page-size="pageSize"
-                                :total="allTotal" @current-change="handleCurrentChange">
-                            </el-pagination>
-                        </div>
+                    </el-table>
+                    <div class="pages">
+                        <el-pagination background layout="prev, pager, next" :pager-count="7" :page-size="pageSize"
+                                       :total="allTotal" @current-change="handleCurrentChange">
+                        </el-pagination>
                     </div>
-
                 </div>
+
             </div>
         </div>
-        <div class="mdiv matching_box" :style="{'display':matchShow?'block':'none'}">
-            <div class="all_bg_opacity" @click.stop="matchShow = false"></div>
-            <div class="matching_box_content">
-                <div class="bg_70adf1 padding_15_20 color_fff position_relative"><span>成果/需求匹配表 </span>
-                    <a>
-                        <i class="el-icon-close fr padding_20" style="position: absolute; top: 0px; right: 0px;"
-                            @click.stop="matchShow = false"></i>
-                    </a>
-                </div>
-                <div class="margin_20">
-                    <div class="font_weight_600 text_align_center">技术经纪人列表</div>
-                    <el-table :data="matchDate0" style="width: 100%">
-                        <el-table-column label="经纪人姓名">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.brokerName }}</span>
-                            </template>
-                        </el-table-column>
-
-                        <el-table-column label="行业类型">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.industryType.map(item=>item.name).join(',') }}</span>
-                            </template>
-                        </el-table-column>
-
-                        <el-table-column label="标签">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.tags.map(item=>item.name).join(',') }}</span>
-                            </template>
-                        </el-table-column>
-
-                        <el-table-column label="操作">
-                            <template slot-scope="scope">
-                                <el-button size="mini" type="danger" @click="handleMatchView(scope.row.id,0)">
-                                    查看
-                                </el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-                <div class="margin_20">
-                    <div class="font_weight_600 text_align_center">技术成果列表</div>
-                    <el-table :data="matchDate1" style="width: 100%">
-                        <el-table-column label="成果标题">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.title }}</span>
-                            </template>
-                        </el-table-column>
-
-                        <el-table-column label="行业类型">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.projectIndustryType.map(item=>item.name).join(',') }}</span>
-                            </template>
-                        </el-table-column>
-
-                        <el-table-column label="标签">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.tags.map(item=>item.name).join(',') }}</span>
-                            </template>
-                        </el-table-column>
-
-                        <el-table-column label="操作">
-                            <template slot-scope="scope">
-                                <el-button size="mini" type="danger" @click="handleMatchView(scope.row.id,1)">
-                                    查看
-                                </el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-            </div>
-        </div>
-
-        <ly-minifooter></ly-minifooter>
     </div>
-    <script type="text/javascript" src="/common/js/libs/require.js"></script>
-    <script src="js/userMarketTechRequire.js"></script>
+    <div class="mdiv matching_box" :style="{'display':matchShow?'block':'none'}">
+        <div class="all_bg_opacity" @click.stop="matchShow = false"></div>
+        <div class="matching_box_content">
+            <div class="bg_70adf1 padding_15_20 color_fff position_relative"><span>成果/需求匹配表 </span>
+                <a>
+                    <i class="el-icon-close fr padding_20" style="position: absolute; top: 0px; right: 0px;"
+                       @click.stop="matchShow = false"></i>
+                </a>
+            </div>
+            <div class="margin_20">
+                <div class="font_weight_600 text_align_center">技术经纪人列表</div>
+                <el-table :data="matchDate0" style="width: 100%">
+                    <el-table-column label="经纪人姓名">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.brokerName }}</span>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="行业类型">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.industryType.map(item=>item.name).join(',') }}</span>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="标签">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.tags.map(item=>item.name).join(',') }}</span>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-button size="mini" type="danger" @click="handleMatchView(scope.row.id,0)">
+                                查看
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <div class="margin_20">
+                <div class="font_weight_600 text_align_center">技术成果列表</div>
+                <el-table :data="matchDate1" style="width: 100%">
+                    <el-table-column label="成果标题">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.title }}</span>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="行业类型">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.projectIndustryType.map(item=>item.name).join(',') }}</span>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="标签">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.tags.map(item=>item.name).join(',') }}</span>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-button size="mini" type="danger" @click="handleMatchView(scope.row.id,1)">
+                                查看
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+        </div>
+    </div>
+
+    <ly-minifooter></ly-minifooter>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="js/userMarketTechRequire.js"></script>
 </body>
 
 </html>

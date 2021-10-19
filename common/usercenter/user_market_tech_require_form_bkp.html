@@ -14,425 +14,213 @@
             min-height: 100%;
             padding-bottom: 100px;
         }
-
-        .first_level,
-        .second_level {
-            min-width: 180px;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            color: #606266;
-            background: #fff;
-            min-height: 260px;
-
-        }
-
-        .first_level {
-            width: 30%;
-            float: left;
-        }
-
-
-        .second_level {
-            border-left: 1px solid #ddd;
-            width: 60%;
-            float: left;
-        }
-
-        .third_level {
-            min-width: 300px;
-        }
-
-        .first_level li.first_li {
-            position: relative;
-            height: 34px;
-            line-height: 34px;
-        }
-
-
-        .first_li.active,
-        .second_li a.active,
-        .third_li.active {
-            color: #70adf1;
-        }
-
-        .first_a {
-            display: block;
-            padding: 0 20px;
-            font-size: 0.9rem;
-        }
-
-        .second_a {
-            font-weight: 600;
-            padding: 10px 5px 5px;
-            display: block;
-            font-size: 0.9rem;
-
-        }
-
-        .third_a {
-            font-size: 0.9rem;
-        }
-
-        li.third_li {
-            float: left;
-            margin: 5px 10px 5px 0;
-        }
-
-        .first_a i,
-        .second_a i,
-        .third_a i {
-            height: 34px;
-            line-height: 34px;
-        }
-
-        .model_a {
-            min-width: 150px;
-        }
-
-        .third_a:hover {
-            color: #70adf1;
-        }
-
-        .title_list_a {
-            background: #70adf1;
-            margin: 5px;
-            border-radius: 4px;
-            padding: 0px 4px;
-            color: #fff;
-            display: inline-block;
-            line-height: 26px;
-        }
-
-        .all_screen {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .tag_tree_style {
-            width: 600px;
-            height: 400px;
-            background: #fff;
-            position: fixed;
-            margin: auto;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-            border: 1px solid #f4f4f4;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .selected_over {
-            border-bottom: 1px solid #ddd;
-            line-height: 40px;
-            padding-bottom: 5px;
-        }
-
-        .icon_close {
-            position: absolute;
-            right: 1px;
-            top: 1px;
-            z-index: 1001;
-            padding: 15px;
-        }
-
-
-
-
-        .inputbox-max {
-            width: 435px;
-        }
-
-        .inputbox-well {
-            width: 350px;
-            margin-right: 13px;
-        }
-
-        .selectarea select {
-            margin-right: 8px;
-        }
-
-        .selectarea .expsltlb:after,
-        .selectbox:after {
-            right: 8px;
-        }
-
-        .inputbox-date:after {
-            right: 345px;
-        }
-
-        .form .inputbox-add {
-            width: 765px;
-        }
-
-        .form .inputbox-add span {
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-
-        .selectbox-max {
-            width: 435px;
-            padding-right: 25px;
-        }
-
-        .selectbox.ptrt:after {
-            top: 2px;
-            width: 30px;
-            height: 20px;
-            background-color: #ffffff;
-            right: -32px;
-        }
-
-        .ainline {
-            border: 1px solid #ccc;
-            width: 435px;
-        }
-
-        .width_100_150 {
-            width: -moz-calc(100% - 150px);
-            width: -webkit-calc(100% - 150px);
-            width: calc(100% - 150px);
-        }
     </style>
 </head>
 
 <body>
-    <div class="box" id='index_box' v-cloak>
-        <ly-toper></ly-toper>
-        <header-bar type='market' :http="httpCom"></header-bar>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper></ly-toper>
+    <header-bar type='market' :http="httpCom"></header-bar>
 
-        <div class="mdiv clear margin_bot_20 margin_top_20">
-            <div class="fl user_market_box_fl bg_fff ">
-                <ul>
-
-                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_tech_achievements.html"><i
-                                class="el-icon-s-finance"></i>技术成果管理</a></li>
-                    <li><a href="/common/usercenter/user_market_tech_require.html" class="active"><i
-                                class="el-icon-s-help"></i>
-                            技术需求管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
-                            技转业务管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_business_management.html"><i
-                                class="el-icon-s-cooperation"></i>
-                            我的业务管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
-                            我的订单</a>
-                    </li>
-                    <!--                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>-->
-                    <!--                            经纪人培训管理</a></li>-->
-                    <!--                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>-->
-                    <!--                            班级报名管理</a></li>-->
-                    <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
-                            我的培训</a></li>
-                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
-                            收藏</a>
-                    </li>
-                </ul>
+    <div class="mdiv clear margin_bot_20 margin_top_20">
+        <div class="fl user_market_box_fl bg_fff ">
+            <user-tech-menu :type='2'></user-tech-menu>
+        </div>
+        <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+            <div class="user_market_title border_bot_f2f2f2">
+                <span class="market_title">添加需求</span>
             </div>
-            <div class="fl user_market_box_fr bg_fff border_top_70adf1">
-                <div class="user_market_title border_bot_f2f2f2">
-                    <span class="market_title">添加需求</span>
-                </div>
-                <form>
-                    <div class="clear margin_20 border_bot_f2f2f2">
-                        <div class="width_100  margin_tb_10 clear">
-                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>需求名称：</span>
-                            <el-input v-model="proRequireForm.title" value="title" class="width_100_115"
-                                placeholder="请输入需求名称,最大50字符" maxlength="50">
-                            </el-input>
-                        </div>
+            <form>
+                <div class="clear margin_20 border_bot_f2f2f2">
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>需求名称：</span>
+                        <el-input v-model="proRequireForm.title" value="title" class="width_100_115"
+                                  placeholder="请输入需求名称,最大50字符" maxlength="50">
+                        </el-input>
+                    </div>
 
 
-                        <div class="clear">
-                            <div class="width_100 margin_tb_10 clear">
-                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>行业类型：</span>
-                                <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
-                                    @click.stop="openMenuListIndustry">
+                    <div class="clear">
+                        <div class="width_100 margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>行业类型：</span>
+                            <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
+                               @click.stop="openMenuListIndustry">
                                     <span class="" v-for="(item,index) in textIndustryList" :key="index">{{item.name}},
                                     </span>
-                                </a>
+                            </a>
 
-                                <div class="tag_tree_style padding_20" id="industry_tree_style" style="display: none;">
-                                    <div class="all_screen" @click.stop="closeAllLevelIndustry"></div>
-                                    <i class="el-icon-close icon_close" @click.stop="closeAllLevelIndustry"></i>
-                                    <div class="selected_over clear" style="position: relative;z-index: 1000;">
-                                        已选择：
-                                        <span class="title_list_a " v-for="(item,index) in textIndustryList"
-                                            :key="index">
+                            <div class="tag_tree_style padding_20" id="industry_tree_style" style="display: none;">
+                                <div class="all_screen" @click.stop="closeAllLevelIndustry"></div>
+                                <i class="el-icon-close icon_close" @click.stop="closeAllLevelIndustry"></i>
+                                <div class="selected_over clear" style="position: relative;z-index: 1000;">
+                                    已选择：
+                                    <span class="title_list_a " v-for="(item,index) in textIndustryList"
+                                          :key="index">
                                             {{item.name}}
                                             <i class="el-icon-close" @click.stop="removeSingleIndustry(index)"></i>
                                         </span>
-                                    </div>
-                                    <div style="position: relative;z-index: 1000;">
-                                        <div class="first_level fl">
-                                            <ul>
-                                                <li class="first_li clear" :class="item.active?'active':''"
-                                                    v-for="(item,index) in optionsIndustry" :key="index"
-                                                    @click="openFirstLevelIndustry(item,index)">
-                                                    <a class="first_a"> {{item.name}}
-                                                        <i class="el-icon-arrow-right fr"></i></a>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                        <div class="second_level fl">
-                                            <ul>
-                                                <li class="second_li clear">
-                                                    <a class="padding_06_1 font_9 display_inl_blo fl"
-                                                        :class="item2.active?'active':''"
-                                                        v-for="(item2,index2) in secondIndustryOptions" :key="index2"
-                                                        @click="openSecondLevelIndustry(item2,index2)">{{item2.name}}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="width_100  margin_tb_10 clear">
-                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>标签：</span>
-                            <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
-                                @click.stop="openMenuList">
-                                <span class="" v-for="(item,index) in textList" :key="index">{{item.name}},
-                                </span>
-                            </a>
-
-
-                            <div class="tag_tree_style padding_20" id="tag_tree_style" style="display: none;">
-                                <div class="all_screen" @click.stop="closeAllLevel"></div>
-                                <i class="el-icon-close icon_close" @click.stop="closeAllLevel"></i>
-                                <div class="selected_over clear" style="position: relative;z-index: 1000;">
-                                    已选择：
-                                    <span class="title_list_a " v-for="(item,index) in textList" :key="index">
-                                        {{item.name}}
-                                        <i class="el-icon-close" @click.stop="removeSingle(index)"></i>
-                                    </span>
                                 </div>
                                 <div style="position: relative;z-index: 1000;">
                                     <div class="first_level fl">
                                         <ul>
                                             <li class="first_li clear" :class="item.active?'active':''"
-                                                v-for="(item,index) in options" :key="index"
-                                                @click="openFirstLevel(item,index)">
+                                                v-for="(item,index) in optionsIndustry" :key="index"
+                                                @click="openFirstLevelIndustry(item,index)">
                                                 <a class="first_a"> {{item.name}}
                                                     <i class="el-icon-arrow-right fr"></i></a>
                                             </li>
                                         </ul>
+
                                     </div>
                                     <div class="second_level fl">
                                         <ul>
-                                            <li class="second_li clear" v-for="(item2,index2) in secondOptions"
-                                                :key="index2">
-                                                <a class="second_a">{{item2.name}}</a>
-                                                <div class="third_level clear">
-                                                    <ul>
-                                                        <li class="third_li" :class="item3.active?'active':''"
-                                                            v-for="(item3,index3) in item2.children" :key="index3"
-                                                            @click="openThirdLevel(item3,index3)">
-                                                            <a class="third_a padding_06_1">{{item3.name}}
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                            <li class="second_li clear">
+                                                <a class="padding_06_1 font_9 display_inl_blo fl"
+                                                   :class="item2.active?'active':''"
+                                                   v-for="(item2,index2) in secondIndustryOptions" :key="index2"
+                                                   @click="openSecondLevelIndustry(item2,index2)">{{item2.name}}
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="f_w_50 fl margin_tb_10">
-                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>需求类型：</span>
-                            <el-select v-model="proRequireForm.demandType" placeholder="请选择" class="width_100_115">
-                                <el-option v-for="item in achievement_demand_type_list" :key="item.id"
-                                    :label="item.display" :value="item.dictValue">
-                                </el-option>
-                            </el-select>
-                        </div>
-                        <div class="f_w_50 fr margin_tb_10">
-                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                    style="visibility: hidden;">*</i>需求预算：</span>
-                            <span class="width_100_115 fl">
-                                <el-radio-group v-model="intended_price" class="fl" style="width:150px">
-                                    <el-radio v-for="(item,index) in intended_price_list" :key="index"
-                                        style="padding: 11px 0px;margin-right:0;width:50%" class="user_center_radio"
-                                        :label="item.value">
-                                        {{item.name}}</el-radio>
-                                </el-radio-group>
-                                <el-input class="fl width_100_150" type="number" maxlength="8" v-if="intended_price==0"
-                                    v-model="proRequireForm.budget" placeholder="请输入需求预算">
-                                </el-input>
-                            </span>
+                    </div>
+                    <div class="width_100  margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>标签：</span>
+                        <a class="el-input__inner model_a width_100_115" style="font-size: 14px;"
+                           @click.stop="openMenuList">
+                                <span class="" v-for="(item,index) in textList" :key="index">{{item.name}},
+                                </span>
+                        </a>
 
 
-                            <!-- <input v-model="proRequireForm.budget" type="number"
-                                class="width_100_115 fl border_efefef padding_06_1" placeholder="请输入需求预算" maxlength="8"> -->
-                        </div>
-                        <div class="f_w_50 fl margin_tb_10 clear">
-                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>合作方式：</span>
-                            <el-select v-model="proRequireForm.cooperationMode" placeholder="请选择合作方式"
-                                class="width_100_115">
-                                <el-option v-for="item in cooperation_mode_list" :key="item.id" :label="item.display"
-                                    :value="item.dictValue">
-                                </el-option>
-                            </el-select>
-                        </div>
-                        <div class="clear">
-                            <div class="width_100  margin_tb_10 clear">
-                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>技术描述：</span>
-                                <div class="width_100_115 fl">
-                                    <vue-ueditor-wrap v-model="proRequireForm.demandDes" :config="ueditorConfig"
-                                        class="exptextarea">
-                                    </vue-ueditor-wrap>
-                                </div>
+                        <div class="tag_tree_style padding_20" id="tag_tree_style" style="display: none;">
+                            <div class="all_screen" @click.stop="closeAllLevel"></div>
+                            <i class="el-icon-close icon_close" @click.stop="closeAllLevel"></i>
+                            <div class="selected_over clear" style="position: relative;z-index: 1000;">
+                                已选择：
+                                <span class="title_list_a " v-for="(item,index) in textList" :key="index">
+                                        {{item.name}}
+                                        <i class="el-icon-close" @click.stop="removeSingle(index)"></i>
+                                    </span>
                             </div>
-
-                        </div>
-                        <div class="clear">
-                            <div class="width_100  margin_tb_10 clear">
-                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>技术指标：</span>
-                                <div class="width_100_115 fl">
-                                    <vue-ueditor-wrap v-model="proRequireForm.technicalNorm" :config="ueditorConfig"
-                                        class="exptextarea">
-                                    </vue-ueditor-wrap>
+                            <div style="position: relative;z-index: 1000;">
+                                <div class="first_level fl">
+                                    <ul>
+                                        <li class="first_li clear" :class="item.active?'active':''"
+                                            v-for="(item,index) in options" :key="index"
+                                            @click="openFirstLevel(item,index)">
+                                            <a class="first_a"> {{item.name}}
+                                                <i class="el-icon-arrow-right fr"></i></a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="clear">
-                            <div class="width_100  margin_tb_10 clear">
-                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
-                                        style="visibility: hidden;">*</i>其他描述：</span>
-                                <div class="width_100_115 fl">
-                                    <vue-ueditor-wrap v-model="proRequireForm.otherDes" :config="ueditorConfig"
-                                        class="exptextarea">
-                                    </vue-ueditor-wrap>
+                                <div class="second_level fl">
+                                    <ul>
+                                        <li class="second_li clear" v-for="(item2,index2) in secondOptions"
+                                            :key="index2">
+                                            <a class="second_a">{{item2.name}}</a>
+                                            <div class="third_level clear">
+                                                <ul>
+                                                    <li class="third_li" :class="item3.active?'active':''"
+                                                        v-for="(item3,index3) in item2.children" :key="index3"
+                                                        @click="openThirdLevel(item3,index3)">
+                                                        <a class="third_a padding_06_1">{{item3.name}}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-                <div class="user_center_submit clear">
-                    <a class="bg_70adf1 color_fff" @click="submitAuditRequireResults">提交审核</a>
-                </div>
-                <!-- <div class="margin_bot_long"></div> -->
-            </div>
-        </div>
+                    <div class="f_w_50 fl margin_tb_10">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>需求类型：</span>
+                        <el-select v-model="proRequireForm.demandType" placeholder="请选择" class="width_100_115">
+                            <el-option v-for="item in achievement_demand_type_list" :key="item.id"
+                                       :label="item.display" :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="f_w_50 fr margin_tb_10">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                               style="visibility: hidden;">*</i>需求预算：</span>
+                        <span class="width_100_115 fl">
+                                <el-radio-group v-model="intended_price" class="fl" style="width:150px">
+                                    <el-radio v-for="(item,index) in intended_price_list" :key="index"
+                                              style="padding: 11px 0px;margin-right:0;width:50%"
+                                              class="user_center_radio"
+                                              :label="item.value">
+                                        {{item.name}}</el-radio>
+                                </el-radio-group>
+                                <el-input class="fl width_100_150" type="number" maxlength="8" v-if="intended_price==0"
+                                          v-model="proRequireForm.budget" placeholder="请输入需求预算">
+                                </el-input>
+                            </span>
 
-        <ly-minifooter></ly-minifooter>
+
+                        <!-- <input v-model="proRequireForm.budget" type="number"
+                            class="width_100_115 fl border_efefef padding_06_1" placeholder="请输入需求预算" maxlength="8"> -->
+                    </div>
+                    <div class="f_w_50 fl margin_tb_10 clear">
+                        <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>合作方式：</span>
+                        <el-select v-model="proRequireForm.cooperationMode" placeholder="请选择合作方式"
+                                   class="width_100_115">
+                            <el-option v-for="item in cooperation_mode_list" :key="item.id" :label="item.display"
+                                       :value="item.dictValue">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>技术描述：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="proRequireForm.demandDes" :config="ueditorConfig"
+                                                  class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>技术指标：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="proRequireForm.technicalNorm" :config="ueditorConfig"
+                                                  class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="width_100  margin_tb_10 clear">
+                                <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                   style="visibility: hidden;">*</i>其他描述：</span>
+                            <div class="width_100_115 fl">
+                                <vue-ueditor-wrap v-model="proRequireForm.otherDes" :config="ueditorConfig"
+                                                  class="exptextarea">
+                                </vue-ueditor-wrap>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="user_center_submit clear">
+                <a class="bg_70adf1 color_fff" @click="submitAuditRequireResults">提交审核</a>
+            </div>
+            <!-- <div class="margin_bot_long"></div> -->
+        </div>
     </div>
-    <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
-    <script type="text/javascript" src="/common/js/libs/require.js"></script>
-    <script src="js/userMarketTechRequireForm.js"></script>
+
+    <ly-minifooter></ly-minifooter>
+</div>
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="js/userMarketTechRequireForm.js"></script>
 </body>
 
 </html>

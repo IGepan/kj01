@@ -189,7 +189,6 @@
             <fieldset class="form__group">
                 <el-form-item class="el-text " label="专家照片" prop="this.expertPhotos">
                     <div
-                            v-if="this.expertPhotos!==''"
                             class="head"
                             v-viewer
                             :class="{loading: isFileLoad}"
@@ -212,7 +211,7 @@
                                 accept="image/*"
                         >
                         </ly-upload>
-                        <span class="exbtn" :class="{Hide:isShow}" >上传</span>
+                        <span class="exbtn"  >上传</span>
                         <br>
                         <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i>
                     </label>
@@ -222,10 +221,10 @@
             <div class="form__submit" style="margin-left: 395px">
                 <p aria-live="assertive" class="form__validation" data-validation="submit" role="alert"></p>
                 <!--                <button class="button" @click="submit()" id="save">提交</button>-->
-                <el-button :class="{bgcolor:isActive}" :loading="false" @click="keep('formData')"
-                           style="width: 160px;font-size: 18px" type="primary">保存
-                </el-button>
-                <el-button @click="Submit('formData')" type="primary" :loading="false" style="width: 160px;font-size: 18px" :class="{bgcolor:isActive}">提交</el-button>
+<!--                <el-button :class="{bgcolor:isActive}" :loading="false" @click="keep('formData')"-->
+<!--                           style="width: 160px;font-size: 18px" type="primary">保存-->
+<!--                </el-button>-->
+                <el-button @click="Submit('formData')" type="primary" :loading="false" style="width: 160px;font-size: 18px" >提交</el-button>
             </div>
 
         </el-form>
