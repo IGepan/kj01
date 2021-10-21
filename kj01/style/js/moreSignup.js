@@ -353,6 +353,8 @@ require(['/common/js/require.config.js'], function () {
                                         }
                                         window.location.href = toUrl
                                     }, 1000);
+                                }else if(res.code === 'msg.active.activeEnrollmMessageIsUnique'){
+                                    vm.$dialog.showToast('活动报名信息手机重复！');
                                 }
                             })
                         } else {
