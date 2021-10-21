@@ -37,7 +37,7 @@
 <!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
-<!--        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>-->
+
 <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
 <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
 <!--          <div class="seediv" ref="acp">-->
@@ -50,6 +50,7 @@
 <!--        </div>-->
 <!--        </div>-->
       </div>
+      <div style="display: inline-block">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html" style="color: #ff5e06">易智网</a>!</div>
       <!-- <div class="fl">
         <a
           class="toperHi"
@@ -155,12 +156,7 @@
 <!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
-<!--        <div class="">-->
-<!--          Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a-->
-<!--            href="/index.html"-->
-<!--            >易智网</a-->
-<!--          >！-->
-<!--        </div>-->
+
 <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
 <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
 <!--          <div class="seediv" ref="acp">-->
@@ -173,6 +169,12 @@
 <!--            </ul>-->
 <!--          </div>-->
 <!--        </div>-->
+      </div>
+      <div style="display: inline-block">
+        Hi~<span v-if="userInfo && userInfo.userName" ></span>，欢迎来到<a
+          href="/index.html" style="color: #ff5e06"
+      >易智网</a
+      >！
       </div>
       <div class="fr toper-right">
         <div class="loginbox">
