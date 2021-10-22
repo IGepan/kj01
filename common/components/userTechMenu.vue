@@ -28,7 +28,7 @@ module.exports = {
           index: 0,
         },
         {
-          url: "/common/usercenter/user_market_form.html?type=11",
+          url: "/common/usercenter/user_market_form.html",
           active: false,
           icon: "el-icon-message-solid",
           name: "培训报名",

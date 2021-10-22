@@ -24,9 +24,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseMarketUrl + '/zMTechBrokerRest/insertZMTechBroker', param);
         },
 
-        // 新增、编辑 经纪人
+        // 新增、编辑 报名
         edit_form: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMEnrollRest/insertOrEditEnroll', param);
+        },
+        // 回显报名表
+        get_edit_form: function (param) {
+            return Http.get(httpUrl.baseMarketUrl + '/zMEnrollRest/getEnrollDetail');
         },
         // 新增、编辑 技术转移机构
         edit_tech_organ: function (param) {

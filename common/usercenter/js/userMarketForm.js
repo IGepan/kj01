@@ -173,8 +173,6 @@ require(['/common/js/require.config.js'], function () {
                 },
                 created: function () {
                     var _this = this
-
-
                     setTimeout(function () {
                         _this.initData();
                     }, 1000)
@@ -185,8 +183,6 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted: function () {
                     var vm = this;
-                    var c= this.$utils.getReqStr('type')
-                    console.log( c,'链接')
                     vm.imgUploader = $('.edithead0').imgUploader(this.imgOption);
 
                 },
@@ -208,7 +204,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(newName)
                         console.log(oldName)
                         if (newName == true) {
-                            this.find_certification_type();
+                            this.getFrom();
                         }
                     },
 
@@ -563,6 +559,18 @@ require(['/common/js/require.config.js'], function () {
                         return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
 
                     },
+                    getFrom:function (){
+                        var _this = this;
+                        userCenterApi.get_edit_form().then(function (res) {
+                            console.log(res.data,'数据');
+                            if(res.data!==null){
+                                _this.brokerPlatform = res.data
+                            }else {
+                                _this.find_certification_type()
+                            }
+
+                        })
+                    },
                     // 经纪人
                     brokerManager: function () {
                         var _this = this;
@@ -706,14 +714,13 @@ require(['/common/js/require.config.js'], function () {
                         }
 
                         var form = _this.brokerPlatform;
-                        var Id = this.$utils.getReqStr('classId');
-                        var cla= this.$utils.getReqStr('type')
-                        console.log( cla,'链接1')
-                        form.id = _this.proId ? _this.proId : ""; // id
+                        var classId = this.$utils.getReqStr('classId');
+                        // form.id = _this.proId ? _this.proId : ""; // id
                         form.logo = _this.headImg; // 个人封面
                         form.tags = _this.tagList;
+                        form.classId = classId;
                         form.industryType = _this.industryList;
-                        form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
+                        // form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
                         if (_this.noEmptyInputAuth(form)) {
                             console.log("form", form)
                             userCenterApi.edit_form(form).then(function (res) {
@@ -722,8 +729,9 @@ require(['/common/js/require.config.js'], function () {
                                     _this.$dialog.showToast(res.message);
                                     return;
                                 }
-                                _this.$dialog.showToast("提交成功");
-                                _this.find_certification_type();
+                                _this.$dialog.showToast("报名成功");
+                                window.location.href = "/common/usercenter/user_market_form.html";
+
                             })
 
 
@@ -798,7 +806,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.$dialog.showToast("从业年限必填");
                             return false;
                         }
-
 
                         if (form.industryType.length < 1) {
                             _this.$dialog.showToast("行业类型必填");
@@ -885,12 +892,10 @@ require(['/common/js/require.config.js'], function () {
                                 _this.myCertificagetUserInfo();//用户信息
                             } else {
                                 _this.hasFormData = true;
-
-                                _this.certification_type = data.type;
-                                _this.proId = data.info.id
-
+                                // _this.certification_type = data.type;
+                                // _this.proId = data.info.id
                                 var dataForm = data.info;
-
+                                _this.brokerPlatform = dataForm
                                 // id转字典文字
                                 dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
                                 dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
@@ -943,22 +948,22 @@ require(['/common/js/require.config.js'], function () {
                                     _this.headImg = dataForm.logo;
                                 }
 
-                                if (_this.certification_type == 'TECH_BROKER') {
-                                    _this.authentication_type = 1;
-                                    _this.brokerPlatform = dataForm;
-                                } else if (_this.certification_type == 'TECH_BROKER_REMOTE') {
-
-                                    _this.authentication_type = 2;
-                                    _this.brokerPlatform = dataForm;
-
-                                } else if (_this.certification_type == 'TECH_ORGAN') {
-                                    _this.authentication_type = 3;
-                                    _this.transferAgencyForm = dataForm;
-
-                                } else if (_this.certification_type == 'INVESTMENT') {
-                                    _this.authentication_type = 4;
-                                    _this.InvestmentForm = dataForm;
-                                }
+                                // if (_this.certification_type == 'TECH_BROKER') {
+                                //     _this.authentication_type = 1;
+                                //     _this.brokerPlatform = dataForm;
+                                // } else if (_this.certification_type == 'TECH_BROKER_REMOTE') {
+                                //
+                                //     _this.authentication_type = 2;
+                                //     _this.brokerPlatform = dataForm;
+                                //
+                                // } else if (_this.certification_type == 'TECH_ORGAN') {
+                                //     _this.authentication_type = 3;
+                                //     _this.transferAgencyForm = dataForm;
+                                //
+                                // } else if (_this.certification_type == 'INVESTMENT') {
+                                //     _this.authentication_type = 4;
+                                //     _this.InvestmentForm = dataForm;
+                                // }
 
                                 console.log("_this.authentication_type", _this.authentication_type)
                                 console.log("_this.textIndustryList", _this.textIndustryList)
@@ -1150,13 +1155,13 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-                    matchingNeedsAchievements() {
-                        var _this = this;
-                        console.log(_this.proId)
-                        _this.getProjectListPage(_this.proId);
-                        _this.getDemandListPage(_this.proId);
-                        _this.matchShow = true;
-                    },
+                    // matchingNeedsAchievements() {
+                    //     var _this = this;
+                    //     console.log(_this.proId)
+                    //     _this.getProjectListPage(_this.proId);
+                    //     _this.getDemandListPage(_this.proId);
+                    //     _this.matchShow = true;
+                    // },
 
                 },
             });
