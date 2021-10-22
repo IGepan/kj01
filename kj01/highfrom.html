@@ -52,16 +52,54 @@
         font-size: 18px;
         line-height: 38px;
         margin: auto;
+        margin-top: 20px;
     }
     .infrom a:hover{
-        color: #f0ad4e;
+       background:#1EA4FF ;
     }
     .infrom h4{
+        background: #1496bb;
+        /*bottom: 100%;*/
+        color: #fff;
+        display: block;
+        left: -25px;
+        margin: auto;
+        /*opacity: 0;*/
         padding: 10px;
-        background: #f0ad4e;
-        /*color: #FFFFff;*/
         font-weight: normal;
-        display: inline-block;
+        /*position: absolute;*/
+       display: inline-block;
+        -webkit-transform: translateY(10px);
+        -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        -webkit-transition: all .25s ease-out;
+        -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+    .infrom h4:before{
+        bottom: -20px;
+        content: " ";
+        display: block;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    .infrom h4:after{
+        border-left: solid transparent 10px;
+        border-right: solid transparent 10px;
+        border-top: solid #1496bb 10px;
+        bottom: -10px;
+        content: " ";
+        height: 0;
+        left: 50%;
+        margin-left: -13px;
+        position: absolute;
+        width: 0;
     }
     .floor-1,.floor-2 ,.floor-3,.floor-4{
         text-align: center;
@@ -162,8 +200,9 @@
      <div class="infrom mmdiv">
          <span>高新技术企业培育管理系统</span>
          <p>高新技术企业培育筛选系统面向各市、区县、园区高新技术企业培育管理工作，以国家知识产权局权威专利数据资源为基础，结合高新技术企业名录及企业工商信息属性，围绕高新技术企业的培育、变更、年报、运行情况监测、知识产权服务等全流程管理来建设高新技术企业培育系统；为各市、区县、园区高新技术企业发展提供数据统计监测。</p>
-         <a href="http://222.180.163.238:1352/login" target="_blank">在线演示</a>
          <h4>默认用户名：admin  密码：123456</h4>
+         <a href="http://222.180.163.238:1352/login" target="_blank">在线演示</a>
+
      </div>
     </div>
     <div class="mmdiv floor-1">
