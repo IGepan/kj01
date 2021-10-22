@@ -576,6 +576,7 @@ require(['/common/js/require.config.js'], function () {
 
                                 // 行业类型
                                 _this.certification_list = dataForm;
+                                _this.certification_list.logo = httpUrl.fileShowUrl + '/resource/' + dataForm.path
                                 if (_this.$utils.validatesEmpty(dataForm.industryTypeDisplay)) {
 
                                     if (dataForm.industryTypeDisplay.length > 0 && typeof (dataForm.industryTypeDisplay[0]) == "object") {
@@ -613,7 +614,6 @@ require(['/common/js/require.config.js'], function () {
                                 _this.certification_noPassReason = data.noPassReason;
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     // _this.find_img_file_url_query(dataForm.logo);
-                                    _this.certification_list.logo = httpUrl.fileShowUrl + '/resource/' + res.data.path
                                 }
 
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
