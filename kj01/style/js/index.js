@@ -523,14 +523,14 @@ require(['/common/js/require.config.js'], function () {
                                     activeType:'01',
                                     topicCustomTag: '01',
                                     sortType: "01",
-                                },
-                                {
-                                    label: '渝创渝新',
-                                    active: false,
-                                    activeType:'02',
-                                    topicCustomTag: '02',
-                                    sortType: "01",
-                                },
+                                }
+                                // {
+                                //     label: '渝创渝新',
+                                //     active: false,
+                                //     activeType:'02',
+                                //     topicCustomTag: '02',
+                                //     sortType: "01",
+                                // },
                             ]
                         },
                     ],
@@ -654,14 +654,14 @@ require(['/common/js/require.config.js'], function () {
                             alt_tip: '重庆市科学技术局',
                         },
                         {
-                            img: '/style/images/index/friend_link_4.png',
-                            href: 'http://dsjj.cq.gov.cn',
-                            alt_tip: '重庆市大数据应用发展管理局',
-                        },
-                        {
                             img: '/style/images/index/friend_link_2.png',
                             href: 'http://www.liangjiang.gov.cn',
                             alt_tip: '重庆两江新区',
+                        },
+                        {
+                            img: '/style/images/index/friend_link_4.png',
+                            href: 'http://dsjj.cq.gov.cn',
+                            alt_tip: '重庆市大数据应用发展管理局',
                         },
                         {
                             img: '/style/images/index/friend_link_3.png',

@@ -62,7 +62,7 @@
 
 .common-problem{
   width: 100%;
-  max-height: 246px;
+  max-height: 306px;
   background: #FFFFFF;
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.09);
   padding: 30px;
@@ -108,7 +108,7 @@
 }
 
 .problem-title .problem-title-left span{
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   width: 71px;
@@ -119,6 +119,7 @@
   color: #FFFFFF;
   width: 100px;
   height: 34px;
+  line-height: 34px;
   background: linear-gradient(90deg,  #41A4FF, #3B95E4, #3083CB);
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.16);
   border-radius: 5px;

@@ -17,6 +17,12 @@
             <el-dropdown-item>
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
             </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
+            </el-dropdown-item>
 <!--            <el-dropdown-item>-->
 <!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
 <!--            </el-dropdown-item>-->
@@ -31,7 +37,7 @@
 <!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
-<!--        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>-->
+
 <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
 <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
 <!--          <div class="seediv" ref="acp">-->
@@ -44,6 +50,7 @@
 <!--        </div>-->
 <!--        </div>-->
       </div>
+      <div style="display: inline-block">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html" style="color: #ff5e06">易智网</a>!</div>
       <!-- <div class="fl">
         <a
           class="toperHi"
@@ -129,6 +136,12 @@
             <el-dropdown-item>
             <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
             </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
+            </el-dropdown-item>
 <!--            <el-dropdown-item>-->
 <!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
 <!--            </el-dropdown-item>-->
@@ -143,12 +156,7 @@
 <!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
-<!--        <div class="">-->
-<!--          Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a-->
-<!--            href="/index.html"-->
-<!--            >易智网</a-->
-<!--          >！-->
-<!--        </div>-->
+
 <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
 <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
 <!--          <div class="seediv" ref="acp">-->
@@ -161,6 +169,12 @@
 <!--            </ul>-->
 <!--          </div>-->
 <!--        </div>-->
+      </div>
+      <div style="display: inline-block">
+        Hi~<span v-if="userInfo && userInfo.userName" ></span>，欢迎来到<a
+          href="/index.html" style="color: #ff5e06"
+      >易智网</a
+      >！
       </div>
       <div class="fr toper-right">
         <div class="loginbox">

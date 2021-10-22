@@ -74,49 +74,49 @@ require(['/common/js/require.config.js'], function () {
                         this.isFileLoad = true
                     },
 
-                    getData() {
-                        indexApi.selectExpert().then((res) => {
-                            if(res.code !== 'rest.success'){
-                                window.location.href = "/common/login.html?back=/expert.html";
-                            }
-                            if (res.code == 'rest.success' && res.result) {
-                                this.formData = res.result
-                                if (res.result.expertPhotos) {
-                                    this.expertPhotos = res.result.expertPhotos.url;
-                                }
-                            }
-                                if (this.formData.isSubmit == 1) {
-                                    this.isActive = true;
-                                    this.isShow = true;
-                                } else {
-                                    this.isActive = false;
-                                    this.isShow = false;
-                                }
-                        })
-                    },
-                    keep() {
-                        this.formData.isSubmit = 0
-                        indexApi.expertSubmit(this.formData).then((res) => {
-                            if (res.code == 'rest.success') {
-                                this.$notify.success({
-                                    title: '成功！',
-                                    message: '保存成功!',
-                                    duration: 2000
-                                });
-                                setTimeout(function () {
-                                    window.location.href = "/expert.html";
-                                }, 2000);
-                            } else {
-                                this.$notify.error({
-                                    title: '提示！',
-                                    message: '请先登录!'
-                                });
-                                setTimeout(function () {
-                                    window.location.href = "/common/login.html?back=/expert.html";
-                                }, 1000);
-                            }
-                        });
-                    },
+                    // getData() {
+                    //     indexApi.selectExpert().then((res) => {
+                    //         if(res.code !== 'rest.success'){
+                    //             window.location.href = "/common/login.html?back=/expert.html";
+                    //         }
+                    //         if (res.code == 'rest.success' && res.result) {
+                    //             this.formData = res.result
+                    //             if (res.result.expertPhotos) {
+                    //                 this.expertPhotos = res.result.expertPhotos.url;
+                    //             }
+                    //         }
+                    //             if (this.formData.isSubmit == 1) {
+                    //                 this.isActive = true;
+                    //                 this.isShow = true;
+                    //             } else {
+                    //                 this.isActive = false;
+                    //                 this.isShow = false;
+                    //             }
+                    //     })
+                    // },
+                    // keep() {
+                    //     this.formData.isSubmit = 0
+                    //     indexApi.expertSubmit(this.formData).then((res) => {
+                    //         if (res.code == 'rest.success') {
+                    //             this.$notify.success({
+                    //                 title: '成功！',
+                    //                 message: '保存成功!',
+                    //                 duration: 2000
+                    //             });
+                    //             setTimeout(function () {
+                    //                 window.location.href = "/expert.html";
+                    //             }, 2000);
+                    //         } else {
+                    //             this.$notify.error({
+                    //                 title: '提示！',
+                    //                 message: '请先登录!'
+                    //             });
+                    //             setTimeout(function () {
+                    //                 window.location.href = "/common/login.html?back=/expert.html";
+                    //             }, 1000);
+                    //         }
+                    //     });
+                    // },
                     //提交表单
                     Submit() {
                         // this.$alert('本次征集已结束', '提示', {
@@ -145,15 +145,16 @@ require(['/common/js/require.config.js'], function () {
                                             setTimeout(function () {
                                                 window.location.href = "/expert.html";
                                             }, 2000);
-                                        } else {
-                                            this.$notify.error({
-                                                title: '提示！',
-                                                message: '请先登录!'
-                                            });
-                                            setTimeout(function () {
-                                                window.location.href = "/common/login.html?back=/expert.html";
-                                            }, 1000);
                                         }
+                                        // else {
+                                        //     this.$notify.error({
+                                        //         title: '提示！',
+                                        //         message: '请先登录!'
+                                        //     });
+                                        //     setTimeout(function () {
+                                        //         window.location.href = "/common/login.html?back=/expert.html";
+                                        //     }, 1000);
+                                        // }
                                     });
                                 } else {
                                     this.$notify.error({
@@ -176,8 +177,8 @@ require(['/common/js/require.config.js'], function () {
                      */
                     cimgUploadSuccess (successInfo) {
                         if(successInfo.exp.type === 'Photo'){
-                            this.formData.expertPhotosId = successInfo.data.id;
-                            this.formData.expertPhotos = successInfo.data.url;
+                            this.formData.expertPhotosId = successInfo.id;
+                            this.formData.expertPhotos = successInfo.url;
                             this.isFileLoad = false
                         }
                     },
