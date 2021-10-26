@@ -739,7 +739,7 @@ require(['/common/js/require.config.js'], function () {
                         form.id = _this.proId ? _this.proId : ""; // id
                         form.logo = _this.headImg; // 个人封面
                         console.log(_this.fileList,'----')
-                        form.certificatePic = this.fileList[0].id
+                        // form.certificatePic = this.fileList[0].id
                         form.tags = _this.tagList;
                         form.industryType = _this.industryList;
                         form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
