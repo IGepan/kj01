@@ -43,7 +43,7 @@ require(['/common/js/require.config.js'], function () {
                         "work": "",//工作单位
                         "certificateId": "",//职务
                         "issuingUnit": "",
-                        "certificatePic": "",
+                        "certificatePic": "",//证书复印件
                         "post": "",
                         "industryArea": "",
                         "industryType": [],
@@ -1052,9 +1052,14 @@ require(['/common/js/require.config.js'], function () {
                                     _this.proId = data.info.id
                                     var dataForm = data.info;
                                     _this.pic = dataForm.file.fileName
-                                    this.fileList[0].name= dataForm.file.fileName
-                                    this.fileList[0].id=dataForm.file.id
-                                    this.fileList[0].url= httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
+                                    _this.fileList.push({
+                                        name:dataForm.file.fileName,
+                                        id:dataForm.file.id,
+                                        url:httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
+                                    })
+                                    // this.fileList[0].name= dataForm.file.fileName
+                                    // this.fileList[0].id=dataForm.file.id
+                                    // this.fileList[0].url= httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
                                     // id转字典文字
                                     dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
                                     dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
