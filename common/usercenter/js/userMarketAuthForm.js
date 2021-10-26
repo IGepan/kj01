@@ -662,7 +662,6 @@ require(['/common/js/require.config.js'], function () {
                     //       this.$refs.bgImg.style.backgroundImage = 'url(' + url + ')';
                     //   },
                     successFile(f) {
-                        console.log(f,"shangchuan")
                         if(this.fileList.length>0){
                             this.fileList[0].name=f.result.fileName
                             this.fileList[0].id=f.result.id
@@ -670,7 +669,8 @@ require(['/common/js/require.config.js'], function () {
                         }else{
                             this.fileList.push({
                                 name:f.result.fileName,
-                                id:f.result.id});
+                                id:f.result.id,
+                                url:''});
                             this.brokerPlatform.certificatePic = f.result.id;
                         }
                     },
@@ -1048,12 +1048,13 @@ require(['/common/js/require.config.js'], function () {
                                     _this.myCertificagetUserInfo();//用户信息
                                 } else {
                                     _this.hasFormData = true;
-
                                     _this.certification_type = data.type;
                                     _this.proId = data.info.id
-
                                     var dataForm = data.info;
                                     _this.pic = dataForm.file.fileName
+                                    this.fileList[0].name= dataForm.file.fileName
+                                    this.fileList[0].id=dataForm.file.id
+                                    this.fileList[0].url= httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
                                     // id转字典文字
                                     dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
                                     dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
