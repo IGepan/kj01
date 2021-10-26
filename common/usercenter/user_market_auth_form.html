@@ -347,10 +347,83 @@
                                         v-if="brokerPlatform.certificationFlag !=1" placeholder="请输入从业年限">
                                     </el-input>
                                 </div>
+                                <div class="f_w_50 fr margin_tb_10">
+                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                       v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                        <i class="color_red" v-else style="display: none;">*</i>工作单位：</span>
+                                    <el-input class="width_100_115" v-model="brokerPlatform.work"
+                                              v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
+                                              placeholder="请输入工作单位">
+                                    </el-input>
+                                    <span class="width_100_115 fl padding_06_0"
+                                          v-else>{{brokerPlatform.work}}</span>
+                                </div>
                             </div>
 
-
-
+                              <div class="clear">
+                                  <div class="f_w_50 fl margin_tb_10">
+                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                       v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                        <i class="color_red" v-else style="display: none;">*</i>发证单位：</span>
+                                      <el-input class="width_100_115" v-model="brokerPlatform.issuingUnit"
+                                                v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
+                                                placeholder="请输入工作单位">
+                                      </el-input>
+                                      <span class="width_100_115 fl padding_06_0"
+                                            v-else>{{brokerPlatform.issuingUnit}}</span>
+                                  </div>
+                                  <div class="f_w_50 fr margin_tb_10">
+                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                       v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                        <i class="color_red" v-else style="display: none;">*</i>证书编号：</span>
+                                      <el-input class="width_100_115" v-model="brokerPlatform.certificateId"
+                                                v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
+                                                placeholder="请输入证书编号">
+                                      </el-input>
+                                      <span class="width_100_115 fl padding_06_0"
+                                            v-else>{{brokerPlatform.certificateId}}</span>
+                                  </div>
+                              </div>
+                            <div class="clear">
+                                <div class="f_w_50 fl margin_tb_10">
+                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                       v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                        <i class="color_red" v-else style="display: none;">*</i>职务：</span>
+                                    <el-input class="width_100_115" v-model="brokerPlatform.post"
+                                              v-if="!hasFormData || brokerPlatform.certificationFlag !=1"
+                                              placeholder="请输入职务">
+                                    </el-input>
+                                    <span class="width_100_115 fl padding_06_0"
+                                          v-else>{{brokerPlatform.post}}</span>
+                                </div>
+                            </div>
+                            <div class="clear">
+                                <div class="width_100 margin_tb_10 clear">
+                                    <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
+                                                                                       v-if="!hasFormData || brokerPlatform.certificationFlag !=1">*</i>
+                                        <i class="color_red" v-else style="display: none;">*</i>证书复印件：</span>
+                                    <div style="float: left"  v-if="!hasFormData || brokerPlatform.certificationFlag !=1">
+                                        <el-upload
+                                                accept=".pdf"
+                                                class="upload-demo"
+                                                :action=actionUrl
+                                                :on-preview="handlePreview"
+                                                :on-remove="handleRemove"
+                                                :data="{system: 'ts'}"
+                                                show-file-list
+                                                multiple
+                                                :limit="1"
+                                                :on-success="successFile"
+                                                :file-list="fileList">
+                                            <el-button size="small" type="primary">点击上传文件</el-button>
+                                            <span>仅限上传pdf文件</span>
+                                        </el-upload>
+                                    </div>
+                                    <div style="float: left" v-else>
+                                       <span class="fl padding_06_0"><img src="/style/images/pdf.svg" width="28" style="vertical-align: middle"/>{{pic}}</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="clear">
                                 <div class="width_100 margin_tb_10 clear">
                                     <span class="width_115 fl padding_06_0 font_14"><i class="color_red"
@@ -497,34 +570,34 @@
                                 </div>
                             </div>
 
-                            <div class="clear" v-if="certificateList.length>0">
-                                <div class="f_w_50 fl margin_tb_10" style="width: 100%">
-                                    <span class="width_115 fl padding_06_0 font_14">
-                                        结业证书：</span>
-                                    <template v-for="item in certificateList">
+<!--                            <div class="clear" v-if="certificateList.length>0">-->
+<!--                                <div class="f_w_50 fl margin_tb_10" style="width: 100%">-->
+<!--                                    <span class="width_115 fl padding_06_0 font_14">-->
+<!--                                        结业证书：</span>-->
+<!--                                    <template v-for="item in certificateList">-->
 
-                                        <!--                                        <span class="width_100_115 fl padding_06_0" >-->
-                                        <!--                                            {{item.className +'：'+ item.certificateNu}}-->
-                                        <!--                                        </span>-->
-                                        <span class="fl padding_06_0  margin_right_20" style="text-align: center;">
-                                            <a :href="getCertificateImg(item.imgUrl)" target="_blank">
-                                                <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">
-                                            </a>
-                                            <!--                                            <a style="display: block;color: #409EFF" @click="getZmImg(item.imgUrl)" >下载证书</a>-->
+<!--                                        &lt;!&ndash;                                        <span class="width_100_115 fl padding_06_0" >&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            {{item.className +'：'+ item.certificateNu}}&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        </span>&ndash;&gt;-->
+<!--                                        <span class="fl padding_06_0  margin_right_20" style="text-align: center;">-->
+<!--                                            <a :href="getCertificateImg(item.imgUrl)" target="_blank">-->
+<!--                                                <img :src="getCertificateImg(item.imgUrl)" width="200" height="140">-->
+<!--                                            </a>-->
+<!--                                            &lt;!&ndash;                                            <a style="display: block;color: #409EFF" @click="getZmImg(item.imgUrl)" >下载证书</a>&ndash;&gt;-->
 
-                                        </span>
-                                        <!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"-->
-                                        <!--                                           @click="turnPageClassSign" target="_blank">{{item.className +-->
-                                        <!--                                            '：证书申请已提交，等待平台审核'}}</a>-->
-                                        <!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"-->
-                                        <!--                                           @click="turnPageClassSign" target="_blank">{{item.className +-->
-                                        <!--                                            '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>-->
-                                        <!--                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="!item"-->
-                                        <!--                                           @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>-->
-                                    </template>
-                                </div>
+<!--                                        </span>-->
+<!--                                        &lt;!&ndash;                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'wait'"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                           @click="turnPageClassSign" target="_blank">{{item.className +&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            '：证书申请已提交，等待平台审核'}}</a>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="item.state == 'notPass'"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                           @click="turnPageClassSign" target="_blank">{{item.className +&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            '：您提交的证书申请被拒绝，请重新学习或提交'}}</a>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        <a class="padding_06_0 width_100_115 fl font_14" v-if="!item"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                           @click="turnPageClassSign" target="_blank" style="font-size: 16px;color: blue;">前往学习,获得证书</a>&ndash;&gt;-->
+<!--                                    </template>-->
+<!--                                </div>-->
 
-                            </div>
+<!--                            </div>-->
                             <div>
                                 <a class="studybox" @click="turnPageClassSign" target="_blank">参加培训考试<br>获得证书</a>
                             </div>
@@ -845,6 +918,7 @@
     <script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
     <script type="text/javascript" src="/common/js/libs/require.js"></script>
     <script src="js/userMarketAuthForm.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
 </body>
 
 </html>

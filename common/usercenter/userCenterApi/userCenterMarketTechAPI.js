@@ -32,6 +32,9 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         get_edit_form: function (param) {
             return Http.get(httpUrl.baseMarketUrl + '/zMEnrollRest/getEnrollDetail');
         },
+        deleteFileById:function (param) {
+            return Http.post(httpUrl.baseMarketUrl + '/content/deleteFileById', param);
+        },
         // 新增、编辑 技术转移机构
         edit_tech_organ: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMTechOrganRest/insertZMTechOrgan', param);
