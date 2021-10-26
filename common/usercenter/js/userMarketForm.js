@@ -565,6 +565,60 @@ require(['/common/js/require.config.js'], function () {
                             console.log(res.data,'数据');
                             if(res.data!==null){
                                 _this.brokerPlatform = res.data
+                                _this.proId = res.data.id
+                                var dataForm = res.data
+                                // id转字典文字
+                                dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
+                                dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
+                                dataForm.investorType_display = _this.forEachDisplay(_this.investor_type_list, dataForm.investorType);
+                                dataForm.financeStage_display = _this.forEachDisplay(_this.finance_stage_list, dataForm.financeStage);
+                                dataForm.institutionalQuota_display = _this.forEachDisplay(_this.institutional_quota_list, dataForm.institutionalQuota);
+
+                                // 行业类型
+                                _this.certification_list = dataForm;
+                                _this.certification_list.logo = httpUrl.fileShowUrl + '/resource/' + dataForm.path
+                                if (_this.$utils.validatesEmpty(dataForm.industryTypeDisplay)) {
+
+                                    if (dataForm.industryTypeDisplay.length > 0 && typeof (dataForm.industryTypeDisplay[0]) == "object") {
+                                        _this.textIndustryList = dataForm.industryTypeDisplay;
+                                        _this.industryList = dataForm.industryTypeDisplay;
+                                    }
+                                }
+                                // 标签
+                                if (_this.$utils.validatesEmpty(dataForm.tagsDisplay)) {
+                                    if (dataForm.certificationFlag == 1 || dataForm.tags.length > 0) {
+                                        var textBox = [];
+                                        console.log(dataForm.tags)
+                                        if (_this.$utils.validatesEmpty(dataForm.tagsDisplay)) {
+                                            dataForm.tagsDisplay.forEach(element => {
+                                                textBox.push(element.name)
+                                            });
+                                        }
+
+                                    }
+
+                                    if (dataForm.tagsDisplay.length > 0 && typeof (dataForm.tagsDisplay[0]) == "object") {
+                                        _this.tagList = dataForm.tagsDisplay;
+                                        _this.textList = dataForm.tagsDisplay;
+                                    }
+
+                                }
+                                // 附加服务
+                                console.log("dataForm.additionalService", dataForm.zMTechBrokerAdditionalList)
+                                if (_this.$utils.validatesEmpty(dataForm.zMTechBrokerAdditionalList) && dataForm.zMTechBrokerAdditionalList.length > 0) {
+                                    dataForm.additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
+                                    // brokerPlatform_additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
+                                    dataForm.additionalService_display = _this.forEachDisplay(_this.additional_service_list, dataForm.zMTechBrokerAdditionalList[0].additionalService);
+                                }
+
+                                _this.certification_noPassReason = data.noPassReason;
+                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                    // _this.find_img_file_url_query(dataForm.logo);
+                                }
+
+                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                    _this.headImg = dataForm.logo;
+                                }
                             }else {
                                 _this.find_certification_type()
                             }
@@ -715,7 +769,7 @@ require(['/common/js/require.config.js'], function () {
 
                         var form = _this.brokerPlatform;
                         var classId = this.$utils.getReqStr('classId');
-                        // form.id = _this.proId ? _this.proId : ""; // id
+                        form.id = _this.proId ? _this.proId : ""; // id
                         form.logo = _this.headImg; // 个人封面
                         form.tags = _this.tagList;
                         form.classId = classId;
@@ -989,7 +1043,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.certification_list.logo = url
                         })
                     },
-
 
 
                     //   根据字典查id对应的文字
