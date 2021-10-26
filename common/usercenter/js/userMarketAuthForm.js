@@ -684,7 +684,8 @@ require(['/common/js/require.config.js'], function () {
                         });
                     },
                     handlePreview(f) {
-
+                        console.log(f)
+                        window.open(f.url)
                     },
                     imgUploadSuccess: function (id, url, type) {
                         this.headImg = id;
@@ -1051,12 +1052,15 @@ require(['/common/js/require.config.js'], function () {
                                     _this.certification_type = data.type;
                                     _this.proId = data.info.id
                                     var dataForm = data.info;
-                                    _this.pic = dataForm.file.fileName
-                                    _this.fileList.push({
-                                        name:dataForm.file.fileName,
-                                        id:dataForm.file.id,
-                                        url:httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
-                                    })
+                                    if (dataForm.file) {
+                                        _this.pic = dataForm.file.fileName;
+                                        console.log(dataForm.file,"看这里")
+                                        _this.fileList.push({
+                                            name:dataForm.file.fileName,
+                                            id:dataForm.file.id,
+                                            url:httpUrl.fileShowUrl + '/resource/' + dataForm.file.filePath
+                                        })
+                                    }
                                     // this.fileList[0].name= dataForm.file.fileName
                                     // this.fileList[0].id=dataForm.file.id
                                     // this.fileList[0].url= httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
