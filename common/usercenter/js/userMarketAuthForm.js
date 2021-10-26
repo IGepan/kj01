@@ -663,8 +663,11 @@ require(['/common/js/require.config.js'], function () {
                     //   },
                     successFile(f) {
                         if(this.fileList.length>0){
-                            this.fileList[0].name=f.result.fileName
-                            this.fileList[0].id=f.result.id
+                            this.fileList = []
+                            this.fileList.push({
+                                name:f.result.fileName,
+                                id:f.result.id,
+                                url:''});
                             this.brokerPlatform.certificatePic = f.result.id;
                         }else{
                             this.fileList.push({
