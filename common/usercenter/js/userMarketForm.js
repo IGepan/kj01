@@ -569,16 +569,15 @@ require(['/common/js/require.config.js'], function () {
                                 _this.brokerPlatform = res.data
                                 _this.proId = res.data.id
                                 var dataForm = res.data
-                                    userCenterApi.get_pass().then(function (res) {
-                                        if(res.code==true){
+                                userCenterApi.get_pass().then(function (res) {
+                                        if(res.code==true && res.data.length > 0 ){
                                             // msgshow(result.message,"false","3000");
-                                            _this.flag = res.data.certificationFlag
-                                            if(_this.flag==1){
-                                                _this.isActive = true
-                                            }
+                                            _this.flag = 1
+                                            _this.isActive = true
+
                                             console.log(_this.flag,'审核状态')
                                         }
-                                    })
+                                })
                                 // id转字典文字
                                 dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
                                 dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
