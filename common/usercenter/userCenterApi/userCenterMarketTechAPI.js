@@ -32,8 +32,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         get_edit_form: function (param) {
             return Http.get(httpUrl.baseMarketUrl + '/zMEnrollRest/getEnrollDetail');
         },
+        //删除pdf
         deleteFileById:function (param) {
             return Http.post(httpUrl.baseUrl+ '/content/deleteFileById', param);
+        },
+        //报名审核状态
+        get_pass:function (param) {
+            return Http.get(httpUrl.baseMarketUrl+ '/zMEnrollRest/isVerify');
         },
         // 新增、编辑 技术转移机构
         edit_tech_organ: function (param) {

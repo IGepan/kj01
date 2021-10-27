@@ -44,7 +44,8 @@ require(['/common/js/require.config.js'], function () {
                         "logo": "",//个人照片
                         "tags": [],//标签
                     },
-
+                    'flag':null,
+                    'isActive':false,
                     // 转移机构
                     "transferAgencyForm": {
                         "organName": "",
@@ -193,7 +194,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
                     'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
-                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue'),
                 },
                 computed: {
 
@@ -559,14 +560,25 @@ require(['/common/js/require.config.js'], function () {
                         return window.open(httpUrl.baseSchoolOutUrl + "/user/ajax/login?" + query);
 
                     },
+
                     getFrom:function (){
                         var _this = this;
                         userCenterApi.get_edit_form().then(function (res) {
-                            console.log(res.data,'数据');
+
                             if(res.data!==null){
                                 _this.brokerPlatform = res.data
                                 _this.proId = res.data.id
                                 var dataForm = res.data
+                                    userCenterApi.get_pass().then(function (res) {
+                                        if(res.code==true){
+                                            // msgshow(result.message,"false","3000");
+                                            _this.flag = res.data.certificationFlag
+                                            if(_this.flag==1){
+                                                _this.isActive = true
+                                            }
+                                            console.log(_this.flag,'审核状态')
+                                        }
+                                    })
                                 // id转字典文字
                                 dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
                                 dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
@@ -588,7 +600,7 @@ require(['/common/js/require.config.js'], function () {
                                 if (_this.$utils.validatesEmpty(dataForm.tagsDisplay)) {
                                     if (dataForm.certificationFlag == 1 || dataForm.tags.length > 0) {
                                         var textBox = [];
-                                        console.log(dataForm.tags)
+
                                         if (_this.$utils.validatesEmpty(dataForm.tagsDisplay)) {
                                             dataForm.tagsDisplay.forEach(element => {
                                                 textBox.push(element.name)
@@ -612,9 +624,9 @@ require(['/common/js/require.config.js'], function () {
                                 }
 
                                 _this.certification_noPassReason = data.noPassReason;
-                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
-                                    // _this.find_img_file_url_query(dataForm.logo);
-                                }
+                                // if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                //     _this.find_img_file_url_query(dataForm.logo);
+                                // }
 
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     _this.headImg = dataForm.logo;
@@ -783,11 +795,9 @@ require(['/common/js/require.config.js'], function () {
                                     _this.$dialog.showToast(res.message);
                                     return;
                                 }
-                                _this.$dialog.showToast("报名成功");
-                                window.location.href = "/common/usercenter/user_market_form.html";
-
+                                _this.$dialog.showToast("提交成功");
+                                _this.getFrom();
                             })
-
 
                             var userFrom = {
                                 "mobile": localStorage.getItem("userPhone"), //电话号码

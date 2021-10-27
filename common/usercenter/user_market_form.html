@@ -39,7 +39,9 @@
             text-align: center;
             color: #FFFFff !important;
         }
-
+        .disabled{
+            pointer-events: none;
+        }
         .studybox:hover {
             color: #f0ad4e !important;
         }
@@ -53,13 +55,15 @@
 
     <div class="mdiv clear margin_bot_20 margin_top_20">
         <div class="fl user_market_box_fl bg_fff ">
-            <user-tech-menu :type='1'></user-tech-menu>
+            <user-tech-menu :type='6' ></user-tech-menu>
+<!--            <user-tech-menu1 :type='6' v-else></user-tech-menu1>-->
         </div>
 
-        <div class="fl user_market_box_fr bg_fff border_top_70adf1">
+        <div class="fl user_market_box_fr bg_fff border_top_70adf1" :class="{disabled:isActive}">
             <div>
                 <div class="user_market_title border_bot_f2f2f2">
-                    <span class="market_title">培训报名</span>
+                    <span class="market_title" v-if="brokerPlatform.classId">培训报名</span>
+                    <span class="market_title" v-else>报名信息管理</span>
 <!--                    <span v-if="certification_type=='TECH_BROKER_REMOTE' || certification_type=='TECH_BROKER'">-->
 <!--                            <span class="fr go_study" v-if="certification_list.certificationFlag==2 " @click="open">-->
 <!--                                <a class="color_70adf1"> <i class="el-icon-plus"></i> 绑定机构</a>-->
@@ -141,27 +145,22 @@
 <!--                        </div>-->
                     </div>
 
-<!--                    <div v-if="hasFormData">-->
-<!--                        <div class="clear padding_06_0">-->
-<!--                            <span class="width_115 fl padding_06_0 font_14">审核状态：</span>-->
-<!--                            <span v-if="certification_list.certificationFlag==1"-->
-<!--                                  class="width_100_115 fl padding_06_0">待审核-->
-<!--                                &lt;!&ndash;                                    <span v-if="certification_type=='TECH_BROKER'">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <a class="width_100_115 font_14 padding_left_20 color_13c9ef"&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            href="/technologySchool/index.html" target="_blank">如果没有证书，请前往学习</a>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </span>&ndash;&gt;-->
+                        <div class="clear padding_06_0 margin_20" v-if="flag==1">
+                            <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>审核状态：</span>
+                            <span v-if="certification_list.certificationFlag==1"
+                                  class="width_100_115 fl padding_06_0 color_red" >报名审核中,待审核通过后可以进入班级学习
+                                <!--                                    <span v-if="certification_type=='TECH_BROKER'">-->
+                                <!--                                        <a class="width_100_115 font_14 padding_left_20 color_13c9ef"-->
+                                <!--                                            href="/technologySchool/index.html" target="_blank">如果没有证书，请前往学习</a>-->
+                                <!--                                    </span>-->
 
-<!--                                </span>-->
-<!--                            <span v-if="certification_list.certificationFlag==2"-->
-<!--                                  class="width_100_115 fl padding_06_0">审核通过</span>-->
-<!--                            <span v-if="certification_list.certificationFlag==3"-->
-<!--                                  class="width_100_115 fl padding_06_0" style="color:red">审核不通过</span>-->
-<!--                        </div>-->
+                                </span>
+                        </div>
 <!--                        <div class="clear padding_06_0" v-if="certification_list.certificationFlag==3">-->
 <!--                            <span class="width_115 fl padding_06_0 font_14">未通过原因：</span>-->
 <!--                            <span class="width_100_115 fl padding_06_0">{{certification_noPassReason}}</span>-->
 <!--                        </div>-->
-<!--                    </div>-->
+<!--                    -->
                     <div class="margin_20">
                         <div class="clear">
                             <div class="f_w_50 fl margin_tb_10">
@@ -443,8 +442,11 @@
                         <div>
                             <a class="studybox" @click="turnPageClassSign" target="_blank">参加培训考试<br>获得证书</a>
                         </div>
-                        <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20">
-                            <a class="bg_70adf1 color_fff" @click="submitAuditBrokerResults">提交报名</a>
+
+                        <div v-if="flag==1">
+                        </div>
+                        <div class="user_center_submit clear border_top_f2f2f2 margin_top_15 padding_top_20" v-else>
+                            <a class="bg_70adf1 color_fff" @click="submitAuditBrokerResults">提交</a>
                         </div>
                     </div>
                 </div>

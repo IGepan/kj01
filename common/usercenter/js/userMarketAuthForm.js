@@ -1148,7 +1148,6 @@ require(['/common/js/require.config.js'], function () {
 
                         })
                     },
-
                     getFrom:function (){
                         var _this = this;
                         userCenterApi.get_edit_form().then(function (res) {
@@ -1201,10 +1200,10 @@ require(['/common/js/require.config.js'], function () {
                                 }
 
                                 _this.certification_noPassReason = data.noPassReason;
-                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
-                                    // _this.find_img_file_url_query(dataForm.logo);
-                                }
-
+                                // if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                //     // _this.find_img_file_url_query(dataForm.logo);
+                                // }
+                                //
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     _this.headImg = dataForm.logo;
                                 }
