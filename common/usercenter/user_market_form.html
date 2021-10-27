@@ -78,13 +78,15 @@
                 <div class="margin_20">
                     <div class="f_w_100 clear margin_tb_10 clear">
                         <span class="width_115 fl padding_06_0 font_14" style="width: 120px"><i class="color_red">*</i>技术经纪人类型：</span>
-                        <el-radio class="user_center_radio" v-model="authentication_type" label="1">非技术经纪人
-                        </el-radio>
-                        <el-radio class="user_center_radio" v-model="authentication_type" label="2">初级技术经纪人
-                        </el-radio>
-                        <el-radio class="user_center_radio" v-model="authentication_type" label="3">
-                            中级技术经纪人
-                        </el-radio>
+                        <el-radio-group v-model="brokerPlatform.agentType" >
+                            <el-radio  class="user_center_radio" style=" width: auto" :label="1">非技术经纪人
+                            </el-radio>
+                            <el-radio class="user_center_radio" style=" width: auto" :label="2">初级技术经纪人
+                            </el-radio>
+                            <el-radio  class="user_center_radio" style=" width: auto"  :label="3">中级技术经纪人
+                            </el-radio>
+                        </el-radio-group>
+
                         <div class="width_100  margin_tb_10 clear">
                                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>个人照片：</span>
                             <div class="width_100_115 fl padding_06_0">
@@ -164,8 +166,7 @@
                         <div class="clear">
                             <div class="f_w_50 fl margin_tb_10">
                                     <span class="width_115 fl padding_06_0 font_14">
-                                        <i class="color_red">*</i>
-                                        真实姓名：</span>
+                                        <i class="color_red">*</i>真实姓名：</span>
                                 <el-input class="width_100_115" v-model="brokerPlatform.brokerName"
                                           placeholder="请输入真实姓名">
                                 </el-input>

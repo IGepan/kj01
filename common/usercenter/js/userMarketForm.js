@@ -43,6 +43,7 @@ require(['/common/js/require.config.js'], function () {
                         "industryType": [],//行业类型
                         "logo": "",//个人照片
                         "tags": [],//标签
+                        "agentType'":"1"//技术经纪人类型
                     },
                     'flag':null,
                     'isActive':false,
@@ -826,6 +827,10 @@ require(['/common/js/require.config.js'], function () {
                         }
                         if (!_this.$utils.validatesEmpty(form.brokerSchool)) {
                             _this.$dialog.showToast("毕业学校必填");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.agentType)) {
+                            _this.$dialog.showToast("技术经纪人类型必选");
                             return false;
                         }
                         if (!_this.$utils.validatesEmpty(form.industryArea)) {
