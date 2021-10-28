@@ -1151,6 +1151,7 @@ require(['/common/js/require.config.js'], function () {
                     getFrom:function (){
                         var _this = this;
                         userCenterApi.get_edit_form().then(function (res) {
+                            if(res.data!==null){
                             console.log(res.data,'数据');
                                 _this.brokerPlatform = res.data
                                 _this.proId = res.data.id
@@ -1207,7 +1208,7 @@ require(['/common/js/require.config.js'], function () {
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     _this.headImg = dataForm.logo;
                                 }
-
+                            }
                         })
                     },
                     //   查询附件

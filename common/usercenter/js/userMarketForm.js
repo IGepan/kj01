@@ -43,7 +43,7 @@ require(['/common/js/require.config.js'], function () {
                         "industryType": [],//行业类型
                         "logo": "",//个人照片
                         "tags": [],//标签
-                        "agentType'":"1"//技术经纪人类型
+                        agentType:null//技术经纪人类型
                     },
                     'flag':null,
                     'isActive':false,
@@ -946,6 +946,7 @@ require(['/common/js/require.config.js'], function () {
                     find_certification_type: function () {
                         var _this = this;
                         userCenterApi.get_certification({}).then(function (res) {
+                            if(res.data.info!==null){
                             console.log(res)
                             if (!res.code) {
                                 _this.$dialog.showToast(res.message);
@@ -1036,7 +1037,9 @@ require(['/common/js/require.config.js'], function () {
                                 console.log("_this.authentication_type", _this.authentication_type)
                                 console.log("_this.textIndustryList", _this.textIndustryList)
                             }
+                            }
                         })
+
                     },
 
 
