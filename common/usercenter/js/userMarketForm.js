@@ -43,7 +43,7 @@ require(['/common/js/require.config.js'], function () {
                         "industryType": [],//行业类型
                         "logo": "",//个人照片
                         "tags": [],//标签
-                        agentType:null//技术经纪人类型
+                        "agentType":1//技术经纪人类型
                     },
                     'flag':null,
                     'isActive':false,
@@ -628,9 +628,9 @@ require(['/common/js/require.config.js'], function () {
                                 //     _this.find_img_file_url_query(dataForm.logo);
                                 // }
 
-                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
-                                    _this.headImg = dataForm.logo;
-                                }
+                                // if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                //     _this.headImg = dataForm.logo;
+                                // }
                             }else {
                                 _this.find_certification_type()
                             }
@@ -782,7 +782,7 @@ require(['/common/js/require.config.js'], function () {
                         var form = _this.brokerPlatform;
                         var classId = this.$utils.getReqStr('classId');
                         form.id = _this.proId ? _this.proId : ""; // id
-                        form.logo = _this.headImg; // 个人封面
+                        // form.logo = _this.headImg; // 个人封面
                         form.tags = _this.tagList;
                         form.classId = classId;
                         form.industryType = _this.industryList;
