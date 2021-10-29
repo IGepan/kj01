@@ -739,7 +739,7 @@ require(['/common/js/require.config.js'], function () {
                         form.id = _this.proId ? _this.proId : ""; // id
                         form.logo = _this.headImg; // 个人封面
                         console.log(_this.fileList,'----')
-                        form.certificatePic = this.fileList[0].id
+                        // form.certificatePic = this.fileList[0].id
                         form.tags = _this.tagList;
                         form.industryType = _this.industryList;
                         form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
@@ -1148,10 +1148,10 @@ require(['/common/js/require.config.js'], function () {
 
                         })
                     },
-
                     getFrom:function (){
                         var _this = this;
                         userCenterApi.get_edit_form().then(function (res) {
+                            if(res.data!==null){
                             console.log(res.data,'数据');
                                 _this.brokerPlatform = res.data
                                 _this.proId = res.data.id
@@ -1201,14 +1201,14 @@ require(['/common/js/require.config.js'], function () {
                                 }
 
                                 _this.certification_noPassReason = data.noPassReason;
-                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
-                                    // _this.find_img_file_url_query(dataForm.logo);
-                                }
-
+                                // if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                //     // _this.find_img_file_url_query(dataForm.logo);
+                                // }
+                                //
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     _this.headImg = dataForm.logo;
                                 }
-
+                            }
                         })
                     },
                     //   查询附件

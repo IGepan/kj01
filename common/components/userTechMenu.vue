@@ -27,19 +27,19 @@ module.exports = {
           name: "资格认证",
           index: 0,
         },
-        {
-          url: "/common/usercenter/user_market_form.html",
-          active: false,
-          icon: "el-icon-message-solid",
-          name: "培训报名",
-          index: 1,
-        },
+        // {
+        //   url: "/common/usercenter/user_market_form.html",
+        //   active: false,
+        //   icon: "el-icon-message-solid",
+        //   name: "培训报名",
+        //   index: 1,
+        // },
         {
           url: "/common/usercenter/user_market_tech_achievements.html",
           active: false,
           icon: "el-icon-s-finance",
           name: "技术成果管理",
-          index: 2,
+          index: 1,
         },
 
         {
@@ -47,27 +47,34 @@ module.exports = {
           active: false,
           icon: "el-icon-s-help",
           name: "技术需求管理",
-          index: 3,
+          index: 2,
         },
         {
           url: "/common/usercenter/user_market_tech_transfer.html",
           active: false,
           icon: "el-icon-s-platform",
           name: "技转业务管理",
-          index: 4,
+          index: 3,
         },
         {
           url: "/common/usercenter/user_market_business_management.html",
           active: false,
           icon: "el-icon-s-cooperation",
           name: "我的业务管理",
-          index: 5,
+          index: 4,
         },
         {
           url: "/common/usercenter/user_market_business_order.html",
           active: false,
           icon: "el-icon-s-order",
           name: "我的订单",
+          index: 5,
+        },
+        {
+          url: "/common/usercenter/user_market_form.html",
+          active: false,
+          icon: "el-icon-message-solid",
+          name: "培训报名",
           index: 6,
         },
         {
@@ -95,9 +102,16 @@ module.exports = {
     this.urlData.forEach((element) => {
       if (this.type == element.index) {
         element.active = true;
+
       }
     });
-  },
+    var ID = this.$utils.getReqStr('classId');
+      if(ID){
+        this.urlData[6].name='培训报名'
+      }else {
+        this.urlData[6].name='报名信息管理'
+      }
+    }
 };
 </script>
 
