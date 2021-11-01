@@ -46,11 +46,11 @@
                         <li class="has-sub-menu" v-for="(serviceType,index) in mailServiceTypeList"
                             :key="serviceType.id">
 
-                            <a class="main-link" :href="'sub1.html?type='+serviceType.id">{{serviceType.name}}</a>
+                            <a class="main-link" :href="'sub1.html?type='+serviceType.id" target="_blank">{{serviceType.name}}</a>
 
                             <a class="sub-link" :href="'sub1.html?type='+children.id"
                                v-for="children in serviceType.children.slice(0,2)"
-                               :key="children.id">{{children.name}}</a>
+                               :key="children.id" target="_blank">{{children.name}}</a>
 
                             <div class="sub-menu">
                                 <div class="row">
@@ -76,13 +76,13 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/mall">首页</a>
+                    <a class="nav-link active" aria-current="page" href="/mall" target="_blank">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="sub1.html">找服务</a>
+                    <a class="nav-link" href="sub1.html" target="_blank">找服务</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="article.html">入驻商城</a>
+                    <a class="nav-link" href="article.html" target="_blank">入驻商城</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link" @click="declaration()">关于商城</a>-->
@@ -140,7 +140,7 @@
                             <!--                    <li v-for="(item,index) in achievementList" :key="index">-->
                             <!--                        欢迎{{item.companyName}}-->
                             <!--                    </li>-->
-                            <li v-for="(shop,index) in newShops">欢迎<a :href="'shop/index.html?code='+shop.shopCode">{{shop.shopName}}</a>入驻商城</li>
+                            <li v-for="(shop,index) in newShops">欢迎<a :href="'shop/index.html?code='+shop.shopCode" target="_blank">{{shop.shopName}}</a>入驻商城</li>
                         </ul>
                     </template>
                 </div>
@@ -213,7 +213,7 @@
 
                         <template v-for="(good,index) in chooseGoods">
                             <div class="swiper-slide">
-                                <a :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode"> <div class="card card-item">
+                                <a :href="'shop/detail.html?id='+good.id+'&code='+good.shopCode" target="_blank"> <div class="card card-item">
 <!--                                    <img :src="good.goodsImg.url" class="" alt="...">-->
                                     <div class="card-body">
                                         <h5 class="card-title">
@@ -271,19 +271,19 @@
                            <ul class="nav-list">
                                <!--                        <li class=""><a class="nav-link" :href="'sub1.html?type='+type.id">全部</a></li>-->
                                <li class="nav-item" v-for="title in type.children">
-                                   <a class="nav-link" :href="'sub1.html?type='+title.id">{{title.name}}</a>
+                                   <a class="nav-link" :href="'sub1.html?type='+title.id" target="_blank">{{title.name}}</a>
                                </li>
 
                            </ul>
                            <p>
-                               <a class="nav-all" :href="'sub1.html?type='+type.id">查看全部> </a>
+                               <a class="nav-all" :href="'sub1.html?type='+type.id" target="_blank">查看全部> </a>
                            </p>
 
                        </div>
                        <div class="row row-cols-3" >
 
                            <div class="col" v-for="goods in type.goodList">
-                               <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode">
+                               <a :href="'shop/detail.html?id='+goods.id+'&code='+goods.shopCode" target="_blank">
                                    <div class="card card-item">
                                        <!--                                <div class="content-img">-->
                                        <!--                                    <img :src="goods.goodsImg.url" class="" alt="...">-->

@@ -782,7 +782,7 @@ require(['/common/js/require.config.js'], function () {
                         var form = _this.brokerPlatform;
                         var classId = this.$utils.getReqStr('classId');
                         form.id = _this.proId ? _this.proId : ""; // id
-                        // form.logo = _this.headImg; // 个人封面
+                        form.logo= _this.headImg; // 个人封面
                         form.tags = _this.tagList;
                         form.classId = classId;
                         form.industryType = _this.industryList;
