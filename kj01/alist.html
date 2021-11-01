@@ -131,7 +131,35 @@
     <div class="listBox">
       <template v-for="(item, di) in dataList" >
         <div class="vaMiddle topic-item" :key="di">
-          <a :href="item.itemUrl" :title="item.title" target="_blank">
+          <a v-if="item.tycoon" :href="item.itemUrl+'&act='+item.tycoon.id" :title="item.title" target="_blank">
+            <div class="specialTopic-img item-img" :style="item.styles">
+              <img :src="item.itemImg" :alt="item.title">
+              <div v-if="item.isTopic" class="topic">品牌</div>
+            </div>
+            <div class="topic-item-info">
+              <h4 class="topic-item-info-title line">{{item.title}}</h4>
+              <div class="topic-item-info-line line mt state"><span><i
+                      class="iconfont icon-lishijilu"></i>{{item.activeStartTime}} {{item.weekday}}</span>
+                <span class="activity-info-state"v-if="!item.statusByUrl" :type="item.statusCode">{{item.statusDisplay}}</span>
+                <span class="activity-info-state1"v-if="item.statusByUrl" :type="item.statusByUrl">{{item.statusDisplay}}</span></div>
+              <div class="topic-item-info-line line address" v-if="item.onLineFlag === '0' && item.cityShow"><i
+                      class="iconfont icon-dingweixian"></i>{{item.cityShow|formatCity('')}}</div>
+              <div class="topic-item-info-line line onLine" v-else><i class="iconfont icon-xianshanghuodong"></i>线上活动
+              </div>
+              <div class="topic-item-info-line line" v-if="item.sponsor"><i
+                      class="iconfont icon-neirongtuisong"></i>{{item.sponsor}}</div>
+            </div>
+            <div class="topic-item-tag line">
+                <span>
+                  <span class="tag">{{item.activeTypeDisplay}}</span>
+                </span>
+              <!--<span>
+                <span class="tag">{{item.activityLabels}}</span>
+              </span>-->
+              <span class="viewTag"><i class="iconfont icon-liulanliang"></i>{{item.pageViews}}</span>
+            </div>
+          </a>
+          <a v-else :href="item.itemUrl" :title="item.title" target="_blank">
             <div class="specialTopic-img item-img" :style="item.styles">
               <img :src="item.itemImg" :alt="item.title">
               <div v-if="item.isTopic" class="topic">品牌</div>

@@ -35,6 +35,10 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     submit: function (param) {
       return Http.post(httpUrl.baseUrl + '/active/submit', param);
     },
+    //易智大咖荟详情
+   getInfrom: function (param) {
+    return Http.get(httpUrl.baseUrl + '/rpc/active/getDetail', param);
+  },
     // 获取模板表单项(鉴权)
     getByCode: function (param) {
       return Http.get(httpUrl.baseUrl + '/templete/getByCode', param);
@@ -144,6 +148,7 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     liveAuth: function (param) {
       return Http.get(httpUrl.baseUrl + '/userAuth/validateUserAuth', param);
     },
+
     //开始直播
     startLive: function (param) {
       return Http.get(httpUrl.baseUrl + '/active/startWeiho', param);

@@ -1,0 +1,88 @@
+
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智大咖荟</title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/platform.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    .article-files {
+        position: relative;
+        margin: 0 -30px 0;
+        padding: 40px 30px 0;
+        border-top: solid 1px #e6e7f1;
+    }
+    .article-files-title .title-text {
+        position: relative;
+        border-left: 4px solid #018fff;
+        font-size: 14px;
+        text-indent: 1em;
+        display: inline-block;
+        line-height: 1.5em;
+    }
+    .article-files-body {
+        padding: 20px;
+    }
+    .article-file .svg-icon {
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .article-file .line {
+        color: #018fff;
+    }
+    .vaMiddle:hover{
+        color: #f0ad4e;
+    }
+    .btn{
+        text-align: center;
+        padding:10px 15px;
+        font-size: 24px;
+        background: #018fff;
+        color: #FFFFff;
+        display: inline-block;
+        margin-left: calc((1440px - 126px)/2);
+        box-shadow: 0px 0px 11px #ddd;
+        border-radius: 10px;
+    }
+    .btn:hover{
+        background: #f0ad4e;
+    }
+    .mmdiv{
+        width: 1440px;
+        margin: 0 auto;
+    }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <sub-head name="活动中心" :bottom-border="true" :breadcrumb="breadcrumb"></sub-head>
+    <div class="content" style="margin: 0">
+        <div class="mdiv">
+            <div class="right">
+                <!--   工作动态       -->
+                <div class="platform-box">
+                    <div class="detail-box" >
+                        <div class="detail-title">{{details.title}}</div>
+                        <div class="sub-title">
+                            <span>发布时间：{{details.releaseDate|formatTime}}</span>
+                            <span>来源：{{details.origin}}</span>
+                        </div>
+                        <div class="detail-content" v-html="details.txt"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <web-footer></web-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="./style/js/infrom.js"></script>
+
+</body>
+</html>
