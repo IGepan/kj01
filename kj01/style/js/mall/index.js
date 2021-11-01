@@ -54,9 +54,10 @@ require(['/common/js/require.config.js'], function () {
                     isSeller: false,
                     typeList: [],//板块列表
                     goodList: [],//板块数据列表
-                    bgcolor: [
-                        'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7', 'bg6', 'bg8', 'bg9', 'bg10'
-                    ],
+                    // bgcolor: ['/mall/images/bg1.png', '/mall/images/bg2.png', '/mall/images/bg3.png', '/mall/images/bg4.png', '/mall/images/bg5.png', '/mall/images/bg6.png', '/mall/images/bg7.png',
+                    //     '/mall/images/bg8.png', '/mall/images/bg9.png',
+                    // ],
+                    bgList:['bg1','bg2','bg3','bg4','bg5','bg6','bg7','bg8','bg9',],
                     url: ['/mall/images/icon1.png', '/mall/images/icon2.png', '/mall/images/icon3.png', '/mall/images/icon4.png', '/mall/images/icon5.png', '/mall/images/icon6.png', '/mall/images/icon7.png',
                         '/mall/images/icon8.png', '/mall/images/icon9.png',
                     ],
@@ -293,7 +294,7 @@ require(['/common/js/require.config.js'], function () {
                     getMailServiceData:function (idx) {
                         var vm = this
                         var item = vm.typeList[idx]
-                        indexApi.selectMailGoods({type: item.id,orderBy:'homePageFlag desc,createTime desc'}).then(function (res) {
+                        indexApi.selectMailGoods({type: item.id,orderBy:'homePageFlag desc,createTime desc',pageSize:6}).then(function (res) {
                             //设置数据列表
                             item.goodList  =  res.result.list || []
                             item.total = res.result.total
@@ -386,7 +387,7 @@ require(['/common/js/require.config.js'], function () {
                                         slidesPerView: 3,
                                       slidesPerColumn: 2,
                                       // slidesPerGroup: 3,
-                                        spaceBetween: 30,
+                                      //   spaceBetween: 30,
                                         // loop:true,
                                         navigation: {
                                             nextEl: '.item-next',

@@ -113,8 +113,8 @@ a:hover {
     padding-left: 4.125rem;}
 .el-same{border: 0 !important;border-radius: 0 !important;}
 .el-select > .el-input{width: 120px!important;}
-.el-input__suffix-inner{border-right: 1px solid #008df4;}
-.el-select .el-input .el-select__caret{color: #008df4!important;font-weight: bold;}
+.el-input__suffix-inner{border-right: 1px solid #f1671b;}
+.el-select .el-input .el-select__caret{color: #f1671b!important;font-weight: bold;}
 .hot-box{font-size: 14px;
     color: rgb(123, 126, 138);margin-top: 8px;}.hot-box a{margin-right: 10px;color: #666666}
 .hot-box a:hover{color:#01c8f2!important;}
@@ -137,7 +137,7 @@ a:hover {
     left: 2.25rem; }
 .el-same{border: 0 !important;border-radius: 0 !important;}
 .search-top {
-    border: 2px solid #008df4;
+    border: 2px solid #f1671b;
     border-radius: 0.1875rem; }
 .search-top .btn, .search-top .form-control {
     border: none;
@@ -160,7 +160,7 @@ a:hover {
 .search-top .btn-search {
     text-decoration: none;
     padding: 0 0.625rem;
-    color: #008df4; }
+    color: #f1671b; }
 .search-top .btn-search .iconfont {
     font-size: 1.375rem; }
 .search-top .dropdown-menu {
@@ -235,11 +235,11 @@ a:hover {
     font-weight: 700;
     color: #101010; }
 .main-menu .navbar-nav .nav-item .active{
-    color: #008df4;!important;
+    color: #f1671b;!important;
 
 }
 .main-menu .navbar-nav .nav-link:hover {
-    color: #008df4; }
+    color: #f1671b; }
 .main-menu.bg-primary ul {
     margin: 0; }
 .main-menu.bg-primary .navbar {
@@ -554,7 +554,6 @@ a:hover {
     line-height: 3rem; }
 .card-item .card-body .addition .quoted-price span {
     font-size: 0.875rem; }
-
 .block-service .card-item img {
     width: 11.25rem;
     height: 11.25rem; }
@@ -735,23 +734,26 @@ a:hover {
     margin-bottom: 1.25rem;
     background: rgba(255, 255, 255, 0.9); }
 .service-list .card-item .card-body .card-title {
-    height: 2.5rem;
+    /*height: 2.5rem;*/
     /*white-space: normal !important;*/
     line-height: 1.25rem; }
 .service-list .card-item:hover {
-    background: #fff; }
+    background: #fff;
+    color: #f1671b!important;
+    }
 .service-list .card-item:hover .card-body .card-title a {
-    color: #008df4; }
+    color: #f1671b; }
 
 .find-list {
     background: #fff;
     padding: 1.25rem; }
 
 .find-list .card-item:hover, .recording .card-item:hover {
-    border-color: #008df4; }
+    border-color: #f1671b; }
 .find-list .card-item .card-body .card-title, .recording .card-item .card-body .card-title {
-    line-height: 1.5rem;
-    height: 3rem; }
+    /*line-height: 1.5rem;*/
+    /*height: 3rem;*/
+}
 .find-list .card-item .card-body .addition .quoted-price, .recording .card-item .card-body .addition .quoted-price {
     line-height: 1.875rem; }
 
