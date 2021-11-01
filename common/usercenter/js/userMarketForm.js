@@ -738,8 +738,8 @@ require(['/common/js/require.config.js'], function () {
 
                     imgUploadSuccess: function (id, url, type) {
                         this.headImg = id;
-                        console.log(url)
-                        this.$set(this.certification_list, 'logo', url);
+                        console.log(url,'上传')
+                        this.$set(this.certification_list, 'path', url);
                     },
                     //   binding_mechanism_active 绑定机构
                     binding_mechanism_active: function () {
@@ -1058,7 +1058,7 @@ require(['/common/js/require.config.js'], function () {
                             console.log(res.data)
                             var url = "";
                             url = httpUrl.fileShowUrl + '/resource/' + res.data.path
-                            console.log(url)
+                            console.log(url,'上传附件')
                             _this.personImg = url
                             _this.certification_list.logo = url
                         })
