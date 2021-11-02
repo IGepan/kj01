@@ -936,7 +936,7 @@ a:hover {
 .rightbox-list ul:before {
   content: '';
   width: 100%;
-  height: 10%;
+  height: 33px;
   position: absolute;
   left: 0;
   top: 0;

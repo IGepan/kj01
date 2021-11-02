@@ -399,18 +399,16 @@
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>
     setTimeout(function(){
-        $('.right-column').css({
-            height: $('.dropdown-menu-main').outerHeight()+'px'
-        })
-        $('#slideshow img').css({
-            height: $('.dropdown-menu-main').outerHeight()+'px'
-        })
-        $('#marquee-left').kxbdSuperMarquee({
-            isMarquee:true,
-            direction: 'left',
-            scrollDelay:30,
-            isEqual: false
-        });
+        // if(window.onload){
+            // $('.right-column').css({
+            //     height: $('.dropdown-menu-main').outerHeight()+'px'
+            // })
+        // $(".swiper-wrapper img:first-child").load(function(){
+        //     alert("加载完成！");
+            $('#slideshow .swiper-wrapper').css({
+                height: $('.dropdown-menu-main').outerHeight()+'px'
+            })
+        // });
         window.onscroll = function()
         {
             var oDiv = document.getElementById("showbox")
@@ -424,7 +422,7 @@
         }
 
 
-    }, 500);
+    },500);
 
 
 

@@ -366,6 +366,15 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.selectNewShops(this.goodFormData).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.newShops = res.result;
+                                setTimeout(function () {
+                                    $('#marquee-left').kxbdSuperMarquee({
+                                        isMarquee:true,
+                                        direction: 'left',
+                                        scrollDelay:30,
+                                        isEqual: false
+                                    });
+                                })
+
                             }
                         });
                     },
