@@ -10,6 +10,7 @@ require(['/common/js/require.config.js'], function () {
                     detailActive:0,
                     details:'',
                     id:'',
+                    act:'',
                     queryForm:{
                         pageNum:1,
                         pageSize:10,
@@ -37,10 +38,15 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted(){
                     this.detailActive = this.$utils.getReqStr('detailActive')?parseInt(this.$utils.getReqStr('detailActive')):0;
-                    this.id = this.$utils.getReqStr('id');
-                    if(this.id) {
-                        this.goDetail(this.id)
+                    this.act = this.$utils.getReqStr('id');
+                    if(this.act){
+                        this.nowIndex = 3;
+                        this.getcmsList();
+                        this.detailActive=0;
                     }
+                    // if(this.id) {
+                    //     this.goDetail(this.id)
+                    // }
                     var nowIndex = this.$utils.getReqStr('nowIndex')
                     if(nowIndex) this.nowIndex = parseInt(nowIndex);
                     this.getcmsList()
@@ -117,9 +123,11 @@ require(['/common/js/require.config.js'], function () {
                         return !(index + 4 > this.pages);
                     },
                     select(i) {
-                        this.nowIndex = i;
-                        this.getcmsList();
-                        this.detailActive=0;
+
+                            this.nowIndex = i;
+                            this.getcmsList();
+                            this.detailActive=0;
+
                     }
                 }
             })

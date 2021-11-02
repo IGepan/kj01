@@ -1,0 +1,123 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="/style/css/platform.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    .article-files {
+        position: relative;
+        margin: 0 -30px 0;
+        padding: 40px 30px 0;
+        border-top: solid 1px #e6e7f1;
+    }
+
+    .article-files-title .title-text {
+        position: relative;
+        border-left: 4px solid #018fff;
+        font-size: 14px;
+        text-indent: 1em;
+        display: inline-block;
+        line-height: 1.5em;
+    }
+
+    .article-files-body {
+        padding: 20px;
+    }
+
+    .article-file .svg-icon {
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .article-file .line {
+        color: #018fff;
+    }
+
+    .vaMiddle:hover {
+        color: #f0ad4e;
+    }
+
+    .btn {
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 24px;
+        background: #018fff;
+        color: #FFFFff;
+        display: inline-block;
+        margin-left: calc((1440px - 126px) / 2);
+        box-shadow: 0px 0px 11px #ddd;
+        border-radius: 10px;
+    }
+
+    .btn:hover {
+        background: #f0ad4e;
+    }
+
+    .mmdiv {
+        width: 1440px;
+        margin: 0 auto;
+    }
+    .title a{
+        color: #333;
+    }
+    .title.active a{
+        color: #30a9ee;
+    }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+
+    <div class="header-box " style="background: #fff;height: 65px;position: relative;">
+        <index-head :nav-index="sIndex"></index-head>
+        <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+    </div>
+    <div class="content">
+        <div class="mdiv">
+            <div class="right">
+                <ul class="tabs">
+                    <li class="title" @click="select(1)" :class="nowIndex ==1?'active':'title'" ><a href="/platform.html" >工作动态</a></li>
+                    <li class="title" @click="select(3)" :class="nowIndex ==3?'active':'title'"><a href="/platform.html?id=3" >媒体关注</a></li>
+                    <!--                    <li class="title" @click="select(4)" :class="nowIndex ==4?'active':'title'">通知公告</li>-->
+                </ul>
+                <!--   工作动态       -->
+
+                <div class="platform-box" :class="nowIndex ==1?'see':'none'">
+                    <div class="detail-box">
+                        <div class="detail-title">易智网科学城中心正式揭牌，为科技创新成果转化搭桥铺路（重庆晨报上游新闻）</div>
+                        <div class="sub-title">
+                            <span>发布时间：2021.06.25</span>
+                            <span>来源：上游新闻</span>
+                        </div>
+                        <div class="detail-content">
+                         <p style="text-align: left; text-indent: 2em; line-height: 2em;">
+                             <span style="letter-spacing: 0px; font-family: 黑体, SimHei; font-size: 20px;">9月29日，民营企业科技创新专题培训（第一堂课）在重庆易智网平台开展，本次培训由重庆市科学技术局主办，重庆易智网科技有限公司承办，成路（重庆）智能轨道交通设备制造有限公司、航天中电科技（重庆）有限公司、重庆康克唯生物科技有限公司等102家单位参加了培训。培训主要讲解了股权激励的主要功能以及类型、股权激励方案设计及实施的关键事项、A股IPO审核中关于股权激励的关注的相关内容。</span>
+                         </p>
+                           <p style="text-align: center; line-height: 2em; text-indent: 0em;">
+                               <img src="https://fs.kj01.cn/resource/ts/ueditor/20211008/1633675666031_04455995.png" title="1633675666031_04455995.png" alt="1633675666031_04455995.png" width="500" height="300" border="0" vspace="0" style="width: 500px; height: 300px;">
+                           </p>
+                        </div>
+                    </div>
+                    <div v-if="details.id=='429573921286627328'" style="text-align: center">
+                        <video controls src="/style/images/ship.mp4" height="500px">
+                        </video>
+                    </div>
+                </div>
+                <!--                公告通知-->
+            </div>
+        </div>
+    </div>
+    <web-footer></web-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/platform.js"></script>
+
+</body>
+</html>
