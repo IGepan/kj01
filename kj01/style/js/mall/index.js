@@ -369,12 +369,12 @@ require(['/common/js/require.config.js'], function () {
                                 vm.newShops = res.result;
                                 // setTimeout(function(){
                                 vm.$nextTick(function () {
-                                    $('#marquee-left').kxbdSuperMarquee({
-                                        isMarquee:true,
-                                        direction: 'left',
-                                        scrollDelay:30,
-                                        isEqual: false
-                                    });
+                                    // $('#marquee-left').kxbdSuperMarquee({
+                                    //     isMarquee:true,
+                                    //     direction: 'left',
+                                    //     scrollDelay:30,
+                                    //     isEqual: false
+                                    // });
                                 })
 
                             }
