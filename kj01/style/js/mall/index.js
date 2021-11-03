@@ -342,6 +342,14 @@ require(['/common/js/require.config.js'], function () {
                     // },
                     getBanner: function (bannerType, key, pageSize) {
                         var vm = this
+                        // 初始化banner
+                        var initBanner = function () {
+                            // 设置轮播图高度
+                            $('#home-slider').css({
+                                height: $('.dropdown-menu-main').outerHeight() + 'px'
+                            })
+                            // });
+                        }
                         indexApi.selectBanner({bannerType: bannerType, pageSize: pageSize}).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.$data[key] = res.result
@@ -356,8 +364,15 @@ require(['/common/js/require.config.js'], function () {
                                             clickable: true,
                                         },
                                     });
-
+                                    // initBanner()
                                 })
+                                var img = new Image()
+                                img.src = res.result[0].path
+                                console.log(img.src,'获取图片')
+                                img.onload = function (){
+                                    console.log('图片加载完成')
+                                    initBanner()
+                                }
                             }
                         })
                     },
@@ -369,12 +384,12 @@ require(['/common/js/require.config.js'], function () {
                                 vm.newShops = res.result;
                                 // setTimeout(function(){
                                 vm.$nextTick(function () {
-                                    // $('#marquee-left').kxbdSuperMarquee({
-                                    //     isMarquee:true,
-                                    //     direction: 'left',
-                                    //     scrollDelay:30,
-                                    //     isEqual: false
-                                    // });
+                                    $('#marquee-left').kxbdSuperMarquee({
+                                        isMarquee:true,
+                                        direction: 'left',
+                                        scrollDelay:30,
+                                        isEqual: false
+                                    });
                                 })
 
                             }

@@ -119,7 +119,8 @@
                         class="text">QQ</span></div>
               </div>
             </button>
-            <button type="button" typeName="activity-state" @click.stop="handleStateClick"
+            <button v-if="dataUrl!==''" type="button" typeName="activity-state" @click.stop="handleStateClick">查看内容</button>
+            <button v-else type="button" typeName="activity-state" @click.stop="handleStateClick"
                     :typeState="detail.statusCode">{{detail.statusShow}}</button>
             <!--<button type="button" typeName="entrust-activity" @click.stop="handleEntrust" style="border-radius: 0">委办</button>-->
           </div>

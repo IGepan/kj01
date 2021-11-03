@@ -96,6 +96,7 @@
                                            <div class="swiper-slide">
                                                  <img :src="idx_banner.path" @click="toLink(idx_banner.link)">
 
+<!--                                               <img src="images/banner-1.png" alt="...">-->
                                          </div>
 <!--                         <div class="swiper-slide"><img src="images/banner-1.png" alt="..."></div>-->
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
@@ -399,33 +400,26 @@
 <script src="/daping/style/js/vendor/jquery.min.js"></script>
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>
-
-    setTimeout(function(){
-        $('#marquee-left').kxbdSuperMarquee({
-            isMarquee:true,
-            direction: 'left',
-            scrollDelay:30,
-            isEqual: false
-        });
-            $('#home-slider').css({
-                height: $('.dropdown-menu-main').outerHeight()+'px'
-            })
-        // });
-        window.onscroll = function()
-        {
-            var oDiv = document.getElementById("showbox")
-            var s = document.body.scrollTop || document.documentElement.scrollTop
-            var h = $('.floor').outerHeight()
-            if(s>220 && s<(h+20)) {
-                oDiv.style = "display:block"
-            } else{
-                oDiv.style = "dispaly:none"
-            }
+    //右侧进度条
+    window.onscroll = function () {
+        var oDiv = document.getElementById("showbox")
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        var h = $('.floor').outerHeight()
+        if (s > 220 && s < (h + 20)) {
+            oDiv.style = "display:block"
+        } else {
+            oDiv.style = "dispaly:none"
         }
-
-    },500);
-
-
+    }
+    //轮播入驻机构
+    // setTimeout(function () {
+    //     $('#marquee-left').kxbdSuperMarquee({
+    //         isMarquee: true,
+    //         direction: 'left',
+    //         scrollDelay: 30,
+    //         isEqual: false
+    //     });
+    // },500)
 
 </script>
 </body>
