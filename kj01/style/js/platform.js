@@ -70,6 +70,7 @@ require(['/common/js/require.config.js'], function () {
                             vm.$data.detailActive=1;
                             vm.$data.details=res.result
                         })
+                        location.href = 'content/'+id+'.html'
                     },
                     pageClick: function (index) {
                         if (index > 0 && index <= this.pages) {
