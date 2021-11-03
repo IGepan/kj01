@@ -14,3 +14,4 @@ logs/*
 **/rebel.xml
 *.rsls
 /common/shop/*
+/kj01/content/*
