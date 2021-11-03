@@ -110,7 +110,7 @@ require(['/common/js/require.config.js'], function () {
                     var _this = this
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
-                    this.getMailSiteDetail();
+                    // this.getMailSiteDetail();
                     this.getAllServiceType();//服务分类
                     // 获取类型板块
                     _this.getMailServiceType(function (){
@@ -120,17 +120,18 @@ require(['/common/js/require.config.js'], function () {
                     );
                     //首页banner
                     this.getBanner('01', 'indexBanner', 10);
+                    //最新入驻
+                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.orderBy = 'createTime desc';
+                    this.getNewShops();
                     //广告2
-                    this.getBanner('02', 'indexBanner02', 1);
+                    // this.getBanner('02', 'indexBanner02', 1);
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
                     this.getMailGoods('chooseGoods')
 
                     this.goodFormData = {}
-                    //最新入驻
-                    this.goodFormData.pageSize = 8;
-                    this.goodFormData.orderBy = 'createTime desc';
-                    this.getNewShops();
+
                     // //知识产权
                     this.goodFormData.pageSize = 10;
                     // this.goodFormData.type = '371977891599065088';
@@ -259,14 +260,14 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/common/seller/store_agreement.html";
                         }
                     },
-                    getMailSiteDetail: function () {
-                        var vm = this
-                        vm.$httpCom.mailSiteDetail().then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.mailSite = res.result
-                            }
-                        })
-                    },
+                    // getMailSiteDetail: function () {
+                    //     var vm = this
+                    //     vm.$httpCom.mailSiteDetail().then(function (res) {
+                    //         if (res.code === 'rest.success') {
+                    //             vm.mailSite = res.result
+                    //         }
+                    //     })
+                    // },
                     getAllServiceType: function () {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
@@ -296,8 +297,8 @@ require(['/common/js/require.config.js'], function () {
                         var item = vm.typeList[idx]
                         indexApi.selectMailGoods({type: item.id,orderBy:'homePageFlag desc,createTime desc',pageSize:6}).then(function (res) {
                             //设置数据列表
-                            item.goodList  =  res.result.list || []
                             item.total = res.result.total
+                            item.goodList  =  res.result.list || []
                             //判断是否循环
                             if(idx < vm.typeList.length - 1)vm.getMailServiceData(idx + 1)
 
@@ -366,7 +367,8 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.selectNewShops(this.goodFormData).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.newShops = res.result;
-                                setTimeout(function () {
+                                // setTimeout(function(){
+                                vm.$nextTick(function () {
                                     $('#marquee-left').kxbdSuperMarquee({
                                         isMarquee:true,
                                         direction: 'left',

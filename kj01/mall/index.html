@@ -95,6 +95,7 @@
 <!--                                                <div class="swiper-slide"><img :src="idx_banner.path"></div>-->
                                            <div class="swiper-slide">
                                                  <img :src="idx_banner.path" @click="toLink(idx_banner.link)">
+
                                          </div>
 <!--                         <div class="swiper-slide"><img src="images/banner-1.png" alt="..."></div>-->
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
@@ -398,14 +399,9 @@
 <script src="/daping/style/js/vendor/jquery.min.js"></script>
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>
+
     setTimeout(function(){
-        // if(window.onload){
-            // $('.right-column').css({
-            //     height: $('.dropdown-menu-main').outerHeight()+'px'
-            // })
-        // $(".swiper-wrapper img:first-child").load(function(){
-        //     alert("加载完成！");
-            $('#slideshow .swiper-wrapper').css({
+            $('#home-slider img').css({
                 height: $('.dropdown-menu-main').outerHeight()+'px'
             })
         // });
@@ -420,7 +416,6 @@
                 oDiv.style = "dispaly:none"
             }
         }
-
 
     },500);
 
