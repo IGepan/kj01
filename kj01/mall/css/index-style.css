@@ -678,7 +678,7 @@ a:hover {
   -webkit-align-items: center;
   align-items: center;
 }
-#slideshow .swiper-slide img{object-fit: cover;}
+#slideshow .swiper-slide img{object-fit: cover;height: 100%}
 #slideshow .swiper-pagination-bullet {
   width: 1rem;
   border-radius: 0.25rem;
