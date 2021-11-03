@@ -27,6 +27,13 @@ module.exports = {
           name: "资格认证",
           index: 0,
         },
+        // {
+        //   url: "/common/usercenter/user_market_form.html",
+        //   active: false,
+        //   icon: "el-icon-message-solid",
+        //   name: "培训报名",
+        //   index: 1,
+        // },
         {
           url: "/common/usercenter/user_market_tech_achievements.html",
           active: false,
@@ -64,19 +71,26 @@ module.exports = {
           index: 5,
         },
         {
+          url: "/common/usercenter/user_market_form.html",
+          active: false,
+          icon: "el-icon-message-solid",
+          name: "培训报名",
+          index: 6,
+        },
+        {
           url: "https://study.kj01.cn/uc/index",
           active: false,
           icon: "el-icon-s-custom",
           name: "我的培训",
           target: true,
-          index: 6,
+          index: 7,
         },
         {
           url: "/common/usercenter/user_market_tech_collection.html",
           active: false,
           icon: "el-icon-s-claim",
           name: "收藏",
-          index: 7,
+          index: 8,
         },
       ],
     };
@@ -88,9 +102,16 @@ module.exports = {
     this.urlData.forEach((element) => {
       if (this.type == element.index) {
         element.active = true;
+
       }
     });
-  },
+    var ID = this.$utils.getReqStr('classId');
+      if(ID){
+        this.urlData[6].name='培训报名'
+      }else {
+        this.urlData[6].name='报名信息管理'
+      }
+    }
 };
 </script>
 

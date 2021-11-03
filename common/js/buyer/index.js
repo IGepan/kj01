@@ -27,7 +27,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         hotList: [],
         hotType: '105',
         policyList: [],
-        isNotSite: true
+        isNotSite: true,
+          siteUrl: ''
       },
       filters: {
         filtersTips: function (v, evaluated) {
@@ -84,6 +85,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var vm = this;
           if (url.indexOf('/site/') > 0) {
             vm.isNotSite = false;
+            vm.siteUrl = url.substring(0,url.indexOf("/common"))
+          }else{
+              vm.isNotSite = true
           }
         },
         // 订单信息

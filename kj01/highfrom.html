@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-高企培育管理系统</title>
+
+    <meta name='keywords'
+          content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description'
+          content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/button.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/index.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
+</head>
+<style>
+    .bg{
+        background:url(/style/images/banner.png)no-repeat center;
+        background-size: cover;
+        width: 100%;
+        height: 400px;
+        text-align: center;
+    }
+    .infrom span{
+        color: #FFFFff;
+        padding-top: 70px;
+        font-size: 40px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .infrom p{
+        color: #FFFFff;
+        font-size: 18px;
+        /*width: 60%;*/
+        line-height: 30px;
+    }
+    .infrom a{
+
+        display: block;
+        border: 1px solid #1EA4FF;
+        background: #0068BD;
+        text-align: center;
+        width: 150px;
+        height: 40px;
+        color: #fff;
+        font-size: 18px;
+        line-height: 38px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .infrom a:hover{
+       background:#1EA4FF ;
+    }
+    .infrom h4{
+        background: #1496bb;
+        /*bottom: 100%;*/
+        color: #fff;
+        display: block;
+        left: -25px;
+        margin: auto;
+        /*opacity: 0;*/
+        padding: 10px;
+        font-weight: normal;
+        /*position: absolute;*/
+       display: inline-block;
+        -webkit-transform: translateY(10px);
+        -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        -webkit-transition: all .25s ease-out;
+        -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+    .infrom h4:before{
+        bottom: -20px;
+        content: " ";
+        display: block;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    .infrom h4:after{
+        border-left: solid transparent 10px;
+        border-right: solid transparent 10px;
+        border-top: solid #1496bb 10px;
+        bottom: -10px;
+        content: " ";
+        height: 0;
+        left: 50%;
+        margin-left: -13px;
+        position: absolute;
+        width: 0;
+    }
+    .floor-1,.floor-2 ,.floor-3,.floor-4{
+        text-align: center;
+        overflow: hidden;
+        padding:20px 0;
+    }
+    .floor-2{
+        background: url(/style/images/index/zhuanyi.png)no-repeat;
+        background-size: cover;
+    }
+    .floor-1 h2,.floor-2 h2,.floor-3 h2,.floor-4 h2{
+        font-size: 40px;
+        color: #0a6cd6;
+        font-weight: normal;
+    }
+    .floor-1 .card{
+        width: 33%;
+        float: left;
+        height: 300px;
+        padding: 20px 0;
+        display: block;
+    }
+    .floor-1 .card img{
+        width: 128px;
+        display: block;
+        text-align: center;
+        margin: auto;
+       padding-bottom: 10px;
+    }
+    .floor-1 .card span{
+        font-size: 24px;
+    }
+    .floor-1 .card p{
+        color: #6a6e7d;
+    }
+    .floor-2 .card{
+        width: 32.8%;
+        float: left;
+        margin-right: 10px;
+        height: 105px;
+        padding: 20px;
+        display: block;
+        background: #0a6cd6;
+        border-radius: 10px;
+        margin-bottom: 40px;
+    }
+    .floor-2 .card span{
+        color: #FFFFff;
+        font-size: 24px;
+
+    }
+    .floor-2 .card:last-child{
+        margin-right: 0;
+    }
+    .floor-4 .clist{
+        /*border: 1px solid #dfdfdf;*/
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        margin: auto;
+        overflow: hidden;
+    }
+    .floor-4 .clist li{
+        width: 40%;
+        float: right;
+        text-align: left;
+        margin-bottom: 25px;
+    }
+    .floor-4 .clist li:nth-child(2n+1){
+        float: left;
+        text-align: right;
+    }
+    .floor-4 .clist li:nth-child(2n+1) img{
+        float: right;
+        margin-left: 10px;
+    }
+    .clist li img{
+        float: left;
+        margin-right: 10px;
+    }
+    .clist li span{
+        font-size: 20px;
+        font-weight: bold;
+        display: block;
+        padding: 10px 0;
+    }
+    .clist li p{
+        color: #6a6e7d;
+        font-size: 14px;
+        margin: 0;
+    }
+</style>
+
+<body>
+<div class="box" id='index_box' v-cloak style="background: #FFFFff">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="bg">
+     <div class="infrom mmdiv">
+         <span>高新技术企业培育管理系统</span>
+         <p>高新技术企业培育筛选系统面向各市、区县、园区高新技术企业培育管理工作，以国家知识产权局权威专利数据资源为基础，结合高新技术企业名录及企业工商信息属性，围绕高新技术企业的培育、变更、年报、运行情况监测、知识产权服务等全流程管理来建设高新技术企业培育系统；为各市、区县、园区高新技术企业发展提供数据统计监测。</p>
+         <h4>默认用户名：admin  密码：123456</h4>
+         <a href="http://222.180.163.238:1352/login" target="_blank">在线演示</a>
+     </div>
+    </div>
+    <div class="mmdiv floor-1">
+       <h2>三大核心优势</h2>
+        <div class="card">
+            <img src="/style/images/m1.svg"/>
+            <span>全辖区企业双重筛选</span>
+            <p>可通过企业知识产权数量及企业经营数据双重筛选</p>
+        </div>
+        <div class="card">
+            <img src="/style/images/m2.svg"/>
+            <span>历史周期全数据存档</span>
+            <p>系统记录企业及主管部门各时间点产生的数据和文件材料</p>
+        </div>
+        <div class="card">
+            <img src="/style/images/m3.svg"/>
+            <span>全方位知识产权服务</span>
+            <p>为企业提供高企辅导和知识产权服务，为主管部门提高管理效率</p>
+        </div>
+    </div>
+    <div class="floor-2">
+        <div class="mmdiv">
+            <h2>面向用户</h2>
+            <div class="card">
+                <span>各市、区（县）、园区、高新区、孵化器等各级科技主管部门</span>
+            </div>
+            <div class="card">
+                <span>高企评审专家</span>
+            </div>
+            <div class="card">
+                <span>高新技术企业、培育高新技术企业及省级高新技术企业</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="floor-3">
+        <div class="mmdiv">
+            <h2>培育服务流程</h2>
+             <img src="/style/images/line.jpg"/>
+        </div>
+    </div>
+    <div class="floor-4">
+        <div class="mmdiv">
+            <h2>系统功能</h2>
+           <ul class="clist">
+               <li>
+                   <img src="/style/images/c1.svg"/>
+                   <span>企业知识产权筛选</span>
+                   <p>按照企业知识产权数量筛选辖区符合知识产权保准的企业</p>
+               </li>
+               <li>
+                   <img src="/style/images/c2.svg"/>
+                   <span>企业知识产权筛选</span>
+                   <p>按照企业知识产权数量筛选辖区符合知识产权保准的企业</p>
+               </li>
+               <li>
+                   <img src="/style/images/c3.svg"/>
+                   <span>企业培育审核</span>
+                   <p>科技主管部门对企业上报的材料深入审核给出指导意见</p>
+               </li>
+               <li>
+                   <img src="/style/images/c4.svg"/>
+                   <span>高企培育大数据分析</span>
+                   <p>科技主管部门针对辖区历年培育申报的数据进行统计分析</p>
+               </li>
+               <li>
+                   <img src="/style/images/c5.svg"/>
+                   <span>高企辅导机构服务企业</span>
+                   <p>高企辅导机构辅助企业进行高企培育和申报</p>
+               </li>
+               <li>
+                   <img src="/style/images/c6.svg"/>
+                   <span>企业申报数据永久保存</span>
+                   <p>申报数据永久保存，方便企业和主管部门后续调取查看</p>
+               </li>
+           </ul>
+        </div>
+
+    </div>
+    <web-footer></web-footer>
+</div>
+</body>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/highfrom.js"></script>
+</html>

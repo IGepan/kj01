@@ -10,7 +10,6 @@ require(['/common/js/require.config.js'], function () {
                     detailActive:0,
                     details:'',
                     id:'',
-                    act:'',
                     queryForm:{
                         pageNum:1,
                         pageSize:10,
@@ -38,12 +37,7 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted(){
                     this.detailActive = this.$utils.getReqStr('detailActive')?parseInt(this.$utils.getReqStr('detailActive')):0;
-                    this.act = this.$utils.getReqStr('id');
-                    if(this.act){
-                        this.nowIndex = 3;
-                        this.getcmsList();
-                        this.detailActive=0;
-                    }
+                    // this.id = this.$utils.getReqStr('id');
                     // if(this.id) {
                     //     this.goDetail(this.id)
                     // }
@@ -52,22 +46,6 @@ require(['/common/js/require.config.js'], function () {
                     this.getcmsList()
                 },
                 methods: {
-                    handleOne:function () {
-                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
-                        if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/expert.html";
-                        } else {
-                            window.location.href = "/common/usercenter/expert.html";
-                        }
-                    },
-                    handleTwo:function () {
-                        this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
-                        if (!this.userInfo.userId) {
-                            window.location.href = "/common/login.html?back=/mechanism.html";
-                        } else {
-                            window.location.href = "/common/usercenter/mechanism.html";
-                        }
-                    },
                     goBack(){
                         location.href='/platform.html'
                     },
@@ -123,11 +101,9 @@ require(['/common/js/require.config.js'], function () {
                         return !(index + 4 > this.pages);
                     },
                     select(i) {
-
-                            this.nowIndex = i;
-                            this.getcmsList();
-                            this.detailActive=0;
-
+                        this.nowIndex = i;
+                        this.getcmsList();
+                        this.detailActive=0;
                     }
                 }
             })

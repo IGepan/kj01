@@ -101,10 +101,10 @@
         <div class="other">
           <div class="other-info">
             <span class="label"><i class="iconfont icon-liulanliang"></i>{{detail.visitNum||0}}</span>
-            <span class="label select" :class="{colSelected: detail.isCollection}" @click.stop="handleColSelected" v-if="detail.id=='399576820301668352'"><i
-                    class="iconfont"
-                    :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i>167</span>
-            <span class="label select" :class="{colSelected: detail.isCollection}" @click.stop="handleColSelected" v-else><i
+<!--            <span class="label select" :class="{colSelected: detail.isCollection}" @click.stop="handleColSelected" v-if="detail.id=='399576820301668352'"><i-->
+<!--                    class="iconfont"-->
+<!--                    :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i>167</span>-->
+            <span class="label select" :class="{colSelected: detail.isCollection}" @click.stop="handleColSelected" ><i
                     class="iconfont"
                     :class="{'icon-shoucangdansexian': !detail.isCollection, 'icon-shoucangdansemian': detail.isCollection}"></i>{{detail.collectionNum||0}}</span>
 
@@ -119,7 +119,8 @@
                         class="text">QQ</span></div>
               </div>
             </button>
-            <button type="button" typeName="activity-state" @click.stop="handleStateClick"
+            <button v-if="dataUrl!==''" type="button" typeName="activity-state" @click.stop="handleStateClick">查看内容</button>
+            <button v-else type="button" typeName="activity-state" @click.stop="handleStateClick"
                     :typeState="detail.statusCode">{{detail.statusShow}}</button>
             <!--<button type="button" typeName="entrust-activity" @click.stop="handleEntrust" style="border-radius: 0">委办</button>-->
           </div>

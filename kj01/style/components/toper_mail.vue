@@ -2,7 +2,30 @@
   <div class="toper">
     <div class="mdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
-        <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
+          <el-dropdown>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut">[切换]</span></span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+          </el-dropdown>
+
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>！</div>
       </div>
       <!-- <div class="fl">
@@ -66,11 +89,29 @@
     </div>
     <div class="mdiv" v-else>
       <div class="fl toper-left">
-        <div class="">
-          <span class="iconfont icon-dingwei"></span>重庆市<span class="cut"
-            >[切换]</span
-          >
-        </div>
+          <el-dropdown>
+            <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut">[切换]</span></span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         <div class="">
           Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a
             href="/index.html"
@@ -622,7 +663,7 @@ module.exports = {
 .toper {
   height: 40px;
   line-height: 40px;
-  background-color: #eaf8fb;
+  background-color: #fff5f0;
   color: #6a6e7d;
 }
 
@@ -632,11 +673,11 @@ module.exports = {
 }
 
 .toper-left a {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .toper-left .iconfont {
-  color: #01c8f2;
+  color: #ff5e06;
   margin-right: 5px;
 }
 
@@ -647,7 +688,7 @@ module.exports = {
 }
 
 .toper-left .cut:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .toper-right {
@@ -665,7 +706,7 @@ module.exports = {
 }
 
 .loginbox a:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .loginbox a:hover::after {

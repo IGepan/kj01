@@ -107,11 +107,13 @@
                             <span>来源：{{details.origin}}</span>
                         </div>
                         <div class="detail-content" v-html="details.txt"></div>
+                        <div v-if="details.id=='429573921286627328'" style="text-align: center">
+                            <video controls src="/style/images/ship.mp4" height="500px" >
+                            </video>
+                        </div>
                     </div>
-                    <div v-if="details.id=='429573921286627328'" style="text-align: center">
-                        <video controls src="/style/images/ship.mp4" height="500px" >
-                        </video>
-                    </div>
+
+
                 </div>
                 <!--   媒体关注       -->
                 <div class="platform-box" :class="nowIndex ==3?'see':'none'" @click="getcmsList">
