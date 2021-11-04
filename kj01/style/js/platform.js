@@ -16,7 +16,7 @@ require(['/common/js/require.config.js'], function () {
                         pageSize:10,
                         total:0,
                     },
-
+                    Type:'',
                     pages:0,
                     nowIndex:1,//默认第一个tab为激活状态
                 },
@@ -47,6 +47,7 @@ require(['/common/js/require.config.js'], function () {
                     var nowIndex = this.$utils.getReqStr('nowIndex')
                     if(nowIndex) this.nowIndex = parseInt(nowIndex);
                     this.getcmsList()
+
                 },
                 methods: {
                     goBack(){
@@ -63,17 +64,17 @@ require(['/common/js/require.config.js'], function () {
                             vm.$data.newsList = res.result.list;
                             vm.$data.queryForm.total=res.result.total;
                             vm.$data.pages=res.result.pages;
+
+                            // res.result.list.forEach(item => {
+                            //    this.Type = item.type;
+                            // })
+                            // console.log(this.Type,'ppp')
                         })
                     },
-                    goDetail(id){
-                        var vm = this;
-                        indexApi.contentDetail({
-                            id:id
-                        }).then(function (res) {
-                            vm.$data.detailActive=1;
-                            vm.$data.details=res.result
-                        })
-                        window.open('content/'+id+'.html',"_blank");
+                    goDetail(item){
+                        console.log(item,'ppp')
+                        window.open('content/'+item.id+'.html?nowIndex='+item.type,"_blank");
+
                     },
                     pageClick: function (index) {
                         if (index > 0 && index <= this.pages) {
