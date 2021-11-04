@@ -25,14 +25,14 @@
         <div class="problem-title">
           <div class="problem-title-left">
             <h1>常见问题</h1>
-            <span class="line" v-for="(item,index) in problemList.top" :key="index" @click="onProblem(item.questionKey)">{{item.questionKey}}</span>
+            <span class="line" v-for="(item,index) in problemList.top" :key="index" @click="onProblem(item.questionKey)" :title="item.questionKey">{{item.questionKey}}</span>
           </div>
           <div class="problem-title-right" @click="show = !show">
             <img :style="{transform: show ? 'rotate(0deg)' : 'rotate(180deg)'}" src="/style/images/topjiantou.png" alt="">
           </div>
         </div>
         <ul class="problem-list" v-show="show">
-          <li class="line" v-for="(item,index) in problemList.after" :key="index" @click="onProblem(item.questionKey)">{{item.questionKey}}</li>
+          <li class="line" v-for="(item,index) in problemList.after" :key="index" @click="onProblem(item.questionKey)" :title="item.questionKey">{{item.questionKey}}</li>
         </ul>
       </div>
       <div class="left" >
