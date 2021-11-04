@@ -79,7 +79,7 @@
 
                 <div class="platform-box" :class="nowIndex ==1?'see':'none'">
                     <div class="ul-list" v-if="detailActive===0">
-                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item)" :title="item.title">
+                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id,item.type)" :title="item.title">
                             <div class="li-left">
                                 <i></i>
                                 <span>{{item.title}}</span>
@@ -114,7 +114,7 @@
                 <!--   媒体关注       -->
                 <div class="platform-box" :class="nowIndex ==3?'see':'none'" @click="getcmsList">
                     <div class="ul-list" v-if="detailActive===0">
-                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
+                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id,item.type)" :title="item.title">
                             <div class="li-left">
                                 <i></i>
                                 <span>{{item.title}}</span>

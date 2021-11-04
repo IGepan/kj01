@@ -71,9 +71,10 @@ require(['/common/js/require.config.js'], function () {
                             // console.log(this.Type,'ppp')
                         })
                     },
-                    goDetail(item){
-                        console.log(item,'ppp')
-                        window.open('content/'+item.id+'.html?nowIndex='+item.type,"_blank");
+                    goDetail(id,val){
+                        console.log(id,val,'ppp')
+                        // window.open('content/'+id+'.html',"_blank");
+                        window.open('content/'+id+'.html?nowIndex='+val,"_blank");
 
                     },
                     pageClick: function (index) {
