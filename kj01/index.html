@@ -323,29 +323,25 @@
 
         <div class="activityBox">
             <div class="plate-title">
-                    <a href="/alist.html"><h2>活动中心</h2></a>
-                    <p>互联网+科技创新活动</p>
+                <a href="/alist.html"><h2>活动中心</h2></a>
+                <p>互联网+科技创新活动</p>
             </div>
             <div class="mmdiv">
                 <div class="title">
 
                     <div class="title-center">
-                            <span :class="{active: item.active}"
-                                  @click.stop="handleactivityTabs(item,index)"
-                                  v-for="(item,index) in activityTabs">{{item.label}}
+                            <span :class="{active: item.active}" @click.stop="handleactivityTabs(item,index)" v-for="(item,index) in activityTabs">{{item.label}}
                                 <div class="tablist">
-                            <a :class="{active: tab.active}"
-                               @click.stop="handleactivityTabs(tab,index)"
-                               v-for="tab in item.tabList">
+                               <a :class="{active: tab.active}" @click.stop="handleactivityTabs(tab,index)" v-for="tab in item.tabList">
                                 {{tab.label}}
-                            </a>
+                              </a>
                                 </div>
                             </span>
 
                     </div>
-<!--                    <div class="issue">-->
-<!--                        <a @click.stop="handleUrlBtn" data-url="/common/activity/add.html?code=001.004.001.001">发布活动</a>-->
-<!--                    </div>-->
+                    <!--                    <div class="issue">-->
+                    <!--                        <a @click.stop="handleUrlBtn" data-url="/common/activity/add.html?code=001.004.001.001">发布活动</a>-->
+                    <!--                    </div>-->
                 </div>
             </div>
                 <div class="actbg">

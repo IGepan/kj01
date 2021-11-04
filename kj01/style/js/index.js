@@ -483,7 +483,7 @@ require(['/common/js/require.config.js'], function () {
                             label: '技术转移',
                             active: false,
                             activeType: '218340665862395555',
-                            sortType: "01",
+                            sortType: "02",
                             tabList: [
                                 {
                                     label: '易智成果汇',
@@ -613,8 +613,8 @@ require(['/common/js/require.config.js'], function () {
                     activeParams: {
                         pageNum: 1,
                         pageSize: 10,
-                        sortType: "02",
-                        activeType: '218340665862391473',
+                        // sortType: "01",
+                        activeType: '218340665870780082',
                     },
                      params:{
                         activeType: "390092837996355585",
@@ -929,24 +929,23 @@ require(['/common/js/require.config.js'], function () {
                         //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
                             item.active = ti === i
-
                             item.tabList.forEach(function (tab, idx) {
                                 tab.active = tab.label == val.label
                             })
-
-                            if (i === 2) {
-                                vm.params.activeType = val.activeType
-                                vm.params.topicCustomTag = val.topicCustomTag
-                                vm.getBrandList()
-                            } else{
-                                if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
-
-                                }else {
-                                    vm.activeParams.activeType = val.activeType
-                                    vm.getActiveList()
-                                }
-                            }
                         })
+                        if (i === 2) {
+                            vm.params.activeType = val.activeType
+                            vm.params.topicCustomTag = val.topicCustomTag
+                            vm.getBrandList()
+                        } else{
+                            if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
+
+                            }else {
+                                vm.activeParams.activeType = val.activeType
+                                vm.getActiveList()
+                            }
+
+                        }
                         //二级循环
 
                     },
