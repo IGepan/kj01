@@ -390,9 +390,9 @@ require(['/common/js/require.config.js'], function () {
                                         }
                                     }
                                 }
-                                if(this.dataUrl!==''){
-                                    window.location.href = '/infrom.html?id=' + this.dataUrl;
-                                }
+                                // if(this.dataUrl!==''){
+                                //     window.location.href = '/infrom.html?id=' + this.dataUrl;
+                                // }
                             } else {
                                 window.location.href = '/common/login.html';
                             }
