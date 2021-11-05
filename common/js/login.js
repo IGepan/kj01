@@ -11,7 +11,7 @@ require(['/common/js/require.config.js'], function () {
           code: '',
           password: ''
         },
-        dataUrl:'',
+        dataUrl:'https://www.kj01.cn/',
         m_third_login: false,
         phoneErrorMsg: '',
         isShowDialog: false,
@@ -29,7 +29,7 @@ require(['/common/js/require.config.js'], function () {
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
       created: function () {
-        this.dataUrl = window.location.host
+        // this.dataUrl = window.location.host
         console.log(this.dataUrl,'yuming')
         // this.m_third_login = this.m_host.indexOf(document.location.host) === -1;
 
@@ -374,7 +374,8 @@ require(['/common/js/require.config.js'], function () {
                     localStorage.removeItem("userPhone")
                     vm.$httpCom.webCommonUserPhone().then(function (res) {
                       console.log('phone', res)
-                      if (res.code === true && this.dataUrl=='https://www.kj01.cn/') {
+                      if (res.code === true) {
+                        console.log('我在这')
                         localStorage.setItem("userPhone", res.data.phone);
                         vm.$utils.setCookie(dic.locaKey.YZW_USER_PHONE, res.data.phone);
                         var userPhone=localStorage.getItem("userPhone")
