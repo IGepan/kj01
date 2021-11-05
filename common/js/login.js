@@ -381,29 +381,31 @@ require(['/common/js/require.config.js'], function () {
                         var userPhone=localStorage.getItem("userPhone")
                         console.log(userPhone,'易智学堂登录')
                         if (userPhone !== null) {
-                          console.log("开始同步登录易智学堂")
-                          httpLogin.yzxtCheckPhone(userPhone).then(res => {
-                            // 判断是否有return url
-                            //判断是否是来自益智学堂
-                            var isSchool = false;
-                            if (location.search.indexOf('return') > -1) {
-                              // toUrl = location.search.replace('?return=', '')
-                              isSchool = true;
-                            }
-                            console.log(isSchool, 'isSchool')
-                            if (isSchool) {
-                              vm.handleSchool();
-                            }else {
-                              if(location.search.indexOf('back')>-1){
-                                debugger
-                                toUrl = location.search.replace('?back=','')
+                          if (location.host=='www.kj01.cn') {
+                            console.log("开始同步登录易智学堂")
+                            httpLogin.yzxtCheckPhone(userPhone).then(res => {
+                              // 判断是否有return url
+                              //判断是否是来自益智学堂
+                              var isSchool = false;
+                              if (location.search.indexOf('return') > -1) {
+                                // toUrl = location.search.replace('?return=', '')
+                                isSchool = true;
                               }
-                              window.location.href = toUrl;
-                            }
-                          });
+                              console.log(isSchool, 'isSchool')
+                              if (isSchool) {
+                                vm.handleSchool();
+                              } else {
+                                if (location.search.indexOf('back') > -1) {
+                                  debugger
+                                  toUrl = location.search.replace('?back=', '')
+                                }
+                                window.location.href = toUrl;
+                              }
+                            });
+                          }else {
+                            window.location.href = toUrl;
+                          }
                         }
-                      }else{
-                        window.location.href = this.$pathPrefix + '/index.html'
                       }
                     }).catch(function (res) {
                       console.log(res)
@@ -413,6 +415,7 @@ require(['/common/js/require.config.js'], function () {
                     var userPhone=localStorage.getItem("userPhone")
                     if (userPhone !== null) {
                       console.log(userPhone,'易智学堂登录')
+                      if (location.host=='www.kj01.cn'){
                       httpLogin.yzxtCheckPhone(userPhone).then(res => {
                         // 判断是否有return url
                         //判断是否是来自益智学堂
@@ -424,13 +427,16 @@ require(['/common/js/require.config.js'], function () {
                         console.log(isSchool, 'isSchool')
                         if (isSchool) {
                           vm.handleSchool();
-                        }else {
-                          if(location.search.indexOf('back')>-1){
-                            toUrl = location.search.replace('?back=','')
+                        } else {
+                          if (location.search.indexOf('back') > -1) {
+                            toUrl = location.search.replace('?back=', '')
                           }
                           window.location.href = toUrl;
                         }
                       });
+                      }else {
+                        window.location.href = toUrl;
+                      }
                     }
 
                   }
