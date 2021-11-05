@@ -613,8 +613,8 @@ require(['/common/js/require.config.js'], function () {
                     activeParams: {
                         pageNum: 1,
                         pageSize: 10,
-                        sortType: "02",
-                        activeType: '218340665862391473',
+                        // sortType: "02",
+                        activeType: '218340665870780082',
                     },
                      params:{
                         activeType: "390092837996355585",
@@ -934,21 +934,20 @@ require(['/common/js/require.config.js'], function () {
                                 tab.active = tab.label == val.label
                             })
 
-                            if (i === 2) {
-                                vm.params.activeType = val.activeType
-                                vm.params.topicCustomTag = val.topicCustomTag
-                                vm.getBrandList()
-                            } else{
-                                if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
-
-                                }else {
-                                    vm.activeParams.activeType = val.activeType
-                                    vm.getActiveList()
-                                }
-                            }
                         })
                         //二级循环
+                        if (i === 2) {
+                            vm.params.activeType = val.activeType
+                            vm.params.topicCustomTag = val.topicCustomTag
+                            vm.getBrandList()
+                        } else{
+                            if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
 
+                            }else {
+                                vm.activeParams.activeType = val.activeType
+                                vm.getActiveList()
+                            }
+                        }
                     },
                     //品牌活动
                     getBrandList: function () {

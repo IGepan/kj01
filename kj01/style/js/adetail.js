@@ -69,7 +69,7 @@ require(['/common/js/require.config.js'], function () {
                 created: function () {
                     this.initData()
                     this.dataUrl = this.$utils.getReqStr('act')
-
+                   console.log(this.dataUrl,'000')
                 },
                 methods: {
                     initData: function () {
@@ -389,10 +389,11 @@ require(['/common/js/require.config.js'], function () {
                                             this.$dialog.showToast("您没有报名该活动，不可观看直播！")
                                         }
                                     }
+                                    if(this.dataUrl!==null){
+                                        window.location.href = '/infrom.html?id=' + this.dataUrl;
+                                    }
                                 }
-                                // if(this.dataUrl!==''){
-                                //     window.location.href = '/infrom.html?id=' + this.dataUrl;
-                                // }
+
                             } else {
                                 window.location.href = '/common/login.html';
                             }

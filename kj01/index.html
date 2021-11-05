@@ -551,8 +551,8 @@
                                                               class="iconfont icon-gengduo"></a></div>
                             <div class="supplier-list">
                                 <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
-                                    <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt="" width="80" height="80"></div>
-                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg" alt="" width="80" height="80"></div>
+                                    <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt="" /></div>
+                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg"/></div>
 <!--                                    <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}-->
 <!--                                        <br>-->
 <!--                                        <div style="font-size: 12px">({{Man.agentType_display}})-->
