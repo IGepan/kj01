@@ -11,6 +11,7 @@ require(['/common/js/require.config.js'], function () {
           code: '',
           password: ''
         },
+        dataUrl:'',
         m_third_login: false,
         phoneErrorMsg: '',
         isShowDialog: false,
@@ -28,8 +29,10 @@ require(['/common/js/require.config.js'], function () {
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
       created: function () {
+        this.dataUrl = window.location.host
+        console.log(this.dataUrl,'yuming')
         // this.m_third_login = this.m_host.indexOf(document.location.host) === -1;
-        // console.log(this.m_host)
+
       },
       mounted: function () {
         var that = this;
@@ -368,11 +371,10 @@ require(['/common/js/require.config.js'], function () {
                     }
                   // 判断是否有return url
 
-
                     localStorage.removeItem("userPhone")
                     vm.$httpCom.webCommonUserPhone().then(function (res) {
                       console.log('phone', res)
-                      if (res.code === true) {
+                      if (res.code === true && this.dataUrl=='https://www.kj01.cn/') {
                         localStorage.setItem("userPhone", res.data.phone);
                         vm.$utils.setCookie(dic.locaKey.YZW_USER_PHONE, res.data.phone);
                         var userPhone=localStorage.getItem("userPhone")
@@ -399,6 +401,8 @@ require(['/common/js/require.config.js'], function () {
                             }
                           });
                         }
+                      }else{
+                        window.location.href = this.$pathPrefix + '/index.html'
                       }
                     }).catch(function (res) {
                       console.log(res)
@@ -406,8 +410,8 @@ require(['/common/js/require.config.js'], function () {
                     console.log('--v--')
                     //同步登录注册易智学堂
                     var userPhone=localStorage.getItem("userPhone")
-                    console.log(userPhone,'易智学堂登录')
                     if (userPhone !== null) {
+                      console.log(userPhone,'易智学堂登录')
                       httpLogin.yzxtCheckPhone(userPhone).then(res => {
                         // 判断是否有return url
                         //判断是否是来自益智学堂
