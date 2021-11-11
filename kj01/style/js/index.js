@@ -728,7 +728,20 @@ require(['/common/js/require.config.js'], function () {
                         '/style/images/index/tab-bg5.png',
                         '/style/images/index/tab-bg6.png'],
                     boxActive:false,
-                    iboxActive:false
+                    iboxActive:false,
+                    protocol: [
+                        {
+                            title: "服务协议详情",
+                            content: "",
+                        },
+                        {
+                            title: "隐私保护协议",
+                            content: "",
+                        },
+                    ],
+                    centerDialogVisible: false,
+                    centerDialogVisible2: false,
+                    protocolType: 0,
                 },
                 computed: {
                     text() {
@@ -814,7 +827,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'number-grow': httpVueLoader('/style/components/number2.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
-                    'web-footer': httpVueLoader('/style/components/web_footer.vue'),
+                    // 'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'right-navs': httpVueLoader('/style/components/right.vue'),
                 },
                 created: function () {
@@ -842,11 +855,35 @@ require(['/common/js/require.config.js'], function () {
                     setTimeout(function(){
                         document.getElementById("showbg").style.display="none"
                     },5000);
+                    document.title = "易智网-科技创新综合服务平台";
+                    var vm = this;
+                    vm.$httpCom
+                        .protocol({
+                            protocolType: 1,
+                        })
+                        .then(function (res) {
+                            if (res.result) {
+                                vm.protocol[0].content = res.result.protocolContact;
+                            }
+                        });
+                    vm.$httpCom
+                        .protocol({
+                            protocolType: 5,
+                        })
+                        .then(function (res) {
+                            if (res.result) {
+                                vm.protocol[1].content = res.result.protocolContact;
+                            }
+                        });
                 },
+
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
                 },
                 methods: {
+                    about: function () {
+                        location.href = "/about.html";
+                    },
                     qiehuan:function (){
                         this.boxActive=true
                     },
