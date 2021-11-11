@@ -103,6 +103,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         subscribeTag: [], // 订阅关键字
                         industry: [],
                         fileIds: [],
+                        branches: [],
                         onLineFlag: '0',
                         liveFlag: 0,
                         pushStreamUrl: '',
@@ -152,6 +153,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         },
                         isThird: '1'
                     },
+                    branchesList: [],
                     location: '',
                     city: '',
                     isShowMap: false,
@@ -297,7 +299,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 'ly-code-mulselect': httpVueLoader('/common/components/mulCodeSelect.vue'),
                 'ly-upload': httpVueLoader('/common/components/upload.vue'),
                 'ly-select': httpVueLoader('/common/components/select.vue'),
-                'select-type': httpVueLoader('/style/components/selectType.vue')
+                'select-type': httpVueLoader('/style/components/selectType.vue'),
+                // 'el-select':httpVueLoader('/common/components/select.vue')
             },
             mounted: function () {
                 this.type !== 'view' && (this.$time = laydate.render({
@@ -350,6 +353,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     console.log(radioVal);
                 },
                 initData: function () {
+                    this.queryBranch()
                     this.getOptions([
                         {'code': "cooperation_type"}
                     ])
@@ -362,6 +366,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         }
                     ])
                     // this.getliveAuth()
+
+                },
+                queryBranch: function () {
+                    activityApi.queryBranch().then(res => {
+                        this.branchesList = res.result;
+                    });
                 },
                 getTree: function (keys) {
                     var vm = this;
@@ -429,6 +439,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                     item.selected = false
                                 }
                             });
+                            //回显推送站点
+                            vm.formData.branches=res.result.branchesList
                             to.pullStreamUrl && to.isThird.toString() === '1' && (vm.formData.thirdUrl = to.pullStreamUrl)
                         }
                     })
@@ -489,7 +501,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                 return a < b ? -1 : a > b ? 1 : 0;
                             });
                             vm.isSubmitDisabled = true
+
                             activityApi[type](data).then(function (res) {
+                                // alert(1)
                                 if (res.code === 'rest.success') {
                                     setTimeout(() => {
                                         window.history.back(-1)

@@ -27,7 +27,8 @@ require(['/common/js/require.config.js'], function () {
         moreurl: '',
         httpCom: httpCom,
         demandlist: [],
-        visitList: ''
+        visitList: '',
+          isNotSite:true
       },
       mixins: [seller],
       components: {
@@ -71,6 +72,7 @@ require(['/common/js/require.config.js'], function () {
         this.getSellerInfo()
         this.getAmountList('010')
         this.getselectDemandByPage()
+          this.checkSite()
       },
       mounted: function () {
         $(".orderclick").click(function () {
@@ -78,6 +80,15 @@ require(['/common/js/require.config.js'], function () {
         });
       },
       methods: {
+          checkSite: function () {
+              var url = window.location.href;
+              var vm = this;
+              if (url.indexOf('/site/') > 0) {
+                  vm.isNotSite = false;
+              }else {
+                  vm.isNotSite = true
+              }
+          },
         getSellerInfo: function () {
           var vm = this
           httpStore.userSeller(this.queryForm).then(function (res) {

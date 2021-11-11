@@ -1,0 +1,59 @@
+.article-files {
+    position: relative;
+    margin: 0 -30px 0;
+    padding: 40px 30px 0;
+    border-top: solid 1px #e6e7f1;
+}
+
+.article-files-title .title-text {
+    position: relative;
+    border-left: 4px solid #018fff;
+    font-size: 14px;
+    text-indent: 1em;
+    display: inline-block;
+    line-height: 1.5em;
+}
+
+.article-files-body {
+    padding: 20px;
+}
+
+.article-file .svg-icon {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.article-file .line {
+    color: #018fff;
+}
+
+.vaMiddle:hover {
+    color: #f0ad4e;
+}
+
+.btn {
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 24px;
+    background: #018fff;
+    color: #FFFFff;
+    display: inline-block;
+    margin-left: calc((1440px - 126px) / 2);
+    box-shadow: 0px 0px 11px #ddd;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background: #f0ad4e;
+}
+
+.mmdiv {
+    width: 1440px;
+    margin: 0 auto;
+}
+.title a{
+    color: #333;
+}
+.title.active a{
+    color: #30a9ee;
+}

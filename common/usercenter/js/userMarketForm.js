@@ -565,11 +565,12 @@ require(['/common/js/require.config.js'], function () {
                     getFrom:function (){
                         var _this = this;
                         userCenterApi.get_edit_form().then(function (res) {
-
+                            console.log(res,'kanzheli')
                             if(res.data!==null){
                                 _this.brokerPlatform = res.data
                                 _this.proId = res.data.id
                                 var dataForm = res.data
+
                                 userCenterApi.get_pass().then(function (res) {
                                         if(res.code==true && res.data.length > 0 ){
                                             // msgshow(result.message,"false","3000");
@@ -588,7 +589,9 @@ require(['/common/js/require.config.js'], function () {
 
                                 // 行业类型
                                 _this.certification_list = dataForm;
-                                _this.certification_list.logo = httpUrl.fileShowUrl + '/resource/' + dataForm.path
+                                _this.certification_list.path = httpUrl.fileShowUrl + '/resource/' + dataForm.path
+                                _this.headImg=dataForm.logo
+                                console.log(dataForm,"dataForm.logo")
                                 if (_this.$utils.validatesEmpty(dataForm.industryTypeDisplay)) {
 
                                     if (dataForm.industryTypeDisplay.length > 0 && typeof (dataForm.industryTypeDisplay[0]) == "object") {
@@ -623,7 +626,7 @@ require(['/common/js/require.config.js'], function () {
                                     dataForm.additionalService_display = _this.forEachDisplay(_this.additional_service_list, dataForm.zMTechBrokerAdditionalList[0].additionalService);
                                 }
 
-                                _this.certification_noPassReason = data.noPassReason;
+                                // _this.certification_noPassReason = data.noPassReason;
                                 // if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                 //     _this.find_img_file_url_query(dataForm.logo);
                                 // }
@@ -735,8 +738,8 @@ require(['/common/js/require.config.js'], function () {
 
                     imgUploadSuccess: function (id, url, type) {
                         this.headImg = id;
-                        console.log(url)
-                        this.$set(this.certification_list, 'logo', url);
+                        console.log(url,'上传')
+                        this.$set(this.certification_list, 'path', url);
                     },
                     //   binding_mechanism_active 绑定机构
                     binding_mechanism_active: function () {
@@ -748,7 +751,7 @@ require(['/common/js/require.config.js'], function () {
 
                         _this.inputType = true;
 
-                        console.log(_this.headImg)
+                        console.log(_this.headImg,"图片id")
 
                         // 转标签
                         if (_this.tagList.length > 0 && typeof (_this.tagList[0]) == "object") {
@@ -782,7 +785,7 @@ require(['/common/js/require.config.js'], function () {
                         var form = _this.brokerPlatform;
                         var classId = this.$utils.getReqStr('classId');
                         form.id = _this.proId ? _this.proId : ""; // id
-                        // form.logo = _this.headImg; // 个人封面
+                        form.logo= _this.headImg; // 个人封面
                         form.tags = _this.tagList;
                         form.classId = classId;
                         form.industryType = _this.industryList;
@@ -1008,7 +1011,7 @@ require(['/common/js/require.config.js'], function () {
                                     dataForm.additionalService_display = _this.forEachDisplay(_this.additional_service_list, dataForm.zMTechBrokerAdditionalList[0].additionalService);
                                 }
 
-                                _this.certification_noPassReason = data.noPassReason;
+                                // _this.certification_noPassReason = data.noPassReason;
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     _this.find_img_file_url_query(dataForm.logo);
                                 }
@@ -1055,7 +1058,7 @@ require(['/common/js/require.config.js'], function () {
                             console.log(res.data)
                             var url = "";
                             url = httpUrl.fileShowUrl + '/resource/' + res.data.path
-                            console.log(url)
+                            console.log(url,'上传附件')
                             _this.personImg = url
                             _this.certification_list.logo = url
                         })

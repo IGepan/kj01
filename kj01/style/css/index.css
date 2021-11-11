@@ -1521,8 +1521,8 @@ font-size: 14px;
 .supplier-list a {
     display: flex;
     align-items: center;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 90px;
     margin-bottom: 15px;
     color: #222327;
     font-size: 14px;

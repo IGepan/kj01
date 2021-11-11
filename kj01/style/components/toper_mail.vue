@@ -3,7 +3,7 @@
     <div class="mdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
           <el-dropdown>
-          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
               <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
@@ -90,7 +90,7 @@
     <div class="mdiv" v-else>
       <div class="fl toper-left">
           <el-dropdown>
-            <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
+            <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut">[切换]</span></span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
                 <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
@@ -663,7 +663,7 @@ module.exports = {
 .toper {
   height: 40px;
   line-height: 40px;
-  background-color: #eaf8fb;
+  background-color: #fff5f0;
   color: #6a6e7d;
 }
 
@@ -673,11 +673,11 @@ module.exports = {
 }
 
 .toper-left a {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .toper-left .iconfont {
-  color: #01c8f2;
+  color: #ff5e06;
   margin-right: 5px;
 }
 
@@ -688,7 +688,7 @@ module.exports = {
 }
 
 .toper-left .cut:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .toper-right {
@@ -706,7 +706,7 @@ module.exports = {
 }
 
 .loginbox a:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .loginbox a:hover::after {

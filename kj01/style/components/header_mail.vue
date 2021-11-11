@@ -7,16 +7,17 @@
         </div>
         <div class="col-5" style="margin-top: 30px">
           <div class="input-group search-top">
-            <el-select v-model="type" >
+            <el-select v-model="type">
               <el-option class="el-same"
                          v-for="item in mailServiceTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id" >
+                         :key="item.id"
+                         :label="item.name"
+                         :value="item.id">
               </el-option>
             </el-select>
             <input type="text" v-model="title" class="form-control" aria-label="" placeholder="请输入关键字">
-            <button class="btn btn-link btn-search" @click="handelSearch()"><i class="iconfont icon-search"></i></button>
+            <button class="btn btn-link btn-search" @click="handelSearch()"><i class="iconfont icon-search"></i>
+            </button>
           </div>
           <div class="hot-box">
             <span>热门搜索：</span>
@@ -26,21 +27,21 @@
           </div>
         </div>
 
-          <div class="col-3">
-            <div class="shopping-cart fl" @click="goCart">
-              <i class="iconfont icon-cart" ></i>
-              购物车
+        <div class="col-3">
+          <div class="shopping-cart fl" @click="goCart">
+            <i class="iconfont icon-cart"></i>
+            购物车
+          </div>
+          <div>
+            <div class="shop-box fr" v-if="isSeller==false" @click="fwsClick">
+              我要开店
             </div>
-            <div>
-              <div class="shop-box fr" v-if="isSeller==false" @click="fwsClick" >
-                我要开店
-              </div>
-              <div class="shop-box fr" v-else  style="display: none"></div>
-            </div>
-
+            <div class="shop-box fr" v-else style="display: none"></div>
           </div>
 
         </div>
+
+      </div>
     </div>
   </header>
 </template>
@@ -48,14 +49,14 @@
 <script>
 module.exports = {
   props: ["hidenuser", "topClass", "codeUrl", "codeTitle"],
-  data: function() {
+  data: function () {
     return {
       toper: "header_mail", //组件引用判断
-      title:'',
-      type:'',
-      mailServiceTypeList:[],
-      mailSite:{},
-      eActive:false,
+      title: '',
+      type: '',
+      mailServiceTypeList: [],
+      mailSite: {},
+      eActive: false,
       userInfo: {},
       isSeller: false,
       isShow: false,
@@ -64,10 +65,14 @@ module.exports = {
       urlIsType: false,
       urlIsCheckSeller: false,
       urlIsCheckBuyer: false,
+      menuInfo: {
+        cartCount: 0,
+        messageCount: 0
+      }
     };
   },
-  created: function() {
-    this.title = this.$utils.getReqStr('title')||'';
+  created: function () {
+    this.title = this.$utils.getReqStr('title') || '';
     // this.type = this.$utils.getReqStr('type')||'';
     this.getType()
     this.mailSiteDetail()
@@ -267,7 +272,7 @@ module.exports = {
         }
       }
     },
-    login:function() {
+    login: function () {
       window.location.href = "/common/login.html";
     },
     msgChlick: function () {
@@ -431,7 +436,7 @@ module.exports = {
       }
       this.$httpCom.accessSave(data);
     }
-    ,mouseOver(){
+    , mouseOver() {
       //改变样式
       this.active = 'display:block';
     },
@@ -439,9 +444,9 @@ module.exports = {
       //清空样式
       this.active = 'display:none';
     },
-    handelSearch:function () {
-      var vm=this;
-      location.href='/mall/sub1.html?title='+vm.title+'&type='+vm.type
+    handelSearch: function () {
+      var vm = this;
+      location.href = '/mall/sub1.html?title=' + vm.title + '&type=' + vm.type
       // if(this.props.value==this.searchForm.type.name){
       //   this.eActive=index
       // }
@@ -467,19 +472,19 @@ module.exports = {
         }
       })
     },
-    goCart:function () {
-      location.href='/common/servicetrade/shopping_cart.html'
+    goCart: function () {
+      location.href = '/common/servicetrade/shopping_cart.html'
     },
-    getType:function (){
-      var vm=this;
+    getType: function () {
+      var vm = this;
       this.$httpCom.mailServiceType().then(function (res) {
         if (res.code === 'rest.success') {
           vm.mailServiceTypeList = res.result
         }
       })
     },
-    mailSiteDetail:function (){
-      var vm=this;
+    mailSiteDetail: function () {
+      var vm = this;
       this.$httpCom.mailSiteDetail().then(function (res) {
         if (res.code === 'rest.success') {
           vm.mailSite = res.result
