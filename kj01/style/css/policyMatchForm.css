@@ -106,10 +106,12 @@ body {
 .cxnl_btn .layui-btn {
   border-radius: 4px;
   width: 150px;
+  line-height: 36px;
 }
 .layui-input, .layui-select, .layui-textarea {
   height: 34px;
   line-height: 34px;
+  border: 1px solid #e6e6e6;
 }
 .layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select {
   display: inline-block;

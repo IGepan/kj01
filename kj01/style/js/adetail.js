@@ -69,8 +69,7 @@ require(['/common/js/require.config.js'], function () {
                 created: function () {
                     this.initData()
                     this.dataUrl = this.$utils.getReqStr('act')
-                    console.log(this.dataUrl,'000')
-
+                   console.log(this.dataUrl,'000')
                 },
                 methods: {
                     initData: function () {
@@ -80,7 +79,8 @@ require(['/common/js/require.config.js'], function () {
                         let dd = d.getDate()
                         this.saasId = localStorage.getItem('saasId');
                         var id = this.$utils.getReqStr('id')
-
+                        var aUrl=window.location.href
+                        var str = aUrl.split("/").pop().replace(/(^content)|(\.\S+$)/g,"");
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                         this.calendar = {
                             days: [],
@@ -93,6 +93,7 @@ require(['/common/js/require.config.js'], function () {
                         }
                         this.activeNowTime = [dy, dm + 1, dd].map(this.formatNumber).join('/')
                         id && this.getDetailInfo(id) && this.getRecommendById(id) && this.getEvaluateById(id) && this.createDays();
+                        str && this.getDetailInfo(str) && this.getRecommendById(str) && this.getEvaluateById(str) && this.createDays();
                         this.qrcodeUrl = httpUrl.baseUrl + '/active/getWxacode?id=' + id;
                     },
                     getDetailInfo: function (id) {

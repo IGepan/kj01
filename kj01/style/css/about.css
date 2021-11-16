@@ -45,19 +45,26 @@
  margin-top: 10px;
 }
 .gov-lists {
- display: flex;
+ /*display: flex;*/
+ overflow: hidden;
  justify-content: space-between;
 }
 .gov-lists li {
- width: 260px;
-	height: 140px;
+ width:360px;
+	height: 60px;
 	background-color: #ffffff;
  border: solid 1px #99cdff;
  text-align: center;
  display: flex;
  flex-direction: column;
- padding: 24px;
+ /*padding: 24px;*/
  cursor: pointer;
+ float: left;
+ margin-right: 10px;
+ margin-bottom: 10px;
+}
+.gov-lists li:nth-child(3){
+ margin-right: 0;
 }
 .gov-lists .active, .gov-lists li:hover{
  background-color: #99cdff;
@@ -66,8 +73,8 @@
 .name {
  font-size: 18px;
  color: #222327;
- line-height: 36px;
- margin-bottom: 10px;
+ line-height: 60px;
+ /*margin-bottom: 10px;*/
 }
 .text {
  font-size: 14px;
@@ -85,7 +92,7 @@
  -webkit-writing-mode: vertical-rl;
  writing-mode: vertical-rl;
  font-size: 18px;
-	letter-spacing: 15px;
+	letter-spacing: 5px;
  color: #ffffff;
  width: 100px;
  display: flex;
@@ -96,14 +103,23 @@
 .enterprise-title.green {
  background-color: #bdd805;
 }
+.enterprise-title.blue {
+ background-color: #99cdff;
+}
 .enterprise-lists {
  display: flex;
  flex-wrap: wrap;
  flex: 1;
 }
+.enterprise:last-child .enterprise-lists li{
+ width: 323px;
+}
+/*.enterprise:nth-child(1) .enterprise-lists li{*/
+/* height: 100px!important;*/
+/*}*/
 .enterprise-lists li {
  box-sizing: border-box;
- width: 190px;
+ width: 490px;
 	height: 140px;
 	background-color: #ffffff;
  border: solid 1px #ecab1f;
@@ -116,18 +132,31 @@
 .enterprise-lists.green li {
  border: solid 1px #bdd805;
 }
+.enterprise-lists.blue li {
+ border: solid 1px #99cdff;
+}
 .enterprise-lists li:hover {
  background-color: #ecab1f;
 }
 .enterprise-lists.green li:hover {
  background-color: #bdd805;
 }
+.enterprise-lists.blue li:hover {
+ background-color: #99cdff;
+}
 .enterprise-lists li:hover div {
  color: #ffffff;
 }
-.enterprise-lists li:nth-child(-n+5) {
+.enterprise:last-child .enterprise-lists li:nth-child(3){
  margin-top: 0;
 }
+.enterprise-lists li:nth-child(1) {
+ margin-top: 0;
+}
+.enterprise-lists li:nth-child(2) {
+ margin-top: 0;
+}
+
 .enterprise-lists li .text span{
  margin-right: 10px;
 }

@@ -483,7 +483,7 @@ require(['/common/js/require.config.js'], function () {
                             label: '技术转移',
                             active: false,
                             activeType: '218340665862395555',
-                            sortType: "02",
+                            sortType: "01",
                             tabList: [
                                 {
                                     label: '易智成果汇',
@@ -613,7 +613,7 @@ require(['/common/js/require.config.js'], function () {
                     activeParams: {
                         pageNum: 1,
                         pageSize: 10,
-                        // sortType: "01",
+                        // sortType: "02",
                         activeType: '218340665870780082',
                     },
                      params:{
@@ -728,7 +728,20 @@ require(['/common/js/require.config.js'], function () {
                         '/style/images/index/tab-bg5.png',
                         '/style/images/index/tab-bg6.png'],
                     boxActive:false,
-                    iboxActive:false
+                    iboxActive:false,
+                    protocol: [
+                        {
+                            title: "服务协议详情",
+                            content: "",
+                        },
+                        {
+                            title: "隐私保护协议",
+                            content: "",
+                        },
+                    ],
+                    centerDialogVisible: false,
+                    centerDialogVisible2: false,
+                    protocolType: 0,
                 },
                 computed: {
                     text() {
@@ -842,11 +855,35 @@ require(['/common/js/require.config.js'], function () {
                     setTimeout(function(){
                         document.getElementById("showbg").style.display="none"
                     },5000);
+                    document.title = "易智网-科技创新综合服务平台";
+                    var vm = this;
+                    vm.$httpCom
+                        .protocol({
+                            protocolType: 1,
+                        })
+                        .then(function (res) {
+                            if (res.result) {
+                                vm.protocol[0].content = res.result.protocolContact;
+                            }
+                        });
+                    vm.$httpCom
+                        .protocol({
+                            protocolType: 5,
+                        })
+                        .then(function (res) {
+                            if (res.result) {
+                                vm.protocol[1].content = res.result.protocolContact;
+                            }
+                        });
                 },
+
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
                 },
                 methods: {
+                    about: function () {
+                        location.href = "/about.html";
+                    },
                     qiehuan:function (){
                         this.boxActive=true
                     },
@@ -929,10 +966,13 @@ require(['/common/js/require.config.js'], function () {
                         //一级循环
                         vm.activityTabs.forEach(function (item, ti) {
                             item.active = ti === i
+
                             item.tabList.forEach(function (tab, idx) {
                                 tab.active = tab.label == val.label
                             })
+
                         })
+                        //二级循环
                         if (i === 2) {
                             vm.params.activeType = val.activeType
                             vm.params.topicCustomTag = val.topicCustomTag
@@ -944,10 +984,7 @@ require(['/common/js/require.config.js'], function () {
                                 vm.activeParams.activeType = val.activeType
                                 vm.getActiveList()
                             }
-
                         }
-                        //二级循环
-
                     },
                     //品牌活动
                     getBrandList: function () {
