@@ -14,3 +14,6 @@ logs/*
 **/rebel.xml
 *.rsls
 /common/shop/*
+/kj01/content/
+/kj01/node_modules/
+/kj01/policy/
