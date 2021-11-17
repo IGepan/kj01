@@ -20,6 +20,8 @@ require(['/common/js/require.config.js'], function () {
                         industryList: [], // 行业主键
                         servicesList: [], // 服务领域主键
                         identityType: '', // 身份类型(字典表:identity_type)
+                        highEnterprise:2,//是否为高新技术企业
+                        enterprise:2,//是否为科技型企业
                         country: '', //所在地区_国家(字典表:administrative_division)
                         province: '', // 所在地区_省份(字典表:administrative_division)
                         city: '', // 所在地区_城市(字典表:administrative_division)

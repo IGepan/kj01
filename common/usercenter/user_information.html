@@ -42,6 +42,32 @@
                   </td>
                 </tr>
                 <tr>
+                  <th>是否为高新技术企业</th>
+                  <td>
+                    <div  class="radio">
+                      <label>
+                        <input type="radio"  value="1" v-model='formData.highEnterprise'> <b></b>是
+                      </label>
+                      <label >
+                        <input type="radio"  value="2" v-model='formData.highEnterprise'> <b></b>否
+                      </label>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>是否为科技型企业</th>
+                  <td>
+                    <div  class="radio">
+                      <label ><input type="radio"  value="1" v-model='formData.enterprise'> <b></b>是
+                      </label>
+                      <label ><input type="radio"  value="2" v-model='formData.enterprise'> <b></b>否
+                      </label>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
                   <th>头像：</th>
                   <td>
                     <div class="head" v-viewer
