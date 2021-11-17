@@ -41,10 +41,10 @@
                       :http='httpUser' v-model='formData.identityType'></ly-radio>
                   </td>
                 </tr>
-                <tr>
+                <tr v-if="formData.identityType == '02'">
                   <th>是否为高新技术企业</th>
                   <td>
-                    <div  class="radio">
+                    <div class="radio">
                       <label>
                         <input type="radio"  value="1" v-model='formData.highEnterprise'> <b></b>是
                       </label>
@@ -55,7 +55,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr>
+                <tr v-if="formData.identityType == '02'">
                   <th>是否为科技型企业</th>
                   <td>
                     <div  class="radio">
