@@ -5,10 +5,13 @@
               <div style="background:url(./style/images/bg.png) no-repeat;width: 100%;padding-top: 37px;background-size: cover;margin-bottom: 10px">
                 <div class="headers-top mmdiv">
                   <div class="header-logo">
-                    <a href="">
-                      <img :src="webInfo.logoUrl?webInfo.logoUrl:'./style/images/lg.png'" alt="">
+                    <a href="" v-if="webInfo.logoUrl">
+                      <img :src="webInfo.logoUrl" alt="" width="220" href="60">
                     </a>
-                    <div class="logo-right">
+                    <a href="" v-else>
+                      <img src="./style/images/lg.png" alt="">
+                    </a>
+                    <div class="logo-right" v-if="webInfo.isShow==1">
                       <div class="title">{{webInfo.saasName || ''}}</div>
                       <!--                            <div class="sub-title">科技创新综合服务平台</div>-->
                     </div>
