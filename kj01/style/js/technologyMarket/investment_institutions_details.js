@@ -58,13 +58,20 @@ require(['/common/js/require.config.js'], function () {
           // },
         },
         created: function () {
+          var aUrl=window.location.href
+          var str = aUrl.split("/").pop().replace(/(^content)|(\.\S+$)/g,"");
           // 技术成果列表查询
           this.initData();
-          this.queryDetails(this.id);
+          if(this.id==null){
+            this.queryDetails(str);
+            this.findqueryAverageScore(str);
+          }
+          if(this.id!=null){
+            this.queryDetails(this.id);
+            this.findqueryAverageScore(this.id);//查询平均分
+          }
           this.initFavorite();
           this.findPageQueryEvaluation();//查询评价
-          this.findqueryAverageScore(this.id);//查询平均分
-
         },
         methods: {
 

@@ -68,7 +68,7 @@
                                 <canvas width="80" height="80"></canvas>
                                 <input class="knob" :value="item.num" style="display: none; width: 0px; visibility: hidden;">
                               </div>          
-                              <div class="con">                                           
+                              <div class="con" v-if="typeUrl==null">
                                 <p v-if="item.num >= 80">高度匹配</p>      
                                 <p v-if="item.num < 80 && item.num >= 30">中度匹配</p>                                                   
                               </div>        

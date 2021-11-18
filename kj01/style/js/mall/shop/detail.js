@@ -93,6 +93,11 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 },
                 created: function () {
                     this.formData.goodsId = this.evaluateForm.goodsId = this.pid = this.$utils.getReqStr('id');
+                    var aUrl=window.location.href
+                    var str = aUrl.split("/").pop().replace(/(^content)|(\.\S+$)/g,"");
+                    if(this.formData.goodsId==null){
+                        this.formData.goodsId = this.evaluateForm.goodsId = this.pid=str
+                    }
                     this.shopCode = this.$utils.getReqStr('code');
                     this.shortCode = this.$utils.getReqStr('shortCode');
                     this.userInfo = JSON.parse(this.$utils.getCookie(dic.locaKey.USER_INFO));
