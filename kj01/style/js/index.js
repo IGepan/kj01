@@ -1146,7 +1146,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getManagerList: function () {
                         var vm = this
-                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 10, order: "desc", sort: "id"},
+                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 10, order: "desc", sort: "create_time"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,
