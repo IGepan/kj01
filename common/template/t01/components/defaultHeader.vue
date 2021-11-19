@@ -10,6 +10,7 @@
         />
       </div>
     </el-image>
+    </a>
 <!--      <img v-else src="/style/images/logos/blue-h66.png">-->
     <ly-searchbox
       :is-input-line="true"
@@ -19,7 +20,7 @@
       @search-shop="eventSearchShop"
     >
     </ly-searchbox>
-  </div>
+    </div>
   </div>
 </template>
 
