@@ -94,7 +94,7 @@ require(['/common/js/require.config.js'], function () {
           // this.queryList();
           this.find_dictionary_type_list();
           this.find_tag_list();
-          var id ='create_time'
+          var id='create_time'
           this.orderClick(id,0);
         },
         methods: {
@@ -107,6 +107,7 @@ require(['/common/js/require.config.js'], function () {
             this.queryModel.payload[id] = dictValue;
           },
           orderClick(id, index) {
+            console.log(id, index);
             this.sortActive = index;
             this.queryModel.pageParam.sort = id;
           },

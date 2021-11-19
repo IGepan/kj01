@@ -109,6 +109,7 @@
     }
     .footer-box .foot-middle{
         background:#ffffff;
+      display: none!important;
     }
     .footer-box .foot-middle .mmdiv{
         display:flex;

@@ -327,12 +327,12 @@
 
 /*科技成果start*/
 .science-result{
-    background: url("../images/index/science-bg.jpg") no-repeat center;
-    background-size: cover;
-    height:558px;
+    /*background: url("../images/index/science-bg.jpg") no-repeat center;*/
+    /*background-size: cover;*/
+    /*height:558px;*/
 }
 .science-result .title-common .title{
-    color:#ffffff;
+    /*color:#ffffff;*/
 }
 .science-result .title-common .sub-box div a{
     padding:6px 12px;

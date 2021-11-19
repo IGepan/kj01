@@ -5,12 +5,21 @@
               <div style="background:url(./style/images/bg.png) no-repeat;width: 100%;padding-top: 37px;background-size: cover;margin-bottom: 10px">
                 <div class="headers-top mmdiv">
                   <div class="header-logo">
-                    <a href="" v-if="webInfo.logoUrl">
-                      <img :src="webInfo.logoUrl" alt="" width="220" href="60">
+
+                    <a href="">
+                      <el-image :src="webInfo.logoUrl" style="width: 220px; height: 60px">
+                        <div slot="error" style="margin-top: 15px">
+                          <img
+                              src="./style/images/lg.png"
+                          />
+                        </div>
+                      </el-image>
+<!--                      <img :onerror="defaultImg"  :src="webInfo.logoUrl" alt="" width="220" href="60">-->
+<!--                      <img :src="webInfo.logoUrl" @error="imgError(webInfo.logoUrl)" @load="successLoadImg" width="220" href="60"/>-->
                     </a>
-                    <a href="" v-else>
-                      <img src="./style/images/lg.png" alt="">
-                    </a>
+<!--                    <a href="" v-else>-->
+<!--                      <img src="./style/images/lg.png" alt="">-->
+<!--                    </a>-->
                     <div class="logo-right" v-if="webInfo.isShow==1">
                       <div class="title">{{webInfo.saasName || ''}}</div>
                       <!--                            <div class="sub-title">科技创新综合服务平台</div>-->
@@ -86,6 +95,10 @@
                         label: '科技成果',
                         url: this.$pathPrefix+'/scienceResult.html'
                     },
+                  {
+                    label: '技术需求',
+                    url: this.$pathPrefix+'/scienceRequire.html'
+                  },
                     {
                         label: '科技服务',
                         url: this.$pathPrefix+'/scienceService.html'
@@ -114,6 +127,10 @@
                name:'成果',
                   url: this.$pathPrefix+'/scienceResult.html'
               },
+               {
+                 name:'需求',
+                 url: this.$pathPrefix+'/scienceRequire.html'
+               },
               {
                name:'服务',
                   url: this.$pathPrefix+'/scienceService.html'
@@ -143,6 +160,13 @@
             },
         },
         methods: {
+          imgError(img) {
+            img = './style/images/lg.png';
+          },
+          successLoadImg(){
+            console.log('图片加载完毕');
+          },
+
             handleSearch: function () {
                 let list=location.pathname.split('/');
                 if(list[list.length-1] === this.locationName) {
@@ -312,7 +336,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-         padding:0 37px 10px;
+         padding:0 0px 10px;
     }
 
     .headers-bottom a {
