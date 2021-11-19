@@ -1,7 +1,7 @@
 <template>
 <div class="mdiv">
   <div class="shopdiv">
-    <a class="logo" :href=$pathPrefix+"/index.html"><img :src="webInfo.logoUrl?webInfo.logoUrl:'/style/images/logos/blue-h66.png'" alt="" /></a>
+    <a class="logo" :href=$pathPrefix+"/index.html"><img :src="webInfo.logoUrl?webInfo.logoUrl:'/style/images/logos/blue-h66.png'" alt=""  width="226" height="66"/></a>
     <ly-searchbox
       :is-input-line="true"
       :is-search-shop="true"
