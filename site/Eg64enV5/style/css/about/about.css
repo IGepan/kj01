@@ -5,6 +5,7 @@
     background:url("../../images/policy/detail-bg.png") no-repeat;
     height:100px;
     background-size: cover;
+    display: none;
 }
 .top-bg .mmdiv{
     height:100px;
