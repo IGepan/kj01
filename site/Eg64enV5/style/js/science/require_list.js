@@ -204,11 +204,11 @@ require(['/common/js/require.config.js'], function () {
 
 					release_project() {
 						if (this.userInfo && this.userInfo.userName) {
-							window.location.href =$pathPrefix+ "/common/usercenter/user_market_tech_require.html";
+							window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require.html";
 						} else {
 							toast.showToast("请先登录")
 							setTimeout(function () {
-								window.location.href = $pathPrefix+'/common/login.html';
+								window.location.href = this.$pathPrefix+'/common/login.html';
 							}, 2000)
 						}
 					},
