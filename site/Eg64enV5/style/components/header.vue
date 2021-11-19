@@ -7,7 +7,7 @@
                   <div class="header-logo">
 
                     <a href="">
-                      <el-image :src="webInfo.logoUrl" style="width: 220px; height: 60px">
+                      <el-image :src="webInfo.logoUrl" style="width: 220px; height: 60px" lazy>
                         <div slot="error" style="margin-top: 15px">
                           <img
                               src="./style/images/lg.png"
