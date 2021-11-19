@@ -508,6 +508,7 @@ require(['/common/js/require.config.js'], function () {
 							}
 						});
 					},
+
 					getHighList(){
 						let vm=this,
 							params={
