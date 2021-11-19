@@ -12,40 +12,28 @@ require(['/common/js/require.config.js'], function () {
 				el: '#index_box',
 				data: {
 					dataList: [],//列表
-					pages: '',
-					Url:'',
 					'total': 0, //总条数
+					Url:'',
 					// 'currentPage': 1,//当前页
 					// 'pageSize': 8,//每页显示条数
 					conditionsList: {
-						'projectSource': {
-							name: '成果来源',
-							id: 'projectSource',
-							dictCodes: [
-								{ 'display': '全部', dictValue: '' },
-								{ 'display': '未委托经纪人', dictValue: '0' },
-								{ 'display': '已委托经纪人', dictValue: '1' },
-								{ 'display': '已委托多个经纪人', dictValue: '2' }],
-							index: 0
-						},
 						'industryType': {
 							name: '行业领域',
 							queryTag: true,
 							level: 2,
-							id: 'projectIndustryType',
+							id: 'demandIndustryType',
 							dictCodes: [{ 'name': '全部', dictValue: '' }],
 							index: 0,
 						},
-						'achievement_maturity': {
-							name: '成熟度',
-							id: 'achievementMaturity',
-							dictCodes: [{ 'display': '全部', dictValue: '' }],
+						'achievement_demand_type': {
+							name: '需求类型',
+							id: 'demandType',
+							dictCodes: [{ 'display': '全部' }],
 							index: 0,
 						},
-
-						'achievement_belong': {
-							name: '权属性质',
-							id: 'achievementBelong',
+						'price_range': {
+							name: '需求价格',
+							id: 'budget_sectionQuery',
 							dictCodes: [{ 'display': '全部' }],
 							index: 0,
 						},
@@ -55,23 +43,13 @@ require(['/common/js/require.config.js'], function () {
 							dictCodes: [{ 'display': '全部' }],
 							index: 0,
 						},
-						'price_range': {
-							name: '意向价格',
-							id: 'budget_sectionQuery',
-							dictCodes: [{ 'display': '全部' }],
-							index: 0,
-						},
-						'business_plan': {
-							name: '商业计划书',
-							id: 'businessPlanProportion',
-							dictCodes: [{ 'display': '全部' }],
-							index: 0,
-						},
+
 					},
 					sortActive: 0,
 					sortList: [
 						{ id: 'create_time', name: '发布时间' },
 						{ id: 'read_count', name: '人气' },
+						{ id: 'budget', 'name': '意向价格' },
 					],
 					queryModel: {
 						'pageParam': {
@@ -81,13 +59,10 @@ require(['/common/js/require.config.js'], function () {
 							'sort': 'create_time',
 						},
 						'payload': {
-							projectSource: null,
-							projectIndustryType: null,
-							achievementMaturity: null,
-							achievementBelong: null,
+							demandIndustryType: null,
+							demandType: null,
 							cooperationMode: null,
 							budget_sectionQuery: null,
-							businessPlanProportion: null,
 						},
 					},
 					"IndustryTypeChildren": [],
@@ -97,7 +72,6 @@ require(['/common/js/require.config.js'], function () {
 					'ly-toper': httpVueLoader('./style/components/toper.vue'),
 					'index-head': httpVueLoader('./style/components/header.vue'),
 					'com-footer': httpVueLoader('./style/components/com-footer.vue'),
-					'pages': httpVueLoader('./style/components/pages.vue'),
 				},
 
 				watch: {
@@ -109,16 +83,14 @@ require(['/common/js/require.config.js'], function () {
 					},
 				},
 				created: function () {
-					// 技术成果列表查询
+					// 技术需求列表查询
 					this.initData();
 					this.queryList();
 					this.find_dictionary_type_list();
 					this.find_tag_list();
 					this.Url=window.location.href
-
 				},
 				methods: {
-
 					initData: function () {
 						let d = new Date();
 						let dy = d.getFullYear();
@@ -130,7 +102,6 @@ require(['/common/js/require.config.js'], function () {
 						(this.userInfo = JSON.parse(
 							localStorage.getItem(dic.locaKey.USER_INFO)));
 					},
-
 					Pricre: function (v) {
 
 						if (typeof v !== 'undefined') {
@@ -160,59 +131,9 @@ require(['/common/js/require.config.js'], function () {
 						// this.searchForm.title = key;
 						window.location.href=this.Url
 					},
-					// bindPageChange: function (e) {
-					// 	this.queryModel.pageParam.current=e
-					// 	this.queryList()
-					// },
-					// 点击第二级
-					clickConditionChild(key, id, dictValue, indexs) {
-						var _this = this;
-						console.log(key, id, dictValue, indexs);
-
-						_this.IndustryTypeChildren.forEach((element, index) => {
-							element.index = -1;
-							if (indexs === index) {
-								console.log(element)
-								element.index = indexs;
-							}
-						});
-						_this.queryModel.payload[id] = dictValue;
-					},
-
-					// 行业类型 显示第二级目录
-					openProjectList(key, id, dictValue, index) {
-						var _this = this;
-						console.log(key, id, dictValue, index);
-						_this.IndustryTypeChildren.forEach(element => {
-							element.index = -1;
-						})
-						_this.conditionsList[key]['index'] = index;
-						if (index == 0) {
-							this.queryModel.payload[id] = dictValue;
-							_this.industrySecondShow = false;
-
-						} else {
-							_this.industrySecondShow = true;
-							_this.IndustryTypeChildren = _this.conditionsList[key].dictCodes[index].children;//第二级
-						}
-
-						console.log(_this.industrySecondShow)
-					},
-
-					release_project() {
-						if (this.userInfo && this.userInfo.userName) {
-							window.location.href = "/common/usercenter/user_market_tech_achievements.html";
-						} else {
-							toast.showToast("请先登录")
-							setTimeout(function () {
-								window.location.href = '/common/login.html';
-							}, 2000)
-						}
-					},
-
 					queryList() {
 						let _this = this;
-						indexApi.tech_achi_list(this.queryModel).then(function (res) {
+						indexApi.tech_require_list(this.queryModel).then(function (res) {
 							if (!res.code) {
 								vm.$dialog.showToast(res.message);
 								return;
@@ -220,7 +141,6 @@ require(['/common/js/require.config.js'], function () {
 							let data = res.data;
 							_this.dataList = data.records;
 							_this.total = data.total;
-							_this.$data.pages = res.data || ''
 						});
 					},
 
@@ -248,11 +168,57 @@ require(['/common/js/require.config.js'], function () {
 						);
 					},
 
+
+					// 点击第二级
+					clickConditionChild(key, id, dictValue, indexs) {
+						var _this = this;
+						console.log(key, id, dictValue, indexs);
+						_this.IndustryTypeChildren.forEach((element, index) => {
+							element.index = -1;
+							if (indexs === index) {
+								console.log(element)
+								element.index = indexs;
+							}
+						});
+						_this.queryModel.payload[id] = dictValue;
+					},
+
+					// 行业类型 显示第二级目录
+					openProjectList(key, id, dictValue, index) {
+						var _this = this;
+						console.log(key, id, dictValue, index);
+						_this.conditionsList[key]['index'] = index;
+						_this.IndustryTypeChildren.forEach((element, index) => {
+							element.index = -1;
+						})
+						if (index == 0) {
+							this.queryModel.payload[id] = dictValue;
+							_this.industrySecondShow = false;
+						} else {
+							_this.industrySecondShow = true;
+							_this.IndustryTypeChildren = _this.conditionsList[key].dictCodes[index].children;//第二级
+						}
+
+						console.log(_this.industrySecondShow)
+					},
+
+					release_project() {
+						if (this.userInfo && this.userInfo.userName) {
+							window.location.href = "/common/usercenter/user_market_tech_require.html";
+						} else {
+							toast.showToast("请先登录")
+							setTimeout(function () {
+								window.location.href = '/common/login.html';
+							}, 2000)
+						}
+					},
+
 					find_tag_list: function () {
 						let _this = this;
 						let codes = Object.keys(this.conditionsList);
 						codes = codes.filter(key => this.conditionsList[key].queryTag);
 						codes.forEach(code => {
+
 							indexApi.query_tag_list(code).then(function (res) {
 								console.log('查询' + code + '： ', res);
 								if (!res.code) {
@@ -262,10 +228,6 @@ require(['/common/js/require.config.js'], function () {
 								let data = res.data;
 								// let arr = _this.getLevelTag(data, 1,
 								//   _this.conditionsList[code].level);
-
-								// let arr = _this.getLevelTag(data, 1,
-								//   _this.conditionsList[code].level);
-								console.log(data,'===')
 								data.forEach(d => {
 									d.children = d.children.map(item => {
 										return { 'display': item.name, dictValue: item.id, index: -1 };
@@ -274,7 +236,6 @@ require(['/common/js/require.config.js'], function () {
 								_this.conditionsList[code]['dictCodes'] = [
 									..._this.conditionsList[code]['dictCodes'],
 									...data];
-								console.log('11111111111111', _this.conditionsList[code]['dictCodes'])
 							});
 
 						});

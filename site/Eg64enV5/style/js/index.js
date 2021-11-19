@@ -9,6 +9,8 @@ require(['/common/js/require.config.js'], function () {
 					navIndex:0,
 					cmsUrl: httpUrl.cmsUrl,
 					newsList:[],
+					demandList:[],
+					goodsSelectList:[],
 					publishList:[
 						{
 							title:'发布需求',
@@ -57,8 +59,18 @@ require(['/common/js/require.config.js'], function () {
 							active: false
 						}
 					],
+					conditionsList: {
+						'industryType': {
+							name: '行业领域',
+							queryTag: true,
+							level: 2,
+							id: 'projectIndustryType',
+							dictCodes: [{ 'name': '全部', dictValue: '' }],
+							index: 0,
+						},},
 					webInfo:'',
 					extId: '',
+					currentIndex:0,
 					zhiboList:[],
 					activityList:[],
 					activityTypeList:[],
@@ -72,6 +84,18 @@ require(['/common/js/require.config.js'], function () {
 					userInfo:'',
 					searchForm:{},
 					bannerList: [],
+					userList:[],
+					enterList:[],
+					highList:[],
+					sum1:0,
+					sum2:0,
+					sum3:0,
+					queryModel: {
+						pageNum: 1,
+						pageSize: 10,
+						enterprise: 1,
+						orderBy:'ac03.createTime desc'
+					},
 				},
 				computed: {
 					/*	text () {
@@ -80,6 +104,15 @@ require(['/common/js/require.config.js'], function () {
                                 val: this.honorList[this.number].name
                             };
                         }*/
+				},
+				watch: {
+					queryModel: {
+						handler(n, o) {
+							this.getBoxList();
+							this.getHighList()
+						},
+						deep: true,
+					},
 				},
 				filters: {
 					formatTime: function (v) {
@@ -139,17 +172,22 @@ require(['/common/js/require.config.js'], function () {
 						sortType: "02",
 						activeType:'218340665870780082'
 					},'zhiboList');
-
+					this.getShopList();
+					this.getPolicyList();
+					this.getDemandList();
+					this.getGoodsList();
 					this.getScienceType();
 					this.getMailServiceType();
 					this.searchForm.pageNum=1;
 					this.searchForm.pageSize=4
 					this.getMailGoods();
-					this.getScienceList('001,010','scienceList');
-					this.getScienceList('009','serviceList');
-					this.getShopList();
-					this.getPolicyList();
+					// this.getScienceList('001,010','scienceList');
+					// this.getScienceList('009','serviceList');
+					this.find_tag_list();
 					this.getNewsList();
+					this.getUser();
+					this.getBoxList();
+					this.getHighList()
 
 				},
 
@@ -162,6 +200,12 @@ require(['/common/js/require.config.js'], function () {
 								vm.bannerList = res.result
 							}
 						});
+					},
+					getImgPath(path) {
+						return httpUrl.fileShowUrl + '/resource/' + path;
+					},
+					change:function(index){
+						this.currentIndex=index;
 					},
 					formatPrice: function (flag, v, n, m) {
 						if (flag == '2') {
@@ -237,6 +281,74 @@ require(['/common/js/require.config.js'], function () {
 							}
 						});
 					},
+					find_tag_list: function () {
+						let _this = this;
+						let codes = Object.keys(this.conditionsList);
+						codes = codes.filter(key => this.conditionsList[key].queryTag);
+						codes.forEach(code => {
+							indexApi.query_tag_list(code).then(function (res) {
+								console.log('查询' + code + '： ', res);
+								if (!res.code) {
+									vm.$dialog.showToast(res.message);
+									return;
+								}
+								let data = res.data;
+								// let arr = _this.getLevelTag(data, 1,
+								//   _this.conditionsList[code].level);
+
+								// let arr = _this.getLevelTag(data, 1,
+								//   _this.conditionsList[code].level);
+								console.log(data,'===')
+								data.forEach(d => {
+									d.children = d.children.map(item => {
+										return { 'display': item.name, dictValue: item.id, index: -1 };
+									});
+								})
+								_this.conditionsList[code]['dictCodes'] = [
+									..._this.conditionsList[code]['dictCodes'],
+									...data];
+								console.log('11111111111111', _this.conditionsList[code]['dictCodes'])
+							});
+
+						});
+
+					},
+					//科技成果
+					getGoodsList: function () {
+						var vm = this
+						indexApi.goodsSelectbByPage({
+							pageParam: {current: 1, size: 4, order: "desc", sort: "create_time"},
+							payload: {achievementBelong:null,
+								achievementMaturity:null,
+								budget_sectionQuery:null,
+								businessPlanProportion:null,
+								cooperationMode:null,
+								projectIndustryType:null,
+								projectSource:null}
+						}).then(function (res) {
+
+							vm.goodsSelectList = res.data.records
+
+						})
+					},
+					//技术需求
+					getDemandList: function () {
+						var vm = this
+						indexApi.demandSelectbByPage({
+							pageParam: {current: 1, size: 4, order: "desc", sort: "create_time"},
+							payload: {achievementBelong:null,
+								achievementMaturity:null,
+								budget_sectionQuery:null,
+								businessPlanProportion:null,
+								cooperationMode:null,
+								projectIndustryType:null,
+								projectSource:null}
+						}).then(function (res) {
+
+							vm.demandList = res.data.records
+
+						})
+					},
 					//服务分类
 					getMailServiceType: function () {
 						var vm = this
@@ -271,20 +383,20 @@ require(['/common/js/require.config.js'], function () {
 						})
 					},
 					//科技-列表
-					getScienceList(code,list){
-						let vm=this,params={
-							categoryCode: code,
-							orderBy: "saasId desc,homePageFlag desc,createTime desc",
-							pageNum: 1,
-							pageSize: 4
-						};
-						vm[list]=[];
-						indexApi.scienceList(params).then(function(res) {
-							if (res.code === "rest.success") {
-								vm[list]=res.result.list
-							}
-						});
-					},
+					// getScienceList(code,list){
+					// 	let vm=this,params={
+					// 		categoryCode: code,
+					// 		orderBy: "saasId desc,homePageFlag desc,createTime desc",
+					// 		pageNum: 1,
+					// 		pageSize: 4
+					// 	};
+					// 	vm[list]=[];
+					// 	indexApi.scienceList(params).then(function(res) {
+					// 		if (res.code === "rest.success") {
+					// 			vm[list]=res.result.list
+					// 		}
+					// 	});
+					// },
 					//机构-列表
 					getShopList(){
 						let vm=this,params={
@@ -343,6 +455,79 @@ require(['/common/js/require.config.js'], function () {
 										effect: "top",
 										autoPlay: true,
 										vis: 1
+									});
+								})
+							}
+						});
+					},
+					//用户列表
+					getUser(){
+						let vm=this,params={
+							pageNum: 1,
+							pageSize: 10,
+						};
+						indexApi.getUserList(params).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.userList=res.result.list;
+								vm.sum1=res.result.total
+								vm.$nextTick(()=>{
+									$(".slideFromBox1").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
+									});
+								})
+							}
+						});
+					},
+					getBoxList(){
+						let vm=this,
+							params={
+							pageNum: 1,
+							pageSize: 10,
+							enterprise: 1,
+								orderBy:'ac03.createTime desc'
+						};
+						indexApi.getEnterList(params).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.enterList=res.result.list;
+								vm.sum2=res.result.total
+								vm.$nextTick(()=>{
+									$(".slideFromBox2").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
+									});
+								})
+							}
+						});
+					},
+					getHighList(){
+						let vm=this,
+							params={
+								pageNum: 1,
+								pageSize: 10,
+								highEnterprise: 1,
+								orderBy:'ac03.createTime desc'
+							};
+						indexApi.getEnterList(params).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.highList=res.result.list;
+								vm.sum3=res.result.total
+								vm.$nextTick(()=>{
+									$(".slideFromBox3").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
 									});
 								})
 							}
