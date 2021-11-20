@@ -7,19 +7,10 @@
                   <div class="header-logo">
 
                     <a href="">
-                      <el-image :src="webInfo.logoUrl" style="width: 220px; height: 60px" lazy>
-                        <div slot="error" style="margin-top: 15px">
-                          <img
-                              src="./style/images/lg.png"
-                          />
-                        </div>
-                      </el-image>
-<!--                      <img :onerror="defaultImg"  :src="webInfo.logoUrl" alt="" width="220" href="60">-->
-<!--                      <img :src="webInfo.logoUrl" @error="imgError(webInfo.logoUrl)" @load="successLoadImg" width="220" href="60"/>-->
+                      <img v-if="webInfo.logoUrl" :src="webInfo.logoUrl" style="width: 220px; height: 60px"/>
+                      <img v-if="!webInfo.logoUrl" src="./style/images/lg.png"/>
                     </a>
-<!--                    <a href="" v-else>-->
-<!--                      <img src="./style/images/lg.png" alt="">-->
-<!--                    </a>-->
+
                     <div class="logo-right" v-if="webInfo.isShow==1">
                       <div class="title">{{webInfo.saasName || ''}}</div>
                       <!--                            <div class="sub-title">科技创新综合服务平台</div>-->
@@ -95,10 +86,10 @@
                         label: '科技成果',
                         url: this.$pathPrefix+'/scienceResult.html'
                     },
-                  {
-                    label: '技术需求',
-                    url: this.$pathPrefix+'/scienceRequire.html'
-                  },
+                  // {
+                  //   label: '技术需求',
+                  //   url: this.$pathPrefix+'/scienceRequire.html'
+                  // },
                     {
                         label: '科技服务',
                         url: this.$pathPrefix+'/scienceService.html'
@@ -127,10 +118,10 @@
                name:'成果',
                   url: this.$pathPrefix+'/scienceResult.html'
               },
-               {
-                 name:'需求',
-                 url: this.$pathPrefix+'/scienceRequire.html'
-               },
+               // {
+               //   name:'需求',
+               //   url: this.$pathPrefix+'/scienceRequire.html'
+               // },
               {
                name:'服务',
                   url: this.$pathPrefix+'/scienceService.html'
