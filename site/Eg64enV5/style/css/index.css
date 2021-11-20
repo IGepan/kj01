@@ -339,10 +339,10 @@
     border-radius: 12px;
     font-size: 14px;
     line-height: 14px;
-    color: #e3e3e3;
+    /*color: #e3e3e3;*/
     text-align: center;
     margin-right:14px;
-    border: solid 1px #ffffff;
+    /*border: solid 1px #ffffff;*/
     cursor: pointer;
 }
 .science-result .content-box{
