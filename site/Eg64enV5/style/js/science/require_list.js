@@ -204,7 +204,7 @@ require(['/common/js/require.config.js'], function () {
 
 					release_project() {
 						if (this.userInfo && this.userInfo.userName) {
-							window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require.html";
+							window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require_form.html";
 						} else {
 							toast.showToast("请先登录")
 							setTimeout(function () {
