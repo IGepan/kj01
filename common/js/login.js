@@ -305,7 +305,11 @@ require(['/common/js/require.config.js'], function () {
             var suffixUrl = url.substring(url.indexOf('?') + 1);
 
           }
-          location.href = this.$pathPrefix + '/common/reg.html' + '?' + suffixUrl
+          if (suffixUrl) {
+            location.href = this.$pathPrefix + '/common/reg.html' + '?' + suffixUrl;
+          }else {
+            location.href = this.$pathPrefix + '/common/reg.html'
+          }
         },
 
 
