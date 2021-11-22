@@ -1,22 +1,12 @@
 <template>
   <div>
     <ul>
-      <li v-for="(item, index) in urlData" :key="index" v-if="isNotSite==false">
+      <li v-for="(item, index) in urlData" :key="index" >
         <a :href="item.url" :class="item.active ? 'active' : ''" target="_blank" v-if="item.target">
           <i :class="item.icon"></i>
           {{ item.name }}
         </a>
         <a v-else :href="item.url" :class="item.active ? 'active' : ''">
-          <i :class="item.icon"></i>
-          {{ item.name }}
-        </a>
-      </li>
-      <li v-for="(item, index) in urlData" :key="index" v-else>
-        <a :href="$pathPrefix+item.url" :class="item.active ? 'active' : ''" target="_blank" v-if="item.target">
-          <i :class="item.icon"></i>
-          {{ item.name }}
-        </a>
-        <a v-else :href="$pathPrefix+item.url" :class="item.active ? 'active' : ''">
           <i :class="item.icon"></i>
           {{ item.name }}
         </a>
@@ -111,7 +101,9 @@ module.exports = {
       var url = window.location.href
       var vm = this;
       if (url.indexOf('/site/') > 0) {
-        vm.isNotSite=true
+       vm.urlData.forEach((item) =>{
+         item.url=this.$pathPrefix+item.url
+       })
     }
     },
   },
