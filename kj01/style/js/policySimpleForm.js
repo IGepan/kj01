@@ -57,7 +57,7 @@ require(['/common/js/require.config.js'], function () {
               creditCode: '', // 统一社会信用代码
               property:1,//知识产权
               develop:1,//研发费用
-              lastIncome:null,//上年主营收入
+              lastIncome:'',//上年主营收入
               industryData_l1: '',
               industryData_l2: '',
               focusPolicy: [],
