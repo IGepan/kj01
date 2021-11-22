@@ -1246,7 +1246,7 @@ a.market_title.active {
 
 .matching_box {
     position: fixed;
-    height: 760px;
+    height:auto;
     top: 0;
     left: 0;
     right: 0;
