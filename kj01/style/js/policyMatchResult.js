@@ -49,9 +49,11 @@ require(['/common/js/require.config.js'], function () {
             },
             list: [],
             maxMoney: 0,
+            typeUrl:null,
           }
         },
         created() {
+          this.typeUrl=this.$utils.getReqStr('type');
           this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
           this.getPolicyNoticeList(1);
           this.getPolicyNoticeList(2);
