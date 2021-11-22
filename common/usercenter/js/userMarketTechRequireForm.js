@@ -418,7 +418,7 @@ require(['/common/js/require.config.js'], function () {
                                 _this.$dialog.showToast("提交成功");
                                 setTimeout(function () {
                                     // window.href = "/user_market_tech_achievements.html"
-                                    window.location.href = "/common/usercenter/user_market_tech_require.html"
+                                    window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require.html"
                                 }, 2000)
                             })
                         }

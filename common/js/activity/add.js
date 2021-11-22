@@ -288,7 +288,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             },
             components: {
                 'vue-ueditor-wrap': VueUeditor,
-                'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
                 'header-bar': httpVueLoader('/common/components/header.vue'),
                 'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
                 'ly-address-select': httpVueLoader('/common/components/addressSelect.vue'),
@@ -506,7 +506,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                 // alert(1)
                                 if (res.code === 'rest.success') {
                                     setTimeout(() => {
-                                        window.history.back(-1)
+                                        // window.history.back(-1)
+                                        window.location.href=this.$pathPrefix+'/common/activity/list.html?code=001.004.001.001'
                                     }, 2000);
                                 } else {
                                     vm.isSubmitDisabled = false
