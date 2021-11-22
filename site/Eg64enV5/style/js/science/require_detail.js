@@ -87,10 +87,10 @@ require(['/common/js/require.config.js'], function () {
 					sendProject: function () {
 						var vm = this;
 						if (this.userInfo && this.userInfo.userName) {
-							window.location.href = '/technologyMarket/technical_requirements.html?id=' +
+							window.location.href = this.$pathPrefix+'/technologyMarket/technical_requirements.html?id=' +
 								vm.id;
 						} else {
-							window.location.href = '/common/login.html';
+							window.location.href = this.$pathPrefix+'/common/login.html';
 						}
 					},
 					selecedTab: function (i) {
