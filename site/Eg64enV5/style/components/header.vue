@@ -6,9 +6,9 @@
                 <div class="headers-top mmdiv">
                   <div class="header-logo">
 
-                    <a href="">
-                      <img v-if="webInfo.logoUrl" :src="webInfo.logoUrl" style="width: 220px; height: 60px"/>
-                      <img v-if="!webInfo.logoUrl" src="./style/images/lg.png"/>
+                    <a id="logoUrl">
+                      <img :src="webInfo.logoUrl" style="width: 220px; height: 60px"/>
+<!--                      <img v-if="!webInfo.logoUrl" src="./style/images/lg.png"/>-->
                     </a>
 
                     <div class="logo-right" v-if="webInfo.isShow==1">
@@ -140,6 +140,11 @@
                 if(e.key==='webInfo'){
                     let info=JSON.parse(e.newValue)
                     this.webInfo=info?info:'';
+                    if(!this.webInfo.logoUrl){
+                      this.webInfo.logoUrl='./style/images/lg.png'
+                      $('#logoUrl img').css('width','29px')
+                      $('#logoUrl img').css('height','29px')
+                    }
                 }
             });
         },

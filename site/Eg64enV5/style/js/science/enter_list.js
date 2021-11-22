@@ -92,6 +92,12 @@ require(['/common/js/require.config.js'], function () {
 				created: function () {
 					this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
 					this.saasId = localStorage.getItem('saasId');
+					var Type=this.$utils.getReqStr('type')
+					if(Type){
+						this.nowIndex=Type
+						console.log(this.nowIndex,'[[[')
+						this.page(this.nowIndex)
+					}
 					if(this.nowIndex==0){
 						this.getBox1List();
 					}

@@ -21,12 +21,22 @@
    .line{
        display: block!important;
    }
-    .el-carousel__item:nth-child(2n) {
-        background-color: #99a9bf;
-    }
+    /*.el-carousel__item:nth-child(2n) {*/
+    /*    background-color: #99a9bf;*/
+    /*}*/
 
-    .el-carousel__item:nth-child(2n+1) {
-        background-color: #d3dce6;
+    /*.el-carousel__item:nth-child(2n+1) {*/
+    /*    background-color: #d3dce6;*/
+    /*}*/
+   .el-icon-s-custom{
+        line-height: 40px!important;
+    }
+    .el-avatar{
+        margin-top: 3px;
+        width: 35px;
+        height: 35px;
+        line-height: 40px!important;
+        background: #FFFFff;
     }
 </style>
 <body>
@@ -128,14 +138,16 @@
                         <div class="bd">
                             <ul>
                                 <li v-for="(type,index) in userList" :key="index" :title="type.userName">
-                                    <span>{{type.userName}}</span><a class="fr">{{type.phone}}</a>
+<!--                                    <el-avatar src="./style/images/lg.png"></el-avatar><a class="fr">{{type.phone}}</a>-->
+<!--                                    <el-avatar :src="type.headImg.url"></el-avatar><a class="fr">{{type.phone}}</a>-->
+                                    <img :src="type.headImg.url" width="35" height="35" style="border-radius: 50%;vertical-align: middle"/><a class="fr">{{type.phone}}</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div  class=" slBox" style="margin-left: 20px">
-                    <h2 class="tit">科技企业：{{sum2}}家<a class="fr" href="enterpriseList.html">更多+</a></h2>
+                    <h2 class="tit">科技企业：{{sum2}}家<a class="fr" href="enterpriseList.html?type=0">更多+</a></h2>
                     <div class="slideFromBox2">
                         <div class="bd">
                             <ul>
@@ -147,7 +159,7 @@
                     </div>
                 </div>
                 <div  class="slBox" style="margin-left: 20px">
-                    <h2 class="tit">高新技术企业：{{sum3}}家<a class="fr" href="enterpriseList.html">更多+</a></h2>
+                    <h2 class="tit">高新技术企业：{{sum3}}家<a class="fr" href="enterpriseList.html?type=1">更多+</a></h2>
                     <div class="slideFromBox3">
                         <div class="bd">
                             <ul>
@@ -318,8 +330,15 @@
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="style/js/index.js"></script>
 <style>
-    .slBox{
-     width:calc((100% - 40px)/3);
+    .slBox:first-child{
+        width: 258px;
+        float: left;
+        background: #FFFFff;
+        padding: 10px;
+        height: 301px;
+    }
+    .slBox:nth-child(2),.slBox:nth-child(3){
+     width:calc((100% - 40px - 258px)/2);
         float: left;
         background: #FFFFff;
         padding: 10px;
@@ -328,13 +347,13 @@
     .slideFromBox2 li span,.slideFromBox3 li span{
       text-align: left;
     }
-    .slideFromBox1 li span{
-        width: 250px!important;
-        display: inline-block;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
+    /*.slideFromBox1 li span{*/
+    /*    width: 250px!important;*/
+    /*    display: inline-block;*/
+    /*    white-space: nowrap;*/
+    /*    text-overflow: ellipsis;*/
+    /*    overflow: hidden;*/
+    /*}*/
     .slideFromBox1 li a{
         color: #a3a3a3;
     }

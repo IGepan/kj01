@@ -172,6 +172,9 @@ require(['/common/js/require.config.js'], function () {
 						sortType: "02",
 						activeType:'218340665870780082'
 					},'zhiboList');
+					this.getUser();
+					this.getBoxList();
+					this.getHighList();
 					this.getShopList();
 					this.getPolicyList();
 					this.getDemandList();
@@ -185,9 +188,8 @@ require(['/common/js/require.config.js'], function () {
 					// this.getScienceList('009','serviceList');
 					this.find_tag_list();
 					this.getNewsList();
-					this.getUser();
-					this.getBoxList();
-					this.getHighList()
+
+
 
 				},
 
@@ -463,8 +465,8 @@ require(['/common/js/require.config.js'], function () {
 					//用户列表
 					getUser(){
 						let vm=this,params={
-							pageNum: 1,
-							pageSize: 10,
+							// pageNum: 1,
+							// pageSize: 10,
 						};
 						indexApi.getUserList(params).then(function(res) {
 							if (res.code === "rest.success") {
@@ -495,16 +497,17 @@ require(['/common/js/require.config.js'], function () {
 							if (res.code === "rest.success") {
 								vm.enterList=res.result.list;
 								vm.sum2=res.result.total
-								vm.$nextTick(()=>{
-									$(".slideFromBox2").slide({
-										titCell: ".hd ul",
-										mainCell: ".bd ul",
-										autoPage: true,
-										effect: "topLoop",
-										autoPlay: true,
-										vis: 6
-									});
-								})
+									vm.$nextTick(()=>{
+										$(".slideFromBox2").slide({
+											titCell: ".hd ul",
+											mainCell: ".bd ul",
+											autoPage: true,
+											effect: "topLoop",
+											autoPlay: true,
+											vis: 6
+										});
+									})
+
 							}
 						});
 					},
