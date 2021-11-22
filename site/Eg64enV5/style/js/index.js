@@ -487,7 +487,7 @@ require(['/common/js/require.config.js'], function () {
 								vm.sum1=res.result.total
 								vm.userList.forEach((item)=>{
 									if(!item.headImg){
-										vm.item.headImg='./style/images/avatar-boy.gif'
+										vm.item.headImg.url='./style/images/avatar-boy.gif'
 									}
 								});
 								vm.$nextTick(()=>{
