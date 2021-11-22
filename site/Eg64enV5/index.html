@@ -19,13 +19,13 @@
 </head>
 <style>
 
-    .el-carousel__item:nth-child(2n) {
-        background-color: #99a9bf;
-    }
+    /*.el-carousel__item:nth-child(2n) {*/
+    /*    background-color: #99a9bf;*/
+    /*}*/
 
-    .el-carousel__item:nth-child(2n+1) {
-        background-color: #d3dce6;
-    }
+    /*.el-carousel__item:nth-child(2n+1) {*/
+    /*    background-color: #d3dce6;*/
+    /*}*/
 </style>
 <body>
 <div class="boxs gray-bg" id='index_box' v-cloak>
@@ -39,9 +39,9 @@
 <!--                        <div class="title">易智网&#45;&#45;{{webInfo.saasName||''}}</div>-->
 <!--                        <div class="sub-title">技术摆渡人 / 科技服务人 / 创业孵化人</div>-->
                         <a :href="'https://'+item.link" v-if="item.link">
-                            <img :src="item.url"  style="width: 100%" alt />
+                            <img :src="item.url"  style="width: 100%;height: 100%" alt />
                         </a>
-                        <img :src="item.url"  style="width: 100%" alt v-if="!item.link"/>
+                        <img :src="item.url"  style="width: 100%;height: 100%" alt v-if="!item.link"/>
                     </el-carousel-item>
                 </el-carousel>
             </div>

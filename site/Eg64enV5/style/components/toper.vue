@@ -62,7 +62,7 @@
                 <a :href="$pathPrefix+'/common/login.html'">登录</a>
                 <a :href="$pathPrefix+'/common/reg.html'">注册</a>
             </div>
-            <div class="service-box"><a href="">服务商入驻</a></div>
+            <div class="service-box"><a :href="$pathPrefix+'/common/login.html'">服务商入驻</a></div>
             <div class="official-account"><span class="show">关于易智网</span>
                 <span class="avater">
             <img
