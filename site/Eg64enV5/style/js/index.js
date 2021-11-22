@@ -485,11 +485,11 @@ require(['/common/js/require.config.js'], function () {
 							if (res.code === "rest.success") {
 								vm.userList=res.result.list;
 								vm.sum1=res.result.total
-								vm.userList.forEach((item)=>{
-									if(!item.headImg){
-										vm.item.headImg.url='./style/images/avatar-boy.gif'
-									}
-								});
+								// vm.userList.forEach((item)=>{
+								// 	if(!item.headImg){
+								// 		vm.item.headImg.url=''
+								// 	}
+								// });
 								vm.$nextTick(()=>{
 									$(".slideFromBox1").slide({
 										titCell: ".hd ul",

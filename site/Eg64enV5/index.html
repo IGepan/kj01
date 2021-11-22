@@ -140,7 +140,9 @@
                                 <li v-for="(type,index) in userList" :key="index" :title="type.userName">
 <!--                                    <el-avatar src="./style/images/lg.png"></el-avatar><a class="fr">{{type.phone}}</a>-->
 <!--                                    <el-avatar :src="type.headImg.url"></el-avatar><a class="fr">{{type.phone}}</a>-->
-                                    <img :src="type.headImg.url" width="35" height="35" style="border-radius: 50%;vertical-align: middle"/><a class="fr">{{type.phone}}</a>
+                                    <img v-if="type.headImg" :src="type.headImg.url" width="35" height="35" style="border-radius: 50%;vertical-align: middle"/>
+                                    <img v-else src="./style/images/avatar-boy.gif" width="35" height="35" style="border-radius: 50%;vertical-align: middle"/>
+                                    <a class="fr">{{type.phone}}</a>
                                 </li>
                             </ul>
                         </div>
