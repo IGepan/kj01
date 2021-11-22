@@ -52,13 +52,9 @@ require(['/common/js/require.config.js'], function () {
                     "achievement_demand_type":"",//需求类型
                 },
                 components: {
-                    //插入头信息
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
-                    //插入市场
-                    'tech_market_header': httpVueLoader('/style/components/tech_market_header.vue'),
-
-                    //插入脚信息
-                    'web-footer': httpVueLoader('/style/components/web_footer.vue')
+                    'ly-toper': httpVueLoader('./style/components/toper.vue'),
+                    'index-head': httpVueLoader('./style/components/header.vue'),
+                    'com-footer': httpVueLoader('./style/components/com-footer.vue'),
                 },
 
                 watch: {
