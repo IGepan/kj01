@@ -29,7 +29,25 @@
         color: #FFFFff;
         background: #ee661c;
     }
-
+    .list-box .list-item{
+        width: 100%;
+        margin-bottom:10px;
+        margin-right: 0;
+    }
+    .list-box .list-item a{
+        width: 100%!important;
+        height:auto!important;
+        border: none!important;
+        padding: 0!important;
+    }
+    .title i{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: solid 1px #aaacbb;
+        margin-right: 8px;
+    }
 </style>
 <body>
 <div class="boxs gray-bg" id='index_box' v-cloak>
@@ -53,10 +71,10 @@
                 <div class="list">
                     <div class="list-item" v-for="item in dataList">
                         <a>
-                            <div class="img-box" >
-                                <img :src="item.url" alt="" >
-                            </div>
-                            <div class="title line2">{{item.organizationName}}</div>
+<!--                            <div class="img-box" >-->
+<!--                                <img :src="item.url" alt="" >-->
+<!--                            </div>-->
+                            <div class="title line2"><i></i>{{item.organizationName}}</div>
 <!--                            <div class="money line" :title="item.negotiableFlag|formatPrice(item.price, item.minPrice, item.maxPrice)">-->
 <!--                            <div class="money line" style="padding: 0">-->
 <!--                                {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</div>-->

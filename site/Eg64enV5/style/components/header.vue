@@ -7,7 +7,7 @@
                   <div class="header-logo">
 
                     <a id="logoUrl">
-                      <img :src="webInfo.logoUrl" style="width: 220px; height: 60px"/>
+                      <img :src="webInfo.logoUrl"/>
 <!--                      <img v-if="!webInfo.logoUrl" src="./style/images/lg.png"/>-->
                     </a>
 
@@ -144,6 +144,9 @@
                       this.webInfo.logoUrl='./style/images/lg.png'
                       $('#logoUrl img').css('width','29px')
                       $('#logoUrl img').css('height','29px')
+                    }else {
+                      $('#logoUrl img').css('width','220px')
+                      $('#logoUrl img').css('height','60px')
                     }
                 }
             });

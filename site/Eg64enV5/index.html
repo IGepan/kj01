@@ -106,7 +106,7 @@
             </div>
             <div class="activity-total-bottom">
                 <div class="item-box" :class="'item-box'+index" v-for="(item,index) in publishList">
-                    <a @click="handlePublish" :data-url="item.src">
+                    <a @click="handlePublish(item,index)" :data-url="item.src">
                         <div class="tips">HOT</div>
                         <div class="title-box">
                             <div class="title">{{item.title}}</div>
@@ -152,7 +152,7 @@
                         <div class="bd">
                             <ul>
                                 <li v-for="(type,index) in enterList" :key="index" :title="type.organizationName">
-                                    <span style="width: 100%">{{type.organizationName}}</span>
+                                    <span style="width: 100%"><i></i>{{type.organizationName}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -164,7 +164,7 @@
                         <div class="bd">
                             <ul>
                                 <li v-for="(type,index) in highList" :key="index" :title="type.organizationName">
-                                    <span style="width: 100%">{{type.organizationName}}</span>
+                                    <span style="width: 100%"><i></i>{{type.organizationName}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -194,6 +194,36 @@
                                     <span class="iconfont-template icon-lishijilu"></span><span>{{item.activeStartTime}}&nbsp;{{item.weekday}}</span>
                                 </div>
                                 <div class="date-right">{{item.joinNum}}人报名</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="science-service activity-center mmdiv">
+            <div class="title-common">
+                <div class="title">科技服务</div>
+                <div class="sub-box">
+                    <div v-for="(item,index) in mailServiceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceService.html?type='+item.id">{{item.name}}</a></div>
+                    <div><a href="scienceService.html">更多+</a></div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="item-box" v-for="item in goodList">
+                    <a :href="$pathPrefix+item.goodsDetailUrl">
+                        <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
+                        <div class="img-bottom">
+                            <div class="title line">{{item.goodsName}}</div>
+                            <div class="address"><span class="line">所属店铺：{{item.shopName}}</span></div>
+                            <div class="date">
+                                <div class="date-left line" :title="item.name">
+                                    服务类型：{{item.typeName}}
+                                </div>
+                                <div class="date-right line" :title="formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)">
+
+                                    {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
+
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -262,36 +292,6 @@
                                     <span class="fr" class="color_orange" v-if="demand.budget==0">面议</span>
                                 <span v-else class="fr" class="color_orange">{{Pricre(demand.budget)}}</span>
                                 </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="science-service activity-center mmdiv">
-            <div class="title-common">
-                <div class="title">科技服务</div>
-                <div class="sub-box">
-                    <div v-for="(item,index) in mailServiceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceService.html?type='+item.id">{{item.name}}</a></div>
-                    <div><a href="scienceService.html">更多+</a></div>
-                </div>
-            </div>
-            <div class="content-box">
-                <div class="item-box" v-for="item in goodList">
-                    <a :href="$pathPrefix+item.goodsDetailUrl">
-                        <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
-                        <div class="img-bottom">
-                            <div class="title line">{{item.goodsName}}</div>
-                            <div class="address"><span class="line">所属店铺：{{item.shopName}}</span></div>
-                            <div class="date">
-                                <div class="date-left line" :title="item.name">
-                                    服务类型：{{item.typeName}}
-                                </div>
-                                <div class="date-right line" :title="formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)">
-
-                                    {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
-
-                            </div>
                             </div>
                         </div>
                     </a>
@@ -390,7 +390,14 @@
         overflow: hidden;
         /*border-bottom:  1px  #dfdfdf!important;*/
     }
-
+    .slideFromBox2 li span i,.slideFromBox3 li span i{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: solid 1px #aaacbb;
+        margin-right: 8px;
+    }
 </style>
 </body>
 

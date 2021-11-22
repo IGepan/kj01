@@ -15,7 +15,7 @@ require(['/common/js/require.config.js'], function () {
 						{
 							title:'发布需求',
 							sub_title:'快速发布需求',
-							src:this.$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'
+							src:this.$pathPrefix+'/common/usercenter/user_market_tech_require_form.html'
 						},
 						{
 							title:'发布服务',
@@ -24,7 +24,7 @@ require(['/common/js/require.config.js'], function () {
 						},{
 							title:'发布成果',
 							sub_title:'快速发布成果',
-							src:this.$pathPrefix+'/common/seller/index.html'
+							src:this.$pathPrefix+'/common/usercenter/user_market_tech_achi_form.html'
 
 						},{
 							title:'发布活动',
@@ -152,6 +152,7 @@ require(['/common/js/require.config.js'], function () {
 					this.userInfo = JSON.parse(
 						this.$utils.getCookie("USER_INFO")
 					);
+
 					this.getPublicDetail();
 					window.addEventListener("setItem", (e) => {
 						if(e.key==='webInfo'){
@@ -173,8 +174,8 @@ require(['/common/js/require.config.js'], function () {
 						activeType:'218340665870780082'
 					},'zhiboList');
 					this.getUser();
-					this.getBoxList();
-					this.getHighList();
+					// this.getBoxList();
+					// this.getHighList();
 					this.getShopList();
 					this.getPolicyList();
 					this.getDemandList();
@@ -188,7 +189,6 @@ require(['/common/js/require.config.js'], function () {
 					// this.getScienceList('009','serviceList');
 					this.find_tag_list();
 					this.getNewsList();
-
 
 
 				},
@@ -464,9 +464,22 @@ require(['/common/js/require.config.js'], function () {
 					},
 					//用户列表
 					getUser(){
-						let vm=this,params={
+						let vm=this,
+							params={
 							// pageNum: 1,
 							// pageSize: 10,
+						};
+						params1={
+							pageNum: 1,
+							pageSize: 10,
+							enterprise: 1,
+							orderBy:'ac03.createTime desc'
+						};
+						params2={
+							pageNum: 1,
+							pageSize: 10,
+							highEnterprise: 1,
+							orderBy:'ac03.createTime desc'
 						};
 						indexApi.getUserList(params).then(function(res) {
 							if (res.code === "rest.success") {
@@ -484,43 +497,24 @@ require(['/common/js/require.config.js'], function () {
 								})
 							}
 						});
-					},
-					getBoxList(){
-						let vm=this,
-							params={
-							pageNum: 1,
-							pageSize: 10,
-							enterprise: 1,
-								orderBy:'ac03.createTime desc'
-						};
-						indexApi.getEnterList(params).then(function(res) {
+						indexApi.getEnterList(params1).then(function(res) {
 							if (res.code === "rest.success") {
 								vm.enterList=res.result.list;
 								vm.sum2=res.result.total
-									vm.$nextTick(()=>{
-										$(".slideFromBox2").slide({
-											titCell: ".hd ul",
-											mainCell: ".bd ul",
-											autoPage: true,
-											effect: "topLoop",
-											autoPlay: true,
-											vis: 6
-										});
-									})
+								vm.$nextTick(()=>{
+									$(".slideFromBox2").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
+									});
+								})
 
 							}
 						});
-					},
-
-					getHighList(){
-						let vm=this,
-							params={
-								pageNum: 1,
-								pageSize: 10,
-								highEnterprise: 1,
-								orderBy:'ac03.createTime desc'
-							};
-						indexApi.getEnterList(params).then(function(res) {
+						indexApi.getEnterList(params2).then(function(res) {
 							if (res.code === "rest.success") {
 								vm.highList=res.result.list;
 								vm.sum3=res.result.total
@@ -537,35 +531,57 @@ require(['/common/js/require.config.js'], function () {
 							}
 						});
 					},
-					handlePublish(e){
+					// getBoxList(){
+					// 	let vm=this,
+					//
+					//
+					// },
+					//
+					// getHighList(){
+					// 	let vm=this,
+					//
+					//
+					// },
+					handlePublish(e,index){
 						let vm=this;
-						let url = e.target.dataset.url || e.currentTarget.dataset.url
-						if(url.indexOf('/common/seller') === -1){
-							location.href=url
-						}else{
-							if (this.userInfo.userTypes && this.userInfo.userTypes.indexOf('002') === -1) {
-								e.preventDefault()
-								this.$dialog.showToast('您还不是服务商，请先入驻成为服务商！')
+						if(index==1){
+							if(e.src.indexOf('/common/seller') === -1){
+								location.href=e.src
 							}else{
-								//是否激活店铺
-								httpStore.validateActive({}).then(function (res) {
-									if (res.code == 'rest.success') {
-										location.href=url
-									} else {
-										e.preventDefault()
-										var options = {
-											title: '温馨提示',
-											texts: '请先激活店铺！',
-											buttons: ['现在就去', '稍后激活'],
-											callback: function () {
-												location = vm.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
+								if (this.userInfo.userTypes && this.userInfo.userTypes.indexOf('002')===-1) {
+									// e.preventDefault()
+									this.$dialog.showToast('您还不是服务商，请先入驻成为服务商！')
+								}else{
+									//是否激活店铺
+									httpStore.validateActive({}).then(function (res) {
+										if (res.code == 'rest.success') {
+											location.href=e.src
+										} else {
+											// e.preventDefault()
+											var options = {
+												title: '温馨提示',
+												texts: '请先激活店铺！',
+												buttons: ['现在就去', '稍后激活'],
+												callback: function () {
+													location = vm.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
+												}
 											}
+											vm.$dialog.confirm(options)
 										}
-										vm.$dialog.confirm(options)
-									}
-								})
+									})
+								}
 							}
+						}else{
+								if (this.userInfo && this.userInfo.userName) {
+									window.location.href =e.src
+								} else {
+									this.$dialog.showToast("请先登录")
+									setTimeout(function () {
+										window.location.href =this.$pathPrefix+'/common/login.html';
+									}, 2000)
+								}
 						}
+						
 					}
 				},
 			});
