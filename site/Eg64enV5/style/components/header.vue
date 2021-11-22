@@ -86,10 +86,10 @@
                         label: '科技成果',
                         url: this.$pathPrefix+'/scienceResult.html'
                     },
-                  // {
-                  //   label: '技术需求',
-                  //   url: this.$pathPrefix+'/scienceRequire.html'
-                  // },
+                  {
+                    label: '技术需求',
+                    url: this.$pathPrefix+'/scienceRequire.html'
+                  },
                     {
                         label: '科技服务',
                         url: this.$pathPrefix+'/scienceService.html'
@@ -118,10 +118,10 @@
                name:'成果',
                   url: this.$pathPrefix+'/scienceResult.html'
               },
-               // {
-               //   name:'需求',
-               //   url: this.$pathPrefix+'/scienceRequire.html'
-               // },
+               {
+                 name:'需求',
+                 url: this.$pathPrefix+'/scienceRequire.html'
+               },
               {
                name:'服务',
                   url: this.$pathPrefix+'/scienceService.html'
