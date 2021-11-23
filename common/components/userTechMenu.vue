@@ -104,6 +104,7 @@ module.exports = {
        vm.urlData.forEach((item) =>{
          item.url=this.$pathPrefix+item.url
        })
+        vm.urlData[7].url='https://study.kj01.cn/uc/index'
     }
     },
   },
