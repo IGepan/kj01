@@ -32,6 +32,9 @@
             margin-right: 20px;
             margin-top: 20px;
         }
+        .el-avatar > img{
+            margin-left:-12px!important;
+        }
     </style>
 </head>
 
@@ -162,11 +165,11 @@
                                     </div>
                                 </el-image>
                                 <div v-if="!item.logoPath">
-                                    <img v-if="parseInt(item.brokerIdCard.substr(16, 1)) % 2 !== 1"  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/woman.png">
-                                    <img v-else  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/man.png">
+                                    <el-avatar v-if="parseInt(item.brokerIdCard.substr(16, 1)) % 2 !== 1" src="/style/images/technologyMarket/woman.png" :size="50"></el-avatar>
+                                    <el-avatar v-else src="/style/images/technologyMarket/man.png" :size="50"></el-avatar>
                                 </div>
-<!--                                <img v-else style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"-->
-<!--                                    src="../style/images/technologyMarket/technical_manager.jpg">-->
+                                <img v-else style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"
+                                    src="../style/images/technologyMarket/technical_manager.jpg">
                             </div>
                             <div class="width_73 fr">
                                 <div class="ell_nowrap padding_bottom_10" style="color:#13c9ef">{{item.brokerName}}
