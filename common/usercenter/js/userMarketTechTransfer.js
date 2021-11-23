@@ -111,7 +111,7 @@ require(['/common/js/require.config.js'], function () {
 
                     // ? 打开日志列表
                     openLogsList(item) {
-                        window.location.href = '/common/usercenter/user_market_logs_list.html?id=' + item.id;
+                        window.location.href =this.$pathPrefix+ '/common/usercenter/user_market_logs_list.html?id=' + item.id;
                     },
 
                     // 班级报名
