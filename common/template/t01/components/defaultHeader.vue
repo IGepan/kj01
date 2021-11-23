@@ -4,9 +4,10 @@
   <div class="shopdiv">
     <a class="logo" :href=$pathPrefix+"/index.html"  >
 <!--      <img @error="imgError(webInfo)" @load="successLoadImg"  :src="webInfo.logoUrl" alt=""  width="226" height="66"/></a>-->
-      <img :src="webInfo.logoUrl" width="226" height="66"/>
+      <img v-if="webInfo.logoUrl" :src="webInfo.logoUrl" width="226" height="66"/>
+      <img v-else src="/style/images/logos/blue-h66.png">
     </a>
-<!--      <img v-else src="/style/images/logos/blue-h66.png">-->
+
     <ly-searchbox
       :is-input-line="true"
       :is-search-shop="true"
@@ -34,11 +35,12 @@ module.exports = {
       if(e.key==='webInfo'){
         let info=JSON.parse(e.newValue)
         this.webInfo=info?info:'';
-        if(!this.webInfo.logoUrl){
-          this.webInfo.logoUrl='/common/template/t01/images/blue-h66.png'
-          // $('#logoURl img').css('width','29px')
-          // $('#logoURl img').css('height','29px')
-        }
+        console.log(this.webInfo,'[[[')
+        // if(!this.webInfo.logoUrl){
+        //   this.webInfo.logoUrl='/common/template/t01/images/blue-h66.png'
+        //   // $('#logoURl img').css('width','29px')
+        //   // $('#logoURl img').css('height','29px')
+        // }
 
       }
     });
