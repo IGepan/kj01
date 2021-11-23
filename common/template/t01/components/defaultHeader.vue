@@ -35,7 +35,7 @@ module.exports = {
         let info=JSON.parse(e.newValue)
         this.webInfo=info?info:'';
         if(!this.webInfo.logoUrl){
-          this.webInfo.logoUrl='/style/images/logos/blue-h66.png'
+          this.webInfo.logoUrl='/common/template/t01/images/blue-h66.png'
           // $('#logoURl img').css('width','29px')
           // $('#logoURl img').css('height','29px')
         }
@@ -68,7 +68,7 @@ module.exports = {
 </script>
 <style scoped>
    .headerBg{
-     background: url(./style/images/bg.png) 0% 0% / cover no-repeat;
+     background: url(/common/template/t01/images/bg.png) 0% 0% / cover no-repeat;
      width: 100%;
      height: 98px;
    }
