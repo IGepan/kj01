@@ -54,6 +54,7 @@ require(['/common/js/require.config.js'], function () {
                     dialogTableVisible: false,
                     textarea: "",
                     textItemId: "",
+                    isSite:false,
                 },
                 provide: {
                     httpUser: httpUser,
@@ -66,6 +67,10 @@ require(['/common/js/require.config.js'], function () {
                     this.search_receive_project_list();
                     this.search_receive_invitation_list();
                     this.search_receive_Entrust_list();
+                    var url = window.location.href
+                    if (url.indexOf('/site/') > 0) {
+                        this.isSite=true
+                    }
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
@@ -119,7 +124,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href = this.$pathPrefix+'/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");

@@ -60,8 +60,12 @@
                         加载中<span class="dot">...</span>
                     </div>
                 </el-image>
-                <img v-else class="border_ca broker_img_box"
-                    src="../style/images/technologyMarket/technical_manager.jpg">
+<!--                <img v-else class="border_ca "-->
+<!--                    src="../style/images/technologyMarket/technical_manager.jpg">-->
+                <div v-if="ZMTechBrokerVO.logoPath==''">
+                    <img v-if="parseInt(ZMTechBrokerVO.brokerIdCard.substr(16, 1)) % 2 !== 1" class="border_ca broker_img_box"  src="/style/images/technologyMarket/woman.png">
+                    <img v-else class="border_ca broker_img_box"  src="/style/images/technologyMarket/man.png">
+                </div>
             </div>
             <div class="fl details_right_content">
                 <div class="list_details_title clear">
@@ -157,8 +161,12 @@
                                         加载中<span class="dot">...</span>
                                     </div>
                                 </el-image>
-                                <img v-else style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"
-                                    src="../style/images/technologyMarket/technical_manager.jpg">
+                                <div v-if="!item.logoPath">
+                                    <img v-if="parseInt(item.brokerIdCard.substr(16, 1)) % 2 !== 1"  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/woman.png">
+                                    <img v-else  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/man.png">
+                                </div>
+<!--                                <img v-else style="max-width: 100%;max-height: 100%;" class="border_ca broker_img_box"-->
+<!--                                    src="../style/images/technologyMarket/technical_manager.jpg">-->
                             </div>
                             <div class="width_73 fr">
                                 <div class="ell_nowrap padding_bottom_10" style="color:#13c9ef">{{item.brokerName}}

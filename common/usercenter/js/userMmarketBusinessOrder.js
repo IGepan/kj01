@@ -49,7 +49,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href =this.$pathPrefix+ '/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
@@ -118,7 +118,7 @@ require(['/common/js/require.config.js'], function () {
                     handleEnd: function (index, row) {
                         var _this = this;
                         var id = row.id;
-                        window.location.href = "/common/usercenter/user_market_business_order_over.html?id=" + id;
+                        window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_business_order_over.html?id=" + id;
                     },
                 },
             });
