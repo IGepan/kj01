@@ -57,10 +57,10 @@ require(['/common/js/require.config.js'], function () {
               creditCode: '', // 统一社会信用代码
               property:1,//知识产权
               develop:1,//研发费用
-              lastIncome:'',//上年主营收入
+              lastIncome:null,//上年主营收入
               industryData_l1: '',
               industryData_l2: '',
-              focusPolicy: [],
+              focusPolicy:[],
               focusPolicyName: '',
             }, 
             alias: {
@@ -241,8 +241,17 @@ require(['/common/js/require.config.js'], function () {
           getFocusPolicy: function() {
             var vm = this;
             httpUser.getFocusPolicy().then(function(res) {
-              console.log(res)
-              vm.focusList = res.result;
+              console.log(res.result,'zhengce1')
+              vm.focusList=res.result
+              // res.result.forEach(function(item){
+              //   var Tag=[]
+              //   for (i = 0; i < item.tagList.length; i++){
+              //     Tag.push({value:item.tagList[i].name,label:item.tagList[i].name})
+              //   }
+              //   vm.focusList.push({value: item.name,
+              //     label:item.name,children:Tag})
+              // })
+              console.log(vm.focusList,'列表')
             })
           },           
           setDefaultQualication() {
@@ -362,13 +371,17 @@ require(['/common/js/require.config.js'], function () {
           },
           saveAllData() {
             let honerInfo = this.getHonerInfo();
-            // console.log(this.formData, this.developmentInfo, this.operatingInfo, honerInfo);
+             console.log(this.formData, this.developmentInfo, this.operatingInfo, honerInfo);
 
           },
           getPlocyParams: function() {
             var params = {};
             var data = this.formData;
+            console.log(this.formData,'[[[')
             params.name = data.organizationName;
+            params.property=data.property;
+            params.develop=data.develop;
+            params.lastIncome=data.lastIncome;
             params.socialCreditCode = data.creditCode;
             params.registeredTime = data.establishDate;
             params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
@@ -404,21 +417,50 @@ require(['/common/js/require.config.js'], function () {
             // params.threeIncome = this.operatingInfo.income3;
             // params.threeAssets = this.operatingInfo.netWorth3;
             // params.area = this.operatingInfo.area;
-            
+            console.log(params,'params')
+
             return params;
           },   
           verifyRequired(params) {
-           var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification', 'enterpriseType', 'researchMoney', 'employeesNum', 'twoIncome', 'area'];
-           var flag = false;
-           for (const key in params) {
-            for (let index = 0; index < keys.length; index++) {
-              if(key == keys[index] && !params[key]) {
-                console.log(key, params[key])
-                flag = true;
-              }              
+            var _this = this;
+            if (!_this.$utils.validatesEmpty(params.name)) {
+              // _this.$dialog.showToast("企业名称必填");
+              return false;
             }
-           }
-           return flag;
+            if (!_this.$utils.validatesEmpty(params.socialCreditCode)) {
+              // _this.$dialog.showToast("统一社会信用代码必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.registeredTime)) {
+              // _this.$dialog.showToast("注册时间必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.industry)) {
+              // _this.$dialog.showToast("行业分类必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.city)) {
+              // _this.$dialog.showToast("所在地必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.enterpriseQualification)) {
+              // _this.$dialog.showToast("企业资质必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.enterpriseType)) {
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            return true;
+           // var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification','enterpriseType',];
+           // var flag = false;
+           // for (const key in params) {
+           //  for (let index = 0; index < keys.length; index++) {
+           //    if(key == keys[index] && params[key]!=='') {
+           //      flag = true;
+           //    }
+           //  }
+           // }
           },
           saveParams() {
             // localStorage.setItem('developmentInfo', JSON.stringify(this.developmentInfo))
@@ -433,14 +475,21 @@ require(['/common/js/require.config.js'], function () {
             this.saveAllData();
             this.saveParams();
             var params = this.getPlocyParams();
-            var flag = this.verifyRequired(params);
-            console.log('flag', flag)
-            if(flag) {
-              this.$dialog.showToast('请填写必填信息');
-              return;
+            console.log(params,'qiye')
+            if(this.verifyRequired(params)) {
+              localStorage.setItem('policyMatchParams', JSON.stringify(params));
+              location.href = '/policyMatchResult.html?type=1'
             }
-            localStorage.setItem('policyMatchParams', JSON.stringify(params));
-            location.href = '/policyMatchResult.html?type=1'
+            else{
+             // this.$dialog.showToast('请填写必填信息！');
+              this.$notify.error({
+                title: '提示',
+                message: '请填写必填信息！',
+                type: 'warning'
+              });
+            }
+            // var flag = this.verifyRequired(params);
+
           },                     
         }
       })

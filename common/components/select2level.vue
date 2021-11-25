@@ -18,30 +18,41 @@
     <div
       class="content"
       v-if="isShowDialog"
-    >
-      <ul class="item">
+    ><ul class="item">
         <li
-          v-for="(item, itemIndex) in list"
-          :key="itemIndex"
+            :class="{active: index == activeIndex}"
+            v-for="(item, index) in oneLevelList"
+            @click="itemClick(item,index)"
+            :key="index"
         >
           <span
-            class="text hand"
-            :class="{active: selectedIds[item.id]}"
-          ><strong
+              class="text hand"
               v-text="item.name"
-              @click="valueClick(item, secondType)"
-            ></strong></span>
+          ></span>
+        </li>
+    </ul>
+      <ul class="item">
+<!--       <li v-for="(item, itemIndex) in itemList"-->
+<!--            :key="itemIndex">-->
+         <li>
+<!--          <span-->
+<!--              class="text hand"-->
+<!--              :class="{active: selectedIds[item.id]}"-->
+<!--          ><strong-->
+<!--              v-text="item.name"-->
+<!--              @click="valueClick(item, secondType)"-->
+<!--          ></strong></span>-->
           <span class="level">
             <span
               class="level_text hand"
               :class="{active: selectedIds[level3.tagId], disabel: disabelList[level3.tagId]}"
               @click="valueClick(level3)"
-              v-for="(level3,index) in item.tagList"
+              v-for="(level3,index) in itemList"
               v-text="level3.name"
               :key="index"
             ></span>
           </span>
-        </li>
+       </li>
       </ul>
     </div>
   </div>
@@ -53,17 +64,21 @@ module.exports = {
     return {
       isShowDialog: false,
       disabelList: {}, // 不可选中状态集合
+      itemList: [],
+      oneLevelList:[],
       selectedIds: {},
       selectList: [], // 当前选中数据数组
       activeIndex: 0,
       code: '',
       serviceCode: '',
-      secondType: 'second' // 固定值
+      secondType: 'second', // 固定值
     }
   },
   watch: {
     list: function(val) {
       console.log(val)
+      this.oneLevelList=val
+      this.itemClick(this.oneLevelList[0],0)
     },
     value: function (val) {
       console.log(val)
@@ -74,7 +89,7 @@ module.exports = {
     }
   },
   created: function () {
-    // this.initValue(this.value.length ? this.value : [])
+    this.initValue(this.value.length ? this.value : [])
   },
   mounted: function () {
     document.getElementsByTagName('body')[0].addEventListener('click', this.bodyClick, false);
@@ -97,7 +112,7 @@ module.exports = {
           })
           // 初始化已经选择的项目
           this.selectedIds = ids
-          // this.filterBackDisabel(this.itemList);
+          this.filterBackDisabel(this.itemList);
         } else {
           this.selectList.forEach(function (tag) {
             vm.removeSeleced(tag.tagId)
@@ -118,6 +133,12 @@ module.exports = {
       // console.log(this.$el.getClientRects())
       this.isShowDialog = true
     },
+    // 点击分类
+    itemClick: function (item, index) {
+      console.log(item,'000')
+      this.activeIndex = index;
+      this.itemList=item.tagList
+    },
     // 选择值
     valueClick: function (item, type) {
       var that = this
@@ -131,7 +152,7 @@ module.exports = {
           // 二级分类 去除不可点击
           type === this.secondType && this.removeDisabel(item.tagList)
         } else {
-          this.setSelected(item, type);       
+          this.setSelected(item, type);
           this.$nextTick(function () {
             this.$set(this, 'selectList', this.selectList);
           })
@@ -139,7 +160,7 @@ module.exports = {
       }
     },
     setSelected: function (item, type) {
-      console.log(item, type)
+      console.log(item, type,'二级')
       let tagId = item.id || item.tagId;
       this.selectedIds[tagId] = 1
       // 是二级，所有下级都选中
