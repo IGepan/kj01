@@ -424,30 +424,65 @@ require(['/common/js/require.config.js'], function () {
           verifyRequired(params) {
             var _this = this;
             if (!_this.$utils.validatesEmpty(params.name)) {
-              // _this.$dialog.showToast("企业名称必填");
+              this.$notify.error({
+                title: '提示',
+                message: '企业名称必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("");
               return false;
             }
             if (!_this.$utils.validatesEmpty(params.socialCreditCode)) {
+              this.$notify.error({
+                title: '提示',
+                message: '统一社会信用代码必填！',
+                type: 'warning'
+              });
               // _this.$dialog.showToast("统一社会信用代码必填");
               return false;
             }
             if (!_this.$utils.validatesEmpty(params.registeredTime)) {
+              this.$notify.error({
+                title: '提示',
+                message: '注册时间必填！',
+                type: 'warning'
+              });
               // _this.$dialog.showToast("注册时间必填");
               return false;
             }
             if (!_this.$utils.validatesEmpty(params.industry)) {
+              this.$notify.error({
+                title: '提示',
+                message: '行业分类必填！',
+                type: 'warning'
+              });
               // _this.$dialog.showToast("行业分类必填");
               return false;
             }
             if (!_this.$utils.validatesEmpty(params.city)) {
+              this.$notify.error({
+                title: '提示',
+                message: '所在地必填！',
+                type: 'warning'
+              });
               // _this.$dialog.showToast("所在地必填");
               return false;
             }
             if (!_this.$utils.validatesEmpty(params.enterpriseQualification)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业资质必填！',
+                type: 'warning'
+              });
               // _this.$dialog.showToast("企业资质必填");
               return false;
             }
             if (!_this.$utils.validatesEmpty(params.enterpriseType)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业类型必填！',
+                type: 'warning'
+              });
               // _this.$dialog.showToast("企业类型必填");
               return false;
             }
@@ -480,14 +515,14 @@ require(['/common/js/require.config.js'], function () {
               localStorage.setItem('policyMatchParams', JSON.stringify(params));
               location.href = '/policyMatchResult.html?type=1'
             }
-            else{
-             // this.$dialog.showToast('请填写必填信息！');
-              this.$notify.error({
-                title: '提示',
-                message: '请填写必填信息！',
-                type: 'warning'
-              });
-            }
+            // else{
+            //  // this.$dialog.showToast('请填写必填信息！');
+            //   this.$notify.error({
+            //     title: '提示',
+            //     message: '请填写必填信息！',
+            //     type: 'warning'
+            //   });
+            // }
             // var flag = this.verifyRequired(params);
 
           },                     
