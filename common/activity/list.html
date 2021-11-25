@@ -251,8 +251,8 @@
                     <div class="operation">
                       <a target="_blank" :href="'add.html?code=001.004.001.001&type=view&id=' + order.id"
                         >查看</a>
-                      <span class="ops-more-container" v-if="order.statusDisplay==!'待审核'" style="margin-left:10px;">
-                        <a @click.stop="showMore(i)">更多</a>
+                      <span class="ops-more-container" style="margin-left:10px;">
+                        <a @click.stop="showMore(order,i)">更多</a>
                         <div class="ops-more-menu" :class="{active:index===i}">
                           <a v-if="order.status !== '01' && order.status !== '02' && order.status !== '04'"
                             @click="handleGetWxCode(order.id)">活动二维码</a>
