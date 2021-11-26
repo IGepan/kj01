@@ -1,4 +1,5 @@
 <template>
+  <div :class="{headerBg:isBg}">
 <div class="mdiv">
   <div class="shopdiv">
     <a class="logo" :href=$pathPrefix+"/index.html">
@@ -22,6 +23,7 @@
     </ly-searchbox>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -29,7 +31,8 @@ module.exports = {
   props: ['type', 'http', 'defaultValue'],
   data: function () {
     return {
-      webInfo:''
+      webInfo:'',
+      isBg:false
     }
   },
   mounted: function () {
@@ -39,6 +42,10 @@ module.exports = {
         this.webInfo=info?info:'';
       }
     });
+    var url = window.location.href
+    if (url.indexOf('/kaizhou/') > 0) {
+      this.isBg=true
+    }
   },
   methods: {
 
@@ -60,6 +67,11 @@ module.exports = {
 }
 </script>
 <style scoped>
+.headerBg{
+  background: url(/common/template/t01/images/bg.png) 0% 0% / cover no-repeat;
+  width: 100%;
+  height: 118px;
+}
   .shopdiv {
     width: 100%;
   }
