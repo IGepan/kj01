@@ -60,7 +60,7 @@ require(['/common/js/require.config.js'], function () {
               lastIncome:null,//上年主营收入
               industryData_l1: '',
               industryData_l2: '',
-              focusPolicy: [],
+              focusPolicy:[],
               focusPolicyName: '',
             }, 
             alias: {
@@ -103,11 +103,11 @@ require(['/common/js/require.config.js'], function () {
                 '05': 'updateDepart'
               },
               subDatas: {
-                '01': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'version'],
-                '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version', 'qualifications'],
-                '03': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
-                '04': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
-                '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version']
+                '01': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'version','property','develop','lastIncome'],
+                '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'property','develop','lastIncome','organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version', 'qualifications'],
+                '03': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'property','develop','lastIncome','organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
+                '04': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'property','develop','lastIncome','organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
+                '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'property','develop','lastIncome','organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version']
               },
               organizationTypeNames: {
                 '02': '企业类型：',
@@ -241,8 +241,17 @@ require(['/common/js/require.config.js'], function () {
           getFocusPolicy: function() {
             var vm = this;
             httpUser.getFocusPolicy().then(function(res) {
-              console.log(res)
-              vm.focusList = res.result;
+              console.log(res.result,'zhengce1')
+              vm.focusList=res.result
+              // res.result.forEach(function(item){
+              //   var Tag=[]
+              //   for (i = 0; i < item.tagList.length; i++){
+              //     Tag.push({value:item.tagList[i].name,label:item.tagList[i].name})
+              //   }
+              //   vm.focusList.push({value: item.name,
+              //     label:item.name,children:Tag})
+              // })
+              console.log(vm.focusList,'列表')
             })
           },           
           setDefaultQualication() {
@@ -362,13 +371,17 @@ require(['/common/js/require.config.js'], function () {
           },
           saveAllData() {
             let honerInfo = this.getHonerInfo();
-            // console.log(this.formData, this.developmentInfo, this.operatingInfo, honerInfo);
+             console.log(this.formData, this.developmentInfo, this.operatingInfo, honerInfo);
 
           },
           getPlocyParams: function() {
             var params = {};
             var data = this.formData;
+            console.log(this.formData,'[[[')
             params.name = data.organizationName;
+            params.property=data.property;
+            params.develop=data.develop;
+            params.lastIncome=data.lastIncome;
             params.socialCreditCode = data.creditCode;
             params.registeredTime = data.establishDate;
             params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
@@ -404,21 +417,85 @@ require(['/common/js/require.config.js'], function () {
             // params.threeIncome = this.operatingInfo.income3;
             // params.threeAssets = this.operatingInfo.netWorth3;
             // params.area = this.operatingInfo.area;
-            
+            console.log(params,'params')
+
             return params;
           },   
           verifyRequired(params) {
-           var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification', 'enterpriseType', 'researchMoney', 'employeesNum', 'twoIncome', 'area'];
-           var flag = false;
-           for (const key in params) {
-            for (let index = 0; index < keys.length; index++) {
-              if(key == keys[index] && !params[key]) {
-                console.log(key, params[key])
-                flag = true;
-              }              
+            var _this = this;
+            if (!_this.$utils.validatesEmpty(params.name)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业名称必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("");
+              return false;
             }
-           }
-           return flag;
+            if (!_this.$utils.validatesEmpty(params.socialCreditCode)) {
+              this.$notify.error({
+                title: '提示',
+                message: '统一社会信用代码必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("统一社会信用代码必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.registeredTime)) {
+              this.$notify.error({
+                title: '提示',
+                message: '注册时间必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("注册时间必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.industry)) {
+              this.$notify.error({
+                title: '提示',
+                message: '行业分类必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("行业分类必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.city)) {
+              this.$notify.error({
+                title: '提示',
+                message: '所在地必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("所在地必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.enterpriseQualification)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业资质必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业资质必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.enterpriseType)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业类型必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            return true;
+           // var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification','enterpriseType',];
+           // var flag = false;
+           // for (const key in params) {
+           //  for (let index = 0; index < keys.length; index++) {
+           //    if(key == keys[index] && params[key]!=='') {
+           //      flag = true;
+           //    }
+           //  }
+           // }
           },
           saveParams() {
             // localStorage.setItem('developmentInfo', JSON.stringify(this.developmentInfo))
@@ -433,14 +510,21 @@ require(['/common/js/require.config.js'], function () {
             this.saveAllData();
             this.saveParams();
             var params = this.getPlocyParams();
-            var flag = this.verifyRequired(params);
-            console.log('flag', flag)
-            if(flag) {
-              this.$dialog.showToast('请填写必填信息');
-              return;
+            console.log(params,'qiye')
+            if(this.verifyRequired(params)) {
+              localStorage.setItem('policyMatchParams', JSON.stringify(params));
+              location.href = '/policyMatchResult.html?type=1'
             }
-            localStorage.setItem('policyMatchParams', JSON.stringify(params));
-            location.href = '/policyMatchResult.html?type=1'
+            // else{
+            //  // this.$dialog.showToast('请填写必填信息！');
+            //   this.$notify.error({
+            //     title: '提示',
+            //     message: '请填写必填信息！',
+            //     type: 'warning'
+            //   });
+            // }
+            // var flag = this.verifyRequired(params);
+
           },                     
         }
       })

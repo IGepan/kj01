@@ -33,7 +33,7 @@
             margin-top: 20px;
         }
         .el-avatar > img{
-            margin-left: -12px!important;
+            margin-left:-12px!important;
         }
     </style>
 </head>
@@ -63,12 +63,12 @@
                         加载中<span class="dot">...</span>
                     </div>
                 </el-image>
+<!--                <img v-else class="border_ca "-->
+<!--                    src="../style/images/technologyMarket/technical_manager.jpg">-->
                 <div v-if="ZMTechBrokerVO.logoPath==''">
                     <img v-if="parseInt(ZMTechBrokerVO.brokerIdCard.substr(16, 1)) % 2 !== 1" class="border_ca broker_img_box"  src="/style/images/technologyMarket/woman.png">
                     <img v-else class="border_ca broker_img_box"  src="/style/images/technologyMarket/man.png">
                 </div>
-<!--                <img v-else class="border_ca broker_img_box"-->
-<!--                    src="../style/images/technologyMarket/technical_manager.jpg">-->
             </div>
             <div class="fl details_right_content">
                 <div class="list_details_title clear">

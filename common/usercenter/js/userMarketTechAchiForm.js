@@ -449,7 +449,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href =this.$pathPrefix+ '/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
@@ -677,7 +677,7 @@ require(['/common/js/require.config.js'], function () {
                                 _this.$dialog.showToast("提交成功");
                                 setTimeout(function () {
                                     // window.href = "/user_market_tech_achievements.html"
-                                    window.location.href = "/common/usercenter/user_market_tech_achievements.html"
+                                    window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_achievements.html"
                                 }, 2000)
                             })
                         }

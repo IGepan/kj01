@@ -561,12 +561,11 @@
                             <div class="supplier-list">
                                 <a  :href="'/technologyMarket/technical_manager_details.html?id=' + Man.id" v-for="(Man,index) in ManagerList" :key="index">
                                     <div class="supplier-avatar" v-if="Man.logoPath"><img :src="getImgPath(Man.logoPath)" alt="" /></div>
+
                                     <div class="supplier-avatar" v-if="!Man.logoPath">
-                                        <img v-if="parseInt(Man.brokerIdCard.substr(16, 1)) % 2 !== 1"  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/woman.png">
-                                        <img v-else  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/man.png">
+                                            <img v-if="parseInt(Man.brokerIdCard.substr(16, 1)) % 2 !== 1"  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/woman.png">
+                                            <img v-else  style="max-width: 100%;max-height: 100%;" src="/style/images/technologyMarket/man.png">
                                     </div>
-<!--                                    <div class="supplier-avatar" v-else><img src="../style/images/technologyMarket/technical_manager.jpg"/>-->
-<!--                                    </div>-->
 <!--                                    <div class="supplier-name"  style="text-align: center">{{Man.brokerName}}-->
 <!--                                        <br>-->
 <!--                                        <div style="font-size: 12px">({{Man.agentType_display}})-->

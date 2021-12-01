@@ -129,8 +129,11 @@
 
                                     <el-table-column label="项目名称">
                                         <template slot-scope="scope">
-                                            <a class="color_13c9ef"
+                                            <a class="color_13c9ef" v-if="isSite==false"
                                                :href="'/technologyMarket/tech_achievements_details.html?id=' + scope.row.projectId"
+                                               target="_blank">{{ scope.row.projectName }}</a>
+                                            <a class="color_13c9ef" v-else
+                                               :href="this.$pathPrefix+'/scienceDetail.html?id=' + scope.row.projectId"
                                                target="_blank">{{ scope.row.projectName }}</a>
                                         </template>
                                     </el-table-column>
@@ -176,13 +179,23 @@
                                     </el-table-column>
 
                                     <el-table-column label="项目名称">
-                                        <template slot-scope="scope">
+                                        <template slot-scope="scope" v-if="isSite==false">
                                             <a class="color_13c9ef" v-if="scope.row.requestType=='1'"
                                                :href="'/technologyMarket/tech_achievements_details.html?id=' + scope.row.projectId"
                                                target="_blank">{{
                                                 scope.row.projectName }}</a>
                                             <a class="color_13c9ef" v-else
                                                :href="'/technologyMarket/tech_requirements_details.html?id=' + scope.row.projectId"
+                                               target="_blank">{{
+                                                scope.row.projectName }}</a>
+                                        </template>
+                                        <template slot-scope="scope" v-else>
+                                            <a class="color_13c9ef" v-if="scope.row.requestType=='1'"
+                                               :href="this.$pathPrefix+'/scienceDetail.html?id=' + scope.row.projectId"
+                                               target="_blank">{{
+                                                scope.row.projectName }}</a>
+                                            <a class="color_13c9ef" v-else
+                                               :href="this.$pathPrefix+'/requireDetail.html?id=' + scope.row.projectId"
                                                target="_blank">{{
                                                 scope.row.projectName }}</a>
                                         </template>

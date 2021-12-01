@@ -30,6 +30,7 @@ require(['/common/js/require.config.js'], function () {
         styles: {
           left: 0
         },
+        sum:0,
         viewType: ''
       },
       filters: {
@@ -84,12 +85,16 @@ require(['/common/js/require.config.js'], function () {
         'web-footer': httpVueLoader('/style/components/web_footer.vue')
       },
       created: function () {
+        //截取模板id为str
+        var url = window.location.href;
+        var str = url.split("/").pop().replace(/(^content)|(\.\S+$)/g,"");
         var id = this.$utils.getReqStr('id')
         this.viewType = this.$utils.getReqStr('viewType')
         console.log('viewType',this.viewType)
         var shortCode = this.$utils.getReqStr('shortCode')?this.$utils.getReqStr('shortCode'):''
         this.saasId = localStorage.getItem('saasId');
         id && this.getDetail(id,shortCode)
+        str && this.getDetail(str,shortCode)
       },
       mounted: function() {
         var vm = this;
@@ -196,6 +201,7 @@ require(['/common/js/require.config.js'], function () {
             res.result.isViewTime = res.result.policyFileType.indexOf('01') !== -1;
           }
           this.$data.detail = res.result
+          this.sum=res.result.visitNum
           this.getPolicyRelated(id, res.result.keyWord)
         },
         getPolicyRelated: function(id, word) {
@@ -205,7 +211,6 @@ require(['/common/js/require.config.js'], function () {
               item.itemUrl = '/podetail.html?id='+item.id
             })
             vm.$data.recommendList = res.result || []
-
             vm.setIsFixed()
           })
         },

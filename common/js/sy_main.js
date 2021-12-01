@@ -211,7 +211,11 @@ define(['jquery', 'dic', 'dialog', 'utils', 'httpUrl', 'httpCom', 'base64'], fun
         'success': success,
         'error': error,
         'jsonpCallback': 'jsonp' + (new Date()).valueOf().toString().substr(-4),
-        'beforeSend': function () { },
+        'beforeSend': function (xhr) { 
+					for(var i in header){
+						if(header[i])xhr.setRequestHeader(i,header[i]);
+					}
+				},
         'xhrFields': xhrFields
       });
       return def.promise();

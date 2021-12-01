@@ -77,8 +77,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         });
       },
       methods: {
-        showMore: function (i) {
+        showMore: function (item,i) {
           this.index = i;
+          if(item.statusDisplay=="待审核"){
+            this.$dialog.showToast('活动正在审核中！')
+          }
+          console.log(item,'233')
         },
         initData: function () {
           this.getOrderList()

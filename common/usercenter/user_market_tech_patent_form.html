@@ -85,7 +85,7 @@
                                     style="visibility: hidden;">*</i>技术领域：</span>
                             <el-input v-model="patentForm.patentArea" class="width_100_115 fl"
                                 placeholder="请输入技术领域,最大50字符" maxlength="50">
-
+                            </el-input>
                         </div>
                     </div>
                     <div class="clear">
@@ -132,6 +132,7 @@
                             <i class="color_red" style="visibility: hidden;">*</i>简要说明：</span>
                         <el-input type="textarea" :rows="9" v-model="patentForm.pubAbstract" class="width_100_115 fl"
                             placeholder="请输摘要/简要说明,最大500字符" maxlength="500">
+                        </el-input>
                             <div class="width_100_115 fl">
                                 <!-- <vue-ueditor-wrap v-model="patentForm.pubAbstract" :config="ueditorConfig"
                                 class="exptextarea">

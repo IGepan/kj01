@@ -29,7 +29,7 @@ require(['/common/js/require.config.js'], function () {
                     "allTotal_2": 0, //总条数
                     "currentPage_2": 1,//当前页
                     "pageSize_2": 10,//每页显示条数
-
+                     isSite:false,
 
                     tabs: [
                         {
@@ -62,6 +62,10 @@ require(['/common/js/require.config.js'], function () {
                     this.search_receive_project_list();
                     this.search_receive_invitation_list();
                     this.search_receive_Entrust_list();
+                    var url = window.location.href
+                    if (url.indexOf('/site/') > 0) {
+                        this.isSite=true
+                    }
 
                 },
                 components: {
@@ -74,7 +78,7 @@ require(['/common/js/require.config.js'], function () {
                 methods: {
                     // ? 打开日志列表
                     openLogsList(item) {
-                        window.location.href = '/common/usercenter/user_market_logs_list.html?type=1&id=' + item.id;
+                        window.location.href = this.$pathPrefix+'/common/usercenter/user_market_logs_list.html?type=1&id=' + item.id;
                     },
 
 
@@ -82,7 +86,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href = this.$pathPrefix+'/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");

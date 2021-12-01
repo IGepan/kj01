@@ -405,17 +405,118 @@ require(['/common/js/require.config.js'], function () {
             return params;
           },   
           verifyRequired(params) {
-           var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification', 'enterpriseType', 'researchMoney', 'employeesNum', 'twoIncome', 'area'];
-           var flag = false;
-           for (const key in params) {
-            for (let index = 0; index < keys.length; index++) {
-              if(key == keys[index] && !params[key]) {
-                console.log(key, params[key])
-                flag = true;
-              }              
+            var _this = this;
+            if (!_this.$utils.validatesEmpty(params.name)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业名称必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("");
+              return false;
             }
-           }
-           return flag;
+            if (!_this.$utils.validatesEmpty(params.socialCreditCode)) {
+              this.$notify.error({
+                title: '提示',
+                message: '统一社会信用代码必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("统一社会信用代码必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.registeredTime)) {
+              this.$notify.error({
+                title: '提示',
+                message: '注册时间必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("注册时间必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.industry)) {
+              this.$notify.error({
+                title: '提示',
+                message: '行业分类必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("行业分类必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.city)) {
+              this.$notify.error({
+                title: '提示',
+                message: '所在地必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("所在地必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.enterpriseQualification)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业资质必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业资质必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.enterpriseType)) {
+              this.$notify.error({
+                title: '提示',
+                message: '企业类型必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.researchMoney)) {
+              this.$notify.error({
+                title: '提示',
+                message: '年研发费用必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.employeesNum)) {
+              this.$notify.error({
+                title: '提示',
+                message: '在职员工数量必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.twoIncome)) {
+              this.$notify.error({
+                title: '提示',
+                message: '年主营业务收入必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            if (!_this.$utils.validatesEmpty(params.area)) {
+              this.$notify.error({
+                title: '提示',
+                message: '经营场地面积必填！',
+                type: 'warning'
+              });
+              // _this.$dialog.showToast("企业类型必填");
+              return false;
+            }
+            return true;
+           // var keys = ['name', 'socialCreditCode', 'registeredTime', 'industry', 'city', 'enterpriseQualification', 'enterpriseType', 'researchMoney', 'employeesNum', 'twoIncome', 'area'];
+           // var flag = false;
+           // for (const key in params) {
+           //  for (let index = 0; index < keys.length; index++) {
+           //    if(key == keys[index] && !params[key]) {
+           //      console.log(key, params[key])
+           //      flag = true;
+           //    }
+           //  }
+           // }
+           // return flag;
           },
           saveParams() {
             localStorage.setItem('developmentInfo', JSON.stringify(this.developmentInfo))
@@ -430,14 +531,18 @@ require(['/common/js/require.config.js'], function () {
             this.saveAllData();
             this.saveParams();
             var params = this.getPlocyParams();
-            var flag = this.verifyRequired(params);
-            console.log('flag', flag)
-            if(flag) {
-              this.$dialog.showToast('请填写必填信息');
-              return;
+            // var flag = this.verifyRequired(params);
+            // console.log('flag', flag)
+            if(this.verifyRequired(params)) {
+              localStorage.setItem('policyMatchParams', JSON.stringify(params));
+              location.href = '/policyMatchResult.html?type=1'
             }
-            localStorage.setItem('policyMatchParams', JSON.stringify(params));
-            location.href = '/policyMatchResult.html'
+            // if(flag) {
+            //   this.$dialog.showToast('请填写必填信息');
+            //   return;
+            // }
+            // localStorage.setItem('policyMatchParams', JSON.stringify(params));
+            // location.href = '/policyMatchResult.html'
           },                     
         }
       })

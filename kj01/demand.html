@@ -1,103 +1,111 @@
 <!doctype html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <title>需求诊断-提交-成渝城市群综合科技服务平台</title>
-  <link href="/common/css/main.css" rel="stylesheet" type="text/css">
-  <link href="/style/css/demand.css" rel="stylesheet" type="text/css">
-  <style>
-    .mianForm .selectSceneList li {
-      cursor: default;
-    }
-      .active.radio-item label {
-          border: 1px solid #2a71e2;
-          color: #2a71e2;
-      }
-  </style>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>需求诊断-提交-成渝城市群综合科技服务平台</title>
+		<link href="/common/css/main.css" rel="stylesheet" type="text/css">
+		<link href="/style/css/demand.css" rel="stylesheet" type="text/css">
+		<style>
+			.mianForm .selectSceneList li {
+				cursor: default;
+			}
 
-<body>
-  <div class="box" id="index_box">
-    <ly-toper></ly-toper>
-    <ly-header pagename="需求诊断" :http="httpCom"></ly-header>
-    <div class="crumbs">
-      <div class="mdiv"><strong>你现在的位置：</strong>
-        <a href="/">首页</a>
-        <a href="/demand.html">需求诊断</a>
-        <span>需求填写</span>
-      </div>
-    </div>
-    <div class="mainBox">
-      <div class="mdiv">
-        <div class="mian-tips">免费需求诊断，为您推荐最适合的服务方案</div>
-        <ul class="setps">
-          <li class="active">Step1：提交需求</li>
-          <li>Step2：智能匹配</li>
-          <li>Step3：选择服务</li>
-        </ul>
-        <div class="mianForm">
-            <div class="form-item" style="position: relative">
-                <div class="title" style="float: none"><i>*</i> 选择应用场景：</div><br>
-                <div class="radioGroup selectSceneBox required" data-valid="custom:sceneIdValid">
-                    <div @click="activeIndex(i)" :class="{active:index === i}" class="radio-item  no-icon" v-for="(opt, i) in options.sceneList" :key="opt.id"><input class="input"
-                                                                                                                :id="'scene' + i" :value="opt.id" v-model="demandForm.sceneId" type="radio"><label :for="'scene' + i"
-                                                                                                                                                                                                   class="sceneItem"><i v-if="opt.sceneIcon" class="imgIcon"
-                                                                                                                                                                                                                        :style="'background-image: url('+ opt.sceneIcon +')'"></i><span
-                            v-text="opt.sceneName">有研发成果想转化</span></label>
-                    </div>
-                </div>
-                <span class="vlt form_msg"></span>
-            </div>
-            <div class="dashedLine"></div>
-            <div class="form-item">
-            <label for="" class="title"><i>*</i> 填写需求名称：</label>
-            <div class="form-content">
-              <input type="text" v-model="demandForm.planName" placeholder="我有一个智能气象网格预报系统，想通过平台实现技术转移"
-                style="width: 790px;" class="required" data-valid="isNonEmpty||maxLength:200"
-                data-error='需求名称不能为空||最大长度为200个字符'>
-              <span class="vlt form_msg"></span>
-            </div>
-          </div>
-          <div class="form-item">
-            <label for="" class="title"><i>*</i> 所属行业：</label>
-            <div class="form-content">
-              <span class="selectBox">
-                <ly-select-level class="select level required" ref="industryEl" @input="handleIndustryInput"
-                  data-valid="custom:industryValid" v-model="demandForm.industry">
-                </ly-select-level><span ref="industryMsg" class="vlt form_msg"></span>
-              </span>
-            </div>
-          </div>
-          <div class="form-item">
-            <label for="" class="title"><i>*</i> 初步预算：</label>
-            <div class="form-content">
-              <input type="number" v-model="demandForm.budget" min="0" max="9999999999.99" step="1000" class="required"
-                data-valid="custom:NumberValid"><span class="vlt form_msg"></span>
-              <span>元</span>
-            </div>
-          </div>
-          <div class="form-item">
-            <label for="" class="title"><i>*</i> 紧急程度：</label>
-            <div class="form-content">
-              <div class="radioGroup required" data-valid="custom:urgencyValid">
-                <div class="radio-item no-icon" v-for="(opt, i) in options.diagnosis_period" :key="opt.id"><input
-                    :id="'urgency'+ i" class="input" :value="opt.value" v-model="demandForm.period" type="radio"><label
-                    :for="'urgency' + i" v-text="opt.display">一周内</label>
-                </div>
-              </div>
-              <span class="vlt form_msg"></span>
-            </div>
-          </div>
+			.active.radio-item label {
+				border: 1px solid #2a71e2;
+				color: #2a71e2;
+			}
+		</style>
+	</head>
 
-          <button class="submitBtn big" type="button" @click="submit">智能化科技服务匹配</button>
-        </div>
-      </div>
-    </div>
-    <ly-minifooter></ly-minifooter>
-  </div>
-  <script type="text/javascript" src="/common/js/libs/require.js"></script>
-  <script type="text/javascript" src="/style/js/demand.js"></script>
-</body>
+	<body>
+		<div class="box" id="index_box">
+			<ly-toper></ly-toper>
+			<ly-header pagename="需求诊断" :http="httpCom"></ly-header>
+			<div class="crumbs">
+				<div class="mdiv"><strong>你现在的位置：</strong>
+					<a href="/">首页</a>
+					<a href="/demand.html">需求诊断</a>
+					<span>需求填写</span>
+				</div>
+			</div>
+			<div class="mainBox">
+				<div class="mdiv">
+					<div class="mian-tips">免费需求诊断，为您推荐最适合的服务方案</div>
+					<ul class="setps">
+						<li class="active">Step1：提交需求</li>
+						<li>Step2：智能匹配</li>
+						<li>Step3：选择服务</li>
+					</ul>
+					<div class="mianForm">
+						<div class="form-item" style="position: relative">
+							<div class="title" style="float: none"><i>*</i> 选择应用场景：</div><br>
+							<div class="radioGroup selectSceneBox required" data-valid="custom:sceneIdValid">
+								<div @click="activeIndex(i)" :class="{active:index === i}" class="radio-item  no-icon"
+									v-for="(opt, i) in options.sceneList" :key="opt.id">
+									<input class="input" :id="'scene' + i" :value="opt.id" v-model="demandForm.sceneId"
+										type="radio">
+									<label :for="'scene' + i" class="sceneItem">
+										<i v-if="opt.sceneIcon" class="imgIcon"
+											:style="'background-image: url('+ opt.sceneIcon +')'"></i>
+										<span v-text="opt.sceneName">有研发成果想转化</span>
+									</label>
+								</div>
+							</div>
+							<span class="vlt form_msg"></span>
+						</div>
+						<div class="dashedLine"></div>
+						<div class="form-item">
+							<label for="" class="title"><i>*</i> 填写需求名称：</label>
+							<div class="form-content">
+								<input type="text" v-model="demandForm.planName"
+									placeholder="我有一个智能气象网格预报系统，想通过平台实现技术转移" style="width: 790px;" class="required"
+									data-valid="isNonEmpty||maxLength:200" data-error='需求名称不能为空||最大长度为200个字符'>
+								<span class="vlt form_msg"></span>
+							</div>
+						</div>
+						<div class="form-item">
+							<label for="" class="title"><i>*</i> 所属行业：</label>
+							<div class="form-content">
+								<span class="selectBox">
+									<ly-select-level class="select level required" ref="industryEl"
+										@input="handleIndustryInput" data-valid="custom:industryValid"
+										v-model="demandForm.industry">
+									</ly-select-level><span ref="industryMsg" class="vlt form_msg"></span>
+								</span>
+							</div>
+						</div>
+						<div class="form-item">
+							<label for="" class="title"><i>*</i> 初步预算：</label>
+							<div class="form-content">
+								<input type="number" v-model="demandForm.budget" min="0" max="9999999999.99" step="1000"
+									class="required" data-valid="custom:NumberValid">
+								<span class="vlt form_msg"></span>
+								<span>元</span>
+							</div>
+						</div>
+						<div class="form-item">
+							<label for="" class="title"><i>*</i> 紧急程度：</label>
+							<div class="form-content">
+								<div class="radioGroup required" data-valid="custom:urgencyValid">
+									<div class="radio-item no-icon" v-for="(opt, i) in options.diagnosis_period"
+										:key="opt.id"><input :id="'urgency'+ i" class="input" :value="opt.value"
+											v-model="demandForm.period" type="radio"><label :for="'urgency' + i"
+											v-text="opt.display">一周内</label>
+									</div>
+								</div>
+								<span class="vlt form_msg"></span>
+							</div>
+						</div>
+
+						<button class="submitBtn big" type="button" @click="submit">智能化科技服务匹配</button>
+					</div>
+				</div>
+			</div>
+			<ly-minifooter></ly-minifooter>
+		</div>
+		<script type="text/javascript" src="/common/js/libs/require.js"></script>
+		<script type="text/javascript" src="/style/js/demand.js"></script>
+	</body>
 
 </html>
