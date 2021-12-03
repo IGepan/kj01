@@ -52,7 +52,7 @@ define(function () {
       assisUrl: 'http://222.180.163.242:9769/tsAssistant',
       uploadimg_url: 'http://222.180.163.230:8710',
       statisticsUrl: 'http://testweb.kj01.cn/as', // 统计地址 配置域名
-      imgUploadUrl: 'http//222.180.163.230:8710', // 文件上传服务 配置域名
+      imgUploadUrl: 'http://222.180.163.230:8710', // 文件上传服务 配置域名
       imgVerify: 'http://222.180.163.242:8720/', // 滑块验证码 配置域名
       // cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
