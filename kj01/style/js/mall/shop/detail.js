@@ -107,34 +107,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
 
                 },
                 methods: {
-                    // formatPrice: function (flag, v, n, m) {
-                    //     if (flag == '2') {
-                    //         return '面议'
-                    //     }if(flag == "3"){
-                    //         return '查看价格详情'
-                    //     }else {
-                    //         if (typeof v !== 'undefined' ) {
-                    //             if (v >= 10000) {
-                    //                 return  '￥'+((v / 10000).toFixed(2) + '万元');
-                    //             }else {
-                    //                 return '￥'+ v + '元'
-                    //             }
-                    //         } else if (!v && !m ) {
-                    //             if (n >= 10000) {
-                    //                 return  '￥'+((n / 10000).toFixed(2)+"万元");
-                    //             }else {
-                    //                 return  '￥'+n+"元";
-                    //             }
-                    //         } else {
-                    //             if(n && m >= 10000){
-                    //                 return '￥'+((n / 10000).toFixed(2) +'万元'+ '-' + (m / 10000).toFixed(2)+'万元');
-                    //             }else{
-                    //                 return  '￥'+(n+"元" + '-' +m+'元')
-                    //             }
-                    //
-                    //         }
-                    //     }
-                    // },
                     formatPrice: function (flag, v, n, m) {
                         if (flag == '2') {
                             return '面议'
