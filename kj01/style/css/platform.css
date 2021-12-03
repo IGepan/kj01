@@ -35,7 +35,7 @@
 }
 .title.active{color: #30a9ee;background-color: #e3faff;}
 .title.active a{
-    color: #FFFFff!important;
+    color: #30a9ee!important;
 }
 .title a{
     color: #333;
