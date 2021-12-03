@@ -61,7 +61,14 @@ require(['/common/js/require.config.js'], function () {
             let dm = d.getMonth();
             let dd = d.getDate();
             this.saasId = localStorage.getItem('saasId');
-            this.id = this.$utils.getReqStr('id');
+            this.id = this.$utils.getReqStr('id'); var aUrl=window.location.href
+            var str = aUrl.split("/").pop().replace(/(^requireStatic)|(\.\S+$)/g,"");
+            if(id!=null){
+              this.id = id;
+            }
+            if(id==null){
+              this.id = str;
+            }
             this.$utils.getCookie(dic.locaKey.USER_INFO) &&
               (this.userInfo = JSON.parse(
                 localStorage.getItem(dic.locaKey.USER_INFO)));
