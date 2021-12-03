@@ -2,7 +2,7 @@
   <div class="toper">
     <div class="mmdiv">
       <div class="toper-left">
-        <div class="">返回<a href="https://www.kj01.cn/"><span class="cut">[易智网]</span></a></div>
+        <div class="">返回<a href="/index.html"><span class="cut">[易智网]</span></a></div>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a :href="$pathPrefix+'/index.html'">{{webInfo.saasName}}</a>！</div>
       </div>
         <div class="toper-right" v-if="userInfo && userInfo.userId">

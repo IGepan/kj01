@@ -251,7 +251,7 @@ require(['/common/js/require.config.js'], function () {
                         if (this.userInfo && this.userInfo.userName) {
                             this.myCertificateBrokerDetails(); // 查询经纪人证书详情
                         } else {
-                            window.location.href = '/common/login.html';
+                            window.location.href =this.$pathPrefix+'/common/login.html';
                         }
                     },
 
@@ -1348,10 +1348,21 @@ require(['/common/js/require.config.js'], function () {
                     // 跳转
                     handleMatchView: function (id, type) {
                         console.log(type)
+                        var url = window.location.href
                         if (type == 0) {
-                            window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/scienceDetail.html?id=" + id);
+                            }else{
+                                window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            }
+
                         } else if (type == 1) {
-                            window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/requireDetail.html?id=" + id);
+                            }else {
+                                window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            }
+
                         }
 
                     },

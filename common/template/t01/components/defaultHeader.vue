@@ -1,17 +1,13 @@
 <template>
+  <div :class="{headerBg:isBg}">
 <div class="mdiv">
   <div class="shopdiv">
-    <a class="logo" :href=$pathPrefix+"/index.html">
+    <a class="logo" :href=$pathPrefix+"/index.html"  >
 <!--      <img @error="imgError(webInfo)" @load="successLoadImg"  :src="webInfo.logoUrl" alt=""  width="226" height="66"/></a>-->
-    <el-image :src="webInfo.logoUrl" style="width: 226px; height: 66px">
-      <div slot="error">
-        <img
-            src="/style/images/logos/blue-h66.png"
-        />
-      </div>
-    </el-image>
+      <img v-if="webInfo.logoUrl" :src="webInfo.logoUrl" width="226" height="66" />
+      <img v-if="!webInfo.logoUrl" :src="Url">
     </a>
-<!--      <img v-else src="/style/images/logos/blue-h66.png">-->
+
     <ly-searchbox
       :is-input-line="true"
       :is-search-shop="true"
@@ -22,6 +18,7 @@
     </ly-searchbox>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -29,7 +26,9 @@ module.exports = {
   props: ['type', 'http', 'defaultValue'],
   data: function () {
     return {
-      webInfo:''
+      webInfo:'',
+      Url:'/style/images/logos/blue-h66.png',
+      isBg:false
     }
   },
   mounted: function () {
@@ -37,8 +36,13 @@ module.exports = {
       if(e.key==='webInfo'){
         let info=JSON.parse(e.newValue)
         this.webInfo=info?info:'';
+        console.log(this.webInfo,'[[[')
       }
     });
+    var url = window.location.href
+    if (url.indexOf('/kaizhou/') > 0) {
+      this.isBg=true
+    }
   },
   methods: {
 
@@ -60,6 +64,11 @@ module.exports = {
 }
 </script>
 <style scoped>
+   .headerBg{
+     background: url(/common/template/t01/images/bg.png) 0% 0% / cover no-repeat;
+     width: 100%;
+     height: 98px;
+   }
   .shopdiv {
     width: 100%;
   }

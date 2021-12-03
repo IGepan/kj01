@@ -164,8 +164,9 @@ require(['/common/js/require.config.js'], function () {
                     }
                     if (suffixUrl) {
                       window.location.href = this.$pathPrefix+'/common/login.html'+suffixUrl;
+                    }else {
+                      window.location.href = this.$pathPrefix+'/common/login.html';
                     }
-                    window.location.href = this.$pathPrefix+'/common/login.html';
                   }, 1000)
                 } else {
                   vm.isSubmitDisabled = false

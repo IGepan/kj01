@@ -6,9 +6,9 @@
                 <div class="headers-top mmdiv">
                   <div class="header-logo">
 
-                    <a href="">
-                      <img v-if="webInfo.logoUrl" :src="webInfo.logoUrl" style="width: 220px; height: 60px"/>
-                      <img v-if="!webInfo.logoUrl" src="./style/images/lg.png"/>
+                    <a id="logoUrl">
+                      <img :src="webInfo.logoUrl"/>
+<!--                      <img v-if="!webInfo.logoUrl" src="./style/images/lg.png"/>-->
                     </a>
 
                     <div class="logo-right" v-if="webInfo.isShow==1">
@@ -86,10 +86,10 @@
                         label: '科技成果',
                         url: this.$pathPrefix+'/scienceResult.html'
                     },
-                  // {
-                  //   label: '技术需求',
-                  //   url: this.$pathPrefix+'/scienceRequire.html'
-                  // },
+                  {
+                    label: '技术需求',
+                    url: this.$pathPrefix+'/scienceRequire.html'
+                  },
                     {
                         label: '科技服务',
                         url: this.$pathPrefix+'/scienceService.html'
@@ -118,10 +118,10 @@
                name:'成果',
                   url: this.$pathPrefix+'/scienceResult.html'
               },
-               // {
-               //   name:'需求',
-               //   url: this.$pathPrefix+'/scienceRequire.html'
-               // },
+               {
+                 name:'需求',
+                 url: this.$pathPrefix+'/scienceRequire.html'
+               },
               {
                name:'服务',
                   url: this.$pathPrefix+'/scienceService.html'
@@ -140,6 +140,14 @@
                 if(e.key==='webInfo'){
                     let info=JSON.parse(e.newValue)
                     this.webInfo=info?info:'';
+                    if(!this.webInfo.logoUrl){
+                      this.webInfo.logoUrl='./style/images/lg.png'
+                      $('#logoUrl img').css('width','29px')
+                      $('#logoUrl img').css('height','29px')
+                    }else {
+                      $('#logoUrl img').css('width','220px')
+                      $('#logoUrl img').css('height','60px')
+                    }
                 }
             });
         },

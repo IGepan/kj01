@@ -10,12 +10,13 @@ require(['/common/js/require.config.js'], function () {
                     detailActive:0,
                     details:'',
                     id:'',
+                    act:'',
                     queryForm:{
                         pageNum:1,
                         pageSize:10,
                         total:0,
                     },
-
+                    Type:'',
                     pages:0,
                     nowIndex:1,//默认第一个tab为激活状态
                 },
@@ -37,13 +38,16 @@ require(['/common/js/require.config.js'], function () {
                 },
                 mounted(){
                     this.detailActive = this.$utils.getReqStr('detailActive')?parseInt(this.$utils.getReqStr('detailActive')):0;
-                    // this.id = this.$utils.getReqStr('id');
-                    // if(this.id) {
-                    //     this.goDetail(this.id)
-                    // }
+                    this.act = this.$utils.getReqStr('id');
+                    if(this.act){
+                        this.nowIndex = 3;
+                        this.getcmsList();
+                        this.detailActive=0;
+                    }
                     var nowIndex = this.$utils.getReqStr('nowIndex')
                     if(nowIndex) this.nowIndex = parseInt(nowIndex);
                     this.getcmsList()
+
                 },
                 methods: {
                     goBack(){
@@ -60,16 +64,18 @@ require(['/common/js/require.config.js'], function () {
                             vm.$data.newsList = res.result.list;
                             vm.$data.queryForm.total=res.result.total;
                             vm.$data.pages=res.result.pages;
+
+                            // res.result.list.forEach(item => {
+                            //    this.Type = item.type;
+                            // })
+                            // console.log(this.Type,'ppp')
                         })
                     },
-                    goDetail(id){
-                        var vm = this;
-                        indexApi.contentDetail({
-                            id:id
-                        }).then(function (res) {
-                            vm.$data.detailActive=1;
-                            vm.$data.details=res.result
-                        })
+                    goDetail(id,val){
+                        console.log(id,val,'ppp')
+                        // window.open('content/'+id+'.html',"_blank");
+                        window.open('content/'+id+'.html?nowIndex='+val,"_blank");
+
                     },
                     pageClick: function (index) {
                         if (index > 0 && index <= this.pages) {
