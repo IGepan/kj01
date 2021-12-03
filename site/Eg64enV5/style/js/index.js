@@ -583,7 +583,7 @@ require(['/common/js/require.config.js'], function () {
 									this.$dialog.showToast("请先登录")
 									setTimeout(function () {
 										window.location.href =this.$pathPrefix+'/common/login.html';
-									}, 2000)
+									}, 1000)
 								}
 						}
 						
