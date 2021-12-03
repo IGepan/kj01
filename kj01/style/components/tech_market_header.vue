@@ -39,9 +39,7 @@ module.exports = {
       type: String,
       default: "技术转移",
     },
-    navIndexs:{
-      type:Number
-    }
+    nav:Number
   },
 
   data: function () {
@@ -50,7 +48,7 @@ module.exports = {
         url: "/service/resource_list.html?title=",
         title: "",
       },
-
+      nav:null,
       techList: [
         {
           id: 0,
@@ -104,6 +102,13 @@ module.exports = {
         item.active = v === i;
       });
     },
+    nav:{
+      immediate: true,
+      deep:true,
+      handler(val) {
+       console.log(val)
+      },
+}
   },
   created: function () {
     var _this = this;
@@ -112,6 +117,9 @@ module.exports = {
     )
       ? _this.$utils.getCookie("navIndex")
       : 0;
+    if(this.nav!=null){
+      navIndexs=this.nav
+    }
     var url = window.location.href;
     console.log(url);
 
