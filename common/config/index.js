@@ -24,7 +24,7 @@ define(function () {
     {
       // 本地环境-yzw
       authUrl: 'http://192.168.0.200:9769/tsOauth2',
-      baseUrl: 'http://127.0.0.1:9769/tsAdmin',
+      baseUrl: 'http://192.168.0.200:9769/tsAdmin',
       // baseMarketUrl: 'http://192.168.0.30:8901',
       // baseMarketUrl: 'http://192.168.0.10:8901',
       baseMarketUrl: 'http://127.0.0.1:9769/z-ts',//8901 ts 8900 tm ||

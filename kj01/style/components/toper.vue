@@ -5,24 +5,13 @@
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
+
+            <el-dropdown-item v-for="item in branchesList">
+              <el-link v-if="item.saasCode!=='013'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
-            </el-dropdown-item>
+            </el-dropdown-item >
           </el-dropdown-menu>
         </el-dropdown>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>
@@ -111,24 +100,13 @@
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
+
+            <el-dropdown-item v-for="item in branchesList">
+              <el-link v-if="item.saasCode!=='013'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
-            </el-dropdown-item>
+            </el-dropdown-item >
           </el-dropdown-menu>
         </el-dropdown>
         <div class="">
@@ -272,7 +250,8 @@ module.exports = {
           content: "",
         },
       ],
-      active:''
+      active:'',
+      branchesList:[]
     };
   },
   created: function () {
@@ -295,6 +274,7 @@ module.exports = {
     var userInfo = (this.userInfo = JSON.parse(
         vm.$utils.getCookie("USER_INFO")
     ));
+    this.queryBranch();
     console.log(userInfo);
     this.urlIsType = [
       "/common/seller/",
@@ -437,6 +417,15 @@ module.exports = {
           .get(httpUrl.baseUrl + "/im/getUnreadMsgCount")
           .then(function (res) {
             $this.menuInfo.messageCount = res.result;
+          });
+    },
+    //站点信息
+    queryBranch: function () {
+      var $this = this;
+      this.$http.get(httpUrl.baseUrl + '/saas/selectBranch')
+          .then(function (res) {
+              $this.branchesList = res.result;
+
           });
     },
     updateCartInfo: function () {
