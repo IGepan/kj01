@@ -48,7 +48,7 @@ module.exports = {
         url: "/service/resource_list.html?title=",
         title: "",
       },
-      nav:null,
+      navlink:this.nav,
       techList: [
         {
           id: 0,
@@ -117,8 +117,8 @@ module.exports = {
     )
       ? _this.$utils.getCookie("navIndex")
       : 0;
-    if(this.nav!=null){
-      navIndexs=this.nav
+    if(this.navlink!=null){
+      navIndexs=this.navlink
     }
     var url = window.location.href;
     console.log(url);
