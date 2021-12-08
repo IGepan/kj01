@@ -253,6 +253,17 @@ require(['/common/js/require.config.js'], function () {
 								return '￥' + n + '~' + m
 							}
 						}
+
+					},
+					Pricre: function (v){
+
+						if (typeof v !== 'undefined' ) {
+							if (v >= 10000) {
+								return  (v / 10000).toFixed(2) + '万元';
+							}else {
+								return  v + '元'
+							}
+						}
 					},
 					//活动中心---- 一级分类
 					getPublicDetail(){
