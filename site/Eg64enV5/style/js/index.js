@@ -173,7 +173,7 @@ require(['/common/js/require.config.js'], function () {
 						sortType: "02",
 						activeType:'218340665870780082'
 					},'zhiboList');
-					this.getUser();
+					// this.getUser();
 					// this.getBoxList();
 					// this.getHighList();
 					this.getShopList();
