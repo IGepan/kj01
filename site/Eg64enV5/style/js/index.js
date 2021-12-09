@@ -159,6 +159,7 @@ require(['/common/js/require.config.js'], function () {
 							let info=JSON.parse(e.newValue)
 							this.webInfo=info?info:'';
 							this.extId = info.extId ? info.extId : '';
+							window.document.title = info.saasName?info.saasName : '易智网-科技成果摆渡人';
 							this.getBannerList();
 						}
 					});
@@ -208,6 +209,16 @@ require(['/common/js/require.config.js'], function () {
 					},
 					change:function(index){
 						this.currentIndex=index;
+					},
+					Pricre: function (v){
+
+						if (typeof v !== 'undefined' ) {
+							if (v >= 10000) {
+								return  (v / 10000).toFixed(2) + '万元';
+							}else {
+								return  v + '元'
+							}
+						}
 					},
 					formatPrice: function (flag, v, n, m) {
 						if (flag == '2') {
