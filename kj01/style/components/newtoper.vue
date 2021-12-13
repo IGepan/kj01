@@ -668,6 +668,15 @@ module.exports = {
   },
 };
 </script>
+<style>
+.el-link.el-link--default{
+  display: block;
+  padding:0 20px;
+}
+.el-dropdown-menu__item{
+  padding: 0!important;
+}
+</style>
 <style scoped>
 /*.usermin span{*/
 /*  text-overflow: ellipsis;*/
@@ -678,6 +687,8 @@ module.exports = {
 /*  width: 120px;*/
 /*  float: left;*/
 /*}*/
+
+
 .toper {
   height: 40px;
   line-height: 40px;
