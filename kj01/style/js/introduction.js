@@ -10,12 +10,13 @@ require(['/common/js/require.config.js'], function () {
 
           },
         mounted(){
-          // this.getList();
+            var id=this.$utils.getReqStr('id');
+            this.getList(id);
         },
         methods: {
-           getList(){
+           getList(id){
                var vm=this
-               indexApi.selectBasePage({settingType:'wanzhouBase'}).then(function (res) {
+               indexApi.selectBasePage({id:id}).then(function (res) {
                    vm.detail=res.result
                    console.log(this.detail,'woziii')
                })
