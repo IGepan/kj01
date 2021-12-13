@@ -156,7 +156,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.getOrderList()
         },
         handleShowTips: function () {
-          this.$dialog.showToast('敬请期待');
+					window.open(location.origin+'/demand.html')
+          //this.$dialog.showToast('敬请期待');
         },
         // 获取用户信息
         getUserInfo: function(){
