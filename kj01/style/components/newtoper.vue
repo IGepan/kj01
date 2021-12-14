@@ -5,36 +5,13 @@
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
+
+            <el-dropdown-item v-for="item in branchesList">
+              <el-link v-if="item.saasCode!=='013'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
-            </el-dropdown-item>
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" target="_blank">潼南分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" target="_blank">科学城分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
           </el-dropdown-menu>
         </el-dropdown>
 
@@ -124,36 +101,13 @@
         <el-dropdown>
           <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/qijiang/" target="_blank">重庆市綦江区科技创新服务中心</el-link>
+
+            <el-dropdown-item v-for="item in branchesList">
+              <el-link v-if="item.saasCode!=='013'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/bananqu/" target="_blank">巴南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区科技创新服务中心 </el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-            <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/tongnanqu/" target="_blank">潼南区科技创新服务中心</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <el-link :underline="false" href="https://www.kj01.cn/site/kaizhou/" target="_blank">开州区科技创新服务中心</el-link>
-            </el-dropdown-item>
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" arget="_blank">开州分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" target="_blank">潼南分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" target="_blank">铜梁分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
-<!--            <el-dropdown-item>-->
-<!--              <el-link :underline="false" target="_blank">科学城分支基地</el-link>-->
-<!--            </el-dropdown-item>-->
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item >
           </el-dropdown-menu>
         </el-dropdown>
 
@@ -282,6 +236,7 @@ module.exports = {
       urlIsType: false,
       urlIsCheckSeller: false,
       urlIsCheckBuyer: false,
+      branchesList:[],
       menuInfo: {
         cartCount: 0,
         messageCount: 0,
@@ -321,6 +276,7 @@ module.exports = {
     var userInfo = (this.userInfo = JSON.parse(
       vm.$utils.getCookie("USER_INFO")
     ));
+    this.queryBranch();
     console.log(userInfo);
     this.urlIsType = [
       "/common/seller/",
@@ -466,7 +422,16 @@ module.exports = {
         .then(function (res) {
           $this.menuInfo.messageCount = res.result;
         });
+    }, //站点信息
+    queryBranch: function () {
+      var $this = this;
+      this.$http.get(httpUrl.baseUrl + '/saas/selectBranch')
+          .then(function (res) {
+            $this.branchesList = res.result;
+
+          });
     },
+
     updateCartInfo: function () {
       //获取消息，购物车的消息通知数字
       var $this = this;
@@ -703,6 +668,15 @@ module.exports = {
   },
 };
 </script>
+<style>
+.el-link.el-link--default{
+  display: block;
+  padding:0 20px;
+}
+.el-dropdown-menu__item{
+  padding: 0!important;
+}
+</style>
 <style scoped>
 /*.usermin span{*/
 /*  text-overflow: ellipsis;*/
@@ -713,6 +687,8 @@ module.exports = {
 /*  width: 120px;*/
 /*  float: left;*/
 /*}*/
+
+
 .toper {
   height: 40px;
   line-height: 40px;

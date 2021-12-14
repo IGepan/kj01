@@ -193,7 +193,7 @@ require(['/common/js/require.config.js'], function () {
             this.saasId = localStorage.getItem('saasId');
             this.id = this.$utils.getReqStr('id');
             var aUrl=window.location.href
-            var str = aUrl.split("/").pop().replace(/(^content)|(\.\S+$)/g,"");
+            var str = aUrl.split("/").pop().replace(/(^serviceStatic)|(\.\S+$)/g,"");
             if(this.id==null){
               this.id=str
             }

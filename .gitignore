@@ -17,3 +17,5 @@ logs/*
 /kj01/content/
 /kj01/node_modules/
 /kj01/policy/
+/kj01/active/
+/kj01/mallStatic/

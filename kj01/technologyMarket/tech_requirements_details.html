@@ -65,9 +65,9 @@
                 <table width="100%" border="0" cellspacing="1" cellpadding="0">
                     <tr>
                         <td class="td_title">行业类型：</td>
-                        <td class="td_content"> {{detail.demandIndustryType.map(item=>item.name).join(',')}} </td>
+                        <td class="td_content" v-if="detail.demandIndustryType"> {{detail.demandIndustryType.map(item=>item.name).join(',')}} </td>
                         <td class="td_title">标签：</td>
-                        <td class="td_content">{{detail.tags.map(item=>item.name).join(',')}}</td>
+                        <td class="td_content" v-if="detail.tags">{{detail.tags.map(item=>item.name).join(',')}}</td>
                     </tr>
                     <tr>
                         <td class="td_title">需求类型：</td>

@@ -28,6 +28,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         hotType: '105',
         policyList: [],
         isNotSite: true,
+        isSite:false,
           siteUrl: ''
       },
       filters: {
@@ -63,6 +64,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         $(".orderclick").click(function () {
           $(this).addClass("active").siblings(".orderclick").removeClass("active");
         });
+        var url = window.location.href
+        if (url.indexOf('/site/') > 0) {
+          this.isSite=true
+        }
       },
       components: {
         'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),

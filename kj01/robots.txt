@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap��https://www.kj01.cn/sitemap.xml
+
