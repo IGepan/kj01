@@ -27,6 +27,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         getGraphStatistics: function (param) {
             return Http.post(httpUrl.baseUrl + '/graph/statistics', param);
         },
+        // 分支基地介绍页
+        selectBasePage: function (param) {
+            return Http.post(httpUrl.baseUrl + '/yzwMap/selectCoordinateDetail',param);
+        },
         /**
          * 获取政策精要列表
          */
