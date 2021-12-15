@@ -10,8 +10,11 @@ require(['/common/js/require.config.js'], function () {
 
           },
         mounted(){
-            var id=this.$utils.getReqStr('id');
-            this.getList(id);
+            // var id=this.$utils.getReqStr('id');
+            var aUrl=window.location.href
+            var str = aUrl.split("/").pop().replace(/(^introduction)|(\.\S+$)/g,"");
+            console.log(str,'wozaizhe')
+                this.getList(str);
         },
         methods: {
            getList(id){
