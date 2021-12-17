@@ -440,7 +440,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                                 }
                             });
                             //回显推送站点
+                            res.result.branchesList.pop()
                             vm.formData.branches=res.result.branchesList
+                            console.log(vm.formData.branches,'0000')
                             to.pullStreamUrl && to.isThird.toString() === '1' && (vm.formData.thirdUrl = to.pullStreamUrl)
                         }
                     })
