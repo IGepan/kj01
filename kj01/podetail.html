@@ -25,7 +25,10 @@
     })();
   </script>
   <style>
-
+    .jsicon{
+      width: 20px!important;
+      height: 20px!important;
+    }
     .article-content .selectTdClass {
       background-color: #edf5fa !important
     }
@@ -140,7 +143,7 @@
                 <template v-for="(tfile, fi) in detail.files">
                   <div class="article-file" @click.stop="handleFileSaveAs(fi)"><svg class="vaMiddle jsicon svg-icon" aria-hidden="true">
                     <use :xlink:href="'#icon-'+tfile.flieType"></use>
-                  </svg><span class="vaMiddle line">{{tfile.name}}</span></div>
+                  </svg><span class="vaMiddle line" :title="tfile.name">{{tfile.name}}</span></div>
                 </template>
               </div>
             </div>
