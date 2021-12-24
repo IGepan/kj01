@@ -14,7 +14,7 @@ require(['/common/js/require.config.js'], function () {
                 '/style/images/yzw/6.jpg',
                 '/style/images/yzw/7.jpg',
                 '/style/images/yzw/8.jpg',
-                // '/style/images/yzw/9.png',
+                '/style/images/yzw/9.jpg',
                 // '/style/images/yzw/10.jpg',
             ]
         },

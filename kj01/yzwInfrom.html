@@ -41,7 +41,7 @@
         font-size: 20px;
         line-height: 34px;
         color: #fff;
-        padding: 0 0 66px;
+        padding: 0 0 60px;
         text-indent: 2em;
         text-align: justify;
     }
@@ -93,6 +93,14 @@
     .el-carousel__container img{
         width: 100%;
     }
+    .avatar {
+        width: 100%;
+    }
+    .avatar img{width: 100%;margin-bottom: 0!important;}
+    .avatar span{
+        font-size: 18px;color: #FFFFff;display: block;
+        line-height: 60px;
+    }
 </style>
 <body class="boxs" >
 <div id='index_box' v-cloak>
@@ -120,12 +128,48 @@
 <!--                </div>-->
 
     <!--                </div>-->
-                    <el-carousel type="card" >
-                                            <el-carousel-item v-for="(item,index) in bannerList" :key="index">
-                                                <img :src="item" />
-                                            </el-carousel-item>
+<!--                    <el-carousel type="card" >-->
+<!--                                            <el-carousel-item v-for="(item,index) in bannerList" :key="index">-->
+<!--                                                <img :src="item" />-->
+<!--                                            </el-carousel-item>-->
 
-                    </el-carousel>
+<!--                    </el-carousel>-->
+                <div class="avatar">
+                    <img src="/style/images/yzw/1.jpg"/>
+                    <span>易智网总部服务基地</span>
+                </div>
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/2.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/3.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/4.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/5.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/6.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/7.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/8.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
+<!--                <div class="avatar">-->
+<!--                    <img src="/style/images/yzw/9.jpg"/>-->
+<!--                    <span>易智网总部服务基地</span>-->
+<!--                </div>-->
                 <div  class="title" style="margin-top: 20px;color:#01c8f2">
                  创新资源汇聚地——科技成果集散地——创新主体培育地
                 </div>
