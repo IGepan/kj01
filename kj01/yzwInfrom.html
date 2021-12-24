@@ -13,6 +13,8 @@
     .boxs {
         background: rgba(0, 0, 0, 0.8);
         margin: 0;
+        height:100vh;
+        overflow: hidden;
     }
 
     .mmdiv {
@@ -30,7 +32,7 @@
         font-size: 30px;
         color: #fff;
         position: relative;
-        margin-bottom: 55px;
+        margin-bottom: 25px;
         font-family: simsun;
     }
     .right-box  img{
@@ -41,7 +43,7 @@
         font-size: 20px;
         line-height: 34px;
         color: #fff;
-        padding: 0 0 60px;
+        padding: 0 0 30px;
         text-indent: 2em;
         text-align: justify;
     }
@@ -95,9 +97,20 @@
     }
     .avatar {
         width: 100%;
+        height: 50vh;
+        position: relative;
     }
-    .avatar img{width: 100%;margin-bottom: 0!important;}
-    .avatar span{
+    .avatar img{
+        width: 100%!important;
+        height: 100%!important;
+        left: 50%!important;
+        top: 50%!important;
+        -webkit-transform: translate(-50%,-50%)!important;
+        -ms-transform: translate(-50%,-50%)!important;
+        transform: translate(-50%,-50%)!important;
+        position: absolute;
+        margin-bottom: 0!important;}
+    .small{
         font-size: 18px;color: #FFFFff;display: block;
         line-height: 60px;
     }
@@ -105,7 +118,6 @@
 <body class="boxs" >
 <div id='index_box' v-cloak>
     <div class="content-box mmdiv">
-
         <div class="right-box">
             <img src="/style/images/logos/bottomNew.png" width="158"/>
             <div class="title" style="color: #fe900c">
@@ -136,8 +148,9 @@
 <!--                    </el-carousel>-->
                 <div class="avatar">
                     <img src="/style/images/yzw/1.jpg"/>
-                    <span>易智网总部服务基地</span>
+
                 </div>
+                <span class="small">易智网总部服务基地</span>
 <!--                <div class="avatar">-->
 <!--                    <img src="/style/images/yzw/2.jpg"/>-->
 <!--                    <span>易智网总部服务基地</span>-->
@@ -170,7 +183,7 @@
 <!--                    <img src="/style/images/yzw/9.jpg"/>-->
 <!--                    <span>易智网总部服务基地</span>-->
 <!--                </div>-->
-                <div  class="title" style="margin-top: 20px;color:#01c8f2">
+                <div class="title" style="margin-top: 20px;color:#01c8f2">
                  创新资源汇聚地——科技成果集散地——创新主体培育地
                 </div>
 <!--                <iframe width="100%" height="80%" src="https://www.yunyao365.com/book_preview/H50SFgmVzTVX">-->
