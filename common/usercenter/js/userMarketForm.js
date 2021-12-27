@@ -580,9 +580,10 @@ require(['/common/js/require.config.js'], function () {
                                             console.log(_this.flag,'审核状态')
                                         }
                                 })
+                                _this.brokerPlatform.agentType=dataForm.agentType
                                 // id转字典文字
                                 dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
-                                dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
+                                // dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
                                 dataForm.investorType_display = _this.forEachDisplay(_this.investor_type_list, dataForm.investorType);
                                 dataForm.financeStage_display = _this.forEachDisplay(_this.finance_stage_list, dataForm.financeStage);
                                 dataForm.institutionalQuota_display = _this.forEachDisplay(_this.institutional_quota_list, dataForm.institutionalQuota);
@@ -635,7 +636,7 @@ require(['/common/js/require.config.js'], function () {
                                 //     _this.headImg = dataForm.logo;
                                 // }
                             }else {
-                                _this.find_certification_type()
+                                 _this.find_certification_type()
                             }
 
                         })
@@ -968,9 +969,11 @@ require(['/common/js/require.config.js'], function () {
                                 // _this.proId = data.info.id
                                 var dataForm = data.info;
                                 _this.brokerPlatform = dataForm
+                                delete dataForm.agentType;
+                                _this.brokerPlatform.agentType=1
                                 // id转字典文字
                                 dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
-                                dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
+                                // dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
                                 dataForm.investorType_display = _this.forEachDisplay(_this.investor_type_list, dataForm.investorType);
                                 dataForm.financeStage_display = _this.forEachDisplay(_this.finance_stage_list, dataForm.financeStage);
                                 dataForm.institutionalQuota_display = _this.forEachDisplay(_this.institutional_quota_list, dataForm.institutionalQuota);
