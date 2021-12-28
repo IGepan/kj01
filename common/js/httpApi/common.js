@@ -76,7 +76,7 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
       return Http.post(httpUrl.baseUrl + '/goods/selectbByPage', param)
     },
     /**
-     * 取得当前访问站点所有可用的场景
+     * 取得当前访问站点所有可用的场景{WxSrcUrl: 'http://testweb.kj01.cn'}
      */
     sceneList: function (param) {
       return Http.post(httpUrl.baseUrl + '/scene/selectByList', param)

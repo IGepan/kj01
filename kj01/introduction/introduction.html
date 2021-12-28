@@ -1,0 +1,44 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/style/css/introduction.css">
+</head>
+
+<body class="boxs" >
+<div id='index_box' v-cloak>
+    <div class="content-box mmdiv" v-if="detail">
+        <div class="right-box">
+            <div class="title">巴南分支基地</div>
+            <div>
+                <div class="desc" v-if="detail.txt" v-html="detail.txt">
+                    按照《巴南区科普基地创建及管理暂行办法》有关规定，区科技局、区科协于2021年9月组织开展了2021年度巴南区科普基地申报工作。通过有关区级部门和镇街、园区公司等推荐，经资格审查、现场考察和综合评议，建议“巴南区公众卫生应急技能科普基地”等7个单位命名为巴南区科普基地（建议单位见附件），现予以公示。公示期为5个工作日，从2021年10月11日至10月15日。
+                </div>
+                <div class="video">
+                    <video width="100%" height="100%" controls>
+                        <source src="https://fs.kj01.cn/resource/ts/dataMap/yzw.mp4" type="video/mp4">
+                        <source src="https://fs.kj01.cn/resource/ts/dataMap/yzw.ogg" type="video/ogg">
+                    </video>
+                </div>
+
+
+                    <el-carousel type="card" >
+                                            <el-carousel-item>
+                                                <img src="https://fs.kj01.cn/resource/ts/ueditor/20211008/1633675666031_04455995.png" />
+                                            </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="https://fs.kj01.cn/resource/ts/ueditor/20211008/1633675666031_04455995.png" />
+                        </el-carousel-item>
+                    </el-carousel>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/yzwInfrom.js"></script>
+</body>
+</html>
