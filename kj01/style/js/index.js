@@ -691,7 +691,7 @@ require(['/common/js/require.config.js'], function () {
                         // },
                         {
                             img: '/style/images/index/friend_link_8-1.png',
-                            href: 'http://main.liyantech.cn/',
+                            href: 'https://www.cykj01.com/',
                             alt_tip: '成渝城市群综合科技服务平台',
                         },
                         {
