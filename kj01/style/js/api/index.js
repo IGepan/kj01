@@ -148,6 +148,26 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseUrl + '/questionnaire/insert', param);
         },
         /**
+         *
+         * 新增修改技术经理人
+         */
+        brokerSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/excellent/insertOrEdit', param);
+        },
+        selectBroker: function () {
+            return Http.get(httpUrl.baseUrl + '/excellent/getBrokerDetail');
+        },
+        /**
+         *
+         * 新增修改技术机构
+         */
+        organSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/excellent/insertOrEditOrgan', param);
+        },
+        selectOrgan: function () {
+            return Http.get(httpUrl.baseUrl + '/excellent/getOrganDetail');
+        },
+        /**
          * 问卷调查回显
          */
         selectQuestionnaire: function () {

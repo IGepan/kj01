@@ -1,0 +1,269 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+</head>
+<style>
+    .el-text .el-input{
+        width: 90%!important;
+    }
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+    .form{
+        padding: 0px 40px!important;
+    }
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+        margin: 30px 0
+    }
+    .leftbox{
+        float: left;
+        width: 50%;
+    }
+    .rightbox{
+        float: right;
+        width: 50%;
+    }
+    .form__group{
+        margin-top: 0!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-bottom: 10px;
+        /*margin-left: 10px;*/
+        vertical-align: bottom;
+    }
+    legend{
+        width: 100%;
+        font-size: 18px!important;
+        line-height: 36px!important;
+        color: #2c82f1;
+        font-weight: bold;
+        border-bottom:2px solid #2c82f1;
+        margin-bottom: 10px!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        max-width: 100%;
+        height: auto!important;
+        word-wrap: break-word!important;
+    }
+    .disabled{
+        pointer-events: none;
+    }
+    .bgcolor{
+        background:#dddddd;
+        border-color: #dddddd;
+    }
+ .form{
+     border-radius: 20px;margin-bottom: 50px
+ }
+    .el-radio.is-bordered{
+        padding: 10px 20px 0 10px!important;
+    }
+    .el-form-item{
+        /*display: flex;*/
+    }
+    .el-form-item__error{
+        clear: both;
+         }
+    .el-textarea textarea{
+        margin-top: 0!important;
+    }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <!--  <index-head :nav-index="8"></index-head>-->
+
+    <div class="mdiv" :class="{disabled:isActive}">
+        <h1 class="title-h2">2021重庆优秀技术经纪人报名表</h1>
+        <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
+            <fieldset class="form__group">
+                <legend>一、基本情况</legend>
+                <el-form-item label="姓名" prop="name" class="el-text leftbox">
+                    <el-input placeholder="请输入姓名"
+                              v-model="formData.name" clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="idNumber" label="身份证号" class="el-text leftbox">
+                    <el-input placeholder="请输入身份证号"
+                              maxlength="18"
+                                    v-model="formData.idNumber" clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="sex"label="性别" class="el-text leftbox clear">
+                    <el-radio-group v-model="formData.sex">
+                        <el-radio :label="0"  border >男</el-radio>
+                        <el-radio :label="1"  border>女</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item prop="age" label="年龄" class="el-text leftbox">
+                    <el-input placeholder="请输入年龄"
+                              v-model="formData.age" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="手机号" prop="phone" class="el-text leftbox clear">
+                    <el-input placeholder="请输入手机号"
+                              v-model="formData.phone"
+                              maxlength="12"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="职务" prop="job" class="el-text leftbox">
+                    <el-input placeholder="请输入职务"
+                              v-model="formData.job"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item prop="title" label="职称" class="el-text leftbox clear">
+                    <el-input placeholder="请输入职称"
+                              v-model="formData.title" clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="email" label="电子邮箱" class="el-text leftbox">
+                    <el-input placeholder="请输入电子邮箱"
+                              v-model="formData.email" clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="rank" label="取得的国家技术转移专业人员能力等级培训结业证书"class="el-text clear">
+                    <el-radio-group v-model="formData.rank">
+                        <el-radio :label="0"  border >初级技术经纪人</el-radio>
+                        <el-radio :label="1"  border>中级技术经纪人</el-radio>
+                        <el-radio :label="2"  border>高级级技术经纪人</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item prop="company" label="单位" class="el-text leftbox clear">
+                    <el-input placeholder="请输入单位"
+                              v-model="formData.company" clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="address" label="通讯地址" class="el-text leftbox">
+                    <el-input placeholder="请输入通讯地址"
+                              v-model="formData.address" clearable></el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+<!--                <h2>年度技术转移服务工作开展情况</h2>-->
+                <el-form-item label="促进技术合同登记金额（万元）" prop="registeredAmount" class="el-text leftbox">
+                    <el-input placeholder="技术合同登记金额"
+                              v-model="formData.registeredAmount"
+                              clearable></el-input>
+
+                </el-form-item>
+                <el-form-item label="促进技术合同登记项数（项）" prop="registeredNumber" class="el-text leftbox">
+                    <el-input placeholder="技术合同登记项数"
+                              v-model="formData.registeredNumber"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="技术交易额（万元）" prop="transactionAmount" class="el-text leftbox clear">
+                    <el-input placeholder="技术交易额"
+                              v-model="formData.transactionAmount"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="辅导企业技术创新产生的经济效益（万元）" prop="economicPerformance" class="el-text leftbox">
+                    <el-input placeholder="经济效益"
+                              v-model="formData.economicPerformance"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="促进成果交易数量（个）" prop="promotingNumber" class="el-text leftbox clear">
+                    <el-input placeholder="成果交易数量"
+                              v-model="formData.promotingNumber"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="促进成果交易金额（万元）" prop="promotingAmount" class="el-text leftbox">
+                    <el-input placeholder="成果交易金额"
+                              v-model="formData.promotingAmount"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="组织技术培训、推广和产学研等活动（人次）" prop="active" class="el-text leftbox clear">
+                    <el-input placeholder="活动数量"
+                              v-model="formData.active"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="征集企业技术需求（项）" prop="demand" class="el-text leftbox">
+                    <el-input placeholder="企业技术需求"
+                              v-model="formData.demand"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>二、技术合同完成情况</legend>
+                <el-form-item  prop="leadingTechnologyList" class="el-text ">
+                    <tag v-model="formData.excellentContract"   :isvalid="sum" :issubmit="delFlag"></tag>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>三、促进成果交易情况</legend>
+                <el-form-item  prop="leadingTechnologyList" class="el-text ">
+                 <tag1 v-model="formData.excellentAchievement" :isvalid="sum" :issubmit="delFlag"></tag1>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>四、技术转移活动组织情况</legend>
+                <el-form-item label="请填写组织各类技术推广、交易和产学研等活动情况" prop="organization" class="el-text">
+                    <el-input  style="width: 100%;"
+                               :rows="5"
+                               type="textarea"
+                               placeholder="请输入技术转移活动组织情况,没有则填写无"
+                               v-model="formData.organization"
+                    >
+                    </el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>五、技术转移典型案例情况</legend>
+                <el-form-item label="请填写完成的成果转化、技术转移案例的情况" prop="caseSituation" class="el-text">
+                    <el-input  style="width: 100%;"
+                               :rows="5"
+                               type="textarea"
+                               placeholder="请输入技术转移典型案例情况,没有则填写无"
+                               v-model="formData.caseSituation"
+                    >
+                    </el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <legend>六、承诺</legend>
+                <el-form-item label="本人保证上述填报内容及所提供的附件材料真实、完整、无误，如有不实，本人承担由此引起的一切责任。" prop="isAgree" class="el-text">
+                    <el-radio :label="1" v-model="formData.isAgree"  border >同意</el-radio>
+                    <p style="color: red;display: inline-block">*选择同意后才能提交报名</p>
+                </el-form-item>
+            </fieldset>
+            <div class="form__submit" style="margin-left: 395px">
+                <p class="form__validation" data-validation="submit" role="alert" aria-live="assertive"></p>
+<!--                <button class="button" @click="submit()" id="save">提交</button>-->
+                <el-button type="primary" @click="keep('fromData')" :loading="false" style="width: 160px;font-size: 18px" :class="{bgcolor:isActive}">保存</el-button>
+                <el-button type="primary" @click="submit('fromData')" :loading="false" style="width: 160px;font-size: 18px" :class="{bgcolor:isActive}">提交</el-button>
+            </div>
+
+        </el-form>
+    </div>
+    <web-footer></web-footer>
+</div>
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/applicationFrom.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+</body>
+</html>
