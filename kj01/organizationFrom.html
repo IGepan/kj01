@@ -90,9 +90,9 @@
     .el-form-item__error{
         clear: both;
     }
-    .otherBox.el-input{
-        width: 200px!important;
-        margin-left: 10px;
+    .otherBox .el-textarea textarea{
+        min-height: 100px!important;
+        margin-top:0;
     }
 </style>
 <body>
@@ -201,7 +201,8 @@
                         </el-checkbox-group>
                     </el-form-item>
                     <el-form-item label="其它主营业务请注明" class="el-text leftbox otherBox">
-                        <el-input  placeholder="请输入" v-model="formData.other" clearable></el-input>
+                        <el-input  v-model="formData.other"
+                                   type="textarea"></el-input>
                     </el-form-item>
                 </div>
 <!--                <p>{{formData.mainBusiness}}</p>-->

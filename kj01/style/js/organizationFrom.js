@@ -399,9 +399,9 @@ require(['/common/js/require.config.js'], function () {
                                                                message: '报名表提交成功!',
                                                                duration: 2000
                                                            });
-                                                           // setTimeout(function () {
-                                                           //     window.location.href = "/organizationFrom.html";
-                                                           // }, 2000);
+                                                           setTimeout(function () {
+                                                               window.location.href = "/organizationFrom.html";
+                                                           }, 2000);
                                                        } else {
                                                            this.$notify.error({
                                                                title: '提示！',

@@ -18,12 +18,12 @@
                   v-model="tag.achievementDemand"
                   clearable></el-input>
       </el-form-item>
-      <el-form-item label="成果攻击方" class="el-text leftbox" prop="achievementSupplier">
-        <el-input placeholder="请输入成果攻击方"
+      <el-form-item label="成果供给方" class="el-text leftbox" prop="achievementSupplier">
+        <el-input placeholder="请输入成果供给方"
                   v-model="tag.achievementSupplier"
                   clearable></el-input>
       </el-form-item>
-      <el-form-item label="交易金额（万元）" class="el-text leftbox" prop="achievementSupplier">
+      <el-form-item label="交易金额（万元）" class="el-text leftbox" prop="achievementTurnover">
         <el-input placeholder="请输入交易金额"
                   v-model="tag.achievementTurnover"
                   clearable></el-input>
@@ -95,7 +95,7 @@ module.exports = {
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         achievementSupplier: [
-          {required: true, message: '请输入成果攻击方',trigger: 'blur'},
+          {required: true, message: '请输入成果供给方',trigger: 'blur'},
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         achievementTurnover: [
