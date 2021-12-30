@@ -343,7 +343,7 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     keep() {
-                        // this.formData.isAgree = 0
+                        this.formData.isAgree = 0
                         indexApi.organSubmit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
                                 this.$notify.success({
