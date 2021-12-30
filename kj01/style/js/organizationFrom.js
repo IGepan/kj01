@@ -111,7 +111,7 @@ require(['/common/js/require.config.js'], function () {
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
                             legalNum: [
-                                {required: true, message: '请输入法人代码', trigger: 'blur'},
+                                {required: true, message: '请输入统一社会信用代码', trigger: 'blur'},
                             ],
                             chargeName: [
                                 {required: true, message: '请输入负责人姓名', trigger: 'blur'},

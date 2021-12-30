@@ -179,11 +179,11 @@
             </div>
           </div>
           <div class="rightbox">
-            <div class="card mt20 adlink">
-              <a v-if="isConference" @click.stop="handleShowTips"
-                style="background-image: url('/common/images/userCenterAd.png')"></a>
-              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>
-            </div>
+<!--            <div class="card mt20 adlink">-->
+<!--              <a v-if="isConference" @click.stop="handleShowTips"-->
+<!--                style="background-image: url('/common/images/userCenterAd.png')"></a>-->
+<!--              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>-->
+<!--            </div>-->
             <div class="card partner mt20">
               <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
               <div class="parlist">
@@ -200,7 +200,8 @@
                 <a target="_blank" :href=" this.$pathPrefix+'/common/buyer/index.html'"><i><img src="/common/images/sudi.png" width="40"></i>政策速递</a>
                 <a target="_blank" :href=" this.$pathPrefix+'/common/activity/list.html?code=001.004.001.001'"><i><img src="/common/images/huodong.png" width="40"></i>活动发布</a>
                 <a target="_blank" :href=" this.$pathPrefix+'/mall/index.html'"><i><img src="/common/images/shangcheng.png" width="40"></i>易智商城</a>
-                <a @click.stop="handleShowTips"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>
+<!--                <a @click.stop="handleShowTips"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>-->
+                <a><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>
               </div>
             </div>
           </div>
