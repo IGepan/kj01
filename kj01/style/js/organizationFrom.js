@@ -60,7 +60,7 @@ require(['/common/js/require.config.js'], function () {
                             localFinance: '',//	地方财政
                             selfFinance: '',//	单位自筹
                             otherIncome: '',//	其他收入
-                            isAgree: 0,//是否同意签署（0 未同意 1 同意）
+                            isAgree:0,//是否同意签署（0 未同意 1 同意）
                             caseSituation: '',//	案例情况
                             organization: '',//	组织情况
                             excellentContract: [{id:'',contractName:'',contractAmount:'',contractNumber:'', contractTurnover:'',}],//技术合同完成情况
@@ -152,19 +152,19 @@ require(['/common/js/require.config.js'], function () {
                                 // {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码'}
                             ],
 
-                            qq: [
-                                {required: true, validator: (rule, value, callback) => {
-                                        if(!value){
-                                            callback(new Error('请输入QQ号'));
-                                        }
-                                        else if (!/[1-9][0-9]{4,12}/.test(value)) {
-                                            callback(new Error('请填写正确的QQ号'));
-                                        } else {
-                                            callback();
-                                        }
-                                    },trigger: 'blur'},
-                                // {pattern:  /[1-9][0-9]{4,12}/, message: '请填写正确的QQ号'}
-                            ],
+                            // qq: [
+                            //     {required: true, validator: (rule, value, callback) => {
+                            //             if(!value){
+                            //                 callback(new Error('请输入QQ号'));
+                            //             }
+                            //             else if (!/[1-9][0-9]{4,12}/.test(value)) {
+                            //                 callback(new Error('请填写正确的QQ号'));
+                            //             } else {
+                            //                 callback();
+                            //             }
+                            //         },trigger: 'blur'},
+                            //     // {pattern:  /[1-9][0-9]{4,12}/, message: '请填写正确的QQ号'}
+                            // ],
                             address: [
                                 {required: true, message: '请输入通讯地址',trigger: 'blur'},
                             ],
@@ -333,7 +333,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                             if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
-                                if (this.formData.isAgree == 1) {
+                                if (this.formData.isAgree ==1) {
                                     this.delFlag=1
                                     this.isActive = true;
                                 } else {
@@ -391,7 +391,6 @@ require(['/common/js/require.config.js'], function () {
                                                this.sum = 1
                                                console.log(valid, 'valid')
                                                if (valid) {
-                                                   // this.formData.isAgree = 1
                                                    indexApi.organSubmit(this.formData).then((res) => {
                                                        if (res.code == 'rest.success') {
                                                            this.$notify.success({

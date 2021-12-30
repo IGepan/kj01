@@ -404,7 +404,8 @@
             <fieldset class="form__group">
                 <legend>七、承诺</legend>
                 <el-form-item label="本人保证上述填报内容及所提供的附件材料真实、完整、无误，如有不实，本人承担由此引起的一切责任。"  class="el-text">
-                    <el-radio :label="1" v-model="formData.isAgree"  border >同意</el-radio>
+<!--                    <el-radio :label="1" v-model="formData.isAgree" @change="checkRadio(i)" border>同意</el-radio>-->
+                    <el-checkbox  v-model='formData.isAgree' true-label=1 false-label=0 border>同意</el-checkbox>
                     <p style="color: red;display: inline-block">*选择同意后才能提交报名</p>
                 </el-form-item>
             </fieldset>
