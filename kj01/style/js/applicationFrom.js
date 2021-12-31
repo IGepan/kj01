@@ -43,7 +43,7 @@ require(['/common/js/require.config.js'], function () {
                             // contractAmount:'',	//合同成交总金额
                             // contractNumber:'',	//合同中成交技术项数
                             // contractTurnover:'',	//合同中技术交易额
-
+                            isSubmit:0,
                             // isSubmit:2,
                         },
                         delFlag:0,
@@ -200,7 +200,7 @@ require(['/common/js/require.config.js'], function () {
                             }
                            if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
-                                if (this.formData.isAgree == 1) {
+                                if (this.formData.isSubmit== 1) {
                                     this.delFlag=1
                                     this.isActive = true;
                                 } else {
@@ -210,7 +210,7 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     keep() {
-                        this.formData.isAgree = 0
+                        // this.formData.isAgree = 0
                         indexApi.brokerSubmit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
                                 this.$notify.success({
@@ -260,6 +260,7 @@ require(['/common/js/require.config.js'], function () {
                                         this.$refs.form.validate((valid) => {
                                             this.sum = 1
                                             if (valid) {
+                                                this.formData.isSubmit= 1
                                                 indexApi.brokerSubmit(this.formData).then((res) => {
                                                     if (res.code == 'rest.success') {
                                                         this.$notify.success({
@@ -296,6 +297,9 @@ require(['/common/js/require.config.js'], function () {
                                 });
                         }
                   },
+                    onRadioChange(e) {
+                        e === this.formData.isAgree? (this.formData.isAgree=0):(this.formData.isAgree = e)
+                    },
                     handlePlan(val) {
                         if (val == 1) {
                             this.formData.plan = 2;

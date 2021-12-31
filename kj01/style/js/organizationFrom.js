@@ -13,6 +13,7 @@ require(['/common/js/require.config.js'], function () {
                         },
                         isDisabledPlan: false,
                         isDisabledDeclare: false,
+
                         formData: {
                             id: '',
                             organName: '',//	机构名称
@@ -45,10 +46,10 @@ require(['/common/js/require.config.js'], function () {
                             assProportion: '',//	大专以上比例
                             brokerProportion: '',//	技术经理人比例
                             registeredAmount: '',//	促进技术合同登记金额
-                            registeredNum: '',//	促进技术合同登记项数
+                            registeredNumber: '',//	促进技术合同登记项数
                             transactionAmount: '',//	技术交易额
                             economicPerformance: '',//	经济效益
-                            promotingNum: '',//	促进成果交易数量
+                            promotingNumber: '',//	促进成果交易数量
                             promotingAmount: '',//	促进成果交易金额
                             active: '',//	组织技术培训、推广和产学研等活动
                             demand: '',//	征集企业技术需求
@@ -68,7 +69,7 @@ require(['/common/js/require.config.js'], function () {
                             excellentOrganBroker: [{id:'',name:'', idNumber:'', certificateNo:'', certificateOrgan:'',}],//专业技术人才队伍建设情况
                             // delFlag: '0',
                             // version: '0',
-                            // isSubmit:2,
+                            isSubmit:0,
                         },
                         sum:0,
                         delFlag: 0,
@@ -119,7 +120,7 @@ require(['/common/js/require.config.js'], function () {
                             chargeJob: [
                                 {required: true, message: '请输入负责人职务', trigger: 'blur'},
                             ],
-                            phone: [
+                            chargePhone: [
                                 {required: true, validator: (rule, value, callback) => {
                                         if(!value){
                                             callback(new Error('请输入负责人电话'));
@@ -169,7 +170,14 @@ require(['/common/js/require.config.js'], function () {
                                 {required: true, message: '请输入通讯地址',trigger: 'blur'},
                             ],
                             mainBusiness: [
-                                {type: 'array',required: true, message: '请至少选择一个主营业务',trigger: 'change'},
+                                {type:'array',required: true,
+                                    validator: (rule, value, callback) => {
+                                        if (this.formData.mainBusiness.length<1) {
+                                            callback(new Error('请至少选择一个主营业务'));
+                                        } else {
+                                            callback();
+                                        }
+                                    },trigger: 'blur'},
                             ],
                             officeSpace: [
                                 {required: true, message: '请输入办公面积',trigger: 'blur'},
@@ -325,7 +333,6 @@ require(['/common/js/require.config.js'], function () {
                     this.getData()
                 },
                 methods: {
-
                     getData() {
                         indexApi.selectOrgan().then((res) => {
                             if(res.code !== 'rest.success'){
@@ -333,7 +340,10 @@ require(['/common/js/require.config.js'], function () {
                             }
                             if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
-                                if (this.formData.isAgree ==1) {
+                                if(!res.result.mainBusiness){
+                                    this.$set(this.formData,'mainBusiness',[])
+                                }
+                                if (res.result.isSubmit ==1) {
                                     this.delFlag=1
                                     this.isActive = true;
                                 } else {
@@ -343,7 +353,7 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     keep() {
-                        this.formData.isAgree = 0
+                        // this.formData.isAgree = 0
                         indexApi.organSubmit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
                                 this.$notify.success({
@@ -391,6 +401,7 @@ require(['/common/js/require.config.js'], function () {
                                                this.sum = 1
                                                console.log(valid, 'valid')
                                                if (valid) {
+                                                   this.formData.isSubmit= 1
                                                    indexApi.organSubmit(this.formData).then((res) => {
                                                        if (res.code == 'rest.success') {
                                                            this.$notify.success({
@@ -426,6 +437,9 @@ require(['/common/js/require.config.js'], function () {
                                     });
                                 });
                         }
+                    },
+                    onRadioChange(e) {
+                        e === this.formData.isAgree? (this.formData.isAgree=0):(this.formData.isAgree = e)
                     },
                     handlePlan(val) {
                         if (val == 1) {
