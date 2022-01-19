@@ -1,5 +1,5 @@
 define(function () {
-  var isConfigIndex = ['fun-mi',  'dev.kj02.cn', 'testweb.kj01.cn','www.kj01.cn'].indexOf(location.host);
+  var isConfigIndex = ['fun-mi',  'dev.kj02.cn', 'testweb.kj01.cn','www.kj01.cn','www.cqhte.com'].indexOf(location.host);
   //var isConfigIndex = ['dev.localhost.cn', 'dev.kj02.cn', 'testweb.kj01.cn', 'www.kj01.cn'].indexOf(location.host);
   var configs = [
     {
@@ -61,6 +61,23 @@ define(function () {
       datacq: 'https://www.datacq.com.cn/'
     }, {
       //正式环境
+      authUrl: 'https://ts-zuul.kj01.cn/tsOauth2',  // ts zuul
+      baseUrl: 'https://ts-zuul.kj01.cn/tsAdmin',// ts zuul
+      baseMarketUrl: 'https://ts-zuul.kj01.cn/z-ts',//8901 ts 8900 tm ||
+      baseSchoolUrl: 'https://ts-zuul.kj01.cn/yzxt',//学堂
+      baseSchoolOutUrl: 'https://study.kj01.cn',//学堂跳转外网
+      fileShowUrl: 'https://fs.kj01.cn/', // 文件查看地址 配置域名
+      assisUrl: 'https://ts-zuul.kj01.cn/tsAssistant', // ts zuul
+      statisticsUrl: 'https://www.kj01.cn/asapi', // 统计地址
+      imgUploadUrl: 'https://fs.kj01.cn', // 文件上传服务
+      uploadimg_url: 'https://fs.kj01.cn',
+      imgVerify: 'https://captcha.kj01.cn/', // 滑块验证码
+      cmsUrl: 'https://cms.kj01.cn/',
+      companyApi: 'https://www.dsjscpx.com',
+      bigData: 'https://47.105.63.195:801/',
+      datacq: 'https://www.datacq.com.cn/'
+    },{
+      //高企正式环境
       authUrl: 'https://ts-zuul.kj01.cn/tsOauth2',  // ts zuul
       baseUrl: 'https://ts-zuul.kj01.cn/tsAdmin',// ts zuul
       baseMarketUrl: 'https://ts-zuul.kj01.cn/z-ts',//8901 ts 8900 tm ||
