@@ -237,6 +237,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             } else {
               vm.searchInfo = vm.dataInfo[0] = []
             }
+						
+						console.log(vm.searchInfo)
           }).catch(
             // 记录失败原因
             function (reason) {
@@ -255,6 +257,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             } else {
               vm.searchInfo = vm.dataInfo[1] = []
             }
+						console.log(vm.searchInfo)
           }).catch(
             // 记录失败原因
             function (reason) {
@@ -273,6 +276,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             } else {
               vm.searchInfo = vm.dataInfo[2] = []
             }
+						console.log(vm.searchInfo)
           }).catch(
             // 记录失败原因
             function (reason) {
@@ -337,12 +341,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             return filter
           }))
           this.isCustomInfo && (this.isCustomInfo = !this.isCustomInfo);
-					console.log(this.isCustomInfo)
         },
         // 自选切换
         handleCustom: function () {
           this.isCustomInfo = !this.isCustomInfo;
-					console.log(this.isCustomInfo)
           this.$set(this, 'filterInfo', this.filterInfo.map(function (filter, fi) {
             filter.selected = false
             return filter
