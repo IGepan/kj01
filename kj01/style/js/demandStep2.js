@@ -231,7 +231,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           !vm.dataInfo[0] && httpCom.selectMaxScorePlan(this.queryData).then(function (res) {
             if (res.code === 'rest.success') {
               res.result.forEach(function (info) {
-                vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
+                vm.demandForm.queryIds[info.serviceId] && vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
               })
               vm.searchInfo = vm.dataInfo[0] = res.result
             } else {
@@ -251,7 +251,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           !vm.dataInfo[1] && httpCom.selectMinPricePlan(this.queryData).then(function (res) {
             if (res.code === 'rest.success') {
               res.result.forEach(function (info) {
-                vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
+                vm.demandForm.queryIds[info.serviceId] && vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
               })
               vm.searchInfo = vm.dataInfo[1] = res.result
             } else {
@@ -270,7 +270,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           !vm.dataInfo[2] && httpCom.selectMaxSalePlan(this.queryData).then(function (res) {
             if (res.code === 'rest.success') {
               res.result.forEach(function (info) {
-                vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
+                vm.demandForm.queryIds[info.serviceId] && vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
               })
               vm.searchInfo = vm.dataInfo[2] = res.result
             } else {
