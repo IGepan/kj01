@@ -71,11 +71,14 @@ require(['/common/js/require.config.js'], function () {
                             // console.log(this.Type,'ppp')
                         })
                     },
-                    goDetail(id,val){
-                        console.log(id,val,'ppp')
-                        // window.open('content/'+id+'.html',"_blank");
-                        window.open('content/'+id+'.html?nowIndex='+val,"_blank");
-
+                    goDetail(id){
+                        var vm = this;
+                        indexApi.contentDetail({
+                            id:id
+                        }).then(function (res) {
+                            vm.$data.detailActive=1;
+                            vm.$data.details=res.result
+                        })
                     },
                     pageClick: function (index) {
                         if (index > 0 && index <= this.pages) {
