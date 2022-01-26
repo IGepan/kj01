@@ -128,10 +128,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       computed: {
         sumPrice: function () {
           var sumprice = !this.isCustomInfo ? this.searchInfo.reduce(function (price, item) {
-            return price += Number(item.minPrice)
+            return price += item.minPrice ? Number(item.minPrice) : 0;
           }, 0) : this.collapseCustomInfo.reduce(function (price, item) {
             return price += item.children.reduce(function (sp, si) {
-              return sp += Number(si.minPrice)
+              return sp += si.minPrice ? Number(si.minPrice) : 0
             }, 0)
           }, 0)
           return sumprice.toFixed(2)
