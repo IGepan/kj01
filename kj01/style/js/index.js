@@ -680,7 +680,8 @@ require(['/common/js/require.config.js'], function () {
                             alt_tip: '重庆市科学技术研究院',
                         },
                         {
-                            img: '/style/images/index/friend_link_7.png',
+                            // img: '/style/images/index/friend_link_7.png',
+                            img: '/style/images/index/tt.png',
                             href: 'https://www.qiyekexie.com',
                             alt_tip: '中国科学技术协会-绿平台',
                         },

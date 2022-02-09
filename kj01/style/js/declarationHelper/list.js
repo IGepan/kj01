@@ -8,10 +8,10 @@ require(['/common/js/require.config.js'], function () {
       label: '政策资讯',
       url: '/polist.html'
      },
-     {
-      label: '项目申报',
-      url: '/declaration.html'
-     },
+     // {
+     //  label: '项目申报',
+     //  url: '/declaration.html'
+     // },
      {
       label: '申报助手'
      }
