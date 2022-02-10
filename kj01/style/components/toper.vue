@@ -7,7 +7,7 @@
           <el-dropdown-menu slot="dropdown">
 
             <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013' && item.saasCode!=='013.023'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+              <el-link v-if="item.saasCode!=='013' && item.templetId!=='358277295594540555'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
             <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
@@ -105,7 +105,7 @@
           <el-dropdown-menu slot="dropdown">
 
             <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013' && item.saasCode!=='013.023'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+              <el-link v-if="item.saasCode!=='013' && item.templetId!=='358277295594540555'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
             <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
