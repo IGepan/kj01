@@ -7,10 +7,13 @@
           <el-dropdown-menu slot="dropdown">
 
             <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
             <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item >
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
             </el-dropdown-item >
           </el-dropdown-menu>
         </el-dropdown>
@@ -102,10 +105,13 @@
           <el-dropdown-menu slot="dropdown">
 
             <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
             </el-dropdown-item>
             <el-dropdown-item >
               <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item >
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
             </el-dropdown-item >
           </el-dropdown-menu>
         </el-dropdown>

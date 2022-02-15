@@ -90,7 +90,14 @@
                               描述文字描述文字描述文字描述文字描述文字描述文字描述文字描字描述文字描字描述文字述文字述文字述文字述文字述文字述文字述文字述文字文字
                             </div>
                             <div class="merchandise-info-desc-price fr">
-                              <div class="merchandise-auxiliary">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}元</div>
+                              <div class="merchandise-auxiliary">
+																
+																<span v-if="item.choosePriceTag=='0'">￥{{item.price}}元</span>
+																<span v-if="item.choosePriceTag=='1'">￥{{item.minPrice}}{{item.minPrice&&item.maxPrice?'-':''}}{{item.maxPrice}}元</span>
+																<span v-if="item.choosePriceTag=='2'">面议</span>
+																<span v-if="item.choosePriceTag=='3'">{{item.priceWord}}</span>
+																<!-- ￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}元 -->
+															</div>
                               <a target="_blank" :href="item.goodsDetailUrl">查看详情&gt;</a>
                             </div>
                           </div>
