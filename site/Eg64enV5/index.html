@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+    <title></title>
 
     <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
     <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
@@ -18,13 +18,25 @@
     <script src="style/js/libs/carousel.js"></script>
 </head>
 <style>
+   .line{
+       display: block!important;
+   }
+    /*.el-carousel__item:nth-child(2n) {*/
+    /*    background-color: #99a9bf;*/
+    /*}*/
 
-    .el-carousel__item:nth-child(2n) {
-        background-color: #99a9bf;
+    /*.el-carousel__item:nth-child(2n+1) {*/
+    /*    background-color: #d3dce6;*/
+    /*}*/
+   .el-icon-s-custom{
+        line-height: 40px!important;
     }
-
-    .el-carousel__item:nth-child(2n+1) {
-        background-color: #d3dce6;
+    .el-avatar{
+        margin-top: 3px;
+        width: 35px;
+        height: 35px;
+        line-height: 40px!important;
+        background: #FFFFff;
     }
 </style>
 <body>
@@ -94,7 +106,7 @@
             </div>
             <div class="activity-total-bottom">
                 <div class="item-box" :class="'item-box'+index" v-for="(item,index) in publishList">
-                    <a @click="handlePublish" :data-url="item.src">
+                    <a @click="handlePublish(item,index)" :data-url="item.src">
                         <div class="tips">HOT</div>
                         <div class="title-box">
                             <div class="title">{{item.title}}</div>
@@ -103,7 +115,26 @@
                     </a>
                 </div>
             </div>
+            <div class="content-box" style="margin-top: 20px;overflow: hidden" >
+<!--                <div class="tab" id="tab">-->
+<!--                    <ul class="tabList">-->
+<!--                        <li @click='change(index)' :class='currentIndex==index?"act":""' :key='item.id' v-for='(item,index) in list'>{{item.title}}</li>-->
+<!--                    </ul>-->
+<!--                    <div :class='currentIndex==index?"current":""' class="img" :key='item.id' v-for='(item,index) in list'>-->
+<!--                        <div class="slideFromBox">-->
+<!--                            <div class="bd">-->
+<!--                                <ul>-->
+<!--                                    <li v-for="(type,index) in item.fromList" :key="index" :title="item">-->
+<!--                                        <a class="line2">{{type}}</a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
         </div>
+
         <div class="activity-center mmdiv">
             <div class="title-common">
                 <div class="title">活动中心</div>
@@ -125,35 +156,6 @@
                                     <span class="iconfont-template icon-lishijilu"></span><span>{{item.activeStartTime}}&nbsp;{{item.weekday}}</span>
                                 </div>
                                 <div class="date-right">{{item.joinNum}}人报名</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="science-result activity-center">
-            <div class="title-common">
-                <div class="title">科技成果</div>
-                <div class="sub-box">
-                    <div v-for="(item,index) in scienceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceResult.html?industryLevel='+item.value">{{item.display}}</a></div>
-                    <div><a href="scienceResult.html">更多+</a></div>
-                </div>
-            </div>
-            <div class="content-box mmdiv">
-                <div class="item-box" v-for="item in scienceList">
-                    <a :href="$pathPrefix+item.goodsDetailUrl">
-                        <div class="img-box"><img :src="item.goodsImg?item.goodsImg.url:''" alt=""></div>
-                        <div class="img-bottom">
-                            <div class="title line" :title="item.goodsName">{{item.goodsName}}</div>
-                            <div class="address"><span class="line">所属店铺：{{item.shopName}}</span></div>
-                            <div class="date">
-                                <div class="date-left line" :title="item.industryNames">
-                                    行业分类：{{item.industryNames}}
-                                </div>
-                                <div class="date-right line" :title="formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)">
-
-                                    {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</span>
-                                </div>
                             </div>
                         </div>
                     </a>
@@ -183,7 +185,75 @@
 
                                     {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
 
+                                </div>
                             </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="science-result activity-center">
+            <div class="title-common">
+                <div class="title">科技成果</div>
+<!--                <div class="sub-box">-->
+<!--                    <div v-for="(item,index) in scienceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceResult.html?industryLevel='+item.value">{{item.display}}</a></div>-->
+<!--                    <div><a href="scienceResult.html">更多+</a></div>-->
+<!--                </div>-->
+            </div>
+            <div class="content-box mmdiv">
+                <div class="item-box" v-for="item in goodsSelectList">
+                    <a :href="'scienceDetail.html?id='+item.id">
+                        <div class="img-box"><img :src="getImgPath(item.projectImgPath)" alt=""></div>
+                        <div class="img-bottom">
+                            <div class="title line" :title="item.title">{{item.title}}</div>
+                            <div class="address"><span class="line"> 所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</span>
+                                <span class="line"> 标签：{{item.tags.map(item=>item.name).join(',')}}</span>
+                            </div>
+                            <div class="date">
+                                <div class="date-left line">
+                                    转让方式：{{item.cooperationMode_display}}
+                                </div>
+                                <div class="date-right line">
+                                    <span class="fr" class="color_orange" v-if="item.budget==0">面议</span>
+                                    <span v-else class="fr" class="color_orange">{{Pricre(item.budget)}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="activity-center">
+            <div class="title-common">
+                <div class="title">技术需求</div>
+<!--                <div class="sub-box">-->
+<!--                    <div v-for="(item,index) in scienceTypeList" :class="item.active?'active':''"  v-if="index<5"><a :href="'./scienceResult.html?industryLevel='+item.value">{{item.display}}</a></div>-->
+<!--                    <div><a href="scienceResult.html">更多+</a></div>-->
+<!--                </div>-->
+            </div>
+            <div class="content-box mmdiv">
+                <div class="item-box" v-for="demand in demandList">
+                    <a :href="'requireDetail.html?id='+demand.id">
+<!--                        <div class="img-box">-->
+<!--                            <img :src="item.goodsImg?item.goodsImg.url:''" alt="">-->
+<!--                        </div>-->
+                        <div class="img-bottom">
+                            <div class="title line" :title="demand.title">{{demand.title}}</div>
+                            <div class="address" >
+                                <span class="line">行业领域： <span v-for="(item,index) in demand.demandIndustryType">{{item.name}}
+                                        <span v-if="index < demand.demandIndustryType.length - 1">, </span>
+                                </span></span>
+                                <span class="line clear">标签：{{demand.tags.map(item=>item.name).join(',')}}</span>
+                                <span class="line clear">需求类型：{{demand.demandType_display}}</span>
+                            </div>
+                            <div class="date" >
+                                <div class="date-left line">
+                                    合作方式：{{demand.cooperationMode_display}}
+                                </div>
+                                <div class="date-right line">
+                                    <span class="fr" class="color_orange" v-if="demand.budget==0">面议</span>
+                                <span v-else class="fr" class="color_orange">{{Pricre(demand.budget)}}</span>
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -195,7 +265,9 @@
                 <div class="title">服务机构</div>
                 <div class="sub-title">明星服务机构为您提供专业服务</div>
             </div>
+
             <div class="content-box">
+
                 <div class="item-box" v-for="item in shopList">
                     <a :href="$pathPrefix+item.shopIndexUrl">
                         <div class="title line" :title="item.shopName">{{item.shopName}}</div>
@@ -211,6 +283,7 @@
                         </div>
                     </a>
                 </div>
+
             </div>
         </div>
     </div>
@@ -218,6 +291,76 @@
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="style/js/index.js"></script>
+<style>
+    .slBox:first-child{
+        width: 258px;
+        float: left;
+        background: #FFFFff;
+        padding: 10px;
+        height: 301px;
+    }
+    .slBox:nth-child(2),.slBox:nth-child(3){
+     width:calc((100% - 40px - 258px)/2);
+        float: left;
+        background: #FFFFff;
+        padding: 10px;
+        height: 301px;
+    }
+    .slideFromBox2 li span,.slideFromBox3 li span{
+      text-align: left;
+    }
+    /*.slideFromBox1 li span{*/
+    /*    width: 250px!important;*/
+    /*    display: inline-block;*/
+    /*    white-space: nowrap;*/
+    /*    text-overflow: ellipsis;*/
+    /*    overflow: hidden;*/
+    /*}*/
+    .slideFromBox1 li a{
+        color: #a3a3a3;
+    }
+    .tit{
+        font-size: 20px;
+        color:#ee661c;
+        border-bottom: solid 1px #dfdfdf!important;
+        background: url(./style/images/index/qiye1.svg) no-repeat;
+        padding-left: 40px;
+        margin: 0;
+        line-height: 40px;
+    }
+    .slBox:first-child .tit{
+        background: url(./style/images/index/yonghu.svg) no-repeat;
+
+    }
+    .tit a{
+        font-size: 14px;
+        font-weight: normal;
+        color: #848484;
+    }
+    .tit a:hover{
+        color:#ee661c;
+    }
+    .slideFromBox1 li, .slideFromBox2 li,.slideFromBox3 li{
+        width: 100%;
+        cursor: pointer;
+        color: #2a2a2a;
+        box-sizing: border-box;
+        line-height: 40px;
+        height: 40px!important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        /*border-bottom:  1px  #dfdfdf!important;*/
+    }
+    .slideFromBox2 li span i,.slideFromBox3 li span i{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: solid 1px #aaacbb;
+        margin-right: 8px;
+    }
+</style>
 </body>
 
 </html>

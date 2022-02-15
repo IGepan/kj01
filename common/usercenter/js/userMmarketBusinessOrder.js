@@ -2,13 +2,14 @@
 
 require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom',
-        './userCenterApi/userCenterMarketTechAPI.js'],
+            './userCenterApi/userCenterMarketTechAPI.js'],
         function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom, userCenterApi) {
 
             Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -38,7 +39,8 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
 
@@ -47,7 +49,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href =this.$pathPrefix+ '/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
@@ -116,7 +118,7 @@ require(['/common/js/require.config.js'], function () {
                     handleEnd: function (index, row) {
                         var _this = this;
                         var id = row.id;
-                        window.location.href = "/common/usercenter/user_market_business_order_over.html?id=" + id;
+                        window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_business_order_over.html?id=" + id;
                     },
                 },
             });

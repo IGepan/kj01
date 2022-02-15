@@ -5,17 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title></title>
+  <title>易智网-技术成果摆渡人-关于我们</title>
+  <meta name='keywords'
+        content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆成果转化,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+  <meta name='description'
+        content='易智网是一站式科技创新综合服务平台，提供技术转移、成果转化、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
   <link href="../common/css/main.css" rel="stylesheet" type="text/css">
   <link href="./style/css/common.css" rel="stylesheet" type="text/css">
   <link href="./style/css/icon/iconfont.css" rel="stylesheet">
   <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?04b184cd0a23520a283adae6ebb7c2f9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 </head>
-
+<style>
+  .mmdiv{
+    width: 1440px;
+    margin: 0 auto;
+  }
+  .content{
+    max-height:none!important;
+    /*overflow:initial;*/
+  }
+</style>
 <body>
 <div class="box" id='index_box' v-cloak>
   <ly-toper ref="lytoper" top-class="white"></ly-toper>
-  <index-head :nav-index="sIndex"></index-head>
+<!--  <index-head :nav-index="sIndex"></index-head>-->
+  <div class="header-box " style="background: #fff;height: 65px;position: relative;">
+    <index-head :nav-index="sIndex"></index-head>
+    <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+  </div>
   <div class="content">
     <div class="mdiv">
       <div class="left">
@@ -30,8 +56,7 @@
         <!-- 简介 -->
         <div class="brief" v-show="nowIndex === 0">
           <div class="synopsis">
-            易智网（www.kj01.cn）是在重庆市科学技术局和两江新区管理委员会的大力支持下，由重庆市科学技术研究院与重庆两江新区创新创业投资发展有限公司联合建立，面向政府与企业的资源深度聚集、服务智能精准、线上线下融合的科技创新综合服务大平台，由“1+2+N”构成，“1”是指“易智网总部基地”；“2”是指重庆两江新区、重庆高新区两个区域服务中心”；“N”是指区县和环高校创新生态圈分支基地。
-          </div>
+            易智网是在重庆市科学技术局和重庆两江新区管理委员会的大力支持下，依托重庆市科学技术研究院，围绕技术成果转移转化全链条建立的资源深度聚集、服务智能精准、线上线下融合的科技创新服务大平台。平台充分发挥技术成果摆渡人、创新创业孵化人、科技创新服务人作用，打造创新资源汇聚地、科技成果集散地、创新主体培育地，推动科技成果产业化、创新产业市场化。 </div>
           <div class="avatar">
             <img src="./style/images/about/base1.jpg" alt="">
           </div>
@@ -48,151 +73,198 @@
         </div>
         <!-- 服务内容 -->
         <div v-show="nowIndex === 1">
-          <div class="sub-title">政府端服务</div>
-          <ul class="gov-lists">
-            <li>
-              <div class="name">人才培育</div>
-              <div class="text">企业人才培训、高端人才引育</div>
-            </li>
-            <li>
-              <div class="name">双创载体建设</div>
-              <div class="text">建设规划、运营指导、团队建设、
-                资质申报（国家级、市级）</div>
-            </li>
-            <li>
-              <div class="name">创新主体培育</div>
-              <div class="text">政策咨询、战略规划、科技型企业
-                （高新技术企业）培育</div>
-            </li>
-            <li>
-              <div class="name">产业育成</div>
-              <div class="text">园区建设规划、招商对接</div>
-            </li>
-          </ul>
-          <div class="sub-title">企业端服务</div>
-          <div class="enterprise">
-            <div class="enterprise-title">综合服务</div>
+          <div class="enterprise " style="margin-top: 40px">
+            <div class="enterprise-title blue">技术成果转移转化服务</div>
+            <ul class="enterprise-lists blue">
+              <li>
+                <div class="name">技术成果落地服务</div>
+                              <div class="text">技术开发、技术转让、技术许可、技术作价入股、技术咨询服务</div>
+              </li>
+              <li>
+                <div class="name">区域技术现状调查服务</div>
+                              <div class="text">收集、整理区域内重点企业技术现状、技术需求</div>
+              </li>
+              <li>
+                <div class="name">技术需求对接服务</div>
+                              <div class="text">定制技术解决方案</div>
+              </li>
+              <li>
+                <div class="name">技术经纪（理）人培养服务</div>
+                              <div class="text">举办专题研修班，培养技术经纪（理）人队伍</div>
+              </li>
+              <li>
+                <div class="name">科技成果评价服务</div>
+                              <div class="text">评价结果可用于奖项申报、市场推广</div>
+              </li>
+            </ul>
+          </div>
+          <div class="enterprise" style="margin-top: 40px">
+            <div class="enterprise-title">技术转移示范基地建设服务</div>
             <ul class="enterprise-lists">
               <li>
-                <div class="name">科技政策</div>
+                <div class="name">科技成果转移转化体系服务</div>
                 <div class="text">
-                  <span>政策解读</span>
-                  <span>政策速递</span>
-                  <span>政策兑现</span>
+                  <span>源头供给——转移转化——产业育成</span>
                 </div>
               </li>
               <li>
-                <div class="name">创新活动</div>
+                <div class="name">创新孵化服务体系</div>
                 <div class="text">
-                  <span>峰会</span>
-                  <span>论坛</span>
-                  <span>路演</span>
-                  <span>对接</span>
-                  <span>沙龙</span>
-                  <span>展会</span>
+                  <span>众创空间——孵化器——加速器——产业园</span>
                 </div>
               </li>
               <li>
-                <div class="name">成果转化</div>
+                <div class="name">高新技术企业培育服务体系</div>
                 <div class="text">
-                  <span>展示发布</span>
-                  <span>成果路演</span>
-                  <span>供需对接</span>
+                  <span>潜在科企库</span>
+                  <span>科企培育库</span>
+                  <span>科企库</span>
+                  <span>高企培育库</span>
+                  <span>高企库</span>
                 </div>
               </li>
               <li>
-                <div class="name">科技金融</div>
+                <div class="name">企业创新能力提升服务体系</div>
                 <div class="text">
-                  <span>创业投资</span>
-                  <span>融资贷款</span>
-                  <span>上市辅导</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">技术研发</div>
-                <div class="text">
-                  <span>难题诊断</span>
-                  <span>创新协同</span>
-                  <span>研发设计</span>
-                  <span>产品开发</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">技术评估</div>
-                <div class="text">
-                  <span>成果评价</span>
-                  <span>价值评估</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">科技咨询</div>
-                <div class="text">
-                  <span>战略咨询</span>
-                  <span>发展规划</span>
-                  <span>决策报告</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">检验检测</div>
-                <div class="text">
-                  <span>检测分析</span>
-                  <span>计量校准</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">科技人才</div>
-                <div class="text">
-                  <span>人才培训</span>
-                  <span>人才引育</span>
+                  <span>创新人才——创新工具——创新支撑</span>
                 </div>
               </li>
             </ul>
           </div>
           <div class="enterprise">
-            <div class="enterprise-title green">特色服务</div>
+            <div class="enterprise-title green">技术转移活动服务</div>
             <ul class="enterprise-lists green">
               <li>
-                <div class="name">政策智配</div>
+                <div class="name">易智成果汇</div>
                 <div class="text">
-                  <span>政策智能匹配</span>
-                  <span>自动推送、速递</span>
+                  <span>线上线下成果、需求发布</span>
+                  <span>成果对接</span>
+                  <span>项目路演</span>
+                  <span>专利拍卖</span>
                 </div>
               </li>
               <li>
-                <div class="name">智能答人</div>
+                <div class="name">易智人才汇</div>
                 <div class="text">
-                  <span>企业需求智能问答</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">申报助手</div>
-                <div class="text">
-                  <span>政策解读</span>
-                  <span>项目申报</span>
-                </div>
-              </li>
-              <li>
-                <div class="name">企业学堂</div>
-                <div class="text">
-                  <span>政策直播</span>
+                  <span>政策直播间</span>
                   <span>创新课堂</span>
                   <span>管理学院</span>
                 </div>
               </li>
               <li>
-                <div class="name">云活动</div>
+                <div class="name">易智大咖荟</div>
                 <div class="text">
-                  <span>云路演</span>
-                  <span>云展会</span>
-                  <span>云创赛</span>
-                  <span>云对接</span>
+                  <span>产业论坛、行业沙龙</span>
+                  <span>专家学者、行业大咖</span>
                 </div>
               </li>
               <li>
-                <div class="name">自助体检</div>
+                <div class="name">易智排行榜</div>
                 <div class="text">
-                  <span>企业自检</span>
-                  <span>资源匹配</span>
+                  <span>科技成果大赛</span>
+                  <span>"十佳"技术转移机构、技术经纪人和成果转化案例</span>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+          <div class="enterprise">
+            <div class="enterprise-title blue">科技创新政策服务</div>
+            <ul class="enterprise-lists blue">
+              <li>
+                <div class="name">政策查询服务</div>
+                <div class="text">
+                  <span>获取政策信息、跟进科技政策</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">政策速递服务</div>
+                <div class="text">
+                  <span>及时、定向地向用户推送政策内容</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">政策智配服务</div>
+                <div class="text">
+                  <span>智能、快速、精准匹配政策</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">政策答疑服务</div>
+                <div class="text">
+                  <span>系统自动匹配问题与答案</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">申报辅导服务</div>
+                <div class="text">
+                  <span>申报流程演示</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">政策培训服务</div>
+                <div class="text">
+                  <span>线上线下形式</span>
+                  <span>提供热点政策权威解读和申报培训</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="enterprise">
+            <div class="enterprise-title">技术转移综合服务</div>
+            <ul class="enterprise-lists">
+              <li>
+                <div class="name">知识产权</div>
+                <div class="text">
+                  <span>知识产权查询、申请、运营、维权</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">技术研发</div>
+                <div class="text">
+                  <span>工业设计、产品技术、产品研发</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">科技金融</div>
+                <div class="text">
+                  <span>筛选优质金融机构，提供债权融资、股权融资</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">法律服务</div>
+                <div class="text">
+                  <span>法律顾问、合同文书代写修改、纠纷处理、诉讼服务</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">检验检测</div>
+                <div class="text">
+                  <span>提供精细化、全方位的检测检验服务</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">科技咨询</div>
+                <div class="text">
+                  <span>技术创新培训，定制化解决方案，可行性研究报告</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">设备共享</div>
+                <div class="text">
+                  <span>优选专业化仪器设备，精心提供共享服务，实现”物“和”人“的共享</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">政策资讯</div>
+                <div class="text">
+                  <span>包括政策兑现、资质认证、资格认定、资金支持</span>
+                </div>
+              </li>
+              <li>
+                <div class="name">工商财税</div>
+                <div class="text">
+                  <span>税收筹划、工商注册、财会审计</span>
                 </div>
               </li>
             </ul>

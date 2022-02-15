@@ -58,13 +58,20 @@ require(['/common/js/require.config.js'], function () {
           // },
         },
         created: function () {
+          var aUrl=window.location.href
+          var str = aUrl.split("/").pop().replace(/(^content)|(\.\S+$)/g,"");
           // 技术成果列表查询
           this.initData();
-          this.queryDetails(this.id);
+          if(this.id==null){
+            this.queryDetails(str);
+            this.findqueryAverageScore(str);
+          }
+          if(this.id!=null){
+            this.queryDetails(this.id);
+            this.findqueryAverageScore(this.id);//查询平均分
+          }
           this.initFavorite();
           this.findPageQueryEvaluation();//查询评价
-          this.findqueryAverageScore(this.id);//查询平均分
-
         },
         methods: {
 
@@ -172,7 +179,15 @@ require(['/common/js/require.config.js'], function () {
             let dm = d.getMonth();
             let dd = d.getDate();
             this.saasId = localStorage.getItem('saasId');
-            this.id = this.$utils.getReqStr('id');
+            var id = this.$utils.getReqStr('id');
+            var aUrl=window.location.href
+            var str = aUrl.split("/").pop().replace(/(^investmentStatic)|(\.\S+$)/g,"");
+            if(id!=null){
+              this.id = id;
+            }
+            if(id==null){
+              this.id = str;
+            }
             this.$utils.getCookie(dic.locaKey.USER_INFO) &&
               (this.userInfo = JSON.parse(
                 localStorage.getItem(dic.locaKey.USER_INFO)));
@@ -245,8 +260,8 @@ require(['/common/js/require.config.js'], function () {
                 toast.showToast(res.message);
                 return;
               }
+              var textNameList = [];
               if (_this.$utils.validatesEmpty(res.data.industryType) && res.data.industryType.length > 0) {
-                var textNameList = [];
                 res.data.industryType.forEach(element => {
                   textNameList.push(element.name);
                 });

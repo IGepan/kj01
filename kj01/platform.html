@@ -5,11 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <title>易智网-技术成果摆渡人-平台动态</title>
+    <meta name='keywords'
+          content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆成果转化,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description'
+          content='易智网是一站式科技创新综合服务平台，提供技术转移、成果转化、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
     <link href="../common/css/main.css" rel="stylesheet" type="text/css">
     <link href="/style/css/common.css" rel="stylesheet" type="text/css">
     <link href="./style/css/icon/iconfont.css" rel="stylesheet">
     <link href="/style/css/platform.css" rel="stylesheet" type="text/css">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?04b184cd0a23520a283adae6ebb7c2f9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <style>
     .article-files {
@@ -39,25 +52,47 @@
     .vaMiddle:hover{
         color: #f0ad4e;
     }
+    .btn{
+        text-align: center;
+        padding:10px 15px;
+        font-size: 24px;
+        background: #018fff;
+        color: #FFFFff;
+        display: inline-block;
+        margin-left: calc((1440px - 126px)/2);
+        box-shadow: 0px 0px 11px #ddd;
+        border-radius: 10px;
+    }
+    .btn:hover{
+        background: #f0ad4e;
+    }
+    .mmdiv{
+        width: 1440px;
+        margin: 0 auto;
+    }
 </style>
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <index-head :nav-index="sIndex"></index-head>
+
+    <div class="header-box " style="background: #fff;height: 65px;position: relative;">
+        <index-head :nav-index="sIndex"></index-head>
+        <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+    </div>
     <div class="content">
         <div class="mdiv">
             <div class="right">
                 <ul class="tabs">
                     <li class="title" @click="select(1)" :class="nowIndex ==1?'active':'title'">工作动态</li>
                     <li class="title" @click="select(3)" :class="nowIndex ==3?'active':'title'">媒体关注</li>
-                    <li class="title" @click="select(4)" :class="nowIndex ==4?'active':'title'">通知公告</li>
+<!--                    <li class="title" @click="select(4)" :class="nowIndex ==4?'active':'title'">通知公告</li>-->
 
                 </ul>
                 <!--   工作动态       -->
 
                 <div class="platform-box" :class="nowIndex ==1?'see':'none'">
                     <div class="ul-list" v-if="detailActive===0">
-                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
+                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id,item.type)" :title="item.title">
                             <div class="li-left">
                                 <i></i>
                                 <span>{{item.title}}</span>
@@ -86,11 +121,13 @@
                         </div>
                         <div class="detail-content" v-html="details.txt"></div>
                     </div>
+
+
                 </div>
                 <!--   媒体关注       -->
                 <div class="platform-box" :class="nowIndex ==3?'see':'none'" @click="getcmsList">
                     <div class="ul-list" v-if="detailActive===0">
-                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
+                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id,item.type)" :title="item.title">
                             <div class="li-left">
                                 <i></i>
                                 <span>{{item.title}}</span>
@@ -120,54 +157,56 @@
                         <div class="detail-content" v-html="details.txt"></div>
                     </div>
                 </div>
-<!--                公告通知-->
-                <div class="platform-box" :class="nowIndex ==4?'see':'none'" @click="getcmsList">
-                    <div class="ul-list" v-if="detailActive===0">
-                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">
-                            <div class="li-left">
-                                <i></i>
-                                <span>{{item.title}}</span>
-                            </div>
-                            <div class="li-right">{{item.releaseDate|formatTime}}</div>
-                        </div>
-                        <!--分页-->
-                        <div class="pager" v-cloak v-if="pages>1">
-                            <a @click='pageClick(1)'>[首页]</a>
-                            <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
-                            <a @click='pageClick(item)' v-for='item in pages' v-text='item'
-                               :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
-                            <a v-if='isMore()'>...</a>
-                            <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
-                            <a @click='pageClick(pages)'>[末页]</a>
-                            <span>[共<span v-text='pages'></span>页]</span>
-                            <span>[共<span v-text='queryForm.total || 0'></span>条]</span>
-                        </div>
-                        <!--/分页-->
-                    </div>
-                    <div class="detail-box" v-if="detailActive===1">
-                        <div class="detail-title">{{details.title}}</div>
-                        <div class="sub-title">
-                            <span>发布时间：{{details.releaseDate|formatTime}}</span>
-                            <span>来源：{{details.origin}}</span>
-                        </div>
-                        <div class="detail-content" v-html="details.txt">
-                        </div>
-                        <template v-if="details.fileId">
-                            <div class="article-files">
-                                <div class="article-files-title"><span class="title-text">附件</span></div>
-                                <div class="article-files-body">
-                                    <template >
-                                        <div class="article-file">
-                                            <img class="vaMiddle " src="/image/file.svg">
-<!--                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>--></img>
-                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>
-                                        </div>
-                                    </template>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
+                <!--                公告通知-->
+<!--                <div class="platform-box" :class="nowIndex ==4?'see':'none'" @click="getcmsList">-->
+<!--                    <div class="ul-list" v-if="detailActive===0">-->
+<!--                        <div class="ul-li" v-for="item in newsList" @click="goDetail(item.id)" :title="item.title">-->
+<!--                            <div class="li-left">-->
+<!--                                <i></i>-->
+<!--                                <span>{{item.title}}</span>-->
+<!--                            </div>-->
+<!--                            <div class="li-right">{{item.releaseDate|formatTime}}</div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;分页&ndash;&gt;-->
+<!--                        <div class="pager" v-cloak v-if="pages>1">-->
+<!--                            <a @click='pageClick(1)'>[首页]</a>-->
+<!--                            <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>-->
+<!--                            <a @click='pageClick(item)' v-for='item in pages' v-text='item'-->
+<!--                               :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>-->
+<!--                            <a v-if='isMore()'>...</a>-->
+<!--                            <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>-->
+<!--                            <a @click='pageClick(pages)'>[末页]</a>-->
+<!--                            <span>[共<span v-text='pages'></span>页]</span>-->
+<!--                            <span>[共<span v-text='queryForm.total || 0'></span>条]</span>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;/分页&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="detail-box" v-if="detailActive===1">-->
+<!--                        <div class="detail-title">{{details.title}}</div>-->
+<!--                        <div class="sub-title">-->
+<!--                            <span>发布时间：{{details.releaseDate|formatTime}}</span>-->
+<!--                            <span>来源：{{details.origin}}</span>-->
+<!--                        </div>-->
+<!--                        <div class="detail-content" v-html="details.txt">-->
+<!--                        </div>-->
+<!--                        <div v-if="details.id=='424948758916173824'"><a class="btn" href="expert.html">立即申请</a></div>-->
+<!--                        <div v-if="details.id=='424948649155432448'"><a class="btn" href="mechanism.html">立即申请</a></div>-->
+<!--&lt;!&ndash;                        <template v-if="details.fileId">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="article-files">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="article-files-title"><span class="title-text">附件</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="article-files-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <template >&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="article-file">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <img class="vaMiddle " src="/image/file.svg">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            &lt;!&ndash;                                            <use :xlink:href="'#icon-'+tfile.flieType"></use>&ndash;&gt;</img>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <a :href="details.fileUrl"><span class="vaMiddle line">{{details.fileName}}</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </template>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </template>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>

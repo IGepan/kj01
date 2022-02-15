@@ -18,14 +18,14 @@
             {{ item.value }}
           </a>
         </div>
-        <div class="search_box">
-          <input
-            type="text"
-            placeholder="请输入关键词搜索"
-            v-model="searchData.title"
-          />
-          <span class="iconfont icon-fangdajing"> 检索 </span>
-        </div>
+<!--        <div class="search_box">-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            placeholder="请输入关键词搜索"-->
+<!--            v-model="searchData.title"-->
+<!--          />-->
+<!--          <span class="iconfont icon-fangdajing"> 检索 </span>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@ module.exports = {
       type: String,
       default: "技术转移",
     },
+    nav:Number
   },
 
   data: function () {
@@ -47,12 +48,12 @@ module.exports = {
         url: "/service/resource_list.html?title=",
         title: "",
       },
-
+      navlink:this.nav,
       techList: [
         {
           id: 0,
           value: "首页",
-          href: "/index.html",
+          href: "/technologyMarket/index.html",
           impro: "index",
         },
         {
@@ -101,6 +102,13 @@ module.exports = {
         item.active = v === i;
       });
     },
+    nav:{
+      immediate: true,
+      deep:true,
+      handler(val) {
+       console.log(val)
+      },
+}
   },
   created: function () {
     var _this = this;
@@ -109,7 +117,9 @@ module.exports = {
     )
       ? _this.$utils.getCookie("navIndex")
       : 0;
-
+    if(this.navlink!=null){
+      navIndexs=this.navlink
+    }
     var url = window.location.href;
     console.log(url);
 
@@ -118,15 +128,14 @@ module.exports = {
     }
     url = url.split("/");
     url = url[url.length - 1];
-    console.log(url);
     var urlList = _this.techList;
+    console.log(urlList,'000');
     for (let i = 0; i < urlList.length; i++) {
       const element = urlList[i];
       if (url.indexOf(element.impro) > -1) {
         navIndexs = element.id;
       }
     }
-
     _this.techList[navIndexs].active = true;
   },
   methods: {

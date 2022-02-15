@@ -142,12 +142,13 @@ require(['/common/js/require.config.js'], function () {
               this.searchForm.activeType = type || ''
               type && (this.navIndex = this.options.navIndexOpts[type]);
               this.getDicList(this.dicOptsSet);
+              console.log(this.searchForm.activeType , '390092837996355585')
               if(this.searchForm.activeType == '390092837996355585'){
-                this.searchForm.activeIndex = '3'
+                this.searchForm.activeIndex = 3
               }
               this.getDataList(function(){
                 // 首次进入页面，展开二级导航
-                $('.searchkeys span').eq(vm.searchForm.activeIndex).trigger('click')
+                  $('.searchkeys span').eq(vm.searchForm.activeIndex).trigger('click')
               });
               this.addSelectOpts(
                   {
@@ -170,7 +171,7 @@ require(['/common/js/require.config.js'], function () {
             },
             getDataList: function (call) {
               var vm = this;
-              if (this.searchForm.activeIndex === '3') {
+              if (this.searchForm.activeIndex == '3') {
                 this.isActive = true//隐藏默认排序
                 //品牌活动
                 var searchForm = this.searchForm

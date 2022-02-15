@@ -1,0 +1,498 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+</head>
+<style>
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+        margin: 30px 0
+    }
+    .leftbox{
+        float: left;
+        width: 50%;
+    }
+    .rightbox{
+        float: right;
+        width: 50%;
+    }
+    .form__group{
+        margin-top: 0!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-bottom: 10px;
+        /*margin-left: 10px;*/
+        vertical-align: bottom;
+    }
+    legend{
+        width: 100%;
+        font-size: 18px!important;
+        line-height: 36px!important;
+        color: #2c82f1;
+        font-weight: bold;
+        border-bottom:2px solid #2c82f1;
+        margin-bottom: 30px!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        max-width: 100%;
+        height: auto!important;
+        word-wrap: break-word!important;
+    }
+    .disabled{
+        pointer-events: none;
+    }
+    .bgcolor{
+        background:#dddddd;
+        border-color: #dddddd;
+    }
+ .form{
+     border-radius: 20px;margin-bottom: 50px
+ }
+    .el-radio.is-bordered{
+        padding: 10px 20px 0 10px!important;
+    }
+    .el-form-item__error{
+        clear: both;
+         }
+    .opacityZero {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .exbtn{
+        width: 80px !important;
+        height: 38px;
+        line-height: 38px;
+        color: #fff;
+        background-color: #1052b3;
+        display: inline-block !important;
+        text-align: center !important;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+        user-select: none;
+    }
+    .Hide{
+        display: none!important;
+    }
+    .head{
+        width: 220px;
+        height: 220px;
+        background: no-repeat center center;
+        background-size: cover;
+        border: 1px solid #c9c9c9;
+        float: left;
+        margin-right: 10px;
+
+    }
+    .loading {
+        position:relative
+    }
+    .loading:before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position:absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display:block;
+        background-color: rgba(0,0,0,.4);
+        z-index: 2;
+    }
+    .loading:after {
+        content: '上传中';
+        color: #fff;
+        position:absolute;
+        display:block;
+        min-width: 50px;
+        min-height: 30px;
+        line-height: 30px;
+        left: 50%;
+        top: 50%;
+        transform:translate(-50%, -50%);
+        z-index: 3;
+        font-size: 14px;
+        text-align: center;
+    }.el-select--medium{
+             width: 100%!important;
+         }
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <!--  <index-head :nav-index="8"></index-head>-->
+
+    <div class="mdiv" :class="{disabled:isActive}">
+        <h1 class="title-h2">云水苑数字经济产业园入园申请表</h1>
+        <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
+            <fieldset class="form__group" >
+                <legend>一、企业基本信息</legend>
+                <el-form-item label="企业名称" prop="companyName" class="el-text leftbox">
+                    <el-input placeholder="请输入企业名称"
+                              v-model="formData.companyName"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="企业类型" prop="companyType" class="el-text rightbox">
+                    <el-select v-model="formData.companyType" placeholder="请选择企业类型" class="fl" style="width: 100%"
+                               v-if="formData.isSubmit==1"  disabled>
+                        <el-option
+                                v-for="(item,index) in companyTypeList"
+                                :key="index"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                    <el-select v-model="formData.companyType" placeholder="请选择企业类型" class="fl" style="width: 100%" v-else>
+                        <el-option
+                                v-for="(item,index) in companyTypeList"
+                                :key="index"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </fieldset>
+<!--            <fieldset class="form__group">-->
+
+<!--                <el-form-item label="注册资本（万元）" prop="capital" class="el-text leftbox">-->
+<!--                    <el-input placeholder="请输入注册资本"-->
+<!--                              v-model="formData.capital"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="经营地址" prop="address" class="el-text rightbox">-->
+<!--                    <el-input placeholder="请输入经营地址"-->
+<!--                              v-model="formData.address"-->
+<!--                              clearable></el-input>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+
+            <fieldset class="form__group">
+                <el-form-item label="联系人姓名及职务" prop="contactName" class="el-text leftbox clear">
+                    <el-input placeholder="请输入联系人姓名及职务"
+                              v-model="formData.contactName"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="联系方式" prop="contactPhone" class="el-text rightbox">
+                    <el-input placeholder="请输入联系方式"
+                              v-model="formData.contactPhone"
+                              maxlength="12"
+                              clearable></el-input>
+                </el-form-item>
+
+            </fieldset>
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="经营范围" prop="businessScope" class="el-text ">-->
+<!--                    <el-input  style="width:100%;min-height: 200px"-->
+<!--                               type="textarea"-->
+<!--                               v-model="formData.businessScope"-->
+<!--                               placeholder="请输入经营范围">-->
+<!--                    </el-input>-->
+<!--                </el-form-item>-->
+
+<!--            </fieldset>-->
+            <fieldset class="form__group">
+                <legend>企业简介（主营业务、产品及服务、规模布局等）</legend>
+                <el-form-item  prop="companyProfile" >
+                    <vue-ueditor-wrap v-model="formData.companyProfile" :config="ueditorConfig" class="exptextarea">
+                    </vue-ueditor-wrap>
+                </el-form-item>
+            </fieldset>
+<!--            <fieldset class="form__group">-->
+<!--                <el-form-item label="是否入科技型企业库" prop="isJoinDepository"class="el-text leftbox">-->
+<!--                    <el-radio-group v-model="formData.isJoinDepository" @change="handlePlan" >-->
+<!--                            <el-radio :label="1"  border >是</el-radio>-->
+<!--                            <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="是否计划入科技型企业库" prop="plan" class="el-text rightbox">-->
+<!--                    <el-radio-group v-model="formData.plan" :disabled="isDisabledPlan">-->
+<!--                            <el-radio :label="1"  border>是</el-radio>-->
+<!--                            <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="是否是高新技术企业" prop="highTech" class="el-text leftbox ">-->
+<!--                    <el-radio-group v-model="formData.highTech" @change="handleDeclare" >-->
+<!--                        <el-radio :label="1" border >是</el-radio>-->
+<!--                        <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="是否计划申报高新技术企业" prop="declare" class="el-text  rightbox">-->
+<!--                    <el-radio-group v-model="formData.declare" :disabled="isDisabledDeclare">-->
+<!--                        <el-radio :label="1" border>是</el-radio>-->
+<!--                        <el-radio :label="2"  border>否</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+            <fieldset class="form__group">
+                <legend>二、企业需求</legend>
+                <el-form-item label="1、拟常驻产业园人数（办公人数）" prop="officeStaff" class="el-text leftbox">
+                    <el-input placeholder="办公人数"
+                              v-model="formData.officeStaff"
+                              clearable>
+                    </el-input>
+
+                </el-form-item>
+                <el-form-item label="2、需要场地面积（平方米）" prop="siteArea" class="el-text rightbox">
+                    <el-input placeholder="场地面积"
+                              v-model="formData.siteArea"
+                              clearable></el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <el-form-item label="3、场地特殊需求" prop="siteDemand">
+                    <el-input  style="width: 100%;min-height: 200px"
+                               type="textarea"
+                               v-model="formData.siteDemand"
+                               placeholder="请填写场地特殊需求（网络宽带、用电、改造等）">
+                    </el-input>
+                </el-form-item>
+                                <el-form-item label="4、需要产业园提供的服务" prop="service" class="el-text">
+                                    <el-input  style="width: 100%;min-height: 200px"
+                                               type="textarea"
+                                               v-model="formData.service"
+                                               placeholder="请填写需要产业园提供的服务（如：科技政策、法律顾问、知识产权、投融资等）">
+                                    </el-input>
+
+                                </el-form-item>
+
+            </fieldset>
+<!--            <fieldset class="form__group">-->
+<!--                <legend>三、上传附件</legend>-->
+<!--                <el-form-item class="el-text " label="1、营业执照副本" prop="this.businessLicense">-->
+<!--                    <div-->
+<!--                            v-if="this.businessLicense!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFileLoad}"-->
+<!--                            :style="{backgroundImage:businessLicense?'url('+businessLicense+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="businessLicense"-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label>-->
+<!--                        <ly-upload-->
+<!--                                :exp="{type: 'Photo'}"-->
+<!--                                @upstart="file4"-->
+<!--                                @success='cimgUploadSuccess'-->
+<!--                                style="position: absolute;right: 10000px;"-->
+<!--                                type='file'-->
+<!--                                :header='uploadHeader'-->
+<!--                                :url='fileUploadUrl'-->
+<!--                                :data='uploadData'-->
+<!--                                accept="image/*"-->
+<!--                        >-->
+<!--                        </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}" >上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i>-->
+<!--                    </label>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item class="el-text " label="2、法人代表身份证正反面或法人代表和代理人身份证正反面及委托授权书"-->
+<!--                              prop="person">-->
+<!--                        <el-radio-group v-model="formData.person" >-->
+<!--                            <el-radio :label="1"  border >法人</el-radio>-->
+<!--                            <el-radio :label="2"  border>法人代表</el-radio>-->
+<!--                        </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+<!--                <fieldset class="form__group" v-if="formData.person==1">-->
+<!--                <el-form-item label="身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl1!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile1Load}"-->
+<!--                            :style="{backgroundImage:attachmentIdUrl1?'url('+attachmentIdUrl1+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl1 "-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                        <label><ly-upload-->
+<!--                                :exp="{type: 'mainPhoto'}"-->
+<!--                                @upstart="file1"-->
+<!--                                @success='cimgUploadSuccess'-->
+<!--                                style="position: absolute;right: 10000px;"-->
+<!--                                type='file'-->
+<!--                                :header='uploadHeader'-->
+<!--                                :url='fileUploadUrl'-->
+<!--                                :data='uploadData'-->
+<!--                                accept="image/*"-->
+<!--                        >-->
+<!--                        </ly-upload>-->
+<!--                            <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                            <br>-->
+<!--                            <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+
+<!--                </el-form-item>-->
+<!--                <el-form-item label="身份证背面" class="rightbox" prop="this.attachmentIdUrl2">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl2!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile2Load}"-->
+<!--                            :style="{backgroundImage: attachmentIdUrl2?'url('+attachmentIdUrl2+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl2 "-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'secrecy'}"-->
+<!--                            @upstart="file2"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+<!--            <fieldset class="form__group" v-if="formData.person==2">-->
+<!--                <el-form-item label="代理人身份证正面"  class="leftbox clear" prop="this.attachmentIdUrl1">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl1!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile1Load}"-->
+<!--                            :style="{backgroundImage: attachmentIdUrl1?'url('+attachmentIdUrl1+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl1"-->
+<!--                            class="opacityZero"-->
+<!--                    ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'mainPhoto'}"-->
+<!--                            @upstart="file1"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+
+<!--                </el-form-item>-->
+<!--                <el-form-item label="代理人身份证背面" class="rightbox" prop="this.attachmentIdUrl2">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl2!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile2Load}"-->
+<!--                            :style="{backgroundImage:attachmentIdUrl2?'url('+attachmentIdUrl2+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl2"-->
+<!--                            class="opacityZero" ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'secrecy'}"-->
+<!--                            @upstart="file2"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="委托授权书" class="leftbox" prop="this.attachmentIdUrl3">-->
+<!--                    <div-->
+<!--                            v-if="this.attachmentIdUrl3!==''"-->
+<!--                            class="head"-->
+<!--                            v-viewer-->
+<!--                            :class="{loading: isFile3Load}"-->
+<!--                            :style="{backgroundImage: attachmentIdUrl3?'url('+attachmentIdUrl3+')':''}"-->
+<!--                    ><img-->
+<!--                            :src="attachmentIdUrl3 "-->
+<!--                            class="opacityZero" ></div>-->
+<!--                    <div v-else></div>-->
+<!--                    <label><ly-upload-->
+<!--                            :exp="{type: 'certificate'}"-->
+<!--                            @upstart="file3"-->
+<!--                            @success='cimgUploadSuccess'-->
+<!--                            style="position: absolute;right: 10000px;"-->
+<!--                            type='file'-->
+<!--                            :header='uploadHeader'-->
+<!--                            :url='fileUploadUrl'-->
+<!--                            :data='uploadData'-->
+<!--                            accept="image/*"-->
+<!--                    >-->
+<!--                    </ly-upload>-->
+<!--                        <span class="exbtn" :class="{Hide:isShow}">上传</span>-->
+<!--                        <br>-->
+<!--                        <i :class="{Hide:isShow}">上传图片大小不能超过1MB</i></label>-->
+<!--                </el-form-item>-->
+<!--            </fieldset>-->
+            <div class="form__submit" style="margin-left: 395px">
+                <p aria-live="assertive" class="form__validation" data-validation="submit" role="alert"></p>
+                <!--                <button class="button" @click="submit()" id="save">提交</button>-->
+                <el-button :class="{bgcolor:isActive}" :loading="false" @click="keep('formData')"
+                           style="width: 160px;font-size: 18px" type="primary">保存
+                </el-button>
+                <el-button @click="ApplySubmit('formData')" type="primary" :loading="false" style="width: 160px;font-size: 18px" :class="{bgcolor:isActive}">提交</el-button>
+            </div>
+
+        </el-form>
+    </div>
+    <web-footer></web-footer>
+</div>
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/enterpark.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+</body>
+<style>
+    .el-textarea__inner{
+        min-height: 200px!important;
+    }
+</style>
+</html>

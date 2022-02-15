@@ -72,31 +72,32 @@ require(['/common/js/require.config.js'], function () {
                             cooperation: '',//合作形式
                             isSecrecy: 1,//以上是否涉及保密项目
                             proposal: '',//企业发展中的问题、困难或对两江新区的建议
-
+                            listing: '',//科创版上市计划
                             delFlag: '0',
-                            version: '0'
+                            version: '0',
+                            isSubmit:2,
                         },
+
                         isActive: false,
                         isClose:false,
-                        isSubmit:'',
                         regionList: [{
-                            value: '01',
+                            value: '水土',
                             label: '水土'
                         }, {
-                            value: '02',
+                            value: '鱼复',
                             label: '鱼复'
                         }, {
-                            value: '03',
+                            value: '龙兴',
                             label: '龙兴'
                         }, {
-                            value: '04',
+                            value: '照母山片区',
                             label: '照母山片区'
                         }, {
-                            value: '05',
+                            value: '寸滩保税港',
                             label: '寸滩保税港'
                         },
                             {
-                                value: '06',
+                                value: '其他',
                                 label: '其他'
                             }],
                         rules: {
@@ -391,6 +392,9 @@ require(['/common/js/require.config.js'], function () {
                                 },
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                             ],
+                            listing: [
+                                {required:true, message: '请填写科创版上市计划，没有则填写无',trigger: 'blur'}
+                            ],
                             proposal: [
                                 {required: true, message: '请填写企业发展建议，没有则填写无',trigger: 'blur'}
                                 // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
@@ -398,6 +402,7 @@ require(['/common/js/require.config.js'], function () {
                             cooperation: [
                                 {required:true, message: '请填写合作方式，没有则填写无',trigger: 'blur'}
                             ],
+
                         },
 
                     }
@@ -409,12 +414,23 @@ require(['/common/js/require.config.js'], function () {
                     'tag': httpVueLoader('/style/components/tag.vue')
                 },
                 created() {
+                    // this.$alert('本次调查问卷已结束，感谢您的关注', '提示', {
+                    //     confirmButtonText: '确定',
+                    //     center: true,
+                    //     callback() {
+                    //         window.location.href = "/index.html"
+                    //     }
+                    // });
+                    // window.location.href='https://www.kj01.cn/test.html'
                     this.getData()
                 },
                 methods: {
                     getData() {
                         indexApi.selectQuestionnaire().then((res) => {
-                            if (res.code == 'rest.success' && res.result) {
+                            if(res.code !== 'rest.success'){
+                                window.location.href = "/common/login.html?back=/test.html";
+                            }
+                           if (res.code == 'rest.success' && res.result) {
                                 this.formData = res.result
                                 if (res.result.isJoinDepository == 1) {
                                     this.isDisabledPlan = true;
@@ -431,6 +447,7 @@ require(['/common/js/require.config.js'], function () {
                         })
                     },
                     keep() {
+                        this.formData.isSubmit = 0
                         indexApi.submit(this.formData).then((res) => {
                             if (res.code == 'rest.success') {
                                 this.$notify.success({
@@ -442,8 +459,13 @@ require(['/common/js/require.config.js'], function () {
                                     window.location.href = "/test.html";
                                 }, 2000);
                             } else {
-                                this.$dialog.showToast('系统错误');
-
+                                this.$notify.error({
+                                    title: '提示！',
+                                    message: '请先登录!'
+                                });
+                                setTimeout(function () {
+                                    window.location.href = "/common/login.html?back=/test.html";
+                                }, 1000);
                             }
                         });
                     },
@@ -476,8 +498,13 @@ require(['/common/js/require.config.js'], function () {
                                                 window.location.href = "/test.html";
                                             }, 2000);
                                         } else {
-                                            this.$dialog.showToast('系统错误');
-
+                                            this.$notify.error({
+                                                title: '提示！',
+                                                message: '请先登录!'
+                                            });
+                                            setTimeout(function () {
+                                                window.location.href = "/common/login.html?back=/test.html";
+                                            }, 1000);
                                         }
                                     });
                                 } else {

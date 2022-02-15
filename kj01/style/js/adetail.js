@@ -30,6 +30,7 @@ require(['/common/js/require.config.js'], function () {
                         month: 0,
                         year: 0
                     },
+                    dataUrl:'',
                     activeNowTime: '',
                     selectIndex: 0,
                     dayResultList: [],
@@ -67,6 +68,8 @@ require(['/common/js/require.config.js'], function () {
                 },
                 created: function () {
                     this.initData()
+                    this.dataUrl = this.$utils.getReqStr('act')
+                   console.log(this.dataUrl,'000')
                 },
                 methods: {
                     initData: function () {
@@ -76,6 +79,8 @@ require(['/common/js/require.config.js'], function () {
                         let dd = d.getDate()
                         this.saasId = localStorage.getItem('saasId');
                         var id = this.$utils.getReqStr('id')
+                        var aUrl=window.location.href
+                        var str = aUrl.split("/").pop().replace(/(^active)|(\.\S+$)/g,"");
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                         this.calendar = {
                             days: [],
@@ -87,7 +92,12 @@ require(['/common/js/require.config.js'], function () {
                             year: dy
                         }
                         this.activeNowTime = [dy, dm + 1, dd].map(this.formatNumber).join('/')
-                        id && this.getDetailInfo(id) && this.getRecommendById(id) && this.getEvaluateById(id) && this.createDays();
+                        if(id){
+                            id && this.getDetailInfo(id) && this.getRecommendById(id) && this.getEvaluateById(id) && this.createDays();
+                        }
+                        if(!id){
+                            str && this.getDetailInfo(str) && this.getRecommendById(str) && this.getEvaluateById(str) && this.createDays();
+                        }
                         this.qrcodeUrl = httpUrl.baseUrl + '/active/getWxacode?id=' + id;
                     },
                     getDetailInfo: function (id) {
@@ -385,11 +395,16 @@ require(['/common/js/require.config.js'], function () {
                                             this.$dialog.showToast("您没有报名该活动，不可观看直播！")
                                         }
                                     }
+                                    if(this.dataUrl!==null){
+                                        window.location.href = '/infrom.html?id=' + this.dataUrl;
+                                    }
                                 }
+
                             } else {
                                 window.location.href = '/common/login.html';
                             }
                         }
+
                     },
 
                     //委托举办活动信息收集

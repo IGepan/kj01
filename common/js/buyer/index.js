@@ -27,7 +27,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         hotList: [],
         hotType: '105',
         policyList: [],
-        isNotSite: true
+        isNotSite: true,
+        isSite:false,
+          siteUrl: ''
       },
       filters: {
         filtersTips: function (v, evaluated) {
@@ -62,6 +64,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         $(".orderclick").click(function () {
           $(this).addClass("active").siblings(".orderclick").removeClass("active");
         });
+        var url = window.location.href
+        if (url.indexOf('/site/') > 0) {
+          this.isSite=true
+        }
       },
       components: {
         'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
@@ -84,6 +90,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var vm = this;
           if (url.indexOf('/site/') > 0) {
             vm.isNotSite = false;
+            vm.siteUrl = url.substring(0,url.indexOf("/common"))
+          }else{
+              vm.isNotSite = true
           }
         },
         // 订单信息
@@ -156,7 +165,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           this.getOrderList()
         },
         handleShowTips: function () {
-          this.$dialog.showToast('敬请期待');
+					window.open(location.origin+'/demand.html')
+          //this.$dialog.showToast('敬请期待');
         },
         // 获取用户信息
         getUserInfo: function(){

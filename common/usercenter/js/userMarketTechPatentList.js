@@ -9,7 +9,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
-
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
             window.vueDom = new Vue({
                 el: '#index_box',
                 mixins: [userCenter],
@@ -35,17 +35,18 @@ require(['/common/js/require.config.js'], function () {
                     _this.id = urlData.id;
 
                     _this.find_dictionary_type_list();
-                    //  
+                    //
 
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
-                    // 
+                    //
 
 
                     // 班级报名
@@ -53,7 +54,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href = this.$pathPrefix+'/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
@@ -111,7 +112,7 @@ require(['/common/js/require.config.js'], function () {
 
                     changePageView(item) {
                         var _this = this;
-                        window.location.href = "/common/usercenter/user_market_tech_patent_form.html?proId=" + _this.id + "&id=" + item.id;
+                        window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_patent_form.html?proId=" + _this.id + "&id=" + item.id;
                     },
 
 
@@ -199,7 +200,7 @@ require(['/common/js/require.config.js'], function () {
                         var type = command.num
                         var id = command.command.id
                         if (type == 0) {
-                            window.location.href = "/common/usercenter/user_market_tech_patent_form.html?proId=" + _this.id + "&id=" + id;
+                            window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_patent_form.html?proId=" + _this.id + "&id=" + id;
                         } else if (type == 1) {
                             console.log(2222)
 

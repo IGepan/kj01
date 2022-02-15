@@ -96,6 +96,7 @@
 }
 .article-file {
   cursor: pointer;
+    display: flex;
 }
 .article-file .svg-icon{
 	margin-right:10px;

@@ -11,6 +11,7 @@ require(['/common/js/require.config.js'], function () {
           code: '',
           password: ''
         },
+        dataUrl:'https://www.kj01.cn/',
         m_third_login: false,
         phoneErrorMsg: '',
         isShowDialog: false,
@@ -28,8 +29,10 @@ require(['/common/js/require.config.js'], function () {
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },
       created: function () {
+        // this.dataUrl = window.location.host
+        console.log(this.dataUrl,'yuming')
         // this.m_third_login = this.m_host.indexOf(document.location.host) === -1;
-        // console.log(this.m_host)
+
       },
       mounted: function () {
         var that = this;
@@ -302,7 +305,11 @@ require(['/common/js/require.config.js'], function () {
             var suffixUrl = url.substring(url.indexOf('?') + 1);
 
           }
-          location.href = this.$pathPrefix + '/common/reg.html' + '?' + suffixUrl
+          if (suffixUrl) {
+            location.href = this.$pathPrefix + '/common/reg.html' + '?' + suffixUrl;
+          }else {
+            location.href = this.$pathPrefix + '/common/reg.html'
+          }
         },
 
 
@@ -351,8 +358,9 @@ require(['/common/js/require.config.js'], function () {
                     vm.$utils.setCookie(dic.locaKey.USER_INFO, res.result);
                     // localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
                     localStorage.setItem(dic.locaKey.SAASID, res.result.saasId);
+                    console.log('--------------->',res.result)
+                    localStorage.setItem(dic.locaKey.USER_INFO,JSON.stringify(res.result))
                     console.log()
-
                     if (!referrer || referrer.indexOf('/reg.html') !== -1 || (referrer.indexOf('/seller') !== -1 && res.result.userTypes.indexOf('002') === -1) || referrer.indexOf('/common/login.html') !== -1 || referrer.indexOf('/forgotpwd.html') !== -1) {
                       console.log('进入页面过滤方法')
                       var url = this.window.location.href;
@@ -366,36 +374,41 @@ require(['/common/js/require.config.js'], function () {
                       }
                     }
                   // 判断是否有return url
-                  if(location.search.indexOf('back')>-1){
-                    toUrl = location.search.replace('?back=','')
-                  }
-                    window.location.href = toUrl
+
                     localStorage.removeItem("userPhone")
                     vm.$httpCom.webCommonUserPhone().then(function (res) {
                       console.log('phone', res)
                       if (res.code === true) {
+                        console.log('我在这')
                         localStorage.setItem("userPhone", res.data.phone);
                         vm.$utils.setCookie(dic.locaKey.YZW_USER_PHONE, res.data.phone);
                         var userPhone=localStorage.getItem("userPhone")
                         console.log(userPhone,'易智学堂登录')
                         if (userPhone !== null) {
-                          console.log("开始同步登录易智学堂")
-                          httpLogin.yzxtCheckPhone(userPhone).then(res => {
-                            // 判断是否有return url
-                            //判断是否是来自益智学堂
-                            var isSchool = false;
-                            if (location.search.indexOf('return') > -1) {
-                              // toUrl = location.search.replace('?return=', '')
-                              isSchool = true;
-                            }
-                            console.log(isSchool, 'isSchool')
-                            if (isSchool) {
-                              vm.handleSchool();
-                            }else {
-                              // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
-                              window.location.href = toUrl;
-                            }
-                          });
+                          if (location.host=='www.kj01.cn') {
+                            console.log("开始同步登录易智学堂")
+                            httpLogin.yzxtCheckPhone(userPhone).then(res => {
+                              // 判断是否有return url
+                              //判断是否是来自益智学堂
+                              var isSchool = false;
+                              if (location.search.indexOf('return') > -1) {
+                                // toUrl = location.search.replace('?return=', '')
+                                isSchool = true;
+                              }
+                              console.log(isSchool, 'isSchool')
+                              if (isSchool) {
+                                vm.handleSchool();
+                              } else {
+                                if (location.search.indexOf('back') > -1) {
+                                  debugger
+                                  toUrl = location.search.replace('?back=', '')
+                                }
+                                window.location.href = toUrl;
+                              }
+                            });
+                          }else {
+                            window.location.href = toUrl;
+                          }
                         }
                       }
                     }).catch(function (res) {
@@ -404,9 +417,9 @@ require(['/common/js/require.config.js'], function () {
                     console.log('--v--')
                     //同步登录注册易智学堂
                     var userPhone=localStorage.getItem("userPhone")
-                    console.log(userPhone,'易智学堂登录')
                     if (userPhone !== null) {
-
+                      console.log(userPhone,'易智学堂登录')
+                      if (location.host=='www.kj01.cn'){
                       httpLogin.yzxtCheckPhone(userPhone).then(res => {
                         // 判断是否有return url
                         //判断是否是来自益智学堂
@@ -418,11 +431,16 @@ require(['/common/js/require.config.js'], function () {
                         console.log(isSchool, 'isSchool')
                         if (isSchool) {
                           vm.handleSchool();
-                        }else {
-                          // document.cookie = 'userPhone=' + localStorage.getItem("userPhone");
+                        } else {
+                          if (location.search.indexOf('back') > -1) {
+                            toUrl = location.search.replace('?back=', '')
+                          }
                           window.location.href = toUrl;
                         }
                       });
+                      }else {
+                        window.location.href = toUrl;
+                      }
                     }
 
                   }

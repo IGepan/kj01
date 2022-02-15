@@ -1,0 +1,206 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="./style/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/answer.css">
+</head>
+<style>
+    .mdiv {
+        width: 1200px !important;
+        margin: 0 auto
+    }
+
+    .title-h2 {
+        text-align: center !important;
+        display: block;
+        margin: 30px 0
+    }
+    .leftbox{
+        float: left;
+        width: 50%;
+    }
+    .rightbox{
+        float: right;
+        width: 50%;
+    }
+    .form__group{
+        margin-top: 0!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-bottom: 10px;
+        /*margin-left: 10px;*/
+        vertical-align: bottom;
+    }
+    legend{
+        width: 100%;
+        font-size: 18px!important;
+        line-height: 36px!important;
+        color: #2c82f1;
+        font-weight: bold;
+        border-bottom:2px solid #2c82f1;
+        margin-bottom: 30px!important;
+    }
+    .el-tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        max-width: 100%;
+        height: auto!important;
+        word-wrap: break-word!important;
+    }
+    .disabled{
+        pointer-events: none;
+    }
+    .bgcolor{
+        background:#dddddd;
+        border-color: #dddddd;
+    }
+    .form{
+        border-radius: 20px;margin-bottom: 50px
+    }
+    .el-radio.is-bordered{
+        padding: 10px 20px 0 10px!important;
+    }
+    .el-form-item__error{
+        clear: both;
+    }
+
+</style>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <!--  <index-head :nav-index="8"></index-head>-->
+
+    <div class="mdiv" :class="{disabled:isActive}">
+        <h1 class="title-h2">易智网平台入驻申请表</h1>
+        <el-form :model="formData" :rules="rules" ref="form" id="contant-form" class="form" name="contact-form" >
+            <fieldset class="form__group" >
+                <legend>单位基本信息</legend>
+                <el-form-item label="单位名称" prop="companyName" class="el-text leftbox">
+                    <el-input placeholder="请输入单位名称"
+                              v-model="formData.companyName"
+                              clearable></el-input>
+                </el-form-item>
+                <!--                <el-form-item label="单位地址" prop="address" class="el-text rightbox">-->
+                <!--                    <el-input placeholder="请输入单位地址"-->
+                <!--                              v-model="formData.address"-->
+                <!--                              clearable></el-input>-->
+                <!--                </el-form-item>-->
+                <el-form-item label="联系人姓名" prop="contactName" class="el-text rightbox">
+                    <el-input placeholder="请输入联系人姓名"
+                              v-model="formData.contactName"
+                              clearable></el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+
+                <el-form-item label="联系人职务" prop="contactTitle" class="el-text leftbox ">
+                    <el-input placeholder="请输入联系人职务"
+                              v-model="formData.contactTitle"
+                              clearable></el-input>
+                </el-form-item>
+                <el-form-item label="联系人电话" prop="contactLandline" class="el-text rightbox ">
+                    <el-input placeholder="请输入联系电话"
+                              v-model="formData.contactLandline"
+                              maxlength="12"
+                              clearable></el-input>
+                </el-form-item>
+            </fieldset>
+            <fieldset class="form__group">
+                <!--                <el-form-item label="联系人微信号" prop="wechatNumber" class="el-text leftbox ">-->
+                <!--                    <el-input placeholder="请输入联系微信号"-->
+                <!--                              v-model="formData.wechatNumber"-->
+                <!--                              clearable></el-input>-->
+                <!--                </el-form-item>-->
+
+            </fieldset>
+            <!--            <fieldset class="form__group">-->
+            <!--                <el-form-item label="E-mail" prop="email" class="el-text leftbox">-->
+            <!--                    <el-input placeholder="email"-->
+            <!--                              v-model="formData.email"-->
+            <!--                              clearable></el-input>-->
+            <!--                </el-form-item>-->
+            <!--                <el-form-item label="服务类别" prop="service" class="el-text rightbox">-->
+            <!--                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl" style="width: 100%" v-if="formData.isSubmit==1" disabled>-->
+            <!--                        <el-option-->
+            <!--                                v-for="(item,index) in serviceList"-->
+            <!--                                :key="index"-->
+            <!--                                :label="item.label"-->
+            <!--                                :value="item.value">-->
+            <!--                        </el-option>-->
+            <!--                    </el-select>-->
+            <!--                    <el-select v-model="formData.service" placeholder="请选择服务" class="fl"  style="width: 100%" v-else>-->
+            <!--                        <el-option-->
+            <!--                                v-for="(item,index) in serviceList"-->
+            <!--                                :key="index"-->
+            <!--                                :label="item.label"-->
+            <!--                                :value="item.value">-->
+            <!--                        </el-option>-->
+            <!--                    </el-select>-->
+            <!--                </el-form-item>-->
+            <!--            </fieldset>-->
+            <!--            <fieldset class="form__group">-->
+            <!--                <el-form-item label="其他" prop="otherService" class="el-text" v-if="formData.service=='其他'">-->
+            <!--                    <el-input placeholder="请输入其他服务"-->
+            <!--                              v-model="formData.otherService"-->
+            <!--                              clearable></el-input>-->
+            <!--                </el-form-item>-->
+            <!--            </fieldset>-->
+            <!--            <fieldset class="form__group">-->
+            <!--                <el-form-item label="单位简介" prop="companyProfile" >-->
+            <!--                    <vue-ueditor-wrap v-model="formData.companyProfile" :config="ueditorConfig" class="exptextarea">-->
+            <!--                    </vue-ueditor-wrap>-->
+            <!--                </el-form-item>-->
+            <!--            </fieldset>-->
+
+            <!--            <fieldset class="form__group">-->
+            <!--                <el-form-item label="服务案例" prop="qualifications" >-->
+            <!--                    <vue-ueditor-wrap v-model="formData.qualifications" :config="ueditorConfig" class="exptextarea">-->
+            <!--                    </vue-ueditor-wrap>-->
+            <!--                </el-form-item>-->
+
+            <!--            </fieldset>-->
+
+            <div class="form__submit" style="margin-left: 395px">
+                <p aria-live="assertive" class="form__validation" data-validation="submit" role="alert"></p>
+                <!--                <button class="button" @click="submit()" id="save">提交</button>-->
+<!--                <el-button :class="{bgcolor:isActive}" :loading="false" @click="keep('formData')"-->
+<!--                           style="width: 160px;font-size: 18px" type="primary">保存-->
+<!--                </el-button>-->
+                <el-button @click="Submit('formData')" type="primary" :loading="false" style="width: 160px;font-size: 18px" >提交</el-button>
+            </div>
+
+        </el-form>
+    </div>
+    <web-footer></web-footer>
+</div>
+
+<script src="/common/js/libs/vue-ueditor-wrap.min.js"></script>
+<script src="/common/js/libs/require.js"></script>
+<script src="./style/js/mechanism.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+</body>
+<style>
+    .el-textarea__inner{
+        min-height: 200px!important;
+    }
+</style>
+</html>

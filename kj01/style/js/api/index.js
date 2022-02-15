@@ -27,6 +27,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         getGraphStatistics: function (param) {
             return Http.post(httpUrl.baseUrl + '/graph/statistics', param);
         },
+        // 分支基地介绍页
+        selectBasePage: function (param) {
+            return Http.post(httpUrl.baseUrl + '/yzwMap/selectCoordinateDetail',param);
+        },
         /**
          * 获取政策精要列表
          */
@@ -144,10 +148,57 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
             return Http.post(httpUrl.baseUrl + '/questionnaire/insert', param);
         },
         /**
+         *
+         * 新增修改技术经理人
+         */
+        brokerSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/excellent/insertOrEdit', param);
+        },
+        selectBroker: function () {
+            return Http.get(httpUrl.baseUrl + '/excellent/getBrokerDetail');
+        },
+        /**
+         *
+         * 新增修改技术机构
+         */
+        organSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/excellent/insertOrEditOrgan', param);
+        },
+        selectOrgan: function () {
+            return Http.get(httpUrl.baseUrl + '/excellent/getOrganDetail');
+        },
+        /**
          * 问卷调查回显
          */
         selectQuestionnaire: function () {
             return Http.get(httpUrl.baseUrl + '/questionnaire/selectByUserId');
+        },
+        // 入园申请表
+        ApplySubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/Merchants/insertOrUpdate', param);
+        },
+        /**
+         * 申请表回显
+         */
+        selectQuest: function () {
+            return Http.get(httpUrl.baseUrl + '/Merchants/detailInfo');
+        },
+        // 专家入驻
+        expertSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/proficient/insertOrUpdate',param);
+        },
+        // 回显
+        selectExpert: function () {
+            return Http.get(httpUrl.baseUrl + '/proficient/detailInfo');
+        },
+
+        // 服务机构
+        terraceSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/terrace/insertOrUpdate',param);
+        },
+        // 回显
+        selectTerrace: function () {
+            return Http.get(httpUrl.baseUrl + '/terrace/detailInfo');
         },
         /**
          *

@@ -7,7 +7,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
-
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
             window.vueDom = new Vue({
                 el: '#index_box',
                 mixins: [userCenter],
@@ -29,7 +29,7 @@ require(['/common/js/require.config.js'], function () {
                     "allTotal_2": 0, //总条数
                     "currentPage_2": 1,//当前页
                     "pageSize_2": 10,//每页显示条数
-
+                     isSite:false,
 
                     tabs: [
                         {
@@ -62,23 +62,31 @@ require(['/common/js/require.config.js'], function () {
                     this.search_receive_project_list();
                     this.search_receive_invitation_list();
                     this.search_receive_Entrust_list();
+                    var url = window.location.href
+                    if (url.indexOf('/site/') > 0) {
+                        this.isSite=true
+                    }
 
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
-
+                    // ? 打开日志列表
+                    openLogsList(item) {
+                        window.location.href = this.$pathPrefix+'/common/usercenter/user_market_logs_list.html?type=1&id=' + item.id;
+                    },
 
 
                     turnPageClassSign: function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href = this.$pathPrefix+'/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");

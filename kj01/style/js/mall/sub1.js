@@ -228,18 +228,23 @@ require(['/common/js/require.config.js'], function () {
                                 })
                                 this.activePriceAll=false
                                 this.pr.push(list)
+                                delete this.searchForm.pageNum
                             }
                             this.result = [...this.ser, ...this.pr]
+                            delete this.searchForm.pageNum
                         } else if (e === 'server') {
                             this.result = [...this.ser = [], ...this.pr]
                             this.isActive = e
                             vm.parentId=null;
                             // 清空type
                             delete this.searchForm.type
+
+
                         } else if (e === 'price') {
                             this.result = [...this.ser, ...this.pr = []]
                             // 清空价格
                             delete this.searchForm.price
+                            delete this.searchForm.pageNum
                         }
 
                         indexApi.selectMailGoods(this.searchForm).then(function (res) {
@@ -265,6 +270,7 @@ require(['/common/js/require.config.js'], function () {
                         // this.nameList.splice(index.name||index.display, 1)
                         if (index.value) {
                             this.searchForm.price = null
+                            delete this.searchForm.pageNum
                             vm.options.searchOpts[0].dictIInfos.forEach(function (item, dici) {
                                     item.selected = false
                             })
@@ -280,6 +286,8 @@ require(['/common/js/require.config.js'], function () {
                             })
                             this.searchForm.type = null
                             this.parentId=null
+                            delete this.searchForm.pageNum
+
                         }
                         this.getMailGoods();
                     },

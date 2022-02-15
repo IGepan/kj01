@@ -8,7 +8,7 @@ require(['/common/js/require.config.js'], function () {
                     saasId: '',
                     mailSite: {},
                     mailServiceTypeList: [],
-                    knowledgeTypeList:[],
+                    knowledgeTypeList: [],
                     incubationTypeList: [],
                     designTypeList: [],
                     checkTypeList: [],
@@ -26,7 +26,7 @@ require(['/common/js/require.config.js'], function () {
                     //精选服务
                     chooseGoods: [],
                     //最新入驻
-                    newShops:[],
+                    newShops: [],
                     goodFormData: {
                         chosenFlag: '',
                         pageSize: '',
@@ -50,49 +50,19 @@ require(['/common/js/require.config.js'], function () {
                     },
                     title: '',
                     userInfo: {},
-                    changeSelectStyle:'0',//索引样式
+                    changeSelectStyle: '0',//索引样式
                     isSeller: false,
-                    typeList:[],//板块列表
-                    goodList:[],//板块数据列表
-                    bgcolor:[
-                        'bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg7','bg6','bg8','bg9','bg10'
+                    typeList: [],//板块列表
+                    goodList: [],//板块数据列表
+                    // bgcolor: ['/mall/images/bg1.png', '/mall/images/bg2.png', '/mall/images/bg3.png', '/mall/images/bg4.png', '/mall/images/bg5.png', '/mall/images/bg6.png', '/mall/images/bg7.png',
+                    //     '/mall/images/bg8.png', '/mall/images/bg9.png',
+                    // ],
+                    bgList:['bg1','bg2','bg3','bg4','bg5','bg6','bg7','bg8','bg9',],
+                    url: ['/mall/images/icon1.png', '/mall/images/icon2.png', '/mall/images/icon3.png', '/mall/images/icon4.png', '/mall/images/icon5.png', '/mall/images/icon6.png', '/mall/images/icon7.png',
+                        '/mall/images/icon8.png', '/mall/images/icon9.png',
                     ],
-                    url:['/mall/images/icon1.png','/mall/images/icon2.png','/mall/images/icon3.png','/mall/images/icon4.png','/mall/images/icon5.png','/mall/images/icon6.png','/mall/images/icon7.png'],
-                    scrollList:[]
+                    scrollList: [],
                 },
-                // filters: {
-                //     formatPrice: function (flag, v, n, m) {
-                //         if (flag === '2') {
-                //             return '面议'
-                //         }if(flag === "3"){
-                //             return '查看价格详情'
-                //         }else {
-                //             if (typeof v !== 'undefined') {
-                //                 return (v / 10000).toFixed(2)
-                //             } else if (!v && !m) {
-                //                 return (n / 10000).toFixed(2)
-                //             } else {
-                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                //             }
-                //         }
-                //     },
-                //     formatPrice2: function (flag, v, n, m) {
-                //         if (flag === '2') {
-                //             return '面议'
-                //         }if(flag === "3"){
-                //             return '查看价格详情'
-                //         }else {
-                //             if (typeof v !== 'undefined') {
-                //                 return (v / 10000).toFixed(2)
-                //             } else if (!v && !m) {
-                //                 return (n / 10000).toFixed(2)
-                //             } else {
-                //                 return (n / 10000).toFixed(2) + '-' + (m / 10000).toFixed(2)
-                //             }
-                //         }
-                //     },
-                // },
-
                 // filters: {
                 //     formatPrice: function (flag, v, n, m) {
                 //         if (flag === '2') {
@@ -140,7 +110,7 @@ require(['/common/js/require.config.js'], function () {
                     var _this = this
                     this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                     this.saasId = localStorage.getItem('saasId');
-                    this.getMailSiteDetail();
+                    // this.getMailSiteDetail();
                     this.getAllServiceType();//服务分类
                     // 获取类型板块
                     _this.getMailServiceType(function (){
@@ -150,17 +120,18 @@ require(['/common/js/require.config.js'], function () {
                     );
                     //首页banner
                     this.getBanner('01', 'indexBanner', 10);
+                    //最新入驻
+                    this.goodFormData.pageSize = 8;
+                    this.goodFormData.orderBy = 'createTime desc';
+                    this.getNewShops();
                     //广告2
-                    this.getBanner('02', 'indexBanner02', 1);
+                    // this.getBanner('02', 'indexBanner02', 1);
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
                     this.getMailGoods('chooseGoods')
 
                     this.goodFormData = {}
-                    //最新入驻
-                    this.goodFormData.pageSize = 8;
-                    this.goodFormData.orderBy = 'createTime desc';
-                    this.getNewShops();
+
                     // //知识产权
                     this.goodFormData.pageSize = 10;
                     // this.goodFormData.type = '371977891599065088';
@@ -289,14 +260,14 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/common/seller/store_agreement.html";
                         }
                     },
-                    getMailSiteDetail: function () {
-                        var vm = this
-                        vm.$httpCom.mailSiteDetail().then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.mailSite = res.result
-                            }
-                        })
-                    },
+                    // getMailSiteDetail: function () {
+                    //     var vm = this
+                    //     vm.$httpCom.mailSiteDetail().then(function (res) {
+                    //         if (res.code === 'rest.success') {
+                    //             vm.mailSite = res.result
+                    //         }
+                    //     })
+                    // },
                     getAllServiceType: function () {
                         var vm = this
                         indexApi.mailServiceType().then(function (res) {
@@ -324,10 +295,10 @@ require(['/common/js/require.config.js'], function () {
                     getMailServiceData:function (idx) {
                         var vm = this
                         var item = vm.typeList[idx]
-                        indexApi.selectMailGoods({type: item.id,orderBy:'homePageFlag desc,createTime desc'}).then(function (res) {
+                        indexApi.selectMailGoods({type: item.id,orderBy:'homePageFlag desc,createTime desc',pageSize:6}).then(function (res) {
                             //设置数据列表
-                            item.goodList  =  res.result.list || []
                             item.total = res.result.total
+                            item.goodList  =  res.result.list || []
                             //判断是否循环
                             if(idx < vm.typeList.length - 1)vm.getMailServiceData(idx + 1)
 
@@ -371,6 +342,14 @@ require(['/common/js/require.config.js'], function () {
                     // },
                     getBanner: function (bannerType, key, pageSize) {
                         var vm = this
+                        // 初始化banner
+                        var initBanner = function () {
+                            // 设置轮播图高度
+                            $('#home-slider').css({
+                                height: $('.dropdown-menu-main').outerHeight() + 'px'
+                            })
+                            // });
+                        }
                         indexApi.selectBanner({bannerType: bannerType, pageSize: pageSize}).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.$data[key] = res.result
@@ -385,8 +364,15 @@ require(['/common/js/require.config.js'], function () {
                                             clickable: true,
                                         },
                                     });
-
+                                    // initBanner()
                                 })
+                                var img = new Image()
+                                img.src = res.result[0].path
+                                console.log(img.src,'获取图片')
+                                img.onload = function (){
+                                    console.log('图片加载完成')
+                                    initBanner()
+                                }
                             }
                         })
                     },
@@ -396,6 +382,16 @@ require(['/common/js/require.config.js'], function () {
                         indexApi.selectNewShops(this.goodFormData).then(function (res) {
                             if (res.code === 'rest.success') {
                                 vm.newShops = res.result;
+                                // setTimeout(function(){
+                                vm.$nextTick(function () {
+                                    $('#marquee-left').kxbdSuperMarquee({
+                                        isMarquee:true,
+                                        direction: 'left',
+                                        scrollDelay:30,
+                                        isEqual: false
+                                    });
+                                })
+
                             }
                         });
                     },
@@ -417,7 +413,7 @@ require(['/common/js/require.config.js'], function () {
                                         slidesPerView: 3,
                                       slidesPerColumn: 2,
                                       // slidesPerGroup: 3,
-                                        spaceBetween: 30,
+                                      //   spaceBetween: 30,
                                         // loop:true,
                                         navigation: {
                                             nextEl: '.item-next',

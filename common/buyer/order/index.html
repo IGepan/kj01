@@ -205,15 +205,18 @@
                 </div>
               </div>
             </div>
-            <div class="mt20 clear">
+
+            <div class="mt20 clear" v-if="cancelOrderForm.cancelReason==03">
               <div class="iptline fl">
                 <span class="fl mt5"><i>*</i>备注：</span>
                 <div class="inputContent">
                   <textarea data-valid="isNonEmpty||maxLength:500" data-error='备注不能为空||最大长度为500个字符'
-                    v-model="cancelOrderForm.cancelComment" class="required" cols="50" rows="10"></textarea><span
-                    class="vlt form_msg"></span>
+                            v-model="cancelOrderForm.cancelComment" class="required" cols="50" rows="10"></textarea><span
+                        class="vlt form_msg"></span>
                 </div>
               </div>
+            </div>
+            <div class="mt20 clear" v-else>
             </div>
             <div class="mt40 textcenter">
               <button class="alertbtn" type="button" :disabled="isSubmitDisabled" @click="saveCancelInfo">提交</button>

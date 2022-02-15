@@ -9,6 +9,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -49,7 +50,11 @@ require(['/common/js/require.config.js'], function () {
                         comment0: "0xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf",
                         comment1: "1xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf",
                         comment2: "1xxxxxxsadf视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材f视频材料视频材料视频材料视频材料fasdfsf"
-                    }
+                    },
+                    dialogTableVisible: false,
+                    textarea: "",
+                    textItemId: "",
+                    isSite:false,
                 },
                 provide: {
                     httpUser: httpUser,
@@ -62,28 +67,68 @@ require(['/common/js/require.config.js'], function () {
                     this.search_receive_project_list();
                     this.search_receive_invitation_list();
                     this.search_receive_Entrust_list();
+                    var url = window.location.href
+                    if (url.indexOf('/site/') > 0) {
+                        this.isSite=true
+                    }
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
+                    //打开日志弹窗
+                    addLogs(item) {
+                        console.log(item)
+                        let _this = this;
+                        _this.dialogTableVisible = true;
+                        _this.textItemId = item.id;
+                    },
 
+                    //提交日志
+                    commitLog() {
+                        let _this = this;
+                        let form = {
+                            "logText": _this.textarea,
+                            "requestId": _this.textItemId,
+                        }
+                        userCenterApi.zMBusinessLogRest(form).then(function (res) {
+                            console.log(res)
+                            if (!res.code) {
+                                _this.$message({
+                                    message: res.message,
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+                            _this.$message({
+                                message: "添加成功",
+                                type: 'success'
+                            });
+                            _this.dialogTableVisible = false;
+                            _this.textItemId = ""
+                            _this.textarea = ""
+                        })
+                    },
+
+                    // ? 打开日志列表
+                    openLogsList(item) {
+                        window.location.href =this.$pathPrefix+ '/common/usercenter/user_market_logs_list.html?id=' + item.id;
+                    },
 
                     // 班级报名
                     turnPageClassSign: function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href = this.$pathPrefix+'/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
                     },
-
-
 
 
                     // 翻页 成果
@@ -234,8 +279,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.allTotal_1 = datalist.total;
                         })
                     },
-
-
 
 
                     // 分页查询

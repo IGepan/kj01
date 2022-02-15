@@ -65,7 +65,7 @@ module.exports = {
       navs: [
         // {
         //   label: '首页',
-        //   url: '/poindex.html'
+        //   url: '/polist.html'
         // },
         {
           label: '政策惠',

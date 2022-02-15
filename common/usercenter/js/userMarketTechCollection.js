@@ -2,7 +2,7 @@
 
 require(['/common/js/require.config.js'], function () {
     require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom',
-        './userCenterApi/userCenterMarketTechAPI.js', '/style/js/api/technologyMarket.js'],
+            './userCenterApi/userCenterMarketTechAPI.js', '/style/js/api/technologyMarket.js'],
         function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom, userCenterApi, indexApi) {
 
 
@@ -10,6 +10,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -51,7 +52,8 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
 
@@ -59,7 +61,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href = '/common/login.html';
+                            window.location.href =this.$pathPrefix+ '/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
@@ -87,9 +89,7 @@ require(['/common/js/require.config.js'], function () {
                                 "order": "desc",
                                 "sort": "id",
                             },
-                            "payload": {
-
-                            }
+                            "payload": {}
                         }
                         console.log(form)
                         // 技术成果列表查询
@@ -120,11 +120,11 @@ require(['/common/js/require.config.js'], function () {
                     addFavorite: function (id) {
                         var _this = this;
                         var form =
-                        {
-                            "id": id,
-                            "favoriteType": 2,
-                            "delFlag": 1
-                        };
+                            {
+                                "id": id,
+                                "favoriteType": 2,
+                                "delFlag": 1
+                            };
                         indexApi.editZMFavorite(form).then(function (res) {
                             console.log(res)
                             if (!res.code) {
@@ -150,8 +150,6 @@ require(['/common/js/require.config.js'], function () {
                             console.log(_this.tech_collection_list)
                         })
                     },
-
-
 
 
                     // // 点击事件

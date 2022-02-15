@@ -4,9 +4,15 @@
 .headerBox {
     border-bottom: solid 1px #01c8f2;
 }
+.content{
+    overflow: hidden!important;
+    max-height: none!important;
+    height: auto!important;
+}
 .content .mdiv {
     padding: 40px 0;
     min-height:calc(100% - 540px);
+
 }
 .right{
 
@@ -28,7 +34,12 @@
     cursor: pointer;
 }
 .title.active{color: #30a9ee;background-color: #e3faff;}
-
+.title.active a{
+    color: #30a9ee!important;
+}
+.title a{
+    color: #333;
+}
 .sub-title {
     font-size: 18px;
     color: #222327;

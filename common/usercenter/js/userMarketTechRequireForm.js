@@ -8,6 +8,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             Vue.component('vue-ueditor-wrap', VueUeditorWrap);
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -30,7 +31,7 @@ require(['/common/js/require.config.js'], function () {
                     // sels: [],
                     // sysUnread: '',
                     // busUnread: '',
-
+                    areaList: [],
                     "intended_price_list": [
                         { "name": "金额", "value": 0 },
                         { "name": "面议", "value": 1 },
@@ -72,6 +73,8 @@ require(['/common/js/require.config.js'], function () {
                         "demandDes": "",
                         "technicalNorm": "",
                         "otherDes": "",
+                        "area": "",
+                        "companyName": "",
                     }, // 需求d对象
 
 
@@ -109,7 +112,7 @@ require(['/common/js/require.config.js'], function () {
                     // 查询下拉框字典
                     _this.find_dictionary_type_list();
 
-
+                    _this.selectArea();
                     // 查询树状
                     _this.findTechPatentTree("tag");
                     _this.findTechIndustryType("industryType");
@@ -128,10 +131,16 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
-
+                    //查询地区
+                    selectArea() {
+                        userCenterApi.selectAllArea().then(res => {
+                            this.areaList = res.result
+                        });
+                    },
                     ///////////查询三级级联////////
                     // 查询树状（标签）
                     findTechPatentTree: function (form) {
@@ -244,7 +253,18 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingle: function (index) {
                         var _this = this;
+                        let removeId = _this.textList[index].id
+                        console.log(_this.textList[index].id)
                         _this.textList.splice(index, 1);
+
+                        _this.secondOptions.forEach(function (item) {
+                            item.children.forEach(function (i) {
+                                if (i.id == removeId) {
+                                    i.active = false;
+                                }
+                            })
+                        })
+
                     },
                     // 关闭
                     closeAllLevel: function () {
@@ -323,7 +343,14 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingleIndustry: function (index) {
                         var _this = this;
+                        let removeId = _this.textIndustryList[index].id;
                         _this.textIndustryList.splice(index, 1);
+                        _this.secondIndustryOptions.forEach(function (item) {
+                            if (item.id == removeId) {
+                                item.active = false;
+                            }
+                        })
+
                     },
                     // 关闭
                     closeAllLevelIndustry: function () {
@@ -362,7 +389,7 @@ require(['/common/js/require.config.js'], function () {
                         form.tags = _this.tagList;
 
 
-                        // 转行业类型 
+                        // 转行业类型
                         if (_this.textIndustryList.length > 0 && typeof (_this.textIndustryList[0]) == "object") {
                             _this.industryList = [];
                             var industryForm = [];
@@ -391,7 +418,7 @@ require(['/common/js/require.config.js'], function () {
                                 _this.$dialog.showToast("提交成功");
                                 setTimeout(function () {
                                     // window.href = "/user_market_tech_achievements.html"
-                                    window.location.href = "/common/usercenter/user_market_tech_require.html"
+                                    window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require.html"
                                 }, 2000)
                             })
                         }
@@ -404,6 +431,10 @@ require(['/common/js/require.config.js'], function () {
 
                         if (!_this.$utils.validatesEmpty(form.title)) {
                             _this.$dialog.showToast("需求名称必填");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.companyName)) {
+                            _this.$dialog.showToast("单位名称必填");
                             return false;
                         }
                         if (form.demandIndustryType.length < 1) {
@@ -431,6 +462,10 @@ require(['/common/js/require.config.js'], function () {
 
                         if (!_this.$utils.validatesEmpty(form.cooperationMode)) {
                             _this.$dialog.showToast("合作方式必填");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.area)) {
+                            _this.$dialog.showToast("所属区县必填");
                             return false;
                         }
                         if (!_this.$utils.validatesEmpty(form.demandDes)) {

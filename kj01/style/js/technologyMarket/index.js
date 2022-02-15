@@ -115,7 +115,7 @@ require(['/common/js/require.config.js'], function () {
                 "current": 1,
                 "order": "desc",
                 "size": 4,
-                "sort": "id"
+                "sort": "create_time"
               },
               "payload": {
                 "certificationFlag": 2,

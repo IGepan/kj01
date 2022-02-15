@@ -47,34 +47,7 @@
 
         <div class="mdiv clear margin_bot_20 margin_top_20">
             <div class="fl user_market_box_fl bg_fff ">
-                <ul>
-                    <li><a href="/common/usercenter/user_market_auth_form.html"><i class="el-icon-s-check"></i> 资格认证</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_tech_achievements.html" class="active"><i
-                                class="el-icon-s-finance"></i>技术成果管理</a></li>
-                    <li><a href="/common/usercenter/user_market_tech_require.html"><i class="el-icon-s-help"></i>
-                            技术需求管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_tech_transfer.html"><i class="el-icon-s-platform"></i>
-                            技转业务管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_business_management.html"><i
-                                class="el-icon-s-cooperation"></i>
-                            我的业务管理</a>
-                    </li>
-                    <li><a href="/common/usercenter/user_market_business_order.html"><i class="el-icon-s-order"></i>
-                            我的订单</a>
-                    </li>
-<!--                    <li><a href="/technologySchool/index.html" target="_blank"><i class="el-icon-s-custom"></i>-->
-<!--                            经纪人培训管理</a></li>-->
-<!--                    <li><a @click="turnPageClassSign"><i class="el-icon-s-management"></i>-->
-<!--                            班级报名管理</a></li>-->
-                    <li><a href="https://study.kj01.cn/uc/index" target="_blank"><i class="el-icon-s-custom"></i>
-                        我的培训</a></li>
-                    <li><a href="/common/usercenter/user_market_tech_collection.html"><i class="el-icon-s-claim"></i>
-                            收藏</a>
-                    </li>
-                </ul>
+                <user-tech-menu :type='1'></user-tech-menu>
             </div>
             <div class="fl user_market_box_fr bg_fff border_top_70adf1">
                 <div class="user_market_title border_bot_f2f2f2">
@@ -112,7 +85,7 @@
                                     style="visibility: hidden;">*</i>技术领域：</span>
                             <el-input v-model="patentForm.patentArea" class="width_100_115 fl"
                                 placeholder="请输入技术领域,最大50字符" maxlength="50">
-
+                            </el-input>
                         </div>
                     </div>
                     <div class="clear">
@@ -159,6 +132,7 @@
                             <i class="color_red" style="visibility: hidden;">*</i>简要说明：</span>
                         <el-input type="textarea" :rows="9" v-model="patentForm.pubAbstract" class="width_100_115 fl"
                             placeholder="请输摘要/简要说明,最大500字符" maxlength="500">
+                        </el-input>
                             <div class="width_100_115 fl">
                                 <!-- <vue-ueditor-wrap v-model="patentForm.pubAbstract" :config="ueditorConfig"
                                 class="exptextarea">

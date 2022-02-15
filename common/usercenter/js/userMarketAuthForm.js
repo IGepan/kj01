@@ -1,14 +1,15 @@
 //   JavaScript Document
 
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver','./userCenterApi/userCenterMarketTechAPI.js'],
-        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom,fileSaver, userCenterApi) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'jqValidate', 'httpUrl', 'jqSelect', 'httpCom', 'fileSaver', './userCenterApi/userCenterMarketTechAPI.js'],
+        function ($, Vue, dic, httpVueLoader, userCenter, httpUser, jqValidate, httpUrl, jqSelect, httpCom, fileSaver, userCenterApi) {
 
             Vue.component('ly-select', httpVueLoader('/common/components/select.vue'));
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             Vue.component('vue-ueditor-wrap', VueUeditorWrap);
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -25,6 +26,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     // "brokerPlatform_additionalService": "2",
                     //  技术经纪人
+                    'actionUrl': httpUrl.uploadimg_url + '/file/upload',
                     "brokerPlatform": {
                         "academicDegree": "",
                         "additionalService": "",
@@ -38,13 +40,19 @@ require(['/common/js/require.config.js'], function () {
                         "brokerSchool": "",
                         "budget": "",
                         "id": "",
+                        "work": "",//工作单位
+                        "certificateId": "",//职务
+                        "issuingUnit": "",
+                        "certificatePic": "",//证书复印件
+                        "post": "",
                         "industryArea": "",
                         "industryType": [],
                         "logo": "",
                         "tags": [],
                         "techNo": "",
-                    },
 
+                    },
+                    'fileList':[],
                     // 转移机构
                     "transferAgencyForm": {
                         "organName": "",
@@ -65,7 +73,7 @@ require(['/common/js/require.config.js'], function () {
                         "id": "",
 
                     },
-
+                    'pic':'',
                     "hasFormData": false,
                     "hasFormDataJudg": false,
 
@@ -192,6 +200,7 @@ require(['/common/js/require.config.js'], function () {
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
                     'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 computed: {
 
@@ -242,7 +251,7 @@ require(['/common/js/require.config.js'], function () {
                         if (this.userInfo && this.userInfo.userName) {
                             this.myCertificateBrokerDetails(); // 查询经纪人证书详情
                         } else {
-                            window.location.href = '/common/login.html';
+                            window.location.href =this.$pathPrefix+'/common/login.html';
                         }
                     },
 
@@ -253,13 +262,13 @@ require(['/common/js/require.config.js'], function () {
                     //下载证书图片
                     getZmImg(path) {
                         // var uuid = "cms"+this.getDay()+ this.getHours()+ this.getMinutes()+this.getSeconds()+this.getMilliseconds()+ Math.round(Math.random() * 10000);
-                       var imgUrl = httpUrl.baseSchoolOutUrl + path;
+                        var imgUrl = httpUrl.baseSchoolOutUrl + path;
                         // this.download(imgUrl,1)
                         var lastIndex = path.lastIndexOf("/");
                         var imgName = path.substring(lastIndex);
 
-                        userCenterApi.getZmImg({imgUrl: imgUrl}).then( function (res){
-                           saveAs(res,"证书"+imgName,{ type: 'image/png;charset=utf-8' })
+                        userCenterApi.getZmImg({ imgUrl: imgUrl }).then(function (res) {
+                            saveAs(res, "证书" + imgName, { type: 'image/png;charset=utf-8' })
                         });
 
 
@@ -430,8 +439,17 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingle: function (index) {
                         var _this = this;
+                        let removeId = _this.textList[index].id
                         _this.textList.splice(index, 1);
                         _this.tagList.splice(index, 1);
+
+                        _this.secondOptions.forEach(function (item) {
+                            item.children.forEach(function (i) {
+                                if (i.id == removeId) {
+                                    i.active = false;
+                                }
+                            })
+                        })
 
                     },
                     // 关闭
@@ -511,8 +529,14 @@ require(['/common/js/require.config.js'], function () {
                     // 移除单个
                     removeSingleIndustry: function (index) {
                         var _this = this;
+                        let removeId = _this.textIndustryList[index].id;
                         _this.textIndustryList.splice(index, 1);
                         _this.industryList.splice(index, 1);
+                        _this.secondIndustryOptions.forEach(function (item) {
+                            if (item.id == removeId) {
+                                item.active = false;
+                            }
+                        })
                     },
                     // 关闭
 
@@ -628,7 +652,7 @@ require(['/common/js/require.config.js'], function () {
                             //     this.$message({
                             //       type: 'info',
                             //       message: '取消输入'
-                            //     });       
+                            //     });
                         });
                     },
                     //   上传成功
@@ -637,7 +661,35 @@ require(['/common/js/require.config.js'], function () {
                     //       console.log(this.$refs.bgImg)
                     //       this.$refs.bgImg.style.backgroundImage = 'url(' + url + ')';
                     //   },
-
+                    successFile(f) {
+                        if(this.fileList.length>0){
+                            this.fileList = []
+                            this.fileList.push({
+                                name:f.result.fileName,
+                                id:f.result.id,
+                                url:''});
+                            this.brokerPlatform.certificatePic = f.result.id;
+                        }else{
+                            this.fileList.push({
+                                name:f.result.fileName,
+                                id:f.result.id,
+                                url:''});
+                            this.brokerPlatform.certificatePic = f.result.id;
+                        }
+                    },
+                    handleRemove(f) {
+                        console.log(f,"执行删除")
+                        userCenterApi.deleteFileById({id: f.id}).then(res => {
+                            if (res.code === 'rest.success') {
+                                this.$message.success('删除成功')
+                                this.fileList = []
+                            }
+                        });
+                    },
+                    handlePreview(f) {
+                        console.log(f)
+                        window.open(f.url)
+                    },
                     imgUploadSuccess: function (id, url, type) {
                         this.headImg = id;
                         console.log(url)
@@ -664,7 +716,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.tagList = idForm;
                         }
 
-
                         // 转标签
                         if (_this.tagList.length > 0 && typeof (_this.tagList[0]) == "object") {
                             var idForm = [];
@@ -687,7 +738,8 @@ require(['/common/js/require.config.js'], function () {
                         var form = _this.brokerPlatform;
                         form.id = _this.proId ? _this.proId : ""; // id
                         form.logo = _this.headImg; // 个人封面
-
+                        console.log(_this.fileList,'----')
+                        // form.certificatePic = this.fileList[0].id
                         form.tags = _this.tagList;
                         form.industryType = _this.industryList;
                         form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
@@ -718,7 +770,7 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-                    //   提交经纪人时 非空验证 
+                    //   提交经纪人时 非空验证
                     noEmptyInputAuth: function (form) {
                         var _this = this;
 
@@ -763,11 +815,26 @@ require(['/common/js/require.config.js'], function () {
                             return false;
                         }
 
-                        if (!_this.$utils.validatesEmpty(form.graduationYear)) {
-                            _this.$dialog.showToast("从业年限必填");
+                        if (!_this.$utils.validatesEmpty(form.certificateId)) {
+                            _this.$dialog.showToast("证书编号必填");
                             return false;
                         }
-
+                        if (!_this.$utils.validatesEmpty(form.issuingUnit)) {
+                            _this.$dialog.showToast("发证单位必填");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.certificatePic)) {
+                            _this.$dialog.showToast("请上传证书复印件");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.post)) {
+                            _this.$dialog.showToast("职务必填");
+                            return false;
+                        }
+                        if (!_this.$utils.validatesEmpty(form.work)) {
+                            _this.$dialog.showToast("工作单位必填");
+                            return false;
+                        }
 
                         if (form.industryType.length < 1) {
                             _this.$dialog.showToast("行业类型必填");
@@ -782,8 +849,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.$dialog.showToast("个人封面必填");
                             return false;
                         }
-
-
                         return true;
 
                     },
@@ -791,12 +856,12 @@ require(['/common/js/require.config.js'], function () {
                     isEmailsValue: function (val) {
                         //   -1就是没有
                         if (val.indexOf("@") == -1) {
+                            this.$dialog.showToast("请输入有效邮箱");
                             return false;;
                         } else {
                             return true;
                         }
                     },
-
 
                     //   电话号码验证
                     isPhoneValue: function (val) {
@@ -980,18 +1045,117 @@ require(['/common/js/require.config.js'], function () {
                             var data = res.data;
 
                             console.log("data", data)
-                            if (!_this.$utils.validatesEmpty(data.info)) {
-                                _this.hasFormData = false;  // 判断显示是否显示输入框或者文本框
-                                // _this.hasFormDataJudg = false;  //没有数据，第一次填写
-                                _this.myCertificagetUserInfo();//用户信息
-                            } else {
-                                _this.hasFormData = true;
+                            if(res.data.info!==null){
+                                if (!_this.$utils.validatesEmpty(data.info)) {
+                                    _this.hasFormData = false;  // 判断显示是否显示输入框或者文本框
+                                    // _this.hasFormDataJudg = false;  //没有数据，第一次填写
+                                    _this.myCertificagetUserInfo();//用户信息
+                                } else {
+                                    _this.hasFormData = true;
+                                    _this.certification_type = data.type;
+                                    _this.proId = data.info.id
+                                    var dataForm = data.info;
+                                    if (dataForm.file) {
+                                        _this.pic = dataForm.file.fileName;
+                                        console.log(dataForm.file,"看这里")
+                                        _this.fileList.push({
+                                            name:dataForm.file.fileName,
+                                            id:dataForm.file.id,
+                                            url:httpUrl.fileShowUrl + '/resource/' + dataForm.file.filePath
+                                        })
+                                    }
+                                    // this.fileList[0].name= dataForm.file.fileName
+                                    // this.fileList[0].id=dataForm.file.id
+                                    // this.fileList[0].url= httpUrl.fileShowUrl + '/resource/' + dataForm.file.path
+                                    // id转字典文字
+                                    dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
+                                    dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
+                                    dataForm.investorType_display = _this.forEachDisplay(_this.investor_type_list, dataForm.investorType);
+                                    dataForm.financeStage_display = _this.forEachDisplay(_this.finance_stage_list, dataForm.financeStage);
+                                    dataForm.institutionalQuota_display = _this.forEachDisplay(_this.institutional_quota_list, dataForm.institutionalQuota);
 
-                                _this.certification_type = data.type;
-                                _this.proId = data.info.id
+                                    // 行业类型
+                                    _this.certification_list = dataForm;
+                                    if (_this.$utils.validatesEmpty(dataForm.industryType)) {
 
-                                var dataForm = data.info;
+                                        if (dataForm.industryType.length > 0 && typeof (dataForm.industryType[0]) == "object") {
+                                            _this.textIndustryList = dataForm.industryType;
+                                            _this.industryList = dataForm.industryType;
+                                        }
+                                    }
+                                    // 标签
+                                    if (_this.$utils.validatesEmpty(dataForm.tags)) {
+                                        if (dataForm.certificationFlag == 1 || dataForm.tags.length > 0) {
+                                            var textBox = [];
+                                            console.log(dataForm.tags)
+                                            if (_this.$utils.validatesEmpty(dataForm.tags)) {
+                                                dataForm.tags.forEach(element => {
+                                                    textBox.push(element.name)
+                                                });
+                                            }
 
+                                        }
+
+                                        if (dataForm.tags.length > 0 && typeof (dataForm.tags[0]) == "object") {
+                                            _this.tagList = dataForm.tags;
+                                            _this.textList = dataForm.tags;
+                                        }
+
+                                    }
+                                    // 附加服务
+                                    console.log("dataForm.additionalService", dataForm.zMTechBrokerAdditionalList)
+                                    if (_this.$utils.validatesEmpty(dataForm.zMTechBrokerAdditionalList) && dataForm.zMTechBrokerAdditionalList.length > 0) {
+                                        dataForm.additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
+                                        // brokerPlatform_additionalService = (dataForm.zMTechBrokerAdditionalList[0].additionalService) + "";
+                                        dataForm.additionalService_display = _this.forEachDisplay(_this.additional_service_list, dataForm.zMTechBrokerAdditionalList[0].additionalService);
+                                    }
+
+                                    _this.certification_noPassReason = data.noPassReason;
+                                    if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                        _this.find_img_file_url_query(dataForm.logo);
+                                    }
+
+                                    if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                        _this.headImg = dataForm.logo;
+                                    }
+                                    if (_this.$utils.validatesEmpty(dataForm.certificatePic)) {
+                                        _this.fileList.id = dataForm.certificatePic;
+                                    }
+
+                                    if (_this.certification_type == 'TECH_BROKER') {
+                                        _this.authentication_type = 1;
+                                        _this.brokerPlatform = dataForm;
+                                    } else if (_this.certification_type == 'TECH_BROKER_REMOTE') {
+
+                                        _this.authentication_type = 2;
+                                        _this.brokerPlatform = dataForm;
+
+                                    } else if (_this.certification_type == 'TECH_ORGAN') {
+                                        _this.authentication_type = 3;
+                                        _this.transferAgencyForm = dataForm;
+
+                                    } else if (_this.certification_type == 'INVESTMENT') {
+                                        _this.authentication_type = 4;
+                                        _this.InvestmentForm = dataForm;
+                                    }
+
+                                    console.log("_this.authentication_type", _this.authentication_type)
+                                    console.log("_this.textIndustryList", _this.textIndustryList)
+                                }
+                            }else {
+                                _this.getFrom()
+                            }
+
+                        })
+                    },
+                    getFrom:function (){
+                        var _this = this;
+                        userCenterApi.get_edit_form().then(function (res) {
+                            if(res.data!==null){
+                            console.log(res.data,'数据');
+                                _this.brokerPlatform = res.data
+                                _this.proId = res.data.id
+                                var dataForm = res.data
                                 // id转字典文字
                                 dataForm.academicDegree_display = _this.forEachDisplay(_this.academic_degree_list, dataForm.academicDegree);
                                 dataForm.agentType_display = _this.forEachDisplay(_this.agent_type_list, dataForm.agentType);
@@ -1001,29 +1165,30 @@ require(['/common/js/require.config.js'], function () {
 
                                 // 行业类型
                                 _this.certification_list = dataForm;
-                                if (_this.$utils.validatesEmpty(dataForm.industryType)) {
+                                _this.certification_list.logo = httpUrl.fileShowUrl + '/resource/' + dataForm.path
+                                if (_this.$utils.validatesEmpty(dataForm.industryTypeDisplay)) {
 
-                                    if (dataForm.industryType.length > 0 && typeof (dataForm.industryType[0]) == "object") {
-                                        _this.textIndustryList = dataForm.industryType;
-                                        _this.industryList = dataForm.industryType;
+                                    if (dataForm.industryTypeDisplay.length > 0 && typeof (dataForm.industryTypeDisplay[0]) == "object") {
+                                        _this.textIndustryList = dataForm.industryTypeDisplay;
+                                        _this.industryList = dataForm.industryTypeDisplay;
                                     }
                                 }
                                 // 标签
-                                if (_this.$utils.validatesEmpty(dataForm.tags)) {
+                                if (_this.$utils.validatesEmpty(dataForm.tagsDisplay)) {
                                     if (dataForm.certificationFlag == 1 || dataForm.tags.length > 0) {
                                         var textBox = [];
                                         console.log(dataForm.tags)
-                                        if (_this.$utils.validatesEmpty(dataForm.tags)) {
-                                            dataForm.tags.forEach(element => {
+                                        if (_this.$utils.validatesEmpty(dataForm.tagsDisplay)) {
+                                            dataForm.tagsDisplay.forEach(element => {
                                                 textBox.push(element.name)
                                             });
                                         }
 
                                     }
 
-                                    if (dataForm.tags.length > 0 && typeof (dataForm.tags[0]) == "object") {
-                                        _this.tagList = dataForm.tags;
-                                        _this.textList = dataForm.tags;
+                                    if (dataForm.tagsDisplay.length > 0 && typeof (dataForm.tagsDisplay[0]) == "object") {
+                                        _this.tagList = dataForm.tagsDisplay;
+                                        _this.textList = dataForm.tagsDisplay;
                                     }
 
                                 }
@@ -1036,38 +1201,16 @@ require(['/common/js/require.config.js'], function () {
                                 }
 
                                 _this.certification_noPassReason = data.noPassReason;
-                                if (_this.$utils.validatesEmpty(dataForm.logo)) {
-                                    _this.find_img_file_url_query(dataForm.logo);
-                                }
-
+                                // if (_this.$utils.validatesEmpty(dataForm.logo)) {
+                                //     // _this.find_img_file_url_query(dataForm.logo);
+                                // }
+                                //
                                 if (_this.$utils.validatesEmpty(dataForm.logo)) {
                                     _this.headImg = dataForm.logo;
                                 }
-
-                                if (_this.certification_type == 'TECH_BROKER') {
-                                    _this.authentication_type = 1;
-                                    _this.brokerPlatform = dataForm;
-                                } else if (_this.certification_type == 'TECH_BROKER_REMOTE') {
-
-                                    _this.authentication_type = 2;
-                                    _this.brokerPlatform = dataForm;
-
-                                } else if (_this.certification_type == 'TECH_ORGAN') {
-                                    _this.authentication_type = 3;
-                                    _this.transferAgencyForm = dataForm;
-
-                                } else if (_this.certification_type == 'INVESTMENT') {
-                                    _this.authentication_type = 4;
-                                    _this.InvestmentForm = dataForm;
-                                }
-
-                                console.log("_this.authentication_type", _this.authentication_type)
-                                console.log("_this.textIndustryList", _this.textIndustryList)
                             }
                         })
                     },
-
-
                     //   查询附件
                     find_img_file_url_query: function (id) {
                         var _this = this
@@ -1202,13 +1345,24 @@ require(['/common/js/require.config.js'], function () {
                         return httpUrl.fileShowUrl + '/resource/' + path;
                     },
 
-                    // 跳转 
+                    // 跳转
                     handleMatchView: function (id, type) {
                         console.log(type)
+                        var url = window.location.href
                         if (type == 0) {
-                            window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/scienceDetail.html?id=" + id);
+                            }else{
+                                window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            }
+
                         } else if (type == 1) {
-                            window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/requireDetail.html?id=" + id);
+                            }else {
+                                window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            }
+
                         }
 
                     },

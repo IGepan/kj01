@@ -1,0 +1,78 @@
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-科技创新综合服务平台</title>
+
+    <meta name='keywords' content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description' content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="style/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="style/css/main.css" rel="stylesheet">
+  <link href="style/css/science/result_list.css" rel="stylesheet">
+    <link href="style/css/science/technologyNewStyle.css" rel="stylesheet">
+    <link href="style/css/policy/detail.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="boxs gray-bg" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <index-head :nav-index="4" :search-types="'需求'" :location-names="'scienceRequire.html'" ></index-head>
+    <div class="container-box">
+        <div class="top-bg">
+            <div class="mmdiv">技术需求</div>
+        </div>
+        <div class="content-box mmdiv">
+<!--            <div class="search-row-box">-->
+            <div class="breadcrumb">
+                <span class="iconfont-template icon-dingweixian"></span>
+                <span class="breadcrumb__item"><a :href="$pathPrefix">首页</a></span>
+                <template v-for="(item, i) in breadcrumb">
+                    <span class="breadcrumb__item" :key="i">
+                        <a v-if="item.url" :href="item.url">{{item.label}}</a>
+                        <template v-else>{{item.label}}</template>
+                    </span>
+                </template>
+            </div>
+            <div class=" bg_fff padding_20">
+                <!-- <h2 style="text-align: center;">投递成果至：朱啸虎</h2> -->
+                <div class="pro_details">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <thead class="bg_fafafa">
+                        <th>成果名称</th>
+                        <th>所属领域</th>
+                        <th>转让方式</th>
+                        <th>价格(元)</th>
+                        <th>操作</th>
+                        </thead>
+                        <tbody class="">
+                        <tr v-for="(item,index) in techAchiList" :key="index">
+                            <td class="color_orange">{{item.title}}</td>
+                            <td>{{item.projectIndustryType.map(item=>item.name).join(',')}} </td>
+                            <td>{{item.cooperationMode_display}}</td>
+                            <td>{{item.budget}}</td>
+                            <!-- <td>2021-06-02 15:21:10</td> -->
+                            <td>
+                                <a class="bg_orange color_fff details_pro_act_btn" @click="sendPros(item.id)">投递成果</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clear">
+                    <a class=" fr bg_13c9ef color_fff details_pro_act_btn margin_20" @click.stop="addProject">新增成果</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <com-footer></com-footer>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="style/js/science/requirement.js"></script>
+</body>
+
+</html>

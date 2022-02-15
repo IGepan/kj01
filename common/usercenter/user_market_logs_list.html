@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心-成渝城市群综合科技服务平台</title>
+    <link href="/common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/usercenter.css" rel="stylesheet" type="text/css">
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link href="/common/css/cform-table.css" rel="stylesheet" type="text/css">
+    <link href="/style/css/technologyNewStyle.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .box {
+            min-height: 100%;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper></ly-toper>
+    <header-bar type='market' :http="httpCom"></header-bar>
+
+    <div class="mdiv clear margin_bot_20 margin_top_20">
+        <div class="fl user_market_box_fl bg_fff ">
+            <user-tech-menu :type='btnShow?3:4'></user-tech-menu>
+        </div>
+        <div class="fl user_market_box_fr bg_fff ">
+            <div class="margin_20">
+                <div class="pro_details">
+                    <div class="details_tab_content margin_top_20">
+                        <el-table :data="techLogList" style="width: 100%">
+                            <el-table-column label="日志">
+                                <template slot-scope="scope">
+                                    <span>{{ scope.row.logText }}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="创建时间">
+                                <template slot-scope="scope">
+                                    <span>{{ scope.row.createTime }}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作">
+                                <template slot-scope="scope">
+                                    <el-button size="mini" @click="handleView( scope.row,1)">
+                                        查看详情
+                                    </el-button>
+                                    <el-button size="mini" type="primary" @click="changeAcccept( scope.row,2)"
+                                               v-if="btnShow">
+                                        编辑
+                                    </el-button>
+                                    <el-button size="mini" type="danger" @click="deleteAcccept( scope.row,0)"
+                                               v-if="btnShow">
+                                        删除
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div class="pages margin_top_15">
+                            <el-pagination background layout="prev, pager, next" :pager-count="7"
+                                           :page-size="query.size" :total="allTotal"
+                                           @current-change="handleCurrentChange">
+                            </el-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <el-dialog type="text" :title="logTitle" :visible.sync="dialogTableVisible" width="40%">
+                <el-input v-if="logShowType==2" type="textarea" :rows="5" placeholder="请输入日志" v-model="textarea">
+                </el-input>
+                <div v-else style="line-height: 2;">
+                    创建时间：{{details.createTime}}<br>
+                    内容：{{details.logText}}
+                </div>
+                <el-button v-if="logShowType==2" type="primary" @click="commitLog" style="margin-top: 20px;">确认修改
+                </el-button>
+            </el-dialog>
+
+            <el-dialog title="提示" :visible.sync="DialogVisible" width="30%">
+                <span>确认删除这条日志吗？</span>
+                <span slot="footer" class="dialog-footer">
+                <el-button @click="DialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="handleClose">确 定</el-button>
+              </span>
+            </el-dialog>
+        </div>
+    </div>
+
+    <ly-minifooter></ly-minifooter>
+</div>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script src="js/user_market_logs_list.js"></script>
+</body>
+
+</html>

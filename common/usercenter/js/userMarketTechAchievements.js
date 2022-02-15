@@ -9,6 +9,7 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-radio', httpVueLoader('/common/components/radio.vue'));
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -54,7 +55,6 @@ require(['/common/js/require.config.js'], function () {
                     httpUrl: httpUrl
                 },
                 created: function () {
-
                     this.find_tech_list_page();
                     //   this.Ctor = new Ctor().$mount('#index_box');
 
@@ -66,7 +66,8 @@ require(['/common/js/require.config.js'], function () {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
-                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+                    'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue'),
                 },
                 methods: {
 
@@ -95,9 +96,7 @@ require(['/common/js/require.config.js'], function () {
                                 "order": "desc",
                                 "sort": "id",
                             },
-                            "payload": {
-
-                            }
+                            "payload": {}
                         }
                         console.log(form)
                         // 技术成果列表查询
@@ -115,15 +114,14 @@ require(['/common/js/require.config.js'], function () {
                                 "order": "desc",
                                 "sort": "id",
                             },
-                            "payload": {
-
-                            }
+                            "payload": {}
                         }
 
                         _this.getTechAchiListPage(form);
                     },
 
-                    handleEdit: function (form) { },
+                    handleEdit: function (form) {
+                    },
 
                     // 技术成果列表查询
                     getTechAchiListPage: function (form) {
@@ -147,13 +145,19 @@ require(['/common/js/require.config.js'], function () {
                         return httpUrl.fileShowUrl + '/resource/' + path;
                     },
 
-                    // 跳转 
+                    // 跳转
                     handleMatchView: function (id, type) {
                         console.log(type)
                         if (type == 0) {
                             window.open("/technologyMarket/technical_manager_details.html?id=" + id);
                         } else if (type == 1) {
-                            window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            var url = window.location.href
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/requirementDetail.html?id=" + id);
+                            }else {
+                                window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            }
+
                         }
 
                     },
@@ -195,14 +199,16 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
-
-
-
                     changePageView: function (item) {
                         console.log(item)
                         // alert(item.id)
-                        window.open("/technologyMarket/tech_achievements_details.html?id=" + item.id);
+                        var url = window.location.href
+                        if (url.indexOf('/site/') > 0) {
+                            window.open(this.$pathPrefix+"/scienceDetail.html?id=" + item.id);
+                        }else {
+                            window.open("/technologyMarket/tech_achievements_details.html?id=" + item.id);
+                        }
+
                     },
 
 
@@ -225,15 +231,20 @@ require(['/common/js/require.config.js'], function () {
                         var type = command.num
                         var id = command.command.id
                         if (type == 0) {
-                            window.location.href = "/common/usercenter/user_market_tech_achi_form.html?id=" + id + "&type=" + type;
+                            window.location.href =this.$pathPrefix+"/common/usercenter/user_market_tech_achi_form.html?id=" + id + "&type=" + type;
                         } else if (type == 1) {
                             console.log(2222)
-                            // window.open=""
-                            window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            var url = window.location.href
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/scienceDetail.html?id=" + id);
+                            }else {
+                                window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            }
+
                         } else if (type == 2) {
-                            window.location.href = "/common/usercenter/user_market_tech_patent_list.html?id=" + id;
+                            window.location.href = this.$pathPrefix+"/common/usercenter/user_market_tech_patent_list.html?id=" + id;
                         } else if (type == 3) {
-                            window.location.href = "/common/usercenter/user_market_tech_achi_trans_form.html?proId=" + id;
+                            window.location.href = this.$pathPrefix+ "/common/usercenter/user_market_tech_achi_trans_form.html?proId=" + id;
                         } else if (type == 4) {
                             _this.matchShow = true;
                             _this.getBrokerListPage(id);

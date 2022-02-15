@@ -821,6 +821,24 @@
                                 <td class="form_msg"></td>
                             </tr>
                             <tr class="form_item">
+                                <th>推送站点：</th>
+                                <td>
+<!--                                    <div class="select" style="border:0;">-->
+<!--                                        <ly-select-level class="select level" ref="industryEl" @input="inputIndustry"-->
+<!--                                                         data-valid="custom:industryValid" v-model="formData.industry">-->
+<!--                                        </ly-select-level>-->
+                                        <el-select v-model="formData.branches" multiple style="width: 590px" placeholder="">
+                                            <el-option
+                                                    v-for="item in branchesList"
+                                                    :key="item.saasCode"
+                                                    :label="item.saasName"
+                                                    :value="item.id">
+                                            </el-option>
+                                        </el-select>
+<!--                                    </div>-->
+                                </td>
+                            </tr>
+                            <tr class="form_item">
                                 <th>所属行业：</th>
                                 <td>
                                     <div class="select" style="border:0;">

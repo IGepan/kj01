@@ -46,7 +46,7 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
     conn.listen({
       onOpened: function (message) {          //连接成功回调
         m_connected = true;
-        // tFn();
+        tFn();
         tFn = noop;
         console.log('connect success');
       },
@@ -616,7 +616,9 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
                   }
                 }
                 this.connectWS(function () {
-                  $this.show = true;
+                  $this.$nextTick(()=>{
+                    $this.show = true;
+                  })
                   $this.scrollBottom();
                   $this.clearUnreadMsg();
                 });
@@ -1031,8 +1033,11 @@ define(['jquery', 'laydate', '/common/js/libs/im/webimconfig.js', 'websdk', 'htt
       var m = indexOfList(multiple_ims, this.targetId, 'targetId');
       if (m < 0) {
         var $this = this;
+        let im = document.createElement('div');
+        im.setAttribute("id", "im_box");
+        document.body.append(im)
         var s = new IM({
-          el: '.-_-', created: function () {
+          el: '#im_box', created: function () {
             this._mpl = true;
             this.targetId = $this.targetId;
             this.userinfo = $this.userinfo;
