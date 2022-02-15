@@ -265,7 +265,8 @@
 
 /*活动中心start*/
 .activity-center .content-box{
-    padding:42px 38px 36px;
+    /*padding:42px 38px 36px;*/
+    padding: 38px 10px 38px 20px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 0px
     rgba(6, 0, 1, 0.11);
@@ -275,10 +276,15 @@
     margin-bottom:53px;
 }
 .activity-center .item-box a{
+    padding-right: 10px;
+    border-right: 1px solid #eeeeee;
     display:inline-block;
     width:250px;
     position:relative;
-}
+}.activity-center .item-box:last-child a{
+    border: none;
+ }
+
 .activity-center .item-box .tips{
     position:absolute;
     top:0;
@@ -327,22 +333,22 @@
 
 /*科技成果start*/
 .science-result{
-    background: url("../images/index/science-bg.jpg") no-repeat center;
-    background-size: cover;
-    height:558px;
+    /*background: url("../images/index/science-bg.jpg") no-repeat center;*/
+    /*background-size: cover;*/
+    /*height:558px;*/
 }
 .science-result .title-common .title{
-    color:#ffffff;
+    /*color:#ffffff;*/
 }
 .science-result .title-common .sub-box div a{
     padding:6px 12px;
     border-radius: 12px;
     font-size: 14px;
     line-height: 14px;
-    color: #e3e3e3;
+    /*color: #e3e3e3;*/
     text-align: center;
     margin-right:14px;
-    border: solid 1px #ffffff;
+    /*border: solid 1px #ffffff;*/
     cursor: pointer;
 }
 .science-result .content-box{
@@ -379,11 +385,11 @@
     color: #e96b33;
 }
 .science-result .item-box .img-bottom .address{
-     font-size:12px;
+     /*font-size:12px;*/
     padding-bottom:8px;
  }
 .science-result .item-box .img-bottom .date{
-    font-size:12px;
+    /*font-size:12px;*/
  }
 .science-result .item-box .img-bottom .date-left{
     width:150px;
@@ -430,11 +436,11 @@
     color: #e96b33;
 }
 .science-service .item-box .img-bottom .address{
-    font-size:12px;
+    /*font-size:12px;*/
     padding-bottom:8px;
 }
 .science-service .item-box .img-bottom .date{
-    font-size:12px;
+    /*font-size:12px;*/
 }
 .science-service .item-box .img-bottom .date-left{
     width:150px;

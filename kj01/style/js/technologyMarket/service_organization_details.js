@@ -76,12 +76,12 @@ require(['/common/js/require.config.js'], function () {
           // },
         },
         created: function () {
+
           // 技术成果列表查询
           this.initData();
           this.queryDetails();
           this.queryTechBrokerList();
           this.initFavorite();
-
           this.findPageQueryEvaluation();
           this.findqueryAverageScore(this.id);//查询平均分
         },
@@ -192,6 +192,11 @@ require(['/common/js/require.config.js'], function () {
             let dd = d.getDate();
             this.saasId = localStorage.getItem('saasId');
             this.id = this.$utils.getReqStr('id');
+            var aUrl=window.location.href
+            var str = aUrl.split("/").pop().replace(/(^serviceStatic)|(\.\S+$)/g,"");
+            if(this.id==null){
+              this.id=str
+            }
             this.$utils.getCookie(dic.locaKey.USER_INFO) &&
               (this.userInfo = JSON.parse(
                 localStorage.getItem(dic.locaKey.USER_INFO)));

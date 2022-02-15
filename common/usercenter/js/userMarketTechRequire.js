@@ -92,7 +92,13 @@ require(['/common/js/require.config.js'], function () {
                     changePageView: function (item) {
                         console.log(item)
                         // alert(item.id)
-                        window.open("/technologyMarket/tech_requirements_details.html?id=" + item.id);
+                        var url = window.location.href
+                        if (url.indexOf('/site/') > 0) {
+                            window.open(this.$pathPrefix+"/requireDetail.html?id=" +  item.id);
+                        }else {
+                            window.open("/technologyMarket/tech_requirements_details.html?id=" + item.id);
+                        }
+
                     },
 
 
@@ -180,7 +186,13 @@ require(['/common/js/require.config.js'], function () {
                         if (type == 0) {
                             window.open("/technologyMarket/technical_manager_details.html?id=" + id);
                         } else if (type == 1) {
-                            window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+
+                            var url = window.location.href
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/scienceDetail.html?id=" + id);
+                            }else {
+                                window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
+                            }
                         }
 
                     },
@@ -231,9 +243,15 @@ require(['/common/js/require.config.js'], function () {
                         var type = command.num
                         var id = command.command.id
                         if (type == 0) {
-                            window.location.href = "/common/usercenter/user_market_tech_require_form.html?id=" + id + "&type=" + type;
+                            window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require_form.html?id=" + id + "&type=" + type;
                         } else if (type == 1) {
-                            window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            var url = window.location.href
+                            if (url.indexOf('/site/') > 0) {
+                                window.open(this.$pathPrefix+"/requireDetail.html?id=" + id);
+                            }else {
+                                window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
+                            }
+
                         } else if (type == 2) {
                             _this.getBrokerListPage(id);
                             _this.getProjectListPage(id);

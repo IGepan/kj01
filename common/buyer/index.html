@@ -42,7 +42,12 @@
         </div>
         <div class="centerbox">
           <div class="worklink clear">
-            <a class="violet" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">
+            <a class="violet" v-if="isNotSite" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">
+              <i class="iconfont icon-icon_xuqiu"></i>
+              <span>我的需求</span>
+              <strong>发需求</strong>
+            </a>
+            <a class="violet" v-else :href="siteUrl+'/common/usercenter/user_market_tech_require_form.html'">
               <i class="iconfont icon-icon_xuqiu"></i>
               <span>我的需求</span>
               <strong>发需求</strong>
@@ -59,7 +64,7 @@
               <strong>找技术</strong>
             </a>
             <a class="red" v-else
-               href="/scienceResult.html">
+               :href="siteUrl+'/scienceResult.html'">
               <i class="iconfont icon-tool"></i>
               <span>我的技术</span>
               <strong>找技术</strong>
@@ -75,7 +80,7 @@
               <span>我的需求</span>
               <strong>找服务</strong>
             </a>
-            <a class="blue"  v-else  href="/scienceService.html">
+            <a class="blue"  v-else  :href="$pathPrefix+'/scienceService.html'">
               <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
               <span>我的需求</span>
               <strong>找服务</strong>
@@ -174,11 +179,11 @@
             </div>
           </div>
           <div class="rightbox">
-            <div class="card mt20 adlink">
-              <a v-if="isConference" @click.stop="handleShowTips"
-                style="background-image: url('/common/images/userCenterAd.png')"></a>
-              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>
-            </div>
+<!--            <div class="card mt20 adlink">-->
+<!--              <a v-if="isConference" @click.stop="handleShowTips"-->
+<!--                style="background-image: url('/common/images/userCenterAd.png')"></a>-->
+<!--              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>-->
+<!--            </div>-->
             <div class="card partner mt20">
               <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
               <div class="parlist">
@@ -187,15 +192,16 @@
                 </a>
               </div>
             </div>
-            <div class="card servicecard mt20">
+            <div class="card servicecard mt20" v-if="isSite==false">
               <div class="title">快捷服务</div>
               <div class="servicelist clear">
-                <a target="_blank" href="https://www.kj01.cn/policyMatchLogin.html"><i><img src="/common/images/zhipei.png" width="40"></i>政策智配</a>
-                <a target="_blank" href="https://www.kj01.cn/answer/autoanswer.html"><i><img src="/common/images/daren.png" width="40"></i>政策答人</a>
-                <a target="_blank" href="https://www.kj01.cn/common/buyer/index.html"><i><img src="/common/images/sudi.png" width="40"></i>政策速递</a>
-                <a target="_blank" href="https://www.kj01.cn/common/activity/list.html?code=001.004.001.001"><i><img src="/common/images/huodong.png" width="40"></i>活动发布</a>
-                <a target="_blank" href="https://www.kj01.cn/mall/index.html"><i><img src="/common/images/shangcheng.png" width="40"></i>易智商城</a>
-                <a @click.stop="handleShowTips"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>
+                <a target="_blank" :href=" this.$pathPrefix+'/policyMatchLogin.html'"><i><img src="/common/images/zhipei.png" width="40"></i>政策智配</a>
+                <a target="_blank" :href=" this.$pathPrefix+'/answer/autoanswer.html'"><i><img src="/common/images/daren.png" width="40"></i>政策答人</a>
+                <a target="_blank" :href=" this.$pathPrefix+'/common/buyer/index.html'"><i><img src="/common/images/sudi.png" width="40"></i>政策速递</a>
+                <a target="_blank" :href=" this.$pathPrefix+'/common/activity/list.html?code=001.004.001.001'"><i><img src="/common/images/huodong.png" width="40"></i>活动发布</a>
+                <a target="_blank" :href=" this.$pathPrefix+'/mall/index.html'"><i><img src="/common/images/shangcheng.png" width="40"></i>易智商城</a>
+<!--                <a @click.stop="handleShowTips"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>-->
+                <a><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@
   <div class="toper">
     <div class="mmdiv">
       <div class="toper-left">
-        <div class="">返回<a href="https://www.kj01.cn/"><span class="cut">[易智网]</span></a></div>
+        <div class="">返回<a href="/index.html"><span class="cut">[易智网]</span></a></div>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a :href="$pathPrefix+'/index.html'">{{webInfo.saasName}}</a>！</div>
       </div>
         <div class="toper-right" v-if="userInfo && userInfo.userId">
@@ -62,7 +62,7 @@
                 <a :href="$pathPrefix+'/common/login.html'">登录</a>
                 <a :href="$pathPrefix+'/common/reg.html'">注册</a>
             </div>
-            <div class="service-box"><a href="">服务商入驻</a></div>
+            <div class="service-box"><a :href="$pathPrefix+'/common/login.html'">服务商入驻</a></div>
             <div class="official-account"><span class="show">关于易智网</span>
                 <span class="avater">
             <img

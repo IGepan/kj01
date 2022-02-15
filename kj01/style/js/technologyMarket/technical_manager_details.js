@@ -131,14 +131,8 @@ require(['/common/js/require.config.js'], function () {
                     this.findqueryAverageScore(this.id);//查询平均分
                     // 技术成果列表查询
                     this.queryList();
-
-
-
                 },
                 methods: {
-
-
-
                     // 列表
                     queryList() {
                         let vm = this;
@@ -270,8 +264,14 @@ require(['/common/js/require.config.js'], function () {
                         let dd = d.getDate()
                         this.saasId = localStorage.getItem('saasId');
                         var id = this.$utils.getReqStr('id');
-                        console.log(id)
-                        this.id = id;
+                         var aUrl=window.location.href
+                         var str = aUrl.split("/").pop().replace(/(^managerStatic)|(\.\S+$)/g,"");
+                        if(id!=null){
+                            this.id = id;
+                        }
+                        if(id==null){
+                            this.id = str;
+                        }
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)));
                         if (this.userInfo && this.userInfo.userName) {
                             this.get_certification();

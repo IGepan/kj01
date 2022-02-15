@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(item, index) in urlData" :key="index">
+      <li v-for="(item, index) in urlData" :key="index" >
         <a :href="item.url" :class="item.active ? 'active' : ''" target="_blank" v-if="item.target">
           <i :class="item.icon"></i>
           {{ item.name }}
@@ -19,6 +19,7 @@
 module.exports = {
   data: function () {
     return {
+      isNotSite:false,
       urlData: [
         {
           url: "/common/usercenter/user_market_auth_form.html",
@@ -27,6 +28,13 @@ module.exports = {
           name: "资格认证",
           index: 0,
         },
+        // {
+        //   url: "/common/usercenter/user_market_form.html",
+        //   active: false,
+        //   icon: "el-icon-message-solid",
+        //   name: "培训报名",
+        //   index: 1,
+        // },
         {
           url: "/common/usercenter/user_market_tech_achievements.html",
           active: false,
@@ -64,33 +72,60 @@ module.exports = {
           index: 5,
         },
         {
+          url: "/common/usercenter/user_market_form.html",
+          active: false,
+          icon: "el-icon-message-solid",
+          name: "培训报名",
+          index: 6,
+        },
+        {
           url: "https://study.kj01.cn/uc/index",
           active: false,
           icon: "el-icon-s-custom",
           name: "我的培训",
           target: true,
-          index: 6,
+          index: 7,
         },
         {
           url: "/common/usercenter/user_market_tech_collection.html",
           active: false,
           icon: "el-icon-s-claim",
           name: "收藏",
-          index: 7,
+          index: 8,
         },
       ],
     };
   },
-  methods: {},
+  methods: { //检查是否分站点
+    checkSite: function () {
+      var url = window.location.href
+      var vm = this;
+      if (url.indexOf('/site/') > 0) {
+       vm.urlData.forEach((item) =>{
+         if(item.index!==7){
+           item.url=this.$pathPrefix+item.url
+         }
+       })
+    }
+    },
+  },
   props: ["type"],
   mounted() {
+    this.checkSite();
     // console.log("this.type", this.type);
     this.urlData.forEach((element) => {
       if (this.type == element.index) {
         element.active = true;
       }
     });
-  },
+
+    var ID = this.$utils.getReqStr('classId');
+      if(ID){
+        this.urlData[6].name='培训报名'
+      }else {
+        this.urlData[6].name='报名信息管理'
+      }
+    }
 };
 </script>
 

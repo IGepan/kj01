@@ -371,6 +371,6 @@ module.exports = {
 }
 .btn {
   width: 80px;
-  height: 30px;
+  height: 38px;
 }
 </style>

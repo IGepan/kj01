@@ -613,8 +613,8 @@ require(['/common/js/require.config.js'], function () {
                     activeParams: {
                         pageNum: 1,
                         pageSize: 10,
-                        sortType: "02",
-                        activeType: '218340665862391473',
+                        // sortType: "02",
+                        activeType: '218340665870780082',
                     },
                      params:{
                         activeType: "390092837996355585",
@@ -680,9 +680,10 @@ require(['/common/js/require.config.js'], function () {
                             alt_tip: '重庆市科学技术研究院',
                         },
                         {
-                            img: '/style/images/index/friend_link_7.png',
-                            href: 'https://www.qiyekexie.com',
-                            alt_tip: '中国科学技术协会-绿平台',
+                            // img: '/style/images/index/friend_link_7.png',
+                            img: '/style/images/index/tt.png',
+                            href: 'http://www.cqhte.com',
+                            alt_tip: '重庆市高新技术企业协会',
                         },
                         // {
                         //     img: '/style/images/index/friend_link_8.jpg',
@@ -691,7 +692,7 @@ require(['/common/js/require.config.js'], function () {
                         // },
                         {
                             img: '/style/images/index/friend_link_8-1.png',
-                            href: 'http://main.liyantech.cn/',
+                            href: 'https://www.cykj01.com/',
                             alt_tip: '成渝城市群综合科技服务平台',
                         },
                         {
@@ -728,7 +729,20 @@ require(['/common/js/require.config.js'], function () {
                         '/style/images/index/tab-bg5.png',
                         '/style/images/index/tab-bg6.png'],
                     boxActive:false,
-                    iboxActive:false
+                    iboxActive:false,
+                    protocol: [
+                        {
+                            title: "服务协议详情",
+                            content: "",
+                        },
+                        {
+                            title: "隐私保护协议",
+                            content: "",
+                        },
+                    ],
+                    centerDialogVisible: false,
+                    centerDialogVisible2: false,
+                    protocolType: 0,
                 },
                 computed: {
                     text() {
@@ -842,11 +856,35 @@ require(['/common/js/require.config.js'], function () {
                     setTimeout(function(){
                         document.getElementById("showbg").style.display="none"
                     },5000);
+                    document.title = "易智网-科技创新综合服务平台";
+                    var vm = this;
+                    vm.$httpCom
+                        .protocol({
+                            protocolType: 1,
+                        })
+                        .then(function (res) {
+                            if (res.result) {
+                                vm.protocol[0].content = res.result.protocolContact;
+                            }
+                        });
+                    vm.$httpCom
+                        .protocol({
+                            protocolType: 5,
+                        })
+                        .then(function (res) {
+                            if (res.result) {
+                                vm.protocol[1].content = res.result.protocolContact;
+                            }
+                        });
                 },
+
                 beforeDestroy: function () {
                     window.removeEventListener("scroll", this.handleScroll)
                 },
                 methods: {
+                    about: function () {
+                        location.href = "/about.html";
+                    },
                     qiehuan:function (){
                         this.boxActive=true
                     },
@@ -934,21 +972,20 @@ require(['/common/js/require.config.js'], function () {
                                 tab.active = tab.label == val.label
                             })
 
-                            if (i === 2) {
-                                vm.params.activeType = val.activeType
-                                vm.params.topicCustomTag = val.topicCustomTag
-                                vm.getBrandList()
-                            } else{
-                                if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
-
-                                }else {
-                                    vm.activeParams.activeType = val.activeType
-                                    vm.getActiveList()
-                                }
-                            }
                         })
                         //二级循环
+                        if (i === 2) {
+                            vm.params.activeType = val.activeType
+                            vm.params.topicCustomTag = val.topicCustomTag
+                            vm.getBrandList()
+                        } else{
+                            if(val.activeType=="218340665862395558"||val.activeType=="218340665862395559"){
 
+                            }else {
+                                vm.activeParams.activeType = val.activeType
+                                vm.getActiveList()
+                            }
+                        }
                     },
                     //品牌活动
                     getBrandList: function () {
@@ -1110,7 +1147,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getManagerList: function () {
                         var vm = this
-                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 10, order: "desc", sort: "id"},
+                        indexApi.ManagerSelectbByPage({pageParam: {current: 1, size: 10, order: "desc", sort: "create_time"},
                             payload: {achievementBelong:null,
                                 achievementMaturity:null,
                                 budget_sectionQuery:null,

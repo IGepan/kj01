@@ -2,7 +2,21 @@
   <div class="toper">
     <div class="mdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
-        <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
+        <el-dropdown>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
+          <el-dropdown-menu slot="dropdown">
+
+            <el-dropdown-item v-for="item in branchesList">
+              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item >
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
+            </el-dropdown-item >
+          </el-dropdown-menu>
+        </el-dropdown>
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>
         <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
         <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
@@ -86,11 +100,21 @@
     </div>
     <div class="mdiv" v-else>
       <div class="fl toper-left">
-        <div class="">
-          <span class="iconfont icon-dingwei"></span>重庆市<span class="cut"
-        >[切换]</span
-        >
-        </div>
+        <el-dropdown>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
+          <el-dropdown-menu slot="dropdown">
+
+            <el-dropdown-item v-for="item in branchesList">
+              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+            </el-dropdown-item >
+            <el-dropdown-item >
+              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
+            </el-dropdown-item >
+          </el-dropdown-menu>
+        </el-dropdown>
         <div class="">
           Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a
             href="/index.html"
@@ -232,7 +256,8 @@ module.exports = {
           content: "",
         },
       ],
-      active:''
+      active:'',
+      branchesList:[]
     };
   },
   created: function () {
@@ -255,6 +280,7 @@ module.exports = {
     var userInfo = (this.userInfo = JSON.parse(
         vm.$utils.getCookie("USER_INFO")
     ));
+    this.queryBranch();
     console.log(userInfo);
     this.urlIsType = [
       "/common/seller/",
@@ -397,6 +423,15 @@ module.exports = {
           .get(httpUrl.baseUrl + "/im/getUnreadMsgCount")
           .then(function (res) {
             $this.menuInfo.messageCount = res.result;
+          });
+    },
+    //站点信息
+    queryBranch: function () {
+      var $this = this;
+      this.$http.get(httpUrl.baseUrl + '/saas/selectBranch')
+          .then(function (res) {
+              $this.branchesList = res.result;
+
           });
     },
     updateCartInfo: function () {
@@ -635,6 +670,15 @@ module.exports = {
   },
 };
 </script>
+<style>
+.el-link.el-link--default{
+  display: block;
+  padding:0 20px;
+}
+.el-dropdown-menu__item{
+  padding: 0!important;
+}
+</style>
 <style scoped>
 .toper {
   height: 40px;

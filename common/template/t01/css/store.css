@@ -1,6 +1,6 @@
 /* CSS Document */
 .header{
-	height: 171px;
+	height: auto;
 	border-bottom: 1px solid rgba(195, 195, 195, 0.5);
 	background-color: #fff;
 }

@@ -34,7 +34,12 @@
     cursor: pointer;
 }
 .title.active{color: #30a9ee;background-color: #e3faff;}
-
+.title.active a{
+    color: #30a9ee!important;
+}
+.title a{
+    color: #333;
+}
 .sub-title {
     font-size: 18px;
     color: #222327;

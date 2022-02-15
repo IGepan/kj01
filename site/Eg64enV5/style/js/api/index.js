@@ -11,6 +11,14 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     activityList: function (param) {
       return Http.post(httpUrl.baseUrl + '/active/selectIssuePage', param);
     },
+    //用户信息
+    getUserList:function (param){
+      return Http.post(httpUrl.baseUrl + '/rpc/saasInfoExt/getSiteUser', param);
+    },
+    //企业列表
+    getEnterList:function (param){
+      return Http.post(httpUrl.baseUrl + '/rpc/saasInfoExt/getTypeCompany', param);
+    },
     //技术列表
     scienceList: function (param) {
       return Http.post(httpUrl.baseUrl + '/goods/selectbByPage', param);
@@ -18,6 +26,18 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
     //服务机构
     shopList: function (param) {
       return Http.post(httpUrl.baseUrl + '/shop/selectByPage', param);
+    },
+    //技术成果
+    goodsSelectbByPage: function (param) {
+      return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/pageProjectBaseInfo', param)
+    },
+    // 查询成果标签
+    query_tag_list: function (code) {
+      return Http.get(httpUrl.baseMarketUrl + '/zMTagRest/listTagTree/' + code);
+    },
+    //技术需求
+    demandSelectbByPage: function (param) {
+      return Http.post(httpUrl.baseMarketUrl + '/zMDemandRest/pageDemandBaseInfo', param)
     },
     //政策解读
     policyList: function (param) {

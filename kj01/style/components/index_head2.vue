@@ -4,7 +4,7 @@
     <div class="headers">
      <div class="header-logo">
       <a >
-       <img src="./style/images/logos/bsublogo.png" alt="">
+       <img src="/style/images/logos/bsublogo.png" alt="">
       </a>
 <!--      <div class="header-text" v-if="navIndex === 0">-->
 <!--       <div>科技创新</div>-->

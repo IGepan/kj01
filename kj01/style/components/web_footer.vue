@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="bottomTelInfo">
-        <div class="bottomTel">023-61365809</div>
+        <div class="bottomTel">023-61365808</div>
         <div class="bottomWorker">全国免费服务热线(工作日：09:00-17:30)</div>
       </div>
     </div>
@@ -61,6 +61,11 @@
           @click="centerDialogVisible2 = true"
           style="color: #ced8fb; padding: 0 10px"
           >平台协议</el-button
+        >
+        <el-button
+            type="text"
+            style="color: #ced8fb; padding: 0 10px"
+        ><a href="/map.html" target="_blank" style="padding: 0">网站地图</a></el-button
         >
         <!--<el-button type="text" @click="open(1)" style="color: #ced8fb;padding: 0 10px;">隐私政策</el-button>-->
         <!--<el-button type="text" @click="open(0)" style="color: #ced8fb;padding: 0 10px;">平台协议</el-button>-->

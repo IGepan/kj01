@@ -2,7 +2,21 @@
   <div class="toper">
     <div class="mdiv" v-if="userInfo && userInfo.userName">
       <div class="fl toper-left">
-        <div class=""><span class="iconfont icon-dingwei"></span>重庆市<span class="cut">[切换]</span></div>
+          <el-dropdown>
+          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut">[切换]</span></span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-for="item in branchesList">
+                <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item >
+                <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+              </el-dropdown-item >
+              <el-dropdown-item >
+                <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
+              </el-dropdown-item >
+            </el-dropdown-menu>
+          </el-dropdown>
+
         <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>！</div>
       </div>
       <!-- <div class="fl">
@@ -66,11 +80,20 @@
     </div>
     <div class="mdiv" v-else>
       <div class="fl toper-left">
-        <div class="">
-          <span class="iconfont icon-dingwei"></span>重庆市<span class="cut"
-            >[切换]</span
-          >
-        </div>
+          <el-dropdown>
+            <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut">[切换]</span></span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-for="item in branchesList">
+                <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item >
+                <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
+              </el-dropdown-item >
+              <el-dropdown-item >
+                <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
+              </el-dropdown-item >
+            </el-dropdown-menu>
+          </el-dropdown>
         <div class="">
           Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a
             href="/index.html"
@@ -222,6 +245,7 @@ module.exports = {
         cartCount: 0,
         messageCount: 0,
       }, //悬浮菜单项
+      branchesList:[],
       protocol: [
         {
           title: "注册协议",
@@ -254,6 +278,7 @@ module.exports = {
     var userInfo = (this.userInfo = JSON.parse(
       vm.$utils.getCookie("USER_INFO")
     ));
+    this.queryBranch();
     this.urlIsType = [
       "/common/seller/",
       "/common/buyer",
@@ -373,6 +398,15 @@ module.exports = {
         .then(function (res) {
           $this.menuInfo.messageCount = res.result;
         });
+    },
+    //站点信息
+    queryBranch: function () {
+      var $this = this;
+      this.$http.get(httpUrl.baseUrl + '/saas/selectBranch')
+          .then(function (res) {
+            $this.branchesList = res.result;
+
+          });
     },
     updateCartInfo: function () {
       //获取消息，购物车的消息通知数字
@@ -610,6 +644,16 @@ module.exports = {
   }
 };
 </script>
+<style>
+.el-link.el-link--default{
+  display: block;
+  padding:0 20px;
+}
+.el-dropdown-menu__item{
+  padding: 0!important;
+}
+</style>
+
 <style scoped>
 .advertising{
   position: absolute;
@@ -622,7 +666,7 @@ module.exports = {
 .toper {
   height: 40px;
   line-height: 40px;
-  background-color: #eaf8fb;
+  background-color: #fff5f0;
   color: #6a6e7d;
 }
 
@@ -632,11 +676,11 @@ module.exports = {
 }
 
 .toper-left a {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .toper-left .iconfont {
-  color: #01c8f2;
+  color: #ff5e06;
   margin-right: 5px;
 }
 
@@ -647,7 +691,7 @@ module.exports = {
 }
 
 .toper-left .cut:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .toper-right {
@@ -665,7 +709,7 @@ module.exports = {
 }
 
 .loginbox a:hover {
-  color: #01c8f2;
+  color: #ff5e06;
 }
 
 .loginbox a:hover::after {

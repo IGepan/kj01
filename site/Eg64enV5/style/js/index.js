@@ -9,11 +9,13 @@ require(['/common/js/require.config.js'], function () {
 					navIndex:0,
 					cmsUrl: httpUrl.cmsUrl,
 					newsList:[],
+					demandList:[],
+					goodsSelectList:[],
 					publishList:[
 						{
 							title:'发布需求',
 							sub_title:'快速发布需求',
-							src:this.$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'
+							src:this.$pathPrefix+'/common/usercenter/user_market_tech_require_form.html'
 						},
 						{
 							title:'发布服务',
@@ -22,7 +24,7 @@ require(['/common/js/require.config.js'], function () {
 						},{
 							title:'发布成果',
 							sub_title:'快速发布成果',
-							src:this.$pathPrefix+'/common/seller/index.html'
+							src:this.$pathPrefix+'/common/usercenter/user_market_tech_achi_form.html'
 
 						},{
 							title:'发布活动',
@@ -57,8 +59,18 @@ require(['/common/js/require.config.js'], function () {
 							active: false
 						}
 					],
+					conditionsList: {
+						'industryType': {
+							name: '行业领域',
+							queryTag: true,
+							level: 2,
+							id: 'projectIndustryType',
+							dictCodes: [{ 'name': '全部', dictValue: '' }],
+							index: 0,
+						},},
 					webInfo:'',
 					extId: '',
+					currentIndex:0,
 					zhiboList:[],
 					activityList:[],
 					activityTypeList:[],
@@ -72,6 +84,18 @@ require(['/common/js/require.config.js'], function () {
 					userInfo:'',
 					searchForm:{},
 					bannerList: [],
+					userList:[],
+					enterList:[],
+					highList:[],
+					sum1:0,
+					sum2:0,
+					sum3:0,
+					queryModel: {
+						pageNum: 1,
+						pageSize: 10,
+						enterprise: 1,
+						orderBy:'ac03.createTime desc'
+					},
 				},
 				computed: {
 					/*	text () {
@@ -80,6 +104,15 @@ require(['/common/js/require.config.js'], function () {
                                 val: this.honorList[this.number].name
                             };
                         }*/
+				},
+				watch: {
+					queryModel: {
+						handler(n, o) {
+							this.getBoxList();
+							this.getHighList()
+						},
+						deep: true,
+					},
 				},
 				filters: {
 					formatTime: function (v) {
@@ -119,12 +152,14 @@ require(['/common/js/require.config.js'], function () {
 					this.userInfo = JSON.parse(
 						this.$utils.getCookie("USER_INFO")
 					);
+
 					this.getPublicDetail();
 					window.addEventListener("setItem", (e) => {
 						if(e.key==='webInfo'){
 							let info=JSON.parse(e.newValue)
 							this.webInfo=info?info:'';
 							this.extId = info.extId ? info.extId : '';
+							window.document.title = info.saasName?info.saasName : '易智网-科技成果摆渡人';
 							this.getBannerList();
 						}
 					});
@@ -139,17 +174,23 @@ require(['/common/js/require.config.js'], function () {
 						sortType: "02",
 						activeType:'218340665870780082'
 					},'zhiboList');
-
+					// this.getUser();
+					// this.getBoxList();
+					// this.getHighList();
+					this.getShopList();
+					this.getPolicyList();
+					this.getDemandList();
+					this.getGoodsList();
 					this.getScienceType();
 					this.getMailServiceType();
 					this.searchForm.pageNum=1;
 					this.searchForm.pageSize=4
 					this.getMailGoods();
-					this.getScienceList('001,010','scienceList');
-					this.getScienceList('009','serviceList');
-					this.getShopList();
-					this.getPolicyList();
+					// this.getScienceList('001,010','scienceList');
+					// this.getScienceList('009','serviceList');
+					this.find_tag_list();
 					this.getNewsList();
+
 
 				},
 
@@ -162,6 +203,22 @@ require(['/common/js/require.config.js'], function () {
 								vm.bannerList = res.result
 							}
 						});
+					},
+					getImgPath(path) {
+						return httpUrl.fileShowUrl + '/resource/' + path;
+					},
+					change:function(index){
+						this.currentIndex=index;
+					},
+					Pricre: function (v){
+
+						if (typeof v !== 'undefined' ) {
+							if (v >= 10000) {
+								return  (v / 10000).toFixed(2) + '万元';
+							}else {
+								return  v + '元'
+							}
+						}
 					},
 					formatPrice: function (flag, v, n, m) {
 						if (flag == '2') {
@@ -207,6 +264,17 @@ require(['/common/js/require.config.js'], function () {
 								return '￥' + n + '~' + m
 							}
 						}
+
+					},
+					Pricre: function (v){
+
+						if (typeof v !== 'undefined' ) {
+							if (v >= 10000) {
+								return  (v / 10000).toFixed(2) + '万元';
+							}else {
+								return  v + '元'
+							}
+						}
 					},
 					//活动中心---- 一级分类
 					getPublicDetail(){
@@ -236,6 +304,74 @@ require(['/common/js/require.config.js'], function () {
 								vm.scienceTypeList=res.result[0].dictIInfos
 							}
 						});
+					},
+					find_tag_list: function () {
+						let _this = this;
+						let codes = Object.keys(this.conditionsList);
+						codes = codes.filter(key => this.conditionsList[key].queryTag);
+						codes.forEach(code => {
+							indexApi.query_tag_list(code).then(function (res) {
+								console.log('查询' + code + '： ', res);
+								if (!res.code) {
+									vm.$dialog.showToast(res.message);
+									return;
+								}
+								let data = res.data;
+								// let arr = _this.getLevelTag(data, 1,
+								//   _this.conditionsList[code].level);
+
+								// let arr = _this.getLevelTag(data, 1,
+								//   _this.conditionsList[code].level);
+								console.log(data,'===')
+								data.forEach(d => {
+									d.children = d.children.map(item => {
+										return { 'display': item.name, dictValue: item.id, index: -1 };
+									});
+								})
+								_this.conditionsList[code]['dictCodes'] = [
+									..._this.conditionsList[code]['dictCodes'],
+									...data];
+								console.log('11111111111111', _this.conditionsList[code]['dictCodes'])
+							});
+
+						});
+
+					},
+					//科技成果
+					getGoodsList: function () {
+						var vm = this
+						indexApi.goodsSelectbByPage({
+							pageParam: {current: 1, size: 4, order: "desc", sort: "create_time"},
+							payload: {achievementBelong:null,
+								achievementMaturity:null,
+								budget_sectionQuery:null,
+								businessPlanProportion:null,
+								cooperationMode:null,
+								projectIndustryType:null,
+								projectSource:null}
+						}).then(function (res) {
+
+							vm.goodsSelectList = res.data.records
+
+						})
+					},
+					//技术需求
+					getDemandList: function () {
+						var vm = this
+						indexApi.demandSelectbByPage({
+							pageParam: {current: 1, size: 4, order: "desc", sort: "create_time"},
+							payload: {achievementBelong:null,
+								achievementMaturity:null,
+								budget_sectionQuery:null,
+								businessPlanProportion:null,
+								cooperationMode:null,
+								projectIndustryType:null,
+								projectSource:null}
+						}).then(function (res) {
+
+							vm.demandList = res.data.records
+
+						})
 					},
 					//服务分类
 					getMailServiceType: function () {
@@ -271,20 +407,20 @@ require(['/common/js/require.config.js'], function () {
 						})
 					},
 					//科技-列表
-					getScienceList(code,list){
-						let vm=this,params={
-							categoryCode: code,
-							orderBy: "saasId desc,homePageFlag desc,createTime desc",
-							pageNum: 1,
-							pageSize: 4
-						};
-						vm[list]=[];
-						indexApi.scienceList(params).then(function(res) {
-							if (res.code === "rest.success") {
-								vm[list]=res.result.list
-							}
-						});
-					},
+					// getScienceList(code,list){
+					// 	let vm=this,params={
+					// 		categoryCode: code,
+					// 		orderBy: "saasId desc,homePageFlag desc,createTime desc",
+					// 		pageNum: 1,
+					// 		pageSize: 4
+					// 	};
+					// 	vm[list]=[];
+					// 	indexApi.scienceList(params).then(function(res) {
+					// 		if (res.code === "rest.success") {
+					// 			vm[list]=res.result.list
+					// 		}
+					// 	});
+					// },
 					//机构-列表
 					getShopList(){
 						let vm=this,params={
@@ -348,35 +484,131 @@ require(['/common/js/require.config.js'], function () {
 							}
 						});
 					},
-					handlePublish(e){
-						let vm=this;
-						let url = e.target.dataset.url || e.currentTarget.dataset.url
-						if(url.indexOf('/common/seller') === -1){
-							location.href=url
-						}else{
-							if (this.userInfo.userTypes && this.userInfo.userTypes.indexOf('002') === -1) {
-								e.preventDefault()
-								this.$dialog.showToast('您还不是服务商，请先入驻成为服务商！')
-							}else{
-								//是否激活店铺
-								httpStore.validateActive({}).then(function (res) {
-									if (res.code == 'rest.success') {
-										location.href=url
-									} else {
-										e.preventDefault()
-										var options = {
-											title: '温馨提示',
-											texts: '请先激活店铺！',
-											buttons: ['现在就去', '稍后激活'],
-											callback: function () {
-												location = vm.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
-											}
-										}
-										vm.$dialog.confirm(options)
-									}
+					//用户列表
+					getUser(){
+						let vm=this,
+							params={
+							// pageNum: 1,
+							// pageSize: 10,
+						};
+						params1={
+							pageNum: 1,
+							pageSize: 10,
+							enterprise: 1,
+							orderBy:'ac03.createTime desc'
+						};
+						params2={
+							pageNum: 1,
+							pageSize: 10,
+							highEnterprise: 1,
+							orderBy:'ac03.createTime desc'
+						};
+						indexApi.getUserList(params).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.userList=res.result.list;
+								vm.sum1=res.result.total
+								// vm.userList.forEach((item)=>{
+								// 	if(!item.headImg){
+								// 		vm.item.headImg.url=''
+								// 	}
+								// });
+								vm.$nextTick(()=>{
+									$(".slideFromBox1").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
+									});
 								})
 							}
+						});
+						indexApi.getEnterList(params1).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.enterList=res.result.list;
+								vm.sum2=res.result.total
+								vm.$nextTick(()=>{
+									$(".slideFromBox2").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
+									});
+								})
+
+							}
+						});
+						indexApi.getEnterList(params2).then(function(res) {
+							if (res.code === "rest.success") {
+								vm.highList=res.result.list;
+								vm.sum3=res.result.total
+								vm.$nextTick(()=>{
+									$(".slideFromBox3").slide({
+										titCell: ".hd ul",
+										mainCell: ".bd ul",
+										autoPage: true,
+										effect: "topLoop",
+										autoPlay: true,
+										vis: 6
+									});
+								})
+							}
+						});
+					},
+					// getBoxList(){
+					// 	let vm=this,
+					//
+					//
+					// },
+					//
+					// getHighList(){
+					// 	let vm=this,
+					//
+					//
+					// },
+					handlePublish(e,index){
+						let vm=this;
+						if(index==1){
+							if(e.src.indexOf('/common/seller') === -1){
+								location.href=e.src
+							}else{
+								if (this.userInfo.userTypes && this.userInfo.userTypes.indexOf('002')===-1) {
+									// e.preventDefault()
+									this.$dialog.showToast('您还不是服务商，请先入驻成为服务商！')
+								}else{
+									//是否激活店铺
+									httpStore.validateActive({}).then(function (res) {
+										if (res.code == 'rest.success') {
+											location.href=e.src
+										} else {
+											// e.preventDefault()
+											var options = {
+												title: '温馨提示',
+												texts: '请先激活店铺！',
+												buttons: ['现在就去', '稍后激活'],
+												callback: function () {
+													location = vm.$pathPrefix+'/common/seller/activate.html?code=001.002.001.003'
+												}
+											}
+											vm.$dialog.confirm(options)
+										}
+									})
+								}
+							}
+						}else{
+								if (this.userInfo && this.userInfo.userName) {
+									window.location.href =e.src
+								} else {
+									this.$dialog.showToast("请先登录")
+									setTimeout(function () {
+										window.location.href =this.$pathPrefix+'/common/login.html';
+									}, 1000)
+								}
 						}
+						
 					}
 				},
 			});

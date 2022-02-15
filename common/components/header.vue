@@ -44,7 +44,6 @@
         <a
             :href="$pathPrefix + '/common/usercenter/user_market_auth_form.html'"
             :class="{ active: type === 'market' }"
-            v-if="isNotSite"
         >技术转移</a
         >
         <a

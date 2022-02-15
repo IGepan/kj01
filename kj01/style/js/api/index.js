@@ -27,6 +27,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         getGraphStatistics: function (param) {
             return Http.post(httpUrl.baseUrl + '/graph/statistics', param);
         },
+        // 分支基地介绍页
+        selectBasePage: function (param) {
+            return Http.post(httpUrl.baseUrl + '/yzwMap/selectCoordinateDetail',param);
+        },
         /**
          * 获取政策精要列表
          */
@@ -142,6 +146,26 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
          */
         submit: function (param) {
             return Http.post(httpUrl.baseUrl + '/questionnaire/insert', param);
+        },
+        /**
+         *
+         * 新增修改技术经理人
+         */
+        brokerSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/excellent/insertOrEdit', param);
+        },
+        selectBroker: function () {
+            return Http.get(httpUrl.baseUrl + '/excellent/getBrokerDetail');
+        },
+        /**
+         *
+         * 新增修改技术机构
+         */
+        organSubmit: function (param) {
+            return Http.post(httpUrl.baseUrl + '/excellent/insertOrEditOrgan', param);
+        },
+        selectOrgan: function () {
+            return Http.get(httpUrl.baseUrl + '/excellent/getOrganDetail');
         },
         /**
          * 问卷调查回显

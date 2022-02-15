@@ -21,8 +21,13 @@
         <seller-left :http='http' :jquery='jquery'></seller-left>
         <div class="rightmainbox">
           <div class="worklink mb20">
-            <!--            <a class="red" :href="$pathPrefix+'/common/seller/addpatent.html?code=technology-all&categoryId=82515756322918000'">-->
-            <a class="red" :href="$pathPrefix+'/common/usercenter/user_market_tech_achi_form.html'">
+            <a class="red" v-if="!isNotSite"  :href="$pathPrefix+'/common/seller/addpatent.html?code=technology-all&categoryId=82515756322918000'">
+            <!--<a class="red" :href="$pathPrefix+'/common/usercenter/user_market_tech_achi_form.html'">-->
+              <i class="iconfont icon-tool"></i>
+              <span>我的技术</span>
+              <strong>发技术</strong>
+            </a>
+            <a class="red" v-else :href="$pathPrefix+'/common/usercenter/user_market_tech_achi_form.html'">
               <i class="iconfont icon-tool"></i>
               <span>我的技术</span>
               <strong>发技术</strong>

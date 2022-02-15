@@ -91,9 +91,11 @@ require(['/common/js/require.config.js'], function () {
         },
         created: function () {
           // 技术成果列表查询
-          this.queryList();
+          // this.queryList();
           this.find_dictionary_type_list();
           this.find_tag_list();
+          var id='create_time'
+          this.orderClick(id,0);
         },
         methods: {
           getImgPath(path) {
