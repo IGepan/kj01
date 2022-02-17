@@ -49,13 +49,15 @@
   user-select: none;
 }
 .searchMainkey {
-	height: 60px;
-	padding: 0 40px;
+	/*height: 60px;*/
+	/*padding: 0 40px;*/
 }
 .searchMainkey.noP {
 	padding: 0 0;
 }
-
+.searchMainkey.noP span:first-child{
+  margin-left: 0!important;
+}
 /*   2021.01.12 */
 .search-key {
   margin: 0 20px 15px 20px;
@@ -80,7 +82,7 @@
   background: #018FFF;
 }
 .boxShadow {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	box-shadow: 6px 6px 35px 0px rgba(1, 20, 91, 0.1);
 }
 .boxBorderBottom {
@@ -128,18 +130,18 @@
 }
 .mainKey {
   line-height: 60px;
-  font-size: 18px;
+  font-size: 16px;
   color: #343334;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left:50px;
   position: relative;
 }
-.mainKey:first-child {
-  margin-left: 0;
-}
+/*.mainKey:first-child {*/
+/*  margin-left: 0;*/
+/*}*/
 .searchListBox .active, .searchkey:hover {
   color: #fff;
-  background-color: #ff8a00;
+  background-color: #ff5e06;
 }
 .noP .mainKey, .noP .mainKey:first-child {
   margin-left: 30px;
@@ -147,25 +149,25 @@
 }
 .searchMainkey .active {
   font-weight: bold;
-  color: #018fff;
+  color: #ff5e06;
   background-color: transparent;
 }
 .mainKey:hover {
   font-weight: bold;
-  color: #018fff;
+  color: #ff5e06;
 }
-.mainKey.active::after,.mainKey:hover::after {
-  position: absolute;
-  content: '';
-  display: inline-block;
-  width: 30px;
-  height: 6px;
-  background-color: #018fff;
-  border-radius: 3px;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -17px;
-}
+/*.mainKey.active::after,.mainKey:hover::after {*/
+/*  position: absolute;*/
+/*  content: '';*/
+/*  display: inline-block;*/
+/*  width:100%;*/
+/*  height: 4px;*/
+/*  background-color: #ff5e06;*/
+/*  border-radius: 3px;*/
+/*  left: 50%;*/
+/*  transform: translateX(-50%);*/
+/*  bottom: -17px;*/
+/*}*/
 .search-row {
     padding: 0 20px;
 }
@@ -182,7 +184,7 @@
   vertical-align: top;
   padding: 11px 0 0;
   border-bottom: 1px dashed #d4d9e6;
-  width: 747px;
+  width: 847px;
   margin-left: 16px;
 }
 .searchkey {
@@ -209,7 +211,7 @@
   width: 100%;
   font-size: 14px;
   color: #999999;
-  margin: 23px 0 13px;
+  margin: 10px 0;
 }
 .result-item {
 	background-color: #ffffff;
@@ -235,7 +237,7 @@
 }
 .searchResult .total {
 	font-size: 16px;
-	color: #018fff;
+	color: #ff5e06;
 }
 .mainPolicyList {background-color: #fff;}
 .mainPolicyList .list-item {
@@ -243,7 +245,7 @@
 }
 .mainPolicyList .list-item .link {
 	color: #343334;
-	padding: 30px 20px;
+	padding:20px;
 	display: inline-block;
 	width: 100%;
 }
@@ -256,8 +258,9 @@
   font-size: 14px;
   margin-top: 13px;
 }
-.mainPolicyList .list-item:hover {
-	border: 1px solid #ff8a00;
+.mainPolicyList .list-item:hover .list-item-title{
+	/*border: 1px solid #ff8a00;*/
+  color: #ff5e06;
 }
 .list-item-apply-days {
   display: inline-block;

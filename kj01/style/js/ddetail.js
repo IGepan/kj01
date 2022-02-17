@@ -13,10 +13,10 @@ require(['/common/js/require.config.js'], function () {
             label: '资讯',
             url: '/polist.html'
           },
-          {
-            label: '项目申报',
-            url: '/declaration.html'
-          },
+          // {
+          //   label: '项目申报',
+          //   url: '/declaration.html'
+          // },
           {
             label: '申报助手',
             url: '/declarationHelper/list.html'
@@ -39,7 +39,8 @@ require(['/common/js/require.config.js'], function () {
         }
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
+        // 'ly-toper': httpVueLoader('/style/components/toper.vue'),
         'sub-head': httpVueLoader('/style/components/sub-head.vue'),
         'web-footer': httpVueLoader('/style/components/web_footer.vue')
       },

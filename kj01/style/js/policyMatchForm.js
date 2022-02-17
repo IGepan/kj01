@@ -181,6 +181,8 @@ require(['/common/js/require.config.js'], function () {
               checked: false,
             }],
             focusList: [],
+            activeIndex:0,
+            show:null
           }
         },
         
@@ -241,7 +243,11 @@ require(['/common/js/require.config.js'], function () {
               console.log(res)
               vm.focusList = res.result;
             })
-          },           
+          },
+          step(val){
+           this.activeIndex=val
+            console.log(this.activeIndex,'this.activeIndex')
+          },
           setDefaultQualication() {
             var vm = this;
             vm.qualification.forEach(function(item){
@@ -525,7 +531,12 @@ require(['/common/js/require.config.js'], function () {
           toLastStep() {
             this.saveAllData();
             this.saveParams();
-            location.href = '/policyMatchLogin.html'
+            if(this.activeIndex>0){
+              this.step(this.activeIndex)
+            }else{
+              location.href = '/policyMatchLogin.html'
+            }
+
           },
           toResult() {
             this.saveAllData();

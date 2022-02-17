@@ -26,22 +26,28 @@
 </head>
 <style>
   .countBox__number .number-grow-warp .number-grow {
-    font-size: 24px;
-    line-height: 24px;}
+    color: #ff5e06!important;
+    font-size: 22px;
+  line-height: 22px}
+  .number-grow-warp{
+    margin-right: 0!important;
+  }
   .countBox img{
-    width: 64px;
+    width: 48px;
+    margin-right: 10px;
   }
 
-  .countBox{
-    text-align: center;
-    display: block;
+  /*.countBox{*/
+  /*  text-align: center;*/
+  /*  display: block;*/
 
-  }
-  .countBox:after{
-    top:25%
-  }
+  /*}*/
   .topNumber{
-    padding: 15px 0px;
+    width: 980px;
+    margin:auto;
+    background-color: #fef3ea;
+    padding: 10px 0px;
+    border-radius: 10px;
    height: auto;
   }
   .countBox__number{
@@ -56,13 +62,33 @@
   .mt10{
     margin-top: 10px;
   }
+  .mdiv{
+    width: 1440px;
+  }
+  .mmdiv{
+    width: 1440px;
+    margin: auto;
+  }
+  .countBox::after{
+    display: none!important;
+  }
+  .page-item.current-item .link, .page-item:hover .link{
+    border-color: #ff5e06!important;
+    background-color: #ff5e06!important;
+  }
 </style>
 <body>
   <div class="box grayBgbox" v-cloak id='index_box'>
     <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
-    <sub-head name="政策资讯" :breadcrumb="breadcrumb"  @search="bindSearchValue" :nav-index="0"></sub-head>
-    <div class="bgw" style="background: #FFFFff;margin-top: 20px">
-      <div class="mdiv topNumber">
+<!--    <sub-head name="政策资讯" :breadcrumb="breadcrumb"  @search="bindSearchValue" :nav-index="0"></sub-head>-->
+    <div class="header-box " style="background: #fff;height: 65px;position: relative">
+
+      <index-head :nav-index="1"></index-head>
+      <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
+    </div>
+    <div class="bgw" style="background: url(/style/images/poindex/bg_head.png)no-repeat;background-size: cover;padding: 30px 0px">
+      <p style="color: #FFFFff;text-align:center;margin-top: 0">政策动态速递，科技热点跟进</p>
+      <div class="topNumber">
         <template v-for="(numberCount, ni) in numberCounts">
           <div class="countBox" :key="ni">
             <img :src="numberCount.url">
@@ -70,11 +96,12 @@
 <!--              <i class="iconfont" :class="numberCount.icon"></i>-->
 <!--            </div>-->
             <div>
-              <div class="mt10" style="color: #6a6e7d">{{numberCount.label}}</div>
-              <div class="countBox__number mt10">
+              <div class="countBox__number">
                 <number-grow :value="numberCount.count" color="#343334" :time="1" ></number-grow>
-                <span class="number-grow" style="color:rgb(52, 51, 52)">个</span>
+                <span class="number-grow" style="color:#ff5e06;font-size: 16px">个</span>
               </div>
+              <div style="color:#ff5e06">{{numberCount.label}}</div>
+
 
             </div>
           </div>
@@ -82,7 +109,7 @@
       </div>
     </div>
     <div class="mdiv commonCententBox">
-      <div class="fl mainBox">
+      <div class="fl mainBox" style="width: 1000px">
         <div class="searchListBox">
           <template v-if="options.searchOpts.length">
             <div class="searchMainkey boxShadow">
@@ -91,12 +118,12 @@
               </template>
             </div>
             <!--  2021.01.12 -->
-            <div class="search-key">
-                <input class="input" v-model="searchForm.title" type="text" placeholder="输入关键字查询" @keyup.enter="getSearchList">
-                <div class="btn" @click="getSearchList">
-                  <i class="iconfont fangdajing"></i>搜索
-                </div>     
-            </div>
+<!--            <div class="search-key">-->
+<!--                <input class="input" v-model="searchForm.title" type="text" placeholder="输入关键字查询" @keyup.enter="getSearchList">-->
+<!--                <div class="btn" @click="getSearchList">-->
+<!--                  <i class="iconfont fangdajing"></i>搜索-->
+<!--                </div>     -->
+<!--            </div>-->
             <template v-for="(optItem, index) in options.searchOpts">
               <div class="search-row" v-if="index && optItem.operationType !== 'switchover'" :key="index">
                 <label class="search-label">{{optItem.label}}</label>
@@ -130,28 +157,31 @@
         </div>
         <div class="searchResult clear">
           <div class="fl">
+            <template v-if="options.searchOpts.length">
+              <template v-for="(optItem, index) in options.searchOpts">
+                <div class="searchMainkey noP" v-if="index && optItem.operationType === 'switchover'">
+                  <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
+                    <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i class="iconfont icon-paixu"></i></span>
+                  </template>
+                  <!--  2021.01.12 -->
+                  <!-- <label class="checkbox" for="analyzingFlag">
+                    <input id="analyzingFlag" class="vaMiddle" type="checkbox" v-model="searchForm.analyzingFlag" :true-value="1" :false-value="''">
+                    <span class="vaMiddle checkbox-text">解读</span>
+                  </label> -->
+                </div>
+              </template>
+            </template>
+          </div>
+          <div class="fr" style="margin-left: 20px">已为您查询到 <span class="total" v-text="pages.total || 0" ></span> 条</div>
+          <div class="fr">
             <span>已选条件：</span>
             <template v-for="(selectOpt, index) in options.selectOpts">
               <label class="result-item" :key="index"><span class="result-value">{{selectOpt.display}}</span><i @click.stop="handleDelSelectOpt" :data-index="index" class="iconfont icon-delete icon"></i></label>
             </template>
           </div>
-          <div class="fr">已为您查询到 <span class="total" v-text="pages.total || 0" ></span> 条</div>
         </div>
         <div class="list mainPolicyList">
-        <template v-if="options.searchOpts.length">
-          <template v-for="(optItem, index) in options.searchOpts">
-            <div class="searchMainkey boxBorderBottom noP" v-if="index && optItem.operationType === 'switchover'">
-              <template v-for="(topDicItem, tindex) in optItem.dictIInfos">
-                <span class="mainKey" @click.stop="handleSetSearchForm" :class="{ active: topDicItem.selected }" :data-di="tindex" :data-pi="index" :data-value="topDicItem.value" :key="tindex">{{topDicItem.display}} <i class="iconfont icon-paixu"></i></span>
-              </template>
-              <!--  2021.01.12 -->
-              <!-- <label class="checkbox" for="analyzingFlag">
-                <input id="analyzingFlag" class="vaMiddle" type="checkbox" v-model="searchForm.analyzingFlag" :true-value="1" :false-value="''">
-                <span class="vaMiddle checkbox-text">解读</span>
-              </label> -->
-            </div>
-          </template>
-        </template>
+
         <template v-for="(policy, ni) in policyList">
           <div class="list-item" :key="ni">
             <a class="link" :title="policy.title" :href="policy.itemUrl" target="_blank">
@@ -199,7 +229,7 @@
         </template>
         </div>
       </div>
-      <div class="fr sideBar">
+      <div class="fr" style="width:365px">
         <right-navs></right-navs>  
         <!-- 
         <div class="bannerBlock-small">

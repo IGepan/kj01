@@ -11,7 +11,19 @@
  <link href="/style/css/declarationHelper.css" rel="stylesheet" type="text/css">
  <link href="/style/css/icon/iconfont.css" rel="stylesheet">
 </head>
-
+<style>
+ .mmdiv{
+  width: 1200px;
+  margin: auto;
+ }
+ .mdiv{
+  width: 1200px;
+ }
+ .page-item.current-item .link, .page-item:hover .link{
+  border-color: #ff5e06!important;
+  background-color: #ff5e06!important;
+ }
+</style>
 <body>
  <div class="box grayBgbox" v-cloak id='index_box'>
   <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
@@ -26,22 +38,23 @@
     </div>
    </div>
 
-   <div class="helperListBox mdiv">
+   <div class="helperListBox mdiv" style="background: #FFFFff">
     <div class="helperList">
      <ul>
       <li class="helperList-item" v-for="list in helperList" :key="list.id">
        <div class="item-header">
-        <div class="item-header_img">
-         <img :src="list.path" alt="">
-        </div>
+<!--        <div class="item-header_img">-->
+<!--         <img :src="list.path" alt="">-->
+<!--        </div>-->
         <div class="item-header_title" v-text="list.title"></div>
+        <div class="item-body_left" v-text="list.summary"></div>
        </div>
        <div class="item-body">
-        <div class="item-body_left" v-text="list.summary"></div>
-        <a :href="'./detail.html?id=' + list.id" class="item-body_rigth">查看详情</a>
+        <a :href="'./detail.html?id=' + list.id" class="item-body_rigth">查看详情&emsp;→</a>
        </div>
       </li>
      </ul>
+
     </div>
     <template v-if="pages">
      <pages :pages="pages" @changepage="bindPageChange"></pages>

@@ -13,13 +13,24 @@
   <link href="/style/css/icon/iconfont.css" rel="stylesheet" >
   <script type="text/javascript" src="/style/js/libs/pdfjs-dist/build/pdf.js"></script>
 </head>
-
+<style>
+  .mmdiv{
+    width: 1200px;
+    margin: auto;
+  }
+  .mdiv{
+    width: 1200px;
+  }
+  .list-title-text::before{
+    background-color:#ff5e06
+  }
+</style>
 <body>
   <div class="box grayBgbox" v-cloak id='index_box'>
     <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
     <sub-head name="政策资讯" :breadcrumb="breadcrumb" :cms-url="cmsUrl" :nav-index="2"></sub-head>
 
-    <div class="mdiv commonCententBox">
+    <div class="mdiv commonCententBox" style="padding-top: 20px">
       <div class="fl article">
         <template v-if="detail">
           <div class="article-title-box">
