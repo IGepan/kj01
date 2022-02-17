@@ -7,6 +7,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       el: '#index_box',
       data: {
         jquery: $,
+				selected: [],
+				selectAll: false,
         options: {
           chartOptions: {
             radar: [
@@ -395,22 +397,61 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           })
         },
+				//选择列表
+				selectPro: function(item){
+					var vm = this;
+					var list = this.searchInfo|| [];
+					vm.selected = [];
+					
+					if(item) {
+						item.selected = !item.selected;
+						this.$set(item,'selected',item.selected);
+						list.map(function(item){
+							item.selected && vm.selected.push(item.goodsId) 
+						})
+					} else {
+						vm.selectAll = !vm.selectAll;
+						list.map(function(item){
+							if(vm.selectAll)item.selected = true,vm.selected.push(item.goodsId);
+							else (item.selected = false);
+						});
+					}
+					
+					if(vm.selected.length == list.length) this.selectAll = true;
+					else this.selectAll = false;
+					this.$forceUpdate();
+				},
         // 立即购买
         handleBuyNow: function () {
-          this.demandForm.buyNowData = this.getBuyNowData()
-          sessionStorage.setItem('buyNowdemandForm', JSON.stringify(this.demandForm))
-          document.location = '/common/servicetrade/order.html'
+          var list = this.getBuyNowData();
+					var buyNowData = [];
+					for(var i = 0; i < list.length; i++){
+						if(this.selected.indexOf(list[i].goodsId)>=0) buyNowData.push(list[i])
+					}
+					
+          this.demandForm.buyNowData = buyNowData;
+					if(buyNowData.length > 0) {
+						sessionStorage.setItem('buyNowdemandForm', JSON.stringify(this.demandForm))
+						document.location = '/common/servicetrade/order.html'
+					}else{
+						this.$dialog.showToast('请选择服务');
+					}
         },
         // 收藏
         handlePlanInsert: function () {
           var fun = function (goods) {
             return goods.goodsId
-          }
-          // alert('敬请期待')
+          };
+					
+					var goodsIds = this.isCustomInfo ? this.collapseCustomInfo.reduce(function (datas, item) {return datas.concat(item.children.map(fun))}, []) : this.selected;
+					
+					if(goodsIds.length <= 0){
+						this.$dialog.showToast('请选择服务方案');return;
+					}
+					
           this.planInsert({
-            planName: this.demandForm.planName, goodsIds: this.isCustomInfo ? this.collapseCustomInfo.reduce(function (datas, item) {
-              return datas.concat(item.children.map(fun))
-            }, []) : this.searchInfo.map(fun)
+            planName: this.demandForm.planName, 
+						goodsIds: goodsIds
           })
         },
         handleTips: function () {

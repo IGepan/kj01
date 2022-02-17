@@ -57,14 +57,17 @@
                   <li v-for="(filter, i) in filterInfo" :class="{active: filter.selected}" @click="handleFilter(i)">
                     <span v-text="filter.label"></span></li>
                 </ul>
-                <div v-if="false" class="btnBox">
-                  <span class="btnBox-text">不满意？您可以自选服务</span>
-                  <div class="autonomouslyBtn" :class="{active: isCustomInfo}" @click="handleCustom"><span><i class="iconfont icon-tianjiajiahaowubiankuang"></i>自选方案</span></div>
-                </div>
+								<div class="result-chooseall-box" @click="selectPro(null)">
+									<span class="result-chooseall" :class="{active:selectAll}"></span>
+									全选
+								</div>
               </div>
               <div class="result" v-if="!isCustomInfo">
                 <div class="result-item" v-for="(item,ins) in searchInfo" :key="ins">
-                  <div class="result-title" v-text="$options.filters.formatingname(item.serviceName)"></div>
+                  <div class="result-title">
+										{{$options.filters.formatingname(item.serviceName)}}
+										<span class="result-chooseall" :class="{active:item.selected}" @click="selectPro(item)"></span>
+									</div>
                   <div class="result-body">
                     <div class="merchandise">
                       <div class="merchandise-title">
