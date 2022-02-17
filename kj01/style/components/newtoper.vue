@@ -678,7 +678,10 @@ module.exports = {
 .el-link.el-link--default{
   display: block;
   padding:0 20px;
-}
+}.el-link.el-link--default:hover{
+  background: #fffbf2;
+  color: #ff5e06;
+ }
 .el-dropdown-menu__item{
   padding: 0!important;
 }

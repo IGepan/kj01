@@ -4,7 +4,7 @@
       <div class="subhead-up">
         <div class="logobox">
           <a href="/" class="sublogo">
-            <img src="/style/images/logos/sublogo.png" alt="">
+            <img src="/style/images/logos/bai.png" alt="">
           </a>
           <label class="sublogo-label" v-text="name"></label>
         </div>
@@ -71,10 +71,10 @@ module.exports = {
           label: '政策惠',
           url: '/polist.html'
         },
-        {
-          label: '项目申报',
-          url: '/declaration.html'
-        },
+        // {
+        //   label: '项目申报',
+        //   url: '/declaration.html'
+        // },
         {
           label: '政策问答',
           url: '/answer/index.html'
@@ -105,7 +105,7 @@ module.exports = {
 
 <style>
 .subhead {
-  background: url(../images/poindex/bg_head.jpg) no-repeat top center;
+  background: url(../images/poindex/bg_head.png) no-repeat top center;
   background-size: 100% 100px;
 }
 .subhead-up {
@@ -118,12 +118,16 @@ module.exports = {
 .sublogo {
   display: inline-block;
   vertical-align: middle;
+  padding-right: 20px;
+  border-right: 1px solid #FFFFff;
+  margin-right: 15px;
 }
 .sublogo-label {
+
   display: inline-block;
   vertical-align: middle;
-  font-family: 'XinYeNianTi';
-  font-size: 42px;
+  /*font-family: 'XinYeNianTi';*/
+  font-size: 28px;
   color: #FFF;
   line-height: 54px;
   letter-spacing: 2px;
@@ -165,7 +169,7 @@ module.exports = {
   display: inline-block;
   vertical-align: middle;
   height: 40px;
-  border: 2px solid #072ac1;
+  border: 2px solid  #ff5e06;
   font-size: 0;
 }
 
@@ -177,7 +181,7 @@ module.exports = {
   vertical-align: middle;
 }
 .btn-search {
-  background-color: #072ac1;
+  background-color:  #ff5e06;
   display: inline-block;
   vertical-align: middle;
   width: 108px;
