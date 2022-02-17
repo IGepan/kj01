@@ -619,7 +619,7 @@ require(['/common/js/require.config.js'], function () {
                     activeP: {
                         pageNum: 1,
                         pageSize: 10,
-                        // sortType: "02",
+                        sortType: "02",
                         activeType: '218340665870780082',
                     },
                      params:{
