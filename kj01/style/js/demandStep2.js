@@ -239,8 +239,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             } else {
               vm.searchInfo = vm.dataInfo[0] = []
             }
-						
-						console.log(vm.searchInfo)
           }).catch(
             // 记录失败原因
             function (reason) {
