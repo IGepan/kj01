@@ -350,8 +350,9 @@
               </div>
 
               <div class="cxnl_btn">
-                <input @click="toLastStep" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
-                  <input v-if="activeIndex===0 || activeIndex===1" @click="toLastStep" type="button" value="下一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
+                <input v-if="activeIndex===0" @click="toLastStep()" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
+                  <input v-if="activeIndex===1|| activeIndex===2" @click="toLast1(activeIndex)" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
+                  <input v-if="activeIndex===0 || activeIndex===1" @click="toLast2(activeIndex)" type="button" value="下一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
                 <input v-if="activeIndex===2" @click="toResult" type="button" value="查看匹配结果" class="layui-btn layui-btn-lg layui-btn-normal viewReport viewReportBtn">
               </div>
 

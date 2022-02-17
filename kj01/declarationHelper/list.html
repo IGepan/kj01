@@ -41,18 +41,21 @@
    <div class="helperListBox mdiv" style="background: #FFFFff">
     <div class="helperList">
      <ul>
-      <li class="helperList-item" v-for="list in helperList" :key="list.id">
-       <div class="item-header">
-<!--        <div class="item-header_img">-->
-<!--         <img :src="list.path" alt="">-->
-<!--        </div>-->
-        <div class="item-header_title" v-text="list.title"></div>
-        <div class="item-body_left" v-text="list.summary"></div>
-       </div>
-       <div class="item-body">
-        <a :href="'./detail.html?id=' + list.id" class="item-body_rigth">查看详情&emsp;→</a>
-       </div>
-      </li>
+         <a :href="'./detail.html?id=' + list.id" v-for="list in helperList" :key="list.id">
+             <li class="helperList-item" >
+                 <div class="item-header">
+                     <!--        <div class="item-header_img">-->
+                     <!--         <img :src="list.path" alt="">-->
+                     <!--        </div>-->
+                     <div class="item-header_title" v-text="list.title"></div>
+                     <div class="item-body_left" v-text="list.summary"></div>
+                 </div>
+                 <div class="item-body">
+                     <span  class="item-body_rigth">查看详情&emsp;→</span>
+                 </div>
+             </li>
+         </a>
+
      </ul>
 
     </div>

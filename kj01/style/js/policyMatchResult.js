@@ -24,7 +24,7 @@ require(['/common/js/require.config.js'], function () {
             userInfo: {},
             searchForm: {
               pageNum: 1,
-              pageSize: 10,
+              pageSize: 4,
               type: '1', // 排序方式(字典表:sort_type)
             },        
             params: {name: ''},
