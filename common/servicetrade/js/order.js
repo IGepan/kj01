@@ -1,6 +1,6 @@
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', 'httpCartApi', 'httpUserAddressApi', 'jqValidate', 'dialog', 'httpCom'], function ($, Vue, dic, httpVueLoader, httpCartApi, httpUserAddressApi, jqValidate, dialog, httpCom) {
+    require(['jquery', 'vue', 'dic', 'utils', 'httpVueLoader', 'httpCartApi', 'httpUserAddressApi', 'jqValidate', 'dialog', 'httpCom'], function ($, Vue, dic, utils, httpVueLoader, httpCartApi, httpUserAddressApi, jqValidate, dialog, httpCom) {
         Vue.component('ly-searchbox', httpVueLoader(this.$pathPrefix + '/style/components/searchbox.vue'))
         window.vueDom = new Vue({
             el: '#index_box',
@@ -75,6 +75,15 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 }
             },
             methods: {
+								getToken: function () {
+									var LOGIN_INFO = utils.getCookie(dic.locaKey.LOGIN_INFO);
+									var token = '';
+									if (LOGIN_INFO && LOGIN_INFO !== 'null') {
+									  LOGIN_INFO = JSON.parse(LOGIN_INFO)
+									  token = LOGIN_INFO.access_token
+									}
+									return token
+								},
                 //IM聊天界面
                 onLineConsult: function (shopId, userId) {
                     if (shopId) {
@@ -102,11 +111,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             this.getBuyNowInfo(infos.skuIds)
                         } else {
                             this.demandForm = infos
-                            this.getBuyNowInfo(infos.buyNowData)
+                            this.getBuyNowInfo(infos.buyNowData);
                         }
                     } else {
                         this.$dialog.showToast("没有订单数据！")
                     }
+
                     this.getAddressList()
                     this.getPayOptions()
                     this.addressSetInfo()
@@ -136,8 +146,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     })
                 },
                 getBuyNowInfo: function (data) {
-                    var vm = this
-                    httpCartApi.buyNow({list: data}).then(function (res) {
+                    var vm = this;
+										var token = this.getToken();
+                    token&&httpCartApi.buyNow({list: data}).then(function (res) {
                         if (res.code == 'rest.success') {
                             res.result.length && res.result.forEach(function (shop) {
                                 shop.details.forEach(function (sku) {
@@ -274,8 +285,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.isFullAddress = !this.isFullAddress
                 },
                 getAddressList: function () {
-                    var vm = this
-                    httpUserAddressApi.selectByUserId().then(function (res) {
+                    var vm = this;
+										var token = this.getToken();
+                   token && httpUserAddressApi.selectByUserId().then(function (res) {
                         if (res.code == 'rest.success') {
                             vm.selecedAddressIndex !== -1 && (res.result[vm.selecedAddressIndex].activated = true)
                             vm.$data.addressList = res.result

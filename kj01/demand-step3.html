@@ -95,7 +95,7 @@
                             <div class="merchandise-info-desc-price fr">
                               <div class="merchandise-auxiliary">
 																
-																<span v-if="item.choosePriceTag=='0'">￥{{item.price}}元</span>
+																<span v-if="item.choosePriceTag=='0'">￥{{item.minPrice}}元</span>
 																<span v-if="item.choosePriceTag=='1'">￥{{item.minPrice}}{{item.minPrice&&item.maxPrice?'-':''}}{{item.maxPrice}}元</span>
 																<span v-if="item.choosePriceTag=='2'">面议</span>
 																<span v-if="item.choosePriceTag=='3'">{{item.priceWord}}</span>
