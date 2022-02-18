@@ -42,6 +42,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
 		 */
     cancel: function (param) {
       return Http.get(httpUrl.baseUrl + '/collection/cancel', param)
-    }
+    },
+      //申报助手
+      assistantSelectByPage: function (param) {
+          return Http.post(httpUrl.baseUrl + '/wxApp/assistant/selectByPage', param)
+      },
   }
 })

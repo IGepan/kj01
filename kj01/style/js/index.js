@@ -616,6 +616,12 @@ require(['/common/js/require.config.js'], function () {
                         // sortType: "02",
                         activeType: '218340665870780082',
                     },
+                    activeP: {
+                        pageNum: 1,
+                        pageSize: 10,
+                        sortType: "02",
+                        activeType: '218340665870780082',
+                    },
                      params:{
                         activeType: "390092837996355585",
                         pageNum: 1,
@@ -1216,28 +1222,32 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getAList: function (id) {
                         var vm = this;
-                        indexApi.selectActiveByPage({
-                            columnId: id,
-                        }).then(function (res) {
-                            res.result && res.result.forEach(function (item) {
-                                item.itemUrl = '/livedetail.html?id=' + item.contentId
-                                item.itemImg = item.poster.url
+                        indexApi.selectIssuePage(vm.activeP).then(function (res) {
+                            if (res.code === 'rest.success') {
+                                vm.activeHot = res.result.list.slice(0, 3)
+                                vm.activeList = res.result.list.slice(3, 7)
+                                vm.$nextTick(function () {
+                                    $('#activeHots').owlCarousel({
+                                        items: 1,
+                                        singleItem: true,
+                                        autoplay: true,
+                                        loop: true,
+                                        autoplayHoverPause: true,
+                                        autoplayTimeout: 2000,
+                                        autoHeight: true,
+                                        transitionStyle: 'fade',
+                                    });
                             })
-                            vm.activeHot = res.result.slice(0, 3)
-                            vm.activeList = res.result.slice(3, 7)
-                            vm.$nextTick(function () {
-                                $('#activeHots').owlCarousel({
-                                    items: 1,
-                                    singleItem: true,
-                                    autoplay: true,
-                                    loop: true,
-                                    autoplayHoverPause: true,
-                                    autoplayTimeout: 2000,
-                                    autoHeight: true,
-                                    transitionStyle: 'fade',
-                                });
-                            })
-                        })
+                            }
+                        });
+                        // indexApi.selectActiveByPage({
+                        //     columnId: id,
+                        // }).then(function (res) {
+                        //     res.result && res.result.forEach(function (item) {
+                        //         item.itemUrl = '/livedetail.html?id=' + item.contentId
+                        //         item.itemImg = item.poster.url
+                        //     })
+
                     },
                     //2020-12-23 政策速递 政策精要 改为政策惠
                     // getPList: function (id) {

@@ -80,7 +80,8 @@ require(['/common/js/require.config.js'], function () {
         }
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
+        // 'ly-toper': httpVueLoader('/style/components/toper.vue'),
         'sub-head': httpVueLoader('/style/components/sub-head.vue'),
         'web-footer': httpVueLoader('/style/components/web_footer.vue')
       },

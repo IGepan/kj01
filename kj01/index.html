@@ -123,7 +123,7 @@
     <ly-toper ref="lytoper" top-class="white"></ly-toper>
     <div class="header-box " style="background: #fff;height: 65px;position: relative">
 
-       <index-head></index-head>
+       <index-head :nav-index="0"></index-head>
 <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
     </div>
 <!--    易智商城入驻弹窗-->
@@ -189,8 +189,8 @@
                             <a href="/alist.html?type=218340665870780082">更多></a>
                         </div>
                         <div id="activeHots" class="studioBox owl-carousel owl-theme" style="height: 341px;overflow: hidden;">
-                            <a :href="item.itemUrl" class="studio" :key="index" v-for="(item,index) in activeHot">
-                                <img :src="item.itemImg" alt="">
+                            <a :href="'/livedetail.html?id=' + item.id" class="studio" :key="index" v-for="(item,index) in activeHot">
+                                <img :src="item.posterUrl" alt="">
                                 <div class="studio-info">
                                     <div class="studio-info_left">
                                         <div class="infoImg">
@@ -207,7 +207,7 @@
                             </a>
                         </div>
                         <div class="studio-lists">
-                            <a :href="active.itemUrl" :title="active.title" v-for="(active,index) in activeList"
+                            <a :href="'/livedetail.html?id=' + active.id" :title="active.title" v-for="(active,index) in activeList"
                                :key="index"><span>回放</span>{{active.title}}</a>
                         </div>
                     </div>

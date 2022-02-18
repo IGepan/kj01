@@ -29,53 +29,98 @@
         })();
     </script>
 </head>
-<body>
-  <div class="box" id='matchForm_box' v-cloak>
-    <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <policymatch-head current-step="2"></policymatch-head>
+<style>
+    .footer-b{
+        color: #FFFFff;text-align: center;bottom: 30px;position: absolute;display: flex;justify-content: center;width: 100%;
+        font-size: 14px;
+    }
+    .right-box{
+        position: absolute;
+        right:100px;
+        bottom: 100px;
+        font-size: 12px;
+        color: #dfdfdf;
+        text-align: center;
+    }
+    .right-box span{
+        display: block;
+    }
+
+    .right-box img{
+        margin-bottom: 10px;
+    }
+    .width80{
+        width: 80%;
+    }
+    .width90{
+        width: 100%;
+    }
+    .min{
+        font-size: 14px;
+    }
+    .font_18{
+        font-size: 18px!important;
+    }
+    .fStyle{
+        font-style: normal!important;
+    }
+</style>
+<body style="background: url(/style/images/poindex/zpbg.png)no-repeat;background-size: cover">
+  <div id='matchForm_box' v-cloak>
+      <div style="color: #FFFFff;margin: 20px;">
+          <a href="index.html"><img src="/style/images/logos/bai.png" style="vertical-align: middle"/></a>
+          <span>丨 依托大数据，智能匹配政策</span>
+      </div>
+<!--    <ly-toper ref="lytoper" top-class="white"></ly-toper>-->
+<!--    <policymatch-head current-step="2"></policymatch-head>-->
     <div class="matchContent mdiv">
       <div >
         <div class="mp_con mp_con2 mainWidth partTwo">
           <form class="layui-form valiform">
               <div class="cxnl_a">
-                  <p class="cxnl_aa">基本信息</p>
-                  <table>
+                  <div class="tab">
+                      <a class="cxnl_aa" @click="step(0)" :class="activeIndex===0?'active':''">STEP 01 基本信息</a>
+                      <a class="cxnl_aa" @click="step(1)" :class="activeIndex===1?'active':''">STEP 02 研发情况</a>
+                      <a class="cxnl_aa" @click="step(2)" :class="activeIndex===2?'active':''">STEP 03 经营情况</a>
+                  </div>
+                  <div style="display: flex;justify-content: space-between" v-if="activeIndex===0">
+                  <table style="width: 40%">
+                      <tr> <td align="left" width="160" class="font_18"><em class="red">*</em>1、企业名称</td></tr>
                       <tr>
-                          <td align="right" width="160"><em class="red">*</em>企业名称</td>
                           <td>
-                            <div class="layui-input-inline width_300">
-                                <input type="text" class="layui-input" v-model="formData.organizationName" id="companyNameU" style="width: 200px">
+                            <div class="layui-input-inline width80">
+                                <input type="text" class="layui-input" v-model="formData.organizationName" id="companyNameU">
                              </div>
                           </td>
                       </tr>
+                      <tr><td align="left" class="font_18"><em class="red">*</em>2、统一社会信用代码</td></tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>统一社会信用代码</td>
                           <td>
-                            <div class="layui-input-inline width_300">
+                            <div class="layui-input-inline width80">
                               <input type="text" class="layui-input" id="socialCodeU" v-model="formData.creditCode" onkeyup="value=value.replace(/[^0-9A-z]/g,'')" maxlength="18">
                             </div>
                           </td>
                       </tr>
+<!--                      <tr>-->
+<!--                          <td align="right"><em class="red">*</em>注册时间</td>-->
+<!--                          <td>-->
+<!--                              <div class="layui-input-inline width_300">-->
+<!--                                <input type="date" v-model="formData.establishDate" id="establishDate" name="registTimeU" autocomplete="off" class="layui-input" >-->
+<!--                            </div>-->
+<!--                          </td>-->
+<!--                      </tr>-->
+                      <tr> <td align="left" class="font_18"><em class="red">*</em>3、企业类型</td></tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>注册时间</td>
-                          <td>
-                              <div class="layui-input-inline width_300">
-                                <input type="date" v-model="formData.establishDate" id="establishDate" name="registTimeU" autocomplete="off" class="layui-input" >
-                            </div>
-                          </td>
-                      </tr>
-                      <tr>
-                        <td align="right"><em class="red">*</em>企业类型</td>
                         <td class="td2">
-                          <div class="width_300">
+                          <div class="width80">
                             <ly-select v-model="formData.organizationType" class='select name'
                             :group='alias.organizationTypeGroups[formData.identityType]' code='organization_type'
                             :http='httpUser'></ly-select>   
                          </div>                            
                         </td>
-                      </tr>   
+                      </tr>
+                      <tr> <td align="left" class="font_18">4、企业规模<span class="min">（选填）</span></td></tr>
                       <tr>
-                        <td align="right">企业规模</td>
                         <td class="td2">
                             <ly-radio class="radio" code='scale' v-model='formData.scale'></ly-radio>                                                     
                         </td>
@@ -114,187 +159,215 @@
                             </div>                                                                  
                         </td>
                       </tr>   -->
-                      <tr>
-                        <td align="right"><em class="red">*</em>行业分类</td>
-                        <td class="td2 width_600">
-                            <ly-select-level ref="industryEl" @input="handleIndustryInput" data-valid="custom:industryValid"
-                            class="required level" v-model="formData.industryList"></ly-select-level>
-                            </td>
-                        </tr> 
-                      <tr>
-                        <td align="right"><em class="red">*</em>所在地</td>
-                        <td class="td2">
-                          <ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
-                          :http='httpUser'></ly-address-select>                        
-                        </td>
-                      </tr>     
-<!--                      <tr>-->
-<!--                        <td align="right">服务领域</td>-->
-<!--                        <td class="td2 width_600">-->
-<!--                            <label class="select" style="line-height: normal;">-->
-<!--                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"-->
-<!--                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>-->
-<!--                            </label>     -->
-<!--                        </td>-->
-<!--                        <td ref="servicesMsg" class="form_msg"></td>   -->
-<!--                      </tr>                                                            -->
-                      <tr>
-                        <td align="right">关注的政策</td>
-                        <td class="td2 width_600">
-                            <label class="select" style="line-height: normal;">
-                              <ly-select-level2 :list="focusList" :value="formData.focusPolicy"></ly-select-level2>
-                            </label>     
-                        </td>
-                        <td ref="servicesMsg" class="form_msg"></td>   
-                      </tr>             
-                      <tr>
-                        <td align="right">服务领域</td>
-                        <td class="td2 width_600">
-                            <label class="select" style="line-height: normal;">
-                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
-                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>
-                            </label>     
-                        </td>
-                        <td ref="servicesMsg" class="form_msg"></td>   
-                      </tr>                                                            
-                      <tr >                          
-                        <td align="right"><em class="red">*</em>企业资质</td>
-                        <td class="td2 width_600">
-                          <div class="select name mulSelect">                 
-                            <div class="selectBox" @click.stop="isQualificationShow = !isQualificationShow">
-                                <div class="select_content" v-for="(item, index) in formData.qualifications" :key="index">
-                                   <span> {{item}} <i aria-hidden="true" class="iconfont icon-cuowu" @click.stop="removeQualification(index, item)"></i></span>
-                                </div>
-                            </div> 
-                            <div class="selectList" v-show="isQualificationShow">
-                                <div v-for="item in qualification" :key="item.id" @click.stop="checkQualification(item)" class="item" :class="{checked: item.checked}">{{item.display}}</div>
-                            </div>
-                            <!-- <ly-mulselect v-model='formData.qualifications' ref='idmulSelect' index='qua'
-                              :mul-select-list='qualification'>
-                            </ly-mulselect> -->
-                          </div>
-                        </td>
-                      </tr>                      
                   </table>
+                      <table style="width: 60%">
+                          <tr><td align="left" class="font_18"><em class="red">*</em>5、行业分类</td></tr>
+                          <tr>
+                              <td class="td2 width90">
+                                  <ly-select-level ref="industryEl" @input="handleIndustryInput" data-valid="custom:industryValid"
+                                                   class="required level" v-model="formData.industryList" style="border: 1px solid #e6e6e6"></ly-select-level>
+                              </td>
+                          </tr>
+                          <tr><td align="left" class="font_18"><em class="red">*</em>6、所在地</td></tr>
+                          <tr>
+                              <td class="td2">
+                                  <ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+                                                     :http='httpUser' style="display: flex;justify-content: space-between"></ly-address-select>
+                              </td>
+                          </tr>
+                          <!--                      <tr>-->
+                          <!--                        <td align="right">服务领域</td>-->
+                          <!--                        <td class="td2 width_600">-->
+                          <!--                            <label class="select" style="line-height: normal;">-->
+                          <!--                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"-->
+                          <!--                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>-->
+                          <!--                            </label>     -->
+                          <!--                        </td>-->
+                          <!--                        <td ref="servicesMsg" class="form_msg"></td>   -->
+                          <!--                      </tr>                                                            -->
+<!--                          <tr>-->
+<!--                              <td align="right">7.关注的政策</td>-->
+<!--                              <td class="td2 width_600">-->
+<!--                                  <label class="select" style="line-height: normal;">-->
+<!--                                      <ly-select-level2 :list="focusList" :value="formData.focusPolicy"></ly-select-level2>-->
+<!--                                  </label>-->
+<!--                              </td>-->
+<!--                              <td ref="servicesMsg" class="form_msg"></td>-->
+<!--                          </tr>-->
+                          <tr> <td align="left" class="font_18"><em class="red">*</em>7、企业资质</td></tr>
+                          <tr>
+                              <td class="td2 width90">
+                                  <div class="select name mulSelect">
+                                      <div class="selectBox" @click.stop="isQualificationShow = !isQualificationShow">
+                                          <div class="select_content" v-for="(item, index) in formData.qualifications" :key="index">
+                                              <span> {{item}} <i aria-hidden="true" class="iconfont icon-cuowu" @click.stop="removeQualification(index, item)"></i></span>
+                                          </div>
+                                      </div>
+                                      <div class="selectList" v-show="isQualificationShow">
+                                          <div v-for="item in qualification" :key="item.id" @click.stop="checkQualification(item)" class="item" :class="{checked: item.checked}">{{item.display}}</div>
+                                      </div>
+                                      <!-- <ly-mulselect v-model='formData.qualifications' ref='idmulSelect' index='qua'
+                                        :mul-select-list='qualification'>
+                                      </ly-mulselect> -->
+                                  </div>
+                              </td>
+                          </tr>
+                          <tr><td align="left" class="font_18">8、服务领域<span class="min">（选填）</span></td></tr>
+                          <tr>
+                              <td class="td2 width90">
+                                  <label class="select" style="line-height: normal;">
+                                      <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
+                                                       type='service' class="required level" v-model="formData.servicesList"></ly-select-level>
+                                  </label>
+                              </td>
+                              <td ref="servicesMsg" class="form_msg"></td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div v-if="activeIndex===1" style="padding:0px 10px">
+                                        <table>
+                                            <tr><td align="left" width="160" class="font_18">1、一类知识产权总数<span class="min">（选填）</span></td></tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" v-model="developmentInfo.property1" class="layui-input" id="firstIntellNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;个<em class="red fStyle">（含发明专利、植物新品种、国家新药、国家一级重要和集成电路布图设计）</em>
+                                                </td>
+                                            </tr>
+                                            <tr><td align="left" class="font_18">2、二类知识产权总数<span class="min">（选填）</span></td></tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text"v-model="developmentInfo.property2"  class="layui-input" id="secondIntellNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;个<em class="red fStyle">（含实用新型专利、外观专利和软件著作权）</em>
+                                                </td>
+                                            </tr>
+                                            <tr> <td align="left" class="font_18">3、研发人员数量<span class="min">（选填）</span></td></tr>
+                                            <tr>
+
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="developmentInfo.userNum" class="layui-input" id="developerNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;人
+                                                </td>
+                                            </tr>
+                                            <tr><td align="left" class="font_18"><em class="red">*</em><span class="year">4、{{lastYear}}</span>年研发费用</td></tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="developmentInfo.developFee" class="layui-input" id="developPriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                                                </td>
+                                            </tr>
+                                            <tr><td align="left" class="font_18">5、研发设备投入<span class="min">（选填）</span></td></tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="developmentInfo.equipmentFee" class="layui-input" id="deviceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元<em class="red fStyle">（含合作开发、委外开发、技术购买及技术授权许可费支出）</em>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                  </div>
+                  <div v-if="activeIndex===2" style="display: flex;justify-content: space-between">
+
+                                        <table style="width: 50%">
+                                            <tr> <td align="left" width="170" class="font_18"><em class="red">*</em>1、在职员工数量</td></tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="operatingInfo.employeeNum" class="layui-input" id="employeeNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;人
+                                                </td>
+                                                <td align="right" width="170"></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"  class="font_18"><span class="yearThree">2、{{beforeLastYear}}</span>年主营业务收入</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="operatingInfo.income1" class="layui-input" id="mainServicePriceThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                                                </td>
+                                            </tr>
+                                            <tr> <td align="left"  class="font_18"><span class="yearThree">3、{{beforeLastYear}}</span>年净资产</td></tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="operatingInfo.netWorth1" class="layui-input" id="pureAssetsThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                                                </td>
+                                            </tr>
+                                            <tr><td align="left"  class="font_18"><em class="red">*</em><span class="yearTwo">4、{{lastYear}}</span>年主营业务收入</td></tr>
+                                            <tr>
+
+                                                <td>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" v-model="operatingInfo.income2" class="layui-input" id="mainServicePriceTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                                                </td>
+                                            </tr>
+                                        </table>
+                      <table style="width: 50%">
+                          <tr> <td align="left"  class="font_18"><span class="yearTwo">5、{{lastYear}}</span>年净资产</td></tr>
+                          <tr>
+
+                              <td>
+                                  <div class="layui-input-inline">
+                                      <input type="text" v-model="operatingInfo.netWorth2" class="layui-input" id="pureAssetsTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                              </td>
+                          </tr>
+                          <tr> <td align="left"  class="font_18"><span class="year">6、{{currentYear}}</span>年主营业务收入</td></tr>
+                          <tr>
+
+                              <td>
+                                  <div class="layui-input-inline">
+                                      <input type="text" v-model="operatingInfo.income3" class="layui-input" id="mainServicePriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                              </td>
+                          </tr>
+                          <tr><td align="left"  class="font_18"><span class="year">7、{{currentYear}}</span>年净资产</td></tr>
+                          <tr>
+
+                              <td>
+                                  <div class="layui-input-inline">
+                                      <input type="text" v-model="operatingInfo.netWorth3"  class="layui-input" id="pureAssetsU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
+                              </td>
+                          </tr>
+                          <tr> <td align="left" width="170"  class="font_18"><em class="red">*</em>8、经营场地面积</td></tr>
+                          <tr>
+                              <td>
+                                  <div class="layui-input-inline">
+                                      <input type="text" v-model="operatingInfo.area"  class="layui-input" id="placeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;&nbsp;平方米
+                              </td>
+                          </tr>
+                      </table>
+                                        <!-- <p class="cxnl_aa">企业资质</p>
+                                        <table>
+                                            <tr>
+                                                <td align="right" valign="top" style="width: 180px;">企业已获得的资质荣誉</td>
+                                                <td>
+                                                  <div class="table_a" v-for="(item, index) in honerList" :key="index">
+                                                      <input type="checkbox" :id="'choose'+index" name="honorProjectU" :value="item.value" :title="item.name" :checked="item.checked">
+                                                      <label :for="'choose'+index">{{item.name}}</label>
+                                                  </div>
+                                            </tr>
+                                        </table> -->
+                  </div>
               </div>
-              <div class="cxnl_a">
-                  <p class="cxnl_aa">研发情况</p>
-                  <table>
-                      <tr>
-                          <td align="right" width="160">一类知识产权总数</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                <input type="text" v-model="developmentInfo.property1" class="layui-input" id="firstIntellNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;个<em class="red">（含发明专利、植物新品种、国家新药、国家一级重要和集成电路布图设计）</em>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right">二类知识产权总数</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text"v-model="developmentInfo.property2"  class="layui-input" id="secondIntellNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;个<em class="red">（含实用新型专利、外观专利和软件著作权）</em>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right">研发人员数量</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="developmentInfo.userNum" class="layui-input" id="developerNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;人
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right"><em class="red">*</em><span class="year">{{lastYear}}</span>年研发费用</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="developmentInfo.developFee" class="layui-input" id="developPriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right">研发设备投入</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="developmentInfo.equipmentFee" class="layui-input" id="deviceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元<em class="red">（含合作开发、委外开发、技术购买及技术授权许可费支出）</em>
-                          </td>
-                      </tr>
-                  </table>
-                  <p class="cxnl_aa">经营情况</p>
-                  <table>
-                      <tr>
-                          <td align="right" width="170"><em class="red">*</em>在职员工数量</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.employeeNum" class="layui-input" id="employeeNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;人
-                          </td>
-                          <td align="right" width="170"></td>
-                          <td></td>
-                      </tr>
-                      <tr>
-                          <td align="right"><span class="yearThree">{{beforeLastYear}}</span>年主营业务收入</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.income1" class="layui-input" id="mainServicePriceThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                          <td align="right"><span class="yearThree">{{beforeLastYear}}</span>年净资产</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.netWorth1" class="layui-input" id="pureAssetsThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right"><em class="red">*</em><span class="yearTwo">{{lastYear}}</span>年主营业务收入</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.income2" class="layui-input" id="mainServicePriceTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                          <td align="right"><span class="yearTwo">{{lastYear}}</span>年净资产</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.netWorth2" class="layui-input" id="pureAssetsTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right"><span class="year">{{currentYear}}</span>年主营业务收入</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.income3" class="layui-input" id="mainServicePriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                          <td align="right"><span class="year">{{currentYear}}</span>年净资产</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.netWorth3"  class="layui-input" id="pureAssetsU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right" width="170"><em class="red">*</em>经营场地面积</td>
-                          <td>
-                              <div class="layui-input-inline">
-                                  <input type="text" v-model="operatingInfo.area"  class="layui-input" id="placeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;&nbsp;平方米
-                          </td>
-                          <td align="right" width="170"></td>
-                          <td></td>
-                      </tr>
-                  </table>
-                  <!-- <p class="cxnl_aa">企业资质</p>
-                  <table>
-                      <tr>
-                          <td align="right" valign="top" style="width: 180px;">企业已获得的资质荣誉</td>
-                          <td>
-                            <div class="table_a" v-for="(item, index) in honerList" :key="index">                               
-                                <input type="checkbox" :id="'choose'+index" name="honorProjectU" :value="item.value" :title="item.name" :checked="item.checked">
-                                <label :for="'choose'+index">{{item.name}}</label>
-                            </div>
-                      </tr>
-                  </table> -->
-              </div>
+
               <div class="cxnl_btn">
-                <input @click="toLastStep" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
-                <input @click="toResult" type="button" value="查看匹配结果" class="layui-btn layui-btn-lg layui-btn-normal viewReport viewReportBtn">
+                <input v-if="activeIndex===0" @click="toLastStep()" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
+                  <input v-if="activeIndex===1|| activeIndex===2" @click="toLast1(activeIndex)" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
+                  <input v-if="activeIndex===0 || activeIndex===1" @click="toLast2(activeIndex)" type="button" value="下一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
+                <input v-if="activeIndex===2" @click="toResult" type="button" value="查看匹配结果" class="layui-btn layui-btn-lg layui-btn-normal viewReport viewReportBtn">
               </div>
 
           </form>
       </div>
       </div>
     </div>
-    <web-footer></web-footer>
+      <div class="right-box">
+          <img src="/style/images/index/qrcode.jpg" width="100"/>
+          <span>关注公众号</span>
+          <span>手机看政策</span>
+      </div>
+      <div class="footer-b">
+          Copyright © 2019 易智网 版权所有<a href="https://beian.miit.gov.cn/" target="_blank" style="color: #FFFFff;">渝ICP备09050127号-36</a>
+      </div>
   </div>
   <script src="/common/js/laydate/laydate.js"></script>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>

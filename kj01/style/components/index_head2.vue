@@ -35,14 +35,15 @@ module.exports = {
     isfixed: {
       type: Boolean,
     },
-    navIndex: {
-      type: [String, Number],
-      default: 0,
-    },
+    navIndex:{
+     type: Number,
+    }
+      // default: 1,
   },
   data: function () {
     return {
       searchKey: "",
+      num:null,
       navs: [
         {
           label: '首页',
@@ -98,14 +99,21 @@ module.exports = {
     }
   },
   created: function () {
-    this.navs[this.navIndex].active = 1;
+    this.navs[this.navIndex].active =1;
   },
   watch: {
-    navIndex: function (v) {
-      this.navs.forEach(function (item, i) {
-        item.active = v === i;
-      });
+    navIndex: function(v) {
+        console.log(v,'this.navIndex')
+        this.navs.forEach(function (item, i) {
+          item.active = v === i;
+        });
     },
+    // type:{
+    //   immediate: true,
+    //   deep:true,
+    //   handler(val) {
+    //     console.log(val,'val')
+    //   },
   },
   methods: {
     // alerta: function (i) {
