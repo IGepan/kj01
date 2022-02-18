@@ -60,6 +60,7 @@
     }
     .font_18{
         font-size: 18px!important;
+        font-weight: bold;
     }
     .fStyle{
         font-style: normal!important;
@@ -274,11 +275,9 @@
                                                     <div class="layui-input-inline">
                                                         <input type="text" v-model="operatingInfo.employeeNum" class="layui-input" id="employeeNumU" maxlength="7" onkeyup="value=value.replace(/[^0-9]/g,'')"></div>&nbsp;人
                                                 </td>
-                                                <td align="right" width="170"></td>
-                                                <td></td>
                                             </tr>
                                             <tr>
-                                                <td align="left"  class="font_18"><span class="yearThree">2、{{beforeLastYear}}</span>年主营业务收入</td>
+                                                <td align="left"  class="font_18"><span class="yearThree">2、{{beforeLastYear}}</span>年主营业务收入<span class="min">（选填）</span></td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -286,7 +285,7 @@
                                                         <input type="text" v-model="operatingInfo.income1" class="layui-input" id="mainServicePriceThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                                                 </td>
                                             </tr>
-                                            <tr> <td align="left"  class="font_18"><span class="yearThree">3、{{beforeLastYear}}</span>年净资产</td></tr>
+                                            <tr> <td align="left"  class="font_18"><span class="yearThree">3、{{beforeLastYear}}</span>年净资产<span class="min">（选填）</span></td></tr>
                                             <tr>
                                                 <td>
                                                     <div class="layui-input-inline">
@@ -303,7 +302,7 @@
                                             </tr>
                                         </table>
                       <table style="width: 50%">
-                          <tr> <td align="left"  class="font_18"><span class="yearTwo">5、{{lastYear}}</span>年净资产</td></tr>
+                          <tr> <td align="left"  class="font_18"><span class="yearTwo">5、{{lastYear}}</span>年净资产<span class="min">（选填）</span></td></tr>
                           <tr>
 
                               <td>
@@ -311,7 +310,7 @@
                                       <input type="text" v-model="operatingInfo.netWorth2" class="layui-input" id="pureAssetsTwoU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                               </td>
                           </tr>
-                          <tr> <td align="left"  class="font_18"><span class="year">6、{{currentYear}}</span>年主营业务收入</td></tr>
+                          <tr> <td align="left"  class="font_18"><span class="year">6、{{currentYear}}</span>年主营业务收入<span class="min">（选填）</span></td></tr>
                           <tr>
 
                               <td>
@@ -319,7 +318,7 @@
                                       <input type="text" v-model="operatingInfo.income3" class="layui-input" id="mainServicePriceU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                               </td>
                           </tr>
-                          <tr><td align="left"  class="font_18"><span class="year">7、{{currentYear}}</span>年净资产</td></tr>
+                          <tr><td align="left"  class="font_18"><span class="year">7、{{currentYear}}</span>年净资产<span class="min">（选填）</span></td></tr>
                           <tr>
 
                               <td>
