@@ -89,11 +89,12 @@
  .item-body {
   height: 43px;
   padding: 0 20px;
-  border: solid 1px #e3eaf1;
-  border-top: none;
+  /*border: solid 1px #e3eaf1;*/
+  /*border-top: none;*/
   /*display: flex;*/
   align-items: center;
   background: url(../images/poindex/btt.png)no-repeat;
+  background-size: cover;
  }
 
  .item-body_left {
