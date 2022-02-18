@@ -121,7 +121,7 @@
 .article-bottom.fixed {
   position: fixed;
   bottom: 0;
-  width: 870px;
+  width: 900px;
 }
 .article-btns {
   display: flex
