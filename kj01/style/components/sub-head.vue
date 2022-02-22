@@ -6,7 +6,7 @@
           <a href="/" class="sublogo">
             <img src="/style/images/logos/bai.png" alt="">
           </a>
-          <label class="sublogo-label" v-text="name"></label>
+          <a href="polist.html"><label class="sublogo-label" v-text="name"></label></a>
         </div>
         <div class="navbox">
           <div class="searchbox">

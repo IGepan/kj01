@@ -97,7 +97,7 @@
     <div class="mdiv commonCententBox" style="padding-top: 20px">
       <div class="fl article">
         <template v-if="detail">
-<!--          <h1 class="article-title">{{detail.title}}</h1>-->
+          <h1 class="article-title">{{detail.title}}</h1>
           <div class="article-source clear">
             <label class="fl">来源：<a class="link" :href="detail.srcUrl" target="_blank">{{detail.srcName}}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发文时间：{{detail.policyPublishDate|formatTime1}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<template v-for="(tag, ti) in detail.policySelfTagDisplay">
               <span v-if="ti < 3" :key="ti" class="tag">{{tag}}</span>
