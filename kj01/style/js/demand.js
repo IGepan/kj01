@@ -22,7 +22,12 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         httpCom: httpCom
       },
       created: function () {
-        this.initData();
+				var userInfo = JSON.parse(this.$utils.getCookie("USER_INFO"));
+				if(userInfo && userInfo.userId){
+					this.initData();
+				}else{
+					window.location.href = "/common/login.html";
+				}
       },
       components: {
         'ly-toper': httpVueLoader('/style/components/toper.vue'),
