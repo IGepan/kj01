@@ -29,141 +29,200 @@
         })();
     </script>
 </head>
-<body>
-  <div class="box" id='matchForm_box' v-cloak>
-    <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <policymatch-head current-step="2"></policymatch-head>
+<style>
+    .footer-b{
+        color: #FFFFff;text-align: center;bottom: 30px;position: absolute;display: flex;justify-content: center;width: 100%;
+        font-size: 14px;
+    }
+    .right-box{
+        position: absolute;
+        right:100px;
+        bottom: 100px;
+        font-size: 12px;
+        color: #dfdfdf;
+        text-align: center;
+    }
+    .right-box span{
+        display: block;
+    }
+
+    .right-box img{
+        margin-bottom: 10px;
+    }
+    .width80{
+        width: 80%;
+    }
+    .width90{
+        width: 100%;
+    }
+    .cxnl_a table .select.address{
+        margin-right: 0!important;
+    }
+    .min{
+        font-size: 14px;
+    }
+    .font_18{
+        font-size: 18px!important;
+        font-weight: bold;
+    }
+</style>
+<body style="background: url(/style/images/poindex/zpbg.png)no-repeat;background-size: cover">
+  <div  id='matchForm_box' v-cloak>
+      <div style="color: #FFFFff;margin: 20px;">
+          <a href="index.html"><img src="/style/images/logos/bai.png" style="vertical-align: middle"/></a>
+          <span>丨 依托大数据，智能匹配政策</span>
+      </div>
+<!--    <ly-toper ref="lytoper" top-class="white"></ly-toper>-->
+<!--    <policymatch-head current-step="2"></policymatch-head>-->
     <div class="matchContent mdiv">
       <div >
         <div class="mp_con mp_con2 mainWidth partTwo">
           <form class="layui-form valiform">
+
               <div class="cxnl_a">
-                  <p class="cxnl_aa">基本信息</p>
-                  <table>
+                  <p class="cxnl_aa">STEP 01 基本信息</p>
+                  <div style="display: flex;justify-content: space-between">
+                  <table style="width: 40%">
+                      <tr><td align="left" width="160" class="font_18"><em class="red">*</em>1.企业名称</td></tr>
                       <tr>
-                          <td align="right" width="160"><em class="red">*</em>企业名称</td>
+
                           <td>
-                            <div class="layui-input-inline width_300">
-                                <input type="text" class="layui-input" v-model="formData.organizationName" id="companyNameU" style="width: 200px">
+                            <div class="layui-input-inline width80">
+                                <input type="text" class="layui-input" v-model="formData.organizationName" id="companyNameU">
                              </div>
                           </td>
                       </tr>
+                      <tr><td align="left" class="font_18"><em class="red">*</em>2.统一社会信用代码</td></tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>统一社会信用代码</td>
                           <td>
-                            <div class="layui-input-inline width_300">
+                            <div class="layui-input-inline width80">
                               <input type="text" class="layui-input" id="socialCodeU" v-model="formData.creditCode" onkeyup="value=value.replace(/[^0-9A-z]/g,'')" maxlength="18">
                             </div>
                           </td>
                       </tr>
+<!--                      <tr>-->
+<!--                          <td align="right"><em class="red">*</em>注册时间</td>-->
+<!--                          <td>-->
+<!--                              <div class="layui-input-inline width_300">-->
+<!--                                <input type="date" v-model="formData.establishDate" id="establishDate" name="registTimeU" autocomplete="off" class="layui-input" >-->
+<!--                            </div>-->
+<!--                          </td>-->
+<!--                      </tr>-->
+                      <tr><td align="left" class="font_18"><em class="red">*</em>3.企业类型</td></tr>
                       <tr>
-                          <td align="right"><em class="red">*</em>注册时间</td>
-                          <td>
-                              <div class="layui-input-inline width_300">
-                                <input type="date" v-model="formData.establishDate" id="establishDate" name="registTimeU" autocomplete="off" class="layui-input" >
-                            </div>
-                          </td>
-                      </tr>
-                      <tr>
-                        <td align="right"><em class="red">*</em>企业类型</td>
                         <td class="td2">
-                          <div class="width_300">
+                          <div class="width80">
                             <ly-select v-model="formData.organizationType" class='select name'
                             :group='alias.organizationTypeGroups[formData.identityType]' code='organization_type'
                             :http='httpUser'></ly-select>   
                          </div>                            
                         </td>
-                      </tr>   
+                      </tr>
+                      <tr><td align="left" class="font_18">4.企业规模<span class="min">（选填）</span></td></tr>
                       <tr>
-                        <td align="right">企业规模</td>
                         <td class="td2">
                             <ly-radio class="radio" code='scale' v-model='formData.scale'></ly-radio>
                         </td>
                       </tr>
+                      <tr><td align="left" width="160" class="font_18">5.上年度主营业务收入<span class="min">（选填）</span></td></tr>
                       <tr>
-                        <td align="right"><em class="red">*</em>行业分类</td>
-                        <td class="td2 width_600">
-                            <ly-select-level ref="industryEl" @input="handleIndustryInput" data-valid="custom:industryValid"
-                            class="required level" v-model="formData.industryList"></ly-select-level>
-                            </td>
-                        </tr> 
-                      <tr>
-                        <td align="right"><em class="red">*</em>所在地</td>
-                        <td class="td2">
-                          <ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
-                          :http='httpUser'></ly-address-select>                        
-                        </td>
-                      </tr>
-                      <tr>
-                        <td align="right">关注的政策</td>
-                        <td class="td2 width_600">
-                            <label class="select" style="line-height: normal;">
-                              <ly-select-level2 :list="focusList" :value="formData.focusPolicy"></ly-select-level2>
-                            </label>
-                        </td>
-                        <td ref="servicesMsg" class="form_msg"></td>
-                      </tr>
-                      <tr>
-                        <td align="right">服务领域</td>
-                        <td class="td2 width_600">
-                            <label class="select" style="line-height: normal;">
-                                <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
-                                type='service' class="required level" v-model="formData.servicesList"></ly-select-level>
-                            </label>
-                        </td>
-                        <td ref="servicesMsg" class="form_msg"></td>
-                      </tr>
-                      <tr >                          
-                        <td align="right"><em class="red">*</em>企业资质</td>
-                        <td class="td2 width_600">
-                          <div class="select name mulSelect">                 
-                            <div class="selectBox" @click.stop="isQualificationShow = !isQualificationShow">
-                                <div class="select_content" v-for="(item, index) in formData.qualifications" :key="index">
-                                   <span> {{item}} <i aria-hidden="true" class="iconfont icon-cuowu" @click.stop="removeQualification(index, item)"></i></span>
-                                </div>
-                            </div> 
-                            <div class="selectList" v-show="isQualificationShow">
-                                <div v-for="item in qualification" :key="item.id" @click.stop="checkQualification(item)" class="item" :class="{checked: item.checked}">{{item.display}}</div>
-                            </div>
-                            <!-- <ly-mulselect v-model='formData.qualifications' ref='idmulSelect' index='qua'
-                              :mul-select-list='qualification'>
-                            </ly-mulselect> -->
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                          <td align="right">是/否有知识产权</td>
-                          <td class="td2">
-<!--                              <ly-radio class="radio" code='scale' v-model='formData.scale'></ly-radio>-->
-                              <div  class="radio">
-                                  <label class=""><input type="radio" value="1" v-model='formData.property'> <b></b>是
-                              </label>
-                                  <label class=""><input type="radio" value="2" v-model='formData.property'> <b></b>否
-                              </label>
-                              </label>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right">是/否有研发费用</td>
-                          <td class="td2">
-                              <div  class="radio">
-                                  <label class=""><input type="radio" value="1" v-model='formData.develop'> <b></b>是
-                                  </label>
-                                  <label class=""><input type="radio" value="2" v-model='formData.develop'> <b></b>否
-                                  </label>
-                                  </label>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td align="right" width="160">上年度主营业务收入</td>
+
                           <td>
-                              <div class="layui-input-inline">
+                              <div class="layui-input-inline width80">
                                   <input type="number" v-model="formData.lastIncome" class="layui-input" id="mainServicePriceThreeU" maxlength="7" @onkeyup="numCheck(this)"></div>&nbsp;万元
                           </td>
                       </tr>
                   </table>
+                  <table style="width: 60%">
+                      <tr><td align="left" class="font_18"><em class="red">*</em>6.行业分类</td></tr>
+                      <tr>
+                          <td class="td2 width90">
+                              <ly-select-level ref="industryEl" @input="handleIndustryInput" data-valid="custom:industryValid"
+                                               class="required level" v-model="formData.industryList" style="border: 1px solid #e6e6e6"></ly-select-level>
+                          </td>
+                      </tr>
+                      <tr><td align="left" class="font_18"><em class="red">*</em>7.所在地</td></tr>
+                      <tr>
+                          <td class="td2  width90">
+                              <ly-address-select class='required' data-valid="custom:addressValid" ref='addressRef'
+                                                 :http='httpUser' style="display: flex;justify-content: space-between"></ly-address-select>
+                          </td>
+                      </tr>
+                      <tr> <td align="left" class="font_18"><em class="red">*</em>8.企业资质</td></tr>
+                      <tr>
+                          <td class="td2">
+                              <div class="select name mulSelect">
+                                  <div class="selectBox" @click.stop="isQualificationShow = !isQualificationShow">
+                                      <div class="select_content" v-for="(item, index) in formData.qualifications" :key="index">
+                                          <span> {{item}} <i aria-hidden="true" class="iconfont icon-cuowu" @click.stop="removeQualification(index, item)"></i></span>
+                                      </div>
+                                  </div>
+                                  <div class="selectList" v-show="isQualificationShow">
+                                      <div v-for="item in qualification" :key="item.id" @click.stop="checkQualification(item)" class="item" :class="{checked: item.checked}">{{item.display}}</div>
+                                  </div>
+                                  <!-- <ly-mulselect v-model='formData.qualifications' ref='idmulSelect' index='qua'
+                                    :mul-select-list='qualification'>
+                                  </ly-mulselect> -->
+                              </div>
+                          </td>
+                      </tr>
+<!--                      <tr>-->
+<!--                          <td align="right">关注的政策</td>-->
+<!--                          <td class="td2 width_600">-->
+<!--                              <label class="select" style="line-height: normal;">-->
+<!--                                  <ly-select-level2 :list="focusList" :value="formData.focusPolicy"></ly-select-level2>-->
+<!--                              </label>-->
+<!--                          </td>-->
+<!--                          <td ref="servicesMsg" class="form_msg"></td>-->
+<!--                      </tr>-->
+                      <tr> <td align="left" class="font_18">9.服务领域<span class="min">（选填）</span></td></tr>
+                      <tr>
+                          <td class="td2">
+                              <label class="select" style="line-height: normal;">
+                                  <ly-select-level ref="servicesEl" @input="handleServicesInput" data-valid="custom:servicesValid"
+                                                   type='service' class="required level" v-model="formData.servicesList"></ly-select-level>
+                              </label>
+                          </td>
+                          <td ref="servicesMsg" class="form_msg"></td>
+                      </tr>
+                      <tr><td align="left" class="font_18">10.其他<span class="min">（选填）</span></td></tr>
+                      <tr style="display: flex;justify-content: space-between">
+                          <td class="td2">
+                              <!--                              <ly-radio class="radio" code='scale' v-model='formData.scale'></ly-radio>-->
+                              <div class="radio">
+                                  <label>是/否有知识产权</label>
+                                  <label class=""><input type="radio" value="1" v-model='formData.property'> <b></b>是
+                                  </label>
+                                  <label class=""><input type="radio" value="2" v-model='formData.property'> <b></b>否
+                                  </label>
+                                  </label>
+                              </div>
+                          </td>
+                          <td class="td2">
+                                                            <div  class="radio">
+                                                                <label>是/否有研发费用</label>
+                                                                <label class=""><input type="radio" value="1" v-model='formData.develop'> <b></b>是
+                                                                </label>
+                                                                <label class=""><input type="radio" value="2" v-model='formData.develop'> <b></b>否
+                                                                </label>
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                      </tr>
+<!--                      <tr>-->
+<!--                          <td align="right">是/否有研发费用</td>-->
+<!--                          <td class="td2">-->
+<!--                              <div  class="radio">-->
+<!--                                  <label class=""><input type="radio" value="1" v-model='formData.develop'> <b></b>是-->
+<!--                                  </label>-->
+<!--                                  <label class=""><input type="radio" value="2" v-model='formData.develop'> <b></b>否-->
+<!--                                  </label>-->
+<!--                                  </label>-->
+<!--                              </div>-->
+<!--                          </td>-->
+<!--                      </tr>-->
+                  </table>
+                  </div>
               </div>
               <div class="cxnl_btn">
                 <input @click="toLastStep" type="button" value="上一步" class="layui-btn layui-btn-lg layui-btn-normal lastStep">
@@ -174,7 +233,15 @@
       </div>
       </div>
     </div>
-    <web-footer></web-footer>
+      <div class="right-box">
+          <img src="/style/images/index/qrcode.jpg" width="100"/>
+          <span>关注公众号</span>
+          <span>手机看政策</span>
+      </div>
+      <div class="footer-b">
+          Copyright © 2019 易智网 版权所有<a href="https://beian.miit.gov.cn/" target="_blank" style="color: #FFFFff;">渝ICP备09050127号-36</a>
+      </div>
+<!--    <web-footer></web-footer>-->
   </div>
   <script src="/common/js/laydate/laydate.js"></script>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>

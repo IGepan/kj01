@@ -101,10 +101,10 @@ require(['/common/js/require.config.js'], function () {
               },
               subDatas: {
                 '01': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'version'],
-                '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version', 'qualifications'],
-                '03': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
-                '04': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
-                '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version']
+                '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit',  'contacts', 'contactsPhone', 'version', 'qualifications'],
+                '03': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit',  'contacts', 'contactsPhone', 'version'],
+                '04': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'contacts', 'contactsPhone', 'version'],
+                '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'headImg', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit',  'contacts', 'contactsPhone', 'version']
               },
               organizationTypeNames: {
                 '02': '企业类型：',
@@ -181,6 +181,8 @@ require(['/common/js/require.config.js'], function () {
               checked: false,
             }],
             focusList: [],
+            activeIndex:0,
+            show:null
           }
         },
         
@@ -241,7 +243,11 @@ require(['/common/js/require.config.js'], function () {
               console.log(res)
               vm.focusList = res.result;
             })
-          },           
+          },
+          step(val){
+           this.activeIndex=val
+            console.log(this.activeIndex,'this.activeIndex')
+          },
           setDefaultQualication() {
             var vm = this;
             vm.qualification.forEach(function(item){
@@ -424,15 +430,15 @@ require(['/common/js/require.config.js'], function () {
               // _this.$dialog.showToast("统一社会信用代码必填");
               return false;
             }
-            if (!_this.$utils.validatesEmpty(params.registeredTime)) {
-              this.$notify.error({
-                title: '提示',
-                message: '注册时间必填！',
-                type: 'warning'
-              });
-              // _this.$dialog.showToast("注册时间必填");
-              return false;
-            }
+            // if (!_this.$utils.validatesEmpty(params.registeredTime)) {
+            //   this.$notify.error({
+            //     title: '提示',
+            //     message: '注册时间必填！',
+            //     type: 'warning'
+            //   });
+            //   // _this.$dialog.showToast("注册时间必填");
+            //   return false;
+            // }
             if (!_this.$utils.validatesEmpty(params.industry)) {
               this.$notify.error({
                 title: '提示',
@@ -521,11 +527,21 @@ require(['/common/js/require.config.js'], function () {
           saveParams() {
             localStorage.setItem('developmentInfo', JSON.stringify(this.developmentInfo))
             localStorage.setItem('operatingInfo', JSON.stringify(this.operatingInfo))
-          },       
-          toLastStep() {
+          },
+          toLast1(val){
             this.saveAllData();
             this.saveParams();
-            location.href = '/policyMatchLogin.html'
+            this.activeIndex=val-1
+          },
+          toLast2(val){
+            this.saveAllData();
+            this.saveParams();
+            this.activeIndex=val+1
+          },
+          toLastStep() {
+              this.saveAllData();
+              this.saveParams();
+              location.href = '/policyMatchLogin.html'
           },
           toResult() {
             this.saveAllData();

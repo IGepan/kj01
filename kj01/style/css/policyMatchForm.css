@@ -5,8 +5,6 @@ body {
   background: #f8f8f8;
 }
 .matchContent {
-  margin-top: -20px;
-  margin-bottom: 30px;
 	border-radius: 8px;
 	background: #fff;
 	padding: 20px 15px;
@@ -14,18 +12,31 @@ body {
 
 .cxnl_a {
   background: #fff;
-  padding: 20px;
-  margin: 20px 0;
+  /*padding: 20px;*/
+  /*margin: 20px 0;*/
   border-radius: 6px;
 }
 
 .cxnl_aa {
-  height: 30px;
-  line-height: 30px;
-  font-size: 18px;
-  color: #38cbf2;
+  font-size: 16px;
+  color: #f1671b;
 }
-
+.tab{
+  overflow: hidden;
+}
+.tab a{
+  color: #999999;
+  display: block;
+  float: left;
+  border-right: 2px solid #999999;
+  padding: 0px 15px;
+}
+.tab a.active,.tab a:hover{
+  color: #f1671b;
+}
+.tab a:last-child{
+  border-right: 0;
+}
 .cxnl_a table {
   border: 0;
   width: 100%;
@@ -100,17 +111,18 @@ body {
   width: 600px;
 }
 .cxnl_btn {
-  padding: 30px 100px 30px 0;
+  /*padding: 30px 100px 30px 0;*/
   text-align: center;
 }
 .cxnl_btn .layui-btn {
+  background-color:#f1671b;
   border-radius: 4px;
-  width: 150px;
+  width: 200px;
   line-height: 36px;
 }
 .layui-input, .layui-select, .layui-textarea {
-  height: 34px;
-  line-height: 34px;
+  height: 38px;
+  line-height: 38px;
   border: 1px solid #e6e6e6;
 }
 .layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select {
@@ -170,11 +182,11 @@ body {
   border-bottom: 1px solid #e7e7e7;
 }
 .mulSelect .selectList .item:hover {
-  color: #9ec6ff;
-  border-bottom: 1px solid #9ec6ff;
+  color: #f1671b;
+  /*border-bottom: 1px solid #9ec6ff;*/
 }
 .mulSelect .selectList .item.checked {
-  background: #237eff;
+  background: #f1671b;
   color: #fff;
 }
 .selectBox .select_content {

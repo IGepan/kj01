@@ -76,6 +76,16 @@
       margin: 0;
       padding: 0;
     }
+    .mmdiv{
+      width: 1200px;
+      margin: auto;
+    }
+    .mdiv{
+      width: 1200px;
+    }
+    .list-title-text::before{
+      background-color:#ff5e06
+    }
   </style>
 </head>
 
@@ -84,7 +94,7 @@
     <ly-toper top-class="white" code-url="/style/images/footerCode1.jpg" code-title="易智网-政策惠"></ly-toper>
     <sub-head name="政策资讯" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
 
-    <div class="mdiv commonCententBox">
+    <div class="mdiv commonCententBox" style="padding-top: 20px">
       <div class="fl article">
         <template v-if="detail">
           <h1 class="article-title">{{detail.title}}</h1>

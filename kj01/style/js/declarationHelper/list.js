@@ -21,12 +21,13 @@ require(['/common/js/require.config.js'], function () {
     pages: {},
     searchForm: {
      pageNum: 1,
-     pageSize: 6,
+     pageSize: 8,
      type: ''
     },
    },
    components: {
-    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+    'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
+    // 'ly-toper': httpVueLoader('/style/components/toper.vue'),
     'user-heads': httpVueLoader('/style/components/user-heads.vue'),
     'sub-head': httpVueLoader('/style/components/sub-head.vue'),
     'web-footer': httpVueLoader('/style/components/web_footer.vue'),

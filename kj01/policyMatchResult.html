@@ -27,15 +27,44 @@
         })();
     </script>
 </head>
-<body>
-  <div class="box" id='matchLogin_box' v-cloak>
-    <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <policymatch-head current-step="3"></policymatch-head>
+<style>
+    .footer-b{
+        color: #FFFFff;text-align: center;bottom: 30px;position: absolute;display: flex;justify-content: center;width: 100%;
+        font-size: 14px;
+    }
+    .right-box{
+        position: absolute;
+        right:100px;
+        bottom: 100px;
+        font-size: 12px;
+        color: #dfdfdf;
+        text-align: center;
+    }
+    .right-box span{
+        display: block;
+    }
+
+    .right-box img{
+        margin-bottom: 10px;
+    }
+    .page-item.current-item .link, .page-item:hover .link{
+        border-color:#ff5e06!important;
+        background-color: #ff5e06!important;
+    }
+</style>
+<body style="background: url(/style/images/poindex/zpbg.png)no-repeat;background-size: cover">
+  <div id='matchLogin_box' v-cloak>
+      <div style="color: #FFFFff;margin: 20px;">
+          <a href="index.html"><img src="/style/images/logos/bai.png" style="vertical-align: middle"/></a>
+          <span>丨 依托大数据，智能匹配政策</span>
+      </div>
+<!--    <ly-toper ref="lytoper" top-class="white"></ly-toper>-->
+<!--    <policymatch-head current-step="3"></policymatch-head>-->
     <div class="matchContent mdiv">
       <div class="">
         <div class="mp_con mp_con3 mainWidth">
-          <div class="ppjg_t"></div>
-          <p class="ppjg_t_t" id="companyPolicyId">{{params.name}}</p>
+          <div class="ppjg_t">匹配结果</div>
+<!--          <p class="ppjg_t_t" id="companyPolicyId">{{params.name}}</p>-->
           <p class="ppjg_t_s" v-if="pages.total == 0">
             <span>共匹配政策<i class="totalCount">{{pages.total}}</i>项</span>           
           </p>
@@ -44,36 +73,39 @@
               <span>最高获得奖励资金<i>{{maxMoney}}</i>万元</span>
           </p>
           <div class="ppjg_c" v-if="pages.total > 0">
-              <ul class="ppjg_c_t">
-                  <li :class="{current: searchForm.type == 1}" @click="changeType(1)">匹配度<i class="showI"></i></li>
-                  <li :class="{current: searchForm.type == 2}" @click="changeType(2)">奖励金额<i class="hideI"></i></li>
-                  <li :class="{current: searchForm.type == 3}" @click="changeType(3)">申报时间<i class="hideI"></i></li>
-              </ul>
+<!--              <ul class="ppjg_c_t">-->
+<!--                  <li :class="{current: searchForm.type == 1}" @click="changeType(1)">匹配度<i class="showI"></i></li>-->
+<!--                  <li :class="{current: searchForm.type == 2}" @click="changeType(2)">奖励金额<i class="hideI"></i></li>-->
+<!--                  <li :class="{current: searchForm.type == 3}" @click="changeType(3)">申报时间<i class="hideI"></i></li>-->
+<!--              </ul>-->
               <div>
                   <div class="mould-list">
                     <ul>
                       <a v-for="item in list" :key="item.id" :href="'/podetail.html?id='+item.id + '&viewType=1'" target="_blank">
                         <!-- ppjg_c_s3 -->
-                        <li :class="'ppjg_c_s ppjg_c_s' + item.status">    
-                          <p class="ppjg_c_s_t">{{item.title}}{{item.status}}</p>    
-                          <p class="ppjg_c_s_c">{{item.summary}}</p>    
-                          <div class="ppjg_c_s_d">       
-                            <div class="ppjg_c_s_d_l">          
-                              <p v-if="item.display">归口部门：<span>{{item.display}} </span></p>      
-                              <p>申报奖励：<span class="orange">{{item.moneyType}}{{item.money ? item.money + '万元' : ''}}</span></p>
-                              <p v-if="item.executionStartDate">申报时间：<span>{{item.executionStartDate}}至{{item.executionEndDate}}</span></p>       
-                            </div>     
-                            <div class="ppjg_c_s_d_r">          
-                              <div style="display:inline;width:80px;height:80px;">
-                                <canvas width="80" height="80"></canvas>
-                                <input class="knob" :value="item.num" style="display: none; width: 0px; visibility: hidden;">
-                              </div>          
-                              <div class="con" v-if="typeUrl==null">
-                                <p v-if="item.num >= 80">高度匹配</p>      
-                                <p v-if="item.num < 80 && item.num >= 30">中度匹配</p>                                                   
-                              </div>        
-                            </div>    
-                          </div>
+                        <li :class="'ppjg_c_s ppjg_c_s' + item.status">
+                            <div style="overflow: hidden;height: 137px;padding: 0 20px">
+                                <p class="ppjg_c_s_t">{{item.title}}{{item.status}}</p>
+                                <!--                          <p class="ppjg_c_s_c">{{item.summary}}</p>    -->
+                                <div class="ppjg_c_s_d">
+                                    <div class="ppjg_c_s_d_l">
+                                        <p v-if="item.display">归口部门：<span>{{item.display}} </span></p>
+                                        <p>申报奖励：<span class="orange">{{item.moneyType}}{{item.money ? item.money + '万元' : ''}}</span></p>
+                                        <p v-if="item.executionStartDate">申报时间：<span>{{item.executionStartDate}}至{{item.executionEndDate}}</span></p>
+                                    </div>
+                                    <div class="ppjg_c_s_d_r">
+                                        <div style="display:inline;width:80px;height:80px;">
+                                            <canvas width="80" height="80"></canvas>
+                                            <input class="knob" :value="item.num" style="display: none; width: 0px; visibility: hidden;">
+                                        </div>
+                                        <!--                              <div class="con" v-if="typeUrl==null">-->
+                                        <!--                                <p v-if="item.num >= 80">高度匹配</p>      -->
+                                        <!--                                <p v-if="item.num < 80 && item.num >= 30">中度匹配</p>                                                   -->
+                                        <!--                              </div>        -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-body"><span class="item-body_rigth">查看详情&emsp;→</span></div>
                         </li>
                       </a>                      
                     </ul>
@@ -86,7 +118,15 @@
         <pages :pages="pages" @changepage="bindPageChange"></pages>
       </template>       
     </div>
-    <web-footer></web-footer>
+      <div class="right-box">
+          <img src="/style/images/index/qrcode.jpg" width="100"/>
+          <span>关注公众号</span>
+          <span>手机看政策</span>
+      </div>
+      <div class="footer-b">
+          Copyright © 2019 易智网 版权所有<a href="https://beian.miit.gov.cn/" target="_blank" style="color: #FFFFff;">渝ICP备09050127号-36</a>
+      </div>
+<!--    <web-footer></web-footer>-->
   </div>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
   <script type="text/javascript" src="./style/js/policyMatchResult.js"></script>

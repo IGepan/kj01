@@ -13,39 +13,39 @@
           </div>
         </div>
       </div>
-      <div class="machHeader">
-        <div class="mdiv">
-          <div class="h1">政策智配</div>
-          <div class="steps" :class="{steps1: currentStep < 4, steps2: currentStep == 2 || currentStep == 3, steps3: currentStep == 3}">
-            <div class="item item1"> 
-              <div class="numbers"> 
-                <div class="circle">1</div>
-                <div class="line">
-                  <div class="line1"></div>
-                  <div class="line2"></div>
-                </div>
-              </div>
-              <div class="text">选择诊断企业</div>
-            </div>
-            <div class="item item2"> 
-              <div class="numbers"> 
-                <div class="circle">2</div>
-                <div class="line">
-                  <div class="line1"></div>
-                  <div class="line2"></div>
-                </div>
-              </div>
-              <div class="text">完善企业信息</div>
-            </div>
-            <div class="item item3">
-              <div class="numbers">
-                <div class="circle">3</div>
-              </div>
-             <div class="text">查看诊断报告</div>
-            </div>            
-          </div>
-      </div>
-      </div>    
+<!--      <div class="machHeader">-->
+<!--        <div class="mdiv">-->
+<!--          <div class="h1">政策智配</div>-->
+<!--          <div class="steps" :class="{steps1: currentStep < 4, steps2: currentStep == 2 || currentStep == 3, steps3: currentStep == 3}">-->
+<!--            <div class="item item1"> -->
+<!--              <div class="numbers"> -->
+<!--                <div class="circle">1</div>-->
+<!--                <div class="line">-->
+<!--                  <div class="line1"></div>-->
+<!--                  <div class="line2"></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="text">选择诊断企业</div>-->
+<!--            </div>-->
+<!--            <div class="item item2"> -->
+<!--              <div class="numbers"> -->
+<!--                <div class="circle">2</div>-->
+<!--                <div class="line">-->
+<!--                  <div class="line1"></div>-->
+<!--                  <div class="line2"></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="text">完善企业信息</div>-->
+<!--            </div>-->
+<!--            <div class="item item3">-->
+<!--              <div class="numbers">-->
+<!--                <div class="circle">3</div>-->
+<!--              </div>-->
+<!--             <div class="text">查看诊断报告</div>-->
+<!--            </div>            -->
+<!--          </div>-->
+<!--      </div>-->
+<!--      </div>    -->
   </div>
 </template>
 

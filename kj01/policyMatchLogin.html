@@ -27,19 +27,48 @@
         })();
     </script>
 </head>
-<body>
-  <div class="box" id='matchLogin_box' v-cloak>
-    <ly-toper ref="lytoper" top-class="white"></ly-toper>
-    <policymatch-head current-step="1"></policymatch-head>
+<style>
+    .footer-b{
+        color: #FFFFff;text-align: center;bottom: 30px;position: absolute;display: flex;justify-content: center;width: 100%;
+        font-size: 14px;
+    }
+    .right-box{
+        position: absolute;
+        right:100px;
+        bottom: 100px;
+        font-size: 12px;
+        color: #dfdfdf;
+        text-align: center;
+    }
+    .right-box span{
+        display: block;
+    }
+
+    .right-box img{
+       margin-bottom: 10px;
+    }
+</style>
+<body style="background: url(/style/images/poindex/zpbg.png)no-repeat;background-size: cover">
+  <div id='matchLogin_box' v-cloak>
+      <div style="color: #FFFFff;margin: 20px;">
+          <a href="index.html"><img src="/style/images/logos/bai.png" style="vertical-align: middle"/></a>
+          <span>丨 依托大数据，智能匹配政策</span>
+      </div>
+<!--    <ly-toper ref="lytoper" top-class="white"></ly-toper>-->
+<!--    <policymatch-head current-step="1"></policymatch-head>-->
     <div class="matchContent mdiv">
       <div class="" >
-        <div class="title" v-if="companyList[0]">请选择您要匹配的企业</div>
-        <div class="companyList">
-          <div class="item" v-for="(item, index) in companyList" :key="index">{{item.name}}
-            <div class="check"><i class="iconfont icon-querenduigougouhao"></i></div>
-          </div>
+        <div class="title">
+            <img src="/style/images/poindex/zczppng.png"/>
+            <p>只需3-5分钟，精准把控企业需求，完成匹配</p>
         </div>
-          <div v-if="userInfo && userInfo.userName" style="display: flex">
+
+<!--        <div class="companyList">-->
+<!--          <div class="item" v-for="(item, index) in companyList" :key="index">{{item.name}}-->
+<!--            <div class="check"><i class="iconfont icon-querenduigougouhao"></i></div>-->
+<!--          </div>-->
+<!--        </div>-->
+          <div v-if="userInfo && userInfo.userName" style="display: flex;margin: 100px auto;justify-content: center" >
               <a href="/policyMatchForm_simple.html" class="btn1" >快速匹配</a>
               <a href="/policyMatchForm.html" class="btn1" >精准匹配</a>
           </div>
@@ -47,7 +76,15 @@
         <a href="/common/login.html" class="btn" v-else>请登录</a>
       </div>
     </div>
-    <web-footer></web-footer>
+      <div class="right-box">
+          <img src="/style/images/index/qrcode.jpg" width="100"/>
+          <span>关注公众号</span>
+          <span>手机看政策</span>
+      </div>
+      <div class="footer-b">
+          Copyright © 2019 易智网 版权所有<a href="https://beian.miit.gov.cn/" target="_blank" style="color: #FFFFff;">渝ICP备09050127号-36</a>
+      </div>
+<!--    <web-footer></web-footer>-->
   </div>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
   <script type="text/javascript" src="./style/js/policyMatchLogin.js"></script>

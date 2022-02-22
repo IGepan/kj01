@@ -18,35 +18,35 @@ require(['/common/js/require.config.js'], function () {
           ],
           numberCounts: [
             {
-              url: '/style/images/poindex/shenbao.png',
+              url: '/style/images/poindex/01.png',
               count: 0,
               unit: '条',
               key: 'declarationNotice',
               label: '申报通知'
             },
             {
-              url: '/style/images/poindex/jiedu.png',
+              url: '/style/images/poindex/02.png',
               count: 0,
               unit: '条',
               key: 'policyInterpretation',
               label: '政策解读'
             },
             {
-              url: '/style/images/poindex/minglu.png',
+              url: '/style/images/poindex/03.png',
               count: 0,
               unit: '场',
               key: 'publiDirectory',
               label: '公示名录'
             },
             {
-              url: '/style/images/poindex/wenjian.png',
+              url: '/style/images/poindex/04.png',
               count: 0,
               unit: '次',
               key: 'governmenDocuments',
               label: '政府文件'
             },
             {
-              url: '/style/images/poindex/jingyao.png',
+              url: '/style/images/poindex/05.png',
               count: 0,
               unit: '次',
               key: 'policyEssentials',
@@ -68,6 +68,7 @@ require(['/common/js/require.config.js'], function () {
             cityOptions: [],
             districtpayOptions: []
           },
+
           searchForm: {
             pageNum: 1,
             pageSize: 10,
@@ -119,7 +120,9 @@ require(['/common/js/require.config.js'], function () {
           },
         },
         components: {
-          'ly-toper': httpVueLoader('/style/components/toper.vue'),
+          'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
+          // 'ly-toper': httpVueLoader('/style/components/toper.vue'),
+          'index-head': httpVueLoader('/style/components/index_head2.vue'),
           'sub-head': httpVueLoader('/style/components/sub-head.vue'),
           'pages': httpVueLoader('/style/components/pages.vue'),
           'number-grow': httpVueLoader('/style/components/number.vue'),
@@ -206,14 +209,14 @@ require(['/common/js/require.config.js'], function () {
                       values: ['publishDate-desc', 'publishDate-asc'],
                       selectedIndex: 0,
                       selected: true,
-                      display: '时间'
+                      display: '按时间'
                     },
                     {
                       id: 'order_by_3',
                       values: ['visitNum-desc', 'visitNum-asc'],
                       selected: false,
                       selectedIndex: 0,
-                      display: '热度'
+                      display: '按热度'
                     }
                   ]
                 }
@@ -291,6 +294,14 @@ require(['/common/js/require.config.js'], function () {
               if (dataKey === 'policyList') {
                 res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
                 vm.$data.pages = res.result || ''
+              }
+            })
+          },
+          getAssistant: function () {
+            var vm = this
+            indexApi.assistantSelectByPage({ pageNum: 1, pageSize: 4}).then(function (res) {
+              if (res.code === 'rest.success') {
+                vm.$data.helperList = res.result.list
               }
             })
           },
