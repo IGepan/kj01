@@ -63,6 +63,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           activityApi.enrollByPage(this.queryForm).then(function (res) {
             if (res.code === 'rest.success') {
               vm.orderList = res.result.list
+              console.log(vm.orderList,'vm.orderList')
               vm.orderList.forEach((item)=>{
                 let arr=[]
                 let flg=item.enrollDetails.some((items,index)=>{
