@@ -30,6 +30,14 @@ require(['/common/js/require.config.js'], function () {
                         month: 0,
                         year: 0
                     },
+                    dataList: [],
+                    searchForm: {
+                        activeType: "218340665862395559",
+                        activeTypeDisplay: "易智大咖荟",
+                        pageNum: 1,
+                        pageSize: 8,
+                        sortType: "01"
+                    },
                     dataUrl:'',
                     activeNowTime: '',
                     selectIndex: 0,
@@ -60,7 +68,7 @@ require(['/common/js/require.config.js'], function () {
                     }
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'sub-head': httpVueLoader('/style/components/asub_head.vue'),
                     'evaluate': httpVueLoader('/style/components/evaluate.vue'),
                     'aside-today': httpVueLoader('/style/components/asideToday.vue'),
@@ -99,6 +107,7 @@ require(['/common/js/require.config.js'], function () {
                             str && this.getDetailInfo(str) && this.getRecommendById(str) && this.getEvaluateById(str) && this.createDays();
                         }
                         this.qrcodeUrl = httpUrl.baseUrl + '/active/getWxacode?id=' + id;
+                        this.getNewList();
                     },
                     getDetailInfo: function (id) {
                         var vm = this;
@@ -156,6 +165,25 @@ require(['/common/js/require.config.js'], function () {
                             });
                         })
                         return 1;
+                    },
+                    getNewList(){
+                        var vm=this
+                        indexApi.selectIssuePage(this.searchForm).then(function (res) {
+                            res.result && res.result.list.forEach(function (item) {
+                                item.itemUrl = '/adetail.html?id=' + item.id
+                                item.styles = {
+                                    backgroundImage: 'url(' + item.posterUrl + ')'
+                                }
+                                item.sponsor = item.sponsor ? item.sponsor.split('ぶんかつ')[0] : ''
+                                if (Array.isArray(item.activeTypeDisplay) && item.activeTypeDisplay.length) {
+                                    item.activeTypeDisplay = item.activeTypeDisplay[0].name
+                                } else {
+                                    item.activeTypeDisplay = ''
+                                }
+                                item.itemImg = item.posterUrl
+                            });
+                            vm.dataList = res.result ? res.result.list : []
+                        })
                     },
                     getRecommendById: function (id) {
                         var vm = this

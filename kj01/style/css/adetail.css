@@ -1,6 +1,10 @@
 .activity-base {
   margin-bottom: 30px;
   position: relative;
+    background: #FFFFff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 6px 6px 35px 0px rgba(1, 20, 91, 0.1);
 }
 .activity-base-img {
   width: 540px;
@@ -47,11 +51,11 @@
 }
 .activity-base-info .time, .activity-base-info .address,.activity-base-info .onLine,.activity-base-info .sponsor {
   font-size: 14px;
-	line-height: 24px;
+	line-height: 30px;
 	color: #9496a5;
 }
 .activity-base-info .time {
-  margin-top: 33px;
+  margin-top: 20px;
 }
 .activity-base-info .iconfont {
   margin-right: 5px;
@@ -117,24 +121,66 @@ button[typeName~="activity-state"] {
 
 .activity-box-title-text {
   position: relative;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 30px;
-  color: #343334;
-  margin-left: -20px;
-  text-indent: 14px;
+    color: #ff6400;
+    padding-left: 10px;
+    border-left: 2px solid #ff6400;
+  /*margin-left: -20px;*/
+  /*text-indent: 14px;*/
 }
-.activity-box-title-text::before {
-  position: absolute;
-  display: inline-block;
-  content: '';
-  width: 6px;
-  height: 30px;
-  left: 0px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #018fff;
-  border-radius: 3px;
+.actitke{
+    color: #ff6400;
+    border-bottom: 2px solid #ff6400;
+    padding: 0px 20px;
+    margin-bottom: -1px;
+    line-height: 59px;
 }
+.topAct{
+    background: #FFFFff;
+    padding:20px;
+    margin-top: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+.topAct .activity-box-title-text{
+    margin-bottom: 20px;
+}
+.box-List span{
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #3a3a3a;
+}
+.box-List p{
+    font-size: 14px;
+    color: #999999;
+}
+.topAct a{
+    display: block;
+}
+.topAct a:hover span{
+    color: #ff6400;
+}
+.box-List{
+    padding-bottom: 10px;
+    /*display: inline-block;*/
+}
+.box-List img{
+    height: 165px;
+}
+/*.activity-box-title-text::before {*/
+/*  position: absolute;*/
+/*  display: inline-block;*/
+/*  content: '';*/
+/*  width: 6px;*/
+/*  height: 30px;*/
+/*  left: 0px;*/
+/*  top: 50%;*/
+/*  transform: translateY(-50%);*/
+/*  background-color: #018fff;*/
+/*  border-radius: 3px;*/
+/*}*/
 
 .activity-box-title-more {
   position: absolute;
@@ -150,7 +196,7 @@ button[typeName~="activity-state"] {
 }
 
 .activity {
-  width: 770px;
+  width: 800px;
 }
 
 
@@ -172,7 +218,7 @@ button[typeName~="activity-state"] {
 .activity > .activity-box.activity-box-files {
   position: relative;
   margin-top: -20px;
-  background-color: #eeeff6;
+  /*background-color: #eeeff6;*/
 }
 
 .activityMap {

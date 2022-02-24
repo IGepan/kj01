@@ -23,21 +23,21 @@ require(['/common/js/require.config.js'], function () {
             ],
             numberCounts: [
               {
-                url: '/style/images/aindex/huod.png',
+                url: '/style/images/aindex/01.png',
                 count: 0,
                 unit: '场',
                 key: 'activeNum',
                 label: '活动场次'
               },
               {
-                url: '/style/images/aindex/fuwu.png',
+                url: '/style/images/poindex/02.png',
                 count: 0,
                 unit: '次',
                 key: 'serverNum',
                 label: '服务人次'
               },
               {
-                url: '/style/images/aindex/qiye.png',
+                url: '/style/images/poindex/01.png',
                 count: 0,
                 unit: '家',
                 key: 'orgServerNum',
@@ -73,7 +73,7 @@ require(['/common/js/require.config.js'], function () {
             newList:[],
             searchForm: {
               pageNum: 1,
-              pageSize: 12,
+              pageSize: 8,
               onLineFlag: '', // 是否线上活动(字典表：yes_no)
               timeType: '', // 时间范围(字典表:time_type)
               sortType: '01', // 排序方式(字典表:sort_type)
@@ -88,6 +88,13 @@ require(['/common/js/require.config.js'], function () {
               title: '', //
               orderBy: ''
             },
+            calendar: {
+              days: [],
+              month: 0,
+              year: 0
+            },
+            activeNowTime: '',
+            dayResultList: [],
             isActive:false,
             pages: {}
           },
@@ -103,6 +110,9 @@ require(['/common/js/require.config.js'], function () {
               }
               return v || '';
             },
+            formatNumber: function (v) {
+              return Number(v).toFixed(1);
+            },
             formatSponsor: function (v) {
 
             },
@@ -111,8 +121,10 @@ require(['/common/js/require.config.js'], function () {
             }
           },
           components: {
-            'ly-toper': httpVueLoader('/style/components/toper.vue'),
+            'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
             'sub-head': httpVueLoader('/style/components/asub_head.vue'),
+            'aside-today': httpVueLoader('/style/components/asideToday.vue'),
+            'index-head': httpVueLoader('/style/components/index_head2.vue'),
             'number-grow': httpVueLoader('/style/components/number.vue'),
             'pages': httpVueLoader('/style/components/pages.vue'),
             'web-footer': httpVueLoader('/style/components/web_footer.vue')
@@ -135,6 +147,10 @@ require(['/common/js/require.config.js'], function () {
             initData: function () {
               console.log('init data')
               var vm = this
+              let d = new Date()
+              let dy = d.getFullYear()
+              let dm = d.getMonth()
+              let dd = d.getDate()
               this.saasId = localStorage.getItem('saasId');
               var type = this.$utils.getReqStr('type')
               var title = this.$utils.getReqStr('title')
@@ -150,6 +166,17 @@ require(['/common/js/require.config.js'], function () {
                 // 首次进入页面，展开二级导航
                   $('.searchkeys span').eq(vm.searchForm.activeIndex).trigger('click')
               });
+              this.calendar = {
+                days: [],
+                day: dd,
+                week: d.getDay(),
+                month: dm,
+                initMonth: dm,
+                initYear: dy,
+                year: dy
+              }
+              this.activeNowTime = [dy, dm + 1, dd].map(this.formatNumber).join('/')
+              this.createDays();
               this.addSelectOpts(
                   {
                     code: "sort_type",
@@ -161,6 +188,140 @@ require(['/common/js/require.config.js'], function () {
                   }
               )
             },
+            getselectIssueMonth: function () {
+              var vm = this
+              indexApi.selectIssueMonth({
+                year: vm.calendar.year,
+                month: vm.calendar.month + 1
+              }).then(function (res) {
+                var month = vm.calendar.month
+                var initMonth = vm.calendar.initMonth
+                var initYear = vm.calendar.initYear
+                var year = vm.calendar.year
+                var day = vm.calendar.day
+                var d = new Date(`${year}/${month + 1}/1 11:00:00`)
+                var week = d.getDay()
+                var tempLength = week + vm.isMonthDays(year, month)
+                var prevLength = month === 0 ? vm.isMonthDays(year - 1, 11) : vm.isMonthDays(year, month - 1);
+                var temp = []
+                var setI = 0;
+                var selectIndex = 0
+                var value = 1
+                var tl = tempLength % 7;
+                var rl = res.result.length
+                tl && (tl = 7 - tl);
+                tempLength += tl;
+                while (tempLength > 0) {
+                  tempLength--;
+                  temp[tempLength] = 0;
+                }
+                tl = 1;
+                vm.$data.calendar.days = temp.map((item, i) => {
+                  var ri = i - week
+                  if (week > i) {
+                    return {
+                      activeNum: 0,
+                      click: 0,
+                      label: 0 // prevLength - week + i + 1
+                    }
+                  } else if (week <= i && ri < rl) {
+                    var item = res.result[ri]
+                    var label = item.day
+                    !setI && (selectIndex = i, setI = 1);
+                    year == initYear && month === initMonth && label === day && (selectIndex = i, value = label);
+                    return {
+                      label: label,
+                      click: 1,
+                      activeNum: item.activeNum,
+                      isSelect: year == initYear && month === initMonth && label === day
+                    }
+                  } else {
+                    return {
+                      activeNum: 0,
+                      click: 0,
+                      label: 0 // tl++
+                    }
+                  }
+                });
+                vm.selectIndex = selectIndex
+                vm.handleSetDay({
+                  currentTarget: {
+                    dataset: {
+                      index: selectIndex,
+                      click: 1,
+                      value: value
+                    }
+                  }
+                })
+              })
+              return 1;
+            },
+            getselectIssueToday: function () {
+              var vm = this
+              indexApi.selectIssueToday({
+                pageNum: 1,
+                pageSize: 100,
+                activeNowTime: this.activeNowTime
+              }).then(function (res) {
+                res.result && res.result.list.forEach(function (item) {
+                  item.itemUrl = '/adetail.html?id=' + item.id
+                });
+                vm.$data.dayResultList = res.result.list || []
+
+                // console.log(vm.detail.cooperation[0][0])
+                //   if(vm.detail.cooperation[0][0].cooperationTypeDisplay==='指导单位'){
+                //       vm.comList = vm.comList.splice(1,0,vm.$data.dayResultList)
+                //   }else {
+                //       vm.comList = vm.comList.unshift(vm.$data.dayResultList)
+                //   }
+
+
+              })
+              return 1;
+            },
+            createDays() {
+              this.getselectIssueMonth()
+              return 1;
+            },
+            isMonthDays(y, m) {
+              let tm = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+              let ms = tm[m]
+              !ms && (ms = y % 4 === 0 && y % 100 !== 0 || y % 400 === 0 ? 29 : 28);
+              return ms
+            },
+            handlePrevMonth() {
+              var month = this.calendar.month
+              var year = this.calendar.year
+              if (month > 0) {
+                this.calendar.month--
+              } else if (year > 1970) {
+                this.calendar.month = 11
+                this.calendar.year--
+              }
+              this.createDays()
+            },
+            handleNextMonth() {
+              var month = this.calendar.month
+              var year = this.calendar.year
+              if (month < 11) {
+                this.calendar.month++
+              } else if (year < 2040) {
+                this.calendar.month = 0
+                this.calendar.year++
+              }
+              this.createDays()
+            },
+            handleSetDay(e) {
+              var month = this.calendar.month
+              var year = this.calendar.year
+              var vals = this.getAttributeData(e.currentTarget, ['value', 'index', 'click']);
+              var click = parseInt(vals.click)
+              click && (
+                  this.activeNowTime = [year, month + 1, vals.value].map(this.formatNumber).join('-'),
+                      this.selectIndex = parseInt(vals.index),
+                      this.getselectIssueToday()
+              );
+            },
             getNumbers: function () {
               var vm = this;
               indexApi.getActiveStatistics({}).then(function (res) {
@@ -168,6 +329,10 @@ require(['/common/js/require.config.js'], function () {
                   item.count = res.result[item.key] || 0
                 })
               })
+            },
+            formatNumber(n) {
+              n = n.toString()
+              return n[1] ? n : '0' + n
             },
             getDataList: function (call) {
               var vm = this;

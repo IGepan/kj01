@@ -103,6 +103,7 @@
         </div> -->
             <ul class="clear">
                 <li class="classify_list bg_fff  fl" v-for="(item,index) in dataList" :key="index">
+                    <a :href="'investment_institutions_details.html?id='+item.id">
                     <div class="pro_top_img_box border_bot_f2f2f2" style="position: relative;">
                         <el-image v-if="item.logoPath" class="border_ca investment_img_box"
                             :src="getImgPath(item.logoPath)" fit="cover">
@@ -121,8 +122,9 @@
                             行业领域：{{item.industryType.map(item=>item.name).join(',')}}</div>
                         <div class="ell_nowrap margin_top_4">喜好阶段：{{item.financeStage_display}}</div>
                         <a class="margin_top_15 pro_list_button bg_orange color_fff"
-                            :href="'investment_institutions_details.html?id='+item.id">投递项目</a>
+                            >投递项目</a>
                     </div>
+                    </a>
                 </li>
             </ul>
 

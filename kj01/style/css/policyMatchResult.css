@@ -126,8 +126,8 @@ p {
 
 .ppjg_c_s {
 	position: relative;
-	margin: 16px 2%;
-	width: 41%;
+	/*margin: 16px 2%;*/
+	width: 100%;
 	/*padding: 0 2%;*/
 	height: 180px;
 	/*box-shadow: 0 0 6px 0 #ddd;*/
@@ -164,6 +164,16 @@ p {
 }
 .ppjg_c_s4:after {
 
+}
+.mould-list ul{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-evenly;
+}
+.mould-list ul a{
+	width: 45%;
+	margin-top: 30px;
 }
 .item-body {
 	width: 100%;

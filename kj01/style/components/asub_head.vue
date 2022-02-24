@@ -11,7 +11,7 @@
                 class="sublogo" href="/index.html"
             >
               <img
-                  src="/style/images/logos/bsublogo.png"
+                  src="/style/images/logos/bai.png"
                   alt=""
               >
             </a>
@@ -46,7 +46,7 @@
               <!--                @click.stop="handleSearch"-->
               <!--              >全 站 搜 索</button>-->
               <input type="text" class="input-search" placeholder="请输入关键词搜索" v-model="searchKey">
-              <button class="btn-search" type="button" @click="searchFull">全 站 搜 索</button>
+              <button class="btn-search" type="button" @click="searchFull">搜 索</button>
             </div>
           </div>
         </div>
@@ -55,15 +55,18 @@
     <div
         v-if="breadcrumb.length"
         class="mdiv breadcrumb"
-    >当前位置：<span class="breadcrumb__item"><a href="/index.html">首页</a></span> <template v-for="(item, i) in breadcrumb">
+    >当前位置：<span class="breadcrumb__item"><a href="/index.html">首页</a></span>
+      <template v-for="(item, i) in breadcrumb">
         <span
             class="breadcrumb__item"
             :key="i"
         ><a
             v-if="item.url"
             :href="item.url"
-        >{{item.label}}</a><template v-else>{{item.label}}</template></span>
-    </template> </div>
+        >{{item.label}}</a>
+          <template v-else>{{item.label}}</template></span>
+    </template>
+    </div>
   </div>
 </template>
 <script>
@@ -177,11 +180,11 @@ module.exports = {
 
 <style>
 .subhead {
-  /* background: url(../images/poindex/bg_head.jpg) no-repeat center center; */
   min-height: 80px;
 }
 .wbg {
-  background-color: #fff;
+  background: url(../images/aindex/bg.png) no-repeat center center;
+  background-size: cover;
 }
 .subhead-up {
   height: 74px;
@@ -193,15 +196,19 @@ module.exports = {
 .sublogo {
   display: inline-block;
   vertical-align: middle;
+  padding-right: 20px;
+  border-right: 1px solid #FFFFff;
+  margin-right: 15px;
 }
 .sublogo-label {
   display: inline-block;
   vertical-align: middle;
-  font-family: 'XinYeNianTi';
-  font-size: 42px;
-  font-weight: bold;
+  /*font-family: 'XinYeNianTi';*/
+  font-size: 28px;
+  /*font-weight: bold;*/
   line-height: 54px;
-  color: #0096ff;
+  color: #FFFFff;
+  letter-spacing: 2px;
 }
 .navbox {
   display: inline-block;
@@ -237,22 +244,22 @@ module.exports = {
   display: inline-block;
   vertical-align: middle;
   height: 39px;
-  border: 2px solid #0096ff;
+  border: 2px solid #ff6400;
   font-size: 0;
-  border-radius: 18px;
+  /*border-radius: 18px;*/
   overflow: hidden;
 }
 
 .input-search {
   display: inline-block;
-  width: 180px;
+  width: 348px;
   border: 1px;
   padding: 0 10px;
   line-height: 37px;
   vertical-align: middle;
 }
 .btn-search {
-  background-color: #0096ff;
+  background-color: #ff6400;
   display: inline-block;
   vertical-align: middle;
   width: 108px;
@@ -267,7 +274,7 @@ module.exports = {
   font-size: 14px;
   line-height: 14px;
   padding: 16px 0px;
-  height: 52px;
+  /*height: 52px;*/
   color: #9496a5;
 }
 .breadcrumb__item {
@@ -284,7 +291,7 @@ module.exports = {
   color: #9496a5;
 }
 .borderBottom {
-  border-bottom: 2px solid #008ef2;
+  /*border-bottom: 2px solid #008ef2;*/
   width: 100%;
   height: 80px;
 }
