@@ -100,6 +100,7 @@
             </div>
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techAchiList" :key="index">
+                    <a  :href="'tech_achievements_details.html?id='+item.id">
                     <el-image v-if="item.projectImgPath" class="border_ca achi_img_box"
                         :src="getImgPath(item.projectImgPath)" fit="cover">
                         <div slot="placeholder" class="image-slot">
@@ -121,8 +122,8 @@
                                 <i class="color_orange" v-else>{{Pricre(item.budget)}}</i></span></span>
                         </div>
                     </div>
-                    <a class="margin_top_15 pro_list_button bg_orange color_fff"
-                        :href="'tech_achievements_details.html?id='+item.id">邀约交流</a>
+                    <a class="margin_top_15 pro_list_button bg_orange color_fff">邀约交流</a>
+                    </a>
                 </li>
 
             </ul>
@@ -148,6 +149,7 @@
             </div>
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in techRequireList" :key="index">
+                    <a :href="'tech_requirements_details.html?id='+item.id">
                     <div class="pro_bottom_text">
                         <h4 class="ell_nowrap">{{item.title}}</h4>
                         <div>
@@ -163,8 +165,8 @@
                         <div class="ell_nowrap">需求类型：{{item.demandType_display}}</div>
                         <div class="ell_nowrap margin_top_4">合作方式：{{item.cooperationMode_display}}</div>
                     </div>
-                    <a class="margin_top_15 pro_list_button bg_orange color_fff"
-                        :href="'tech_requirements_details.html?id='+item.id">投递成果</a>
+                    <a class="margin_top_15 pro_list_button bg_orange color_fff">投递成果</a>
+                    </a>
                 </li>
 
             </ul>
@@ -191,6 +193,7 @@
             </div>
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl " v-for="(item,index) in techManagerList" :key="index">
+                    <a :href="'technical_manager_details.html?id='+item.id">
                     <div class="position_relative">
                         <span v-if="item.honorLevel_display"
                             style="position: absolute;top: 0; left: 0;z-index: 10;background: rgb(0,52,195);padding: 5px;color: #fff;">{{item.honorLevel_display}}</span>
@@ -220,10 +223,9 @@
                             标签：{{item.tags.map(item=>item.name).join(',')}}</div>
                         <div class="ell_nowrap margin_top_4">附加技能：{{item.zMProjectAdditional}}</div>
                     </div>
-                    <a class="fl margin_top_15 pro_list_button_half bg_13c9ef color_fff"
-                        :href="'technical_manager_details.html?id='+item.id">邀约交流</a>
-                    <a class="fr margin_top_15 pro_list_button_half bg_orange color_fff"
-                        :href="'technical_manager_details.html?id='+item.id">投递成果</a>
+                    <a class="fl margin_top_15 pro_list_button_half bg_13c9ef color_fff">邀约交流</a>
+                    <a class="fr margin_top_15 pro_list_button_half bg_orange color_fff">投递成果</a>
+                    </a>
                 </li>
             </ul>
         </div>

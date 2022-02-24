@@ -133,18 +133,17 @@
                 </div>
                 <table class="contentTable">
                   <thead>
-                    <th v-for="(col, index) in columnHead.columns" :key="index"
-                      :style="{width: col.displayWeight+ 'px'}" v-text="col.columnName"></th>
+                    <th v-for="(col, index) in columnHead.columns" :key="index" v-text="col.columnName"></th>
                     <th>审核状态</th>
                     <th>报名时间</th>
-                    <th class="operation" v-if="columnHead.auditFlag">操作</th>
+                    <th class="operation" v-if="columnHead.auditFlag==1">操作</th>
                   </thead>
                   <tbody>
                     <tr v-for="(order, oi) in orderList" :key="oi">
-                      <td v-for="(col, ci) in order.enrollDetails" :key="ci" v-text="col.value" class="td-more" :title="col.value"></td>
+                      <td v-for="(col, ci) in order.enrollDetails" class="td-more" v-text="col.value" :title="col.value" v-if="col.value!==''"></td>
                       <td v-text="order.auditSituationDisplay"></td>
                       <td v-text="order.enrollDate"></td>
-                      <td class="operation" v-if="columnHead.auditFlag">
+                      <td class="operation" v-if="columnHead.auditFlag==1">
                         <a v-if="order.auditSituation === '03'" @click="handleAudit(order.id, '01')">通过</a>
                         <a v-if="order.auditSituation === '03'" @click="handleAudit(order.id, '02')">不通过</a>
                       </td>

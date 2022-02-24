@@ -159,7 +159,7 @@ button[typeName~="activity-state"] {
 	line-height: 38px;
 	font-size: 14px;
 	text-align: center;
-	background-color: #597dfa;
+	background-color: #ff5e06;
 	border-radius: 0;
 	white-space: nowrap;
 }
@@ -198,17 +198,17 @@ button[typeName~="addPerson"] {
 	width: 540px;
 	height: 42px;
 	background-color: transparent;
-	border: 1px dashed #0096ff;
+	border: 1px dashed #ff6400;
 	font-size: 16px;
 	line-height: 40px;
 	text-align: center;
-	color: #0096ff;
+	color: #ff6400;
 }
 button[typeName~="moreSignup"] {
 	width: 540px;
 	height: 42px;
-	background-color: #0096ff;
-	border: 1px dashed #0096ff;
+	background-color: #ff6400;
+	border: 1px dashed #ff6400;
 	font-size: 16px;
 	line-height: 40px;
 	text-align: center;

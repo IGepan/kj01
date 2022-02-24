@@ -7,10 +7,10 @@ require(['/common/js/require.config.js'], function () {
                 data: {
                     saasId: '',
                     breadcrumb: [
-                        {
-                            url: '/aindex.html',
-                            label: '活动'
-                        },
+                        // {
+                        //     url: '/aindex.html',
+                        //     label: '活动'
+                        // },
                         {
                             url: '/alist.html',
                             label: '活动列表'
@@ -42,7 +42,7 @@ require(['/common/js/require.config.js'], function () {
                     }
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'sub-head': httpVueLoader('/style/components/asub_head.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue')
                 },
@@ -64,7 +64,7 @@ require(['/common/js/require.config.js'], function () {
                     initData: function () {
                         this.saasId = localStorage.getItem('saasId');
                         var id = this.$utils.getReqStr('id')
-                        this.breadcrumb[2].url = '/adetail.html?id=' + id
+                        this.breadcrumb[1].url = '/adetail.html?id=' + id
                         this.$utils.getCookie(dic.locaKey.USER_INFO) && (this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO)))
                         if (this.userInfo && this.userInfo.userName) {
                             this.formData.activeId = id;

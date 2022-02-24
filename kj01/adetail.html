@@ -26,7 +26,13 @@
     })();
   </script>
   <style>
-
+    .mdiv{
+      width: 1200px!important;
+    }
+    .mmdiv {
+      width: 1200px;
+      margin: auto;
+    }
     .activity-activeText .selectTdClass {
       background-color: #edf5fa !important
     }
@@ -97,7 +103,7 @@
           <span class="vaMiddle topic1">品牌</span>
           <a class="vaMiddle line topicUrl" :href="'/atdetail.html?id=' + detail.topicId" :title="detail.topicTitle"
              target="_blank">{{detail.topicTitle}}</a>
-          <i class="vaMiddle iconfont icon-gengduokuozhe"></i>
+<!--          <i class="vaMiddle iconfont icon-gengduokuozhe"></i>-->
         </div>
         <div class="time"><i class="iconfont icon-lishijilu"></i>{{detail.activeStartShowTime2}} {{detail.weekday}}
         </div>
@@ -144,7 +150,7 @@
     <div class="mdiv activityBox">
       <div class="fl activity">
         <div class="activity-box">
-          <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动介绍</span></div>
+          <div class="activity-box-title" style="padding: 0;border-bottom: 1px solid #dfdfdf"><span class="vaMiddle actitke">活动详情</span></div>
           <div class="activity-box-body">
             <div class="activity-activeText" v-html="detail.activeText"></div>
           </div>
@@ -164,72 +170,72 @@
             </div>
           </div>
         </div>
-        <div class="activity-box">
-          <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动评价</span>
-            <div class="activity-box-title-more"></div>
-          </div>
-          <div class="activity-box-body">
-            <div class="activity-evaluate">
-              <div class="activity-evaluate-top">
-                <div class="vaMiddle activity-evaluate-top-left">
-                  <div class="activity-evaluate-main">
-                    <span class="activity-evaluate-main-label">综合评分</span>
-                    <template v-for="i in 5">
-                      <svg class="vaBottom jsicon svg-icon" aria-hidden="true">
-                        <use :xlink:href="detail.evaluateResult >= i ? '#icon-xingxing' : '#icon-xingxingxian'"></use>
-                      </svg>
-                    </template>
-                    <span class="mainNumber">{{detail.evaluateResult|formatNumber}}</span>
-                  </div>
-                  <div class="activity-evaluate-tips">感谢您的参与，请为本次活动进行评分</div>
-                </div>
-                <div class="vaMiddle activity-evaluate-top-right">
-                  <button type="button" v-if="!detail.isEvaluate" typeName="evaluate"
-                          @click.stop="handleToggleEvaluate" v-if="">立即评价</button>
-                </div>
-              </div>
-              <div class="activity-evaluate-body">
-                <template v-for="(item, ei) in evaluateList">
-                  <div class="evaluate-item" v-if="maxEvaluateViewLength > ei" :key="ei">
-                    <div class="vaTop item-img evaluate-item-head" :style="item.styles">
-                      <img :src="item.itemImg" :alt="item.userName">
-                    </div>
-                    <div class="vaTop evaluate-item-body">
-                      <div class="evaluate-item-name">{{item.userName}}</div>
-                      <div class="evaluate-item-time">{{item.evaluateDate}}</div>
-                      <div class="evaluate-item-options">
-                        <template v-for="(evaluate, sei) in item.results">
-                          <label class="evaluate-item-option"
-                                 v-if="sei">{{evaluate.evaluateItemDisplay|formatItemDisplay}}：{{evaluate.evaluateResult|formatNumber}}
-                          </label>
-                        </template>
-                      </div>
-                    </div>
-                    <div class="vaTop evaluate-item-mark">
-                      <template v-for="i in 5">
-                        <svg class="vaBottom jsicon svg-icon" aria-hidden="true">
-                          <use
-                                  :xlink:href="item.results[0].evaluateResult >= i ? '#icon-xingxing' : '#icon-xingxingxian'">
-                          </use>
-                        </svg>
-                      </template>
-                      <span
-                              class="vaBottom evaluate-item-mark-score">{{item.results[0].evaluateResult|formatNumber}}</span>
-                      <span class="vaBottom evaluate-item-mark-unit">分</span>
-                    </div>
-                  </div>
-                </template>
-              </div>
-              <div v-if="evaluateLength > 2" class="activity-evaluate-footer"
-                   class="{'zhankai': evaluateLength !== maxEvaluateViewLength}" @click.stop="handleEvaluateMore">
-                <i class="iconfont"
-                   :class="{'icon-shouqi': evaluateLength === maxEvaluateViewLength, 'icon-zhankai': evaluateLength !== maxEvaluateViewLength }"></i>{{evaluateLength === maxEvaluateViewLength ? '收起' : '展开'}}
-              </div>
-            </div>
-          </div>
-          <evaluate :visible.sync="isEvaluateFlag" @toggle="bindEvaluateToggle" @submit="bindEvaluateSubmit">
-          </evaluate>
-        </div>
+<!--        <div class="activity-box">-->
+<!--          <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">活动评价</span>-->
+<!--            <div class="activity-box-title-more"></div>-->
+<!--          </div>-->
+<!--          <div class="activity-box-body">-->
+<!--            <div class="activity-evaluate">-->
+<!--              <div class="activity-evaluate-top">-->
+<!--                <div class="vaMiddle activity-evaluate-top-left">-->
+<!--                  <div class="activity-evaluate-main">-->
+<!--                    <span class="activity-evaluate-main-label">综合评分</span>-->
+<!--                    <template v-for="i in 5">-->
+<!--                      <svg class="vaBottom jsicon svg-icon" aria-hidden="true">-->
+<!--                        <use :xlink:href="detail.evaluateResult >= i ? '#icon-xingxing' : '#icon-xingxingxian'"></use>-->
+<!--                      </svg>-->
+<!--                    </template>-->
+<!--                    <span class="mainNumber">{{detail.evaluateResult|formatNumber}}</span>-->
+<!--                  </div>-->
+<!--                  <div class="activity-evaluate-tips">感谢您的参与，请为本次活动进行评分</div>-->
+<!--                </div>-->
+<!--                <div class="vaMiddle activity-evaluate-top-right">-->
+<!--                  <button type="button" v-if="!detail.isEvaluate" typeName="evaluate"-->
+<!--                          @click.stop="handleToggleEvaluate" v-if="">立即评价</button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="activity-evaluate-body">-->
+<!--                <template v-for="(item, ei) in evaluateList">-->
+<!--                  <div class="evaluate-item" v-if="maxEvaluateViewLength > ei" :key="ei">-->
+<!--                    <div class="vaTop item-img evaluate-item-head" :style="item.styles">-->
+<!--                      <img :src="item.itemImg" :alt="item.userName">-->
+<!--                    </div>-->
+<!--                    <div class="vaTop evaluate-item-body">-->
+<!--                      <div class="evaluate-item-name">{{item.userName}}</div>-->
+<!--                      <div class="evaluate-item-time">{{item.evaluateDate}}</div>-->
+<!--                      <div class="evaluate-item-options">-->
+<!--                        <template v-for="(evaluate, sei) in item.results">-->
+<!--                          <label class="evaluate-item-option"-->
+<!--                                 v-if="sei">{{evaluate.evaluateItemDisplay|formatItemDisplay}}：{{evaluate.evaluateResult|formatNumber}}-->
+<!--                          </label>-->
+<!--                        </template>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="vaTop evaluate-item-mark">-->
+<!--                      <template v-for="i in 5">-->
+<!--                        <svg class="vaBottom jsicon svg-icon" aria-hidden="true">-->
+<!--                          <use-->
+<!--                                  :xlink:href="item.results[0].evaluateResult >= i ? '#icon-xingxing' : '#icon-xingxingxian'">-->
+<!--                          </use>-->
+<!--                        </svg>-->
+<!--                      </template>-->
+<!--                      <span-->
+<!--                              class="vaBottom evaluate-item-mark-score">{{item.results[0].evaluateResult|formatNumber}}</span>-->
+<!--                      <span class="vaBottom evaluate-item-mark-unit">分</span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </template>-->
+<!--              </div>-->
+<!--              <div v-if="evaluateLength > 2" class="activity-evaluate-footer"-->
+<!--                   class="{'zhankai': evaluateLength !== maxEvaluateViewLength}" @click.stop="handleEvaluateMore">-->
+<!--                <i class="iconfont"-->
+<!--                   :class="{'icon-shouqi': evaluateLength === maxEvaluateViewLength, 'icon-zhankai': evaluateLength !== maxEvaluateViewLength }"></i>{{evaluateLength === maxEvaluateViewLength ? '收起' : '展开'}}-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <evaluate :visible.sync="isEvaluateFlag" @toggle="bindEvaluateToggle" @submit="bindEvaluateSubmit">-->
+<!--          </evaluate>-->
+<!--        </div>-->
         <div class="activity-box" v-if="detail.joinUser && detail.joinUser.length">
           <div class="activity-box-title"><span class="vaMiddle activity-box-title-text">最近参与</span></div>
           <div class="activity-box-body">
@@ -321,35 +327,47 @@
             <div class="qrcodebox-tips">分享此活动到朋友圈</div>
           </div>
         </div>
-
-        <div class="calendarBox">
-          <div class="calendartop">
-            <div class="vaMiddle prev" @click.stop="handlePrevMonth"><i class="iconfont icon-fanhui"></i></div>
-            <div class="vaMiddle viewDisplay">活动日历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{calendar.month + 1}}月</div>
-            <div class="vaMiddle next" @click.stop="handleNextMonth"><i class="iconfont icon-gengduokuozhe"></i></div>
-          </div>
-          <div class="calendarweek">
-            <span class="vaMiddle week">日</span>
-            <span class="vaMiddle week">一</span>
-            <span class="vaMiddle week">二</span>
-            <span class="vaMiddle week">三</span>
-            <span class="vaMiddle week">四</span>
-            <span class="vaMiddle week">五</span>
-            <span class="vaMiddle week">六</span>
-          </div>
-          <div class="calendarDays" v-if="calendar.days.length">
-            <template v-for="(day, di) in calendar.days">
-                <span class="vaMiddle day" @click.stop="handleSetDay" :data-click="day.click" :data-index="di"
-                      :data-value="day.label"
-                      :class="{none: !day.click, dot: day.activeNum, default: day.isSelect, active: selectIndex === di }">
-                  {{day.label||''}}
-                </span>
-            </template>
-          </div>
-          <template v-if="dayResultList.length">
-            <aside-today box-title="当天活动" :data-list="dayResultList"></aside-today>
+        <div class="topAct">
+          <span class="activity-box-title-text fl">活动名场面</span>
+          <template v-for="(item, di) in dataList" v-if="item.tycoon && item.id!==detail.id">
+            <a :href="item.itemUrl+'&act='+item.tycoon.id" :title="item.title" target="_blank">
+              <div class="box-List">
+                <img :src="item.posterUrl"/>
+                <span class="line">{{item.title}}</span>
+                <p>时间：{{item.activeStartTime}} {{item.weekday}}&emsp;&emsp;地点：{{item.cityShow|formatCity('')}}</p>
+              </div>
+            </a>
           </template>
         </div>
+
+<!--        <div class="calendarBox">-->
+<!--          <div class="calendartop">-->
+<!--            <div class="vaMiddle prev" @click.stop="handlePrevMonth"><i class="iconfont icon-fanhui"></i></div>-->
+<!--            <div class="vaMiddle viewDisplay">活动日历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{calendar.month + 1}}月</div>-->
+<!--            <div class="vaMiddle next" @click.stop="handleNextMonth"><i class="iconfont icon-gengduokuozhe"></i></div>-->
+<!--          </div>-->
+<!--          <div class="calendarweek">-->
+<!--            <span class="vaMiddle week">日</span>-->
+<!--            <span class="vaMiddle week">一</span>-->
+<!--            <span class="vaMiddle week">二</span>-->
+<!--            <span class="vaMiddle week">三</span>-->
+<!--            <span class="vaMiddle week">四</span>-->
+<!--            <span class="vaMiddle week">五</span>-->
+<!--            <span class="vaMiddle week">六</span>-->
+<!--          </div>-->
+<!--          <div class="calendarDays" v-if="calendar.days.length">-->
+<!--            <template v-for="(day, di) in calendar.days">-->
+<!--                <span class="vaMiddle day" @click.stop="handleSetDay" :data-click="day.click" :data-index="di"-->
+<!--                      :data-value="day.label"-->
+<!--                      :class="{none: !day.click, dot: day.activeNum, default: day.isSelect, active: selectIndex === di }">-->
+<!--                  {{day.label||''}}-->
+<!--                </span>-->
+<!--            </template>-->
+<!--          </div>-->
+<!--          <template v-if="dayResultList.length">-->
+<!--            <aside-today box-title="当天活动" :data-list="dayResultList"></aside-today>-->
+<!--          </template>-->
+<!--        </div>-->
       </div>
     </div>
   </template>

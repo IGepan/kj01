@@ -13,35 +13,26 @@
   <link href="/style/css/moreSignup.css" rel="stylesheet" type="text/css">
   <link href="/style/css/icon/iconfont.css" rel="stylesheet">
   <style>
-    .showdiv{position: absolute;z-index: 999;
-      text-align: center;display: block}
-    .showdiv .dg{background: #FFFFff;width:300px;overflow: hidden ;text-align: center;padding: 30px;margin:20%  auto;border: 1px solid #0a6cd6}
-    .dg button{background: #2c82f1;
-      width: 20%;
-      height: 30px;
-      line-height: 30px;
-      color: #fff;
+    .mdiv{
+      width: 1200px!important;
     }
-    .dg button:hover{opacity: 0.6}
+    .mmdiv {
+      width: 1200px;
+      margin: auto;
+    }
+    .vaTop{
+      display: block!important;
+    }
   </style>
 </head>
 
 <body>
   <div class="box grayBgbox" v-cloak id='index_box'>
     <ly-toper top-class="white" code-url="/style/images/footerCode2.jpg" code-title="易智网-易智动"></ly-toper>
-    <sub-head name="活动中心" :bottom-border="true" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
+    <sub-head name="活动中心" :breadcrumb="breadcrumb" :nav-index="0"></sub-head>
 
     <template v-if="detail">
       <div class="mdiv moreSignup">
-        <div class="showdiv" id="showdiv">
-          <div class="dg">
-            <img
-                    src="/style/images/index/qrcode.jpg"
-                    alt=""
-            ><h4>关注公众号，发现更多活动</h4>
-            <button  class="hiden" onclick="closeme()" >关闭</button>
-          </div>
-        </div>
         <div class="detail-base">
           <div class="vaMiddle item-img detail-base-img" :style="detail.styles">
             <img :src="detail.posterUrl" :alt="detail.title">

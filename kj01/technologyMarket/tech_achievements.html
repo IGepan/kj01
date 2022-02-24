@@ -95,6 +95,7 @@
         <div class="mmdiv margin_top_20">
             <ul class="clear">
                 <li class="classify_list bg_fff padding_20 fl" v-for="(item,index) in dataList" :key="index">
+                    <a :href="'tech_achievements_details.html?id='+item.id">
                     <el-image v-if="item.projectImgPath" class="border_ca achi_img_box "
                         :src="getImgPath(item.projectImgPath)">
                         <div slot="placeholder" class="image-slot">
@@ -120,7 +121,8 @@
                         </div>
                     </div>
                     <a class="margin_top_15 pro_list_button bg_orange color_fff"
-                        :href="'tech_achievements_details.html?id='+item.id">邀约交流</a>
+                       >邀约交流</a>
+                    </a>
                 </li>
             </ul>
         </div>

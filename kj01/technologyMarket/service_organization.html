@@ -90,6 +90,7 @@
             <ul class="clear">
 
                 <li class="classify_list bg_fff  fl" v-for="(item,index) in dataList" :key="index">
+                    <a :href="'service_organization_details.html?id='+item.id">
                     <div class="pro_top_img_box border_bot_f2f2f2 position_relative">
                         <span v-if="item.honorLevel_display"
                             style="position: absolute;top: 0; left: 0;z-index: 10;background: rgb(0,52,195);padding: 5px;color: #fff;">{{item.honorLevel_display}}</span>
@@ -113,8 +114,9 @@
                             <span v-else>-</span>
                         </div>
                         <a class="margin_top_15 pro_list_button bg_orange color_fff"
-                            :href="'service_organization_details.html?id='+item.id">查看详情</a>
+                            >查看详情</a>
                     </div>
+                    </a>
                 </li>
 
             </ul>
