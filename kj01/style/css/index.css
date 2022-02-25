@@ -298,7 +298,7 @@
     left: 0;
 }
 .boxlink{
-   margin-top: 20px;
+   /*margin-top: 20px;*/
     position: relative;
     height: 145px;
 }
@@ -310,6 +310,8 @@
     height: 100%;
    color: #787272;
     padding: 20px;
+    font-size: 14px;
+    line-height: 24px;
 }
 .boxlink .swiper-slide a h3{
     font-weight: normal;
@@ -464,13 +466,13 @@
     /*border-top:2px solid #eef2f3;*/
     padding:16px 20px;
     display:flex;
-    background:#fcfcfc;
+    background:#FFFFff;
     align-items: center;
 }
 .recent-news .desc{
     font-size:18px;
     line-height: 18px;
-    margin-right:50px;
+    margin-right:20px;
     font-weight: bold;
 }
 .recent-news .desc span{

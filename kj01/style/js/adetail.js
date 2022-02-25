@@ -1,7 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'dic', 'vue', 'httpVueLoader', '/style/js/api/aindex.js', 'fileSaver', 'httpUrl'],
-        function ($, dic, Vue, httpVueLoader, indexApi, fileSaver, httpUrl) {
+    require(['jquery', 'dic', 'vue', 'httpVueLoader', '/style/js/api/aindex.js','/common/js/libs/jquery.SuperSlide.2.1.3.js', 'fileSaver', 'httpUrl'],
+        function ($, dic, Vue, httpVueLoader, indexApi,slide, fileSaver, httpUrl) {
             new Vue({
                 el: '#index_box',
                 data: {
@@ -183,6 +183,17 @@ require(['/common/js/require.config.js'], function () {
                                 item.itemImg = item.posterUrl
                             });
                             vm.dataList = res.result ? res.result.list : []
+                            vm.$nextTick(() => {
+                                $(".slideTxtBox").slide({
+                                    titCell:".hd ul",
+                                    mainCell: ".bd ul",
+                                    autoPlay:false,
+                                    effect: "topLoop",
+                                    scroll:1,
+                                    pnLoop:true,
+                                    vis: 3,
+                                });
+                            })
                         })
                     },
                     getRecommendById: function (id) {

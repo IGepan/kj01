@@ -328,8 +328,13 @@
           </div>
         </div>
         <div class="topAct">
-          <span class="activity-box-title-text fl">活动名场面</span>
-          <template v-for="(item, di) in dataList" v-if="item.tycoon && item.id!==detail.id">
+          <span class="activity-box-title-text">活动名场面</span>
+          <div class="slideTxtBox">
+            <div class="bd">
+              <a class="prev" ><i class="el-icon-arrow-left"></i></a>
+              <a class="next" ><i class="el-icon-arrow-right"></i></a>
+              <ul>
+          <li v-for="(item, di) in dataList" v-if="item.tycoon && item.id!==detail.id">
             <a :href="item.itemUrl+'&act='+item.tycoon.id" :title="item.title" target="_blank">
               <div class="box-List">
                 <img :src="item.posterUrl"/>
@@ -337,7 +342,10 @@
                 <p>时间：{{item.activeStartTime}} {{item.weekday}}&emsp;&emsp;地点：{{item.cityShow|formatCity('')}}</p>
               </div>
             </a>
-          </template>
+          </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
 <!--        <div class="calendarBox">-->

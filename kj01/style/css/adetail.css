@@ -92,7 +92,7 @@
   margin-top: 32px;
 	font-size: 14px;
 	line-height: 24px;
-	color: #0096ff;
+	color: #ff5e06;
 }
 .activity-base-info .tags .tag {
   margin-right: 10px;
@@ -145,6 +145,31 @@ button[typeName~="activity-state"] {
 }
 .topAct .activity-box-title-text{
     margin-bottom: 20px;
+    text-align: left!important;
+    display: block;
+}
+.slideTxtBox .bd{
+    position: relative;
+
+}
+.prev,.next{
+    position: absolute;
+    top: -40px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #999999;
+    border: 1px solid #999999;
+    border-radius: 5px;
+}
+.prev:hover,.next:hover{
+    color: #ff6400;
+    border: 1px solid #ff6400;
+}
+.prev{
+    right: 30px;
+}
+.next{
+    right: 0px;
 }
 .box-List span{
     display: block;
