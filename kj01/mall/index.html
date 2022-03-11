@@ -178,11 +178,11 @@
                             </el-form-item>
                             <el-form-item label="预期价格" :label-width="formLabelWidth" prop="price">
                                 <div style="display: flex;">
-                                    <el-input v-model="dataForm.price"  placeholder="请输入预期价格" style="width: 50%;margin-right: 80px"></el-input>
+                                    <el-input v-model="dataForm.price"  placeholder="请输入预期价格" style="width: 50%;margin-right: 80px" v-if="dataForm.discuss==0"></el-input>
                                     <el-radio :label="1" v-model="dataForm.discuss" @click.native.prevent="onRadioChange(1)" border>面议</el-radio>
                                 </div>
                             </el-form-item>
-                            <el-form-item label="联系人" :label-width="formLabelWidth" prop="contacts">
+                            <el-form-item label="联系人":label-width="formLabelWidth" prop="contacts">
                                 <el-input v-model="dataForm.contacts" placeholder="请输入联系人"></el-input>
                             </el-form-item>
                             <el-form-item label="联系方式" :label-width="formLabelWidth" prop="phone">

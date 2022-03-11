@@ -109,11 +109,11 @@ require(['/common/js/require.config.js'], function () {
               '05': 'updateDepart'
             },
             subDatas: {
-              '01': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'version'],
-              '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'highEnterprise','enterprise', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version', 'qualifications'],
-              '03': ['saasId', 'userBasicId', 'userName', 'displayName','industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
-              '04': ['saasId', 'userBasicId', 'userName', 'displayName','industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
-              '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version']
+              '01': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'version'],
+              '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district','certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'highEnterprise','enterprise', 'version'],
+              '03': ['saasId', 'userBasicId', 'userName', 'displayName','industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'version'],
+              '04': ['saasId', 'userBasicId', 'userName', 'displayName','industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'version'],
+              '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale','version']
             },
             organizationTypeNames: {
               '02': '企业类型：',
@@ -361,16 +361,15 @@ require(['/common/js/require.config.js'], function () {
             var data = vm.formData
             console.log(data)
             var formData = {}
-            vm.alias.subDatas[data.identityType].map(function (key) {
-              formData[key] = data[key] !== undefined ? data[key] : ''
-            })
+            formData=data
             formData.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
             formData.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
+            formData.headImg = data.headImg ? formData.headImg.id : '';
             formData.code = data.code;
             formData.companyName = data.companyName;
             formData.job = data.job;
             // console.log(formData, formData.code)
-            if(formData.focusPolicy!==''){
+            // if(formData.focusPolicy!==''){
               httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
                 if (resp.code == 'rest.success') {
                   // vm.$notify({
@@ -385,16 +384,23 @@ require(['/common/js/require.config.js'], function () {
                   });
                   vm.dialogFormVisible = false
                   vm.getUserInfo();
+                }else{
+                  vm.$message({
+                    message: '请先完善账号信息！',
+                    type: 'error',
+                    center: true
+                  });
+                  vm.dialogFormVisible = false
                 }
               }).catch(function () {
                 vm.$dialog.showToast('订阅失败！');
               })
-            }else {
-              vm.$message.error({
-                message: '请选择订阅类型！',
-                center: true
-              });
-            }
+            // }else {
+            //   vm.$message.error({
+            //     message: '请选择订阅类型！',
+            //     center: true
+            //   });
+            // }
 
           },
           getPlocyParams: function(data) {

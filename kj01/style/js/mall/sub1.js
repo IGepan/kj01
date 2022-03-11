@@ -4,94 +4,103 @@ require(['/common/js/require.config.js'], function () {
         function ($, Vue, dic, httpVueLoader, indexApi, owlCarousel, httpUrl, validate, captcha, httpLogin) {
             new Vue({
                 el: '#index_box',
-                data: {
-                    saasId: '',
-                    mailSite: {},
-                    goodList: [],
-                    searchForm: {
-                        pageSize: 10,
-                        type: '',
-                        price: '',
-                        sort: ''
-                    },
-                    dicOptsSet: [
-                        {
-                            code: 'price',
-                            label: '服务价格',
-                            operationType: 'select',
-                            childIndex: -1,
-                            valueKey: 'price',
-                            valueType: 'string',
-                            isMoreShow: 0,
-                            isMore: 0,
-                            isTop: 0
-                        },
-                    ],
-                    filters: [
-                        {
-                            value: false,
-                            label: '价格排序',
-                            seleced: true
-                        },
-                        // {
-                        //     value: false,
-                        //     label: '时间排序'
-                        // },
-                        {
-                            value: false,
-                            label: '综合排序'
+                data: function(){
+                    let validateMethods = (rule, value, callback) => {
+                        if (this.dataForm.discuss ==0) {
+                            callback(new Error('请选择输入价格'));
+                        } else {
+                            callback();
                         }
-                    ],
-                    options: {
-                        selectOpts: [],
-                        searchOpts: [],
-                        mailServiceTypeList: [],
-                    },
-                    title: '',
-                    pages: '',
-                    nameList: [],
-                    result: [],
-                    // 服务筛选临时缓存数组
-                    ser: [],
-                    // 价格筛选临时缓存数组
-                    pr: [],
-                    active: false,
-                    activeAll: true,
-                    activePriceAll:true,
-                    parentId:null,
-                    dialogFormVisible: false,
-                    formLabelWidth: '120px',
-            dataForm:{
-                userId:'',
-                    enterpriseName:'',//企业名称
-                    description:'',//需求描述
-                    price:'',//预期价格
-                    discuss:0,//面议可选
-                    contacts:'',//联系人
-                    phone:'',//联系方式
-                    progress:0
-            },
-                    rules: {
-                        enterpriseName: [
-                            {required: true, message: '请输入企业名称',trigger: 'blur'},
-                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    };
+                    return {
+                        saasId: '',
+                        mailSite: {},
+                        goodList: [],
+                        searchForm: {
+                            pageSize: 10,
+                            type: '',
+                            price: '',
+                            sort: ''
+                        },
+                        dicOptsSet: [
+                            {
+                                code: 'price',
+                                label: '服务价格',
+                                operationType: 'select',
+                                childIndex: -1,
+                                valueKey: 'price',
+                                valueType: 'string',
+                                isMoreShow: 0,
+                                isMore: 0,
+                                isTop: 0
+                            },
                         ],
-                        description: [
-                            {required: true, message: '请输入需求描述',trigger: 'blur'},
-                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        filters: [
+                            {
+                                value: false,
+                                label: '价格排序',
+                                seleced: true
+                            },
+                            // {
+                            //     value: false,
+                            //     label: '时间排序'
+                            // },
+                            {
+                                value: false,
+                                label: '综合排序'
+                            }
                         ],
-                        price: [
-                            {required: true, message: '请输入预期价格', trigger: 'blur'},
-                        ],
-                        contacts: [
-                            {required: true, message: '请输入联系人', trigger: 'blur'},
-                        ],
-                        phone: [
-                            {required: true, message: '请填写联系方式',trigger: 'blur'},
-                            {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
-                        ]
+                        options: {
+                            selectOpts: [],
+                            searchOpts: [],
+                            mailServiceTypeList: [],
+                        },
+                        title: '',
+                        pages: '',
+                        nameList: [],
+                        result: [],
+                        // 服务筛选临时缓存数组
+                        ser: [],
+                        // 价格筛选临时缓存数组
+                        pr: [],
+                        active: false,
+                        activeAll: true,
+                        activePriceAll:true,
+                        parentId:null,
+                        dialogFormVisible: false,
+                        formLabelWidth: '120px',
+                        dataForm:{
+                            userId:'',
+                            enterpriseName:'',//企业名称
+                            description:'',//需求描述
+                            price:'',//预期价格
+                            discuss:0,//面议可选
+                            contacts:'',//联系人
+                            phone:'',//联系方式
+                            progress:0
+                        },
+                        rules: {
+                            enterpriseName: [
+                                {required: true, message: '请输入企业名称',trigger: 'blur'},
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            description: [
+                                {required: true, message: '请输入需求描述',trigger: 'blur'},
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            price: [
+                                {required: true,validator:validateMethods,trigger: 'blur'},
+                            ],
+                            contacts: [
+                                {required: true, message: '请输入联系人', trigger: 'blur'},
+                            ],
+                            phone: [
+                                {required: true, message: '请填写联系方式',trigger: 'blur'},
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
+                            ]
 
-                    },
+                        },
+                    }
                 },
                 filters: {
                     // formatPrice2: function (flag, v, n, m) {
