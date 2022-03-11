@@ -21,7 +21,7 @@ require(['/common/js/require.config.js'], function () {
                     nowIndex:1,//默认第一个tab为激活状态
                 },
                 components: {
-                    'ly-toper': httpVueLoader('/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
                     'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue')
                 },

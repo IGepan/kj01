@@ -131,6 +131,7 @@ module.exports = {
 <style>
 .headerBox {
   background-color: #ffffff;
+  border-bottom:0!important;
 }
 .headers {
   display: flex;
@@ -175,7 +176,6 @@ module.exports = {
   font-size: 18px;
   color: #1f2024;
   padding: 0 20px;
-
 }
 .searchBox .active {
   color: #ff5e06;
@@ -186,10 +186,10 @@ module.exports = {
   position: absolute;
   content: "";
   display: block;
-  margin-top: 5px;
+  margin-top: 10px;
   width: 100%;
-  height: 2px;
-  border-radius: 1px;
+  height: 3px;
+  border-radius: 2px;
   background-color: #ff5e06;
 }
 .searchBox a:hover {
@@ -201,10 +201,10 @@ module.exports = {
   position: absolute;
   content: "";
   display: block;
-  margin-top: 5px;
+  margin-top: 10px;
   width: 100%;
-  height: 2px;
-  border-radius: 1px;
+  height: 3px;
+  border-radius: 2px;
   background-color: #ff5e06;
 }
 .search {

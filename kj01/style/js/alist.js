@@ -1,7 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'httpVueLoader', '/style/js/api/aindex.js', 'laydate', 'httpUrl'],
-      function ($, Vue, httpVueLoader, indexApi, laydate, httpUrl) {
+  require(['jquery', 'vue', 'httpVueLoader', '/style/js/api/aindex.js','/common/js/libs/jquery.SuperSlide.2.1.3.js', 'laydate', 'httpUrl'],
+      function ($, Vue, httpVueLoader, indexApi,slide, laydate, httpUrl) {
         new Vue({
           el: '#index_box',
           data: {
@@ -389,6 +389,17 @@ require(['/common/js/require.config.js'], function () {
                     item.itemImg = item.posterUrl
                   });
                   vm.dataList = res.result ? res.result.list : []
+                  vm.$nextTick(() => {
+                    $(".slideTxtBox").slide({
+                      titCell:".hd ul",
+                      mainCell: ".bd ul",
+                      autoPlay:false,
+                      effect: "topLoop",
+                      scroll:1,
+                      pnLoop:true,
+                      vis: 3,
+                    });
+                  })
                   vm.pages = res.result
                   // 执行回调
                   if(typeof call === 'function') call()
