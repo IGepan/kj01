@@ -76,6 +76,37 @@
     border-color: #ff5e06!important;
     background-color: #ff5e06!important;
   }
+  .item2 {
+    text-align:center;
+    padding:15px 0;
+    height: 90px;
+    background-image: url(style/images/poindex/sd.png);
+    color: #3a3a3a;
+    display: block;
+    margin-top: 20px;
+  }
+  .el-icon-success{
+    font-size: 30px!important;
+  }
+  .el-message{
+    margin-top: 400px!important;
+  }
+  .el-message__content{
+    font-size: 18px!important;
+    /*font-weight: bold!important;*/
+  }
+  .el-button--success{
+    background-color: #ff5e06!important;
+    border-color: #ff5e06!important;
+  }
+  .el-button--success.is-plain{
+    color: #ff5e06!important;
+    background: rgb(255, 245, 240)!important;
+    border-color: #ff5e06!important;
+  }
+  .el-dialog__footer{
+    text-align: center;
+  }
 </style>
 <body>
   <div class="box grayBgbox" v-cloak id='index_box'>
@@ -230,7 +261,27 @@
         </div>
       </div>
       <div class="fr" style="width:365px">
-        <right-navs></right-navs>  
+        <right-navs></right-navs>
+<!--        v-if="userInfo && userInfo.userName"-->
+        <a  v-if="userInfo && userInfo.userName" class="item item2" @click="openLog">
+          <div>
+            <span style=" color: #ff5e06;font-weight: bold">开通政策速递</span>
+            <p>第一时间获取政策动态</p>
+          </div>
+        </a>
+        <el-dialog title="请选择政策速递类型" :visible.sync="dialogFormVisible" >
+          <ly-select-level3 :list="focusList" :value="focusPolicy"></ly-select-level3>
+          <div slot="footer" class="dialog-footer">
+            <el-button type="success" @click="dialogFormVisible = false" plain>取 消</el-button>
+            <el-button type="success" @click="submit(focusPolicy)">立即开通</el-button>
+          </div>
+        </el-dialog>
+        <a v-if="!userInfo.userName" href="/common/login.html" class="item item2">
+          <div>
+            <span style=" color: #ff5e06;font-weight: bold">开通政策速递</span>
+            <p>第一时间获取政策动态</p>
+          </div>
+        </a>
         <!-- 
         <div class="bannerBlock-small">
           <div><img src="/style/images/poindex/sb.jpg" alt=""></div>
@@ -279,6 +330,7 @@
 
     <web-footer></web-footer>
   </div>
+  <script src="/common/js/laydate/laydate.js"></script>
   <script type="text/javascript" src="/common/js/libs/require.js"></script>
   <script type="text/javascript" src="/style/js/polist.js"></script>
 </body>

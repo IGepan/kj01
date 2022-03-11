@@ -35,13 +35,14 @@
   }
 </style>
 <body>
-<div class="box" id='index_box' v-cloak>
+<div class="box grayBgbox" id='index_box' v-cloak>
   <ly-toper ref="lytoper" top-class="white"></ly-toper>
 <!--  <index-head :nav-index="sIndex"></index-head>-->
   <div class="header-box " style="background: #fff;height: 65px;position: relative;">
     <index-head :nav-index="sIndex"></index-head>
     <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
   </div>
+  <img src="/style/images/about/about.jpg" width="100%">
   <div class="content">
     <div class="mdiv">
       <div class="left">
@@ -272,7 +273,7 @@
         </div>
 
         <!-- 联系我们 -->
-        <div v-show="nowIndex === 2">
+        <div v-show="nowIndex === 2" style="margin-right: 40px">
           <div class="info">
             <div>
               <div class="info-text">

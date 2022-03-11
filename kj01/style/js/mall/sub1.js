@@ -58,8 +58,40 @@ require(['/common/js/require.config.js'], function () {
                     active: false,
                     activeAll: true,
                     activePriceAll:true,
-                    parentId:null
+                    parentId:null,
+                    dialogFormVisible: false,
+                    formLabelWidth: '120px',
+            dataForm:{
+                userId:'',
+                    enterpriseName:'',//企业名称
+                    description:'',//需求描述
+                    price:'',//预期价格
+                    discuss:0,//面议可选
+                    contacts:'',//联系人
+                    phone:'',//联系方式
+                    progress:0
+            },
+                    rules: {
+                        enterpriseName: [
+                            {required: true, message: '请输入企业名称',trigger: 'blur'},
+                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        ],
+                        description: [
+                            {required: true, message: '请输入需求描述',trigger: 'blur'},
+                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        ],
+                        price: [
+                            {required: true, message: '请输入预期价格', trigger: 'blur'},
+                        ],
+                        contacts: [
+                            {required: true, message: '请输入联系人', trigger: 'blur'},
+                        ],
+                        phone: [
+                            {required: true, message: '请填写联系方式',trigger: 'blur'},
+                            {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
+                        ]
 
+                    },
                 },
                 filters: {
                     // formatPrice2: function (flag, v, n, m) {
@@ -165,7 +197,48 @@ require(['/common/js/require.config.js'], function () {
                         }
                         this.getMailGoods()
                     },
+                    onRadioChange(e) {
+                        e === this.dataForm.discuss? (this.dataForm.discuss=0):(this.dataForm.discuss = e)
+                    },
+                    open:function (){
+                        setTimeout(() => {
+                            this.$refs.form.clearValidate();
+                        }, 0);
+                        this.cleanForm();
+                        this.dialogFormVisible=true
+                    },
+                    // 清理表单
+                    cleanForm() {
+                        this.dataForm.enterpriseName='';
+                        this.dataForm.description='';
+                        this.dataForm.price='';
+                        this.dataForm.discuss=0;
+                        this.dataForm.contacts='';
+                        this.dataForm.phone='';
+                    },
+                    submit:function (){
+                        this.$refs.form.validate((valid) => {
+                            console.log(valid, 'valid')
+                            if (valid) {
+                                indexApi.submitEq(this.dataForm).then((res) => {
+                                    if (res.code == 'rest.success') {
+                                        this.$notify.success({
+                                            title: '成功！',
+                                            message: '提交成功!',
+                                            duration: 2000
+                                        });
+                                        this.dialogFormVisible = false
+                                    }
+                                });
+                            } else {
+                                this.$notify.error({
+                                    title: '提示！',
+                                    message: '请先完善信息填写!'
+                                });
+                            }
+                        });
 
+                    },
                     handleSearchForm: function (e, is) {
                         var vm = this
 

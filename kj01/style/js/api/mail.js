@@ -47,5 +47,13 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
         saveMailFeedback: function (param) {
             return Http.post(httpUrl.baseUrl + '/mailFeedback/save', param);
         },
+        //企业需求
+        submitEq: function (param) {
+            return Http.post(httpUrl.baseUrl + '/epDemand/submit', param);
+        },
+        //企业查询
+        getEq: function (param) {
+            return Http.post(httpUrl.baseUrl + '/epDemand/selectData', param);
+        },
     }
 })

@@ -28,6 +28,13 @@
         })();
     </script>
     <style>
+        .el-input__inner{
+            width: 90%!important;
+        }
+        .log .el-textarea__inner{
+            min-height: 200px!important;
+            width: 90%!important;
+        }
         .top_div > .mdiv {
             width: 1440px;
         }
@@ -35,6 +42,68 @@
         /*.block-service .swiper-slide{margin-top: 0!important;}*/
         .block-service .card-body{width: 70%}
         .list-group{display: block!important;}
+        .el-dialog__footer{
+            text-align: center;
+        }
+        .el-button--primary{
+            background-color: #ff5e06!important;
+            border-color: #ff5e06!important;
+        }
+        .el-button--default{
+            color: #ff5e06!important;
+            background: rgb(255, 245, 240)!important;
+            border-color: #ff5e06!important;
+        }
+        .show-list{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 999;
+            background: #FFFFff;
+            width: 300px;
+            height:90px;
+        }
+        .recent-news{
+            padding: 10px;
+        }
+        .desc{
+            font-size: 18px;
+            padding-left: 10px;
+            line-height: 30px;
+            color: #FFFFff;
+            background: #f1671b;
+            margin-top: -30px;
+        }
+        .desc::before{
+            content: "";
+            width: 0;
+            height: 0;
+            border-bottom: 30px solid #f1671b;
+            border-left: 20px solid transparent;
+            position: absolute;
+            left: -20px;
+            /*top: 45px;*/
+        }
+        .recent-news ul li{
+            border: 1px solid #fe900c;
+            background: rgb(255, 245, 240);
+            margin-top: 10px;
+            line-height: 30px;
+            width: 100%;
+            float: left;
+        }
+        .recent-news ul li span{
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-left: 10px;
+            display: block;
+        }
+        .recent-news ul li p{
+           display: block;
+            margin:0;
+        }
     </style>
 </head>
 <body>
@@ -97,11 +166,39 @@
                 <li class="nav-item">
                     <a class="nav-link" href="article.html" target="_blank">入驻商城</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" @click="declaration()">关于商城</a>-->
-<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" @click="open">企业需求</a>
+                    <el-dialog title="企业信息" :visible.sync="dialogFormVisible">
+                        <el-form :model="dataForm" :rules="rules" ref="form" class="log">
+                            <el-form-item label="企业名称" :label-width="formLabelWidth" prop="enterpriseName">
+                                <el-input v-model="dataForm.enterpriseName" placeholder="请输入企业名称"></el-input>
+                            </el-form-item>
+                            <el-form-item label="需求描述" :label-width="formLabelWidth" prop="description">
+                                <el-input type="textarea" v-model="dataForm.description"  placeholder="请输入需求描述" style="min-height: 200px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="预期价格" :label-width="formLabelWidth" prop="price">
+                                <div style="display: flex;">
+                                    <el-input v-model="dataForm.price"  placeholder="请输入预期价格" style="width: 50%;margin-right: 80px"></el-input>
+                                    <el-radio :label="1" v-model="dataForm.discuss" @click.native.prevent="onRadioChange(1)" border>面议</el-radio>
+                                </div>
+                            </el-form-item>
+                            <el-form-item label="联系人" :label-width="formLabelWidth" prop="contacts">
+                                <el-input v-model="dataForm.contacts" placeholder="请输入联系人"></el-input>
+                            </el-form-item>
+                            <el-form-item label="联系方式" :label-width="formLabelWidth" prop="phone">
+                                <el-input v-model="dataForm.phone" placeholder="请输入联系方式"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="dialogFormVisible = false">取 消</el-button>
+                            <el-button type="primary" @click="submit">确 定</el-button>
+                        </div>
+                    </el-dialog>
+                </li>
+
+
             </ul>
-            <div id="slideshow">
+            <div id="slideshow" style="position: relative">
                 <div class="swiper-container" id="home-slider">
                     <div class="swiper-wrapper">
                         <template v-for="idx_banner in indexBanner">
@@ -116,11 +213,23 @@
                             <!--                <div class="swiper-slide"><img src="images/banner.jpg" alt="..."></div>-->
                         </template>
                     </div>
-
-
                     <div class="swiper-pagination"></div>
                 </div>
+                <div class="show-list" v-if="showList.length>0">
+                    <div class="desc">企业动态</div>
+                    <div class="recent-news">
+                        <div class="bd">
+                            <ul>
+                                <li v-for="(item,index) in showList" :key="index" :title="item.description">
+                                    <p :style="{'color':(item.progress==0)?'#67c23a':'#f1671b'}">【{{item.progressDisplay}}】</p>
+                                    <span>{{item.description}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+
 <!--            <div class="right-column fr" >-->
 <!--                <div class="right-column-1" v-if='userInfo && userInfo.userName'>-->
 <!--                     <img src="images/toux.png">-->
@@ -410,6 +519,7 @@
 </div>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="../style/js/mall/index.js"></script>
+<!--<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>-->
 <script src="/daping/style/js/vendor/jquery.min.js"></script>
 <script src="/daping/style/js/kxbdSuperMarquee.js"></script>
 <script>

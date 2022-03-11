@@ -1,7 +1,7 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin'],
-        function ($, Vue, dic, httpVueLoader, indexApi, httpUrl, validate, captcha, httpLogin) {
+    require(['jquery', 'vue', 'dic', 'httpVueLoader', '/style/js/api/mail.js', 'httpUrl', 'validate', 'img_captcha', 'httpLogin','/common/js/libs/jquery.SuperSlide.2.1.3.js'],
+        function ($, Vue, dic, httpVueLoader, indexApi, httpUrl, validate, captcha, httpLogin,slide) {
             window.vueDom = new Vue({
                 el: '#index_box',
                 data: {
@@ -50,6 +50,8 @@ require(['/common/js/require.config.js'], function () {
                     },
                     title: '',
                     userInfo: {},
+                    dialogFormVisible: false,
+                    formLabelWidth: '120px',
                     changeSelectStyle: '0',//索引样式
                     isSeller: false,
                     typeList: [],//板块列表
@@ -62,6 +64,38 @@ require(['/common/js/require.config.js'], function () {
                         '/mall/images/icon8.png', '/mall/images/icon9.png',
                     ],
                     scrollList: [],
+                    dataForm:{
+                        userId:'',
+                        enterpriseName:'',//企业名称
+                        description:'',//需求描述
+                        price:'',//预期价格
+                        discuss:0,//面议可选
+                        contacts:'',//联系人
+                        phone:'',//联系方式
+                        progress:0
+                    },
+                    showList:[],
+                    rules: {
+                        enterpriseName: [
+                            {required: true, message: '请输入企业名称',trigger: 'blur'},
+                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        ],
+                        description: [
+                            {required: true, message: '请输入需求描述',trigger: 'blur'},
+                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        ],
+                        price: [
+                            {required: true, message: '请输入预期价格', trigger: 'blur'},
+                        ],
+                        contacts: [
+                            {required: true, message: '请输入联系人', trigger: 'blur'},
+                        ],
+                        phone: [
+                            {required: true, message: '请填写联系方式',trigger: 'blur'},
+                            {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
+                        ]
+
+                    },
                 },
                 // filters: {
                 //     formatPrice: function (flag, v, n, m) {
@@ -118,6 +152,7 @@ require(['/common/js/require.config.js'], function () {
                             _this.getMailServiceData(0)
                         }
                     );
+                    this.getE();
                     //首页banner
                     this.getBanner('01', 'indexBanner', 10);
                     //最新入驻
@@ -129,7 +164,6 @@ require(['/common/js/require.config.js'], function () {
                     //精选服务
                     this.goodFormData.chosenFlag = '1';
                     this.getMailGoods('chooseGoods')
-
                     this.goodFormData = {}
 
                     // //知识产权
@@ -260,6 +294,62 @@ require(['/common/js/require.config.js'], function () {
                             window.location.href = "/common/seller/store_agreement.html";
                         }
                     },
+                    onRadioChange(e) {
+                        e === this.dataForm.discuss? (this.dataForm.discuss=0):(this.dataForm.discuss = e)
+                    },
+                    open:function (){
+                        setTimeout(() => {
+                            this.$refs.form.clearValidate();
+                        }, 0);
+                        this.cleanForm();
+                        this.dialogFormVisible=true
+                    },
+                    // 清理表单
+                    cleanForm() {
+                        this.dataForm.enterpriseName='';
+                        this.dataForm.description='';
+                        this.dataForm.price='';
+                        this.dataForm.discuss=0;
+                        this.dataForm.contacts='';
+                        this.dataForm.phone='';
+                    },
+                    getE:function (){
+                        var vm=this
+                        indexApi.getEq({}).then((res) => {
+                            vm.showList=res.result.list
+                            vm.$nextTick(() => {
+                                $(".recent-news").slide({
+                                    mainCell: ".bd ul",
+                                    autoPlay: true,
+                                    effect: "topLoop",
+                                    vis: 1,
+                                });
+                            })
+                        })
+                    },
+                    submit:function (){
+                            this.$refs.form.validate((valid) => {
+                                console.log(valid, 'valid')
+                                if (valid) {
+                                    indexApi.submitEq(this.dataForm).then((res) => {
+                                        if (res.code == 'rest.success') {
+                                            this.$notify.success({
+                                                title: '成功！',
+                                                message: '提交成功!',
+                                                duration: 2000
+                                            });
+                                            this.dialogFormVisible = false
+                                        }
+                                    });
+                                } else {
+                                    this.$notify.error({
+                                        title: '提示！',
+                                        message: '请先完善信息填写!'
+                                    });
+                                }
+                            });
+
+                    },
                     // getMailSiteDetail: function () {
                     //     var vm = this
                     //     vm.$httpCom.mailSiteDetail().then(function (res) {
@@ -367,7 +457,7 @@ require(['/common/js/require.config.js'], function () {
                                     // initBanner()
                                 })
                                 var img = new Image()
-                                img.src = res.result[0].path
+                                img.src = res.result[0].path='https://fs.kj01.cn/resource/ts/20211102/20211102182938193_CQBNc530.png'
                                 console.log(img.src,'获取图片')
                                 img.onload = function (){
                                     console.log('图片加载完成')

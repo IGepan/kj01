@@ -1,11 +1,12 @@
 // JavaScript Document
 require(['/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'httpVueLoader', '/style/js/api/polist.js', 'laydate', 'httpUrl'],
-    function ($, Vue, httpVueLoader, indexApi, laydate, httpUrl) {
+  require(['jquery', 'vue', 'httpVueLoader', '/style/js/api/polist.js', 'laydate', 'httpUrl','httpUser',],
+    function ($, Vue, httpVueLoader, indexApi, laydate, httpUrl,httpUser,) {
       new Vue({
         el: '#index_box',
         data: {
           cmsUrl: httpUrl.cmsUrl,
+          httpUser: httpUser,
           saasId: '',
           breadcrumb: [
             {
@@ -68,7 +69,65 @@ require(['/common/js/require.config.js'], function () {
             cityOptions: [],
             districtpayOptions: []
           },
-
+          alias: {
+            organizationNames: {
+              '02': '企业名称：',
+              '03': '院校名称：',
+              '04': '机构名称：',
+              '05': '单位名称：'
+            },
+            scaleNames: {
+              '02': '企业规模：',
+              '04': '机构规模：',
+              '05': '单位规模：'
+            },
+            industryNames: {
+              '01': '所属行业：',
+              '02': '所属行业：',
+              '03': '重点研究领域：',
+              '04': '重点研究领域：',
+              '05': '主导产业：'
+            },
+            servicesNames: {
+              '01': '服务领域：',
+              '02': '服务领域：',
+              '03': '重点服务领域：',
+              '04': '重点服务领域：',
+              '05': '重点服务领域：'
+            },
+            parentUnitNames: {
+              '02': '归属单位：',
+              '03': '所属单位：',
+              '04': '所属机构：',
+              '05': '上级管理部门：'
+            },
+            submitFun: {
+              '01': 'updatePerson',
+              '02': 'updateEnterprise',
+              '03': 'updateSchool',
+              '04': 'updateMechanism',
+              '05': 'updateDepart'
+            },
+            subDatas: {
+              '01': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'version'],
+              '02': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'highEnterprise','enterprise', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version', 'qualifications'],
+              '03': ['saasId', 'userBasicId', 'userName', 'displayName','industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
+              '04': ['saasId', 'userBasicId', 'userName', 'displayName','industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version'],
+              '05': ['saasId', 'userBasicId', 'userName', 'displayName', 'industryList', 'servicesList', 'identityType', 'country', 'province', 'city', 'district', 'location', 'email', 'telephone', 'comment', 'realName', 'birthday', 'sex', 'visibleFlag', 'certificationFlag', 'organizationName', 'organizationType', 'academyType', 'scale', 'parentUnit', 'establishDate', 'contacts', 'contactsPhone', 'version']
+            },
+            organizationTypeNames: {
+              '02': '企业类型：',
+              '03': '办学类型：',
+              '04': '机构性质：',
+              '05': '单位类型：'
+            },
+            organizationTypeGroups: {
+              '02': '1',
+              '03': '2',
+              '04': '4',
+              '05': '3'
+            },
+          },
           searchForm: {
             pageNum: 1,
             pageSize: 10,
@@ -83,7 +142,12 @@ require(['/common/js/require.config.js'], function () {
             analyzingFlag: ''
           },
           pages: '',
-          policyList: []
+          policyList: [],
+          userInfo: {},
+          dialogFormVisible:false,
+          focusPolicy: '', //关注的政策
+          focusList: [],
+          formData:{}
         },
         watch: {
           'searchForm.analyzingFlag': function (v) {
@@ -128,6 +192,7 @@ require(['/common/js/require.config.js'], function () {
           'number-grow': httpVueLoader('/style/components/number.vue'),
           'web-footer': httpVueLoader('/style/components/web_footer.vue'),
           'right-navs': httpVueLoader('/style/components/right_navs.vue'),
+          'ly-select-level3': httpVueLoader('/common/components/select3level.vue'),
         },
         created: function () {
           var title = this.$utils.getReqStr('title')
@@ -135,6 +200,7 @@ require(['/common/js/require.config.js'], function () {
           var fileType = this.$utils.getReqStr('fileType')
           fileType && (this.searchForm.policyFileType = [fileType]);
           this.saasId = localStorage.getItem('saasId');
+          this.$utils.getCookie('USER_INFO') && (this.userInfo = JSON.parse(localStorage.getItem('USER_INFO')))
           this.initAddressSelectOpts('0', 'provinceOptions', 'cityOptions')
           this.getDicList(this.dicOptsSet);
           this.getPList({
@@ -156,7 +222,9 @@ require(['/common/js/require.config.js'], function () {
             value: 'publishDate-desc',
             display: '时间'
           })
-          this.getNumbers()
+          this.getNumbers();
+           this.getUserInfo();
+          // this.getFocus();
         },
         methods: {
           getInnerHtml: function () {
@@ -166,6 +234,14 @@ require(['/common/js/require.config.js'], function () {
             return labels.filter(function (i) {
               return i
             }).join(',')
+          },
+          // 获取政策列表
+          getFocus: function () {
+            var vm = this;
+            httpUser.getFocusPolicy().then(function (res) {
+              vm.$data.focusList = res.result;
+              console.log(vm.$data.focusList,';;')
+            })
           },
           getDicList: function (keys) {
             var vm = this
@@ -265,6 +341,75 @@ require(['/common/js/require.config.js'], function () {
                 item.count = res.result[item.key] || 0
               })
             })
+          },
+          openLog:function (){
+            this.dialogFormVisible = true
+            this.getFocus();
+          },
+          // 获取用户信息
+          getUserInfo: function(){
+            var _this = this;
+            httpUser.detail().then(function (res) {
+              // console.log('res',res.result)
+              _this.formData=res.result
+              _this.focusPolicy = res.result.focusPolicyList ? res.result.focusPolicyList : [];
+              // _this.getPolicyNoticeList(params);
+            });
+          },
+          submit:function (val){
+            var vm = this;
+            var data = vm.formData
+            console.log(data)
+            var formData = {}
+            vm.alias.subDatas[data.identityType].map(function (key) {
+              formData[key] = data[key] !== undefined ? data[key] : ''
+            })
+            formData.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
+            formData.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
+            formData.code = data.code;
+            formData.companyName = data.companyName;
+            formData.job = data.job;
+            // console.log(formData, formData.code)
+            if(formData.focusPolicy!==''){
+              httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
+                if (resp.code == 'rest.success') {
+                  // vm.$notify({
+                  //   title: '成功',
+                  //   message: '恭喜你，订阅成功！',
+                  //   type: 'success'
+                  // });
+                  vm.$message({
+                    message: '恭喜你，订阅成功！',
+                    type: 'success',
+                    center: true
+                  });
+                  vm.dialogFormVisible = false
+                  vm.getUserInfo();
+                }
+              }).catch(function () {
+                vm.$dialog.showToast('订阅失败！');
+              })
+            }else {
+              vm.$message.error({
+                message: '请选择订阅类型！',
+                center: true
+              });
+            }
+
+          },
+          getPlocyParams: function(data) {
+            var params = {};
+            params.name = data.organizationName;
+            params.socialCreditCode = '';
+            params.registeredTime = data.establishDate;
+            params.industry = data.industryList ? data.industryList.map(item => item.name).join(',') : '';
+            // params.focusPolicy = data.focusPolicy ? data.focusPolicy.map(item => item.name).join(',') : '';
+            params.city = data.country + ','+ data.city;
+            params.enterpriseQualification = '';
+            params.enterpriseType = data.organizationTypeDisplay;
+            params.pageNum = 1;
+            params.pageSize = 10;
+            return params;
           },
           getPList: function (data, dataKey) {
             var vm = this;

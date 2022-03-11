@@ -253,9 +253,9 @@
 .topic-item:nth-child(4n+0) {
   margin-right: 0;
 }
-.topic-item:nth-child(n+5) {
-  margin-top: 30px;
-}
+/*.topic-item:nth-child(n+5) {*/
+/*  margin-top: 30px;*/
+/*}*/
 
 .specialTopic-img {
   width: 275px!important;

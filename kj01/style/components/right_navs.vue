@@ -37,18 +37,18 @@
         <button>发送问题</button>
       </div>
     </a>
-    <a v-if="userInfo && userInfo.userName" href="/common/buyer/index.html" class="item item2">
-      <div>
-        <span style=" color: #ff5e06;font-weight: bold">开通政策速递</span>
-        <p>第一时间获取政策动态</p>
-      </div>
-    </a>
-    <a v-else href="/common/login.html" class="item item2">
-      <div>
-        <span style=" color: #ff5e06;font-weight: bold">开通政策速递</span>
-        <p>第一时间获取政策动态</p>
-      </div>
-    </a>
+<!--    <a v-if="userInfo && userInfo.userName" href="/common/buyer/index.html" class="item item2">-->
+<!--      <div>-->
+<!--        <span style=" color: #ff5e06;font-weight: bold">开通政策速递</span>-->
+<!--        <p>第一时间获取政策动态</p>-->
+<!--      </div>-->
+<!--    </a>-->
+<!--    <a v-else href="/common/login.html" class="item item2">-->
+<!--      <div>-->
+<!--        <span style=" color: #ff5e06;font-weight: bold">开通政策速递</span>-->
+<!--        <p>第一时间获取政策动态</p>-->
+<!--      </div>-->
+<!--    </a>-->
   </div>
 </template>
 

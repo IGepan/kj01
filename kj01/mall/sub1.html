@@ -26,8 +26,27 @@
         })();
     </script>
     <style>
+        .el-input__inner{
+            width: 90%!important;
+        }
+        .log .el-textarea__inner{
+            min-height: 200px!important;
+            width: 90%!important;
+        }
         .top_div > .mdiv {
             width: 1450px;
+        }
+        .el-dialog__footer{
+            text-align: center;
+        }
+        .el-button--primary{
+            background-color: #ff5e06!important;
+            border-color: #ff5e06!important;
+        }
+        .el-button--default{
+            color: #ff5e06!important;
+            background: rgb(255, 245, 240)!important;
+            border-color: #ff5e06!important;
         }
     </style>
 </head>
@@ -53,6 +72,35 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="article.html">入驻商城</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" @click="open">企业需求</a>
+                    <el-dialog title="企业信息" :visible.sync="dialogFormVisible">
+                        <el-form :model="dataForm" :rules="rules" ref="form" class="log">
+                            <el-form-item label="企业名称" :label-width="formLabelWidth" prop="enterpriseName">
+                                <el-input v-model="dataForm.enterpriseName" placeholder="请输入企业名称"></el-input>
+                            </el-form-item>
+                            <el-form-item label="需求描述" :label-width="formLabelWidth" prop="description">
+                                <el-input type="textarea" v-model="dataForm.description"  placeholder="请输入需求描述" style="min-height: 200px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="预期价格" :label-width="formLabelWidth" prop="price">
+                                <div style="display: flex;">
+                                    <el-input v-model="dataForm.price"  placeholder="请输入预期价格" style="width: 50%;margin-right: 80px"></el-input>
+                                    <el-radio :label="1" v-model="dataForm.discuss" @click.native.prevent="onRadioChange(1)" border>面议</el-radio>
+                                </div>
+                            </el-form-item>
+                            <el-form-item label="联系人" :label-width="formLabelWidth" prop="contacts">
+                                <el-input v-model="dataForm.contacts" placeholder="请输入联系人"></el-input>
+                            </el-form-item>
+                            <el-form-item label="联系方式" :label-width="formLabelWidth" prop="phone">
+                                <el-input v-model="dataForm.phone" placeholder="请输入联系方式"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="dialogFormVisible = false">取 消</el-button>
+                            <el-button type="primary" @click="submit">确 定</el-button>
+                        </div>
+                    </el-dialog>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link" href="#">关于商城</a>-->

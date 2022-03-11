@@ -4,39 +4,59 @@
 .headerBox {
  border-bottom: solid 1px #01c8f2;
 }
+.content{
+ overflow: hidden!important;
+ max-height: none!important;
+ height: auto!important;
+ margin-top: -30px!important;
+}
 .content .mdiv {
  display: flex;
- padding: 40px 0;
+ padding: 20px 0;
  min-height:calc(100% - 540px);
+ background: #FFFFff;
+ position: relative;
+ border-radius: 5px;
 }
 .left {
- width: 280px;
+ width: 230px;
+ padding-left: 20px;
+ text-align: center;
 }
 .left-lists li{
- height: 72px;
+ height: 60px;
  color: #222327;
  text-align: center;
- line-height: 72px;
- background-color: #e9f2f4;
+ font-size: 18px;
+ line-height: 60px;
+ background-color: #f6f6f6;
  cursor: pointer;
 }
-.left-lists .active, .left-lists li:hover{
- background-color: #01c8f2;
- color: #ffffff;
+.left-lists .active{
+ color: #ff5e06;background-color: rgb(255, 245, 240);border-left: 6px solid #ff5e06
+}
+.left-lists li:hover{
+ color: #ff5e06;background-color: rgb(255, 245, 240);
 }
 .right {
  flex: 1;
- margin-left: 60px;
+ margin-left: 50px;
 }
 .title {
- background-color: #e3faff;
- height: 72px;
- box-sizing: border-box;
- border-left: 6px solid #01c8f2;
- color: #30a9ee;
- font-size: 22px;
- padding-left: 24px;
- line-height: 72px;
+ font-size: 36px;
+ text-align: center;
+ color: #ff5e06;
+ position: relative;
+}
+.title:after{
+ position: absolute;
+ content: "";
+ left: 50%;
+ bottom: -10px;
+ margin-left: -27px;
+ width: 54px;
+ height: 2px;
+ background: #ff5e06;
 }
 .sub-title {
  font-size: 18px;
@@ -161,16 +181,21 @@
  margin-right: 10px;
 }
 .brief {
- width: 960px;
+ /*width: 960px;*/
+ padding-right: 40px;
+ margin-top: 40px;
 }
 .synopsis {
  color: #222327;
- font-size: 16px;
+ font-size: 18px;
  line-height: 36px;
  margin-top: 20px;
+ text-indent: 2em;
 }
 .avatar {
- margin-top: 30px;
+ /*margin-top: 30px;*/
+ width: 80%;
+ margin:20px auto ;
  /*height: 360px;*/
 }
 .avatar img {
@@ -187,7 +212,7 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
- margin-top: 30px;
+ margin-top: 40px;
 }
 .imagesBox {
  display: flex;
@@ -209,7 +234,7 @@
  line-height: 30px;
 }
 .info-text .iconfont {
- color: #01c8f2;
+ color: #ff5e06;
  font-size: 18px;
  margin-right: 5px;
 }
