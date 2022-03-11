@@ -457,7 +457,7 @@ require(['/common/js/require.config.js'], function () {
                                     // initBanner()
                                 })
                                 var img = new Image()
-                                img.src = res.result[0].path='https://fs.kj01.cn/resource/ts/20211102/20211102182938193_CQBNc530.png'
+                                img.src = res.result[0]
                                 console.log(img.src,'获取图片')
                                 img.onload = function (){
                                     console.log('图片加载完成')
