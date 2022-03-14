@@ -4,98 +4,108 @@ require(['/common/js/require.config.js'], function () {
         function ($, Vue, dic, httpVueLoader, indexApi, httpUrl, validate, captcha, httpLogin,slide) {
             window.vueDom = new Vue({
                 el: '#index_box',
-                data: {
-                    saasId: '',
-                    mailSite: {},
-                    mailServiceTypeList: [],
-                    knowledgeTypeList: [],
-                    incubationTypeList: [],
-                    designTypeList: [],
-                    checkTypeList: [],
-                    propertyTypeList: [],
-                    technologyTypeList: [],
-                    transferTypeList: [],
-                    incubationType: {},
-                    designType: [],
-                    checkType: [],
-                    propertyType: [],
-                    technologyType: [],
-                    transferType: [],
-                    indexBanner: [],
-                    indexBanner02: [],
-                    //精选服务
-                    chooseGoods: [],
-                    //最新入驻
-                    newShops: [],
-                    goodFormData: {
-                        chosenFlag: '',
-                        pageSize: '',
-                        type: ''
-                    },
-                    contentErrorMsg: '',
-                    phoneErrorMsg: '',
-                    vercodeErrorMsg: '',
-                    select: false,
-                    isPhoneError: false,
-                    isShowDialog: false,
-                    isSubmitDisabled: false,
-                    isDisabled: false,
-                    codeTime: 60,
-                    codeBtnText: '发送验证码',
-                    form: {
-                        phone: '',
-                        content: '',
-                        token: '',
-                        code: '',
-                    },
-                    title: '',
-                    userInfo: {},
-                    dialogFormVisible: false,
-                    formLabelWidth: '120px',
-                    changeSelectStyle: '0',//索引样式
-                    isSeller: false,
-                    typeList: [],//板块列表
-                    goodList: [],//板块数据列表
-                    // bgcolor: ['/mall/images/bg1.png', '/mall/images/bg2.png', '/mall/images/bg3.png', '/mall/images/bg4.png', '/mall/images/bg5.png', '/mall/images/bg6.png', '/mall/images/bg7.png',
-                    //     '/mall/images/bg8.png', '/mall/images/bg9.png',
-                    // ],
-                    bgList:['bg1','bg2','bg3','bg4','bg5','bg6','bg7','bg8','bg9',],
-                    url: ['/mall/images/icon1.png', '/mall/images/icon2.png', '/mall/images/icon3.png', '/mall/images/icon4.png', '/mall/images/icon5.png', '/mall/images/icon6.png', '/mall/images/icon7.png',
-                        '/mall/images/icon8.png', '/mall/images/icon9.png',
-                    ],
-                    scrollList: [],
-                    dataForm:{
-                        userId:'',
-                        enterpriseName:'',//企业名称
-                        description:'',//需求描述
-                        price:'',//预期价格
-                        discuss:0,//面议可选
-                        contacts:'',//联系人
-                        phone:'',//联系方式
-                        progress:0
-                    },
-                    showList:[],
-                    rules: {
-                        enterpriseName: [
-                            {required: true, message: '请输入企业名称',trigger: 'blur'},
-                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                data: function(){
+                    let validateMethods = (rule, value, callback) => {
+                        if (this.dataForm.discuss ==0) {
+                            callback(new Error('请选择输入价格'));
+                        } else {
+                            callback();
+                        }
+                    };
+                    return {
+                        saasId: '',
+                        mailSite: {},
+                        mailServiceTypeList: [],
+                        knowledgeTypeList: [],
+                        incubationTypeList: [],
+                        designTypeList: [],
+                        checkTypeList: [],
+                        propertyTypeList: [],
+                        technologyTypeList: [],
+                        transferTypeList: [],
+                        incubationType: {},
+                        designType: [],
+                        checkType: [],
+                        propertyType: [],
+                        technologyType: [],
+                        transferType: [],
+                        indexBanner: [],
+                        indexBanner02: [],
+                        //精选服务
+                        chooseGoods: [],
+                        //最新入驻
+                        newShops: [],
+                        goodFormData: {
+                            chosenFlag: '',
+                            pageSize: '',
+                            type: ''
+                        },
+                        contentErrorMsg: '',
+                        phoneErrorMsg: '',
+                        vercodeErrorMsg: '',
+                        select: false,
+                        isPhoneError: false,
+                        isShowDialog: false,
+                        isSubmitDisabled: false,
+                        isDisabled: false,
+                        codeTime: 60,
+                        codeBtnText: '发送验证码',
+                        form: {
+                            phone: '',
+                            content: '',
+                            token: '',
+                            code: '',
+                        },
+                        title: '',
+                        userInfo: {},
+                        dialogFormVisible: false,
+                        formLabelWidth: '120px',
+                        changeSelectStyle: '0',//索引样式
+                        isSeller: false,
+                        typeList: [],//板块列表
+                        goodList: [],//板块数据列表
+                        // bgcolor: ['/mall/images/bg1.png', '/mall/images/bg2.png', '/mall/images/bg3.png', '/mall/images/bg4.png', '/mall/images/bg5.png', '/mall/images/bg6.png', '/mall/images/bg7.png',
+                        //     '/mall/images/bg8.png', '/mall/images/bg9.png',
+                        // ],
+                        bgList:['bg1','bg2','bg3','bg4','bg5','bg6','bg7','bg8','bg9',],
+                        url: ['/mall/images/icon1.png', '/mall/images/icon2.png', '/mall/images/icon3.png', '/mall/images/icon4.png', '/mall/images/icon5.png', '/mall/images/icon6.png', '/mall/images/icon7.png',
+                            '/mall/images/icon8.png', '/mall/images/icon9.png',
                         ],
-                        description: [
-                            {required: true, message: '请输入需求描述',trigger: 'blur'},
-                            // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-                        ],
-                        price: [
-                            {required: true, message: '请输入预期价格', trigger: 'blur'},
-                        ],
-                        contacts: [
-                            {required: true, message: '请输入联系人', trigger: 'blur'},
-                        ],
-                        phone: [
-                            {required: true, message: '请填写联系方式',trigger: 'blur'},
-                            {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
-                        ]
+                        scrollList: [],
+                        dataForm:{
+                            userId:'',
+                            enterpriseName:'',//企业名称
+                            description:'',//需求描述
+                            price:'',//预期价格
+                            discuss:0,//面议可选
+                            contacts:'',//联系人
+                            phone:'',//联系方式
+                            progress:0
+                        },
+                        showList:[],
+                        rules: {
+                            enterpriseName: [
+                                {required: true, message: '请输入企业名称',trigger: 'blur'},
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            description: [
+                                {required: true, message: '请输入需求描述',trigger: 'blur'},
+                                // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                            ],
+                            price: [
+                                {required: true,validator:validateMethods,trigger: 'blur'},
+                            ],
+                            contacts: [
+                                {required: true, message: '请输入联系人', trigger: 'blur'},
+                            ],
+                            phone: [
+                                {required: true, message: '请填写联系方式',trigger: 'blur'},
+                                {pattern: /^((0\d{2,3}\d{7,8})|(1\d{10}))$/, message: '请填写正确的电话号码',trigger: 'blur'}
+                            ]
 
-                    },
+                        },
+                    }
+
                 },
                 // filters: {
                 //     formatPrice: function (flag, v, n, m) {
@@ -322,7 +332,8 @@ require(['/common/js/require.config.js'], function () {
                                     mainCell: ".bd ul",
                                     autoPlay: true,
                                     effect: "topLoop",
-                                    vis: 1,
+                                    interTime:4000,
+                                    vis:1,
                                 });
                             })
                         })
@@ -339,6 +350,7 @@ require(['/common/js/require.config.js'], function () {
                                                 duration: 2000
                                             });
                                             this.dialogFormVisible = false
+                                            this.getE();
                                         }
                                     });
                                 } else {
@@ -457,7 +469,7 @@ require(['/common/js/require.config.js'], function () {
                                     // initBanner()
                                 })
                                 var img = new Image()
-                                img.src = res.result[0].path='https://fs.kj01.cn/resource/ts/20211102/20211102182938193_CQBNc530.png'
+                                img.src = res.result[0].path
                                 console.log(img.src,'获取图片')
                                 img.onload = function (){
                                     console.log('图片加载完成')

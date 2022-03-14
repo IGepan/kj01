@@ -361,16 +361,17 @@ require(['/common/js/require.config.js'], function () {
             var data = vm.formData
             console.log(data)
             var formData = {}
-            vm.alias.subDatas[data.identityType].map(function (key) {
-              formData[key] = data[key] !== undefined ? data[key] : ''
-            })
+            // vm.alias.subDatas[data.identityType].map(function (key) {
+            //   formData[key] = data[key] !== undefined ? data[key] : ''
+            // })
+            formData=data
             formData.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
             formData.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
+            formData.headImg = data.headImg ? formData.headImg.id : '';
             formData.code = data.code;
             formData.companyName = data.companyName;
             formData.job = data.job;
             // console.log(formData, formData.code)
-            if(formData.focusPolicy!==''){
               httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
                 if (resp.code == 'rest.success') {
                   // vm.$notify({
@@ -387,14 +388,8 @@ require(['/common/js/require.config.js'], function () {
                   vm.getUserInfo();
                 }
               }).catch(function () {
-                vm.$dialog.showToast('订阅失败！');
+                this.$message.error('订阅失败！');
               })
-            }else {
-              vm.$message.error({
-                message: '请选择订阅类型！',
-                center: true
-              });
-            }
 
           },
           getPlocyParams: function(data) {
