@@ -362,7 +362,7 @@ require(['/common/js/require.config.js'], function () {
             console.log(data)
             data.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
             data.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
-            data.headImg = data.headImg ? formData.headImg.id : '';
+            data.headImg = data.headImg ? data.headImg.id : '';
             data.qualifications.length && (data.qualifications =  data.qualifications.map(function (t) {
               return t.tagId
             }))
