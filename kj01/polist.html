@@ -270,7 +270,7 @@
           </div>
         </a>
         <el-dialog title="请选择政策速递类型" :visible.sync="dialogFormVisible" >
-          <ly-select-level3 :list="focusList" :value="focusPolicy"></ly-select-level3>
+          <ly-select-level3 :list="focusList" v-model="focusPolicy"></ly-select-level3>
           <div slot="footer" class="dialog-footer">
             <el-button type="success" @click="dialogFormVisible = false" plain>取 消</el-button>
             <el-button type="success" @click="submit(focusPolicy)">立即开通</el-button>

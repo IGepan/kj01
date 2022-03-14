@@ -360,25 +360,16 @@ require(['/common/js/require.config.js'], function () {
             var vm = this;
             var data = vm.formData
             console.log(data)
-            var formData = {}
-            // vm.alias.subDatas[data.identityType].map(function (key) {
-            //   formData[key] = data[key] !== undefined ? data[key] : ''
-            // })
-            formData=data
-            formData.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
-            formData.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
-            formData.headImg = data.headImg ? formData.headImg.id : '';
-            formData.code = data.code;
-            formData.companyName = data.companyName;
-            formData.job = data.job;
+            data.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
+            data.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
+            data.headImg = data.headImg ? formData.headImg.id : '';
+            data.qualifications.length && (data.qualifications =  data.qualifications.map(function (t) {
+              return t.tagId
+            }))
             // console.log(formData, formData.code)
-              httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
+            if(data.identityType){
+              httpUser[vm.alias.submitFun[data.identityType]](data).then(function (resp) {
                 if (resp.code == 'rest.success') {
-                  // vm.$notify({
-                  //   title: '成功',
-                  //   message: '恭喜你，订阅成功！',
-                  //   type: 'success'
-                  // });
                   vm.$message({
                     message: '恭喜你，订阅成功！',
                     type: 'success',
@@ -386,10 +377,16 @@ require(['/common/js/require.config.js'], function () {
                   });
                   vm.dialogFormVisible = false
                   vm.getUserInfo();
+                }else {
+                  this.$message.error('订阅失败');
                 }
-              }).catch(function () {
-                this.$message.error('订阅失败！');
               })
+            }else {
+              this.$message.error('请先完善用户信息！');
+              setTimeout(function (){
+                window.location.href="common/usercenter/user_information.html?code=001.003.001.001"
+              },2000)
+            }
 
           },
           getPlocyParams: function(data) {
