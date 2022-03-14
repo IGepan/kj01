@@ -39,9 +39,15 @@
               <label><i class="iconfont icon-lishijilu"></i> 发布时间：<span>{{detail.publishDate|formatTime}}</span></label>
               <label><i class="iconfont icon-liulanliang"></i> 浏览量：<span>{{detail.visitCount||0}}</span></label>
               <label><i class="iconfont icon-xiazai"></i> 下载量：<span>{{detail.downloadCount||0}}</span></label>
+                <div class="vaMiddle pdfPages borderRight fr" style="border-right:0">
+                    <span class="vaMiddle pagePrevBtn" @click.stop="handleSetPrevPage">上一页</span>
+                    <span class="vaMiddle pageView"><span class="currentPage">第{{currentPage}}页</span>/<span class="countPage">共{{countPage}}页</span></span>
+                    <span class="vaMiddle pageNextBtn" @click.stop="handleSetNextPage">下一页</span>
+                </div>
             </div>
-            <img class="hotimg" src="/image/ddetail/rm.png" alt="">
-            <img class="jpimg" src="/image/ddetail/jp.png" alt="">
+<!--            <img class="hotimg" src="/image/ddetail/rm.png" alt="">-->
+<!--            <img class="jpimg" src="/image/ddetail/jp.png" alt="">-->
+
           </div>
           <div class="article-content">
             <canvas ref="theCanvas" height="891" style="width: 100%"></canvas>
@@ -68,22 +74,22 @@
           </div>
         </template>
       </div>
-      <div class="fr sideBar">
-        <div class="list recommend">
-          <div class="list-title"><span class="list-title-text">相关政策</span></div>
-          <div class="list-body">
-          <template v-for="(item, ni) in recommendList">
-            <div class="list-item" :key="ni">
-              <span class="list-item-circle"></span>
-              <a class="list-item-text line" :title="item.title" :href="item.itemUrl" target="_blank">{{item.title}}</a>
-            </div>
-          </template>
-          </div>
-        </div>
-        <!-- <div class="bannerBlock">
-          <img src="/image/podetail/banner1.png" alt="">
-        </div> -->
-      </div>
+<!--      <div class="fr sideBar">-->
+<!--        <div class="list recommend">-->
+<!--          <div class="list-title"><span class="list-title-text">相关政策</span></div>-->
+<!--          <div class="list-body">-->
+<!--          <template v-for="(item, ni) in recommendList">-->
+<!--            <div class="list-item" :key="ni">-->
+<!--              <span class="list-item-circle"></span>-->
+<!--              <a class="list-item-text line" :title="item.title" :href="item.itemUrl" target="_blank">{{item.title}}</a>-->
+<!--            </div>-->
+<!--          </template>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; <div class="bannerBlock">-->
+<!--          <img src="/image/podetail/banner1.png" alt="">-->
+<!--        </div> &ndash;&gt;-->
+<!--      </div>-->
     </div>
 
     <web-footer></web-footer>
