@@ -367,7 +367,10 @@ require(['/common/js/require.config.js'], function () {
             formData=data
             formData.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
             formData.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
-            formData.headImg = data.headImg ? formData.headImg.id : '';
+            formData.headImg = data.headImg ? data.headImg.id : '';
+            formData.qualifications.length && (formData.qualifications =  data.qualifications.map(function (t) {
+              return t.tagId
+            }))
             formData.code = data.code;
             formData.companyName = data.companyName;
             formData.job = data.job;
