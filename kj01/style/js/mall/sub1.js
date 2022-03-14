@@ -101,6 +101,7 @@ require(['/common/js/require.config.js'], function () {
 
                         },
                     }
+
                 },
                 filters: {
                     // formatPrice2: function (flag, v, n, m) {
