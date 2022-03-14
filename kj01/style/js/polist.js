@@ -145,7 +145,8 @@ require(['/common/js/require.config.js'], function () {
           policyList: [],
           userInfo: {},
           dialogFormVisible:false,
-          focusPolicy: '', //关注的政策
+            focusPolicy: '', //关注的政策
+            focusPolicyName:'',
           focusList: [],
           formData:{}
         },
@@ -225,6 +226,7 @@ require(['/common/js/require.config.js'], function () {
           this.getNumbers();
            this.getUserInfo();
           // this.getFocus();
+
         },
         methods: {
           getInnerHtml: function () {
@@ -348,40 +350,31 @@ require(['/common/js/require.config.js'], function () {
           },
           // 获取用户信息
           getUserInfo: function(){
-            var _this = this;
-            httpUser.detail().then(function (res) {
+            var vm = this;
+            httpUser.detail().then(function (res){
               // console.log('res',res.result)
-              _this.formData=res.result
-              _this.focusPolicy = res.result.focusPolicyList ? res.result.focusPolicyList : [];
+              vm.formData=res.result
+              vm.focusPolicy = vm.formData.focusPolicyList ? vm.formData.focusPolicyList : [];
               // _this.getPolicyNoticeList(params);
+              console.log(vm.focusPolicy,'[[[--')
             });
+
           },
           submit:function (val){
             var vm = this;
             var data = vm.formData
-            console.log(data)
-            var formData = {}
-            // vm.alias.subDatas[data.identityType].map(function (key) {
-            //   formData[key] = data[key] !== undefined ? data[key] : ''
-            // })
-            formData=data
-            formData.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
-            formData.focusPolicyName = val ? val.map(item => item.name).join(',') : '';
-            formData.headImg = data.headImg ? data.headImg.id : '';
-            formData.qualifications.length && (formData.qualifications =  data.qualifications.map(function (t) {
+            data.focusPolicy = val ? val.map(item => item.tagId).join(',') : '';
+            data.focusPolicyName =  val ? val.map(item => item.name).join(',') : '';
+            data.headImg = data.headImg ? data.headImg.id : '';
+            data.qualifications.length && (data.qualifications =  data.qualifications.map(function (t) {
               return t.tagId
             }))
-            formData.code = data.code;
-            formData.companyName = data.companyName;
-            formData.job = data.job;
-            // console.log(formData, formData.code)
-              httpUser[vm.alias.submitFun[data.identityType]](formData).then(function (resp) {
+            data.code = data.code;
+            data.companyName = data.companyName;
+            data.job = data.job;
+          if(data.identityType){
+              httpUser[vm.alias.submitFun[data.identityType]](data).then(function (resp) {
                 if (resp.code == 'rest.success') {
-                  // vm.$notify({
-                  //   title: '成功',
-                  //   message: '恭喜你，订阅成功！',
-                  //   type: 'success'
-                  // });
                   vm.$message({
                     message: '恭喜你，订阅成功！',
                     type: 'success',
@@ -389,10 +382,20 @@ require(['/common/js/require.config.js'], function () {
                   });
                   vm.dialogFormVisible = false
                   vm.getUserInfo();
+                }else {
+                  this.$message.error('订阅失败！');
                 }
-              }).catch(function () {
-                this.$message.error('订阅失败！');
               })
+            }else {
+            this.$message.error('请先完善用户信息！');
+            setTimeout(function (){
+              window.location.href="common/usercenter/user_information.html?code=001.003.001.001"
+            },2000)
+
+          }
+
+
+
 
           },
           getPlocyParams: function(data) {

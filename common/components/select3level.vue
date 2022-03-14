@@ -82,19 +82,20 @@ module.exports = {
       this.itemClick(this.oneLevelList[0],0)
     },
     value: function (val) {
-      console.log(val)
-      this.initValue(val)
+        this.initValue(val)
+        console.log(val,'---')
     },
     selectList: function (val) {
       this.$emit('input', val);
+      console.log(val,'+++')
     }
   },
   created: function () {
     this.initValue(this.value.length ? this.value : [])
   },
-  mounted: function () {
-    // document.getElementsByTagName('body')[0].addEventListener('click', this.bodyClick, false);
-  },
+  // mounted: function () {
+  //   document.getElementsByTagName('body')[0].addEventListener('click', this.bodyClick, false);
+  // },
   // beforeDestroy: function () {
   //   document.getElementsByTagName('body')[0].removeEventListener('click', this.bodyClick, false);
   // },
@@ -126,6 +127,7 @@ module.exports = {
       } else {
         this.selectList = []
       }
+      console.log('chushihua--->', this.selectList)
     },
     bodyClick: function (e) {
       this.isShowDialog = false;
