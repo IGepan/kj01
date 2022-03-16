@@ -200,7 +200,8 @@ require(['/common/js/require.config.js'], function () {
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
                     'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),
-                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
+                    'user-tech-menu': httpVueLoader('/common/components/buyerLeft.vue')
+                    // 'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 computed: {
 

@@ -1,8 +1,9 @@
 // JavaScript Document
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policyMatch.js',],
-      function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', 'httpOrderApi', 'httpCom', '/style/js/api/policyMatch.js','/style/js/api/aindex.js',
+        '/style/js/api/mail.js','/style/js/api/technologyMarket.js'],
+      function ($, Vue, dic, httpVueLoader, userCenter, httpUser, httpOrderApi, httpCom, httpPolicy,httpActive,httpMall,httpTeach) {
 
     new Vue({
       el: '#index_box',
@@ -17,19 +18,42 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         orderList: [],
         queryForm: {
           pageNum: 1,	// 	第几页	是	[string]		查看
-          pageSize: 3,	// 	每页显示多少行	是	[string]		查看
+          pageSize: 2,	// 	每页显示多少行	是	[string]		查看
           orderBy: 'createTime',	// 	排序字段	是	[string]		查看
           orderStatusFilter: '01',	// 	订单状态(字典表：order_status_filter)	是	[string]		查看
         },
         shopList: [],
-        selectedAmount: '010',
+        selectedAmount: '009',
         attentionList: [],
         hotList: [],
         hotType: '105',
         policyList: [],
         isNotSite: true,
         isSite:false,
-          siteUrl: ''
+          siteUrl: '',
+        userSeller: {},
+        dataList:{},
+        searchForm:{
+          activeIndex: "0",
+        pageNum:1,
+        pageSize:8,
+        sortType: "01"
+      },
+        chooseGoods: [],
+        techAchiList:[],
+        goodFormData: {
+          chosenFlag: '1',
+          pageSize:3,
+          orderBy: "createTime desc"
+        },
+        arl:'',
+        userInfo:{},
+        aIndex:0,
+        expertList:[
+            {title:'易智网易智商城金牌顾问  ·  刘成渠',text:'知识产权、知识产权、知识产权、知识产权',tit:1},
+          {title:'易智网项目申报金牌顾问  ·  仵改田',text:'项目申报、知识产权',tit:2},
+          {title:'易智网技术转移金牌顾问  ·  黎泽洪',text:'技术转移、成果转化、知识产权、知识产权',tit:3},
+            ]
       },
       filters: {
         filtersTips: function (v, evaluated) {
@@ -65,24 +89,36 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           $(this).addClass("active").siblings(".orderclick").removeClass("active");
         });
         var url = window.location.href
+        var host=window.location.host
+        if(host=='www.kj01.cn'){
+          this.arl="https://"+host
+        }else{
+          this.arl="http://"+host
+        }
+        console.log(this.host,'host')
         if (url.indexOf('/site/') > 0) {
           this.isSite=true
         }
       },
       components: {
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
-        'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
+        'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
+        'web-footer': httpVueLoader(this.$pathPrefix+'/style/components/web_footer.vue'),
       },
       created: function () {
         this.getOption('comprehensive_search')
         this.handleOrdertabs('01')
         this.getSelectByPage()
-        this.getAmountList('010')
+        this.getAmountList('009')
         this.getSelectShopByPage('105')
         this.getUserInfo();
         this.checkSite();
+        this.initUserInfo();
+        this.select(1);
+        this.getActive();
+
       },
       methods: {
         checkSite: function () {
@@ -94,6 +130,47 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }else{
               vm.isNotSite = true
           }
+        },
+        select:function (val){
+          this.aIndex=val
+        },
+        initUserInfo: function () {
+          var vm = this;
+          this.http.buyer().then(function (res) {
+            vm.userSeller = res.result;
+          })
+        },
+        getImgPath(path) {
+          return httpUrl.fileShowUrl + '/resource/' + path;
+        },
+        //服务
+        getMailGoods: function () {
+          var vm = this
+          httpMall.selectMailGoods(this.goodFormData).then(function (res) {
+            if (res.code === 'rest.success') {
+              vm.chooseGoods = res.result.list
+            }
+          })
+        },
+        // 技术成果列表查询
+        getTechAchiList: function () {
+          var _this = this;
+          var form = {
+            "pageParam": {
+              "current": 1,
+              "order": "desc",
+              "size": 3,
+              "sort": "id"
+            },
+            "payload": {
+              "certificationFlag": 2,
+            }
+          }
+          httpTeach.tech_achi_list(form).then(function (res) {
+            if (res.code === true) {
+              _this.techAchiList = res.data.records
+            }
+          })
         },
         // 订单信息
         getOrderList: function () {
@@ -110,15 +187,24 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         // 行业关注
         getAmountList: function (code) {
-          var vm = this
+          var vm=this
           this.selectedAmount = code
-          httpUser.amountList({ pageSize: 4, categoryCode: code }).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.$set(vm, 'attentionList', res.result)
-            } else {
-              vm.$set(vm, 'attentionList', [])
-            }
-          })
+           if(this.isSite){
+             httpUser.amountList({ pageSize: 4, categoryCode: code }).then(function (res) {
+               if (res.code === 'rest.success') {
+                 vm.$set(vm, 'attentionList', res.result)
+               } else {
+                 vm.$set(vm, 'attentionList', [])
+               }
+             })
+           }else {
+             if(code=='009'){
+               this.getMailGoods();
+             }else if(code=='001'){
+               this.getTechAchiList();
+             }
+           }
+
         },
         // 为你推荐
         getSelectShopByPage: function (value) {
@@ -173,8 +259,17 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var _this = this;
           httpUser.detail().then(function (res) {
             // console.log('res',res.result)
+            _this.userInfo=res.result
             var params = _this.getPlocyParams(res.result);
-            _this.getPolicyNoticeList(params);
+            // _this.getPolicyNoticeList(params);
+          });
+        },
+        getActive:function (){
+          var vm = this;
+          httpActive.selectIssuePage(this.searchForm).then(function (res) {
+            // console.log('res',res.result)
+            vm.dataList = res.result ? res.result.list[0] : []
+            // _this.getPolicyNoticeList(params);
           });
         },
         getPlocyParams: function(data) {

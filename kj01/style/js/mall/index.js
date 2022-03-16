@@ -6,7 +6,7 @@ require(['/common/js/require.config.js'], function () {
                 el: '#index_box',
                 data: function(){
                     let validateMethods = (rule, value, callback) => {
-                        if (this.dataForm.discuss ==0) {
+                        if (this.dataForm.discuss ==0 && this.dataForm.price=='') {
                             callback(new Error('请选择输入价格'));
                         } else {
                             callback();
@@ -332,7 +332,6 @@ require(['/common/js/require.config.js'], function () {
                                     mainCell: ".bd ul",
                                     autoPlay: true,
                                     effect: "topLoop",
-                                    interTime:4000,
                                     vis:1,
                                 });
                             })

@@ -2,7 +2,7 @@
   margin-top: 0;
 }
 .article {
-  width: 870px;
+  width:1200px;
   background-color: #ffffff;
   padding: 0 0 60px;
   position: relative;
@@ -42,7 +42,7 @@
   top: 65px;
   right: -10px;
 }
-.article-content {text-align: center;overflow: auto;height: 843px;width: 100%;}
+.article-content {text-align: center;width: 100%;}
 .article-bottom {
   position: absolute;
   bottom: 0;

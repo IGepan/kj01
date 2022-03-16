@@ -207,7 +207,7 @@
     <div class="listBox">
       <template v-for="(item, di) in dataList" >
         <div class="vaMiddle topic-item" :key="di">
-          <a v-if="item.tycoon" :href="item.itemUrl+'&act='+item.tycoon.id" :title="item.title" target="_blank">
+          <a v-if="item.tycoon" :href="item.itemUrl+'&act='+item.tycoon.id" :title="item.title" target="_blank" @click="view(item.id)">
             <div class="specialTopic-img item-img" :style="item.styles">
               <img :src="item.itemImg" :alt="item.title">
               <div v-if="item.isTopic" class="topic">品牌</div>
@@ -235,12 +235,12 @@
                 </span>-->
                 <span class="viewTag">
 <!--                  <i class="iconfont icon-liulanliang"></i>-->
-                  {{item.pageViews}}人浏览</span>
+                  {{item.pageViewsTs}}人浏览</span>
               </div>
             </div>
 
           </a>
-          <a v-else :href="item.itemUrl" :title="item.title" target="_blank">
+          <a v-else :href="item.itemUrl" :title="item.title" target="_blank" @click="view(item.id)">
             <div class="specialTopic-img item-img" :style="item.styles">
               <img :src="item.itemImg" :alt="item.title">
               <div v-if="item.isTopic" class="topic">品牌</div>
@@ -268,7 +268,7 @@
                 </span>-->
                 <span class="viewTag">
 <!--                  <i class="iconfont icon-liulanliang"></i>-->
-                  {{item.pageViews}}人浏览</span>
+                  {{item.pageViewsTs}}人浏览</span>
               </div>
             </div>
 

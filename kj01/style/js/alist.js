@@ -143,7 +143,21 @@ require(['/common/js/require.config.js'], function () {
                 location.href = '/alist.html?title=' + this.searchValue
               }
             },
-
+            view:function (val){
+              if (this.searchForm.activeIndex == '3') {
+                indexApi.getView({bId:val,visitTypeTs:'pcTopicActive'}).then(function (res){
+                  if(res.code=="rest.success"){
+                    console.log(res,'品牌')
+                  }
+                })
+              }else {
+                indexApi.getView({bId:val,visitTypeTs:'pcActive'}).then(function (res){
+                  if(res.code=="rest.success"){
+                    console.log(res)
+                  }
+                })
+              }
+            },
             initData: function () {
               console.log('init data')
               var vm = this
