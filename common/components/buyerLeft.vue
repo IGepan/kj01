@@ -1,31 +1,40 @@
 <template>
-  <div class="leftbox">
+  <div class="leftbox" style="margin-bottom: 40px">
     <div class="leftbar">
-      <div class="user_info">
-        <div
-          class="head"
-          :style="{backgroundImage: userSeller.userPhotoMiniPath?'url('+userSeller.userPhotoMiniPath+')':'url(/common/images/defaultImg/default.gif)'}"
-        > </div>
-        <div
-          class="name"
-          v-text="userSeller.shopName||''"
-        ></div>
+<!--      <div class="user_info">-->
+<!--        <div-->
+<!--          class="head"-->
+<!--          :style="{backgroundImage: userSeller.userPhotoMiniPath?'url('+userSeller.userPhotoMiniPath+')':'url(/common/images/defaultImg/default.gif)'}"-->
+<!--        > </div>-->
+<!--        <div-->
+<!--          class="name"-->
+<!--          v-text="userSeller.shopName||''"-->
+<!--        ></div>-->
 
-        <div class="clear">
-          <div class="level"><span v-text="'LV'+(userSeller.level||0)"></span>等级</div>
-          <div class="honor"><span v-text="userSeller.credit||0"></span>信誉</div>
+<!--        <div class="clear">-->
+<!--          <div class="level"><span v-text="'LV'+(userSeller.level||0)"></span>等级</div>-->
+<!--          <div class="honor"><span v-text="userSeller.credit||0"></span>信誉</div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <!--<seller-tree :http='http' class="leftbar"></seller-tree>-->
+      <div class="group">
+        <div class="name">技术转移</div>
+        <div
+            class="links"
+            v-for="menuChild in meanTreeData3"
+            :key="menuChild.name">
+          <strong
+              :class="{active:isTech(menuChild)}"
+              @click="techClick(menuChild)"
+          >{{menuChild.name}}</strong>
         </div>
       </div>
-      <!--<seller-tree :http='http' class="leftbar"></seller-tree>-->
       <div
         class="group"
         v-for="menu in meanTreeData"
         :key="menu.name"
       >
-        <div
-          class="name"
-          v-text="menu.name"
-        ></div>
+        <div class="name">{{menu.name}}</div>
         <div
           class="links"
           v-for="menuChild in menu.children"
@@ -48,17 +57,119 @@
           </span>
         </div>
       </div>
+      <div
+          class="group"
+          v-for="menu in meanTreeData2"
+          :key="menu.name"
+      >
+        <div
+            class="name"
+        >{{menu.name}}</div>
+        <div
+            class="links"
+            v-for="menuChild in menu.children"
+            :key="menuChild.name"
+        >
+          <strong
+              :class="{active: isOpen(menuChild.code)}"
+              @click="menuClick(menuChild)"
+          >{{menuChild.name}}</strong>
+          <span>
+            <a
+                :href="$pathPrefix+item.uri"
+                v-for="item in menuChild.children"
+                v-text="item.name"
+                :key="item.name"
+            ></a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 module.exports = {
-  props: ['jquery', 'http'],
+  props: ['jquery', 'http','type'],
   data: function () {
     return {
       userSeller: {},
       meanTreeData: [],
+      meanTreeData2: [],
+      meanTreeData3: [
+        {
+          url: "/common/usercenter/user_market_auth_form.html",
+          active: false,
+          icon: "el-icon-s-check",
+          name: "资格认证",
+          index: 0,
+        },
+        // {
+        //   url: "/common/usercenter/user_market_form.html",
+        //   active: false,
+        //   icon: "el-icon-message-solid",
+        //   name: "培训报名",
+        //   index: 1,
+        // },
+        {
+          url: "/common/usercenter/user_market_tech_achievements.html",
+          active: false,
+          icon: "el-icon-s-finance",
+          name: "技术成果管理",
+          index: 1,
+        },
+
+        {
+          url: "/common/usercenter/user_market_tech_require.html",
+          active: false,
+          icon: "el-icon-s-help",
+          name: "技术需求管理",
+          index: 2,
+        },
+        {
+          url: "/common/usercenter/user_market_tech_transfer.html",
+          active: false,
+          icon: "el-icon-s-platform",
+          name: "技转业务管理",
+          index: 3,
+        },
+        {
+          url: "/common/usercenter/user_market_business_management.html",
+          active: false,
+          icon: "el-icon-s-cooperation",
+          name: "我的业务管理",
+          index: 4,
+        },
+        {
+          url: "/common/usercenter/user_market_business_order.html",
+          active: false,
+          icon: "el-icon-s-order",
+          name: "我的订单",
+          index: 5,
+        },
+        {
+          url: "/common/usercenter/user_market_form.html",
+          active: false,
+          icon: "el-icon-message-solid",
+          name: "培训报名",
+          index: 6,
+        },
+        {
+          url: "https://study.kj01.cn/uc/index",
+          active: false,
+          icon: "el-icon-s-custom",
+          name: "我的培训",
+          target: true,
+          index: 7,
+        },
+        {
+          url: "/common/usercenter/user_market_tech_collection.html",
+          active: false,
+          icon: "el-icon-s-claim",
+          name: "收藏",
+          index: 8,
+        },
+      ],
       mActivecode: ''
     }
   },
@@ -68,9 +179,14 @@ module.exports = {
   mounted: function () {
     var vm = this;
     this.http.menuTree({
-      code: '001.001'
+      code:'001.001'
     }).then(function (res) {
       vm.meanTreeData = res.result.children;
+    })
+    this.http.menuTree({
+      code: '001.004'
+    }).then(function (res) {
+      vm.meanTreeData2 = res.result.children;
     })
     this.initUserInfo();
   },
@@ -80,6 +196,10 @@ module.exports = {
       this.http.buyer().then(function (res) {
         vm.userSeller = res.result;
       })
+    },
+    techClick:function (menu){
+      console.log(menu,'url')
+      window.location.href = this.$pathPrefix+menu.url
     },
     menuClick: function (menu) {
       // 叶子 跳转
@@ -97,6 +217,9 @@ module.exports = {
     },
     isOpen: function (code) {
       return this.mActivecode ? this.mActivecode.indexOf(code) !== -1 : false
+    },
+    isTech: function (code) {
+      return this.type==code.index ? true : false
     }
   }
 }

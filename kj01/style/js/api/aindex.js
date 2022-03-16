@@ -116,5 +116,9 @@ define(['jquery', 'httpUrl', 'http'], function ($, httpUrl, Http) {
     detail: function (param) {
       return Http.get(httpUrl.baseUrl + '/user/detail', param)
     },
+    //浏览量
+    getView: function (param) {
+      return Http.post(httpUrl.baseUrl + '/visit/ts/saveTs', param)
+    },
   }
 })

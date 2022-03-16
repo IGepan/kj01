@@ -332,7 +332,6 @@ require(['/common/js/require.config.js'], function () {
                                     mainCell: ".bd ul",
                                     autoPlay: true,
                                     effect: "topLoop",
-                                    interTime:4000,
                                     vis:1,
                                 });
                             })

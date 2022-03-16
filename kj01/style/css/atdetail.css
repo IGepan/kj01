@@ -53,7 +53,7 @@
   left: 0px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #018fff;
+  background-color: #ff6400;
   border-radius: 3px;
 }
 .lineTitleBox-text::before {
@@ -121,7 +121,16 @@
 .base-inofs .tag{
   margin-top: 22px;
 	line-height: 24px;
-	color: #0096ff;
+	color:#ff6400;
+}
+.calendartop{
+  color:#ff6400!important;
+}
+.calendartop .viewDisplay{
+  color:#ff6400!important;
+}
+.calendarDayResultTop-title::before{
+  background-color: #ff6400!important;
 }
 .base-inofs .tag .text {
   margin-left: 5px;
@@ -169,7 +178,7 @@ button[typeName~="articleBtn"].shareBtn {
   height: 8px;
   border-radius: 50%;
   background-color: #ffffff;
-  border: solid 2px #018fff;
+  border: solid 2px #ff6400;
   left: -4px;
   top: 0;
   z-index: 1;
@@ -192,7 +201,7 @@ button[typeName~="articleBtn"].shareBtn {
   width: 100%;
   font-size: 14px;
   line-height: 16px;
-  color: #018fff;
+  color: #ff6400;
 }
 
 .unit-units {
@@ -285,7 +294,7 @@ button[typeName~="articleBtn"].shareBtn {
   position: relative;
 }
 .tabs-item.active, .tabs-item:hover {
-  color: #018fff;
+  color: #ff6400;
   font-weight: bold;
 }
 .tabs-item.active::after, .tabs-item:hover::after {
@@ -297,7 +306,7 @@ button[typeName~="articleBtn"].shareBtn {
   transform: translateX(-50%);
   width: 30px;
 	height: 6px;
-	background-color: #018fff;
+	background-color: #ff6400;
 	border-radius: 3px;
 }
 .content-box {
