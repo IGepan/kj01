@@ -28,6 +28,10 @@
     padding: 0px 10px;
     margin-right: -60px;
   }
+  .mmdiv{
+    width: 1200px;
+    margin: auto;
+  }
 </style>
 <body>
   <div class="box" id='index_box' v-cloak>
@@ -37,54 +41,52 @@
     </div>
     <div class="contant">
       <div class="mdiv">
-        <div class="leftbox">
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
-        </div>
         <div class="centerbox">
-          <div class="worklink clear">
-            <a class="violet" v-if="isNotSite" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">
+          <div class="worklink clear" v-if="!isNotSite">
+            <a class="violet" v-if="!isNotSite" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">
               <i class="iconfont icon-icon_xuqiu"></i>
               <span>我的需求</span>
               <strong>发需求</strong>
             </a>
-            <a class="violet" v-else :href="siteUrl+'/common/usercenter/user_market_tech_require_form.html'">
-              <i class="iconfont icon-icon_xuqiu"></i>
-              <span>我的需求</span>
-              <strong>发需求</strong>
-            </a>
+<!--            <a class="violet" v-else :href="siteUrl+'/common/usercenter/user_market_tech_require_form.html'">-->
+<!--              <i class="iconfont icon-icon_xuqiu"></i>-->
+<!--              <span>我的需求</span>-->
+<!--              <strong>发需求</strong>-->
+<!--            </a>-->
 <!--            <a class="red" v-if="isConference" @click.stop="handleShowTips">-->
 <!--              <i class="iconfont icon-tool"></i>-->
 <!--              <span>我的技术</span>-->
 <!--              <strong>找技术</strong>-->
 <!--            </a>-->
-            <a class="red" v-if="isNotSite"
+            <a class="red" v-if="!isNotSite"
               :href="$pathPrefix+'/technologyMarket/index.html'">
               <i class="iconfont icon-tool"></i>
               <span>我的技术</span>
               <strong>找技术</strong>
             </a>
-            <a class="red" v-else
-               :href="siteUrl+'/scienceResult.html'">
-              <i class="iconfont icon-tool"></i>
-              <span>我的技术</span>
-              <strong>找技术</strong>
-            </a>
+<!--            <a class="red" v-else-->
+<!--               :href="siteUrl+'/scienceResult.html'">-->
+<!--              <i class="iconfont icon-tool"></i>-->
+<!--              <span>我的技术</span>-->
+<!--              <strong>找技术</strong>-->
+<!--            </a>-->
 
 <!--            <a class="blue" v-if="isConference" @click.stop="handleShowTips">-->
 <!--              <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>-->
 <!--              <span>我的需求</span>-->
 <!--              <strong>找服务</strong>-->
 <!--            </a>-->
-            <a class="blue"  v-if="isNotSite" :href="$pathPrefix+'/mall/index.html'">
+            <a class="blue"  v-if="!isNotSite" :href="$pathPrefix+'/mall/index.html'">
               <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
               <span>我的需求</span>
               <strong>找服务</strong>
             </a>
-            <a class="blue"  v-else  :href="$pathPrefix+'/scienceService.html'">
-              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
-              <span>我的需求</span>
-              <strong>找服务</strong>
-            </a>
+<!--            <a class="blue"  v-else  :href="$pathPrefix+'/scienceService.html'">-->
+<!--              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>-->
+<!--              <span>我的需求</span>-->
+<!--              <strong>找服务</strong>-->
+<!--            </a>-->
 <!--            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">-->
 <!--              <i class="iconfont icon-chanpin"></i>-->
 <!--              <span>我的产品</span>-->
@@ -96,25 +98,67 @@
 <!--              <span>我的产品</span>-->
 <!--              <strong>找产品</strong>-->
 <!--            </a>-->
-            <a class="steelblue" @click.stop="handleShowTips">
+            <a class="steelblue" v-if="!isNotSite" @click.stop="handleShowTips">
               <i class="iconfont icon-ziyuanjk"></i>
               <span>我的资源</span> <strong>找资源</strong>
             </a>
           </div>
+          <div class="worklink clear">
+            <div class="user_info fl">
+              <div class="head-top" :style="{'height':(!isSite)? '' : '220px'}">
+                <div class="head"
+                     :style="{backgroundImage: userSeller.userPhotoMiniPath?'url('+userSeller.userPhotoMiniPath+')':'url(/common/images/defaultImg/default.gif)'}"
+                > </div>
+                <div style="width: 70%;height: 80px;">
+                  <!--                <div class="name" v-text="userSeller.shopName||''"></div>-->
+                  <div class="name">欢迎回来，{{userInfo.userName||''}}</div>
+                  <div>
+                    <div class="level">等级<span>LV{{userSeller.level||0}}</span></div>
+                    <div class="honor">信誉<span>{{userSeller.credit||0}}</span></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="head-bottom" v-if="!isSite">
+                <a target="_blank" :href="this.$pathPrefix+'/policyMatchLogin.html'"><img src="/common/images/zp.png"/><span>政策智配</span></a>
+                <a target="_blank" :href="this.$pathPrefix+'/policyNoticeLog.html'"><img src="/common/images/sd.png"/><span>政策速递<p style="background-image: url(/common/images/hot.gif)"></p></span></a>
+                <a target="_blank" :href="this.$pathPrefix+'/common/activity/list.html?code=001.004.001.001'"><img src="/common/images/hd.png"/><span>活动发布</span></a>
+                <a target="_blank" :href="this.$pathPrefix+'/mall/index.html'"><img src="/common/images/yizhi.png"/><span>易智商城</span></a>
+              </div>
+            </div>
+            <div class="expert fr">
+              <div class="card focuscard">
+                <div class="title">专家咨询
+                  <ul class="tabs fr">
+                    <li :class="{active: aIndex ===1}" @click="select(1)">知识产权</li>
+                    <li :class="{active: aIndex ===2}" @click="select(2)">项目申报</li>
+                    <li :class="{active: aIndex ===3}" @click="select(3)">技术转移</li>
+                  </ul>
+                </div>
+                <div class="clear">
+                  <div class="item active">
+                    <a target="_blank" v-for="(item,index) in expertList" v-if="aIndex==item.tit">
+                    <img src="/common/images/toux.png"/>
+                      <div style="width: 80%;padding-left: 20px">
+                        <span class="tit" v-text="item.title" :title="item.title"></span>
+                        <span class="tit tt" v-text="item.text" :title="item.text"></span>
+                        <button class="tt-btn">免费咨询</button>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="cards">
-            <div class="card ordercard mt20">
-              <div class="title">我的订单分类</div>
-              <div class="orderlinks">
-                <a class="orderclick active" @click.stop.prevent="handleOrdertabs('01')"><i
-                    class="iconfont icon-quanbu"></i>最新</a>
-                <a class="orderclick" @click.stop.prevent="handleOrdertabs('02')"><i
-                    class="iconfont icon-daifukuan"></i>待付款</a>
-                <a class="orderclick" @click.stop.prevent="handleOrdertabs('04')"><i
-                    class="iconfont icon-success"></i>已完成</a>
-                <a class="orderclick" @click.stop.prevent="handleOrdertabs('05')"><i
-                    class="iconfont icon-daipingjia"></i>待评价</a>
-                <a class="orderclick" :href="$pathPrefix+'/common/buyer/order/?orderStatusFilter=01'"><i
-                    class="iconfont icon-ai222"></i>更多订单</a>
+            <div class="card ordercard mt10">
+              <div class="title">我的订单
+                <div class="orderlinks fr">
+                  <a class="orderclick active" @click.stop.prevent="handleOrdertabs('01')">最新</a>
+                  <a class="orderclick" @click.stop.prevent="handleOrdertabs('02')">待付款</a>
+                  <a class="orderclick" @click.stop.prevent="handleOrdertabs('04')">已完成</a>
+                  <a class="orderclick" @click.stop.prevent="handleOrdertabs('05')">待评价</a>
+                  <a class="orderclick" :href="$pathPrefix+'/common/buyer/order/?orderStatusFilter=01'">更多订单</a>
+                </div>
               </div>
               <ul class="orderlist">
                 <li v-for="order in orderList">
@@ -135,76 +179,121 @@
               </ul>
             </div>
             <!--  2021.01.14 -->
-            <div class="card focuscard mt20">
-              <div class="title">政策速递</div>
-              <div class="policylist">
-                <a class="item" :href="$pathPrefix?($pathPrefix+'/policyList.html?id='+item.id):('/podetail.html?id='+item.id)" target="_blank" v-for="item in policyList" :key="item.id"><span class="line"></span>{{item.title}}</a>
-              </div>
-              <div class="policylist"  v-if="policyList.length == 0" style="padding: 1em 20px;">暂未匹配到相关信息</div>
-            </div>
-            <div class="card focuscard mt20">
+<!--            <div class="card focuscard mt20">-->
+<!--              <div class="title">政策速递</div>-->
+<!--              <div class="policylist">-->
+<!--                <a class="item" :href="$pathPrefix?($pathPrefix+'/policyList.html?id='+item.id):('/podetail.html?id='+item.id)" target="_blank" v-for="item in policyList" :key="item.id"><span class="line"></span>{{item.title}}</a>-->
+<!--              </div>-->
+<!--              <div class="policylist"  v-if="policyList.length == 0" style="padding: 1em 20px;">暂未匹配到相关信息</div>-->
+<!--            </div>-->
+            <div class="card focuscard mt10">
               <div class="title">行业都在关注
-                <ul class="tabs">
+                <ul class="tabs fr" v-if="isSite">
+                  <li :class="{active: selectedAmount === '009'}" @click="getAmountList('009')">服务</li>
                   <li :class="{active: selectedAmount === '010'}" @click="getAmountList('010')">产品</li>
+                  <li :class="{active: selectedAmount === '001'}" @click="getAmountList('001')">技术</li>
+                </ul>
+                <ul class="tabs fr" v-if="!isSite">
                   <li :class="{active: selectedAmount === '009'}" @click="getAmountList('009')">服务</li>
                   <li :class="{active: selectedAmount === '001'}" @click="getAmountList('001')">技术</li>
                 </ul>
               </div>
               <div class="pdlist clear">
-                <div class="item active">
-                  <a target="_blank" v-for="item in attentionList" :href="$pathPrefix+item.goodsDetailUrl">
+                <div class="item active" v-if="isSite">
+                  <a target="_blank" v-for="item in attentionList" :href="item.goodsDetailUrl">
                     <span class="img"
                       :style="'background-image: url('+ (item.goodsImgUrl || 'http://dummyimage.com/128x128') +')'"></span>
                     <span class="tit" v-text="item.storeName"></span>
                   </a>
                 </div>
-              </div>
-            </div>
-            <div class="card focuscard mt20">
-              <div class="title">为您推荐
-                <ul class="tabs">
-                  <li :class="{active: hotType === '105'}" @click="getSelectShopByPage('105')">服务机构</li>
-                  <li :class="{active: hotType === '106'}" @click="getSelectShopByPage('106')">专家</li>
-                </ul>
-              </div>
-              <div class="pdlist clear">
-                <div class="item active">
-                  <a target="_blank" v-for="hot in hotList" :href="$pathPrefix+hot.shopIndexUrl">
-                    <span class="img"
-                      :style="'background-image: url('+ (hot.shopLogo || '/common/images/defaultImg/default.gif') +')'"></span>
-                    <span class="tit" v-text="hot.shopName"></span>
+                <div class="item2 active" v-if="!isSite && selectedAmount == '009'">
+                  <a target="_blank" v-for="(item,index) in chooseGoods" :href="arl +'/mall/shop/detail.html?id='+item.id+'&code='+item.shopCode" v-if="index<3">
+                    <span class="top line" v-text="item.goodsName"></span>
+                    <span class="line" v-text="item.shopName"></span>
+                    <div class="ser-text line">
+                      <p v-text="item.typeName"></p>
+                    </div>
+                  </a>
+                </div>
+                <div class="item2 active" v-if="!isSite && selectedAmount == '001'">
+                  <a target="_blank" v-for="(item,index) in techAchiList" :href="arl +'/technologyMarket/tech_achievements_details.html?id='+item.id" style="height: 280px;">
+                    <img :src="getImgPath(item.projectImgPath)"/>
+                    <span class="line" v-text="item.title"></span>
+                    <div class="ser-text">
+                      <p class="btt line">所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</p>
+                    </div>
                   </a>
                 </div>
               </div>
             </div>
+            <div class="card focuscard mt10" v-if="!isSite">
+              <div class="title">推荐活动
+                <a :href="$pathPrefix + '/common/activity/list.html?code=001.004.001.001'">发布活动+</a>
+              </div>
+              <div class="actlist clear">
+                <div class="item active">
+                  <a target="_blank" :href="$pathPrefix+'/adetail.html?id=' + dataList.id">
+                    <img :src="dataList.posterUrl"/>
+<!--                    <span class="img"-->
+<!--                      :style="'background-image: url('+ (hot.shopLogo || '/common/images/defaultImg/default.gif') +')'"></span>-->
+                    <div class="actfrom fl">
+                      <span class="tit line" v-text="dataList.title" :title="dataList.title"></span>
+                      <span class="time">时间：{{dataList.activeStartTime}} {{dataList.weekday}}
+                      </span>
+                      <span class="sponsor line" :title="dataList.sponsor">主办单位：{{dataList.sponsor}}</span>
+                    </div>
+                    <button v-if="!dataList.statusByUrl" :type="dataList.statusCode" class="fr">{{dataList.statusDisplay}}</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="rightbox" v-if="!isSite">
+              <div class="card partner mt10">
+                <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
+                <div class="parlist">
+                  <a target="_blank" :href="$pathPrefix+shop.shopIndexUrl" :title="shop.storeName"
+                     :style="'background-image: url('+shop.shopLogo+')'" v-for="shop in shopList">
+                  </a>
+<!--                  <a target="_blank"-->
+<!--                     style="background-image: url(/common/images/toux.png)">-->
+<!--                  </a>-->
+<!--                  <a target="_blank"-->
+<!--                     style="background-image: url(/common/images/toux.png)">-->
+<!--                  </a>-->
+<!--                  <a target="_blank"-->
+<!--                     style="background-image: url(/common/images/toux.png)">-->
+<!--                  </a>-->
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="rightbox">
-<!--            <div class="card mt20 adlink">-->
-<!--              <a v-if="isConference" @click.stop="handleShowTips"-->
-<!--                style="background-image: url('/common/images/userCenterAd.png')"></a>-->
-<!--              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>-->
+<!--          <div class="rightbox">-->
+<!--&lt;!&ndash;            <div class="card mt20 adlink">&ndash;&gt;-->
+<!--&lt;!&ndash;              <a v-if="isConference" @click.stop="handleShowTips"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="background-image: url('/common/images/userCenterAd.png')"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a v-else href="/demand.html" style="background-image: url('/common/images/userCenterAd.jpg')"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div class="card partner mt20">-->
+<!--              <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>-->
+<!--              <div class="parlist">-->
+<!--                <a target="_blank" :href="$pathPrefix+shop.shopIndexUrl" :title="shop.storeName"-->
+<!--                  :style="'background-image: url('+shop.shopLogo+')'" v-for="shop in shopList">-->
+<!--                </a>-->
+<!--              </div>-->
 <!--            </div>-->
-            <div class="card partner mt20">
-              <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
-              <div class="parlist">
-                <a target="_blank" :href="$pathPrefix+shop.shopIndexUrl" :title="shop.storeName"
-                  :style="'background-image: url('+shop.shopLogo+')'" v-for="shop in shopList">
-                </a>
-              </div>
-            </div>
-            <div class="card servicecard mt20" v-if="isSite==false">
-              <div class="title">快捷服务</div>
-              <div class="servicelist clear">
-                <a target="_blank" :href=" this.$pathPrefix+'/policyMatchLogin.html'"><i><img src="/common/images/zhipei.png" width="40"></i>政策智配</a>
-                <a target="_blank" :href=" this.$pathPrefix+'/answer/autoanswer.html'"><i><img src="/common/images/daren.png" width="40"></i>政策答人</a>
-                <a target="_blank" :href=" this.$pathPrefix+'/common/buyer/index.html'"><i><img src="/common/images/sudi.png" width="40"></i>政策速递</a>
-                <a target="_blank" :href=" this.$pathPrefix+'/common/activity/list.html?code=001.004.001.001'"><i><img src="/common/images/huodong.png" width="40"></i>活动发布</a>
-                <a target="_blank" :href=" this.$pathPrefix+'/mall/index.html'"><i><img src="/common/images/shangcheng.png" width="40"></i>易智商城</a>
-<!--                <a @click.stop="handleShowTips"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>-->
-                <a><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>
-              </div>
-            </div>
-          </div>
+<!--&lt;!&ndash;            <div class="card servicecard mt20" v-if="isSite==false">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="title">快捷服务</div>&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="servicelist clear">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a target="_blank" :href=" this.$pathPrefix+'/policyMatchLogin.html'"><i><img src="/common/images/zhipei.png" width="40"></i>政策智配</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a target="_blank" :href=" this.$pathPrefix+'/answer/autoanswer.html'"><i><img src="/common/images/daren.png" width="40"></i>政策答人</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a target="_blank" :href=" this.$pathPrefix+'/common/buyer/index.html'"><i><img src="/common/images/sudi.png" width="40"></i>政策速递</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a target="_blank" :href=" this.$pathPrefix+'/common/activity/list.html?code=001.004.001.001'"><i><img src="/common/images/huodong.png" width="40"></i>活动发布</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a target="_blank" :href=" this.$pathPrefix+'/mall/index.html'"><i><img src="/common/images/shangcheng.png" width="40"></i>易智商城</a>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <a @click.stop="handleShowTips"><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <a><i><img src="/common/images/gengduo.png" width="40"></i>更多服务</a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
         </div>
       </div>
     </div>

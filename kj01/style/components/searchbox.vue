@@ -20,7 +20,7 @@
       v-model="searchData.searchKey"
       placeholder="请输入关键词"
     />
-    <button type="button" @click="searchFull">搜全站</button>
+    <button type="button" @click="searchFull">搜索</button>
     <a
       type="button"
       v-if="
@@ -32,7 +32,7 @@
       @click.stop.prevent="searchShop"
       >搜本店</a
     >
-    <a v-if="internal" :href="internal.url" v-text="internal.label"></a>
+<!--    <a v-if="internal" :href="internal.url" v-text="internal.label"></a>-->
   </div>
 </template>
 <script>

@@ -11,27 +11,20 @@
           alt=""
       /></a>
       <div class="umenu">
+<!--        <a-->
+<!--            v-if="isConference"-->
+<!--            :href="-->
+<!--            $pathPrefix + '/common/activity/list.html?code=001.004.001.001'-->
+<!--          "-->
+<!--            :class="{ active: type === 'conference' }"-->
+<!--        >活动管理</a-->
+<!--        >-->
         <a
             v-if="isConference"
-            :href="
-            $pathPrefix + '/common/activity/list.html?code=001.004.001.001'
-          "
-            :class="{ active: type === 'conference' }"
-        >活动管理</a
-        >
-        <a
-            v-if="type === 'seller'"
-            :href="$pathPrefix + '/common/seller/index.html'"
-            :class="{ active: type === 'seller' }"
-        >
-          卖家中心
-        </a>
-        <a
-            v-else
             :href="$pathPrefix + '/common/buyer/index.html'"
             :class="{ active: type === 'buyer' }"
-        >用户中心</a
-        >
+        >用户中心</a>
+
         <a
             :href="
             $pathPrefix +
@@ -40,7 +33,13 @@
             :class="{ active: type === 'account' }"
         >账号管理</a
         >
-
+        <a
+            v-if="isConference"
+            :href="$pathPrefix + '/common/seller/index.html'"
+            :class="{ active: type == 'seller' }"
+        >
+          卖家中心
+        </a>
         <a
             :href="$pathPrefix + '/common/usercenter/user_market_auth_form.html'"
             :class="{ active: type === 'market' }"
@@ -78,6 +77,7 @@ module.exports = {
   created: function () {
     this.getPublicDetail();
     var userInfo = JSON.parse(this.$utils.getCookie("USER_INFO"));
+    console.log(userInfo,'this.type')
     if (
         (this.type === "buyer" ||
             this.type === "conference" ||
