@@ -195,7 +195,7 @@ require(['/common/js/require.config.js'], function () {
                 },
                 components: {
                     'vue-ueditor-wrap': VueUeditorWrap,
-                    'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/newtoper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),

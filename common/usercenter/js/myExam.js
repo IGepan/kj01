@@ -25,7 +25,7 @@ require(['/common/js/require.config.js'], function () {
                 dic: dic
             },
             components: {
-                'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+                'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
                 'header-bar': httpVueLoader('/common/components/header.vue'),
                 'auth-left': httpVueLoader('/common/components/authLeft.vue'),
                 'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')

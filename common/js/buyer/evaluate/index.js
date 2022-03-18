@@ -45,7 +45,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           isOpenAppendDialog: false,
           isSubmitDisabled: false,
           orderList: [],
-          pages: 1,
+          pages: 0,
           pageCount: 4
         }
       },
@@ -66,6 +66,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         'ly-star': httpVueLoader('/common/components/starts.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),
         'ly-checkbox': httpVueLoader('/components/checkbox.vue'),
+        'pages': httpVueLoader(this.$pathPrefix+'/style/components/pages.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       created: function () {
@@ -95,13 +96,18 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               res.result.list.forEach(function (o) { o.operation = '' })
               vm.orderList = res.result.list
               vm.queryForm.total = res.result.total
-              vm.pages = res.result.pages;
+              res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
+              vm.pages = res.result;
             } else {
               vm.orderList = []
               vm.queryForm.total = 0
               vm.pages = 0;
             }
           })
+        },
+        bindPageChange: function (e) {
+          this.queryForm.pageNum = e;
+          this.handleGetOrderList()
         },
         handleReset: function () {
           this.queryForm.keyWord = ''	// 		关键字

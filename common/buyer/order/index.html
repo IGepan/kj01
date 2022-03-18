@@ -154,16 +154,19 @@
                   </div>
                 </div>
                 <!--分页-->
-                <div class="pager" v-cloak>
-                  <a @click='pageClick(1)'>[首页]</a>
-                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
-                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
-                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
-                  <a v-if='isMore()'>...</a>
-                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
-                  <a @click='pageClick(pages)'>[末页]</a>
-                  <span>[共<span v-text='pages'></span>页]</span>
-                </div>
+<!--                <div class="pager" v-cloak>-->
+<!--                  <a @click='pageClick(1)'>[首页]</a>-->
+<!--                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>-->
+<!--                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'-->
+<!--                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>-->
+<!--                  <a v-if='isMore()'>...</a>-->
+<!--                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>-->
+<!--                  <a @click='pageClick(pages)'>[末页]</a>-->
+<!--                  <span>[共<span v-text='pages'></span>页]</span>-->
+<!--                </div>-->
+                <template v-if="pages">
+                  <pages :pages="pages" @changepage="bindPageChange"></pages>
+                </template>
                 <!--/分页-->
               </div>
               <!--/订单列表-->

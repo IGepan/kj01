@@ -198,27 +198,29 @@
                   <li :class="{active: selectedAmount === '001'}" @click="getAmountList('001')">技术</li>
                 </ul>
               </div>
-              <div class="pdlist clear">
-                <div class="item active" v-if="isSite">
+              <div class="pdlist clear" v-if="isSite">
+                <div class="item active">
                   <a target="_blank" v-for="item in attentionList" :href="item.goodsDetailUrl">
                     <span class="img"
                       :style="'background-image: url('+ (item.goodsImgUrl || 'http://dummyimage.com/128x128') +')'"></span>
                     <span class="tit" v-text="item.storeName"></span>
                   </a>
                 </div>
-                <div class="item2 active" v-if="!isSite && selectedAmount == '009'">
+              </div>
+                <div class="pdlist clear" v-if="!isSite" style="padding: 20px 0">
+                <div class="item2 active" v-if="selectedAmount == '009'">
                   <a target="_blank" v-for="(item,index) in chooseGoods" :href="arl +'/mall/shop/detail.html?id='+item.id+'&code='+item.shopCode" v-if="index<3">
-                    <span class="top line" v-text="item.goodsName"></span>
-                    <span class="line" v-text="item.shopName"></span>
-                    <div class="ser-text line">
-                      <p v-text="item.typeName"></p>
+                    <span class="top line" v-text="item.goodsName" :title="item.goodsName"></span>
+                    <span class="line" v-text="item.shopName" :title="item.shopName"></span>
+                    <div class="ser-text">
+                      <p class="line" v-text="item.typeName" :title="item.typeName"></p>
                     </div>
                   </a>
                 </div>
-                <div class="item2 active" v-if="!isSite && selectedAmount == '001'">
+                <div class="item2 active" v-if="selectedAmount == '001'">
                   <a target="_blank" v-for="(item,index) in techAchiList" :href="arl +'/technologyMarket/tech_achievements_details.html?id='+item.id" style="height: 280px;">
                     <img :src="getImgPath(item.projectImgPath)"/>
-                    <span class="line" v-text="item.title"></span>
+                    <span class="line" v-text="item.title" :title="item.title"></span>
                     <div class="ser-text">
                       <p class="btt line">所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</p>
                     </div>

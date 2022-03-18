@@ -60,7 +60,10 @@
       padding: 10px 0;
       text-align: center;
     }
-
+    .mmdiv{
+      width: 1200px;
+      margin: auto;
+    }
     .itembody .goodslist,
     .orderheader .goods {
       width: 30%;
@@ -94,7 +97,13 @@
 
     .itembody .operation .ops-more-menu a {
       display: block;
-    }
+      background: #fc7f10;
+      color: #FFFFff!important;
+      margin-top: 10px;
+      padding: 0px 10px;
+    }.itembody .operation .ops-more-menu a:first-child{
+      margin-top: 0;
+         }
 
     .itembody .ops-more-menu {
       display: none;
@@ -104,8 +113,10 @@
       z-index: 1;
       left: 50%;
       margin-left: -49px;
-      width: 90px;
-      border: 1px solid #eee;
+      /*width: 90px;*/
+      border: 1px solid #dfdfdf;
+      padding: 10px;
+      box-shadow: 0px 0px 11px #dfdfdf;
     }
 
     .itembody .active.ops-more-menu {
@@ -166,6 +177,21 @@
       padding:0 20px 0 0;
       font-size:20px;
     }
+    .select-column .select-column-result{
+      min-height: 28px!important;
+    }
+    .select-column .select-column-result::after{
+      border-width:5px!important;
+    }
+    .form-title .active{
+      border-bottom:1px solid #fc7f10!important;
+    }
+    .form-title .active{
+      border-bottom:0!important;
+    }
+    .form-view_button button{
+      background-color:#fc7f10!important;
+    }
   </style>
   <div class="box" id='index_box'>
     <ly-toper></ly-toper>
@@ -215,7 +241,7 @@
                     </div>
                   </label>
                   <button type="button"
-                    style="background-color: #1890FF;border-color: #1890FF;border-radius: 5px; float: right;"
+                    style="background-color: #fc7f10;border-color:#fc7f10;border-radius: 5px; float: right;"
                     @click="getOrderList">搜索</button>
                 </div>
               </div>
@@ -230,7 +256,7 @@
                   <div class="number">活动类型</div>
                   <div class="number">活动状态</div>
                   <div class="active-time">活动时间</div>
-                  <div class="number">所属行业</div>
+<!--                  <div class="number">所属行业</div>-->
                   <div class="operation">操作</div>
                 </div>
                 <div class="orderlist">
@@ -244,16 +270,16 @@
                     <div class="number" v-text="order.activeTypeDisplay"></div>
                     <div class="number" v-text="order.statusDisplay"></div>
                     <div class="active-time"
-                      v-html="(order.activeStartTime || '') + ' <BR> ' + (order.activeEndTime|| '')"></div>
-                    <div class="number">
-                      <div class="line2" v-text="order.industryNames" :title="order.industryNames"></div>
-                    </div>
+                      v-html="(order.activeStartTime || '') + '&emsp;至&emsp;' + (order.activeEndTime|| '')"></div>
+<!--                    <div class="number">-->
+<!--                      <div class="line2" v-text="order.industryNames" :title="order.industryNames"></div>-->
+<!--                    </div>-->
                     <div class="operation">
                       <a target="_blank" :href="'add.html?code=001.004.001.001&type=view&id=' + order.id"
                         >查看</a>
                       <span class="ops-more-container" style="margin-left:10px;">
                         <a @click.stop="showMore(order,i)">更多</a>
-                        <div class="ops-more-menu" :class="{active:index===i}">
+                        <div class="ops-more-menu" :class="{active:index===i && order.statusDisplay!=='待审核'}">
                           <a v-if="order.status !== '01' && order.status !== '02' && order.status !== '04'"
                             @click="handleGetWxCode(order.id)">活动二维码</a>
                           <a v-if="order.status !== '01' && order.status !== '02' && order.status !== '04'"
@@ -286,17 +312,20 @@
                   </div>
                 </div>
                 <!--分页-->
-                <div class="pager" v-cloak>
-                  <a @click='pageClick(1)'>[首页]</a>
-                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>
-                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'
-                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>
-                  <a v-if='isMore()'>...</a>
-                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>
-                  <a @click='pageClick(pages)'>[末页]</a>
-                  <span>[共<span v-text='pages'></span>页]</span>
-                  <span>[共<span v-text='queryForm.total || 0'></span>条]</span>
-                </div>
+<!--                <div class="pager" v-cloak>-->
+<!--                  <a @click='pageClick(1)'>[首页]</a>-->
+<!--                  <a @click='pageClick(queryForm.pageNum - 1)'>[上一页]</a>-->
+<!--                  <a @click='pageClick(item)' v-for='item in pages' v-text='item'-->
+<!--                    :class="{active: item == queryForm.pageNum}" v-if='isShowPage(item)'></a>-->
+<!--                  <a v-if='isMore()'>...</a>-->
+<!--                  <a @click='pageClick(queryForm.pageNum + 1)'>[下一页]</a>-->
+<!--                  <a @click='pageClick(pages)'>[末页]</a>-->
+<!--                  <span>[共<span v-text='pages'></span>页]</span>-->
+<!--                  <span>[共<span v-text='queryForm.total || 0'></span>条]</span>-->
+<!--                </div>-->
+                <template v-if="pages">
+                  <pages :pages="pages" @changepage="bindPageChange"></pages>
+                </template>
                 <!--/分页-->
               </div>
               <!--/订单列表-->

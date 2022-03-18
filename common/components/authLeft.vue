@@ -1,12 +1,12 @@
 <template>
   <div class="leftbox">
     <div class="leftbar">
-      <div class="user_info">
-        <div
-          class="head"
-          :style="{backgroundImage: userSeller.userPhotoMiniPath?'url('+userSeller.userPhotoMiniPath+')':'url(/common/images/defaultImg/default.gif)'}"
-        > </div>
-      </div>
+<!--      <div class="user_info">-->
+<!--        <div-->
+<!--          class="head"-->
+<!--          :style="{backgroundImage: userSeller.userPhotoMiniPath?'url('+userSeller.userPhotoMiniPath+')':'url(/common/images/defaultImg/default.gif)'}"-->
+<!--        > </div>-->
+<!--      </div>-->
       <div
         class="group"
         v-for="menu in meanTreeData"

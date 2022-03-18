@@ -18,11 +18,11 @@
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
 }
 .searchInputLine input{
-	border: 2px solid #ff5e06!important;
-	/*border-left:2px solid #ff5e06!important;*/
+	border: 2px solid #fc7f10!important;
+	/*border-left:2px solid #fc7f10!important;*/
 }
 .search button{
-	background-color:#ff5e06!important;
+	background-color:#fc7f10!important;
 }
 .leftbox{
 	width: 180px!important;
@@ -49,13 +49,13 @@
 	line-height: 38px;
 }
 .umenu a:hover {
-	color: #ff5e06;
+	color: #fc7f10;
 	font-weight: 700;
 }
 .umenu a.active {
-	color: #ff5e06;
+	color: #fc7f10;
 	font-weight: 700;
-	border-bottom: 3px solid #ff5e06;
+	border-bottom: 3px solid #fc7f10;
 }
 .contant {
 	margin-top: 20px;
@@ -102,7 +102,7 @@
 	line-height: 40px!important;
 }
 .expert .tt-btn{
-	background: #ff5e06;
+	background: #fc7f10;
 	padding: 0px 10px;
 	color: #FFFFff;
 	line-height: 30px;
@@ -137,7 +137,6 @@
 	display: block;
 	padding: 10px;
 	position: relative;
-	transition: box-shadow .5s;
 }
 .head-bottom a p{
 	width: 32px;
@@ -147,6 +146,12 @@
 	top: 0;
 	margin: 0;
 	right: -10px;
+}
+.head-bottom a span{
+	color: #666666!important;
+}
+.head-bottom a:hover span{
+	color: #fc7f10!important;
 }
 .user_info .head {
 	width: 80px;
@@ -226,17 +231,17 @@
 	font-size: 16px;
 }
 .leftbar a:hover {
-	color: #ff5e06
+	color: #fc7f10
 }
 .leftbar .group a.active {
-	color: #ff5e06;
+	color: #fc7f10;
 }
 .leftbar .group .links strong {
 	display: block;
 	font-weight: normal;
 }
 .leftbar .group .links strong:hover,  .leftbar .group .links strong.active{
-	color: #ff5e06
+	color: #fc7f10
 }
 .leftbar .group .links a {
 	margin-left: 20px;
@@ -310,7 +315,7 @@
 	font-weight: 400;
 }
 .worklink a:hover {
-	box-shadow: 0px 0px 7px 0px #dfdfdf;
+	/*box-shadow: 0px 0px 7px 0px #dfdfdf;*/
 }
 /*.worklink a:hover span,*/
 /*.worklink a:hover strong {*/
@@ -422,12 +427,12 @@
 	border-bottom: 1px solid #dfdfdf;
 }
 .card .title>a {
-	color: #ff5e06;
+	color: #fc7f10;
 	font-size: 14px;
 	float: right;
 }
 .card .title>a:hover {
-	color: #ff5e06;
+	color: #fc7f10;
 }
 .card .title .tips {
 	float: right;
@@ -491,7 +496,7 @@
 	font-size: 45px;
 }
 .orderclick:hover{
-	color: #ff5e06;
+	color: #fc7f10;
 }
 .orderclick:hover i{
 	color: #246acb;
@@ -504,7 +509,7 @@
 	color: #246acb;
 } */
 .orderlinks .active {
-	color: #ff5e06;
+	color: #fc7f10;
 }
 .orderlinks .active::after {
 	content: "";
@@ -513,7 +518,7 @@
 	left: 10px;
 	right: 10px;
 	height: 3px;
-	background-color: #ff5e06;
+	background-color: #fc7f10;
 	margin-top: 13px;
 }
 .orderlist{
@@ -554,7 +559,7 @@
 	color: #4d4d4d;
 }
 .orderlist li a:hover {
-	color: #86b9ff;
+	color: #fc7f10;
 }
 .focuscard {
 	background-color: #fff;
@@ -588,7 +593,7 @@
 }
 .card .tabs li:hover,
 .card .tabs li.active {
-	color: #ff5e06;
+	color: #fc7f10;
 }
 .card .tabs li.active:after {
 	content: "";
@@ -598,7 +603,7 @@
 	right: 10px;
 	/*bottom: -10px;*/
 	height: 3px;
-	background-color: #ff5e06;
+	background-color: #fc7f10;
 	margin-top: 13px;
 }
 .pdlist {
@@ -643,7 +648,7 @@
 	display: none;
 }
 .pdlist .item2 .top{
-	color:#ff5e06!important;
+	color:#fc7f10!important;
 }
 .pdlist .item2 span{
 	line-height: 30px;
@@ -679,7 +684,7 @@
 	color: #999999!important;
 }
 .pdlist .item2 a:hover span{
-	color:#ff5e06 ;
+	color:#fc7f10 ;
 }
 .pdlist .item2 .btt{
 	font-size: 14px!important;
@@ -969,7 +974,7 @@
 	background-color: #e65757;
 }
 .actfrom .tit{
-	color: #ff5e06;
+	color: #fc7f10;
 	font-size: 16px;
 	margin-bottom: 20px;
 }
@@ -1302,6 +1307,10 @@
 	margin-right: 2px;
 	cursor: pointer;
 }
+.mmdiv{
+	width: 1200px;
+	margin: auto;
+}
 .usertabs li a, .usertabs li span{
 	color: #232323;
 	display: inline-block;
@@ -1318,6 +1327,9 @@
 	background-color: #fff;
 	border:1px solid #d2d2d2;
 	border-bottom: 0;
+}
+.usertabs li.active a{
+	color: #ff9000;
 }
 .tabbox {
 	border:1px solid #d2d2d2;
@@ -1477,8 +1489,8 @@
 .searchrow button {
 	padding: 0 15px;
   height: 30px;
-  border:1px solid #1557b1;
-	background-color: #1557b1;
+  /*border:1px solid #1557b1;*/
+	/*background-color: #1557b1;*/
 	line-height: 30px;
 	color: #fff;
 	font-size: 14px;
@@ -1549,7 +1561,7 @@
 }
 .control .addtec{
   float: right;
-  width: 98px;
+  width: 80px;
   height: 28px;
   border: 1px solid #d2d2d2;
   background-color: #eeeeee;
@@ -1558,7 +1570,7 @@
   text-align:center;
   color: #212121;
   vertical-align:middle;
-  line-height: 24px;
+  line-height: 28px;
 }
 .control label b {
 	display: inline-block;
@@ -1602,7 +1614,7 @@
 	background-color: #ccc;
 }
 .orderheader {
-	border-top: 2px solid #89b2ec;
+	border-top: 2px solid #fc7f10;
 	height: 40px;
 	line-height: 38px;
 	background-color: #f4f4f4;
@@ -1614,25 +1626,25 @@
 	font-size: 14px;
 }
 .orderheader .goods {
-	width: 463px;
+	width: 456px;
 }
 .orderheader .sceneName {
-	width: 101px;
+	width: 100px;
 }
 .orderheader .price {
 	width: 101px;
 }
 .orderheader .number {
-	width: 91px;
+	width: 89px;
 }
 .orderheader .total {
-	width: 111px;
+	width: 109px;
 }
 .orderheader .state {
-	width: 111px;
+	width: 109px;
 }
 .orderheader .operation {
-	width: 111px;
+	width: 109px;
 }
 .orderitem {
 	margin-top: 10px;
@@ -1744,7 +1756,7 @@
 .itembody .title {
 	overflow: hidden;
 	display: block;
-	color: #1154b0;
+	color: #fc7f10;
 	font-size: 16px;
 	line-height: 28px;
 }
@@ -1807,9 +1819,13 @@
 	margin: 0 auto;
 }
 .itembody .operation a {
-	color: #212121;
+	color: #fc7f10!important;
 	line-height: 24px;
 	font-size: 14px;
+}
+.page-item.current-item .link, .page-item:hover .link {
+	border-color: #fc7f10!important;
+	background-color: #fc7f10!important;
 }
 .itembody .operation a:hover {
 	color: #f60;
@@ -1840,7 +1856,7 @@
 	border-color: #F88A51;
 }
 .itembody .acceptance {
-	background-color: #1557b1;
+	background-color: #999;
 	color: #fff;
 }
 .itembody .acceptance:hover {

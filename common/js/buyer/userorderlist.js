@@ -66,7 +66,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         cancelReasonOptions: [],
         acceptOrderInfo: null,
         isSubmitDisabled: false,
-        pages: 1,
+        pages:0,
         pageCount: 4
       },
       watch: {
@@ -93,6 +93,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
+        'pages': httpVueLoader(this.$pathPrefix+'/style/components/pages.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       mounted: function () {
@@ -133,13 +134,18 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             if (res.code === 'rest.success') {
               vm.orderList = res.result.list
               vm.queryForm.total = res.result.totla
-              vm.pages = res.result.pages;
+              res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
+              vm.pages = res.result
             } else {
               vm.orderList = []
               vm.queryForm.total = 0
-              vm.pages = 0;
+              vm.pages =0;
             }
           })
+        },
+        bindPageChange: function (e) {
+          this.queryForm.pageNum = e;
+          this.getOrderList()
         },
         showSearchrow: function () {
           this.showFull = !this.showFull

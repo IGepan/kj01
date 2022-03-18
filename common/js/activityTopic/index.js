@@ -1,7 +1,7 @@
 // JavaScript Document
 var baseUrlPath = location.origin
 require([baseUrlPath + '/common/js/require.config.js'], function () {
-  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', '/common/js/httpApi/activity.js', 'jqValidate', 'dialog', 'httpUrl', 'fileSaver', 'laydate'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, activityApi, jqValidate, dialog, httpUrl, fileSaver, laydate) {
+  require(['jquery', 'vue', 'dic', 'httpVueLoader', 'userCenter', 'httpUser', '/common/js/httpApi/topic.js', 'jqValidate', 'dialog', 'httpUrl', 'laydate'], function ($, Vue, dic, httpVueLoader, userCenter, httpUser, activityApi, jqValidate, dialog, httpUrl, laydate) {
     window.vueDom = new Vue({
       el: '#index_box',
       mixins: [userCenter],
@@ -10,26 +10,56 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         http: httpUser,
         m_more: false,
         index: -1,
-        options: {
-          active_type: []
-        },
+        options: {},
+        columnHead: [
+          {
+            displayWeight: '200',
+            columnName: '标题'
+          },
+          {
+            displayWeight: '',
+            columnName: '系列活动（场）'
+          },
+          {
+            displayWeight: '200',
+            columnName: '主办单位'
+          },
+          {
+            displayWeight: '',
+            columnName: '状态'
+          },
+          {
+            displayWeight: '',
+            columnName: '审核结果'
+          },
+          {
+            displayWeight: '',
+            columnName: '活动时间'
+          },
+          {
+            displayWeight: '',
+            columnName: '上架'
+          },
+          {
+            displayWeight: '',
+            columnName: '操作'
+          }
+        ],
         queryForm: {
           pageNum: 1,	// 	第几页	是	[string]		查看
           pageSize: 10,	// 	每页显示多少行	是	[string]		查看
           orderBy: '',	// 	排序字段	是	[string]		查看
-          title: '', // 活动名称
-          activeType: '', // 活动类型(字典表：active_type)
-          status: '', // 活动状态(字典表：active_status)
+          keyWord: '', // 关键字
+          status: '', // 活动状态(字典表：topic_status)
+          auditSituation: '', // 审核情况(字典表：audit_situation)
           activeStartTimeFrom: '', // 活动开始时间起
           activeStartTimeTo: '', // 活动开始时间止
           total: 0
         },
         orderList: [],
         isSubmitDisabled: false,
-        pages:'',
-        pageCount: 4,
-        pullStreamUrlDialog:false,
-        pullStreamUrl:'',
+        pages: 1,
+        pageCount: 4
       },
       watch: {
         isOrderSelectedAll: function (newVal, oldval) {
@@ -46,9 +76,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         'header-bar': httpVueLoader('/common/components/header.vue'),
         // 'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
-        'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
         'pages': httpVueLoader(this.$pathPrefix+'/style/components/pages.vue'),
-        'select-type': httpVueLoader(this.$pathPrefix+'/style/components/selectType.vue')
+        'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       mounted: function () {
         laydate.render({
@@ -61,7 +90,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           done: function (value, date, endDate) { //选择日期完毕的回调
             this.vm.queryForm[this.startkey] = value;
           }
-        });
+        })
+
         laydate.render({
           elem: '#time1',
           type: 'datetime',
@@ -72,36 +102,20 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           done: function (value, date, endDate) { //选择日期完毕的回调
             this.vm.queryForm[this.endkey] = value;
           }
-        });
+        })
         var vm = this;
         document.addEventListener('click', function () {
           vm.index = -1;
         });
       },
       methods: {
-        showMore: function (item,i) {
+        showMore: function (i) {
           this.index = i;
-          if(item.statusDisplay=="待审核"){
-            this.$dialog.showToast('活动正在审核中！')
-          }
-          console.log(item,'233')
         },
         initData: function () {
           this.getOrderList()
-          this.getOptions('active_status')
-          this.getTree([
-            {
-              type: '11'
-            }
-          ])
-        },
-        getTree: function (keys) {
-          var vm = this;
-          activityApi.getTree(keys).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.options['active_type'] = res.result[0]
-            }
-          });
+          this.getOptions('topic_status')
+          this.getOptions('audit_situation')
         },
         getOrderList: function () {
           var vm = this
@@ -110,20 +124,15 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               if (res.code === 'rest.success') {
                 res.result.list.forEach(function (item) {
                   item.sponsor && (item.sponsor = item.sponsor.split('ぶんかつ').join('<br>'))
-                  if (Array.isArray(item.activeTypeDisplay) && item.activeTypeDisplay.length) {
-                    item.activeTypeDisplay = item.activeTypeDisplay[0].name
-                  } else {
-                    item.activeTypeDisplay = ''
-                  }
                 })
                 vm.orderList = res.result.list
                 vm.queryForm.total = res.result.total
                 res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
-                vm.pages = res.result || ''
+                vm.pages = res.result;
               } else {
                 vm.orderList = []
                 vm.queryForm.total = 0
-                vm.pages ='';
+                vm.pages = 0;
               }
             })
           } else {
@@ -132,7 +141,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         bindPageChange: function (e) {
           this.queryForm.pageNum = e;
-          this.getOrderList()
+          this.handleGetOrderList()
         },
         endIsGreaterThanThebeginning: function (begin, end) {
           return new Date(begin).getTime() > new Date(end).getTime();
@@ -141,11 +150,16 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var vm = this
           this.$httpCom.dict({ code: key }).then(function (res) {
             if (res.code === 'rest.success') {
+              res.result.unshift({ id: "18322084" + key, value: "", display: "请选择" })
               vm.options[key] = res.result
+              vm.$nextTick(function () {
+                this.queryForm.status = ''
+                this.queryForm.auditSituation = ''
+              })
             }
           })
         },
-        handlePutawayOrSoldout: function (id, upperFlag,version) {
+        handlePutawayOrSoldout: function (id, upperFlag) {
           var vm = this
           var options = {
             title: '温馨提示',
@@ -155,7 +169,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               {
                 label: '确认',
                 fun: function () {
-                  activityApi.shelf({ id: id, upperFlag: upperFlag,version:version}).then(function (res) {
+                  activityApi.shelf({ id: id, upperFlag: upperFlag }).then(function (res) {
                     if (res.code === 'rest.success') {
                       vm.getOrderList()
                     }
@@ -171,7 +185,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
           this.$dialog.confirm2(options)
         },
-        handleDelete: function (id,version) {
+        handleDelete: function (id) {
           var vm = this
           var options = {
             title: '温馨提示',
@@ -181,7 +195,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               {
                 label: '确认',
                 fun: function () {
-                  activityApi.delete({ id: id,version:version }).then(function (res) {
+                  activityApi.delete({ id: id }).then(function (res) {
                     if (res.code === 'rest.success') {
                       vm.getOrderList()
                     }
@@ -196,47 +210,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             ]
           }
           this.$dialog.confirm2(options)
-        },
-        handleGetWxCode: function (id) {
-          activityApi.getWxcode({ id: id }).then(function (res) {
-            saveAs(res, '活动' + id + '.jpg', { type: 'image/jpeg;charset=utf-8' })
-          })
-        },
-        handleGetWxSignCode: function (id) {
-          activityApi.getWxSignCode({ id: id }).then(function (res) {
-            saveAs(res, '签到' + id + '.jpg', { type: 'image/jpeg;charset=utf-8' })
-          })
-        },
-        handleGetWxAppSignCode: function (id) {
-          activityApi.getWxAppSignCode({ id: id }).then(function (res) {
-            saveAs(res, 'App签到' + id + '.jpg', { type: 'image/jpeg;charset=utf-8' })
-          })
-        },
-        handleStartLive: function (id) {
-          let vm=this
-          activityApi.startLive({ id: id }).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.pullStreamUrlDialog=true;
-              vm.pullStreamUrl=res.result
-            }
-          })
-        },
-        handleEndLive: function (id) {
-          let vm=this
-          activityApi.endLive({ id: id }).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.$dialog.showToast(res.desc)
-            }
-          })
-        },
-        handleStreamUrl: function (id) {
-          let vm=this
-          activityApi.getStreamUrl({ id: id }).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.pullStreamUrlDialog=true;
-              vm.pullStreamUrl=res.result
-            }
-          })
         },
         pageClick: function (index) {
           if (index > 0 && index <= this.pages) {
@@ -271,12 +244,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var vm = this
           activityApi.isActiveLock({}).then(function(res){
             if (res.code === 'rest.success') {
-              vm.$utils.openNewTable(id ? 'add.html?code=001.004.001.001&type=edit&id=' + id : 'add.html?code=001.004.001.001', '_self')
+              vm.$utils.openNewTable(id ? 'add.html?code=001.004.001.002&type=edit&id=' + id: 'add.html?code=001.004.001.002', '_self')
             }
           });
-        },
-        closeUrlDialog(){
-          this.pullStreamUrlDialog=false;
         }
       }
     });

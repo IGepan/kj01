@@ -67,6 +67,38 @@
 	height: 230px;
 	background-color: #3d4043;
 }
+.crumbs {
+	overflow: hidden;
+	margin-bottom: 20px;
+	padding: 0 25px;
+	height: 48px;
+	line-height: 46px;
+	border:1px solid #d2d2d2;
+	background-color: #ffffff;
+	font-size: 0;
+	color: #4d4c4c;
+}
+.crumbs a {
+	/* position: relative; */
+	color: #4d4c4c;
+	margin-right: 10px;
+	/* padding-right: 16px; */
+	font-size: 14px;
+}
+.crumbs a:hover {
+	color: #1557b1;
+}
+.crumbs a:after {
+	/* position: absolute; */
+	right: 0;
+	margin-left: 10px;
+	content: ">";
+	font-family: "simsun";
+	vertical-align: middle;
+}
+.crumbs span {
+	font-size: 14px;
+}
 .auth {
 	right: 5px;
 	top: 5px;

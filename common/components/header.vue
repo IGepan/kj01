@@ -40,11 +40,11 @@
         >
           卖家中心
         </a>
-        <a
-            :href="$pathPrefix + '/common/usercenter/user_market_auth_form.html'"
-            :class="{ active: type === 'market' }"
-        >技术转移</a
-        >
+<!--        <a-->
+<!--            :href="$pathPrefix + '/common/usercenter/user_market_auth_form.html'"-->
+<!--            :class="{ active: type === 'market' }"-->
+<!--        >技术转移</a-->
+<!--        >-->
         <a
             v-if="!isConference"
             :href="$pathPrefix + '/common/usercenter/user_message.html'"
