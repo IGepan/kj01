@@ -774,7 +774,7 @@ module.exports = {
 .avater-text {
   display: inline-block;
   font-size: 14px;
-  color: #018fff;
+  color: #f1671b;
   font-weight: bold;
   line-height: 12px;
   text-align: center;

@@ -150,9 +150,10 @@
         <header-bar type='market' :http="httpCom"></header-bar>
 
         <div class="mdiv clear margin_bot_20 margin_top_20">
-            <div class="fl user_market_box_fl bg_fff ">
-                <user-tech-menu :type='0'></user-tech-menu>
-            </div>
+<!--            <div class="fl user_market_box_fl bg_fff ">-->
+<!--                <user-tech-menu :type='0'></user-tech-menu>-->
+<!--            </div>-->
+            <user-tech-menu :http='http' :jquery='jquery' :type='0'></user-tech-menu>
             <div class="width_100  margin_tb_10 clear">
                 <span class="width_115 fl padding_06_0 font_14"><i class="color_red">*</i>标签：</span>
                 <!-- <el-input v-model="edit_key_words" class="width_100_115" placeholder="请输入关键字"

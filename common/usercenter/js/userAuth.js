@@ -33,7 +33,7 @@ require(['/common/js/require.config.js'], function () {
         })
       },
       components: {
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'auth-left': httpVueLoader('/common/components/authLeft.vue'),
         'auth-personal': httpVueLoader('./components/authPersonal.vue'),

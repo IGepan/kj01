@@ -72,9 +72,11 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.initData();
       },
       components: {
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
-        'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
+        // 'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
+        'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
+        'pages': httpVueLoader(this.$pathPrefix+'/style/components/pages.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue')
       },
       mounted: function () {
@@ -125,7 +127,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                 })
                 vm.orderList = res.result.list
                 vm.queryForm.total = res.result.total
-                vm.pages = res.result.pages;
+                res.result.isview = res.result.navigatepageNums.indexOf(res.result.pages) === -1
+                vm.pages = res.result;
               } else {
                 vm.orderList = []
                 vm.queryForm.total = 0
@@ -135,6 +138,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           } else {
             this.$dialog.showToast('活动时间开始时间不能大于结束时间')
           }
+        },
+        bindPageChange: function (e) {
+          this.queryForm.pageNum = e;
+          this.handleGetOrderList()
         },
         endIsGreaterThanThebeginning: function (begin, end) {
           return new Date(begin).getTime() > new Date(end).getTime();

@@ -104,7 +104,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         industry: [],
                         fileIds: [],
                         branches: [],
-                        onLineFlag: '0',
+                        onLineFlag: '1',
                         liveFlag: 0,
                         pushStreamUrl: '',
                         pullStreamUrl: '',//直播地址
@@ -288,9 +288,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             },
             components: {
                 'vue-ueditor-wrap': VueUeditor,
-                'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+                'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
                 'header-bar': httpVueLoader('/common/components/header.vue'),
-                'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
+                // 'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
+                'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
                 'ly-address-select': httpVueLoader('/common/components/addressSelect.vue'),
                 'address-map': httpVueLoader('/common/components/addressMap.vue'),
                 'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),

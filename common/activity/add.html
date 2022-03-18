@@ -23,7 +23,7 @@
         cursor: pointer;
         font-size: 25px;
         font-weight: bold;
-        color: #00B653;
+        color: #ff5e06;
         height: 25px;
         margin-right: 10px;
     }
@@ -180,10 +180,10 @@
     }
 
     .form_table .inputbox-button {
-        border: 1px solid #D9D9D9;
         border-radius: 5px;
         padding: 0 20px;
-        color: #5A5A5A;
+        color: #fff;
+        background:#fe900c!important; ;
 
     }
 
@@ -208,7 +208,7 @@
     }
 
     .inputbox-button i {
-        color: #ADADAD;
+        color: #FFFFff;
     }
 
     .footer {
@@ -337,9 +337,9 @@
 
     .signword {
         position: relative;
-        border: 1px solid #c9c9c9;
-        background-color: #f6f6f6;
-        color: #3c3b3b;
+        border: 1px solid #fe900c;
+        background-color: #FFFFff;
+        color: #fe900c;
         font-size: 14px;
         font-weight: 400;
         line-height: 28px;
@@ -381,10 +381,12 @@
         border: 1px solid #DDDDDD;
         text-align: center;
     }
-
+    .planSelect .mySelect-option div:hover span{
+        color: #fe900c;
+    }
     .planSelect .mySelect-option .selected {
-        border: 1px solid #00B653;
-        background-color: #00B653;
+        border: 1px solid #fe900c;
+        background-color: #fe900c;
         border-radius: 0;
     }
 
@@ -422,8 +424,8 @@
     }
 
     .form_title {
-        color: #02B348;
-        border-color: #02B348;
+        color: #ff5e06;
+        border-color:#ff5e06;
     }
 
     .form_title__more {
@@ -458,10 +460,13 @@
     .selectList {
         display: inline-block;
         vertical-align: top;
-        width: 309px;
-        border: 1px dashed #000;
+        width: 423px;
+        border: 1px dashed #fe900c;
         padding: 10px;
         color: #666666;
+         text-align: center;
+        margin-left: 74px;
+        margin-top: 10px;
     }
 
     .selectList_body {
@@ -486,7 +491,7 @@
         font-style: normal;
         font-size: 14px;
         color: rgba(0, 0, 0, 0.647058823529412);
-        line-height: 22px;
+        line-height: 26px;
         padding: 0px 8px;
         display: inline-block;
         margin-right: 10px;
@@ -517,7 +522,10 @@
 
     .cooperationOff {
         text-align: center;
-        padding: 10px 10px 0;
+        /* padding: 10px 10px 0; */
+        background: #fe900c;
+        line-height: 40px;
+        margin-top: 10px;
     }
 
     .cooperationOff .icon {
@@ -527,7 +535,7 @@
     .cooperationOff .icon,
     .cooperationOff span {
         cursor: pointer;
-        color: #00B653;
+        color: #fff;
     }
 
     .form_table .ipt input {
@@ -767,6 +775,24 @@
         width: 16px;
         height: 16px;
         margin-right: 4px;}
+    .mmdiv{
+        width: 1200px;
+        margin: auto;
+    }
+    .el-radio__label{
+        vertical-align: middle;
+    }
+    .el-radio__input.is-checked + .el-radio__label{
+        color: #ff5e06!important;
+
+    }
+    .el-radio__input.is-checked .el-radio__inner{
+        border-color: #ff5e06!important;
+        background: #ff5e06!important;
+    }
+    .el-radio__input:hover .el-radio__inner{
+        border-color: #ff5e06!important;
+    }
 </style>
 <div class="box" id='index_box'>
     <ly-toper></ly-toper>
@@ -782,7 +808,7 @@
             <div class="centerbox">
                 <div class="tabbox">
                     <!--所有订单-->
-                    <div class="userform active valiform">
+                    <div class="userform active valiform" :style="{'pointer-events':(isSubmitDisabled || type === 'view')?'none':''}">
                         <div class="form_title"> 活动基本信息</div>
                         <table border="0" cellpadding="5" cellspacing="5" class="form_table">
                             <tr v-cloak v-if="formData.status">
@@ -817,6 +843,33 @@
                                     <select-type v-model="formData.activeType" :select-data="options.user_code"
                                                  class="required"
                                                  data-valid="custom:bindActiveTypeValid"></select-type>
+                                </td>
+                                <td class="form_msg"></td>
+                            </tr>
+                            <tr class="form_item validate">
+                                <th>活动类型：</th>
+                                <td>
+                                    <!--
+                                            1 线上
+                                            2 线上+线下
+                                            0 线下
+                                            -->
+                                    <template>
+                                        <el-radio-group v-model="formData.onLineFlag">
+                                            <el-radio :label="'1'" @click="handleSetOnLine">线上活动</el-radio>
+                                            <el-radio :label="'0'" @click="handleSetLine">线下活动</el-radio>
+                                            <el-radio :label="'2'" @click="handleActivity">线上+线下活动</el-radio>
+                                        </el-radio-group>
+                                    </template>
+<!--                                    <span v-show="formData.onLineFlag !='2'"-->
+<!--                                          style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"-->
+<!--                                          @click="handleActivity">&nbsp;&nbsp;举办线上+线下活动</span>-->
+<!--                                    <a @click="handleSetOnLine"-->
+<!--                                       style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"-->
+<!--                                       v-text="formData.onLineFlag === '0'||formData.onLineFlag === '2' ? '举办线上活动' : '举办线下活动'"></a>-->
+<!--                                    <a v-show="formData.onLineFlag === '2'"-->
+<!--                                       style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"-->
+<!--                                       @click="handleSetLine">举办线下活动&nbsp;&nbsp;</a>-->
                                 </td>
                                 <td class="form_msg"></td>
                             </tr>
@@ -937,7 +990,7 @@
                                         <div class="cooperationBox" v-show="isOpenCooperation">
                                             <div class="cooperationBox2">
                                                 <div class="cooperation_list">
-                                                    <div style="color:#AAAAAA;">未设置，可从右侧选择</div>
+                                                    <div style="color:#AAAAAA;">未设置，可从常用项选择</div>
                                                     <template v-for="(opt, index) in formData.cooperation">
                                                         <div :key="index" class="cooperation">
                                                             <label v-text="opt.cooperationTypeDisplay"></label>
@@ -971,32 +1024,18 @@
                                     <div class="ipt name" :class='{required: formData.signFlag}'
                                          data-valid="custom:addressValid">
                                         <ly-address-select class="addressBox" id="addressBox" ref='addressRef' :http='http'
-                                                           :disableds="isOnLineFlag">
+                                                           :disableds="formData.onLineFlag == '1'">
                                         </ly-address-select>
                                         <div style="display: inline-block;vertical-align: middle; margin-top: 10px;">
                                             <input v-model="formData.location"
                                                    :placeholder="formData.onLineFlag === '0'||formData.onLineFlag === '2' ? '请填写详细地址' : '这是线上活动，不需要填写地址'"
                                                    maxlength="100"
                                                    type="text"
-                                                   style="width: 300px;vertical-align: middle; font-size: 14px;margin-bottom: 10px">
-                                            <br>
-                                           <!--
-                                            1 线上
-                                            2 线上+线下
-                                            0 线下
-                                            -->
-                                            <span v-show="formData.onLineFlag !='2'"
-                                                  style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
-                                                  @click="handleActivity">&nbsp;&nbsp;举办线上+线下活动</span>
-                                            <a @click="handleSetOnLine"
-                                               style="height: 40px; vertical-align: middle;font-size: 14px;padding: 0 5px;color: blue;cursor: pointer;"
-                                               v-text="formData.onLineFlag === '0'||formData.onLineFlag === '2' ? '举办线上活动' : '举办线下活动'"></a>
-                                            <a v-show="formData.onLineFlag === '2'"
-                                                  style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
-                                                  @click="handleSetLine">举办线下活动&nbsp;&nbsp;</a>
+                                                   style="width: 300px;vertical-align: middle; font-size: 14px;margin-bottom: 10px" :disabled="formData.onLineFlag == '1'">
                                             <span v-show="formData.onLineFlag === '0'||formData.onLineFlag === '2'"
-                                                  style="height: 40px; vertical-align: middle;font-size: 14px;color: blue;cursor: pointer;"
-                                                  @click="handleOpenMap">地图选择</span>
+                                                  style="height: 40px;font-size: 14px;color: #fff;cursor: pointer;background: #fe900c; line-height: 40px;display: inline-block; padding: 0px 10px;border-radius: 5px;margin-left: 10px;"
+                                                  @click="handleOpenMap"><i class="iconfont icon-dingwei"></i>地图选择</span>
+                                            <br>
                                         </div>
                                     </div>
                                     <!--                    <div class="ipt name" style="margin-top: 10px;" v-show="formData.onLineFlag === '1'">-->

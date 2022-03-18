@@ -133,9 +133,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       },
       components: {
         'vue-ueditor-wrap': VueUeditor,
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
-        'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
+        // 'buyer-left': httpVueLoader('/common/components/conferenceLeft.vue'),
+        'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
         'ly-select-level': httpVueLoader('/common/components/selectLevel.vue'),
         'img-uploader': httpVueLoader('/common/components/imgUploader.vue'),

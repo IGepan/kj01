@@ -10,8 +10,8 @@ require(['/common/js/require.config.js'], function () {
             Vue.component('ly-address-select', httpVueLoader('/common/components/addressSelect.vue'));
             Vue.component('ly-upload', httpVueLoader('/common/components/upload.vue'));
             Vue.component('vue-ueditor-wrap', VueUeditorWrap);
-            Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
-
+            // Vue.component('user-tech-menu', httpVueLoader('/common/components/userTechMenu.vue'));
+            Vue.component('user-tech-menu', httpVueLoader('/common/components/buyerLeft.vue'));
 
             window.vueDom = new Vue({
                 el: '#index_box',
@@ -102,11 +102,12 @@ require(['/common/js/require.config.js'], function () {
                 },
                 components: {
                     'vue-ueditor-wrap': VueUeditorWrap,
-                    'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
+                    'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/newtoper.vue'),
                     'header-bar': httpVueLoader('/common/components/header.vue'),
                     'ly-page': httpVueLoader('/common/components/pages.vue'),
                     'ly-minifooter': httpVueLoader('/style/components/other_footer.vue'),
-                    'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
+                    'user-tech-menu': httpVueLoader('/common/components/buyerLeft.vue')
+                    // 'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
                 methods: {
 

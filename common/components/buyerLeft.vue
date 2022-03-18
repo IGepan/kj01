@@ -188,7 +188,14 @@ module.exports = {
     }).then(function (res) {
       vm.meanTreeData2 = res.result.children;
     })
+    var ID = this.$utils.getReqStr('classId');
+    if(ID){
+      this.meanTreeData3[6].name='培训报名'
+    }else {
+      this.meanTreeData3[6].name='报名信息管理'
+    }
     this.initUserInfo();
+    this.checkSite();
   },
   methods: {
     initUserInfo: function () {
@@ -196,6 +203,18 @@ module.exports = {
       this.http.buyer().then(function (res) {
         vm.userSeller = res.result;
       })
+    },
+    //判断分站点
+    checkSite: function () {
+      var url = window.location.href
+      var vm = this;
+      if (url.indexOf('/site/') > 0) {
+        vm.meanTreeData3.forEach((item) =>{
+          if(item.index!==7){
+            item.url=this.$pathPrefix+item.url
+          }
+        })
+      }
     },
     techClick:function (menu){
       console.log(menu,'url')
@@ -226,4 +245,35 @@ module.exports = {
 </script>
 
 <style>
+.leftbar .group .links strong.active{
+  background-color:#fc7f10;
+  color: #fff!important;
+  position: relative;
+  width: 205px;
+  margin-left: -30px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 0px 5px #dfdfdf;
+}
+.leftbar .group .links strong.active::before{
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 15px solid  #ff5e06;
+  border-left: 12px solid transparent;
+  position: absolute;
+   top: 40px;
+  left: 0px;
+}
+.leftbar .group .links strong.active::after{
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 15px solid  #ff5e06;
+  border-right: 12px solid transparent;
+  position: absolute;
+  top: 40px;
+  right: 0px;
+}
 </style>
