@@ -24,9 +24,9 @@
 .search button{
 	background-color:#fc7f10!important;
 }
-.leftbox{
-	width: 180px!important;
-}
+/*.leftbox{*/
+/*	width: 180px!important;*/
+/*}*/
 .leftbar{
 	width: 100%!important;
 }
@@ -72,7 +72,7 @@
 	min-height: 100px;
 }
 .expert{
-	width:560px;
+	width:590px;
 	height: 220px;
 	background: #FFFFff;
 
@@ -98,15 +98,23 @@
 	font-weight: bold;
 	color: #3a3a3a!important;
 }
-.expert .tit.tt{
-	line-height: 40px!important;
+.expert .tt{
+	color: #999999!important;
+	font-size: 13px!important;
+	margin-top: 5px;
+	text-align: left;
 }
 .expert .tt-btn{
 	background: #fc7f10;
 	padding: 0px 10px;
-	color: #FFFFff;
 	line-height: 30px;
 	margin-top: 10px;
+}
+.el-button{
+	border: 0!important;
+}
+.expert .tt-btn span{
+	color: #FFFFff!important;
 }
 .user_info {
 
@@ -268,7 +276,7 @@
 	transform: rotateX(180deg)
 }
 .centerbox {
-	width: 1000px;
+	width: 1030px;
 	float: right;
 	margin-bottom: 40px;
 }
@@ -654,6 +662,9 @@
 	line-height: 30px;
 	color:#999999 ;
 	display: block;
+}
+.pdlist .item2 .pp{
+	color: #3a3a3a;
 }
 .pdlist .item2 a{
  width:33%;
@@ -1626,25 +1637,25 @@
 	font-size: 14px;
 }
 .orderheader .goods {
-	width: 456px;
+	width: 463px;
 }
 .orderheader .sceneName {
-	width: 100px;
+	width: 101px;
 }
 .orderheader .price {
 	width: 101px;
 }
 .orderheader .number {
-	width: 89px;
+	width: 91px;
 }
 .orderheader .total {
-	width: 109px;
+	width: 111px;
 }
 .orderheader .state {
-	width: 109px;
+	width: 111px;
 }
 .orderheader .operation {
-	width: 109px;
+	width: 111px;
 }
 .orderitem {
 	margin-top: 10px;

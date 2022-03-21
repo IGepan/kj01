@@ -249,7 +249,7 @@ module.exports = {
   background-color:#fc7f10;
   color: #fff!important;
   position: relative;
-  width: 205px;
+  width: 175px;
   margin-left: -30px;
   text-align: center;
   font-size: 18px;

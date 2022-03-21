@@ -66,6 +66,7 @@ require(['/common/js/require.config.js'], function () {
           },
           "IndustryTypeChildren": [],
           "industrySecondShow": false,
+          search:''
         },
         components: {
           //插入头信息
@@ -130,7 +131,10 @@ require(['/common/js/require.config.js'], function () {
             this.sortActive = index;
             this.queryModel.pageParam.sort = id;
           },
-
+          findData(val){
+            this.queryModel.payload.title= val;
+            this.queryList();
+          },
           queryList() {
             let _this = this;
             indexApi.tech_require_list(this.queryModel).then(function (res) {
