@@ -82,20 +82,20 @@ module.exports = {
       this.itemClick(this.oneLevelList[0],0)
     },
     value: function (val) {
-        this.initValue(val)
-        console.log(val,'---')
+      console.log(val)
+      this.initValue(val)
     },
     selectList: function (val) {
       this.$emit('input', val);
-      console.log(val,'+++')
+      console.log(val,'in')
     }
   },
   created: function () {
     this.initValue(this.value.length ? this.value : [])
   },
-  // mounted: function () {
-  //   document.getElementsByTagName('body')[0].addEventListener('click', this.bodyClick, false);
-  // },
+  mounted: function () {
+    // document.getElementsByTagName('body')[0].addEventListener('click', this.bodyClick, false);
+  },
   // beforeDestroy: function () {
   //   document.getElementsByTagName('body')[0].removeEventListener('click', this.bodyClick, false);
   // },
@@ -127,7 +127,6 @@ module.exports = {
       } else {
         this.selectList = []
       }
-      console.log('chushihua--->', this.selectList)
     },
     bodyClick: function (e) {
       this.isShowDialog = false;
@@ -141,6 +140,7 @@ module.exports = {
       console.log(item,'000')
       this.activeIndex = index;
       this.itemList=item.tagList
+      this.$emit('update', item);
     },
     // 选择值
     valueClick: function (item, type) {

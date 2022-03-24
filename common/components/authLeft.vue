@@ -85,4 +85,35 @@ module.exports = {
 </script>
 
 <style>
+.leftbar .group .links strong.active{
+  background-color:#fc7f10;
+  color: #fff!important;
+  position: relative;
+  width: 175px;
+  margin-left: -30px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 0px 5px #dfdfdf;
+}
+.leftbar .group .links strong.active::before{
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 15px solid  #ff5e06;
+  border-left: 12px solid transparent;
+  position: absolute;
+  top: 40px;
+  left: 0px;
+}
+.leftbar .group .links strong.active::after{
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 15px solid  #ff5e06;
+  border-right: 12px solid transparent;
+  position: absolute;
+  top: 40px;
+  right: 0px;
+}
 </style>

@@ -17,11 +17,12 @@
 <!--        </div>-->
 <!--      </div>-->
       <!--<seller-tree :http='http' class="leftbar"></seller-tree>-->
-      <div class="group">
-        <div class="name">技术转移</div>
+      <div class="group"
+           v-for="(menu,index) in meanTreeData3">
+        <div class="name">{{menu.name}}</div>
         <div
             class="links"
-            v-for="menuChild in meanTreeData3"
+            v-for="menuChild in menu.children"
             :key="menuChild.name">
           <strong
               :class="{active:isTech(menuChild)}"
@@ -31,22 +32,24 @@
       </div>
       <div
         class="group"
-        v-for="menu in meanTreeData"
-        :key="menu.name"
+        v-for="(menu,index) in meanTreeData"
+        :key="index"
       >
-        <div class="name">{{menu.name}}</div>
+        <div class="name">{{menu.name}}
+          <i class="iconfont icon-xiala"
+             @click="dropDown(menu,index)"
+          ></i></div>
         <div
           class="links"
+          :id="'item'+menuChild.parentId"
+          :style="{'display':isDown?'none':'' }"
           v-for="menuChild in menu.children"
           :key="menuChild.name"
         >
           <strong
             :class="{active: isOpen(menuChild.code)}"
             @click="menuClick(menuChild)"
-          >{{menuChild.name}}<i
-              class="iconfont icon-xiala"
-              v-if="menuChild.children"
-            ></i></strong>
+          >{{menuChild.name}}</strong>
           <span>
             <a
               :href="$pathPrefix+item.uri"
@@ -94,10 +97,18 @@ module.exports = {
   data: function () {
     return {
       userSeller: {},
+      defaultProps: {
+        children: 'children',
+        label: 'name'
+      },
+      isDown:true,
       meanTreeData: [],
       meanTreeData2: [],
+      showDetail:-1,
       meanTreeData3: [
         {
+          name: "技术转移",
+        children:[{
           url: "/common/usercenter/user_market_auth_form.html",
           active: false,
           icon: "el-icon-s-check",
@@ -168,13 +179,18 @@ module.exports = {
           icon: "el-icon-s-claim",
           name: "收藏",
           index: 8,
-        },
+        },]
+        }
       ],
       mActivecode: ''
     }
   },
   created: function () {
     this.mActivecode = this.$utils.getReqStr('code')
+    if(this.mActivecode!==''){
+      console.log('ooo')
+      this.dropDown();
+    }
   },
   mounted: function () {
     var vm = this;
@@ -203,6 +219,25 @@ module.exports = {
       this.http.buyer().then(function (res) {
         vm.userSeller = res.result;
       })
+    },
+    dropDown:function(v,index){
+      if(index){
+        v.children.forEach(item=>{
+          if(item.parentId==v.id){
+            this.isDown=false
+          }
+        })
+      }
+    },
+    handleNodeClick:function (val){
+      console.log(val,'val')
+      window.location.href = this.$pathPrefix+val.uri + '?code=' + val.code;
+    },
+    handleClick:function (val){
+      if(!val.children){
+        window.location.href = this.$pathPrefix+val.url
+      }
+
     },
     //判断分站点
     checkSite: function () {
@@ -245,11 +280,25 @@ module.exports = {
 </script>
 
 <style>
+/*.leftbox{*/
+/*  min-height: calc(100vh - 192px)!important;*/
+/*  background-color: #FFFFff;*/
+/*}*/
+.leftbar .group .name i{
+  font-size: 12px;
+  color:#fc7f10;
+  transition: transform 0.3s;
+  -webkit-transition: transform 0.3s;
+
+}
+.open{
+  transform : rotate(-180deg)
+}
 .leftbar .group .links strong.active{
   background-color:#fc7f10;
   color: #fff!important;
   position: relative;
-  width: 205px;
+  width: 175px;
   margin-left: -30px;
   text-align: center;
   font-size: 18px;

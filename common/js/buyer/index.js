@@ -50,9 +50,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         userInfo:{},
         aIndex:0,
         expertList:[
-            {title:'易智网易智商城金牌顾问  ·  刘成渠',text:'知识产权、知识产权、知识产权、知识产权',tit:1},
-          {title:'易智网项目申报金牌顾问  ·  仵改田',text:'项目申报、知识产权',tit:2},
-          {title:'易智网技术转移金牌顾问  ·  黎泽洪',text:'技术转移、成果转化、知识产权、知识产权',tit:3},
+            {title:'易智网技术开发高级项目经理 · 左良',text:'擅长领域：项目沟通与管理、需求分析与架构设计、系统集成与开发、平台运行与维护',tit:1, url:'/common/images/man.png',phone:'13594015226'},
+          {title:'易智网资深科技政策咨询专家 · 仵改田',text:'擅长领域：高企申报、专精特新、研发加计扣除、科研项目申报、技术合同登记、科技成果转化等相关科技政策解读',tit:2,url:'/common/images/woman.png',phone:'18983891180'},
+          {title:'易智网易智商城金牌顾问 · 刘成渠',text:'擅长领域：知识产权、工商财税、补贴申报、科技金融、招商入驻、企业需求诊断、定制化服务',tit:3,url:'/common/images/man.png',phone:'18883581918'},
             ]
       },
       filters: {
@@ -116,7 +116,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.getUserInfo();
         this.checkSite();
         this.initUserInfo();
-        this.select(1);
+        this.select(3);
         this.getActive();
 
       },
@@ -165,8 +165,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             "payload": {
               "certificationFlag": 2,
             }
-          }
-          httpTeach.tech_achi_list(form).then(function (res) {
+          };
+
+          httpTeach.tech_achi_list2().then(function (res) {
             if (res.code === true) {
               _this.techAchiList = res.data.records
             }
@@ -178,7 +179,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           httpOrderApi.buyerSelectByPage(this.queryForm).then(function (res) {
             if (res.code === 'rest.success') {
               vm.orderList = res.result.list
-              vm.queryForm.total = res.result.totla
+              vm.queryForm.total = res.result.total
             }
           })
         },

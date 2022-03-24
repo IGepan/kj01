@@ -1130,10 +1130,10 @@ a.market_title.active {
 .el-pagination.is-background .el-pager li:not(.disabled):hover {
     color: #fc7f10;
 }
-.mmdiv{
-    width: 1200px;
-    margin: auto;
-}
+/*.mmdiv{*/
+/*    width: 1200px;*/
+/*    margin: auto;*/
+/*}*/
 .search-label {
     width: 86px;
 }

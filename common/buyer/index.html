@@ -32,6 +32,9 @@
     width: 1200px;
     margin: auto;
   }
+  .el-popover__reference-wrapper{
+    text-align: left!important;
+  }
 </style>
 <body>
   <div class="box" id='index_box' v-cloak>
@@ -43,66 +46,66 @@
       <div class="mdiv">
           <buyer-left :http='http' :jquery='jquery'></buyer-left>
         <div class="centerbox">
-          <div class="worklink clear" v-if="!isNotSite">
-            <a class="violet" v-if="!isNotSite" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">
-              <i class="iconfont icon-icon_xuqiu"></i>
-              <span>我的需求</span>
-              <strong>发需求</strong>
-            </a>
-<!--            <a class="violet" v-else :href="siteUrl+'/common/usercenter/user_market_tech_require_form.html'">-->
+<!--          <div class="worklink clear" v-if="isSite">-->
+<!--            <a class="violet" v-if="!isNotSite" :href="$pathPrefix+'/common/buyer/demand/add.html?code=001.001.002.002'">-->
 <!--              <i class="iconfont icon-icon_xuqiu"></i>-->
 <!--              <span>我的需求</span>-->
 <!--              <strong>发需求</strong>-->
 <!--            </a>-->
-<!--            <a class="red" v-if="isConference" @click.stop="handleShowTips">-->
+<!--&lt;!&ndash;            <a class="violet" v-else :href="siteUrl+'/common/usercenter/user_market_tech_require_form.html'">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="iconfont icon-icon_xuqiu"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的需求</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>发需求</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="red" v-if="isConference" @click.stop="handleShowTips">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="iconfont icon-tool"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的技术</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>找技术</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--            <a class="red" v-if="!isNotSite"-->
+<!--              :href="$pathPrefix+'/technologyMarket/index.html'">-->
 <!--              <i class="iconfont icon-tool"></i>-->
 <!--              <span>我的技术</span>-->
 <!--              <strong>找技术</strong>-->
 <!--            </a>-->
-            <a class="red" v-if="!isNotSite"
-              :href="$pathPrefix+'/technologyMarket/index.html'">
-              <i class="iconfont icon-tool"></i>
-              <span>我的技术</span>
-              <strong>找技术</strong>
-            </a>
-<!--            <a class="red" v-else-->
-<!--               :href="siteUrl+'/scienceResult.html'">-->
-<!--              <i class="iconfont icon-tool"></i>-->
-<!--              <span>我的技术</span>-->
-<!--              <strong>找技术</strong>-->
-<!--            </a>-->
+<!--&lt;!&ndash;            <a class="red" v-else&ndash;&gt;-->
+<!--&lt;!&ndash;               :href="siteUrl+'/scienceResult.html'">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="iconfont icon-tool"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的技术</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>找技术</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
 
-<!--            <a class="blue" v-if="isConference" @click.stop="handleShowTips">-->
-<!--              <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>-->
-<!--              <span>我的需求</span>-->
-<!--              <strong>找服务</strong>-->
-<!--            </a>-->
-            <a class="blue"  v-if="!isNotSite" :href="$pathPrefix+'/mall/index.html'">
-              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>
-              <span>我的需求</span>
-              <strong>找服务</strong>
-            </a>
-<!--            <a class="blue"  v-else  :href="$pathPrefix+'/scienceService.html'">-->
+<!--&lt;!&ndash;            <a class="blue" v-if="isConference" @click.stop="handleShowTips">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的需求</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>找服务</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--            <a class="blue"  v-if="!isNotSite" :href="$pathPrefix+'/mall/index.html'">-->
 <!--              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>-->
 <!--              <span>我的需求</span>-->
 <!--              <strong>找服务</strong>-->
 <!--            </a>-->
-<!--            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">-->
-<!--              <i class="iconfont icon-chanpin"></i>-->
-<!--              <span>我的产品</span>-->
-<!--              <strong>找产品</strong>-->
+<!--&lt;!&ndash;            <a class="blue"  v-else  :href="$pathPrefix+'/scienceService.html'">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class=" iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwuke"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的需求</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>找服务</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="aqua" v-if="isConference" @click.stop="handleShowTips">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="iconfont icon-chanpin"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的产品</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>找产品</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a v-else class="aqua"&ndash;&gt;-->
+<!--&lt;!&ndash;              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=product'">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="iconfont icon-chanpin"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>我的产品</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <strong>找产品</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--            <a class="steelblue" v-if="!isNotSite" @click.stop="handleShowTips">-->
+<!--              <i class="iconfont icon-ziyuanjk"></i>-->
+<!--              <span>我的资源</span> <strong>找资源</strong>-->
 <!--            </a>-->
-<!--            <a v-else class="aqua"-->
-<!--              :href="isNewMain ? '/searchList.html?type=source&word=&page=1' : '/searchList.html?type=product'">-->
-<!--              <i class="iconfont icon-chanpin"></i>-->
-<!--              <span>我的产品</span>-->
-<!--              <strong>找产品</strong>-->
-<!--            </a>-->
-            <a class="steelblue" v-if="!isNotSite" @click.stop="handleShowTips">
-              <i class="iconfont icon-ziyuanjk"></i>
-              <span>我的资源</span> <strong>找资源</strong>
-            </a>
-          </div>
+<!--          </div>-->
           <div class="worklink clear">
             <div class="user_info fl">
               <div class="head-top" :style="{'height':(!isSite)? '' : '220px'}">
@@ -129,19 +132,24 @@
               <div class="card focuscard">
                 <div class="title">专家咨询
                   <ul class="tabs fr">
-                    <li :class="{active: aIndex ===1}" @click="select(1)">知识产权</li>
-                    <li :class="{active: aIndex ===2}" @click="select(2)">项目申报</li>
-                    <li :class="{active: aIndex ===3}" @click="select(3)">技术转移</li>
+                    <li :class="{active: aIndex ===3}" @click="select(3)">商城服务</li>
+                    <li :class="{active: aIndex ===2}" @click="select(2)">申报指导</li>
+                    <li :class="{active: aIndex ===1}" @click="select(1)">技术开发</li>
                   </ul>
                 </div>
                 <div class="clear">
                   <div class="item active">
                     <a target="_blank" v-for="(item,index) in expertList" v-if="aIndex==item.tit">
-                    <img src="/common/images/toux.png"/>
+                    <img :src="item.url"/>
                       <div style="width: 80%;padding-left: 20px">
                         <span class="tit" v-text="item.title" :title="item.title"></span>
-                        <span class="tit tt" v-text="item.text" :title="item.text"></span>
-                        <button class="tt-btn">免费咨询</button>
+                        <span class="tt" v-text="item.text" :title="item.text"></span>
+                        <el-popover
+                                placement="right"
+                                trigger="hover">
+                          <span>联系电话：{{item.phone}}</span>
+                          <el-button slot="reference" class="tt-btn">免费咨询</el-button>
+                        </el-popover>
                       </div>
                     </a>
                   </div>
@@ -161,7 +169,7 @@
                 </div>
               </div>
               <ul class="orderlist">
-                <li v-for="order in orderList">
+                <li v-if="orderList.length>0" v-for="order in orderList" >
                   <div class="img"
                     :style="'background-image: url('+ (order.details[0].goodsImg && order.details[0].goodsImg.url || 'http://dummyimage.com/58x58') +')'">
                   </div>
@@ -175,6 +183,12 @@
                     <button v-if="queryForm.orderStatusFilter === '05'" class="evaluate fr"
                             @click="evaluate(order.id)">评价</button>
                   </div>
+                </li>
+                <li v-if="orderList.length<=0" style="height: 198px;">
+                 <div style="height: 100%;display: flex;align-items: center;justify-content: center">
+                   <img src="/common/images/order.png"/>
+                   <p style="color: #9a9a9a;margin-left: 20px">很抱歉，暂无订单！</p>
+                 </div>
                 </li>
               </ul>
             </div>
@@ -220,7 +234,7 @@
                 <div class="item2 active" v-if="selectedAmount == '001'">
                   <a target="_blank" v-for="(item,index) in techAchiList" :href="arl +'/technologyMarket/tech_achievements_details.html?id='+item.id" style="height: 280px;">
                     <img :src="getImgPath(item.projectImgPath)"/>
-                    <span class="line" v-text="item.title" :title="item.title"></span>
+                    <span class="line pp" v-text="item.title" :title="item.title"></span>
                     <div class="ser-text">
                       <p class="btt line">所属领域：{{item.projectIndustryType.map(item=>item.name).join(',')}}</p>
                     </div>
@@ -228,7 +242,7 @@
                 </div>
               </div>
             </div>
-            <div class="card focuscard mt10" v-if="!isSite">
+            <div class="card focuscard mt10">
               <div class="title">推荐活动
                 <a :href="$pathPrefix + '/common/activity/list.html?code=001.004.001.001'">发布活动+</a>
               </div>
@@ -249,7 +263,7 @@
                 </div>
               </div>
             </div>
-            <div class="rightbox" v-if="!isSite">
+            <div class="rightbox">
               <div class="card partner mt10">
                 <div class="title">人脉圈<span v-text="'有'+ shopList.length+'位好友有新的动态'"></span></div>
                 <div class="parlist">

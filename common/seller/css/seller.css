@@ -7,7 +7,10 @@
 .header {
 	height: 114px;
 }
-
+.mmdiv{
+	width: 1200px;
+	margin: auto;
+}
 .searchInputLine {
 	margin-top: 25px;
 }
@@ -28,7 +31,8 @@
 }
 .userbanner {
 	height: 80px;
-	background-color: #70adf1;
+	background-color: #FFFFff;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
 }
 .logo {
 	display: block;
@@ -50,11 +54,18 @@
 	line-height: 38px;
 }
 .umenu a:hover {
-	color: #1052b3;
+	color: #fc7f10;
 }
 .umenu a.active {
-	color: #1052b3;
-	border-bottom: 3px solid #1052b3;
+	color: #fc7f10;
+	font-weight: 700;
+	border-bottom: 3px solid #fc7f10;
+}
+.searchInputLine input{
+	border: 2px solid #fc7f10!important;
+}
+.search button{
+	background-color:#fc7f10!important;
 }
 .contant {
 	margin-top: 20px;

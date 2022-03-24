@@ -90,6 +90,7 @@ require(['/common/js/require.config.js'], function () {
           },
           "IndustryTypeChildren": [],
           "industrySecondShow": false,
+          search:''
         },
         components: {
           //插入头信息
@@ -157,7 +158,10 @@ require(['/common/js/require.config.js'], function () {
             this.sortActive = index;
             this.queryModel.pageParam.sort = id;
           },
-
+          findData(val){
+            this.queryModel.payload.title= val;
+            this.queryList();
+          },
           // 点击第二级
           clickConditionChild(key, id, dictValue, indexs) {
             var _this = this;

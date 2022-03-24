@@ -134,7 +134,7 @@ require(['/common/js/require.config.js'], function () {
             startDate: '',
             endDate: '',
             country: '',
-            province: '500000',
+            province: '',
             city: '',
             orderBy: 'publishDate-desc',
             district: '',
@@ -147,6 +147,7 @@ require(['/common/js/require.config.js'], function () {
           dialogFormVisible:false,
           focusPolicy: '', //关注的政策
           focusList: [],
+          iSubmit:false,
           formData:{}
         },
         watch: {
@@ -209,13 +210,12 @@ require(['/common/js/require.config.js'], function () {
             orderBy: 'visitNum-desc'
           }, 'recommendList');
           this.getSearchList()
-          this.addSelectOpts({
-            code: 'city',
-            label: '适用地区',
-            value: '重庆',
-            display: '重庆'
-          })
-
+          // this.addSelectOpts({
+          //   code: 'city',
+          //   label: '适用地区',
+          //   value: '国家',
+          //   display: '国家'
+          // })
           this.addSelectOpts({
             code: 'order_by',
             label: '排序',
@@ -234,6 +234,13 @@ require(['/common/js/require.config.js'], function () {
             return labels.filter(function (i) {
               return i
             }).join(',')
+          },
+          event:function (val){
+            if(val.tagList.length==0){
+              this.iSubmit=true
+            }else {
+              this.iSubmit=false
+            }
           },
           // 获取政策列表
           getFocus: function () {
@@ -265,7 +272,7 @@ require(['/common/js/require.config.js'], function () {
                   label: '适用地区',
                   operationType: 'city',
                   valueKey: '',
-                  dictIInfos: [{ id: "-134fff", value: '-1', display: '国家', selected: false }]
+                  dictIInfos: [{ id: "-134fff", value: '-1', display: '国家', selected: true }]
                 }
                 var timeOpts = {
                   code: 'time',

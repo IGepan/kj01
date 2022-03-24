@@ -41,7 +41,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         this.initData();
       },
       components: {
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
         'header-bar': httpVueLoader('/common/components/header.vue'),
         'buyer-left': httpVueLoader('/common/components/buyerLeft.vue'),
         'pages': httpVueLoader(this.$pathPrefix+'/style/components/pages.vue'),

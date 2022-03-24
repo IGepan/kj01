@@ -613,8 +613,8 @@ require(['/common/js/require.config.js'], function () {
                     activeParams: {
                         pageNum: 1,
                         pageSize: 10,
-                        // sortType: "02",
                         activeType: '218340665870780082',
+                        // activeTypeDisplay:"政策直播间"
                     },
                     activeP: {
                         pageNum: 1,
