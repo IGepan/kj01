@@ -284,7 +284,7 @@
             </div>
                 <div class="actbg">
                 <div class="activity mmdiv">
-                    <a :href="item.tagName ? '/atdetail.html?id=' + item.id : '/adetail.html?id=' + item.id"
+                    <a target="_blank" :href="item.tagName ? '/atdetail.html?id=' + item.id : '/adetail.html?id=' + item.id" @click="view(item.id)"
                        class="activity-list" v-for="(item,index) in activeLists" :key="index">
                         <div class="activity-img">
                             <img :src="item.posterUrl" alt="">
@@ -305,7 +305,7 @@
                                 <div class="count-type" v-if="item.tagName">
                                     {{item.tagName}}
                                 </div>
-                                <div class="count-num"><span class="people">{{item.joinNumTotal}}人浏览</span>
+                                <div class="count-num"><span class="people">{{item.pageViewsTs}}人浏览</span>
 <!--                                    <span class="avatar" v-for="items in item.headers"><img :src="items" alt=""></span>-->
                                 </div>
                             </div>

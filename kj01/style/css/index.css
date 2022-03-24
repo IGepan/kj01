@@ -649,6 +649,7 @@
     color: #ff5e06;
     font-weight: normal;
     font-size: 16px;
+    float: right;
 }
 .policy-left {
     width: 400px;

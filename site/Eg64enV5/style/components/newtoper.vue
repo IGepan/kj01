@@ -478,7 +478,7 @@ module.exports = {
 .toper {
   height: 40px;
   line-height: 40px;
-  background-color: rgb(255, 245, 240);
+  background-color: #e9e8f0;
   color: #6a6e7d;
 }
 .toper .mmdiv{

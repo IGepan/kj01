@@ -1,6 +1,6 @@
 <template>
  <div class="policy-right">          
-  <a v-if="userInfo && userInfo.userName" href="/common/buyer/index.html" class="item item1">
+  <a v-if="userInfo && userInfo.userName" href="/policyNoticeLog.html" class="item item1">
       <div>
             政策速递
         <div class="set">第一时间获取政策动态</div>

@@ -67,7 +67,7 @@ require(['/common/js/require.config.js'], function () {
             });
           },
           components: {
-            'ly-toper': httpVueLoader('/style/components/toper.vue'),
+            'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
             'sub-head': httpVueLoader('/style/components/asub_head.vue'),
             'aside-today': httpVueLoader('/style/components/asideToday.vue'),
             'scroll': httpVueLoader('/style/components/scroll.vue'),

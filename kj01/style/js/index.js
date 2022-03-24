@@ -614,7 +614,8 @@ require(['/common/js/require.config.js'], function () {
                         pageNum: 1,
                         pageSize: 10,
                         activeType: '218340665870780082',
-                        // activeTypeDisplay:"政策直播间"
+                        // activeTypeDisplay:"政策直播间",
+                        sortType: "01",
                     },
                     activeP: {
                         pageNum: 1,
@@ -1006,6 +1007,21 @@ require(['/common/js/require.config.js'], function () {
                             }
                         }
                     },
+                    view:function (val){
+                        if (this.params.activeType =='390092837996355585') {
+                            indexApi.getView({bId:val,visitTypeTs:'pcTopicActive'}).then(function (res){
+                                if(res.code=="rest.success"){
+                                    console.log(res,'品牌')
+                                }
+                            })
+                        }else {
+                            indexApi.getView({bId:val,visitTypeTs:'pcActive'}).then(function (res){
+                                if(res.code=="rest.success"){
+                                    console.log(res)
+                                }
+                            })
+                        }
+                    },
                     //品牌活动
                     getBrandList: function () {
                         let vm = this
@@ -1029,6 +1045,9 @@ require(['/common/js/require.config.js'], function () {
                         var vm = this
                         indexApi.selectIssuePage(vm.activeParams).then(function (res) {
                             if (res.code === 'rest.success') {
+                                if(vm.activeParams.activeType=='218340665870780082'){
+                                    vm.activeLists=vm.activeLists.splice(0,2)
+                                }
                                 vm.activeLists = res.result.list
                                 vm.activeLists.forEach((item) => {
                                     // item.joinNumTotal=(item.joinNum?item.joinNum:0)+(item.pageViews?parseInt(item.pageViews):0)
