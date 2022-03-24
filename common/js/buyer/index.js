@@ -165,8 +165,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             "payload": {
               "certificationFlag": 2,
             }
-          }
-          httpTeach.tech_achi_list(form).then(function (res) {
+          };
+
+          httpTeach.tech_achi_list2().then(function (res) {
             if (res.code === true) {
               _this.techAchiList = res.data.records
             }

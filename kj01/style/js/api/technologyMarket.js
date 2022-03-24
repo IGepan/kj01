@@ -9,6 +9,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         tech_achi_list: function (param) {
             return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/pageProjectBaseInfo', param);
         },
+				
+				tech_achi_list2: function () {
+				    return Http.post(httpUrl.baseMarketUrl + '/zMProjectRest/recommend');
+				},
 
         // 技术需求列表查询
         tech_require_list: function (param) {
