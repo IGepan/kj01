@@ -222,9 +222,12 @@
                         <div class="bd">
                             <ul>
                                 <li v-for="(item,index) in showList" :key="index" :title="item.description">
+                                    <a href="http://www11c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=">
                                     <p :style="{'color':(item.progress==0)?'#67c23a':'#f1671b'}">【{{item.progressDisplay}}】</p>
                                     <span>{{item.description}}</span>
+                                    </a>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
@@ -443,62 +446,62 @@
            </div>
        </div>
 
-    <div class="full-block">
-    <div class="container" id="settle_in_apply">
-        <div class="settle-title">
-        <span>未搜索到服务？立即发布需求</span>
-         </div>
-        <div class="settle_in-box">
-<!--            <div class="block-title d-flex justify-content-around">-->
-<!--                <div class="title">-->
-<!--                    入驻机构 <strong>{{mailSite.organizationCount ||0 }}家</strong>-->
-<!--                </div>-->
-<!--                <div class="title">-->
-<!--                    服务企业 <strong>{{mailSite.enterpriseCount ||0 }}家</strong>-->
-<!--                </div>-->
-<!--                <div class="title">-->
-<!--                    服务产品 <strong>{{mailSite.productCount ||0 }}项</strong>-->
-<!--                </div>-->
-<!--                <div class="title">-->
-<!--                    签约项目 <strong>{{mailSite.projectCount ||0 }}项</strong>-->
-<!--                </div>-->
-<!--            </div>-->
+<!--    <div class="full-block">-->
+<!--    <div class="container" id="settle_in_apply">-->
+<!--        <div class="settle-title">-->
+<!--        <span>未搜索到服务？立即发布需求</span>-->
+<!--         </div>-->
+<!--        <div class="settle_in-box">-->
+<!--&lt;!&ndash;            <div class="block-title d-flex justify-content-around">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    入驻机构 <strong>{{mailSite.organizationCount ||0 }}家</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    服务企业 <strong>{{mailSite.enterpriseCount ||0 }}家</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    服务产品 <strong>{{mailSite.productCount ||0 }}项</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    签约项目 <strong>{{mailSite.projectCount ||0 }}项</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
 
-                        <el-form id="sub_form">
-                            <!--                <div class="settle_in-form d-flex">-->
-                <!--                    <div class="input-group">-->
-                <!--                         <input type="text" class="form-control demand-txt"  v-model="form.content" name="content"  placeholder="请输入需求名称">-->
-                <!--                    </div>-->
-                <!--                        <div class="input-group">-->
-                <!--                            <input type="text" name="phone" v-model="form.phone" aria-label="mobile" class="form-control mobile" placeholder="手机号">-->
-                <!--                            <input type="text" name="code" v-model="form.code" aria-label="verificationCode" class="form-control verificationCode" placeholder="验证码">-->
-                <!--                            <button class="btn btn-light" type="button" v-text="codeBtnText"  :disabled="isDisabled" @click="sendClick($event)"></button>-->
-                <!--                        </div>-->
-                <!--                        <button class="btn btn-primary btn-publish" @click="subClick($event)"  :disabled="isSubmitDisabled">快速发布需求</button>-->
-                <!--                </div>-->
+<!--                        <el-form id="sub_form">-->
+<!--                            &lt;!&ndash;                <div class="settle_in-form d-flex">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <div class="input-group">&ndash;&gt;-->
+<!--                &lt;!&ndash;                         <input type="text" class="form-control demand-txt"  v-model="form.content" name="content"  placeholder="请输入需求名称">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <div class="input-group">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <input type="text" name="phone" v-model="form.phone" aria-label="mobile" class="form-control mobile" placeholder="手机号">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <input type="text" name="code" v-model="form.code" aria-label="verificationCode" class="form-control verificationCode" placeholder="验证码">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <button class="btn btn-light" type="button" v-text="codeBtnText"  :disabled="isDisabled" @click="sendClick($event)"></button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <button class="btn btn-primary btn-publish" @click="subClick($event)"  :disabled="isSubmitDisabled">快速发布需求</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
 
-                <div class="settle_in-form d-flex">
-                    <div class="input-group">
-                        <input type="text" class="form-control demand-txt" v-model="form.content" name="content"
-                               placeholder="请输入需求名称">
-                    </div>
-                    <div class="input-group phoneVerification">
-                        <input type="text" name="phone" v-model="form.phone" aria-label="mobile"
-                               class="form-control mobile" placeholder="输入手机号">
-                        <input type="text" name="code" v-model="form.code" aria-label="verificationCode"
-                               class="form-control verificationCode" placeholder="验证码">
-                        <button class="btn btn-light" type="button" v-text="codeBtnText" :disabled="isDisabled"
-                                @click="sendClick($event)"></button>
-                    </div>
-                    <button class="btn btn-primary btn-publish" @click="subClick($event)" :disabled="isSubmitDisabled">
-                        快速发布需求
-                    </button>
-                </div>
-            </el-form>
+<!--                <div class="settle_in-form d-flex">-->
+<!--                    <div class="input-group">-->
+<!--                        <input type="text" class="form-control demand-txt" v-model="form.content" name="content"-->
+<!--                               placeholder="请输入需求名称">-->
+<!--                    </div>-->
+<!--                    <div class="input-group phoneVerification">-->
+<!--                        <input type="text" name="phone" v-model="form.phone" aria-label="mobile"-->
+<!--                               class="form-control mobile" placeholder="输入手机号">-->
+<!--                        <input type="text" name="code" v-model="form.code" aria-label="verificationCode"-->
+<!--                               class="form-control verificationCode" placeholder="验证码">-->
+<!--                        <button class="btn btn-light" type="button" v-text="codeBtnText" :disabled="isDisabled"-->
+<!--                                @click="sendClick($event)"></button>-->
+<!--                    </div>-->
+<!--                    <button class="btn btn-primary btn-publish" @click="subClick($event)" :disabled="isSubmitDisabled">-->
+<!--                        快速发布需求-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </el-form>-->
 
-        </div>
-    </div>
-    </div>
+<!--        </div>-->
+<!--    </div>-->
+<!--    </div>-->
 
     <div class="rightbox-list" id="showbox">
         <img src="/mall/images/fy.png" width="100"/>

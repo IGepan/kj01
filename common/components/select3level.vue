@@ -87,6 +87,7 @@ module.exports = {
     },
     selectList: function (val) {
       this.$emit('input', val);
+      console.log(val,'in')
     }
   },
   created: function () {
@@ -139,6 +140,7 @@ module.exports = {
       console.log(item,'000')
       this.activeIndex = index;
       this.itemList=item.tagList
+      this.$emit('update', item);
     },
     // 选择值
     valueClick: function (item, type) {

@@ -25,7 +25,29 @@
         })();
     </script>
 </head>
-
+<style>
+    .el-search{
+        width: 680px;
+    }
+    .el-search input{
+        width: 80%;
+        line-height: 40px;
+        padding-left: 20px;
+        font-size: 16px;
+        float: left;
+    }
+    .el-search button{
+        width: 20%;
+        background: #ff8a00;
+        color: #fff;
+        line-height: 40px;
+        height: 40px;
+        float: left;
+    }
+    .el-search button i{
+        font-size: 28px;
+    }
+</style>
 <body>
     <div id="index_box" class="box grayBgbox" v-cloak>
         <ly-toper></ly-toper>
@@ -42,8 +64,12 @@
                     </div>
                 </div>
             </div>
-            <div class="page_title">
+            <div class="page_title" style="width: 680px;font-size: 20px">
                 技术经纪人
+                <div class="el-search">
+                    <input placeholder="请输入技术经纪人名称" v-model="search"/><button @click="findData(search)"><i class="iconfont icon-fangdajing"></i></button>
+                </div>
+
             </div>
         </div>
 
@@ -125,7 +151,7 @@
                         <div>
                             <h4 class="width_max_70 ell_nowrap display_inl_blo ">{{item.brokerName}}</h4>
                             <span
-                                class="fr search_box color_13c9ef margin_15 margin_right_0">{{item.agentType_display}}</span>
+                                class="fr search_box color_13c9ef margin_15 margin_right_0" style="border: 1px solid #fc7f10">{{item.agentType_display}}</span>
                         </div>
                         <div class="ell_nowrap" :title="item.industryType.map(item=>item.name).join(',')">
                             擅长领域：{{item.industryType.map(item=>item.name).join(',')}}</div>

@@ -18,7 +18,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         isSubmitDisabled: false
       },
       components: {
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/newtoper.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-star': httpVueLoader('/common/components/starts.vue'),
         'ly-upload': httpVueLoader('/common/components/upload.vue'),

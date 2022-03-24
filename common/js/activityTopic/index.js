@@ -58,7 +58,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         orderList: [],
         isSubmitDisabled: false,
-        pages: 1,
+        pages: 0,
         pageCount: 4
       },
       watch: {
@@ -141,7 +141,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         },
         bindPageChange: function (e) {
           this.queryForm.pageNum = e;
-          this.handleGetOrderList()
+          this.getOrderList();
         },
         endIsGreaterThanThebeginning: function (begin, end) {
           return new Date(begin).getTime() > new Date(end).getTime();

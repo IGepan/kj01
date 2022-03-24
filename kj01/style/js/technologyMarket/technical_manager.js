@@ -69,6 +69,7 @@ require(['/common/js/require.config.js'], function () {
           },
           "IndustryTypeChildren": [],
           "industrySecondShow": false,
+          search:''
         },
         components: {
           //插入头信息
@@ -110,6 +111,10 @@ require(['/common/js/require.config.js'], function () {
             console.log(id, index);
             this.sortActive = index;
             this.queryModel.pageParam.sort = id;
+          },
+          findData(val){
+            this.queryModel.payload.brokerName= val;
+            this.queryList();
           },
           // 点击第二级
           clickConditionChild(key, id, dictValue, indexs) {

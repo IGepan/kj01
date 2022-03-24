@@ -60,11 +60,14 @@
 .contant {
 	margin-top: 20px;
 }
+
 .leftbox {
 	float: left;
 	margin-right: 20px;
 	width: 150px;
-	min-height: 100px;
+	/*min-height: 100px;*/
+	min-height: calc(100vh - 192px)!important;
+	background-color: #FFFFff;
 }
 .leftbar {
 	width: 150px;
@@ -278,7 +281,7 @@
 .centerbox {
 	width: 1030px;
 	float: right;
-	margin-bottom: 40px;
+	/*margin-bottom: 40px;*/
 }
 .worklink {
 	height: 220px;
@@ -1345,6 +1348,7 @@
 .tabbox {
 	border:1px solid #d2d2d2;
 	background-color: #fff;
+	min-height: calc(100vh - 190px)!important;
 }
 /* .tabbox .userform {
 	display: none;
