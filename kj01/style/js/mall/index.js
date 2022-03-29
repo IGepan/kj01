@@ -323,16 +323,42 @@ require(['/common/js/require.config.js'], function () {
                         this.dataForm.contacts='';
                         this.dataForm.phone='';
                     },
+                    Nm:function (val){
+                        let text=val.slice(2,-4)
+                        let tt=val.replace(text,'*'.repeat(text.length))
+                        console.log(tt,'tt')
+                        console.log(text,'text')
+                        return tt
+                    },
                     getE:function (){
                         var vm=this
                         indexApi.getEq({}).then((res) => {
                             vm.showList=res.result.list
-                            vm.$nextTick(() => {
-                                $(".recent-news").slide({
-                                    mainCell: ".bd ul",
-                                    autoPlay: true,
-                                    effect: "topLoop",
-                                    vis:1,
+                            // vm.$nextTick(() => {
+                            //     $(".recent-news").slide({
+                            //         mainCell: ".bd ul",
+                            //         autoPlay: true,
+                            //         effect: "topLoop",
+                            //         vis:1,
+                            //     });
+                            // })
+                            vm.$nextTick(function () {
+                                new Swiper('#service-list', {
+                                    direction: 'vertical',
+                                    followFinger : false,
+                                    spaceBetween: 0,
+                                    speed:300,
+                                    slidesPerView: 1,
+                                    preventLinksPropagation:true,
+                                    observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                                    observeParents: true, //修改swiper的父元素时，自动初始化swipe
+                                    loop:true,
+                                    paginationClickable: true,
+                                    autoplay:{
+                                        delay: 4000,
+                                        disableOnInteraction: false,
+                                    },
+                                    autoplayDisableOnInteraction: false
                                 });
                             })
                         })
@@ -485,11 +511,22 @@ require(['/common/js/require.config.js'], function () {
                                 vm.newShops = res.result;
                                 // setTimeout(function(){
                                 vm.$nextTick(function () {
-                                    $('#marquee-left').kxbdSuperMarquee({
-                                        isMarquee:true,
-                                        direction: 'left',
-                                        scrollDelay:30,
-                                        isEqual: false
+                                    new Swiper('#newShops-list', {
+                                        direction: 'vertical',
+                                        followFinger : false,
+                                        spaceBetween: 0,
+                                        speed:300,
+                                        slidesPerView: 1,
+                                        preventLinksPropagation:true,
+                                        observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                                        observeParents: true, //修改swiper的父元素时，自动初始化swipe
+                                        loop:true,
+                                        paginationClickable: true,
+                                        autoplay:{
+                                            delay: 4000,
+                                            disableOnInteraction: false,
+                                        },
+                                        autoplayDisableOnInteraction: false
                                     });
                                 })
 

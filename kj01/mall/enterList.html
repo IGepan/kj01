@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>易智网-技术成果摆渡人- 企业需求列表</title>
+    <meta name='keywords'
+          content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆成果转化,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description'
+          content='易智网是一站式科技创新综合服务平台，提供技术转移、成果转化、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?04b184cd0a23520a283adae6ebb7c2f9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <style>
+
+    </style>
+    <style>
+        .mdiv{
+            width: 1440px;
+        }
+         a:hover{
+             color: #ff5e06!important;
+         }
+        .mmdiv {
+            width: 1440px;
+            margin: 0 auto;
+        }
+        .wenzhang{
+            width: 100%;justify-content: space-between;
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        .wenzhang p{
+            color: #000!important;
+        }
+        .article1,.article2{
+            height: 760px;
+            text-align: left;
+            background: #f2f2f2;
+            width: 45%;
+            padding: 20px;
+        }
+        .article1 h4,.article2 h4{
+            padding-top: 20px;
+            color: #000!important;
+        }
+        .article1 h6,.article2 h6{
+            color: #ff5e06!important;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        .page-item.current-item .link, .page-item:hover .link{
+            border-color: #ff5e06!important;
+            background-color: #ff5e06!important;
+        }
+        .enterList table{
+            width: 100%;
+            text-align: center;
+            /*border-color: #ff5e06;*/
+
+        }
+        .enterList table th{
+            line-height: 40px;
+            font-size: 18px;
+            background-image: linear-gradient(#ff9f26, #ff5e06);
+            color: #FFFFff;
+            font-weight: normal;
+        }
+        .enterList table td{
+            line-height: 40px;
+            vertical-align: middle;
+            background: rgb(255, 245, 240);
+            border-bottom:2px solid #FFFFff;
+            font-size: 16px;
+        }
+        .pages{
+            padding: 0!important;
+        }
+        .User-btn{
+
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id='index_box' v-cloak>
+    <ly-toper ref="lytoper" top-class="white" class="top_div"></ly-toper>
+<!--    <header-mail ref="header_mail"></header-mail>-->
+    <a target="_blank" href="article.html"><img src="./images/enterbg.jpg" width="100%"></a>
+    <div class="mmdiv">
+        <h6 style="margin-top: 10px"><a href="index.html" target="_blank"><i class="iconfont icon-jiantou-zuo"></i>返回易智商城</a></h6>
+<!--        <h2 style="text-align: center;color: #ff5e06;">企业需求</h2>-->
+        <div class="enterList">
+       <table>
+           <tbody>
+            <tr>
+                <th>企业名称</th>
+            <th>企业需求描述</th>
+            <th>状态</th>
+                <th>联系方式</th>
+            </tr>
+           <tr v-for="item in showList">
+               <td>{{Nm(item.enterpriseName)}}</td>
+               <td>{{item.description}}</td>
+               <td :style="{'color':(item.progress==0)?'#67c23a':'#f1671b'}"
+               >【{{item.progressDisplay}}】</td>
+               <td><a class="User-btn" target="_blank" href="http://www11c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=">联系客服</a></td>
+           </tr>
+           </tbody>
+       </table>
+            <template v-if="pages">
+                <pages :pages="pages" @changepage="bindPageChange"></pages>
+            </template>
+        </div>
+
+    </div>
+
+    <web-footer></web-footer>
+</div>
+</body>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/mall/enterList.js"></script>
+</html>

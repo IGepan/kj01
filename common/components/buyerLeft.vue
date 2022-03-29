@@ -21,7 +21,7 @@
            v-for="(menu,index) in meanTreeData3">
         <div class="name" @click="dropTechDown(menu)">{{menu.name}}
           <i class="iconfont icon-xiala"
-             :class="{open:!menu.opened}"
+             :class="{openT:!menu.opened}"
         ></i></div>
         <div
             class="links"
@@ -41,7 +41,7 @@
       >
         <div class="name"  @click="dropDown(menu)">{{menu.name}}
           <i class="iconfont icon-xiala"
-             :class="{open:menu.opened}"
+             :class="{openT:menu.opened}"
 
           ></i></div>
         <div
@@ -74,7 +74,7 @@
             @click="dropDown(menu)"
         >{{menu.name}}
           <i class="iconfont icon-xiala"
-             :class="{open:menu.opened}"
+             :class="{openT:menu.opened}"
 
           ></i></div>
         <div
@@ -308,7 +308,7 @@ module.exports = {
   -webkit-transition: transform 0.3s;
 
 }
-.open{
+.openT{
   transform : rotate(-180deg)
 }
 .leftbar .group .links strong.active{

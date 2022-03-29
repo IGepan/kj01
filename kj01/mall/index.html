@@ -28,6 +28,9 @@
         })();
     </script>
     <style>
+        #slideshow .swiper-slide img{
+            width: 100%;
+        }
         .el-input__inner{
             width: 90%!important;
         }
@@ -55,56 +58,78 @@
             border-color: #ff5e06!important;
         }
         .show-list{
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 99;
-            background: #FFFFff;
-            width: 300px;
-            height:90px;
+            /*position: absolute;*/
+            /*top: 0;*/
+            /*right: 0;*/
+            /*z-index: 99;*/
+            display: flex;
+            background: rgb(255, 245, 240);
+            width: 50%;
+            height: 45px;
+            overflow: hidden;
+        }
+        .show-list .swiper-slide{
+           /*color: #9a9a9a;*/
+        }
+        .show-list .swiper-slide a{
+             width: 100%;
+            padding:0 10px;
+            display: block;
+            line-height: 45px;
+            overflow: hidden;
+        }
+        .show-list .swiper-slide span{
+            max-width: 80%;
+            float: left;
+            line-height: 45px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .show-list .swiper-slide p{
+            width: 18%;
+            float: left;
+            line-height: 45px;
         }
         .desc{
-            font-size: 18px;
-            padding-left: 10px;
-            line-height: 30px;
-            color: #FFFFff;
-            background: #f1671b;
-            margin-top: -30px;
-        }
-        .desc::before{
-            content: "";
-            width: 0;
-            height: 0;
-            border-bottom: 30px solid #f1671b;
-            border-left: 20px solid transparent;
-            position: absolute;
-            left: -20px;
-            /*top: 45px;*/
+
         }
         .recent-news .bd{
             padding: 10px;
         }
-        .recent-news ul li{
-            border: 1px solid #fe900c;
-            background: rgb(255, 245, 240);
-            margin-top: 10px;
-            line-height: 30px;
-            height: 60px;
-            width: 100%;
-            zoom: 1;
-        }
-        .recent-news ul li span{
-            width: 100%;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            padding-left: 10px;
-            display: block;
-        }
-        .recent-news ul li p{
+        /*.show-list .swiper-slide span{*/
+        /*    width: 100%;*/
+        /*    text-overflow: ellipsis;*/
+        /*    overflow: hidden;*/
+        /*    white-space: nowrap;*/
+        /*    padding-left: 10px;*/
+        /*    display: block;*/
+        /*}*/
+        .show-list .swiper-slide p{
            display: block;
             margin:0;
         }
+        .show-list img{
+            margin-top: 14px;
+            margin-left: 15px;
+        }
+        .shopList{
+            display:flex;
+            line-height: 45px;
+            height: 45px;
+            width: 100%;
+            padding:0 10px;
+        }
+        .show-list .swiper-container{
+            width: calc(100% - 99px);
+        }
+        .shopList a{
+            width: auto!important;
+            display: inline-block!important;
+            color: #f1671b;
+            padding:0 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -216,22 +241,7 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <div class="show-list" v-if="showList.length>0">
-                    <div class="desc">企业动态</div>
-                    <div class="recent-news">
-                        <div class="bd">
-                            <ul>
-                                <li v-for="(item,index) in showList" :key="index" :title="item.description">
-                                    <a href="http://www11c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=">
-                                    <p :style="{'color':(item.progress==0)?'#67c23a':'#f1671b'}">【{{item.progressDisplay}}】</p>
-                                    <span>{{item.description}}</span>
-                                    </a>
-                                </li>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 <!--            <div class="right-column fr" >-->
@@ -259,21 +269,53 @@
 
     <div class="slogan-tree">
 
-        <div class="container">
-            <div class="latest-news" >
-                <div class="news-title"><img src="images/horn.png" alt=""></div>
-                <div class="marquee-left" id="marquee-left">
-                    <template>
-                        <ul class="list-inline clearfix">
-                            <!--                    <li v-for="(item,index) in achievementList" :key="index">-->
-                            <!--                        欢迎{{item.companyName}}-->
-                            <!--                    </li>-->
-                            <li v-for="(shop,index) in newShops">欢迎<a :href="'shop/index.html?code='+shop.shopCode" target="_blank">{{shop.shopName}}</a>入驻商城</li>
-                        </ul>
-                    </template>
+        <div class="container" style="overflow: hidden;">
+
+            <div class="latest-news" style="padding: 0">
+                <div class="show-list fl" v-if="showList.length>0" id="show-list">
+<!--                                    <div class="desc"><a href="/mall/enterList.html">查看更多></a></div>-->
+                    <a target="_blank" href="/mall/enterList.html"><img src="/mall/images/qiyexuqiu.png" height="16"/></a>
+                    <div class="swiper-container" id="service-list" style="height: 100%;margin: 0">
+                        <div class="swiper-wrapper">
+                            <template v-for="(item,index) in showList" :title="item.description">
+                                <div class="swiper-slide">
+                                    <a target="_blank" href="http://www11c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=">
+                                        <span>{{Nm(item.enterpriseName)}}的 “{{item.description}}” 需求</span>
+                                        <p :style="{'color':(item.progress==0)?'#67c23a':'#f1671b'}">【{{item.progressDisplay}}】</p>
+                                    </a>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
+                <div class="show-list fr" v-if="newShops.length>0">
+                    <!--                <div class="desc">企业动态 <a href="/mall/enterList.html">查看更多></a></div>-->
+                    <img src="/mall/images/ruzhu.png" height="16"/>
+                    <div class="swiper-container" id="newShops-list" style="height: 100%;margin: 0">
+                        <div class="swiper-wrapper">
+                            <template v-for="(shop,index) in newShops" :title="shop.shopName">
+                                <div class="swiper-slide">
+                                    <div class="shopList">
+                                        欢迎 <a :href="'shop/index.html?code='+shop.shopCode" target="_blank">{{shop.shopName}}</a>入驻商城
+
+                                    </div>
+
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="news-title"><img src="images/horn.png" alt=""></div>-->
+<!--                <div class="marquee-left" id="marquee-left">-->
+<!--                    <template>-->
+<!--                        <ul class="list-inline clearfix">-->
+<!--                            &lt;!&ndash;                    <li v-for="(item,index) in achievementList" :key="index">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                        欢迎{{item.companyName}}&ndash;&gt;-->
+<!--                            &lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                            <li v-for="(shop,index) in newShops">欢迎<a :href="'shop/index.html?code='+shop.shopCode" target="_blank">{{shop.shopName}}</a>入驻商城</li>-->
+<!--                        </ul>-->
+<!--                    </template>-->
+<!--                </div>-->
             </div>
         </div>
 
