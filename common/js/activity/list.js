@@ -242,7 +242,6 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           let vm=this
           activityApi.getWeihoRoleUrl({ id: id }).then(function (res) {
             if (res.code === 'rest.success') {
-              vm.pullStreamUrlDialog=true;
               vm.pullStreamUrl=res.result.pageUrl
             }
           })
