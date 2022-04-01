@@ -243,6 +243,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           activityApi.getWeihoRoleUrl({ id: id }).then(function (res) {
             if (res.code === 'rest.success') {
               vm.pullStreamUrl=res.result.pageUrl
+              window.open(vm.pullStreamUrl,'_blank')
             }
           })
         },
