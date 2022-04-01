@@ -85,6 +85,9 @@ module.exports = {
 </script>
 
 <style>
+.leftbox{
+  min-height: calc(100vh - 192px)!important;
+}
 .leftbar .group .links strong.active{
   background-color:#fc7f10;
   color: #fff!important;

@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>易智网-技术成果摆渡人-高企培育管理系统</title>
+
+    <meta name='keywords'
+          content='重庆科技创新服务平台,重庆科技企业服务,重庆技术转移,重庆技术评估,重庆科技活动,重庆政策服务,重庆政策兑现,重庆高企申报,重庆高企认定,重庆双创孵化,重庆知识产权服务,重庆科技金融'/>
+    <meta name='description'
+          content='易智网是一站式科技创新综合服务平台，提供技术转移、技术评估、知识产权、科技政策、企业学堂、项目申报、高企认定、科技金融、双创孵化、技术创新等综合性科技服务，易智网致力于打造国内领先的科技创新综合服务平台。'/>
+    <link href="../common/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="/common/js/libs/owl.carousel.2.2.1/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/common.css" rel="stylesheet" type="text/css">
+    <link href="./style/css/button.css" rel="stylesheet" type="text/css">
+<!--    <link href="./style/css/index.css" rel="stylesheet" type="text/css">-->
+    <link href="./style/css/icon/iconfont.css" rel="stylesheet">
+    <link href="../common/css/iconfont/iconfont.css" rel="stylesheet">
+    <link href="./style/js/libs/swiper-5.4.1/css/swiper.min.css" rel="stylesheet">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?04b184cd0a23520a283adae6ebb7c2f9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<style>
+    .mmdiv{
+        width: 1440px;
+        margin: 0 auto;
+    }
+    .bg{
+        background:url(/style/images/newbg.jpg)no-repeat center;
+        background-size: cover;
+        width: 100%;
+        height: 400px;
+        text-align: center;
+    }
+    .infrom{
+        text-align: left;
+
+        padding-top: 60px;
+    }
+    .bg-color{
+        width: 50%;
+        background: rgba(0,0,0,0.3);
+        padding: 20px;
+    }
+    .infrom span{
+        color: #fff;
+        font-size: 35px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .infrom p{
+        color: #fff;
+        font-size: 16px;
+        line-height: 30px;
+    }
+    .infrom a{
+        display: inline-block;
+        box-sizing: border-box;
+        width: 120px;
+        height: 40px;
+        border: 1px solid #fff;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        line-height: 38px;
+        cursor: pointer;
+    }
+    .infrom a:last-child{
+        margin-left: 10px;
+    }
+    .infrom a:hover{
+       background:rgba(255 ,255 ,255,0.2) ;
+    }
+    .infrom h4{
+        background: #1496bb;
+        /*bottom: 100%;*/
+        color: #fff;
+        display: block;
+        left: -25px;
+        margin: auto;
+        /*opacity: 0;*/
+        padding: 10px;
+        font-weight: normal;
+        /*position: absolute;*/
+       display: inline-block;
+        -webkit-transform: translateY(10px);
+        -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        -webkit-transition: all .25s ease-out;
+        -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+    .infrom h4:before{
+        bottom: -20px;
+        content: " ";
+        display: block;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    .infrom h4:after{
+        border-left: solid transparent 10px;
+        border-right: solid transparent 10px;
+        border-top: solid #1496bb 10px;
+        bottom: -10px;
+        content: " ";
+        height: 0;
+        left: 50%;
+        margin-left: -13px;
+        position: absolute;
+        width: 0;
+    }
+    .p_g_bg {
+        box-sizing: border-box;
+        padding-top: 20px;
+        height: 500px;
+        background: #f7f7f7;
+    }
+    .p_g_bg dl {
+        overflow: hidden;
+        margin: 0 auto;
+        width: 1440px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .p_g_bg .p_g_b_item {
+        float: left;
+        box-sizing: border-box;
+        padding-top: 38px;
+        width: 25%;
+        margin-right: 20px;
+        background: #fff;
+        box-shadow: 0 0 15px rgba(204,204,204, 0.3);
+    }
+    .p_g_bg dl .p_g_b_item:last-child{
+        margin-right: 0;
+    }
+    .p_g_bg dl dt {
+        position: relative;
+        left: 30px;
+        color: #333;
+        font-size: 18px;
+    }
+    .p_g_bg dl dt::before {
+        position: absolute;
+        left: -30px;
+        width: 10px;
+        height: 26px;
+        background: #000;
+        content: '';
+    }
+    .p_g_bg dl dd {
+        /*margin: 20px auto 0;*/
+        width:100%;
+        padding: 20px 30px;
+        color: #949494;
+        font-size: 13px;
+        line-height: 24px;
+    }
+    h3 {
+        color: #333;
+        text-align: center;
+        font-size: 26px;
+        line-height: 90px;
+        font-weight: 500;
+    }
+    /*平台服务*/
+    .p_g_service {
+        box-sizing: border-box;
+        /*padding-top: 40px;*/
+        height: 300px;
+    }
+    .p_g_service ul {
+        overflow: hidden;
+        box-sizing: border-box;
+        /*padding-top: 80px;*/
+        display: flex;
+        justify-content: space-between;
+    }
+    .p_g_service ul li {
+        float: left;
+        box-sizing: border-box;
+        padding-right: 66px;
+        padding-left: 66px;
+    }
+    .p_g_service ul li img {
+        display: block;
+        margin: 0 auto;
+        width: 65px;
+        height: 65px;
+    }
+    .p_g_service ul li p {
+        width: 108px;
+        color: #333;
+        text-align: center;
+        font-size: 16px;
+        line-height: 50px;
+    }
+    /*功能介绍*/
+    .p_g_intro{
+        width: 100%;
+        height: 400px;
+        background: url(/style/images/exampleBg.png)no-repeat center;
+        background-size: cover;
+        overflow: hidden;
+    }
+    .p_g_intro h3 {
+        /*position: absolute;*/
+        width: 100%;
+        color: #fff;
+        text-align: center;
+    }
+    .p_g_intro img {
+        /*display: block;*/
+        width: 100%;
+    }
+    .p_g_intro ul {
+        display: flex;
+        justify-content: space-between;
+        padding-top:20px ;
+    }
+    .p_g_intro ul li {
+        background: #FFFFff;
+        width: 22%;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    .p_g_intro ul li h4{
+        background: url(/style/images/poindex/re.png)no-repeat;
+        background-size: cover;
+        color: #FFFFff;
+        margin-top:-22px;
+        margin-left: -20px;
+        width: 193px;
+        height: 45px;
+        position: relative;
+        line-height: 45px;
+        text-align: left;
+        padding-left: 20px;
+    }
+    .p_g_intro ul li span{
+        line-height:40px ;
+        display: block;
+        font-size: 18px;
+        width: 50%;
+        float: left;
+    }
+    .p_g_intro ul li span img{
+        width: 20px;
+        height: 14px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .p_g_intro ul li h4:after{
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 10px solid #ff4301;
+        border-left: 20px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 45px;
+    }
+    /*平台优势*/
+    .p_g_advantage {
+        box-sizing: border-box;
+        padding-top: 30px;
+        /*height: 660px;*/
+    }
+    .p_g_advantage dl {
+        overflow: hidden;
+        margin: 0 auto 50px;
+        width: 1440px;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        /*padding-left: 30px;*/
+    }
+    .p_g_advantage .p_g_a_item {
+        float: left;
+        box-sizing: border-box;
+        /* padding: 15px; */
+        width:33%;
+        height: 220px;
+        box-shadow: 0 0 15px rgba(204,204,204,0.35);
+        /*margin-left: -15px;*/
+        margin-right: 30px;
+    }
+    .p_g_advantage dl dd {
+        display:block;
+        /*width: 380px;*/
+        /*height: 140px;*/
+    }
+    .p_g_advantage dl dd img {
+        /*display: inline-block;*/
+        /*width: 380px;*/
+        /*height: 140px;*/
+        width: 100%;
+    }
+    .p_g_advantage dl dt {
+        /*width: 380px;*/
+        background: #fff;
+        text-align: center;
+        font-size: 16px;
+        line-height: 50px;
+    }
+    .p_g_advantage ul {
+        overflow: hidden;
+        margin: 0 auto 70px;
+        padding: 0;
+        width: 1440px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .p_g_advantage ul li {
+        position: relative;
+        float: left;
+        box-sizing: border-box;
+        margin-right: 18px;
+        padding-top: 20px;
+        padding-left: 30px;
+        text-align: center;
+        /*width: 220px;*/
+        /*height: 110px;*/
+    }.p_g_advantage ul li p {
+         width: 190px;
+        margin: 0;
+     }
+    .p_g_advantage ul li p:first-child {
+        text-align: center;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+    }.p_g_advantage ul li p:last-child {
+         color: #333;
+         text-align: center;
+         font-size: 18px;
+         line-height: 55px;
+     }
+     /*典型案例*/
+    .p_g_examples {
+
+        padding-top: 30px;
+        box-sizing: border-box;
+        height: 440px;
+        background: url(/style/images/exampleBg.png) no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .p_g_examples h3 {
+        color: #fff;
+    }.p_g_examples .p_g_e_content {
+         overflow: hidden;
+         margin: 0 auto;
+         width: 1440px;
+             position: relative;
+     }
+    .p_g_examples .item-prev {
+        position: absolute;
+        left: 0;
+        box-sizing: border-box;
+        /*padding-top: 45px;*/
+        /*width: 60px;*/
+        /*height: 230px;*/
+        top:0px;
+        z-index: 99;
+    }
+    .item-prev:focus,.item-next:focus{
+        outline: none!important;
+    }
+    .item-prev:hover i,.item-next:hover i{
+        opacity: 0.7;
+       }
+    .p_g_examples .item-next {
+        position: absolute;
+        right: 0;
+        box-sizing: border-box;
+        /*padding-top: 45px;*/
+        /*width: 60px;*/
+        /*height: 230px;*/
+        top:0px;
+        z-index: 99;
+    }
+    .p_g_examples i {
+        color: #fff;
+        font-size: 80px;
+        line-height: 200px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .p_g_examples .img-Content {
+        display:flex;
+        position: relative;
+        /*float: left;*/
+        /* margin: 45px 130px 0; */
+        width: 810px;
+        height: 185px;
+        background: #fff;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .p_g_examples .img-Content img{
+        margin-top: -30px;
+        flex:1;
+        width: 400px;
+       box-shadow:0 0 35px rgba(1, 20, 91, 0.3);
+        margin-left: 30px;
+    }
+    .siteBox{
+        padding: 20px;
+        flex: 1;
+    }
+    .siteBox p{
+        font-size: 16px;
+        line-height: 30px;
+        color: #3a3a3a;
+    }
+    .siteBox span{
+        color: #000;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    .p_g_examples .swiper-slide{
+        text-align: center;
+    }
+    .swiper-container{
+        padding-top: 30px;
+    }
+</style>
+
+<body>
+<div class="box" id='index_box' v-cloak style="background: #FFFFff">
+    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <div class="bg">
+     <div class="infrom mmdiv">
+         <div class="bg-color">
+         <span>政府创新服务平台</span>
+         <p>产业的创新发展，要有良好的外部资源环境，还要从创新体系上加强知识产权的有效利用和法律保护。为此不仅需要各级政府部门宏观政策的支持，还要有协调运作的创新服务体系， 而建设一个具有区域特色、服务全面、有效运作的科技创新服务平台正是其中不可或缺的重要一环。</p>
+<!--         <h4>默认用户名：admin  密码：123456</h4>-->
+         <a href="http://222.180.163.238:1352/login" target="_blank">立即咨询</a>
+         <a href="http://222.180.163.238:1352/login" target="_blank">典型案例</a>
+         </div>
+     </div>
+    </div>
+    <div class="p_g_bg">
+        <h3>平台建设背景</h3>
+        <dl>
+            <div class="p_g_b_item">
+                <dt>展示产业技术创新能力</dt>
+                <dd>创新是任何一个产业得以不断升级发展升级的灵魂。只有通过技术创新才能在市场环境中取得明显竞争优势，最大限度发挥重点产业的效率。通过平台衔接各项创新资源，减少产业升级研发费用，有效利用各个产业主导企业的技术优势和竞争优势，提高整个区域产业的发展创新能力。</dd>
+            </div>
+            <div class="p_g_b_item">
+                <dt>完善知识产权服务体系</dt>
+                <dd>平台的建设和运营，将为各个创新载体之间的沟通提供全方位交流合作渠道，增强各机构间的信息互通和资源共享。充分利用各类科研资源，加强产学研合作，通过组织各类培训、咨询活动，促进企业间的交流协作，切实提高企业综合创新能力，降低运营成本，提升企业竞争力。</dd>
+            </div>
+            <div class="p_g_b_item">
+                <dt>优化升级产业发展环境</dt>
+                <dd>政府主管部门通过平台对产业发展要素进行统计分析，结合产业实际情况制定科学合理的产业发展规划和宏观政策。 提供诸如产业咨询报告、企业知识产权培训、 企业个性化专利数据库建设服务等核心服务来提高重点产业的知识产权保护和科技创新能力，推动整个区域产业的高质量升级发展。</dd>
+            </div>
+            <div class="p_g_b_item">
+                <dt>支撑产业的健康快速发展</dt>
+                <dd>知识产权创新服务是产业健康快速发展的重要支撑，创新服务包括知识产权、产学研对接、科技成果转化、 市场竞争情报及专利预警分析、人才服务等等。区域内的企业还不能做到完全依靠自身力量实现知识产权创新，必须在政府的引导下组织专业化的服务团队，围绕各个产业发展的特点，为企业开展个性创新服务。</dd>
+            </div>
+
+        </dl>
+    </div>
+    <div class="p_g_service">
+        <h3>平台服务</h3>
+        <ul class="mmdiv">
+            <li>
+                <img src="/style/images/c1.svg"/>
+                <p>基础功能</p>
+            </li>
+            <li>
+                <img src="/style/images/c2.svg"/>
+                <p>创新资源服务</p>
+            </li>
+            <li>
+                <img src="/style/images/c3.svg"/>
+                <p>政府科技服务</p>
+            </li>
+            <li>
+                <img src="/style/images/c6.svg"/>
+                <p>增值服务</p>
+            </li>
+            <li>
+                <img src="/style/images/c5.svg"/>
+                <p>运营推广</p>
+            </li>
+        </ul>
+    </div>
+    <div class="p_g_intro">
+        <h3>功能介绍</h3>
+        <ul class="mmdiv">
+            <li><h4>基础平台系统</h4>
+                <span><img src="/style/images/gou.png"/>信息模块</span>
+                <span><img src="/style/images/gou.png"/>资源模块</span></li>
+            <li><h4>通用功能模块</h4>
+                <span><img src="/style/images/gou.png"/>通用检索</span>
+                <span><img src="/style/images/gou.png"/>成果发布</span>
+                <span><img src="/style/images/gou.png"/>需求发布</span>
+                <span><img src="/style/images/gou.png"/>活动发布</span>
+                </li>
+            <li><h4>增值功能模块</h4>
+                <span><img src="/style/images/gou.png"/>政策速递</span>
+                <span><img src="/style/images/gou.png"/>政策匹配</span>
+                <span><img src="/style/images/gou.png"/>在线直播</span>
+                <span><img src="/style/images/gou.png"/>数据可视化</span>
+                </li>
+            <li><h4>个性化功能定制</h4>
+                <span style="width: 100%"><img src="/style/images/gou.png"/>个性化功能定制</span>
+                </li>
+        </ul>
+<!--        <img src="/style/images/jsgn.png"/>-->
+    </div>
+    <div class="p_g_advantage">
+        <h3>平台优势</h3>
+        <dl>
+            <div class="p_g_a_item">
+                <dd>
+                    <img src="/style/images/advantage1.png">
+                </dd>
+                <dt>丰富的科技资源</dt>
+            </div>
+            <div class="p_g_a_item">
+                <dd>
+                    <img src="/style/images/advantage1.png">
+                </dd>
+                <dt>专业的运营人员</dt>
+            </div>
+            <div class="p_g_a_item">
+                <dd>
+                    <img src="/style/images/advantage1.png">
+                </dd>
+                <dt>各种创新运用的集成</dt>
+            </div>
+        </dl>
+        <h3>开通流程</h3>
+        <ul>
+            <li>
+                <p>01</p>
+                <p>确认平台内容和要求</p>
+            </li>
+            <li>
+                <p>02</p>
+                <p>签订协议、支付费用</p>
+            </li>
+            <li>
+                <p>03</p>
+                <p>平台建设、提交使用</p>
+            </li>
+            <li>
+                <p>04</p>
+                <p>平台使用培训、验收</p>
+            </li>
+            <li>
+                <p>05</p>
+                <p>正式使用</p>
+            </li>
+        </ul>
+
+    </div>
+    <div class="p_g_examples">
+        <h3>典型案例</h3>
+        <div class="p_g_e_content">
+            <div class="swiper-container slideTxtBox">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="https://www.kj01.cn/site/qijiang/" target="_blank" class="img-Content">
+                            <img src="/style/images/site1.png"/>
+                            <div class="siteBox">
+                                <p>网址：https://www.kj01.cn/site/qijiang/</p>
+                                <span>
+                                  易智网-綦江区科技创新服务中心
+                                </span>
+                            </div>
+
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.kj01.cn/site/kaizhou/" target="_blank" class="img-Content">
+                            <img src="/style/images/site2.png"/>
+                            <div class="siteBox">
+                                <p>网址：https://www.kj01.cn/site/kaizhou/</p>
+                                <span>
+                                   易智网-开州区科技创新服务中心
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.kj01.cn/site/tongnanqu/" target="_blank" class="img-Content">
+                            <img src="/style/images/site3.png"/>
+                            <div class="siteBox">
+                                <p>网址：https://www.kj01.cn/site/tongnanqu/</p>
+                                <span>
+                                   易智网-潼南区科技创新服务中心
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank" class="img-Content">
+                            <img src="/style/images/site6.png"/>
+                            <div class="siteBox">
+                                <p>网址：https://www.kj01.cn/site/liangjiangxinqu/</p>
+                                <span>
+                                   易智网-两江新区科技创新服务中心
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="http://wanzhou.kj01.cn/" target="_blank" class="img-Content">
+                            <img src="/style/images/site5.png"/>
+                            <div class="siteBox">
+                                <p>网址：http://wanzhou.kj01.cn/</p>
+                                <span>
+                                   重庆三峡科技创新服务平台
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="http://www.cqhte.com/" target="_blank" class="img-Content">
+                            <img src="/style/images/site4.png"/>
+                            <div class="siteBox">
+                                <p>网址：http://www.cqhte.com/</p>
+                                <span>
+                                   重庆市高新技术企业协会
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="item-prev"><i class="el-icon-arrow-left"></i></div>
+            <div class="item-next"><i class="el-icon-arrow-right"></i></div>
+        </div>
+    </div>
+    <web-footer></web-footer>
+</div>
+</body>
+<script type="text/javascript" src="/common/js/libs/require.js"></script>
+<script type="text/javascript" src="/style/js/aboutSite.js"></script>
+<script>
+
+</script>
+</html>

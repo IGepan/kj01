@@ -63,7 +63,7 @@ module.exports = {
       districtList: [], // 区
       mValue: this.value,
       values: [], // 初始化显示的值
-      addressDisabled:true
+      addressDisabled:false
     }
   },
 
@@ -73,6 +73,7 @@ module.exports = {
   watch: {
     disableds:function(val){
       this.addressDisabled=val
+      // this.addressDisabled=val==='0'?false:true
     },
     value: function (val) {
       this.mValue = val;

@@ -1,5 +1,5 @@
 <template>
-  <div class="leftbox" style="margin-bottom: 40px">
+  <div class="leftbox">
     <div class="leftbar">
 <!--      <div class="user_info">-->
 <!--        <div-->
@@ -19,9 +19,13 @@
       <!--<seller-tree :http='http' class="leftbar"></seller-tree>-->
       <div class="group"
            v-for="(menu,index) in meanTreeData3">
-        <div class="name">{{menu.name}}</div>
+        <div class="name" @click="dropTechDown(menu)">{{menu.name}}
+          <i class="iconfont icon-xiala"
+             :class="{openT:!menu.opened}"
+        ></i></div>
         <div
             class="links"
+            :style="{'display':menu.opened?'none':'block' }"
             v-for="menuChild in menu.children"
             :key="menuChild.name">
           <strong
@@ -35,14 +39,14 @@
         v-for="(menu,index) in meanTreeData"
         :key="index"
       >
-        <div class="name">{{menu.name}}
+        <div class="name"  @click="dropDown(menu)">{{menu.name}}
           <i class="iconfont icon-xiala"
-             @click="dropDown(menu,index)"
+             :class="{openT:menu.opened}"
+
           ></i></div>
         <div
           class="links"
-          :id="'item'+menuChild.parentId"
-          :style="{'display':isDown?'none':'' }"
+          :style="{'display':mActivecode==menuChild.code?!menu.opened?'block':'none':menu.opened?'block':'none' }"
           v-for="menuChild in menu.children"
           :key="menuChild.name"
         >
@@ -67,9 +71,15 @@
       >
         <div
             class="name"
-        >{{menu.name}}</div>
+            @click="dropDown(menu)"
+        >{{menu.name}}
+          <i class="iconfont icon-xiala"
+             :class="{openT:menu.opened}"
+
+          ></i></div>
         <div
             class="links"
+            :style="{'display':mActivecode==menuChild.code?!menu.opened?'block':'none':menu.opened?'block':'none' }"
             v-for="menuChild in menu.children"
             :key="menuChild.name"
         >
@@ -188,8 +198,7 @@ module.exports = {
   created: function () {
     this.mActivecode = this.$utils.getReqStr('code')
     if(this.mActivecode!==''){
-      console.log('ooo')
-      this.dropDown();
+      this.$set(v,'opened', v.opened)
     }
   },
   mounted: function () {
@@ -220,24 +229,23 @@ module.exports = {
         vm.userSeller = res.result;
       })
     },
-    dropDown:function(v,index){
-      if(index){
-        v.children.forEach(item=>{
-          if(item.parentId==v.id){
-            this.isDown=false
-          }
-        })
-      }
+    dropDown:function(v){
+        this.$set(v,'opened', !v.opened)
+        // v.children.forEach(item=>{
+        //   if(this.mActivecode==item.code){
+        //     console.log(item,'--')
+        //     v.opened=true
+        //   }
+        // })
     },
-    handleNodeClick:function (val){
-      console.log(val,'val')
-      window.location.href = this.$pathPrefix+val.uri + '?code=' + val.code;
-    },
-    handleClick:function (val){
-      if(!val.children){
-        window.location.href = this.$pathPrefix+val.url
-      }
-
+    dropTechDown:function(v){
+      this.$set(v,'opened', !v.opened)
+      // v.children.forEach(item=>{
+      //   if(this.mActivecode==item.code){
+      //     console.log(item,'--')
+      //     v.opened=true
+      //   }
+      // })
     },
     //判断分站点
     checkSite: function () {
@@ -280,10 +288,19 @@ module.exports = {
 </script>
 
 <style>
-/*.leftbox{*/
-/*  min-height: calc(100vh - 192px)!important;*/
-/*  background-color: #FFFFff;*/
-/*}*/
+.leftbox{
+  min-height: calc(100vh - 120px)!important;
+}
+.leftbar .group{
+  padding: 10px 18px!important;
+}
+.leftbar .group .name{
+  font-weight: normal!important;
+  cursor: pointer;
+}
+.leftbar .group .links{
+  color: #666!important;
+}
 .leftbar .group .name i{
   font-size: 12px;
   color:#fc7f10;
@@ -291,7 +308,7 @@ module.exports = {
   -webkit-transition: transform 0.3s;
 
 }
-.open{
+.openT{
   transform : rotate(-180deg)
 }
 .leftbar .group .links strong.active{

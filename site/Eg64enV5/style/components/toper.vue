@@ -50,11 +50,11 @@
             <img
                     src="/style/images/footerCode1.jpg"
                     alt=""
-            ><span class="avater-text">政策惠</span>
+            ><span class="avater-text">易智项目通</span>
             <img
                     src="/style/images/footerCode2.jpg"
                     alt=""
-            ><span class="avater-text">易智动</span>
+            ><span class="avater-text">易智活动通</span>
           </span></div>
         </div>
         <div class="toper-right" v-else>

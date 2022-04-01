@@ -28,11 +28,11 @@
       <div class="bottomCode">
         <div class="imgBox">
           <img src="/style/images/footerCode1.jpg" alt="" />
-          <div class="code-text">政策惠小程序</div>
+          <div class="code-text">易智项目通</div>
         </div>
         <div class="imgBox">
           <img src="/style/images/footerCode2.jpg" alt="" />
-          <div class="code-text">易智动小程序</div>
+          <div class="code-text">易智活动通</div>
         </div>
       </div>
       <div class="bottomTelInfo">

@@ -121,6 +121,10 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
         selectPortalPage: function (param) {
             return Http.post(httpUrl.baseUrl + '/topic/selectPortalPage', param)
         },
+        //浏览量
+        getView: function (param) {
+            return Http.post(httpUrl.baseUrl + '/visit/ts/saveTs', param)
+        },
         /**
          * 易智商城
          */

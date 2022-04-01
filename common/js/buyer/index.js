@@ -166,12 +166,16 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               "certificationFlag": 2,
             }
           };
-
-          httpTeach.tech_achi_list2().then(function (res) {
+          httpTeach.tech_achi_list(form).then(function (res) {
             if (res.code === true) {
               _this.techAchiList = res.data.records
             }
           })
+          // httpTeach.tech_achi_list2().then(function (res) {
+          //   if (res.code === true) {
+          //     _this.techAchiList = res.data.records
+          //   }
+          // })
         },
         // 订单信息
         getOrderList: function () {
