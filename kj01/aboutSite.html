@@ -35,7 +35,7 @@
         margin: 0 auto;
     }
     .bg{
-        background:url(/style/images/newbg.jpg)no-repeat center;
+        background:url(/style/images/newbg.png)no-repeat center;
         background-size: cover;
         width: 100%;
         height: 400px;
@@ -48,7 +48,7 @@
     }
     .bg-color{
         width: 50%;
-        background: rgba(0,0,0,0.3);
+        /*background: rgba(0,0,0,0.3);*/
         padding: 20px;
     }
     .infrom span{
@@ -73,9 +73,7 @@
         font-size: 16px;
         line-height: 38px;
         cursor: pointer;
-    }
-    .infrom a:last-child{
-        margin-left: 10px;
+        transition: all .2s ease-in;
     }
     .infrom a:hover{
        background:rgba(255 ,255 ,255,0.2) ;
@@ -125,8 +123,10 @@
         width: 0;
     }
     .p_g_bg {
+        display: none;
         box-sizing: border-box;
-        padding-top: 20px;
+        /*padding-top: 20px;*/
+        overflow: hidden;
         height: 500px;
         background: #f7f7f7;
     }
@@ -238,6 +238,7 @@
         width: 22%;
         text-align: center;
         padding-bottom: 20px;
+        border-radius: 10px;
     }
     .p_g_intro ul li h4{
         background: url(/style/images/poindex/re.png)no-repeat;
@@ -269,7 +270,7 @@
         content: "";
         width: 0;
         height: 0;
-        border-top: 10px solid #ff4301;
+        border-top: 10px solid #d03904;
         border-left: 20px solid transparent;
         position: absolute;
         left: 0;
@@ -278,7 +279,8 @@
     /*平台优势*/
     .p_g_advantage {
         box-sizing: border-box;
-        padding-top: 30px;
+        /*padding-top: 30px;*/
+        overflow: hidden;
         /*height: 660px;*/
     }
     .p_g_advantage dl {
@@ -353,13 +355,10 @@
      }
      /*典型案例*/
     .p_g_examples {
-
-        padding-top: 30px;
+        overflow: hidden;
         box-sizing: border-box;
         height: 440px;
-        background: url(/style/images/exampleBg.png) no-repeat;
-        background-position: center;
-        background-size: cover;
+        background:#333c56;
     }
     .p_g_examples h3 {
         color: #fff;
@@ -449,11 +448,11 @@
     <div class="bg">
      <div class="infrom mmdiv">
          <div class="bg-color">
-         <span>政府创新服务平台</span>
-         <p>产业的创新发展，要有良好的外部资源环境，还要从创新体系上加强知识产权的有效利用和法律保护。为此不仅需要各级政府部门宏观政策的支持，还要有协调运作的创新服务体系， 而建设一个具有区域特色、服务全面、有效运作的科技创新服务平台正是其中不可或缺的重要一环。</p>
+         <span>区域科技创新服务平台</span>
+         <p>区域科技创新发展，既要有良好的线下资源环境，还要有协作配合的线上服务体系，这样才能促进科技成果加速转化，而建设一个具有区域特色、服务全面、有效运作的区域科技创新服务平台正是其中不可或缺的重要一环。</p>
 <!--         <h4>默认用户名：admin  密码：123456</h4>-->
-         <a href="http://222.180.163.238:1352/login" target="_blank">立即咨询</a>
-         <a href="http://222.180.163.238:1352/login" target="_blank">典型案例</a>
+         <a href="">立即咨询</a>
+<!--         <a href="#examples">典型案例</a>-->
          </div>
      </div>
     </div>
@@ -533,28 +532,28 @@
         <dl>
             <div class="p_g_a_item">
                 <dd>
-                    <img src="/style/images/advantage1.png">
+                    <img src="/style/images/ziyuan.png">
                 </dd>
                 <dt>丰富的科技资源</dt>
             </div>
             <div class="p_g_a_item">
                 <dd>
-                    <img src="/style/images/advantage1.png">
+                    <img src="/style/images/yunying.png">
                 </dd>
                 <dt>专业的运营人员</dt>
             </div>
             <div class="p_g_a_item">
                 <dd>
-                    <img src="/style/images/advantage1.png">
+                    <img src="/style/images/chuangxin.png">
                 </dd>
                 <dt>各种创新运用的集成</dt>
             </div>
         </dl>
-        <h3>开通流程</h3>
+        <h3>服务流程</h3>
         <ul>
             <li>
                 <p>01</p>
-                <p>确认平台内容和要求</p>
+                <p>确认平台内容和需求</p>
             </li>
             <li>
                 <p>02</p>
@@ -562,11 +561,11 @@
             </li>
             <li>
                 <p>03</p>
-                <p>平台建设、提交使用</p>
+                <p>平台建设</p>
             </li>
             <li>
                 <p>04</p>
-                <p>平台使用培训、验收</p>
+                <p>平台验收、使用培训</p>
             </li>
             <li>
                 <p>05</p>
@@ -575,7 +574,7 @@
         </ul>
 
     </div>
-    <div class="p_g_examples">
+    <div class="p_g_examples" id="examples">
         <h3>典型案例</h3>
         <div class="p_g_e_content">
             <div class="swiper-container slideTxtBox">
