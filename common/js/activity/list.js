@@ -238,6 +238,15 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           })
         },
+        getWeihoRoleUrl: function (id) {
+          let vm=this
+          activityApi.getWeihoRoleUrl({ id: id }).then(function (res) {
+            if (res.code === 'rest.success') {
+              vm.pullStreamUrlDialog=true;
+              vm.pullStreamUrl=res.result.pageUrl
+            }
+          })
+        },
         pageClick: function (index) {
           if (index > 0 && index <= this.pages) {
             this.queryForm.pageNum = index;

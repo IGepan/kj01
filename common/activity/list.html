@@ -306,6 +306,8 @@
                              @click="handleEndLive(order.id)">结束直播</a>
                           <a v-if="order.code === '0303'&&order.webinarId&&order.liveState==='1'"
                              @click="handleStreamUrl(order.id)">获取推流地址</a>
+                          <a v-if="order.code === '0303'&&order.webinarId&&order.liveState==='1'"
+                             @click="getWeihoRoleUrl(order.id)">开始直播（直播间）</a>
                         </div>
                       </span>
                     </div>

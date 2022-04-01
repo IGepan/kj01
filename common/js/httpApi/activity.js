@@ -160,5 +160,9 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     getStreamUrl: function (param) {
       return Http.get(httpUrl.baseUrl + '/active/getPushAdress', param);
     },
+    //获取主持人直播地址
+    getWeihoRoleUrl: function (param) {
+      return Http.get(httpUrl.baseUrl + '/active/getWeihoRoleUrl', param);
+    }
   }
 })
