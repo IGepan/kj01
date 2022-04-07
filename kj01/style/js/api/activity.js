@@ -165,5 +165,8 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     getStreamUrl: function (param) {
       return Http.get(httpUrl.baseUrl + '/active/getPushAdress', param);
     },
+    liveUser: function (param) {
+      return Http.get(httpUrl.baseUrl + '/user/detail', param);
+    },
   }
 })

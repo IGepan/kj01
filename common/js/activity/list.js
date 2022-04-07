@@ -31,6 +31,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         pullStreamUrlDialog:false,
         pullStreamUrl:'',
         userList:{},
+        liveState:''
       },
       watch: {
         isOrderSelectedAll: function (newVal, oldval) {
@@ -248,14 +249,22 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           })
         },
-        getWeihoRoleUrl: function (id) {
+        getWeihoRoleUrl: function (id,z) {
           let vm=this
-          activityApi.getWeihoRoleUrl({ id: id }).then(function (res) {
-            if (res.code === 'rest.success') {
-              vm.pullStreamUrl=res.result.pageUrl
-              window.open(vm.pullStreamUrl,'_blank')
-            }
-          })
+          if(z){
+            activityApi.getNode({webinarId:z}).then(function (res) {
+              if(res.result.liveState=='1'||res.result.liveState=='2'){
+                activityApi.getWeihoRoleUrl({ id: id }).then(function (res) {
+                  if (res.code === 'rest.success') {
+                    vm.pullStreamUrl=res.result.pageUrl
+                    window.open(vm.pullStreamUrl,'_blank')
+                  }
+                })
+              }else {
+                this.$dialog.showToast('活动'+res.result.liveStateShow+'!')
+              }
+            })
+          }
         },
         pageClick: function (index) {
           if (index > 0 && index <= this.pages) {
