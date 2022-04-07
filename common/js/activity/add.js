@@ -166,6 +166,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                             name: '易智网直播',
                         }
                     ],
+                    userList:{},
                     activeliveTab: 0
                 };
             },
@@ -285,6 +286,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             created: function () {
                 this.activeId = this.$utils.getReqStr('id');
                 this.type = this.$utils.getReqStr('type') || 'add';
+                this.liveUserList();
             },
             components: {
                 'vue-ueditor-wrap': VueUeditor,
@@ -1013,6 +1015,15 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     this.formData.signRule.latitude = mapInfo.lat;
                     this.isShowMap = false;
                 },
+                liveUserList:function (){
+                    var vm = this;
+                    activityApi.liveUser().then(function (res) {
+                        if (res.code === 'rest.success') {
+                            vm.userList=res.result
+                            console.log(vm.userList,'vm.userList')
+                        }
+                    })
+                },
                 handleLiveTab(index) {
                     if (index === 0) {
                         this.activeliveTab = index;
@@ -1024,15 +1035,22 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     } else {
                         var vm = this;
                         //判断当前用户是否有创建直播的权限
-                        activityApi.liveAuth({code: '01'}).then(function (res) {
-                            if (res.code === 'rest.success') {
-                                vm.formData.isThird = 0;
-                                vm.activeliveTab = index;
-                                vm.formData.thirdUrl = ''
-                            } else {
-                                vm.$dialog.showToast(res.desc);
+                        // activityApi.liveAuth({code: '01'}).then(function (res) {
+                        //     if (res.code === 'rest.success') {
+                        //             vm.formData.isThird = 0;
+                        //             vm.activeliveTab = index;
+                        //             vm.formData.thirdUrl = ''
+                        //     } else {
+                        //         vm.$dialog.showToast(res.desc);
+                        //     }
+                        // });
+                                if(vm.userList.power&&vm.userList.power==0){
+                                    vm.formData.isThird = 0;
+                                    vm.activeliveTab = index;
+                                    vm.formData.thirdUrl = ''
+                                } else {
+                                vm.$dialog.showToast('你没有开启直播的权限!');
                             }
-                        });
                     }
                 }
             }
