@@ -308,7 +308,7 @@
 <!--                             @click="handleStreamUrl(order.id)">获取推流地址</a>-->
 <!--                          <a v-if="order.code === '0303'&&order.webinarId&&order.liveState==='1'"-->
 <!--                             @click="getWeihoRoleUrl(order.id)">开始直播（直播间）</a>-->
-                          <a v-if="order.code === '0303'&&order.webinarId&&userList.power===0" @click="getWeihoRoleUrl(order.id,order.webinarId)">开始直播（直播间）</a>
+                          <a v-if="order.webinarId&&userList.power===0" @click="getWeihoRoleUrl(order.id,order.webinarId)">开始直播（直播间）</a>
                         </div>
                       </span>
                     </div>
