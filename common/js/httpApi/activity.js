@@ -148,6 +148,9 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     liveAuth: function (param) {
       return Http.get(httpUrl.baseUrl + '/userAuth/validateUserAuth', param);
     },
+    liveUser: function (param) {
+      return Http.get(httpUrl.baseUrl + '/user/detail', param);
+    },
     //开始直播
     startLive: function (param) {
       return Http.get(httpUrl.baseUrl + '/active/startWeiho', param);

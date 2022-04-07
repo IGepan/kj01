@@ -300,12 +300,15 @@
                             :href="'signature.html?code=001.004.001.001&id=' + order.id">查看签到</a>
                           <a target="_blank" v-if="order.receiptFlag  && order.status !== '01'"
                             :href="'receipt.html?code=001.004.001.001&id=' + order.id">查看反馈</a>
-                          <a v-if="order.code === '0303'&&order.webinarId&&order.liveState!=='1'"
-                              @click="handleStartLive(order.id)">开始直播</a>
+<!--                          <a v-if="order.code === '0303'&&order.webinarId&&order.liveState!=='1'"-->
+<!--                              @click="handleStartLive(order.id)">开始直播</a>-->
                           <a v-if="order.code === '0303'&&order.webinarId&&order.liveState==='1'"
                              @click="handleEndLive(order.id)">结束直播</a>
                           <a v-if="order.code === '0303'&&order.webinarId&&order.liveState==='1'"
                              @click="handleStreamUrl(order.id)">获取推流地址</a>
+<!--                          <a v-if="order.code === '0303'&&order.webinarId&&order.liveState==='1'"-->
+<!--                             @click="getWeihoRoleUrl(order.id)">开始直播（直播间）</a>-->
+                          <a v-if="userList.power===0" @click="getWeihoRoleUrl(order.id)">开始直播（直播间）</a>
                         </div>
                       </span>
                     </div>
