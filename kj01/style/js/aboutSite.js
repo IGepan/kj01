@@ -86,7 +86,7 @@ require(['/common/js/require.config.js'], function () {
                 },
                 components: {
                     'ly-toper': httpVueLoader('/style/components/newtoper.vue'),
-                    'index-head': httpVueLoader('/style/components/index_head.vue'),
+                    'index-head': httpVueLoader('/style/components/index_head2.vue'),
                     'web-footer': httpVueLoader('/style/components/web_footer.vue'),
                     'header-mail': httpVueLoader('/style/components/header_mail.vue'),
                     'validate-dialog': httpVueLoader('/common/components/validateDialog.vue'),

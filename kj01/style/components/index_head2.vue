@@ -18,7 +18,8 @@
 <!--       </div>-->
      </div>
      <div class="searchBox">
-       <ul><li v-for="(nav,index) in navs" :key="index"><a :href="nav.url" :class="{active: nav.active}" >{{ nav.label }}</a></li></ul>
+       <ul><li v-for="(nav,index) in navs" :key="index">
+         <a :href="nav.url" :class="{active: nav.active}" :target="nav.label=='科技智库'?'_blank':''" target="_blank">{{ nav.label }}</a></li></ul>
       <div class="search">
        <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">
        <span class="iconfont icon-fangdajing" @click="searchFull"></span>
@@ -77,6 +78,10 @@ module.exports = {
         //   label: '创新资源',
         //   url: '/resources'
         // },
+        {
+          label: '创新服务',
+          url: '/plusList.html'
+        },
         {
           label: '科技智库',
           url: 'http://www.castss.com/'
@@ -167,9 +172,10 @@ module.exports = {
   display: flex;
   align-items: center;
   margin-left: 50px;
+  margin-bottom: 10px;
 }
 .searchBox ul li{
-  margin-right: 20px;
+  margin-right: 10px;
   float: left;
 }
 .searchBox a {
