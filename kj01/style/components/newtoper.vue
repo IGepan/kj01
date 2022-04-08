@@ -167,7 +167,7 @@
       </div>
     </div>
     <chat-im :userinfo="userInfo"></chat-im>
-    <div class="c-hover-menu" v-if="userInfo && userInfo.userId">
+    <div class="c-hover-menu" v-if="userInfo && userInfo.userId && topClass!=='red'">
       <chat-history
         :userinfo="userInfo"
         @clearmsg="clearUnreadMsg"

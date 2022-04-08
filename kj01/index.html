@@ -644,32 +644,6 @@
     <!--        <div class="mdiv"> <span>易智专家荟</span></div>-->
 
     <!--    </div>-->
-<!--    <ul class="www-fixright">-->
-<!--        <li class="zxkf on"><a>客服</a></li>-->
-<!--        <li class="wx"><span>微信</span>-->
-<!--            <div class="right-show" style="display: none;"><img src="//image.1633.com/images/www/V19/right-wx-show.png">-->
-<!--            </div>-->
-<!--        </li>-->
-<!--        <li class="ry"><span>荣誉</span>-->
-<!--            <div class="right-show" style="display: none;"><a href="//www.1633.com/about/base.shtml" target="_blank"-->
-<!--                                                              rel="nofollow"><img-->
-<!--                    src="//image.1633.com/images/www/d10_www/kyry1.png"></a><a-->
-<!--                    href="//www.1633.com/about/newsdetail_190225_1.html" target="_blank" rel="nofollow"><img-->
-<!--                    src="//image.1633.com/images/www/d10_www/kyry2.png"></a><a-->
-<!--                    href="//www.1633.com/about/newsdetail_205687_1.html" target="_blank" rel="nofollow"><img-->
-<!--                    src="//image.1633.com/images/www/d10_www/kyry3.png"></a><a-->
-<!--                    href="//www.1633.com/about/newsdetail_180742_1.html" target="_blank" rel="nofollow"><img-->
-<!--                    src="//image.1633.com/images/www/d10_www/kyry4.png"></a><a-->
-<!--                    href="//www.1633.com/about/newsdetail_204679_1.html" target="_blank" rel="nofollow"><img-->
-<!--                    src="//image.1633.com/images/www/d10_www/kyry5.png"></a></div>-->
-<!--        </li>-->
-<!--        <li class="lxwm"><span>电话</span>-->
-<!--            <div class="right-show" style="display: none;"><img-->
-<!--                    src="//image.1633.com/images/www/V19/right-lxwm-show.png"></div>-->
-<!--        </li>-->
-<!--        <li class="top" onclick="window.scrollTo(0,0)"><span>顶部</span></li>-->
-<!--        <li class="up"><span>收起</span></li>-->
-<!--    </ul>-->
     <div class="jingxuan" style="padding-top: 40px">
         <div class="mdiv jingxuan-bottom">
             <a class="nav-box" href="https://www.qiyekexie.com" target="_blank">
@@ -853,13 +827,13 @@
     .www-fixright {
         position: fixed;
         bottom: 30vh;
-        right: 20px;
+        right: 0px;
         z-index: 5;
     }
     .www-fixright li.on {
         background-color: #ff5e06;
         border-color: #ff5e06;
-        /*background-image: url(/images/www/V20/icon_rh.png);*/
+        background-image: url(/style/images/index/kefu.svg);
     }
     .www-fixright li.zxkf {
         background-position: 11px 6px;
@@ -879,6 +853,12 @@
         background-repeat: no-repeat;
         box-sizing: border-box;
         background: #fff url(/images/www/V20/icon_r.png) no-repeat;
+    }
+    .www-fixright li:first-child{
+        border-radius: 10px 10px 0px 0px;
+    }
+    .www-fixright li:last-child{
+        border-radius: 0px 0px 10px 10px;
     }
     .www-fixright li.on span, .www-fixright li.on a {
         color: #fff;

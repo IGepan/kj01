@@ -316,7 +316,7 @@
 
 <body>
 <div class="box grayBgbox" id='index_box' v-cloak>
-    <ly-toper ref="lytoper" top-class="white"></ly-toper>
+    <ly-toper ref="lytoper" top-class="red"></ly-toper>
     <div class="header-box " style="background: #fff;height: 65px;position: relative;box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);">
 
         <index-head :nav-index="5"></index-head>
@@ -398,9 +398,127 @@
             <div class="pic" style="background-image: url(/style/images/in6.jpg);"></div>
         </div>
     </div>
+    <ul class="www-fixright">
+        <a href="https://kefu.easemob.com/webim/im.html?configId=ec7413a1-5b49-4deb-8703-a3107ba35d6b" target="_blank"><li class="zxkf on"><span>客服</span></li></a>
+        <el-popover
+                placement="left"
+                width="100"
+                trigger="hover"
+                popper-class="pa"
+        >
+            <img src="/style/images/index/qrcode.jpg" style="margin-top: 0">
+            <span>关注易智网</span>
+            <li class="wx" slot="reference">
+                <span>微信</span>
+            </li>
+        </el-popover>
+        <el-popover
+                placement="left"
+                width="200"
+                trigger="hover"
+                popper-class="pa"
+        >
+            <img src="/style/images/index/dashuju.png" style="margin-top: 0">
+            <img src="/style/images/index/gaoxiao.png" style="margin-top: 10px">
+            <img src="/style/images/index/jidi.png" style="margin-top: 10px">
+            <li class="ry" slot="reference">
+                <span>荣誉</span>
+            </li>
+        </el-popover>
+
+        <el-popover
+                placement="left"
+                width="200"
+                trigger="hover"
+                popper-class="pa"
+        >
+            <span style="font-size: 20px;color: #e01828">023-61365806</span>
+            <li class="lxwm" slot="reference">
+                <span>电话</span>
+            </li>
+        </el-popover>
+
+        <li class="top" @click="toTop"><span>顶部</span></li>
+        <!--        <li class="up"><span>收起</span></li>-->
+    </ul>
     <web-footer></web-footer>
 </div>
 </body>
+<style>
+    .pa{
+        padding: 10px!important;
+        text-align: center;
+    }
+    .www-fixright {
+        position: fixed;
+        bottom: 30vh;
+        right: 0px;
+        z-index: 5;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .www-fixright li.on {
+        background-color: #e01828;
+        border-color: #e01828;
+        background-image: url(/style/images/index/kefu.svg);
+    }
+    .www-fixright li:hover{
+        background: rgb(255, 245, 240)no-repeat;
+    }
+    .www-fixright li.on:hover{
+        background-color: #ff5e06;
+        border-color: #ff5e06;
+        background-image: url(/style/images/index/kefu.svg);
+    }
+    .www-fixright li.zxkf {
+        background-position: 11px 6px;
+    }
+    .www-fixright li.wx{
+        background-position: 11px 6px;
+        background-image: url(/style/images/index/wx.svg);
+    }
+    .www-fixright li.ry{
+        background-position: 11px 6px;
+        background-image: url(/style/images/index/rongyu.svg);
+    }
+    .www-fixright li.lxwm{
+        background-position: 11px 6px;
+        background-image: url(/style/images/index/dianhua.svg);
+    }
+    .www-fixright li.top{
+        background-position: 11px 6px;
+        background-image: url(/style/images/index/top.svg);
+    }
+    .www-fixright li:first-child {
+        border-top: 1px solid #e4e4e4;
+    }
+    .www-fixright li {
+        position: relative;
+        width: 58px;
+        height: 64px;
+        padding-top: 40px;
+        cursor: pointer;
+        border: 1px solid #e4e4e4;
+        border-top: 0;
+        background-position: center 12px;
+        /*background-repeat: no-repeat;*/
+        box-sizing: border-box;
+        background: #FFFFff no-repeat;
+    }
+    .www-fixright li.on span, .www-fixright li.on a {
+        color: #fff;
+    }
+    .www-fixright li span, .www-fixright li a {
+        display: block;
+        line-height: 16px;
+        text-align: center;
+        font-size: 12px;
+        color: #474747;
+    }
+    .www-fixright li.top{
+        transition: all .3s ease-in-out;
+    }
+</style>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="/style/js/aboutSite.js"></script>
 <script>
