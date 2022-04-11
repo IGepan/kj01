@@ -47,7 +47,7 @@
         padding-top: 60px;
     }
     .bg-color{
-        width: 50%;
+        width: 100%;
         background: rgba(0,0,0,0.3);
         padding: 20px;
     }
@@ -59,11 +59,8 @@
     }
     .infrom p{
         color: #fff;
-        text-transform: uppercase;
-        /*font-family: "DINPro-Bold";*/
-        font-size: 20px;
-        letter-spacing: 12px;
-        font-family: "DINCond-Bold";
+        line-height: 30px;
+        font-size: 16px;
     }
     .infrom a{
         display: inline-block;
@@ -314,15 +311,15 @@
     <div class="bg">
      <div class="infrom mmdiv">
          <div class="bg-color">
-         <span>创新服务</span>
-         <p>INNOVATIVE SERVICE</p>
+         <span>技术转移服务</span>
+         <p>易智网围绕技术成果转移转化全链条建立资源深度聚集、服务智能精准、线上线下融合的科技创新服务大平台，提供技术开发、技术转让、技术咨询、技术评价、技术转移活动、技术经理人培育、技术转移示范基地建设、信息网络平台建设等综合性技术转移服务。</p>
          </div>
      </div>
     </div>
     <div class="navList">
         <ul class="mmdiv">
-            <li class="active"><a href="#">技术转移服务</a></li>
-            <li><a href="/inforList.html">信息化产品服务</a></li>
+            <li><a href="/inforList.html">IT/软件服务</a></li>
+            <li class="active" ><a href="#">技术转移服务</a></li>
         </ul>
     </div>
     <div class="mmdiv">
@@ -540,10 +537,97 @@
         <li class="top" @click="toTop"><span>顶部</span></li>
         <!--        <li class="up"><span>收起</span></li>-->
     </ul>
+    <div class="bottom-chance" style="left: 0px;" :style="{display:show?'none':''}">
+        <!-- 触发的按钮 -->
+<!--        <div class="bottom-open J-bottom-open" @click="openBox"></div>-->
+        <a target="_blank" href="https://kefu.easemob.com/webim/im.html?configId=ec7413a1-5b49-4deb-8703-a3107ba35d6b"><div class="bottom-open J-bottom-open"></div></a>
+    </div>
+    <div class="bottom-chance-con " style="left: 0px;" :style="{display:show?'':'none'}">
+        <i class="el-icon-circle-close" @click="close"></i>
+    </div>
     <web-footer></web-footer>
 </div>
 </body>
 <style>
+    .bottom-chance-con {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom:0px;
+        z-index: 99;
+        width: 100%;
+        height: 195px;
+        background: url(/style/images/bbkefu.png) no-repeat;
+        background-size: 100% 100%;
+        -webkit-animation: fadelogIn2 1s;
+        animation: fadelogIn2 1s;
+    }
+    .bottom-chance-con i{
+        font-size: 40px;
+        right: 30px;
+        position: absolute;
+        bottom: 50px;
+        z-index: 999;
+        color: #fff;
+    }
+    .bottom-chance {
+        position: fixed;
+        left: 0;
+        z-index: 99;
+        bottom: 30px;
+        width: 150px;
+        height: 100px;
+        -webkit-animation: fadelogIn .5s;
+        animation: fadelogIn .5s;
+    }
+    .bottom-chance .bottom-open{
+        position: absolute;
+        width: 150px;
+        height: 100px;
+        background: url(/style/images/kefu.png) no-repeat;
+        background-size: 100% 100%;
+        cursor: pointer;
+    }
+    @keyframes fadelogIn {
+        0% {
+            -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%,0, 0);
+
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+
+    @-webkit-keyframes fadelogIn {
+        0% {
+            -webkit-transform: translate3d(-100%,0, 0);
+        }
+        100% {
+            -webkit-transform: none;
+        }
+    }
+    @keyframes fadelogIn2 {
+        0% {
+            -webkit-transform: translate3d(0, 100%,0 );
+            transform: translate3d(0,100%,0);
+
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+
+    @-webkit-keyframes fadelogIn2 {
+        0% {
+            -webkit-transform: translate3d(0, 100%,0);
+        }
+        100% {
+            -webkit-transform: none;
+        }
+    }
     .pa{
         padding: 10px!important;
         text-align: center;
@@ -552,57 +636,58 @@
         position: fixed;
         bottom: 30vh;
         right: 0px;
-        z-index: 5;
-        border-radius: 10px;
+        z-index: 999!important;
+        /*border-radius: 10px;*/
         overflow: hidden;
+        box-shadow: 0 2px 15px 0 rgba(0,0,0,.1);
     }
-    .www-fixright li.on {
+    .www-fixright li {
         background-color: #e01828;
         border-color: #e01828;
-        background-image: url(/style/images/index/kefu.svg);
+        /*border-radius: 10px;*/
+
     }
-    .www-fixright li:hover{
-        background: rgb(255, 245, 240)no-repeat;
-    }
+    /*.www-fixright li:hover{*/
+    /*  background: rgba(252,127,16,0.8) no-repeat;*/
+    /*}*/
     .www-fixright li.on:hover{
         background-color: #ff5e06;
         border-color: #ff5e06;
         background-image: url(/style/images/index/kefu.svg);
     }
     .www-fixright li.zxkf {
-        background-position: 11px 6px;
+        background-position: 8px 5px;
+        background-image: url(/style/images/index/kefu.svg);
     }
     .www-fixright li.wx{
-        background-position: 11px 6px;
+        background-position: 8px 5px;
         background-image: url(/style/images/index/wx.svg);
     }
     .www-fixright li.ry{
-        background-position: 11px 6px;
+        background-position: 8px 5px;
         background-image: url(/style/images/index/rongyu.svg);
     }
     .www-fixright li.lxwm{
-        background-position: 11px 6px;
+        background-position: 8px 5px;
         background-image: url(/style/images/index/dianhua.svg);
     }
     .www-fixright li.top{
-        background-position: 11px 6px;
+        background-position: 8px 5px;
         background-image: url(/style/images/index/top.svg);
     }
-    .www-fixright li:first-child {
-        border-top: 1px solid #e4e4e4;
-    }
+    /*.www-fixright li:first-child {*/
+    /*  border-top: 1px solid #e4e4e4;*/
+    /*}*/
     .www-fixright li {
         position: relative;
-        width: 58px;
-        height: 64px;
-        padding-top: 40px;
+        width: 48px;
+        height: 56px;
+        padding-top: 36px;
         cursor: pointer;
-        border: 1px solid #e4e4e4;
-        border-top: 0;
         background-position: center 12px;
         /*background-repeat: no-repeat;*/
         box-sizing: border-box;
-        background: #FFFFff no-repeat;
+        background: #fc7f10 no-repeat;
     }
     .www-fixright li.on span, .www-fixright li.on a {
         color: #fff;
@@ -612,7 +697,7 @@
         line-height: 16px;
         text-align: center;
         font-size: 12px;
-        color: #474747;
+        color: #fff;
     }
     .www-fixright li.top{
         transition: all .3s ease-in-out;

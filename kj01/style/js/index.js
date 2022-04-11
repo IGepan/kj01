@@ -778,22 +778,22 @@ require(['/common/js/require.config.js'], function () {
                         slidesPerView: 5,
                         spaceBetween: 20,
                         loop: true, // 循环模式选项
-                        autoplay: true, // 可选选项，自动滑动
-                        delay: 3000,// 3秒切换一次
+                        autoplay: false, // 可选选项，自动滑动
+                        // delay: 3000,// 3秒切换一次
                         // initialSlide: 2, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，有时想初始化时直接显示其他slide，可以做此设置。
                         navigation: {
                             nextEl: '.item-next',
                             prevEl: '.item-prev',
                         },
                     })
-                    $('.slideTxtBox').mouseenter(function () {
-                        // 鼠标悬停停止播放
-                        swiperEntity.autoplay.stop();
-                    })
-                    $('.slideTxtBox').mouseleave(function () {
-                        // 鼠标移除开启自动播放
-                        swiperEntity.autoplay.start();
-                    })
+                    // $('.slideTxtBox').mouseenter(function () {
+                    //     // 鼠标悬停停止播放
+                    //     swiperEntity.autoplay.stop();
+                    // })
+                    // $('.slideTxtBox').mouseleave(function () {
+                    //     // 鼠标移除开启自动播放
+                    //     swiperEntity.autoplay.start();
+                    // })
                     // 获取类型板块
                     _this.getMailServiceType(function () {
                             //递归板块数据，从第一个板块开始

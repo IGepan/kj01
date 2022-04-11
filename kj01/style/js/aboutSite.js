@@ -14,6 +14,7 @@ require(['/common/js/require.config.js'], function () {
                         price: '',
                         sort: ''
                     },
+                    show:false,
                     dicOptsSet: [
                         {
                             code: 'price',
@@ -108,6 +109,12 @@ require(['/common/js/require.config.js'], function () {
 
                 },
                 methods: {
+                    openBox(){
+                       this.show=true
+                    },
+                    close(){
+                        this.show=false
+                    },
                     toTop() {
 
                         let top = document.documentElement.scrollTop || document.body.scrollTop;

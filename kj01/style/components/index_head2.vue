@@ -19,7 +19,8 @@
      </div>
      <div class="searchBox">
        <ul><li v-for="(nav,index) in navs" :key="index">
-         <a :href="nav.url" :class="{active: nav.active}" :target="nav.label=='科技智库'?'_blank':''">{{ nav.label }}</a></li></ul>
+         <a :href="nav.url" :class="{active: nav.active}" :target="nav.label=='科技智库'?'_blank':''"
+         >{{ nav.label }}<img style="position: absolute;margin-top: -10px;" v-if="nav.label=='创新服务'" src="/style/images/index/hot.png"/></a></li></ul>
       <div class="search">
        <input type="text" class="input" placeholder="请输入关键词搜索" v-model="searchKey">
        <span class="iconfont icon-fangdajing" @click="searchFull"></span>
@@ -80,7 +81,7 @@ module.exports = {
         // },
         {
           label: '创新服务',
-          url: '/plusList.html'
+          url: '/inforList.html'
         },
         {
           label: '科技智库',
