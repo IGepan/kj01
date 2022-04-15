@@ -228,7 +228,7 @@
 <!--      </div>-->
 <!--    </div>-->
     <ul class="www-fixright">
-      <a href="https://kefu.easemob.com/webim/im.html?configId=ec7413a1-5b49-4deb-8703-a3107ba35d6b" target="_blank"><li class="zxkf"><span>客服</span></li></a>
+      <a href="https://tb.53kf.com/code/client/10113491/1" target="_blank"><li class="zxkf"><span>客服</span></li></a>
       <el-popover
           placement="left"
           width="100"
