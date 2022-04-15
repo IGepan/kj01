@@ -138,90 +138,133 @@
       </div>
     </div>
     <chat-im :userinfo="userInfo"></chat-im>
-    <div class="c-hover-menu">
-      <div class="c-hover-txt">
-        <chat-history
-          :userinfo="userInfo"
-          @clearmsg="clearUnreadMsg"
-        ></chat-history>
-        <div
-          class="c-hover-item"
-          @click="action('message')"
-          style="height: 67px"
-        >
-          <div class="c-hover-icon">
-            <span class=""
-              ><img src="/style/images/index/toper_1.png" alt=""
-            /></span>
-            <span
-              v-if="menuInfo.messageCount"
-              class="c-hover-count"
-              v-html="menuInfo.messageCount"
-              >15</span
-            >
-          </div>
-          <span>消息</span>
-        </div>
+<!--    <div class="c-hover-menu">-->
+<!--      <div class="c-hover-txt">-->
+<!--        <chat-history-->
+<!--          :userinfo="userInfo"-->
+<!--          @clearmsg="clearUnreadMsg"-->
+<!--        ></chat-history>-->
+<!--        <div-->
+<!--          class="c-hover-item"-->
+<!--          @click="action('message')"-->
+<!--          style="height: 67px"-->
+<!--        >-->
+<!--          <div class="c-hover-icon">-->
+<!--            <span class=""-->
+<!--              ><img src="/style/images/index/toper_1.png" alt=""-->
+<!--            /></span>-->
+<!--            <span-->
+<!--              v-if="menuInfo.messageCount"-->
+<!--              class="c-hover-count"-->
+<!--              v-html="menuInfo.messageCount"-->
+<!--              >15</span-->
+<!--            >-->
+<!--          </div>-->
+<!--          <span>消息</span>-->
+<!--        </div>-->
 
-        <div
-          class="c-hover-item"
-          onclick="location.href='/mall/sub4-footprint.html'"
-        >
-          <div class="c-hover-icon">
-            <span class="iconfont icon-time"></span>
-          </div>
-          <div class="c-hover-txt">
-            <span>足迹</span>
-          </div>
-        </div>
+<!--        <div-->
+<!--          class="c-hover-item"-->
+<!--          onclick="location.href='/mall/sub4-footprint.html'"-->
+<!--        >-->
+<!--          <div class="c-hover-icon">-->
+<!--            <span class="iconfont icon-time"></span>-->
+<!--          </div>-->
+<!--          <div class="c-hover-txt">-->
+<!--            <span>足迹</span>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div
-          class="c-hover-item"
-          onclick="window.open('http://www.5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"
-        >
-          <div class="c-hover-icon">
-            <span class="icon-fuwu iconfont"></span>
-          </div>
-          <div class="c-hover-txt">
-            <span>客服</span>
-          </div>
-        </div>
+<!--        <div-->
+<!--          class="c-hover-item"-->
+<!--          onclick="window.open('http://www.5c1.53kf.com/webCompany.php?arg=10113491&style=1&language=zh-cn&lytype=0&charset=utf-8&kflist=off&zdkf_type=1&referer=http%3A%2F%2Fwww.53kf.com%2Findex.php&keyword=http%3A//www.53kf.com&timeStamp=1604995029140&ucust_id=')"-->
+<!--        >-->
+<!--          <div class="c-hover-icon">-->
+<!--            <span class="icon-fuwu iconfont"></span>-->
+<!--          </div>-->
+<!--          <div class="c-hover-txt">-->
+<!--            <span>客服</span>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div
-          class="c-hover-item"
-          onclick="location.href='/mall/sub2-help.html'"
-        >
-          <div class="c-hover-icon">
-            <span class="iconfont icon-time"></span>
-          </div>
-          <div class="c-hover-txt">
-            <span>帮助中心</span>
-          </div>
-        </div>
+<!--        <div-->
+<!--          class="c-hover-item"-->
+<!--          onclick="location.href='/mall/sub2-help.html'"-->
+<!--        >-->
+<!--          <div class="c-hover-icon">-->
+<!--            <span class="iconfont icon-time"></span>-->
+<!--          </div>-->
+<!--          <div class="c-hover-txt">-->
+<!--            <span>帮助中心</span>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div
-          class="c-hover-item"
-          onclick="location.href='/mall/sub3-complaint.html'"
-        >
-          <div class="c-hover-icon">
-            <span class="iconfont icon-time"></span>
-          </div>
-          <div class="c-hover-txt">
-            <span>投诉中心</span>
-          </div>
-        </div>
-        <div class="c-hover-item" @click="action('top')">
-          <div class="c-hover-icon">
-            <span class=""
-              ><img src="/style/images/index/toper_4.png" alt=""
-            /></span>
-          </div>
-          <div class="c-hover-txt">
-            <span>回到顶部</span>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--        <div-->
+<!--          class="c-hover-item"-->
+<!--          onclick="location.href='/mall/sub3-complaint.html'"-->
+<!--        >-->
+<!--          <div class="c-hover-icon">-->
+<!--            <span class="iconfont icon-time"></span>-->
+<!--          </div>-->
+<!--          <div class="c-hover-txt">-->
+<!--            <span>投诉中心</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="c-hover-item" @click="action('top')">-->
+<!--          <div class="c-hover-icon">-->
+<!--            <span class=""-->
+<!--              ><img src="/style/images/index/toper_4.png" alt=""-->
+<!--            /></span>-->
+<!--          </div>-->
+<!--          <div class="c-hover-txt">-->
+<!--            <span>回到顶部</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <ul class="www-fixright">
+      <a href="https://kefu.easemob.com/webim/im.html?configId=ec7413a1-5b49-4deb-8703-a3107ba35d6b" target="_blank"><li class="zxkf"><span>客服</span></li></a>
+      <el-popover
+          placement="left"
+          width="100"
+          trigger="hover"
+          popper-class="pa"
+      >
+        <img src="/style/images/index/qrcode.jpg" style="margin-top: 0">
+        <span>关注易智网</span>
+        <li class="wx" slot="reference">
+          <span>微信</span>
+        </li>
+      </el-popover>
+      <el-popover
+          placement="left"
+          width="200"
+          trigger="hover"
+          popper-class="pa"
+      >
+        <img src="/style/images/index/dashuju.png" style="margin-top: 0">
+        <img src="/style/images/index/gaoxiao.png" style="margin-top: 10px">
+        <img src="/style/images/index/jidi.png" style="margin-top: 10px">
+        <li class="ry" slot="reference">
+          <span>荣誉</span>
+        </li>
+      </el-popover>
+
+      <el-popover
+          placement="left"
+          width="200"
+          trigger="hover"
+          popper-class="pa"
+      >
+        <span style="font-size: 20px;color: #ff5e06">023-61365806</span>
+        <li class="lxwm" slot="reference">
+          <span>电话</span>
+        </li>
+      </el-popover>
+
+      <li class="top" @click="toTop" id="fixright"><span>顶部</span></li>
+      <!--        <li class="up"><span>收起</span></li>-->
+    </ul>
   </div>
 </template>
 
@@ -353,6 +396,16 @@ module.exports = {
     }
   },
   methods: {
+    toTop() {
+      let top = document.documentElement.scrollTop || document.body.scrollTop;
+      // 实现滚动效果
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50;
+        if (top <= 0) {
+          clearInterval(timeTop);
+        }
+      }, 10);
+    },
     isHomePage: function (e) {
       if (location.pathname === "/" || location.pathname === "/index.html") {
         e.preventDefault();
@@ -645,6 +698,87 @@ module.exports = {
 };
 </script>
 <style>
+.pa img{
+  max-width: 100%;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+.pa{
+  padding: 10px!important;
+  text-align: center;
+}
+.www-fixright {
+  position: fixed;
+  bottom: 30vh;
+  right: 0px;
+  z-index: 999!important;
+  /*border-radius: 10px;*/
+  overflow: hidden;
+  box-shadow: 0 2px 15px 0 rgba(0,0,0,.1);
+}
+.www-fixright li {
+  background-color: #e01828;
+  border-color: #e01828;
+  /*border-radius: 10px;*/
+
+}
+/*.www-fixright li:hover{*/
+/*  background: rgba(252,127,16,0.8) no-repeat;*/
+/*}*/
+.www-fixright li.on:hover{
+  background-color: #ff5e06;
+  border-color: #ff5e06;
+  background-image: url(/style/images/index/kefu.svg);
+}
+.www-fixright li.zxkf {
+  background-position: 8px 5px;
+  background-image: url(/style/images/index/kefu.svg);
+}
+.www-fixright li.wx{
+  background-position: 8px 5px;
+  background-image: url(/style/images/index/wx.svg);
+}
+.www-fixright li.ry{
+  background-position: 8px 5px;
+  background-image: url(/style/images/index/rongyu.svg);
+}
+.www-fixright li.lxwm{
+  background-position: 8px 5px;
+  background-image: url(/style/images/index/dianhua.svg);
+}
+.www-fixright li.top{
+  background-position: 8px 5px;
+  background-image: url(/style/images/index/top.svg);
+}
+/*.www-fixright li:first-child {*/
+/*  border-top: 1px solid #e4e4e4;*/
+/*}*/
+.www-fixright li {
+  position: relative;
+  width: 48px;
+  height: 56px;
+  padding-top: 36px;
+  cursor: pointer;
+  background-position: center 12px;
+  /*background-repeat: no-repeat;*/
+  box-sizing: border-box;
+  background: #fc7f10 no-repeat;
+}
+.www-fixright li.on span, .www-fixright li.on a {
+  color: #fff;
+}
+.www-fixright li span, .www-fixright li a {
+  display: block;
+  line-height: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+.www-fixright li.top{
+  transition: all .3s ease-in-out;
+}
 .el-link.el-link--default{
   display: block;
   padding:0 20px;

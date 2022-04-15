@@ -57,15 +57,17 @@
                   <li v-for="(filter, i) in filterInfo" :class="{active: filter.selected}" @click="handleFilter(i)">
                     <span v-text="filter.label"></span></li>
                 </ul>
-                <div class="btnBox">
-                  <span class="btnBox-text">不满意？您可以自选服务</span>
-                  <!-- <div class="autonomouslyBtn" :class="{active: isCustomInfo}" @click="handleCustom"><span><i
-                        class="iconfont icon-tianjiajiahaowubiankuang"></i>自选方案</span></div> -->
-                </div>
+								<div class="result-chooseall-box" @click="selectPro(null)">
+									<span class="result-chooseall" :class="{active:selectAll}"></span>
+									全选
+								</div>
               </div>
               <div class="result" v-if="!isCustomInfo">
-                <div class="result-item" v-for="item in searchInfo">
-                  <div class="result-title" v-text="$options.filters.formatingname(item.serviceName)"></div>
+                <div class="result-item" v-for="(item,ins) in searchInfo" :key="ins">
+                  <div class="result-title">
+										{{$options.filters.formatingname(item.serviceName)}}
+										<span class="result-chooseall" :class="{active:item.selected}" @click="selectPro(item)"></span>
+									</div>
                   <div class="result-body">
                     <div class="merchandise">
                       <div class="merchandise-title">
@@ -87,11 +89,18 @@
                               评分:
                               5.00</span></h3>
                           <div class="merchandise-info-desc clear">
-                            <div class="merchandise-info-desc-info" v-text="item.specValue">
+                            <div class="merchandise-info-desc-info" v-html="item.specValue">
                               描述文字描述文字描述文字描述文字描述文字描述文字描述文字描字描述文字描字描述文字述文字述文字述文字述文字述文字述文字述文字述文字文字
                             </div>
                             <div class="merchandise-info-desc-price fr">
-                              <div class="merchandise-auxiliary">￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}元</div>
+                              <div class="merchandise-auxiliary">
+																
+																<span v-if="item.choosePriceTag=='0'">￥{{item.minPrice}}元</span>
+																<span v-if="item.choosePriceTag=='1'">￥{{item.minPrice}}{{item.minPrice&&item.maxPrice?'-':''}}{{item.maxPrice}}元</span>
+																<span v-if="item.choosePriceTag=='2'">面议</span>
+																<span v-if="item.choosePriceTag=='3'">{{item.priceWord}}</span>
+																<!-- ￥{{item.negotiableFlag | formatPrice(item.price, item.minPrice, item.maxPrice)}}元 -->
+															</div>
                               <a target="_blank" :href="item.goodsDetailUrl">查看详情&gt;</a>
                             </div>
                           </div>

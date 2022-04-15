@@ -14,6 +14,7 @@ require(['/common/js/require.config.js'], function () {
                         price: '',
                         sort: ''
                     },
+                    show:false,
                     dicOptsSet: [
                         {
                             code: 'price',
@@ -108,6 +109,23 @@ require(['/common/js/require.config.js'], function () {
 
                 },
                 methods: {
+                    openBox(){
+                       this.show=true
+                    },
+                    close(){
+                        this.show=false
+                    },
+                    toTop() {
+
+                        let top = document.documentElement.scrollTop || document.body.scrollTop;
+                        // 实现滚动效果
+                        const timeTop = setInterval(() => {
+                            document.body.scrollTop = document.documentElement.scrollTop = top -= 50;
+                            if (top <= 0) {
+                                clearInterval(timeTop);
+                            }
+                        }, 10);
+                    },
                     handleE:function () {
                         this.userInfo = JSON.parse(localStorage.getItem(dic.locaKey.USER_INFO))
                         if (!this.userInfo.userId) {

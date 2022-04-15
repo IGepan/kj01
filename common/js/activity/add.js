@@ -1044,7 +1044,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         //         vm.$dialog.showToast(res.desc);
                         //     }
                         // });
-                                if(vm.userList.power&&vm.userList.power==0){
+                                if(vm.userList.power==0){
                                     vm.formData.isThird = 0;
                                     vm.activeliveTab = index;
                                     vm.formData.thirdUrl = ''

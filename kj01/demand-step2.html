@@ -49,7 +49,7 @@
                 <div class="services-body">
                   <div class="services-item" v-for="servicesField2 in servicesField1.servicesField2ViewList">
                     <label class="services-item__text" v-text="servicesField2.serviceType2Name">技术推广推广推广</label>
-                    <span class="services-badge" v-text="servicesField2.servicesField3ViewList.length">9</span>
+                    <!-- <span class="services-badge" v-text="servicesField2.servicesField3ViewList.length">9</span> -->
                   </div>
                 </div>
               </div>
@@ -61,17 +61,18 @@
           </div>
           <div class="seleced-items" v-for="(servicesField1, i) in searchInfo.servicesField1ViewList">
             <div class="seleced-title" v-text="servicesField1.servicesLevel1TypeDisplay">技术转移</div>
-            <div class="seleced-item" v-for="(servicesField2, si) in servicesField1.servicesField2ViewList">
-              <label class="seleced-item__title" v-text="servicesField2.serviceType2Name">技术推广</label>
-              <div class="seleced-item__subitems">
-                <div class="subitem" v-for="(services, ti) in servicesField2.servicesField3ViewList"
-                  :class="{active: services.selected}" @click="selectItem(i, si, ti)">
-                  <div class="subitem-title" :title="services.serviceName" v-text="services.serviceName">在线建店</div>
-                  <div class="subitem-desc" v-if="services.comment" :title="services.comment"
-                    v-text="services.comment + ' >'">在线创建技术店铺 ></div>
-                  <i class="iconfont icon-xuanzhong"></i>
-                </div>
-              </div>
+            <div class="seleced-item">
+							<template v-for="(servicesField2, si) in servicesField1.servicesField2ViewList">
+								<!-- <label class="seleced-item__title" v-text="servicesField2.serviceType2Name">技术推广</label> -->
+								<div class="seleced-item__subitems" style="display: inline-block;">
+								  <div class="subitem" v-for="(services, ti) in servicesField2.servicesField3ViewList"
+								    :class="{active: services.selected}" @click="selectItem(i, si, ti)">
+								    <div class="subitem-title" :title="services.serviceName" v-text="services.serviceName">在线建店</div>
+								    <div class="subitem-desc" v-if="services.comment" :title="services.comment" v-text="services.comment + ' >'">在线创建技术店铺 ></div>
+								    <i class="iconfont icon-xuanzhong"></i>
+								  </div>
+								</div>
+							</template>
             </div>
           </div>
           <button class="submitBtn big" type="button" @click="submit">确认服务方案，选择服务商</button>

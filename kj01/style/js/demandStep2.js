@@ -7,6 +7,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       el: '#index_box',
       data: {
         jquery: $,
+				selected: [],
+				selectAll: false,
         options: {
           chartOptions: {
             radar: [
@@ -128,10 +130,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       computed: {
         sumPrice: function () {
           var sumprice = !this.isCustomInfo ? this.searchInfo.reduce(function (price, item) {
-            return price += Number(item.minPrice)
+            return price += item.minPrice ? Number(item.minPrice) : 0;
           }, 0) : this.collapseCustomInfo.reduce(function (price, item) {
             return price += item.children.reduce(function (sp, si) {
-              return sp += Number(si.minPrice)
+              return sp += si.minPrice ? Number(si.minPrice) : 0
             }, 0)
           }, 0)
           return sumprice.toFixed(2)
@@ -202,6 +204,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
               this.getSelectMaxSalePlan()
             })
           }
+					
+					console.log(this.isCustomInfo)
         },
         // 获取标准码
         getOption: function (key) {
@@ -229,7 +233,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           !vm.dataInfo[0] && httpCom.selectMaxScorePlan(this.queryData).then(function (res) {
             if (res.code === 'rest.success') {
               res.result.forEach(function (info) {
-                vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
+                vm.demandForm.queryIds[info.serviceId] && vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
               })
               vm.searchInfo = vm.dataInfo[0] = res.result
             } else {
@@ -247,12 +251,13 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           !vm.dataInfo[1] && httpCom.selectMinPricePlan(this.queryData).then(function (res) {
             if (res.code === 'rest.success') {
               res.result.forEach(function (info) {
-                vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
+                vm.demandForm.queryIds[info.serviceId] && vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
               })
               vm.searchInfo = vm.dataInfo[1] = res.result
             } else {
               vm.searchInfo = vm.dataInfo[1] = []
             }
+						console.log(vm.searchInfo)
           }).catch(
             // 记录失败原因
             function (reason) {
@@ -265,12 +270,13 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           !vm.dataInfo[2] && httpCom.selectMaxSalePlan(this.queryData).then(function (res) {
             if (res.code === 'rest.success') {
               res.result.forEach(function (info) {
-                vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
+                vm.demandForm.queryIds[info.serviceId] && vm.demandForm.queryIds[info.serviceId].qIds.push(info.goodsId)
               })
               vm.searchInfo = vm.dataInfo[2] = res.result
             } else {
               vm.searchInfo = vm.dataInfo[2] = []
             }
+						console.log(vm.searchInfo)
           }).catch(
             // 记录失败原因
             function (reason) {
@@ -334,11 +340,11 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
             return filter
           }))
-          this.isCustomInfo && (this.isCustomInfo = !this.isCustomInfo)
+          this.isCustomInfo && (this.isCustomInfo = !this.isCustomInfo);
         },
         // 自选切换
         handleCustom: function () {
-          this.isCustomInfo = !this.isCustomInfo
+          this.isCustomInfo = !this.isCustomInfo;
           this.$set(this, 'filterInfo', this.filterInfo.map(function (filter, fi) {
             filter.selected = false
             return filter
@@ -389,22 +395,61 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
             }
           })
         },
+				//选择列表
+				selectPro: function(item){
+					var vm = this;
+					var list = this.searchInfo|| [];
+					vm.selected = [];
+					
+					if(item) {
+						item.selected = !item.selected;
+						this.$set(item,'selected',item.selected);
+						list.map(function(item){
+							item.selected && vm.selected.push(item.goodsId) 
+						})
+					} else {
+						vm.selectAll = !vm.selectAll;
+						list.map(function(item){
+							if(vm.selectAll)item.selected = true,vm.selected.push(item.goodsId);
+							else (item.selected = false);
+						});
+					}
+					
+					if(vm.selected.length == list.length) this.selectAll = true;
+					else this.selectAll = false;
+					this.$forceUpdate();
+				},
         // 立即购买
         handleBuyNow: function () {
-          this.demandForm.buyNowData = this.getBuyNowData()
-          sessionStorage.setItem('buyNowdemandForm', JSON.stringify(this.demandForm))
-          document.location = '/common/servicetrade/order.html'
+          var list = this.getBuyNowData();
+					var buyNowData = [];
+					for(var i = 0; i < list.length; i++){
+						if(this.selected.indexOf(list[i].goodsId)>=0) buyNowData.push(list[i])
+					}
+					
+          this.demandForm.buyNowData = buyNowData;
+					if(buyNowData.length > 0) {
+						sessionStorage.setItem('buyNowdemandForm', JSON.stringify(this.demandForm))
+						document.location = '/common/servicetrade/order.html'
+					}else{
+						this.$dialog.showToast('请选择服务');
+					}
         },
         // 收藏
         handlePlanInsert: function () {
           var fun = function (goods) {
             return goods.goodsId
-          }
-          // alert('敬请期待')
+          };
+					
+					var goodsIds = this.isCustomInfo ? this.collapseCustomInfo.reduce(function (datas, item) {return datas.concat(item.children.map(fun))}, []) : this.selected;
+					
+					if(goodsIds.length <= 0){
+						this.$dialog.showToast('请选择服务方案');return;
+					}
+					
           this.planInsert({
-            planName: this.demandForm.planName, goodsIds: this.isCustomInfo ? this.collapseCustomInfo.reduce(function (datas, item) {
-              return datas.concat(item.children.map(fun))
-            }, []) : this.searchInfo.map(fun)
+            planName: this.demandForm.planName, 
+						goodsIds: goodsIds
           })
         },
         handleTips: function () {
