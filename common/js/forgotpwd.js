@@ -196,7 +196,7 @@ require(['/common/js/require.config.js'], function () {
           this.validate(3, function (v) {
             if (v) {
               $this.btn_disabled = true;
-              $this.$http.post(httpUrl.baseUrl + '/user/resetPassword', { validateContent: this.code, userName: this.name, phone: this.phone, newPassword: $.base64.encode($this.pwd_1) }).then(function (res) {
+              $this.$http.post(httpUrl.baseUrl + '/user/resetPassword', { validateContent: this.code, phone: this.phone, newPassword: $.base64.encode($this.pwd_1) }).then(function (res) {
                 if (res.code === 'rest.success') {
                   $this.btn_disabled = false;
                   $dialog.showToast('修改密码成功，正在跳转至登录页...');

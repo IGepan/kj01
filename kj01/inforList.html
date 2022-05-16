@@ -434,6 +434,7 @@
         <a  class="chance J-bottom-consult">立即咨询</a>
         <i class="el-icon-circle-close" @click="close"></i>
     </div>
+    <div id="qrcode"></div>
     <web-footer></web-footer>
 </div>
 </body>
@@ -525,7 +526,14 @@
 </style>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="/style/js/aboutSite.js"></script>
-<script>
-
+<script type="text/javascript" src="http://static.runoob.com/assets/qrcode/qrcode.min.js"></script>
+<script type="text/javascript">
+    var qrcode = new QRCode("qrcode", {
+        text: "https://www.kj01.cn",
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+    });
 </script>
 </html>
