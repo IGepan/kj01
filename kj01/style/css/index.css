@@ -300,10 +300,10 @@
 .boxlink{
    /*margin-top: 20px;*/
     position: relative;
-    height: 145px;
+    height: 165px;
 }
 .boxlink .swiper-slide{
-    border-radius: 10px;
+    /*border-radius: 10px;*/
 }
 .boxlink .swiper-slide a{
     display: block;
@@ -390,7 +390,7 @@
     height: 12px;
     margin-top: 15px;
     margin-left: -180px;
-    background: url(/style/images/index/t-left.png)no-repeat;
+    background: url(/style/images/index/t-right.png)no-repeat;
 }
 .plate-title h2::after{
     position: absolute;
@@ -399,7 +399,7 @@
     height: 12px;
     margin-top: 15px;
     margin-left: 19px;
-    background: url(/style/images/index/t-right.png)no-repeat;
+    background: url(/style/images/index/t-left.png)no-repeat;
 }
 .nav {
     padding-top: 10px;
@@ -494,18 +494,20 @@
     padding-bottom: 40px;
 }
 .el-carousel__container{
-    height: 100px!important;
+    height: 217px!important;
 }.el-carousel__arrow{
      /*color: #ff9000!important;*/
      font-size: 36px!important;
  }
 .el-carousel__button{
-    /*width: 10px!important;*/
-    height: 5px!important;
-    /*border-radius: 50%;*/
+    width: 10px!important;
+    height: 10px!important;
+    border-radius: 50%;
     opacity: 1!important;
 }
-
+.el-carousel__indicator--horizontal{
+    padding: 5px 10px;
+}
 .el-carousel__arrow--left{left: 0px!important;}
 .el-carousel__arrow--right{right: 0px!important;}
 .el-carousel__indicator.is-active button {
@@ -1289,33 +1291,39 @@ min-width: 25%;
 }
 
 .technology {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     border: solid 1px #e5eaeb;
     margin-top: 40px;
-    display: flex;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    overflow: hidden;
+
 }
 
 .technology-left {
     /*border-right: 1px solid #e5eaeb;*/
     /*width: 1080px;*/
     width: 100%;
-    padding: 20px 0;
+    /*padding: 20px 0;*/
 }
 
 .achievement {
-    padding: 0 20px;
+    padding-right:20px;
+    background:#fff
 }
 
 .technology-title {
     display: flex;
-    padding-top: 5px;
+    /*padding-top: 5px;*/
+    line-height: 43px;
+    text-align: center;
     justify-content: space-between;
     /*border-bottom: 1px solid #e5eaeb;*/
 }
 .release a{
     padding: 5px 10px;
-    color: #FFFFff;
-    background:#ff5e06 ;
+    color: #ff5e06;
+    /*background:#ff5e06 ;*/
     font-weight: normal!important;
     font-size: 16px;
 }
@@ -1346,11 +1354,12 @@ min-width: 25%;
 .technology-lists {
     display: flex;
     padding: 20px 0;
+    background: #FFFFff;
 }
 
 .technology-lists a {
     border-right: dotted 1px #e5eaeb;
-    width: 16.66%;
+    width: 25%;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -1363,8 +1372,8 @@ min-width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 140px;
-    height: 140px;
+    /*width: 140px;*/
+    /*height: 140px;*/
     overflow: hidden;
 }
 
@@ -1537,7 +1546,8 @@ font-size: 14px;
 }
 
 .supplier .policy-title {
-    padding: 29px 0;
+    /*padding: 29px 0;*/
+    line-height: 43px;
 }
 
 .supplier-list {
@@ -1547,14 +1557,16 @@ font-size: 14px;
 }
 
 .supplier-avatar {
-    /*width: 55px;*/
-    /*height: 55px;*/
-    width: 100%;
-    height: 100%;
+    width: 90px;
+    height: 90px;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    /*border: 1px solid #dfdfdf;*/
     /*margin-right: 5px;*/
 
 }
@@ -1567,20 +1579,27 @@ font-size: 14px;
 .supplier-list a {
     display: flex;
     align-items: center;
-    width: 120px;
+    width:100%;
     height: 90px;
     margin-bottom: 15px;
     color: #222327;
     font-size: 14px;
     overflow: hidden;
+    border-bottom: 1px solid #dfdfdf;
 }
-
-.supplier-name {
-    flex: 1;
+.supplier-name{
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.supplier-txt{
+  color: #7b7e8a;
+    font-size: 12px;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     overflow: hidden;
 }
 

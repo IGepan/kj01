@@ -34,10 +34,10 @@
         margin: 0 auto;
     }
     .bg{
-        background:url(/style/images/random2.jpg)no-repeat center;
+        background:url(/style/images/random2.png)no-repeat center;
         background-size: cover;
         width: 100%;
-        height: 300px;
+        /*height: 300px;*/
         text-align: center;
     }
     .infrom{
@@ -125,22 +125,23 @@
         color: #323232;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         background: #fff;
-        margin-bottom: 3%;
+        margin-top: 3%;
         position: relative;
         overflow: hidden;
+        width: 30%;
     }
-    .item:first-child{
-        margin-top: 3%;
+    .item img{
+        width: 100%;
     }
+    /*.item{*/
+    /*    margin-top: 3%;*/
+    /*}*/
   .item .word {
-      float: left;
-      width: 50%;
-      text-align: left;
+      width: 100%;
+      text-align: center;
       margin-bottom: 0;
         text-align: center;
         /*margin-bottom: 15px;*/
-        padding: 2% 1.5%;
-        min-height: 405px;
         overflow: hidden;
         /*background: url(../images/bg_icon.png) no-repeat;*/
         background-size: contain;
@@ -152,65 +153,53 @@
      padding-left: 32px;
      position: relative;
      margin: 0;
-     min-height: 370px;
+     min-height: 280px;
      /*overflow: auto;*/
      padding-right: 20px;
     }
     .item .con h3 {
-        font-size: 26px;
-        text-align: left;
+        font-size: 22px;
+        font-weight: normal;
+        text-align:center;
         color: #032149;
         margin-bottom: 25px;
         margin-top: 20px;
-        position: relative;
         /*padding-left: 10px;*/
     }
-   .item h3:after {
-        content: "";
-        display: block;
-        width: 50px;
-        height: 3px;
-        background-color: #e01828;
-        border-right: 25px solid #666;
-        margin-top: 20px;
-        margin-bottom: 30px;
-    }
     .item .con p {
-        font-size: 16px;
-        line-height: 30px;
-        color: #333;
+        height: 120px;
+        font-size: 14px;
+        line-height: 24px;
+        color: #757575;
         text-align: justify;
     }
-   .item:nth-child(2n-1) .pic {
-        right: 0;
-    }
-    .item:nth-child(2n) .word{
-        float: right!important;
-    }
-    .item:nth-child(2n) .pic{
-        float: left!important;
-    }
-    .item .pic {
-        float: right;
-        width: 50%;
-        text-align: center;
-        overflow: hidden;
-        position: absolute;
-        height: 100%;
-        background-size: cover;
-        /*background-position: center;*/
-    }
     .item .con a{
-        color: #e01828;
-        border: 1px solid #e01828;
-        line-height: 40px;
+        color: #4b56ff;
+        border: 1px solid #4b56ff;
+        line-height: 35px;
         padding: 0 20px;
         transition: all .1s linear;
-        margin-top: 10px;
+        border-radius: 50px;
+        display: inline-block;
     }
     .item .con a:hover{
         color: #fff;
-        background: #e01828;
+        background: #4b56ff;
+    }
+    .morelist{
+        text-align: center;
+        color: #4b56ff;
+        border: 1px solid #4b56ff;
+        line-height: 35px;
+        padding: 0 40px;
+        transition: all .1s linear;
+        margin-top: 30px;
+        border-radius: 50px;
+        display: inline-block;
+    }
+    .morelist:hover{
+        color: #fff;
+        background: #4b56ff;
     }
 .item .con dl {
         padding: 20px 0;
@@ -312,89 +301,88 @@
 </style>
 
 <body>
-<div class="box grayBgbox" id='index_box' v-cloak>
+<div class="box" id='index_box' v-cloak>
     <ly-toper ref="lytoper" top-class="red"></ly-toper>
     <div class="header-box " style="background: #fff;height: 65px;position: relative;box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);">
 
         <index-head :nav-index="5"></index-head>
         <!--        <div class="fr" ><ly-toper ref="lytoper" top-class="white"></ly-toper></div>-->
     </div>
-    <div class="bg">
-     <div class="infrom mmdiv">
-         <div class="bg-color">
-         <span>IT/软件服务</span>
-         <p>易智网基于多元化市场需求，面向不同服务领域，研发多样化、实用性的软件系统，并提供个性化、定制化的IT/软件产品服务，为政府和企业开展科技创新服务提供强有力帮手。</p>
-         </div>
-     </div>
-    </div>
-    <div class="navList">
-        <ul class="mmdiv">
-            <li class="active" ><a href="#">IT/软件服务</a></li>
-            <li><a href="/plusList.html">技术转移服务</a></li>
-        </ul>
-    </div>
-    <div class="mmdiv">
+<img src="/style/images/random2.png" width="100%">
+<!--    <div class="navList">-->
+<!--        <ul class="mmdiv">-->
+<!--            <li class="active" ><a href="#">IT/软件服务</a></li>-->
+<!--            <li><a href="/plusList.html">技术转移服务</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+    <div class="mmdiv" style="display: flex;justify-content: space-between;flex-wrap: wrap;margin-bottom: 3%">
         <div class="item">
             <div class="word">
+                <img src="/style/images/in_03.jpg" />
                 <div class="con">
                     <h3>区域科技创新服务平台搭建</h3>
-                    <p>区域科技创新发展，既要有良好的线下资源环境，还要有协作配合的线上服务体系，这样才能促进科技成果加速转化，而建设一个具有区域特色、服务全面、有效运作的区域科技创新服务平台正是其中不可或缺的重要一环。依托易智网站群系统，可实现快速搭建标准化的区域科技创新服务平台。</p>
-                    <a class="fl" href="/aboutSite.html" target="_blank">立即查看</a>
+                    <p>区域科技创新发展，既要有良好的线下资源环境，还要有协作配合的线上服务体系，建设区域科技创新服务平台是重要一环。依托易智网站群系统，可实现快速搭建标准化的区域科技创新服务平台。</p>
+                    <a href="/aboutSite.html" target="_blank">立即查看</a>
                 </div>
             </div>
-            <div class="pic" style="background-image: url(/style/images/in1.jpg);"></div>
         </div>
         <div class="item">
             <div class="word">
+                <img src="/style/images/in_05.jpg"/>
                 <div class="con">
                     <h3>高新技术企业培育管理信息系统</h3>
-                    <p>高新技术企业培育管理信息系统面向各市、区县、园区高新技术企业培育管理工作，以国家知识产权局权威专利数据资源为基础，结合高新技术企业名录及企业工商信息属性，围绕高新技术企业的培育、变更、年报、运行情况监测、知识产权服务等全流程管理来建设高新技术企业培育系统；为各市、区县、园区高新技术企业发展提供数据统计监测。</p>
-                    <a class="fr" href="/highfrom.html" target="_blank">立即查看</a>
+                    <p>高新技术企业培育管理信息系统面向各市、区县、园区高新技术企业培育管理工作，为各市、区县、园区高新技术企业发展提供数据统计监测。</p>
+                    <a href="/highfrom.html" target="_blank">立即查看</a>
                 </div>
             </div>
-            <div class="pic" style="background-image: url(/style/images/in2.jpg);border-right: 1px solid #dfdfdf"></div>
+
         </div>
         <div class="item">
             <div class="word">
+                <img src="/style/images/in_08.jpg" />
                 <div class="con">
                     <h3>科技人才在线培训管理系统</h3>
                     <p>基于模块化架构，整合班级、课程、培训、直播、点播、考试、认证等功能，实现科技人才在线培训认证管理的全流程服务。</p>
-                    <a class="fl" href="https://study.kj01.cn/" target="_blank">立即查看</a>
+                    <a href="https://study.kj01.cn/" target="_blank">立即查看</a>
                 </div>
             </div>
-            <div class="pic" style="background-image: url(/style/images/in3.jpg);"></div>
         </div>
         <div class="item">
             <div class="word">
+                <img src="/style/images/in_14.jpg"/>
                 <div class="con">
                     <h3>科技活动在线直播系统</h3>
                     <p>一键接入在线直播功能，轻松发布直播活动，实现在线实时直播、回放、点播。</p>
-                    <a class="fr" href="https://www.kj01.cn/adetail.html?id=490105255670816768" target="_blank">立即查看</a>
+                    <a  href="https://www.kj01.cn/adetail.html?id=490105255670816768" target="_blank">立即查看</a>
                 </div>
             </div>
-            <div class="pic" style="background-image: url(/style/images/in4.jpg);"></div>
         </div>
         <div class="item">
             <div class="word">
+                <img src="/style/images/in_13.jpg"/>
                 <div class="con">
                     <h3>数据可视化展示系统</h3>
                     <p>基于业务原始数据及数据模型具体要求，建立对应的大数据分析模型，并提供数据融合、数据采集、数据治理、数据分析及可视化集成服务。</p>
-                    <a class="fl" href="https://datav.kj01.cn/" target="_blank">立即查看</a>
+                    <a href="https://tb.53kf.com/code/client/10113491/1" target="_blank">立即咨询</a>
                 </div>
             </div>
-            <div class="pic" style="background-image: url(/style/images/in5.jpg);"></div>
         </div>
         <div class="item">
             <div class="word">
+                <img src="/style/images/in_16.jpg"/>
                 <div class="con">
                     <h3>科技项目申报管理系统</h3>
                     <p>科技项目申报管理系统一站式科技项目申报管理系统，提供项目申报指南发布，项目申报、管理、审批、评审，专家入库申请、管理等功能。</p>
-                    <a class="fr" href="http://demo.project.kj01.cn/app/manage/index.html" target="_blank">立即查看</a>
+                    <a href="https://tb.53kf.com/code/client/10113491/1" target="_blank">立即咨询</a>
                 </div>
             </div>
-            <div class="pic" style="background-image: url(/style/images/in6.jpg);"></div>
         </div>
     </div>
+    <img src="/style/images/random3.png" width="100%">
+    <div class="mmdiv" style="text-align: center;margin-bottom: 3%">
+        <a class="morelist" href="https://mp.weixin.qq.com/s/scLWL_WgFQMxw-t9jEvSCw" target="_blank">查看更多服务</a>
+    </div>
+
 <!--    <ul class="www-fixright">-->
 <!--        <a href="https://tb.53kf.com/code/client/10113491/1" target="_blank"><li class="zxkf on"><span>客服</span></li></a>-->
 <!--        <el-popover-->
@@ -533,76 +521,7 @@
         padding: 10px!important;
         text-align: center;
     }
-    .www-fixright {
-        position: fixed;
-        bottom: 30vh;
-        right: 0px;
-        z-index: 999!important;
-        /*border-radius: 10px;*/
-        overflow: hidden;
-        box-shadow: 0 2px 15px 0 rgba(0,0,0,.1);
-    }
-    .www-fixright li {
-        background-color: #e01828;
-        border-color: #e01828;
-        /*border-radius: 10px;*/
 
-    }
-    /*.www-fixright li:hover{*/
-    /*  background: rgba(252,127,16,0.8) no-repeat;*/
-    /*}*/
-    .www-fixright li.on:hover{
-        background-color: #ff5e06;
-        border-color: #ff5e06;
-        background-image: url(/style/images/index/kefu.svg);
-    }
-    .www-fixright li.zxkf {
-        background-position: 8px 5px;
-        background-image: url(/style/images/index/kefu.svg);
-    }
-    .www-fixright li.wx{
-        background-position: 8px 5px;
-        background-image: url(/style/images/index/wx.svg);
-    }
-    .www-fixright li.ry{
-        background-position: 8px 5px;
-        background-image: url(/style/images/index/rongyu.svg);
-    }
-    .www-fixright li.lxwm{
-        background-position: 8px 5px;
-        background-image: url(/style/images/index/dianhua.svg);
-    }
-    .www-fixright li.top{
-        background-position: 8px 5px;
-        background-image: url(/style/images/index/top.svg);
-    }
-    /*.www-fixright li:first-child {*/
-    /*  border-top: 1px solid #e4e4e4;*/
-    /*}*/
-    .www-fixright li {
-        position: relative;
-        width: 48px;
-        height: 56px;
-        padding-top: 36px;
-        cursor: pointer;
-        background-position: center 12px;
-        /*background-repeat: no-repeat;*/
-        box-sizing: border-box;
-        background: #fc7f10 no-repeat;
-    }
-    .www-fixright li.on span, .www-fixright li.on a {
-        color: #fff;
-    }
-    .www-fixright li span, .www-fixright li a {
-        display: block;
-        line-height: 16px;
-        text-align: center;
-        font-size: 12px;
-        color: #fff;
-    }
-    .www-fixright li.top{
-        transition: all .3s ease-in-out;
-    }
 </style>
 <script type="text/javascript" src="/common/js/libs/require.js"></script>
 <script type="text/javascript" src="/style/js/aboutSite.js"></script>

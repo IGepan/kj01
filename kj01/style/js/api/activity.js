@@ -55,6 +55,10 @@ define(['jquery', 'dic', 'utils', 'httpUrl', 'http'], function ($, dic, utils, h
     queryBranch: function () {
       return Http.get(httpUrl.baseUrl + '/saas/selectBranch')
     },
+    //查询可推送站点
+    selectBan: function (param) {
+      return Http.post(httpUrl.baseUrl + '/testinfo/all', param)
+    },
     // 审核报名信息(鉴权)
     audit: function (param) {
       return Http.post(httpUrl.baseUrl + '/active/enroll/audit', param);

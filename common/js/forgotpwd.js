@@ -42,11 +42,11 @@ require(['/common/js/require.config.js'], function () {
           window.open('http://www.kj01.cn/service.htm?arg=10113491&amp;style=4&amp;kflist=off&amp;kf=edwinzuo&amp;zdkf_type=1&amp;lnk_overflow=0&amp;callback_id6ds=10152438&amp;language=zh-cn&amp;charset=gbk&amp;referer={hz6d_referer}&amp;keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&amp;tfrom=1&amp;tpl=crystal_blue', '_blank', 'height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no');
         },
         toStep: function (n) {
-          if (this.btn_disabled) return;
+
+
           if (n === 1) {
-            this.step = 1;
-            this.btn_disabled = true;
-          } else if (n === 2) {
+            console.log(n,'n')
+            // this.step = 1;
             this.checkCode();
           }
         },
@@ -78,9 +78,11 @@ require(['/common/js/require.config.js'], function () {
         validate: function (n, cb) {
           this.error = {};
           this.noError = true;
-          if (n === 1) {
-            this.validateType('name', 'name', this.name);
-          } else if (n === 2) {
+          // if (n === 1) {
+          //   this.validateType('name', 'name', this.name);
+          // } else
+            if (n === 1) {
+              console.log(n,'nn')
             this.validateType('phone', 'phone', this.phone);
             this.validateType('code', 'code', this.code);
           } else if (n === 3) {
@@ -100,7 +102,7 @@ require(['/common/js/require.config.js'], function () {
         },
         sendCode: function () {
           var $this = this;
-          if (!$this.btn_code_disabled) {
+          if ($this.btn_code_disabled) {
             $this.isShowDialog = true;
             setTimeout(function () {
               $this.$refs.validateRef.initImg(captcha, httpUrl);
@@ -145,20 +147,20 @@ require(['/common/js/require.config.js'], function () {
             if (v) {
               $this.btn_code_disabled = true;
               $this.btn_disabled = true;
-              $this.$http.get(httpUrl.baseUrl + '/user/checkUserNameAndPhone', { userName: this.name, phone: this.phone }).then(function (res) {
-                if (res.code === 'rest.success') {
-                  $this.btn_code_disabled = $this.btn_disabled = !res.result;
-                  if (!res.result) {
-                    $this.$set($this.error, 'phone', '手机号码与用户名不匹配');
-                  }
-                }
-              });
+              // $this.$http.get(httpUrl.baseUrl + '/user/checkUserNameAndPhone', { userName: this.name, phone: this.phone }).then(function (res) {
+              //   if (res.code === 'rest.success') {
+              //     $this.btn_code_disabled = $this.btn_disabled = !res.result;
+              //     if (!res.result) {
+              //       $this.$set($this.error, 'phone', '手机号码与用户名不匹配');
+              //     }
+              //   }
+              // });
             }
           });
         },
         checkCode: function () {
           var $this = this;
-          this.validate(2, function (v) {
+          this.validate(1, function (v) {
             if (v) {
               $this.btn_disabled = true;
               $this.$http.post(httpUrl.baseUrl + '/verify/checkCaptchaCode', {
@@ -166,7 +168,7 @@ require(['/common/js/require.config.js'], function () {
                 businessType: dic.businessType.pwd
               }).then(function (res) {
                 if (res.code === 'rest.success') {
-                  $this.step = 2;
+                  $this.step = 1;
                 }
                 $this.btn_disabled = false;
               });
@@ -176,6 +178,7 @@ require(['/common/js/require.config.js'], function () {
         checkUserName: function () {
           var $this = this;
           this.validate(1, function (v) {
+            $this.btn_disabled =true;
             if (v) {
               $this.$http.get(httpUrl.baseUrl + '/user/checkUserName', { userName: this.name }).then(function (res) {
                 if (res.code === 'rest.success') {

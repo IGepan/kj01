@@ -1,35 +1,35 @@
 <template>
   <div class="toper" style="background: #fff5f0">
     <div class="mmdiv" v-if="userInfo && userInfo.userName">
-      <div class="fl toper-left">
-        <el-dropdown>
-          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
-          <el-dropdown-menu slot="dropdown">
+<!--      <div class="fl toper-left">-->
+<!--        <el-dropdown>-->
+<!--          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
 
-            <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item >
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
-            </el-dropdown-item >
-          </el-dropdown-menu>
-        </el-dropdown>
+<!--            <el-dropdown-item v-for="item in branchesList">-->
+<!--              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企' && item.saasCode!=='013.021'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
 
-<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
-<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
-<!--          <div class="seediv" ref="acp">-->
-<!--            <ul>-->
-<!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
-<!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
-<!--              <li><a class="no-color" href="">万州</a></li>-->
-<!--              <li><a class="no-color" href="">梁平</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        </div>-->
-      </div>
+<!--&lt;!&ndash;        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >&ndash;&gt;-->
+<!--&lt;!&ndash;          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="seediv" ref="acp">&ndash;&gt;-->
+<!--&lt;!&ndash;            <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a class="no-color" href="">万州</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a class="no-color" href="">梁平</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </div>-->
       <div style="display: inline-block">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html" style="color: #ff5e06">易智网</a>!</div>
       <!-- <div class="fl">
         <a
@@ -63,12 +63,12 @@
             >免费注册</a
           >
           <a v-if="userInfo && userInfo.userName" @click="msgChlick">消息</a>
-          <a v-if="userInfo && userInfo.userName" @click="action('cart')">购物车</a>
           <a
             v-if="userInfo && userInfo.userName"
             href="/common/buyer/collect/goods/?categoryId=82779310439534201&code=001.001.003.001"
             >收藏</a
           >
+          <a v-if="userInfo && userInfo.userName" @click="action('cart')">购物车</a>
           <a v-if="userInfo && userInfo.userName" @click="yhzxClick"
             >用户中心</a
           >
@@ -101,36 +101,36 @@
       </div>
     </div>
     <div class="mmdiv" v-else>
-      <div class="fl toper-left">
-        <el-dropdown>
-          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>
-          <el-dropdown-menu slot="dropdown">
+<!--      <div class="fl toper-left">-->
+<!--        <el-dropdown>-->
+<!--          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>分支基地<span class="cut ">[切换]</span></span>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
 
-            <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item >
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
-            </el-dropdown-item >
-          </el-dropdown-menu>
-        </el-dropdown>
+<!--            <el-dropdown-item v-for="item in branchesList">-->
+<!--              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企' && item.saasCode!=='013.021'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
 
-<!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
-<!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
-<!--          <div class="seediv" ref="acp">-->
-<!--            <ul>-->
-<!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
-<!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
-<!--              <li><a class="no-color"  href="">万州</a></li>-->
-<!--              <li><a class="no-color"  href="">梁平</a></li>-->
+<!--&lt;!&ndash;        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >&ndash;&gt;-->
+<!--&lt;!&ndash;          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="seediv" ref="acp">&ndash;&gt;-->
+<!--&lt;!&ndash;            <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a class="no-color"  href="">万州</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li><a class="no-color"  href="">梁平</a></li>&ndash;&gt;-->
 
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-      </div>
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </div>-->
       <div style="display: inline-block">
         Hi~<span v-if="userInfo && userInfo.userName" ></span>，欢迎来到<a
           href="/index.html" style="color: #ff5e06"
@@ -238,7 +238,7 @@
         <img src="/style/images/index/qrcode.jpg" style="margin-top: 0">
         <span>关注易智网</span>
         <li class="wx" slot="reference">
-          <span>微信</span>
+<!--          <span>微信</span>-->
         </li>
       </el-popover>
       <el-popover
@@ -251,23 +251,22 @@
         <img src="/style/images/index/gaoxiao.png" style="margin-top: 10px">
         <img src="/style/images/index/jidi.png" style="margin-top: 10px">
         <li class="ry" slot="reference">
-          <span>荣誉</span>
+<!--          <span>荣誉</span>-->
         </li>
       </el-popover>
 
       <el-popover
           placement="left"
-          width="200"
           trigger="hover"
           popper-class="pa"
       >
-        <span style="font-size: 20px;color: #ff5e06">023-61365806</span>
+        <span style="font-size: 20px;color: #ff5e06">联系电话：023-61365806</span>
         <li class="lxwm" slot="reference">
-          <span>电话</span>
+<!--          <span>电话</span>-->
         </li>
       </el-popover>
 
-      <li class="top" @click="toTop" id="fixright"><span>顶部</span></li>
+      <li class="top" @click="toTop" id="fixright"></li>
       <!--        <li class="up"><span>收起</span></li>-->
     </ul>
   </div>
@@ -741,6 +740,10 @@ module.exports = {
   /*border-radius: 10px;*/
   overflow: hidden;
   box-shadow: 0 2px 15px 0 rgba(0,0,0,.1);
+  border-radius: 50px;
+  width: 48px;
+  padding: 0 4px;
+  background: #FFFFff;
 }
 .www-fixright li {
   background-color: #e01828;
@@ -751,44 +754,78 @@ module.exports = {
 /*.www-fixright li:hover{*/
 /*  background: rgba(252,127,16,0.8) no-repeat;*/
 /*}*/
-.www-fixright li.on:hover{
-  background-color: #ff5e06;
-  border-color: #ff5e06;
-  background-image: url(/style/images/index/kefu.svg);
-}
+/*.www-fixright li.on:hover{*/
+/*  background-color: #ff5e06;*/
+/*  border-color: #ff5e06;*/
+/*  background-image: url(/style/images/index/kefu.svg);*/
+/*}*/
 .www-fixright li.zxkf {
-  background-position: 8px 5px;
+  background-position:center;
   background-image: url(/style/images/index/kefu.svg);
+  background-size: 28px;
+}
+.www-fixright li.zxkf:hover {
+  background-position:center;
+  background-image: url(/style/images/index/kefu_s.svg);
+  background-size: 28px;
 }
 .www-fixright li.wx{
-  background-position: 8px 5px;
+  background-position:center;
   background-image: url(/style/images/index/wx.svg);
+  background-size: 28px;
+}
+.www-fixright li.wx:hover{
+  background-position:center;
+  background-image: url(/style/images/index/wx_s.svg);
+  background-size: 28px;
 }
 .www-fixright li.ry{
-  background-position: 8px 5px;
+  background-position:center;
   background-image: url(/style/images/index/rongyu.svg);
+  background-size: 28px;
+}
+.www-fixright li.ry:hover{
+  background-position:center;
+  background-image: url(/style/images/index/rongyu_s.svg);
+  background-size: 28px;
 }
 .www-fixright li.lxwm{
-  background-position: 8px 5px;
+  background-position:center;
   background-image: url(/style/images/index/dianhua.svg);
+  background-size: 28px;
+}
+.www-fixright li.lxwm:hover{
+  background-position:center;
+  background-image: url(/style/images/index/dianhua_s.svg);
+  background-size: 28px;
 }
 .www-fixright li.top{
-  background-position: 8px 5px;
+  background-position:center;
   background-image: url(/style/images/index/top.svg);
+  background-size: 28px;
+}
+.www-fixright li.top:hover{
+  background-position:center;
+  background-image: url(/style/images/index/top_s.svg);
+  background-size: 28px;
 }
 /*.www-fixright li:first-child {*/
 /*  border-top: 1px solid #e4e4e4;*/
 /*}*/
 .www-fixright li {
   position: relative;
-  width: 48px;
+  width: 40px;
   height: 56px;
-  padding-top: 36px;
+  /*padding-top: 36px;*/
   cursor: pointer;
   background-position: center 12px;
   /*background-repeat: no-repeat;*/
   box-sizing: border-box;
-  background: #fc7f10 no-repeat;
+  background: #fff no-repeat;
+  border-bottom: 1px solid #dfdfdf;
+}
+.www-fixright li.top{
+  border-bottom: none;
 }
 .www-fixright li.on span, .www-fixright li.on a {
   color: #fff;

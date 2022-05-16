@@ -4,19 +4,19 @@ define(function () {
   var configs = [
     {
       // 本地环境
-      authUrl: 'http://192.168.0.177:9769/tsOauth2',
-      baseUrl: 'http://192.168.0.177:9769/tsAdmin',
+      authUrl: 'http://192.168.0.181:9769/tsOauth2',
+      baseUrl: 'http://192.168.0.181:9769/tsAdmin',
       // baseUrl: 'http://192.168.1.3:9769/tsAdmin',
       // baseMarketUrl: 'http://192.168.0.30:8901',
       // baseMarketUrl: 'http://192.168.0.10:8901',
-      baseMarketUrl: 'http://192.168.0.177:9769/z-ts',//8901 ts 8900 tm ||
+      baseMarketUrl: 'http://192.168.0.181:9769/z-ts',//8901 ts 8900 tm ||
       baseSchoolUrl: 'http://192.168.0.13:8901',//学堂
       baseSchoolOutUrl: 'http://192.168.0.13:5555',//学堂跳转外网
       assisUrl: 'http://192.168.0.20:9769/tsAssistant',
       statisticsUrl: 'http://192.168.0.20/as', // 统计地址 配置域名
-      imgUploadUrl: 'http://192.168.0.177:8710', // 文件上传服务 配置域名
-      fileShowUrl: 'http://192.168.0.177:9030/', // 文件查看地址 配置域名
-      imgVerify: 'http://192.168.0.177:8720/', // 滑块验证码 配置域名
+      imgUploadUrl: 'http://192.168.0.181:8710', // 文件上传服务 配置域名
+      fileShowUrl: 'http://192.168.0.181:9030/', // 文件查看地址 配置域名
+      imgVerify: 'http://192.168.0.181:8720/', // 滑块验证码 配置域名
       cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'http://47.105.63.195:801/',
@@ -24,19 +24,19 @@ define(function () {
     },
     {
       // 本地环境-yzw
-      authUrl: 'http://192.168.0.177:9769/tsOauth2',
-      baseUrl: 'http://192.168.0.177:9769/tsAdmin',
+      authUrl: 'http://192.168.0.181:9769/tsOauth2',
+      baseUrl: 'http://192.168.0.181:9769/tsAdmin',
       // baseMarketUrl: 'http://192.168.0.30:8901',
       // baseMarketUrl: 'http://192.168.0.10:8901',
-      baseMarketUrl: 'http://192.168.0.177:9769/z-ts',//8901 ts 8900 tm ||
-      baseSchoolUrl: 'http://192.168.0.177:8901',//学堂
+      baseMarketUrl: 'http://192.168.0.181:9769/z-ts',//8901 ts 8900 tm ||
+      baseSchoolUrl: 'http://192.168.0.181:8901',//学堂
       baseSchoolOutUrl: 'http://192.168.0.13:5555',//学堂跳转外网
-      assisUrl: 'http://192.168.0.177:9769/tsAssistant',
-      statisticsUrl: 'http://192.168.0.177/as', // 统计地址 配置域名
-      uploadimg_url: `http://192.168.0.177:8710`,
-      imgUploadUrl: 'http://192.168.0.177:8710', // 文件上传服务 配置域名
-      fileShowUrl: 'http://192.168.0.177:9030/', // 文件查看地址 配置域名
-      imgVerify: 'http://192.168.0.177:8720/', // 滑块验证码 配置域名
+      assisUrl: 'http://192.168.0.189:9769/tsAssistant',
+      statisticsUrl: 'http://192.168.0.181/as', // 统计地址 配置域名
+      uploadimg_url: `http://192.168.0.181:8710`,
+      imgUploadUrl: 'http://192.168.0.181:8710', // 文件上传服务 配置域名
+      fileShowUrl: 'http://192.168.0.181:9030/', // 文件查看地址 配置域名
+      imgVerify: 'http://192.168.0.181:8720/', // 滑块验证码 配置域名
       cmsUrl: 'https://cynews.liyantech.cn',
       companyApi: 'https://www.dsjscpx.com',
       bigData: 'https://47.105.63.195:801/',

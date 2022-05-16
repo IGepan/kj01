@@ -109,16 +109,15 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       },
       created: function () {
         this.getOption('comprehensive_search')
+        this.getUserInfo();
         this.handleOrdertabs('01')
         this.getSelectByPage()
         this.getAmountList('009')
         this.getSelectShopByPage('105')
-        this.getUserInfo();
         this.checkSite();
         this.initUserInfo();
         this.select(3);
         this.getActive();
-
       },
       methods: {
         checkSite: function () {
@@ -265,6 +264,10 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           httpUser.detail().then(function (res) {
             // console.log('res',res.result)
             _this.userInfo=res.result
+            if(!_this.userInfo){
+              this.$dialog.showToast("请先登录")
+              window.location.href =this.$pathPrefix+'/common/login.html';
+            }
             var params = _this.getPlocyParams(res.result);
             // _this.getPolicyNoticeList(params);
           });
