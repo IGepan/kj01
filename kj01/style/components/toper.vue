@@ -1,35 +1,35 @@
 <template>
   <div class="toper">
     <div class="mdiv" v-if="userInfo && userInfo.userName">
-      <div class="fl toper-left">
-        <el-dropdown>
-          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
-          <el-dropdown-menu slot="dropdown">
+<!--      <div class="fl toper-left">-->
+<!--        <el-dropdown>-->
+<!--          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
 
-            <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item >
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
-            </el-dropdown-item >
-          </el-dropdown-menu>
-        </el-dropdown>
-        <div class="">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html">易智网</a>!</div>
-        <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
-        <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
-        <!--          <div class="seediv" ref="acp">-->
-        <!--            <ul>-->
-        <!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
-        <!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
-        <!--              <li><a class="no-color" href="">万州</a></li>-->
-        <!--              <li><a class="no-color" href="">梁平</a></li>-->
-        <!--            </ul>-->
-        <!--        </div>-->
-        <!--        </div>-->
-      </div>
+<!--            <el-dropdown-item v-for="item in branchesList">-->
+<!--              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企' && item.saasCode!=='013.021'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
+      <div style="display: inline-block">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html" style="color: #01c8f2">易智网</a>！</div>
+<!--        &lt;!&ndash;        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >&ndash;&gt;-->
+<!--        &lt;!&ndash;          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <div class="seediv" ref="acp">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <ul>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a class="no-color" href="">万州</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a class="no-color" href="">梁平</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </div>-->
       <!-- <div class="fl">
         <a
           class="toperHi"
@@ -99,41 +99,36 @@
       </div>
     </div>
     <div class="mdiv" v-else>
-      <div class="fl toper-left">
-        <el-dropdown>
-          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>
-          <el-dropdown-menu slot="dropdown">
+<!--      <div class="fl toper-left">-->
+<!--        <el-dropdown>-->
+<!--          <span class="el-dropdown-link"><i class="iconfont icon-dingwei"></i>重庆市<span class="cut">[切换]</span></span>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
 
-            <el-dropdown-item v-for="item in branchesList">
-              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>
-            </el-dropdown-item>
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>
-            </el-dropdown-item >
-            <el-dropdown-item >
-              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>
-            </el-dropdown-item >
-          </el-dropdown-menu>
-        </el-dropdown>
-        <div class="">
-          Hi~<span v-if="userInfo && userInfo.userName"></span>，欢迎来到<a
-            href="/index.html"
-        >易智网</a
-        >！
-        </div>
-        <!--        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >-->
-        <!--          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>-->
-        <!--          <div class="seediv" ref="acp">-->
-        <!--            <ul>-->
-        <!--              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>-->
-        <!--              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>-->
-        <!--              <li><a class="no-color"  href="">万州</a></li>-->
-        <!--              <li><a class="no-color"  href="">梁平</a></li>-->
+<!--            <el-dropdown-item v-for="item in branchesList">-->
+<!--              <el-link v-if="item.saasCode!=='013' && item.shortName!=='高企' && item.saasCode!=='013.021'" :underline="false" :href="'https://'+item.domainName" target="_blank">{{item.saasName}}</el-link>-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://wanzhou.kj01.cn/" target="_blank">重庆三峡科技创新服务平台</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--            <el-dropdown-item >-->
+<!--              <el-link :underline="false" href="http://www.cqhte.com/" target="_blank">重庆市高新技术企业协会</el-link>-->
+<!--            </el-dropdown-item >-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
+      <div style="display: inline-block">Hi~<span v-if='userInfo && userInfo.userName'></span>，欢迎来到<a href="/index.html" style="color: #01c8f2">易智网</a>！</div>
+<!--        &lt;!&ndash;        <div class="showdiv" @mouseover="mouseOver" @mouseleave="mouseLeave" >&ndash;&gt;-->
+<!--        &lt;!&ndash;          <a style="color: #fc7f10;" :style="active"> &nbsp;&nbsp;分平台<img class="icom" src="/common/images/up.png" ref="icom"></a>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <div class="seediv" ref="acp">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <ul>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a href="https://www.kj01.cn/site/qijiang/" target="_blank" >綦江</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a href="https://www.kj01.cn/site/liangjiangxinqu/" target="_blank">两江新区</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a class="no-color"  href="">万州</a></li>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <li><a class="no-color"  href="">梁平</a></li>&ndash;&gt;-->
 
-        <!--            </ul>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
+<!--        &lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--        &lt;!&ndash;          </div>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </div>-->
       <div class="fr toper-right">
         <div class="loginbox">
           <a href="/common/login.html">登录</a>

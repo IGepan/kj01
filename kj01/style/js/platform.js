@@ -59,7 +59,8 @@ require(['/common/js/require.config.js'], function () {
                             pageNum:this.queryForm.pageNum,
                             pageSize:this.queryForm.pageSize,
                             // type:1,
-                            nowIndex:this.nowIndex
+                            nowIndex:this.nowIndex,
+                            saasId:'185797207564156928'
                         }).then(function (res) {
                             vm.$data.newsList = res.result.list;
                             vm.$data.queryForm.total=res.result.total;

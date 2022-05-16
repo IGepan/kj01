@@ -99,8 +99,9 @@ require(['/common/js/require.config.js'], function () {
         },
         pageViewPort: function() {
           var vm = this;
+          // var  devicePixelRatio = window.devicePixelRatio;
           this.pdfDocument.getPage(this.currentPage).then(function(pdfPage) {
-            var viewport = pdfPage.getViewport({ scale: vm.scalePage });
+            var viewport = pdfPage.getViewport({ scale: 2.0});
             vm.$refs.theCanvas.width = viewport.width;
             vm.$refs.theCanvas.height = viewport.height;
             var renderTask = pdfPage.render({

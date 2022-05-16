@@ -1035,22 +1035,22 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     } else {
                         var vm = this;
                         //判断当前用户是否有创建直播的权限
-                        // activityApi.liveAuth({code: '01'}).then(function (res) {
-                        //     if (res.code === 'rest.success') {
-                        //             vm.formData.isThird = 0;
-                        //             vm.activeliveTab = index;
-                        //             vm.formData.thirdUrl = ''
-                        //     } else {
-                        //         vm.$dialog.showToast(res.desc);
-                        //     }
-                        // });
-                                if(vm.userList.power==0){
+                        activityApi.liveAuth({code: '01'}).then(function (res) {
+                            if (res.code === 'rest.success') {
                                     vm.formData.isThird = 0;
                                     vm.activeliveTab = index;
                                     vm.formData.thirdUrl = ''
-                                } else {
-                                vm.$dialog.showToast('你没有开启直播的权限!');
+                            } else {
+                                vm.$dialog.showToast(res.desc);
                             }
+                        });
+                        //         if(vm.userList.power==0){
+                        //             vm.formData.isThird = 0;
+                        //             vm.activeliveTab = index;
+                        //             vm.formData.thirdUrl = ''
+                        //         } else {
+                        //         vm.$dialog.showToast('你没有开启直播的权限!');
+
                     }
                 }
             }
