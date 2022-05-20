@@ -7,7 +7,17 @@
   <link href="/common/css/main.css" rel="stylesheet" type="text/css">
   <link href="/common/usercenter/css/usercenter.css" rel="stylesheet" type="text/css">
 </head>
-
+<style>
+  .pay{
+    margin: 10px auto;
+    padding: 0 10px;
+    height: 25px;
+    line-height: 23px;
+    cursor: pointer;
+    background-color:#fc7f10;
+    color: #fff!important;
+  }
+</style>
 <body>
   <div class="box" id='index_box'>
     <ly-toper></ly-toper>
@@ -128,6 +138,7 @@
                       <div class="total" v-text="'￥' + order.goodsPrices"></div>
                       <div class="state" v-text="order.orderStatusDisplay"></div>
                       <div class="operation">
+                        <button class="pay" v-if="order.payMode=='002'"  @click="goPay(order.id)">去付款</button>
                         <a target="_blank" :href="$pathPrefix+'/common/buyer/order/detail.html?id=' + order.id">订单详情</a>
 <!--                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"-->
 <!--                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>-->

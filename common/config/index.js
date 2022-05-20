@@ -5,7 +5,7 @@ define(function () {
     {
       // 本地环境
       authUrl: 'http://192.168.0.181:9769/tsOauth2',
-      baseUrl: 'http://192.168.0.181:9769/tsAdmin',
+      baseUrl: 'http://dev.kj02.cn/tsAdmin',
       // baseUrl: 'http://192.168.1.3:9769/tsAdmin',
       // baseMarketUrl: 'http://192.168.0.30:8901',
       // baseMarketUrl: 'http://192.168.0.10:8901',

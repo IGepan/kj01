@@ -20,6 +20,16 @@
       height: auto!important;
       padding: 70px 0px!important;
     }
+    .goPay{
+      margin-left: 30px;
+      padding:5px 10px;
+      color: #FFFFff;
+      background: #ff6600;
+    }
+    .goPay:hover{
+      color: #FFFFff!important;
+      background: #fe900c;
+    }
   </style>
 </head>
 
@@ -125,8 +135,11 @@
               <div class="total" v-text="'￥' + detailInfo.goodsPrices"></div>
             </div>
             <div class="orderfooter"><span>配送方式：卖家配送</span><span
-                v-text="'付款方式：' + detailInfo.payModeDisplay"></span><span
-                v-text="'总金额（含运费）：￥' + detailInfo.goodsPrices"></span></div>
+                v-text="'付款方式：' + detailInfo.payModeDisplay"></span>
+              <span
+                v-text="'总金额（含运费）：￥' + detailInfo.goodsPrices"></span>
+              <a v-if="detailInfo.payMode=='002'" class="goPay" @click="goPay(detailInfo.id)">去付款</a>
+            </div>
           </div>
         </div>
       </div>
