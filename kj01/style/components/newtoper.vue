@@ -235,7 +235,7 @@
           trigger="hover"
           popper-class="pa"
       >
-        <img src="/style/images/index/qrcode.jpg" style="margin-top: 0">
+        <img src="/style/images/index/qrcode.jpg" style="margin-top: 0;max-width: 130px">
         <span>关注易智网</span>
         <li class="wx" slot="reference">
 <!--          <span>微信</span>-->
@@ -247,9 +247,10 @@
           trigger="hover"
           popper-class="pa"
       >
-        <img src="/style/images/index/dashuju.png" style="margin-top: 0">
-        <img src="/style/images/index/gaoxiao.png" style="margin-top: 10px">
-        <img src="/style/images/index/jidi.png" style="margin-top: 10px">
+        <img src="/style/images/index/dashuju.png" style="margin-top: 0;max-width:180px">
+        <img src="/style/images/index/gaoxiao.png" style="margin-top: 10px;max-width:180px">
+          <img src="/style/images/index/jidi.png" style="margin-top: 10px;max-width:180px">
+
         <li class="ry" slot="reference">
 <!--          <span>荣誉</span>-->
         </li>

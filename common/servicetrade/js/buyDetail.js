@@ -39,6 +39,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var url = httpUrl.imgUploadUrl + '/file/download?filePath=' + file;
           //this.$utils.openNewTable(url);
           saveAs(url, name);
+        },
+        goPay(id){
+          window.open(this.$pathPrefix+'/common/servicetrade/qrcode.html?id=' + id,'_blank')
         }
       }
     })

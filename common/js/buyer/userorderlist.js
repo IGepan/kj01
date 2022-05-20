@@ -220,6 +220,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           }
           this.isOpenCancel = true
         },
+        goPay:function(id){
+          window.open($pathPrefix+'/common/servicetrade/qrcode.html?id=' + id,'_blank')
+        },
         saveCancelInfo: function () {
           var vm = this
           $('.cancelOrderForm').validate('submitValidate', function (val) {
