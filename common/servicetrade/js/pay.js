@@ -1,6 +1,6 @@
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl','httpCartApi','httpUser',],
-        function ($, Vue, httpVueLoader, httpUrl,indexApi,httpUser) {
+    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl','httpCartApi','httpOrderApi'],
+        function ($, Vue, httpVueLoader, httpUrl,indexApi,httpOrderApi) {
             new Vue({
                 el: '#index_box',
                 data: {
@@ -43,7 +43,8 @@ require(['/common/js/require.config.js'], function () {
                     tt:{},
                     dataList:[],
                     outTradeNo:'',
-                    type:''
+                    type:'',
+                    detailInfo:[]
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
@@ -65,6 +66,7 @@ require(['/common/js/require.config.js'], function () {
                 mounted(){
                     this.outTradeNo = this.$utils.getReqStr('id');
                     this.type=this.$utils.getReqStr('type');
+                    this.init(this.outTradeNo);
                     console.log(this.type,'tyep')
                     // this.init(this.outTradeNo);
                     // this.getQrcode();
@@ -111,21 +113,11 @@ require(['/common/js/require.config.js'], function () {
                     },
                     init(val){
                         var vm =this
-                        console.log(val,'vm.outTradeNo')
-                        indexApi.getQ({description:"111", amount:1,outTradeNo:val}).then(function (res) {
-                            // res = JSON.parse(res)
-                            vm.ewmUrl = res.code_url
-                                vm.$nextTick(function () {
-                                    new QRCode('qrcode', {
-                                        text: vm.ewmUrl, // 需要转换为二维码的内容
-                                        width: 100,
-                                        height: 100,
-                                        colorDark: "#000000",
-                                        colorLight: "#ffffff",
-                                    });
-                                })
-                        })
-
+                            httpOrderApi.buyerDetail({ id: val }).then(function (res) {
+                                if (res.code == 'rest.success') {
+                                    vm.$data.detailInfo = res.result.details
+                                }
+                            })
                     },
                     getQrcode(ewmUrl){
                         console.log(ewmUrl,'res')

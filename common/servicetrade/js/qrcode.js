@@ -44,7 +44,7 @@ require(['/common/js/require.config.js'], function () {
                     dataList:[],
                     outTradeNo:'',
                     qUrl:'',
-                    detailInfo:{}
+                    detailInfo:[]
 
                 },
                 components: {
@@ -117,7 +117,7 @@ require(['/common/js/require.config.js'], function () {
                     init(val){
                         var vm =this
                         console.log(val,'vm.outTradeNo')
-                        // window.location.href=this.$pathPrefix+'/common/servicetrade/nativePay.html?id='+val+'&type=01'
+                         window.location.href=this.$pathPrefix+'/common/servicetrade/nativePay.html?id='+val+'&type=01'
                         indexApi.getQ({description:"测试", amount:1,outTradeNo:val}).then(function (res) {
                             // res = JSON.parse(res)
                             vm.ewmUrl = res.code_url
