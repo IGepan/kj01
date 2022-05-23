@@ -69,7 +69,6 @@ require(['/common/js/require.config.js'], function () {
                     this.init(this.outTradeNo);
                     this.getOrderInfo(this.outTradeNo)
                     console.log(QRCode,'QRCode11')
-                    // this.getQrcode();
                     // var qrcode= new QRCode('qrcode', {
                     //
                     //     text: 'weixin://wxpay/bizpayurl?pr=onwXorVzz', // 需要转换为二维码的内容
@@ -108,7 +107,7 @@ require(['/common/js/require.config.js'], function () {
                     },
                     getOrderInfo: function (id) {
                         var vm = this
-                        httpOrderApi.buyerDetail({ id: id }).then(function (res) {
+                        httpOrderApi.buyerDetail({ id:id}).then(function (res) {
                             if (res.code == 'rest.success') {
                                 vm.$data.detailInfo = res.result.details
                             }
@@ -117,7 +116,7 @@ require(['/common/js/require.config.js'], function () {
                     init(val){
                         var vm =this
                         console.log(val,'vm.outTradeNo')
-                         window.location.href=this.$pathPrefix+'/common/servicetrade/nativePay.html?id='+val+'&type=01'
+                         // window.location.href=this.$pathPrefix+'/common/servicetrade/nativePay.html?id='+val+'&type=01'
                         indexApi.getQ({description:"测试", amount:1,outTradeNo:val}).then(function (res) {
                             // res = JSON.parse(res)
                             vm.ewmUrl = res.code_url
@@ -132,20 +131,19 @@ require(['/common/js/require.config.js'], function () {
                                 })
                             setTimeout(function () {
                                 indexApi.getResult({outTradeNo:val,tradeType:'NATIVE',payChannel:'wxPay'}).then(function (res) {
-                                        console.log(res.result,'res.result')
-                                        if(res.result && res.result.tradeState=='SUCCESS'){
-                                            indexApi.getUpdateStatus({payStatus:'002',id:val}).then(function (res) {
-                                                console.log(res,'修改状态')
-                                            })
-                                            setTimeout(function () {
-                                                window.location.href=this.$pathPrefix+'/common/servicetrade/nativePay.html?id='+val+'&type=01'
-                                            },300)
-                                        }
+                                    console.log(res.result,'res.result')
+                                    if(res.result && res.result.tradeState=='SUCCESS'){
+                                        indexApi.getUpdateStatus({payStatus:'002',id:val}).then(function (res) {
+                                            if(res.code=="rest.success"){
+                                                setTimeout(function () {
+                                                    window.location.href=this.$pathPrefix+'/common/servicetrade/nativePay.html?id='+val+'&type=01'
+                                                },300)
+                                            }
+                                        })
+                                    }
                                 })
-                            }, 3000)
+                            }, 5000)
                         })
-                    },
-                    getQrcode(){
                     },
                     getDataList(){
                         var vm = this;

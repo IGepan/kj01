@@ -48,8 +48,8 @@
         <div class="container">
             <div class="pw_hd">
                 <a class="logo" href="" target="_blank"></a>
-                <div class="price">
-                    支付总金额：<span>￥{{detailInfo[0].protocolPrice}}</span>
+                <div class="price" v-if="detailInfo.length>0">
+                    支付总金额：<span>￥{{detailInfo[0].protocolPrice ||0}}</span>
                 </div>
             </div>
             <div class="pw_bd">

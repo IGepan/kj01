@@ -1,6 +1,6 @@
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl','httpCartApi','httpOrderApi'],
-        function ($, Vue, httpVueLoader, httpUrl,indexApi,httpOrderApi) {
+    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl','httpCartApi','httpOrderApi','httpUser',],
+        function ($, Vue, httpVueLoader, httpUrl,indexApi,httpOrderApi,httpUser) {
             new Vue({
                 el: '#index_box',
                 data: {
