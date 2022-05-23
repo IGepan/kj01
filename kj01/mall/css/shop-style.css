@@ -1,0 +1,143 @@
+.mall-left{
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  background-color: #FFFFff;
+}
+.mall-right{
+  width: calc(100% - 230px);
+}
+.mall-right .store-mark .star {
+  margin-right: 1.25rem;
+  line-height: 40px;
+}
+.mall-right .store-mark .star span {
+  color: #f1671b;
+  font-weight: 700;
+  margin-left: 0.3125rem;
+}
+.mall-right ul li{
+  float: left;
+  line-height: 30px;
+  margin-right: 30px;
+}
+.mall-right ul li:first-child{
+  margin-right: 10px;
+}
+.mall-right ul li .money{
+  color: #ff5656;
+  font-style: normal;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.mall-title{
+  font-size: 26px;
+  color: #3a3a3a;
+  display: block;
+  margin-bottom: 20px;
+}
+.mall-creat span{
+  margin-bottom: 20px;
+  display: inline-block;
+  margin-right: 50px;
+}
+.mall-creat span:last-child{
+  width: 100%;
+}
+.btn-outline-primary{
+  color: #ff5e06;
+  border-color: #ff5e06;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  background-color: #FFFFff;
+  padding:8px 25px ;
+}
+.btn-outline-primary i{
+  font-size: 18px!important;
+}
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #ff5e06;
+  border-color: #ff5e06
+}
+.mall-red{
+  color: #f1671b;
+}
+.mall-item .col i{
+  font-size: 18px;
+  color: #7a7a7a!important;
+}
+.block-main{
+  padding: 40px 0;
+}
+.mall-text{
+  font-size: 24px!important;
+  font-weight: bold;
+  color: #3a3a3a;
+  text-align: center;
+  display: block;
+
+}
+.mall-text::before{
+  position: absolute;
+  content: '';
+  width: 76px;
+  height: 11px;
+  margin-top: 10px;
+  margin-left: -100px;
+  background: url(/mall/images/left.png)no-repeat;
+}
+.mall-text::after{
+  position: absolute;
+  content: '';
+  width: 76px;
+  height: 11px;
+  margin-top: 10px;
+  margin-left: 20px;
+  background: url(/mall/images/right.png)no-repeat;
+}
+.mall-text span{
+  color: #ff5e06;
+}
+.block-main .main-title span:before{
+  display: none;
+}
+.service-area{
+  border: none;
+}
+.block-main .main-title{
+  padding: 0!important;
+}
+.left-i{
+  font-style: normal;
+  color: #ff5e06;
+  margin-right: 10px;
+  line-height: 1.875rem;
+}
+.service-area .rounded-pill{
+  background-color: #fff5f0!important;
+  border: 1px solid #ff5e06!important;
+  color: #ff5e06!important;
+}
+.service-area .content{
+  padding:0 1.875rem 1.25rem!important;
+}
+.about-shop .content{
+  padding: 0 1.875rem;
+}
+.block-assess .review-toolbar{
+  background:#feefe7
+}
+.block-assess .review-toolbar .all-review-filter a{
+  color:#3a3a3a!important;
+}
+.block-assess .review-toolbar .all-review-filter a.active{
+  color:#ff5e06!important;
+}
+.block-assess .review-toolbar .all-review-filter a:hover{
+  color:#ff5e06!important;
+}
+.form-check-input:checked {
+  background-color:#ff5e06!important;
+  border-color: #ff5e06!important;
+}

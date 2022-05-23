@@ -49,10 +49,13 @@ define(['httpUrl', 'http'], function (httpUrl, Http) {
       return Http.post(httpUrl.baseUrl + '/order/buyNow', param)
     },
     getQ: function (param) {
-      return Http.post('https://ts-zuul.kj01.cn/tsAdmin/v3/nativePay', param);
+      return Http.post(httpUrl.baseUrl + '/v3/nativePay', param);
     },
     getResult: function (param) {
-      return Http.post('https://pay.weixin.qq.com/wxpay/pay.action', param);
+      return Http.post(httpUrl.baseUrl + '/payLog/select', param);
+    },
+    getUpdateStatus: function (param) {
+      return Http.post(httpUrl.baseUrl + '/order/buyer/updateStatus', param);
     },
   }
 })

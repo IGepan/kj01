@@ -8,6 +8,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
         http: httpOrderApi,
         detailInfo: {},
         httpCom: httpCom
+
       },
       components: {
         'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
@@ -22,16 +23,17 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var vm = this
           httpOrderApi.buyerDetail({ id: id }).then(function (res) {
             if (res.code == 'rest.success') {
-              let l = res.result.logList.length
-              res.result.logList.some(function (log, i) {
-                if (!log.opTime) {
-                  res.result.notimei = i
-                }
-                return !log.opTime
-              })
-              res.result.logfull = 0
-              res.result.logList[l - 1].opTime && (res.result.notimei = l, res.result.logfull = 1)
-              vm.$data.detailInfo = res.result
+                let l = res.result.logList.length
+                console.log(res.result.logList,'res.result.logList')
+                res.result.logList.some(function (log, i) {
+                  if (!log.opTime) {
+                    res.result.notimei = i
+                  }
+                  return !log.opTime
+                })
+                res.result.logfull = 0
+                res.result.logList[l - 1].opTime && (res.result.notimei = l, res.result.logfull = 1)
+                vm.$data.detailInfo = res.result
             }
           })
         },

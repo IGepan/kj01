@@ -50,7 +50,7 @@
     </div>
     <div class="storecontent">
       <div class="mdiv progress" :class="{noActive: !detailInfo.notimei}">
-        <div class="background">
+        <div class="background" style="width: 100%">
           <ul>
             <li v-for="(log, index) in detailInfo.logList" :key="index"
               :class="{active: detailInfo.notimei - 1 === index}" style="margin-top: -17px;">
@@ -138,7 +138,7 @@
                 v-text="'付款方式：' + detailInfo.payModeDisplay"></span>
               <span
                 v-text="'总金额（含运费）：￥' + detailInfo.goodsPrices"></span>
-              <a v-if="detailInfo.payMode=='002'" class="goPay" @click="goPay(detailInfo.id)">去付款</a>
+<!--              <a v-if="detailInfo.payStatus=='001'&&detailInfo.payMode=='002'&&detailInfo.orderStatus=='002'" class="goPay" @click="goPay(detailInfo.id)">去付款</a>-->
             </div>
           </div>
         </div>

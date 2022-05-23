@@ -39,9 +39,13 @@
         line-height: 60px;
         display: flex;
         justify-content: center;
-
         margin-bottom: 40px;
         padding: 20px 0;
+    }
+    .center p{
+        /*color: #fe900c;*/
+        padding: 20px;
+        margin-bottom: 0;
     }
     .success{
         border:1px solid #67c23a;
@@ -73,12 +77,16 @@
         border-top:1px solid #dfdfdf;
         padding-top: 50px;
     }
+    .other_payment{
+        color: #f1671b;
+        text-decoration: underline;
+    }
 </style>
 
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper></ly-toper>
-    <ly-header pagename="支付状态" :http="httpCom"></ly-header>
+    <ly-header pagename="支付状态"></ly-header>
     <div id="app">
 <!--        <div class="top_bar">-->
 <!--            <div class="content">-->
@@ -89,10 +97,15 @@
 <!--        </div>-->
         <div class="mdiv">
              <div class="center">
-                 <div class="nav-pay success"><i class="el-icon-success"></i>支付成功！</div>
-                 <div class="nav-pay error"><i class="el-icon-error"></i>支付失败！</div>
-                 <div class="nav-pay warning"><i class="el-icon-warning"></i>支付超时！</div>
-                 <div class="other_payment"><a @click='goPage(1)'><i></i>返回订单</a></div>
+                 <div style="display: flex;justify-content: space-around;align-items: center;background:#fff5f0;margin-bottom: 20px">
+                     <p>商品订单号：{{outTradeNo}}</p>
+                     <p>支付金额：<i style="font-size: 18px;font-style: normal;color: #f1671b">￥{{detailInfo[0].protocolPrice ||0}}</i></p>
+                 </div>
+                 <div class="nav-pay success" v-if="type=='01'">
+                     <i class="el-icon-success"></i>支付成功！</div>
+                     <div class="nav-pay error" v-else><i class="el-icon-error"></i>支付失败！</div>
+<!--                 <div class="nav-pay warning"><i class="el-icon-warning"></i>支付超时！</div>-->
+                 <div class="other_payment"><a @click='goPage(1)'><i></i>返回我的订单</a></div>
              </div>
         </div>
     </div>
