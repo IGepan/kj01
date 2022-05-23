@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/swiper-bundle.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/shop-style.css">
     <link rel="stylesheet" href="../css/lightgallery.css">
-
     <script src="../js/jquery-3.5.1.slim.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/iconfont.css">
@@ -31,6 +31,30 @@
         })();
     </script>
 </head>
+<style>
+    .shop-menu{
+        background:#ff5e06!important;
+    }
+    .shop-menu .navbar-dark .nav-link.active, .shop-menu .navbar-dark .nav-link:hover {
+        background: #ff9036!important;
+        color: #FFFFff!important;
+    }
+    .searchInputLine input{
+        border: 2px solid #ff5e06!important;
+    }
+    .search button{
+        background-color: #ff5e06!important;
+    }
+    .mbg{
+        background: url(/mall/images/mall-bg.png)no-repeat;
+        background-size: cover;
+        min-height: 300px;
+        padding: 40px 0;
+    }
+    .logo{
+        padding-bottom: 10px;
+    }
+</style>
 <body class="shop-page">
 <div class="box" id='index_box' v-cloak>
 
@@ -38,26 +62,6 @@
     <header id="page-header" class="shop-header">
         <ly-header :http="httpCom"></ly-header>
     </header>
-    <div class="additional-menu">
-        <div class="container">
-            <div class="store-info d-flex">
-                <span class="store-name">{{shopInfo.shopName}}</span>
-                <span class="icon-item icon-users">
-                <i class="iconfont icon-user"></i>
-            </span>
-                <span class="icon-item icon-safety">
-                <i class="iconfont icon-anquan"></i>
-            </span>
-                <div class="store-mark d-flex">
-                    <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
-                    <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
-                    <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
-                </div>
-                <a class="collection-shop" @click="colSelectedClick(shopInfo)"
-                   v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
-            </div>
-        </div>
-    </div>
     <nav class="main-menu shop-menu">
         <div class="container" v-cloak="display=none">
             <ul class="navbar-nav navbar-dark">
@@ -68,133 +72,232 @@
                 <li class="nav-item">
                     <a class="nav-link" :href="'/mall/shop/list.html?code='+shopCode">服务列表</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" :href="'/mall/shop/technologylist.html?code='+shopCode">技术列表</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link"  :href="'/mall/shop/productlist.html?code='+shopCode">产品列表</a>-->
-<!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" :href="'/mall/shop/technologylist.html?code='+shopCode">技术列表</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link"  :href="'/mall/shop/productlist.html?code='+shopCode">产品列表</a>-->
+                <!--                </li>-->
                 <li class="nav-item" v-show="statisticsInfo.orderCount && statisticsInfo.orderCount!=0">
                     <a class="nav-link" :href="'/mall/shop/service.html?code='+shopCode">成交案例</a>
                 </li>
             </ul>
         </div>
     </nav>
-<!--    <div class="shop-banner" :style="'background-image: url('+shopInfo.banner+');'">-->
-<!--        <img class="img-fluid" src="demo/banner.jpg" alt="">-->
-<!--    </div>-->
-    <div class="container shop-main-page" style="padding-top: 12px">
-        <div class="row">
-            <div class="col-auto left-sidebar">
-                <div class="store-head">
-                    <div class="head-avatar text-center">
-                        <img :src="shopInfo.shopLogo || '/common/images/defaultImg/default.gif'" alt="">
-                    </div>
-                    <div class="name">{{shopInfo.shopName}}</div>
-                    <div class="info">
-                        <ul class="list-unstyled">
-                            <li><i class="iconfont icon-time"></i> {{shopInfo.createTime || ''}}</li>
-                            <li><i class="iconfont icon-usergroup"></i> {{shopInfo.scaleDisplay}}</li>
-                            <li><i class="iconfont icon-location"></i> {{shopInfo.location || ''}}</li>
-                        </ul>
-                    </div>
-                    <div class="btn-groups d-flex justify-content-between">
-                        <button @click="onLineConsult" type="button" class="btn btn-outline-primary btn-sm"><i
-                                class="iconfont icon-advisory"></i> 咨询店铺
-                        </button>
-                        <button :class="{flagtrue:shopInfo.collectionFlag==='1'}" @click="colSelectedClick(shopInfo)"
-                                type="button" class="btn btn-outline-primary btn-sm">
-                            <i class="iconfont icon-favorite" v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'">
-                                收藏店铺</i>
-                        </button>
-                    </div>
-                    <!--                <div class="operating-hours">-->
-                    <!--                    工作日  {{shopInfo.propertyDay}} <br>-->
-                    <!--                    {{shopInfo.propertyTime}}-->
-                    <!--                </div>-->
-                </div>
-                <div class="block block-trend" v-if="latestGoodsList&&latestGoodsList.length">
-                    <div class="block-title"><span>店铺动态</span></div>
-                    <div class="block-content">
-                        <ul class="list-unstyled">
-                            <li v-for="item in latestGoodsList">
-                                <a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">
-                                    <span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span>
-                                    <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">
-                                        {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
+    <div class="mbg">
+      <div class="container d-flex justify-content-between">
+          <div class="mall-left">
+              <img :src="shopInfo.shopLogo || '/common/images/defaultImg/default.gif'" width="200px" height="200px"/>
+          </div>
+          <div class="mall-right">
+              <div class="d-flex justify-content-between">
+                  <span class="mall-title">重庆聚格知识产权服务有限公司</span>
+                  <div class="store-mark d-flex">
+                      <div class="star">服务 <span>5{{statisticsInfo.evaluateResult}}</span></div>
+                      <div class="star">速度 <span>5{{statisticsInfo.shopEvaluateSpeed}}</span></div>
+                      <div class="star">质量 <span>5{{statisticsInfo.shopEvaluateQuality}}</span></div>
+                  </div>
+              </div>
+              <div class="mall-creat">
+                  <span>成立时间:{{shopInfo.createTime || ''}}</span>
+                  <span>规模:{{shopInfo.scaleDisplay}}</span>
+                  <span>地址:{{shopInfo.location || ''}}</span>
+              </div>
+              <div class="btn-groups d-flex">
+                  <button @click="onLineConsult" type="button" class="btn btn-outline-primary"><i
+                          class="iconfont icon-advisory"></i> 咨询店铺
+                  </button>
+                  <button :class="{flagtrue:shopInfo.collectionFlag==='1'}" @click="colSelectedClick(shopInfo)"
+                          type="button" class="btn btn-outline-primary">
+                      <i class="iconfont icon-favorite" ></i>
+                      {{shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'}}
+                  </button>
+              </div>
+                  <ul>
+                      <li>店铺动态：</li>
+                      <li><span>绿色建材产品认证</span><i class="money">￥1000</i></li>
+                      <li><span>孵化板、科创板，成长板等挂牌上市</span><i class="money">￥1000</i></li>
+                      <li><span>绿色建材产品认证</span><i class="money">￥1000</i></li>
+                      <li><span>孵化板、科创板，成长板等挂牌上市</span><i class="money">￥1000</i></li>
+                      <li><span>绿色建材产品认证</span><i class="money">￥1000</i></li>
+                  </ul>
 
-                                    </i>
-                                </a>
-                            </li>
-
-                        </ul>
+          </div>
+      </div>
+    </div>
+        <div class="additional-menu">
+            <div class="container">
+                <div class="row row-cols-6 mall-item">
+                    <div class="col">
+                        <i class="el-icon-shopping-bag-2"></i>
+                        商品数量
+                        <span class="value mall-red">{{statisticsInfo.serviceCount||0}}</span>
                     </div>
-                </div>
-                <div class="block block-trend visitors" v-if="whoConcernList&&whoConcernList.length">
-                    <div class="block-title"><span>最近访客</span></div>
-                    <div class="block-content">
-                        <ul class="list-unstyled">
-
-                            <li v-for="item in whoConcernList">
-                                <a href="#"><img :src="item.userPhoto||'/common/images/defaultImg/default.gif'"
-                                                 alt=""><span
-                                        class="title">{{item.userName}}</span></a>
-                            </li>
-
-                        </ul>
+                    <div class="col">
+                        <i class="el-icon-tickets"></i>
+                        综合评分
+                        <span class="value mall-red">{{statisticsInfo.complexEvaluateResult||0}}</span>
                     </div>
-                </div>
-                <div class="block block-statistics">
-                    <div class="block-title"><span>统计数据</span></div>
-                    <div class="row row-cols-3">
-                        <div class="col">
-                            <span class="value">{{statisticsInfo.serviceCount||0}}</span>
-                            商品数量
-                        </div>
-                        <div class="col">
-                            <span class="value">{{statisticsInfo.complexEvaluateResult||0}}</span>
-                            综合评分
-                        </div>
-                        <div class="col">
-                            <span class="value">{{statisticsInfo.nearlyYearCount||0}}</span>
-                            近一年评价
-                        </div>
-                        <div class="col">
-                            <span class="value">{{statisticsInfo.orderCount||0}}</span>
-                            成交次数
-                        </div>
-                        <div class="col">
-                            <span class="value"
-                                  v-text="( statisticsInfo.turnover ? (statisticsInfo.turnover/10000).toFixed(2) : 0)+'万'"></span>
-                            成交金额
-                        </div>
-                        <div class="col">
-                            <span class="value">{{statisticsInfo.views||0}}</span>
-                            访问量
-                        </div>
+                    <div class="col">
+                        <i class="el-icon-chat-dot-square"></i>
+                        近一年评价
+                        <span class="value mall-red">{{statisticsInfo.nearlyYearCount||0}}</span>
+                    </div>
+                    <div class="col">
+                        <i class="el-icon-circle-check"></i>
+                        成交次数
+                        <span class="value mall-red">{{statisticsInfo.orderCount||0}}</span>
+                    </div>
+                    <div class="col">
+                        <i class="el-icon-coin"></i>
+                        成交金额
+                        <span class="value mall-red"
+                              v-text="( statisticsInfo.turnover ? (statisticsInfo.turnover/10000).toFixed(2) : 0)+'万'"></span>
+                    </div>
+                    <div class="col">
+                        <i class="el-icon-view"></i>
+                        访问量
+                        <span class="value mall-red">{{statisticsInfo.views||0}}</span>
                     </div>
                 </div>
             </div>
+        </div>
+<!--    <div class="additional-menu">-->
+<!--        <div class="container">-->
+<!--            <div class="store-info d-flex">-->
+<!--                <span class="store-name">{{shopInfo.shopName}}</span>-->
+<!--                <span class="icon-item icon-users">-->
+<!--                <i class="iconfont icon-user"></i>-->
+<!--            </span>-->
+<!--                <span class="icon-item icon-safety">-->
+<!--                <i class="iconfont icon-anquan"></i>-->
+<!--            </span>-->
+<!--                <div class="store-mark d-flex">-->
+<!--                    <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>-->
+<!--                    <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>-->
+<!--                    <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>-->
+<!--                </div>-->
+<!--                <a class="collection-shop" @click="colSelectedClick(shopInfo)"-->
+<!--                   v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'"><i class="iconfont icon-favorite"></i> 收藏店铺</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="shop-banner" :style="'background-image: url('+shopInfo.banner+');'">-->
+<!--        <img class="img-fluid" src="demo/banner.jpg" alt="">-->
+<!--    </div>-->
+    <div class="container shop-main-page" style="padding-top:1.25rem">
+        <div class="row">
+<!--            <div class="col-auto left-sidebar">-->
+<!--                <div class="store-head">-->
+<!--                    <div class="head-avatar text-center">-->
+<!--                        <img :src="shopInfo.shopLogo || '/common/images/defaultImg/default.gif'" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="name">{{shopInfo.shopName}}</div>-->
+<!--                    <div class="info">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li><i class="iconfont icon-time"></i> {{shopInfo.createTime || ''}}</li>-->
+<!--                            <li><i class="iconfont icon-usergroup"></i> {{shopInfo.scaleDisplay}}</li>-->
+<!--                            <li><i class="iconfont icon-location"></i> {{shopInfo.location || ''}}</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="btn-groups d-flex justify-content-between">-->
+<!--                        <button @click="onLineConsult" type="button" class="btn btn-outline-primary btn-sm"><i-->
+<!--                                class="iconfont icon-advisory"></i> 咨询店铺-->
+<!--                        </button>-->
+<!--                        <button :class="{flagtrue:shopInfo.collectionFlag==='1'}" @click="colSelectedClick(shopInfo)"-->
+<!--                                type="button" class="btn btn-outline-primary btn-sm">-->
+<!--                            <i class="iconfont icon-favorite" v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'">-->
+<!--                                收藏店铺</i>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                <div class="operating-hours">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    工作日  {{shopInfo.propertyDay}} <br>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    {{shopInfo.propertyTime}}&ndash;&gt;-->
+<!--                    &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="block block-trend" v-if="latestGoodsList&&latestGoodsList.length">-->
+<!--                    <div class="block-title"><span>店铺动态</span></div>-->
+<!--                    <div class="block-content">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li v-for="item in latestGoodsList">-->
+<!--                                <a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">-->
+<!--                                    <span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span>-->
+<!--                                    <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">-->
+<!--                                        {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}-->
+
+<!--                                    </i>-->
+<!--                                </a>-->
+<!--                            </li>-->
+
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="block block-trend visitors" v-if="whoConcernList&&whoConcernList.length">-->
+<!--                    <div class="block-title"><span>最近访客</span></div>-->
+<!--                    <div class="block-content">-->
+<!--                        <ul class="list-unstyled">-->
+
+<!--                            <li v-for="item in whoConcernList">-->
+<!--                                <a href="#"><img :src="item.userPhoto||'/common/images/defaultImg/default.gif'"-->
+<!--                                                 alt=""><span-->
+<!--                                        class="title">{{item.userName}}</span></a>-->
+<!--                            </li>-->
+
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="block block-statistics">-->
+<!--                    <div class="block-title"><span>统计数据</span></div>-->
+<!--                    <div class="row row-cols-3">-->
+<!--                        <div class="col">-->
+<!--                            <span class="value">{{statisticsInfo.serviceCount||0}}</span>-->
+<!--                            商品数量-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <span class="value">{{statisticsInfo.complexEvaluateResult||0}}</span>-->
+<!--                            综合评分-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <span class="value">{{statisticsInfo.nearlyYearCount||0}}</span>-->
+<!--                            近一年评价-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <span class="value">{{statisticsInfo.orderCount||0}}</span>-->
+<!--                            成交次数-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <span class="value"-->
+<!--                                  v-text="( statisticsInfo.turnover ? (statisticsInfo.turnover/10000).toFixed(2) : 0)+'万'"></span>-->
+<!--                            成交金额-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <span class="value">{{statisticsInfo.views||0}}</span>-->
+<!--                            访问量-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="col">
                 <div class="block block-main">
+                    <h4 class="mall-text">店铺<span>信息</span></h4>
                     <div class="about-shop">
-                        <div class="main-title"><span>关于我们</span></div>
+                        <div class="main-title"><span><i class="left-i">■</i>关于我们</span></div>
                         <div class="content ">
                             <div class="poster-txt xg current-menu" v-html="shopInfo.comment">
-
                             </div>
                         </div>
                     </div>
                     <div class="about-shop">
-                        <div class="main-title"><span>服务案例</span></div>
+                        <div class="main-title"><span><i class="left-i">■</i>服务案例</span></div>
                         <div class="content ">
                             <div class="poster-txt xg current-menu" v-html="shopInfo.serviceCase">
-
                             </div>
+
                         </div>
                     </div>
                     <div class="service-area">
-                        <div class="main-title"><span>服务领域</span></div>
+                        <div class="main-title"><span><i class="left-i">■</i>服务领域</span></div>
                         <div class="content">
 
                             <span class="badge rounded-pill" v-for="k in shopInfo.servicesList">{{k}}</span>
@@ -232,7 +335,8 @@
                     </div>
                 </div>
                 <div class="block block-assess">
-                    <div class="block-title"><span>店铺评价</span></div>
+<!--                    <div class="block-title"><span>店铺评价</span></div>-->
+                    <h4 class="mall-text" style="padding-top:40px ">店铺<span>评价</span></h4>
                     <div class="content">
                         <div class="shop-label" v-if="shopInfo.evaluateTagList">
                             <span class="badge rounded-pill" v-for="k in shopInfo.evaluateTagList"

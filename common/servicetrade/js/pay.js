@@ -42,7 +42,8 @@ require(['/common/js/require.config.js'], function () {
                     },
                     tt:{},
                     dataList:[],
-                    outTradeNo:''
+                    outTradeNo:'',
+                    type:''
                 },
                 components: {
                     'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper.vue'),
@@ -62,8 +63,9 @@ require(['/common/js/require.config.js'], function () {
                     }
                 },
                 mounted(){
-                    this.getUserInfo();
-                    // this.outTradeNo = this.$utils.getReqStr('id');
+                    this.outTradeNo = this.$utils.getReqStr('id');
+                    this.type=this.$utils.getReqStr('type');
+                    console.log(this.type,'tyep')
                     // this.init(this.outTradeNo);
                     // this.getQrcode();
                     // var qrcode= new QRCode('qrcode', {

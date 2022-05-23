@@ -138,15 +138,15 @@
                       <div class="total" v-text="'￥' + order.goodsPrices"></div>
                       <div class="state" v-text="order.orderStatusDisplay"></div>
                       <div class="operation">
-                        <button class="pay" v-if="order.payMode=='002'"  @click="goPay(order.id)">去付款</button>
                         <a target="_blank" :href="$pathPrefix+'/common/buyer/order/detail.html?id=' + order.id">订单详情</a>
 <!--                        <a v-if="order.orderStatus !== '001' && order.orderStatus !== '008'" target="_blank"-->
 <!--                          :href="fileUrl + order.id" :data-name="order.id" @click.stop.prevent="savefile">结算单</a>-->
                         <button v-if="order.orderStatus === '001'" class="acceptance"
                           @click="setCancelInfo(order.id, order.version)">取消订单</button>
                         <template v-if="order.orderType === '001' || order.orderType === '002'">
-                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="acceptance"
+                          <button v-if="order.orderStatus === '002' &&order.payStatus==='002' || order.orderStatus === '004'&&order.payStatus==='002'" class="acceptance"
                             @click="setAcceptOrderInfo(order)">验收确认</button>
+                          <button class="pay" v-if="order.payStatus==='001' && order.orderStatus==='002'"  @click="goPay(order.id)">去付款</button>
 <!--                          <button v-if="order.orderStatus === '002' || order.orderStatus === '004'" class="acceptance"-->
 <!--                            @click="notFun">签订合同</button>-->
                         </template>

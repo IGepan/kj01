@@ -36,7 +36,7 @@
 <body>
 <div class="box" id='index_box' v-cloak>
     <ly-toper></ly-toper>
-    <ly-header pagename="扫码支付" :http="httpCom"></ly-header>
+    <ly-header pagename="扫码支付"></ly-header>
     <div id="app">
         <!--        <div class="top_bar">-->
         <!--            <div class="content">-->
@@ -49,13 +49,13 @@
             <div class="pw_hd">
                 <a class="logo" href="" target="_blank"></a>
                 <div class="price">
-                    支付总金额：<span>￥0.01</span>
+                    支付总金额：<span>￥{{detailInfo[0].protocolPrice}}</span>
                 </div>
             </div>
             <div class="pw_bd">
                 <h2>微信支付</h2>
-                <input id="text" type="text" v-model="qUrl" style="width:80%;border: 1px solid #eee;line-height: 40px"/>
-               <button  @click="toQ(qUrl)" style="padding: 5px 10px">生成二维码</button>
+<!--                <input id="text" type="text" v-model="qUrl" style="width:80%;border: 1px solid #eee;line-height: 40px"/>-->
+<!--               <button  @click="toQ(qUrl)" style="padding: 5px 10px">生成二维码</button>-->
                 <div class="sweep clearfix">
                     <div class="img"></div>
                     <div class="qrcode">
