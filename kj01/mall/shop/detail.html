@@ -62,6 +62,9 @@
         background-color: #ff5e06!important;
         color: #fff;
     }
+    html{
+        scroll-behavior:smooth;
+    }
 </style>
 <body class="shop-page">
 <div class="box" id='index_box' v-cloak>
@@ -383,7 +386,7 @@
 <!--                               aria-controls="cumulative-comments" aria-selected="false">累计评论 ({{sumEv}})</a>-->
 <!--                        </li>-->
                         <li class="nav-item">
-                            <a class="nav-link" href="#service-introduction" @click="goTo(0)" :class="{active:aindex==0}">服务介绍</a>
+                            <a class="nav-link" id="tt" href="#service-introduction" @click="goTo(0)" :class="{active:aindex==0}">服务介绍</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#cumulative-comments" @click="goTo(1)" :class="{active:aindex==1}">累计评论 ({{sumEv}})</a>
