@@ -33,17 +33,17 @@ require(['/common/js/require.config.js'], function () {
                     // busUnread: '',
                     areaList: [],
                     "intended_price_list": [
-                        { "name": "金额", "value": 0 },
-                        { "name": "面议", "value": 1 },
+                        {"name": "金额", "value": 0},
+                        {"name": "面议", "value": 1},
                     ],
                     "intended_price": 0,
 
 
                     // 筛选
                     "demand_case_list": [
-                        { "id": 0, "display": "未委托经纪人" },
-                        { "id": 1, "display": "已委托经纪人" },
-                        { "id": 2, "display": "已委托多个经纪人" },
+                        {"id": 0, "display": "未委托经纪人"},
+                        {"id": 1, "display": "已委托经纪人"},
+                        {"id": 2, "display": "已委托多个经纪人"},
                     ],
                     "demand_case": "",//需求来源
 
@@ -74,6 +74,7 @@ require(['/common/js/require.config.js'], function () {
                         "technicalNorm": "",
                         "otherDes": "",
                         "area": "",
+                        'tags': [],
                         "companyName": "",
                     }, // 需求d对象
 
@@ -188,7 +189,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     ///////////////////三级级联选择/////////////////////////
 
                     // 打开菜单
@@ -257,7 +257,7 @@ require(['/common/js/require.config.js'], function () {
                         let removeId = _this.textList[index].id
                         console.log(_this.textList[index].id)
                         _this.textList.splice(index, 1);
-
+                        _this.tagList.splice(index, 1);
                         _this.secondOptions.forEach(function (item) {
                             item.children.forEach(function (i) {
                                 if (i.id == removeId) {
@@ -309,7 +309,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     //  选择第二层
                     openSecondLevelIndustry: function (item, index) {
                         var _this = this;
@@ -346,6 +345,7 @@ require(['/common/js/require.config.js'], function () {
                         var _this = this;
                         let removeId = _this.textIndustryList[index].id;
                         _this.textIndustryList.splice(index, 1);
+                        _this.industryList.splice(index, 1);
                         _this.secondIndustryOptions.forEach(function (item) {
                             if (item.id == removeId) {
                                 item.active = false;
@@ -386,8 +386,10 @@ require(['/common/js/require.config.js'], function () {
                                 idForm.push(element.id);
                             });
                             _this.tagList = idForm;
+                            form.tags = idForm;
+                        } else {
+                            form.tags = _this.tagList;
                         }
-                        form.tags = _this.tagList;
 
 
                         // 转行业类型
@@ -398,15 +400,18 @@ require(['/common/js/require.config.js'], function () {
                                 industryForm.push(element.id);
                             });
                             _this.industryList = industryForm;
+                            form.demandIndustryType = industryForm;
+                        } else {
+                            form.demandIndustryType = _this.textIndustryList;
                         }
 
-                        form.demandIndustryType = [];
-                        _this.industryList.forEach(element => {
-                            form.demandIndustryType.push(element);
-                        });
+                        // form.demandIndustryType = [];
+                        // _this.industryList.forEach(element => {
+                        //     form.demandIndustryType.push(element);
+                        // });
                         form.budget = _this.intended_price == 1 ? 0 : _this.proRequireForm.budget;
 
-                        console.log('form', form)
+                        // console.log('form', form)
                         if (_this.noEmptyInputReq(form)) {
                             console.log('form', form)
 
@@ -419,7 +424,7 @@ require(['/common/js/require.config.js'], function () {
                                 _this.$dialog.showToast("提交成功");
                                 setTimeout(function () {
                                     // window.href = "/user_market_tech_achievements.html"
-                                    window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_require.html"
+                                    window.location.href = this.$pathPrefix + "/common/usercenter/user_market_tech_require.html"
                                 }, 2000)
                             })
                         }
@@ -483,7 +488,6 @@ require(['/common/js/require.config.js'], function () {
                     // "cooperationMode": _this.cooperation_mode,//合作方式
                     // 需求单位
                     // 单位性质
-
 
 
                     // 查询返现
