@@ -11,16 +11,25 @@
       cursor: pointer;
       color: #1154b0;
     }
+    .progress {
+      display: block!important;
+      height: auto!important;
+      padding: 90px 0px!important;
+      margin-bottom: 20px!important;
+    }
+    .header{
+      border: none!important;
+    }
   </style>
 </head>
 
 <body>
-  <div class="box" id="index_box">
+  <div class="box" id="index_box" style="background: #f2f2f2">
     <div class="header">
       <ly-toper></ly-toper>
       <ly-header type="seller" pagename="订单详情" :http="httpCom"></ly-header>
       <div class="crumbs">
-        <div class="mdiv"><strong>你现在的位置：</strong>
+        <div class="mdiv"><strong>当前位置：</strong>
           <a href="/common/seller/index.html">
             卖家中心
           </a><a href="/common/seller/order/?orderStatusFilter=01&code=order-seller-my">
@@ -37,7 +46,7 @@
               :class="{active: detailInfo.notimei - 1 === index}" style="margin-top: -17px;">
               <span v-text="index + 1"></span>
               <div class="background-item">
-                <div v-text="log.actionName"></div>
+                <div v-text="log.actionName" style="color: #000"></div>
                 <div class="background-time" v-text="log.opTime || ''"></div>
               </div>
               <span v-if="detailInfo.notimei === 0 || (detailInfo.notimei - 1 === index && !detailInfo.logfull)"
@@ -121,7 +130,8 @@
                   </div>
                 </div>
               </div>
-              <div class="state" v-text="detailInfo.orderStatusDisplay"></div>
+              <div class="state" v-text="detailInfo.orderStatusDisplay" style="font-weight: bold"
+                   :style="{'color':detailInfo.orderStatusDisplay=='已完成'?'#5ed42d':'#ff6600'}"></div>
               <div class="total" v-text="'￥' + sumGoodsPrices"></div>
             </div>
             <div class="orderfooter"><span>配送方式：卖家配送</span><span

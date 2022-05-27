@@ -11,6 +11,18 @@
   <link rel="stylesheet" href="/mall/css/iconfont.css" >
 
   <style>
+    .searchInputLine input{
+      border: 2px solid #ff5e06!important;
+    }
+    .search button{
+      background-color: #ff5e06!important;
+    }
+    .searchBorder{
+      border: 2px solid #ff5e06!important;
+    }
+    .input-search:first-child{
+      border: none!important;
+    }
     .files {
       cursor: pointer;
       color: #1154b0;
@@ -18,7 +30,8 @@
     .progress{
       display: block!important;
       height: auto!important;
-      padding: 70px 0px!important;
+      padding: 90px 0px!important;
+      margin-bottom: 20px!important;
     }
     .goPay{
       margin-left: 30px;
@@ -30,16 +43,25 @@
       color: #FFFFff!important;
       background: #fe900c;
     }
+    .header{
+      border: none!important;
+    }
+    .progress{
+      background-color:#fff!important;
+    }
+    .orderheader{
+      background-color: #fff5f0!important;
+    }
   </style>
 </head>
 
 <body class="order-process">
-  <div class="box" id="index_box">
+  <div class="box" id="index_box" style="background: #f2f2f2">
     <div class="header">
       <ly-toper></ly-toper>
       <ly-header pagename="订单详情" :http="httpCom"></ly-header>
       <div class="crumbs">
-        <div class="mdiv"><strong>你现在的位置：</strong>
+        <div class="mdiv"><strong>当前位置：</strong>
           <a href="/common/buyer/index.html">
             用户中心
           </a><a href="/common/buyer/order/?orderStatusFilter=01">
@@ -50,13 +72,13 @@
     </div>
     <div class="storecontent">
       <div class="mdiv progress" :class="{noActive: !detailInfo.notimei}">
-        <div class="background" style="width: 100%">
-          <ul>
+        <div class="background">
+          <ul style="padding-left: 0">
             <li v-for="(log, index) in detailInfo.logList" :key="index"
               :class="{active: detailInfo.notimei - 1 === index}" style="margin-top: -17px;">
               <span v-text="index+1"></span>
               <div class="background-item">
-                <div v-text="log.actionName"></div>
+                <div v-text="log.actionName" style="color: #000"></div>
                 <div class="background-time" v-text="log.opTime || ''"></div>
               </div>
               <span v-if="detailInfo.notimei === 0 || (detailInfo.notimei - 1 === index && !detailInfo.logfull)"
@@ -88,7 +110,7 @@
           <div
             v-if="detailInfo.orderStatus !== '001' && detailInfo.orderStatus !== '002' && detailInfo.orderStatus !== '003'">
             <div class="title" style="margin-top: 30px;color: #000;
-          font-weight: 700;">验收信息</div>
+          font-weight: 700;font-size: 16px">验收信息</div>
             <div class="tbody">
               <div class="row">
                 <div class="item" v-text="'验收说明：' + (detailInfo.inspectedInfo || '')"></div>
@@ -97,7 +119,7 @@
                 <span style="color: #404040;display: block;float: left;"
                   v-text="detailInfo.atts[0].orderAttachmentTypeDisplay + '：'">
                 </span>
-                <span v-for="(att,k) in detailInfo.atts" style="display: block;margin-left: 80px">
+                <span v-for="(att,k) in detailInfo.atts" style="display: block;">
                   <span class="files" v-text="att.file.name" @click="fileSaveAs(att.file.path,att.file.name)"></span>
                 </span>
               </div>
@@ -118,9 +140,12 @@
                 <div class="goodsitem" v-if="detailInfo.details" v-for="sku in detailInfo.details">
                   <!--商品项-->
                   <a href="#">
+<!--                    <span class="img"-->
+<!--                      :style="'background-image: url(' + (sku.goodsImg && sku.goodsImg.url ? sku.goodsImg.url : 'http://dummyimage.com/62x62') + ')'"></span><span-->
+<!--                      class="title" v-text="sku.goodsName"></span>-->
                     <span class="img"
-                      :style="'background-image: url(' + (sku.goodsImg && sku.goodsImg.url ? sku.goodsImg.url : 'http://dummyimage.com/62x62') + ')'"></span><span
-                      class="title" v-text="sku.goodsName"></span>
+                          style="background-image: url(https://fs.kj01.cn/resource/ts/20210511/20210511161245360_8jgE4FPD.jpg)"></span><span
+                          class="title" v-text="sku.goodsName"></span>
                   </a>
                   <div class="price" v-text="'￥' + sku.protocolPrice"></div>
                   <div class="number" v-text="sku.number">1</div>
@@ -131,7 +156,8 @@
                   </div>
                 </div>
               </div>
-              <div class="state" v-text="detailInfo.orderStatusDisplay"></div>
+              <div class="state" v-text="detailInfo.orderStatusDisplay" style="font-weight: bold"
+                   :style="{'color':detailInfo.orderStatusDisplay=='已完成'?'#5ed42d':'#ff6600'}"></div>
               <div class="total" v-text="'￥' + detailInfo.goodsPrices"></div>
             </div>
             <div class="orderfooter"><span>配送方式：卖家配送</span><span

@@ -35,7 +35,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
       computed: {
       },
       components: {
-        'ly-toper': httpVueLoader('/style/components/toper.vue'),
+        'ly-toper': httpVueLoader('/style/components/toper_mail.vue'),
         'ly-header': httpVueLoader('/common/template/t01/components/defaultHeader.vue'),
         'ly-store-info': httpVueLoader('/common/template/t01/components/defaultStoreInfo.vue'),
         'ly-menu-nav': httpVueLoader('/common/template/t01/components/defaultMenuNav.vue'),

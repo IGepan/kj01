@@ -11,7 +11,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
 
       },
       components: {
-        'ly-toper': httpVueLoader(this.$pathPrefix+'/style/components/toper.vue'),
+        'ly-toper': httpVueLoader(this.$pathPrefix + '/style/components/toper_mail.vue'),
         'ly-header': httpVueLoader('/common/components/orderHeader.vue'),
         'ly-footer': httpVueLoader('/style/components/main_footer.vue')
       },

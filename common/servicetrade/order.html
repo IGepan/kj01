@@ -14,28 +14,72 @@
     <link rel="stylesheet" href="/mall/css/bootstrap.min.css">
 
 </head>
+<style>
+    .searchInputLine input{
+        border: 2px solid #ff5e06!important;
+    }
+    .search button{
+        background-color: #ff5e06!important;
+    }
+    .searchBorder{
+        border: 2px solid #ff5e06!important;
+    }
+    .input-search:first-child{
+        border: none!important;
+    }
+    .btn-primary {
+        background-color:#ff5e06 !important;
+        border-color: #ff5e06 !important;
+    }
+    .fill-order .title span{
+        border-bottom:2px solid #ff5e06!important;
+    }
+    .address-list .address-item ul li .name{
+        padding: 0!important;
+        background: none!important;
+        width: auto!important;
+    }
+    .confirm-order .payment{
+        background: #fff5f0!important;
+    }
+    .confirm-order .table .product-name .text-start{
+        color: #3a3a3a!important;
+    }
+    a{
+        color: #6a6e7d;
+    }
+    .vlt-p{
+        position: absolute;
+        left: auto!important;
+        right: 0;
+        bottom: auto!important;
+        font-size: 13px!important;
+        color: red;
+    }
+
+</style>
 <body class="order-process">
 <div class="box" id="index_box">
     <ly-toper></ly-toper>
     <ly-header pagename="服务订单" :http="httpCom"></ly-header>
 
-    <nav class="main-menu shop-menu">
-        <div class="container">
-            <ul class="navbar-nav navbar-dark">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#"></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<!--    <nav class="main-menu shop-menu">-->
+<!--        <div class="container">-->
+<!--            <ul class="navbar-nav navbar-dark">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" aria-current="page" href="#"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
 
-    <div class="container fill-order">
+    <div class="container fill-order" style="border: 1px solid #eee">
         <div class="address-list">
             <div class="title d-flex justify-content-between">
-                <span>委托人信息</span>
+                <span>收货人信息</span>
                 <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         @click="isOpenAddress = true">
-                    增加地址 +
+                    新增收货人地址 <i class="el-icon-circle-plus" style="color:#67c23a;font-size: 18px"></i>
                 </button>
             </div>
             <div class="cover close" :class="{open:isOpenAddress}">
@@ -132,33 +176,39 @@
                 </div>
             </div>
             <div class="address-item consignorbox" :class="{active:isFullAddress}">
-                <ul class="list-unstyled  consignorlist">
+                <ul class="list-unstyled  consignorlist" style="display: flex;justify-content:left">
                     <li v-for="(address, i) in addressList"  :class="{active: address.activated}" @click="selectAddress(i)">
-                        <div class="name" v-text="address.contactsName" style="border: none;text-align: center"></div>
-                        <div class="address"
+                        <div style="width: 100%">
+                            <div class="name" v-text="address.contactsName" style="border: none;text-align: center;"></div>
+                            <div class="tnumber" v-text="address.mobile"></div>
+                        </div>
+
+                        <div class="address" style="width: 100%"
                              v-text="address.provinceDisplay + address.cityDisplay + address.districtDisplay + address.location">
                         </div>
-                        <div class="tnumber" v-text="address.mobile"></div>
+
                         <div v-show="address.defaultFlag === '1'" class="dftaddress"> 默认地址 </div>
-                        <div class="fr pr30 rightbtn">
+                        <div class="fl rightbtn">
+
                             <button type="button" @click.stop.prevent="addressDel(address)" class="delete">删除</button>
                             <button type="button" @click.stop.prevent="addressSetInfo(address.id)" class="edit">修改信息</button>
                             <button type="button" @click.stop.prevent="addressSetDefault(address)"
                                     class="setdefault">设为默认地址</button>
+
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="closeconsignorbox clear" :class="{active:!isFullAddress}">
-                  <span @click="changeFullAddress">
-                    <em>收起地址</em><em>展开地址</em>
-                    <i class="iconfont icon-xiala2"></i>
-                  </span>
-            </div>
+<!--            <div class="closeconsignorbox clear" :class="{active:!isFullAddress}">-->
+<!--                  <span @click="changeFullAddress">-->
+<!--                    <em>收起地址</em><em>展开地址</em>-->
+<!--                    <i class="iconfont icon-xiala2"></i>-->
+<!--                  </span>-->
+<!--            </div>-->
         </div>
         <div class="confirm-order orderValiform" >
             <div class="title">
-                <span>全部商品</span>
+                <span>商品清单</span>
             </div>
             <div class="cartBar d-flex mt-3">
                 <span class="product-name">商品信息</span>
@@ -181,7 +231,8 @@
                 <tr v-for="(sku, si) in shop.details" :key="sku.id">
                     <td width="730">
                         <div class="d-flex product-name p-3">
-                            <img :src="sku.goodsImg.url" alt="">
+<!--                            <img :src="sku.goodsImg.url" alt="">-->
+                            <img src="https://fs.kj01.cn/resource/ts/20210811/20210811161458304_3lMboBwo.jpg" alt="">
                             <div class="text-start">{{sku.goodsName}}</div>
                         </div>
                         <div class="my-3 row mb15  ">
@@ -189,7 +240,7 @@
                                     class="text-danger">*</span>服务需求:</label>
                             <div class="col-sm-10 inputContent">
                                 <input type="text" v-model="sku.requirement" class="storeipt w480 required"  data-valid="isNonEmpty||maxLength:500" data-error='服务需求不能为空||最大长度为500个字符'>
-                                <span class="vlt form_msg"></span>
+                                <span class="vlt-p"></span>
                             </div>
                         </div>
                         <div class="mb-3 row mb15  ">
@@ -199,14 +250,14 @@
                                 <input type="text" v-model="sku.protocolPrice" :disabled="sku.price !== undefined && sku.choosePriceTag === '0'"
                                        class="storeipt w210 required" data-valid="custom:protocolPriceValid" :data-shopIndex="i"
                                        :data-skuIndex="si" @blur="changePrice(i, si)">
-                                <span class="vlt form_msg"></span>
+                                <span class="vlt-p"></span>
                             </div>
                         </div>
                     </td>
                     <td class="text-center align-middle">
 
-                        <span class="price text-secondary fs-5 mt-3 d-block" v-if="sku.choosePriceTag!='3'"><small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{sku.negotiableFlag | formatPrice(sku.price, sku.minPrice, sku.maxPrice)}}</span>
-                        <span class="price text-secondary fs-5 mt-3 d-block" v-else-if="sku.choosePriceTag=='3'">查看价格详情</span>
+                        <span class="price  fs-5 mt-3 d-block" v-if="sku.choosePriceTag!='3'"><small v-show="sku.choosePriceTag=='0'||sku.choosePriceTag=='1'">￥</small>{{sku.negotiableFlag | formatPrice(sku.price, sku.minPrice, sku.maxPrice)}}</span>
+                        <span class="price  fs-5 mt-3 d-block" v-else-if="sku.choosePriceTag=='3'">查看价格详情</span>
                     </td>
                     <td width="152" class="align-middle">
                         <div class="num d-flex justify-content-center mt-3">

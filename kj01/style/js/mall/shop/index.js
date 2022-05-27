@@ -291,7 +291,7 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
           var vm = this;
           httpStoret01.selectpByPage(param).then(function (res) {
             if (res.code === 'rest.success') {
-              vm.technologyList = res.result.list.slice(0, 2);
+              vm.technologyList = res.result.list.slice(0, 6);
             }
           })
         },

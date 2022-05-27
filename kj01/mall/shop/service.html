@@ -43,7 +43,11 @@
             margin-left: 40px;
         }
         .cpcenblue{
-            color: #5069d3;
+            color: #ff5e06;
+        }
+        .cplist li:hover{
+            border-color: #fff5f0!important;
+            background-color: #fff5f0!important;
         }
         .cpcentype{
             display: inline-block;
@@ -87,6 +91,35 @@
             text-overflow: ellipsis;
         }
 		.star_1{position:inherit;line-height:normal;}
+        .shop-menu{
+            background:#ff5e06!important;
+        }
+        .shop-menu .navbar-dark .nav-link.active, .shop-menu .navbar-dark .nav-link:hover {
+            background: #ff9036!important;
+            color: #FFFFff!important;
+        }
+        .searchInputLine input{
+            border: 2px solid #ff5e06!important;
+        }
+        .search button{
+            background-color: #ff5e06!important;
+        }
+        .mbg{
+            background: url(/mall/images/mall-bg.png)no-repeat;
+            background-size: cover;
+            min-height: 300px;
+            padding: 40px 0;
+        }
+        .logo{
+            padding-bottom: 10px;
+        }
+        .card-item .card-body .card-title:hover a{
+            color:#ff5e06!important;
+        }
+        .pager a.active {
+            background-color: #ff5e06!important;
+            color: #fff;
+        }
     </style>
 </head>
 <body class="shop-page">
@@ -96,26 +129,26 @@
         <ly-header :http="httpCom"></ly-header>
     </header>
 
-    <div class="additional-menu">
-        <div class="container">
-            <div class="store-info d-flex">
-                <span class="store-name">{{shopInfo.shopName}}</span>
-                <span class="icon-item icon-users">
-                <i class="iconfont icon-user"></i>
-            </span>
-                <span class="icon-item icon-safety">
-                <i class="iconfont icon-anquan"></i>
-            </span>
+<!--    <div class="additional-menu">-->
+<!--        <div class="container">-->
+<!--            <div class="store-info d-flex">-->
+<!--                <span class="store-name">{{shopInfo.shopName}}</span>-->
+<!--                <span class="icon-item icon-users">-->
+<!--                <i class="iconfont icon-user"></i>-->
+<!--            </span>-->
+<!--                <span class="icon-item icon-safety">-->
+<!--                <i class="iconfont icon-anquan"></i>-->
+<!--            </span>-->
 
-                <div class="store-mark d-flex">
-                    <div class="star star_1">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
-                    <div class="star star_1">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
-                    <div class="star star_1">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
-                </div>
-                <a class="collection-shop"  v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'" @click="colSelectedClick(shopInfo)"><i class="iconfont icon-favorite"></i> 收藏店铺</a>
-            </div>
-        </div>
-    </div>
+<!--                <div class="store-mark d-flex">-->
+<!--                    <div class="star star_1">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>-->
+<!--                    <div class="star star_1">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>-->
+<!--                    <div class="star star_1">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>-->
+<!--                </div>-->
+<!--                <a class="collection-shop"  v-text="shopInfo.collectionFlag==='1' ? '取消收藏' : '收藏店铺'" @click="colSelectedClick(shopInfo)"><i class="iconfont icon-favorite"></i> 收藏店铺</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <nav class="main-menu shop-menu">
         <div class="container">
             <ul class="navbar-nav navbar-dark">
@@ -140,7 +173,7 @@
 
     <div class="mdiv">
         <div class="cplistbox" style="margin-top: 20px;">
-            <div class="cplist">
+            <div class="cplist" style="background: url(/mall/images/bottom.png)no-repeat bottom;background-size: cover; ">
                 <ul>
                     <li v-for="(item, i) in goodsList" :key="i">
                         <a target="_blank" :href="'/mall/shop/service-detail.html?id='+item.orderId+'&code='+shopCode" class="cpsign">
