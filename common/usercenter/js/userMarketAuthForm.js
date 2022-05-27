@@ -52,7 +52,7 @@ require(['/common/js/require.config.js'], function () {
                         "techNo": "",
 
                     },
-                    'fileList':[],
+                    'fileList': [],
                     // 转移机构
                     "transferAgencyForm": {
                         "organName": "",
@@ -73,7 +73,7 @@ require(['/common/js/require.config.js'], function () {
                         "id": "",
 
                     },
-                    'pic':'',
+                    'pic': '',
                     "hasFormData": false,
                     "hasFormDataJudg": false,
 
@@ -129,7 +129,6 @@ require(['/common/js/require.config.js'], function () {
                     "certification_list": {},  //  若有数据
                     "certification_type": "",
                     "certification_noPassReason": "",
-
 
 
                     //   修改编辑
@@ -203,9 +202,7 @@ require(['/common/js/require.config.js'], function () {
                     'user-tech-menu': httpVueLoader('/common/components/buyerLeft.vue')
                     // 'user-tech-menu': httpVueLoader('/common/components/userTechMenu.vue')
                 },
-                computed: {
-
-                },
+                computed: {},
                 watch: {
                     dictionaryState(newName, oldName) {
                         //   this.fullName = newName + ' ' + this.lastName;
@@ -252,7 +249,7 @@ require(['/common/js/require.config.js'], function () {
                         if (this.userInfo && this.userInfo.userName) {
                             this.myCertificateBrokerDetails(); // 查询经纪人证书详情
                         } else {
-                            window.location.href =this.$pathPrefix+'/common/login.html';
+                            window.location.href = this.$pathPrefix + '/common/login.html';
                         }
                     },
 
@@ -268,8 +265,8 @@ require(['/common/js/require.config.js'], function () {
                         var lastIndex = path.lastIndexOf("/");
                         var imgName = path.substring(lastIndex);
 
-                        userCenterApi.getZmImg({ imgUrl: imgUrl }).then(function (res) {
-                            saveAs(res, "证书" + imgName, { type: 'image/png;charset=utf-8' })
+                        userCenterApi.getZmImg({imgUrl: imgUrl}).then(function (res) {
+                            saveAs(res, "证书" + imgName, {type: 'image/png;charset=utf-8'})
                         });
 
 
@@ -328,7 +325,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     ///////////查询三级级联////////
                     // 查询树状（标签）
                     findTechPatentTree: function (form) {
@@ -373,7 +369,6 @@ require(['/common/js/require.config.js'], function () {
                             console.log(_this.optionsIndustry)
                         })
                     },
-
 
 
                     ///////////////////三级级联选择/////////////////////////
@@ -495,7 +490,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     //  选择第二层
                     openSecondLevelIndustry: function (item, index) {
                         var _this = this;
@@ -549,7 +543,6 @@ require(['/common/js/require.config.js'], function () {
 
                     },
                     ///////////////////////////////////////////
-
 
 
                     // 班级
@@ -609,7 +602,6 @@ require(['/common/js/require.config.js'], function () {
                     },
 
 
-
                     open() {
                         var _this = this;
                         this.$prompt('请输入技术转移机构名称', '绑定机构', {
@@ -622,7 +614,7 @@ require(['/common/js/require.config.js'], function () {
 
                             }, beforeClose: function (action, instance, done) {
                                 if (action === 'confirm') {
-                                    var form = { "organName": instance.inputValue, "id": "" };
+                                    var form = {"organName": instance.inputValue, "id": ""};
                                     userCenterApi.queryDetailsNative(form).then(function (res) {
                                         console.log(res);
                                         if (res.data == null) {
@@ -643,7 +635,7 @@ require(['/common/js/require.config.js'], function () {
                                     done();
                                 }
                             }
-                        }).then(({ value }) => {
+                        }).then(({value}) => {
 
                             //     this.$message({
                             //       type: 'success',
@@ -663,23 +655,25 @@ require(['/common/js/require.config.js'], function () {
                     //       this.$refs.bgImg.style.backgroundImage = 'url(' + url + ')';
                     //   },
                     successFile(f) {
-                        if(this.fileList.length>0){
+                        if (this.fileList.length > 0) {
                             this.fileList = []
                             this.fileList.push({
-                                name:f.result.fileName,
-                                id:f.result.id,
-                                url:''});
+                                name: f.result.fileName,
+                                id: f.result.id,
+                                url: ''
+                            });
                             this.brokerPlatform.certificatePic = f.result.id;
-                        }else{
+                        } else {
                             this.fileList.push({
-                                name:f.result.fileName,
-                                id:f.result.id,
-                                url:''});
+                                name: f.result.fileName,
+                                id: f.result.id,
+                                url: ''
+                            });
                             this.brokerPlatform.certificatePic = f.result.id;
                         }
                     },
                     handleRemove(f) {
-                        console.log(f,"执行删除")
+                        console.log(f, "执行删除")
                         userCenterApi.deleteFileById({id: f.id}).then(res => {
                             if (res.code === 'rest.success') {
                                 this.$message.success('删除成功')
@@ -708,6 +702,7 @@ require(['/common/js/require.config.js'], function () {
 
                         console.log(_this.headImg)
 
+                        var form = _this.brokerPlatform;
                         // 转标签
                         if (_this.tagList.length > 0 && typeof (_this.tagList[0]) == "object") {
                             var idForm = [];
@@ -715,15 +710,9 @@ require(['/common/js/require.config.js'], function () {
                                 idForm.push(element.id);
                             });
                             _this.tagList = idForm;
-                        }
-
-                        // 转标签
-                        if (_this.tagList.length > 0 && typeof (_this.tagList[0]) == "object") {
-                            var idForm = [];
-                            _this.tagList.forEach(element => {
-                                idForm.push(element.id);
-                            });
-                            _this.tagList = idForm;
+                            form.tags = idForm;
+                        } else {
+                            form.tags = _this.tagList;
                         }
 
 
@@ -734,15 +723,18 @@ require(['/common/js/require.config.js'], function () {
                                 industryForm.push(element.id);
                             });
                             _this.industryList = industryForm;
+                            form.industryType = industryForm;
+                        } else {
+                            form.industryType = _this.industryList;
                         }
 
-                        var form = _this.brokerPlatform;
+
                         form.id = _this.proId ? _this.proId : ""; // id
                         form.logo = _this.headImg; // 个人封面
-                        console.log(_this.fileList,'----')
+                        console.log(_this.fileList, '----')
                         // form.certificatePic = this.fileList[0].id
-                        form.tags = _this.tagList;
-                        form.industryType = _this.industryList;
+                        // form.tags = _this.tagList;
+                        // form.industryType = _this.industryList;
                         form.techNo = _this.authentication_type == "1" ? 0 : form.techNo;
                         if (_this.noEmptyInputAuth(form)) {
                             console.log("form", form)
@@ -858,7 +850,8 @@ require(['/common/js/require.config.js'], function () {
                         //   -1就是没有
                         if (val.indexOf("@") == -1) {
                             this.$dialog.showToast("请输入有效邮箱");
-                            return false;;
+                            return false;
+                            ;
                         } else {
                             return true;
                         }
@@ -869,7 +862,8 @@ require(['/common/js/require.config.js'], function () {
                         let value = val.replace('/(^\s*)|(\s*$)', '')    //  去除字符串前后空格
                         let num = Number(value);    //  将字符串转换为数字
                         if (isNaN(num) || value === '' || value === null) {
-                            return false;;
+                            return false;
+                            ;
                         } else {
                             return true;
                         }
@@ -974,12 +968,15 @@ require(['/common/js/require.config.js'], function () {
                                 datalist.push(element.id);
                             });
                             _this.industryList = datalist;
+                            form.industryType = datalist;
+                        } else {
+                            form.industryType = _this.industryList;
                         }
 
 
                         form.logo = _this.headImg;
-                        form.industryType = _this.industryList;
-                        console.log(form.industryType)
+                        // form.industryType = _this.industryList;
+                        // console.log(form.industryType)
 
                         if (_this.noEmptyInvestmentAuth(form)) {
                             console.log(form)
@@ -1046,7 +1043,7 @@ require(['/common/js/require.config.js'], function () {
                             var data = res.data;
 
                             console.log("data", data)
-                            if(res.data.info!==null){
+                            if (res.data.info !== null) {
                                 if (!_this.$utils.validatesEmpty(data.info)) {
                                     _this.hasFormData = false;  // 判断显示是否显示输入框或者文本框
                                     // _this.hasFormDataJudg = false;  //没有数据，第一次填写
@@ -1058,11 +1055,11 @@ require(['/common/js/require.config.js'], function () {
                                     var dataForm = data.info;
                                     if (dataForm.file) {
                                         _this.pic = dataForm.file.fileName;
-                                        console.log(dataForm.file,"看这里")
+                                        console.log(dataForm.file, "看这里")
                                         _this.fileList.push({
-                                            name:dataForm.file.fileName,
-                                            id:dataForm.file.id,
-                                            url:httpUrl.fileShowUrl + '/resource/' + dataForm.file.filePath
+                                            name: dataForm.file.fileName,
+                                            id: dataForm.file.id,
+                                            url: httpUrl.fileShowUrl + '/resource/' + dataForm.file.filePath
                                         })
                                     }
                                     // this.fileList[0].name= dataForm.file.fileName
@@ -1143,17 +1140,17 @@ require(['/common/js/require.config.js'], function () {
                                     console.log("_this.authentication_type", _this.authentication_type)
                                     console.log("_this.textIndustryList", _this.textIndustryList)
                                 }
-                            }else {
+                            } else {
                                 _this.getFrom()
                             }
 
                         })
                     },
-                    getFrom:function (){
+                    getFrom: function () {
                         var _this = this;
                         userCenterApi.get_edit_form().then(function (res) {
-                            if(res.data!==null){
-                            console.log(res.data,'数据');
+                            if (res.data !== null) {
+                                console.log(res.data, '数据');
                                 _this.brokerPlatform = res.data
                                 _this.proId = res.data.id
                                 var dataForm = res.data
@@ -1229,7 +1226,6 @@ require(['/common/js/require.config.js'], function () {
                             _this.certification_list.logo = url
                         })
                     },
-
 
 
                     //   根据字典查id对应的文字
@@ -1352,15 +1348,15 @@ require(['/common/js/require.config.js'], function () {
                         var url = window.location.href
                         if (type == 0) {
                             if (url.indexOf('/site/') > 0) {
-                                window.open(this.$pathPrefix+"/scienceDetail.html?id=" + id);
-                            }else{
+                                window.open(this.$pathPrefix + "/scienceDetail.html?id=" + id);
+                            } else {
                                 window.open("/technologyMarket/tech_achievements_details.html?id=" + id);
                             }
 
                         } else if (type == 1) {
                             if (url.indexOf('/site/') > 0) {
-                                window.open(this.$pathPrefix+"/requireDetail.html?id=" + id);
-                            }else {
+                                window.open(this.$pathPrefix + "/requireDetail.html?id=" + id);
+                            } else {
                                 window.open("/technologyMarket/tech_requirements_details.html?id=" + id);
                             }
 

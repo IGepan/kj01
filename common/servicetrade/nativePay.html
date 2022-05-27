@@ -99,7 +99,7 @@
              <div class="center">
                  <div style="display: flex;justify-content: space-around;align-items: center;background:#fff5f0;margin-bottom: 20px">
                      <p>商品订单号：{{outTradeNo}}</p>
-                     <p>支付金额：<i style="font-size: 18px;font-style: normal;color: #f1671b">￥{{detailInfo[0].protocolPrice ||0}}</i></p>
+                     <p v-if="detailInfo.length>0">支付金额：<i style="font-size: 18px;font-style: normal;color: #f1671b">￥{{price}}</i></p>
                  </div>
                  <div class="nav-pay success" v-if="type=='01'">
                      <i class="el-icon-success"></i>支付成功！</div>

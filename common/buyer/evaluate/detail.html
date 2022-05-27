@@ -35,6 +35,9 @@
     .evaluate::after{
       width: auto;
     }
+    .orderinfos {
+      padding: 30px 0px 30px 0!important;
+    }
   </style>
 </head>
 
@@ -60,8 +63,8 @@
                 <div class="orderinfos">
                   <img v-if="infos.oimgUrl" :src="infos.oimgUrl || '/images/ad.jpg'" alt=""
                     style="display: block; width: 116px; height: 116px; margin: 0 auto">
-                  <p class="infotitle" style="max-width: 162px;margin: 0;">
-                    <a :href="$pathPrefix+infos.detailUrl" target="_blank" v-text="infos.oname || ''"></a>
+                  <p style="max-width: 200px;margin: 0;text-align: center">
+                    <a style="color: #3a3a3a" :href="$pathPrefix+infos.detailUrl" target="_blank" v-text="infos.oname || ''"></a>
                   </p>
                   <p v-if="infos.price">价格：￥{{infos.negotiableFlag | formatPrice(infos.price, infos.minPrice, infos.maxPrice)}}</p>
                 </div>

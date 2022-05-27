@@ -75,7 +75,8 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                     pages: 1,
                     pageCount: 4,
                     msgInfo: '',
-                    userInfo: null
+                    userInfo: null,
+                    aindex:0
                 },
                 watch: {
                     'evaluateForm.hasContentFlag': function () {
@@ -150,6 +151,9 @@ require([baseUrlPath + '/common/js/require.config.js'], function () {
                         }
 
                            },
+                    goTo(val){
+                        this.aindex=val
+                    },
                     shopAccess: function () {
                         var vm = this
                         this.http.shopAccess({ shopCode: this.shopCode, shortCode: this.shortCode }).then(function (res) {

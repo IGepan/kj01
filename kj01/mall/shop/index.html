@@ -54,6 +54,13 @@
     .logo{
         padding-bottom: 10px;
     }
+    .card-item .card-body .card-title:hover a{
+        color:#ff5e06!important;
+    }
+    .pager a.active {
+        background-color: #ff5e06!important;
+        color: #fff;
+    }
 </style>
 <body class="shop-page">
 <div class="box" id='index_box' v-cloak>
@@ -93,9 +100,9 @@
               <div class="d-flex justify-content-between">
                   <span class="mall-title">重庆聚格知识产权服务有限公司</span>
                   <div class="store-mark d-flex">
-                      <div class="star">服务 <span>5{{statisticsInfo.evaluateResult}}</span></div>
-                      <div class="star">速度 <span>5{{statisticsInfo.shopEvaluateSpeed}}</span></div>
-                      <div class="star">质量 <span>5{{statisticsInfo.shopEvaluateQuality}}</span></div>
+                      <div class="star">服务 <span>{{statisticsInfo.evaluateResult}}</span></div>
+                      <div class="star">速度 <span>{{statisticsInfo.shopEvaluateSpeed}}</span></div>
+                      <div class="star">质量 <span>{{statisticsInfo.shopEvaluateQuality}}</span></div>
                   </div>
               </div>
               <div class="mall-creat">
@@ -115,11 +122,22 @@
               </div>
                   <ul>
                       <li>店铺动态：</li>
-                      <li><span>绿色建材产品认证</span><i class="money">￥1000</i></li>
-                      <li><span>孵化板、科创板，成长板等挂牌上市</span><i class="money">￥1000</i></li>
-                      <li><span>绿色建材产品认证</span><i class="money">￥1000</i></li>
-                      <li><span>孵化板、科创板，成长板等挂牌上市</span><i class="money">￥1000</i></li>
-                      <li><span>绿色建材产品认证</span><i class="money">￥1000</i></li>
+                      <li v-for="item in latestGoodsList">
+                          <a :href="'/mall/shop/detail.html?id='+item.id+'&code='+shopCode">
+                              <span class="title" :title="item.goodsName" v-text="item.goodsName||''"></span>
+                              <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">
+                                  {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}
+                              </i>
+                          </a>
+                      </li>
+<!--                      <li>-->
+<!--                          <a>-->
+<!--                              <span class="title">这是一条动态</span>-->
+<!--                              <i class="money" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap">-->
+<!--                                  ￥1000-->
+<!--                              </i>-->
+<!--                          </a>-->
+<!--                      </li>-->
                   </ul>
 
           </div>
@@ -279,8 +297,40 @@
 <!--                </div>-->
 <!--            </div>-->
             <div class="col">
+                <div class="block block-recommend" v-if="technologyList.length>0" style="padding: 40px 0">
+                    <!--                    <div class="block-title d-flex justify-content-between">-->
+                    <!--                        <span>推荐</span>-->
+                    <!--                        <a href="#" @click="toList()">更多...</a>-->
+                    <!--                    </div>-->
+                    <h4 class="mall-text">推荐<span> ● 服务</span></h4>
+                    <div class="content d-flex" style="flex-wrap: wrap">
+                        <div class="card card-item" v-for="(item, i) in technologyList" style="margin: 1.2rem 0 0 1.2rem;width: calc(100%/3 - 1.2rem)">
+                            <div class="d-flex justify-content-between" @click="jumpTo(item)">
+                                <div class="col-auto">
+                                    <img :src="item.goodsImgFst" class="" alt="...">
+
+                                </div>
+                                <div class="col">
+                                    <div class="card-body" style="padding: 0 15px">
+                                        <h5 class="card-title" style="font-size: 16px"><a href="#" v-text="item.goodsName" style="color: #000"></a></h5>
+                                        <div class="addition">
+                                            <div class="short-text">
+                                                <p v-text="item.categoryName" style="color: #ff5e06;border:1px solid #ff5e06;padding: 0px 5px;display: inline-block "><i class="iconfont icon-tag"></i></p>
+                                                <p><i class="iconfont icon-city"></i> {{item.shopName}}</p>
+                                            </div>
+                                            <div class="quoted-price">
+                                                {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="block block-main">
-                    <h4 class="mall-text">店铺<span>信息</span></h4>
+                    <h4 class="mall-text">店铺<span> ● 信息</span></h4>
                     <div class="about-shop">
                         <div class="main-title"><span><i class="left-i">■</i>关于我们</span></div>
                         <div class="content ">
@@ -304,45 +354,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="block block-recommend" v-if="technologyList.length>0">
-                    <div class="block-title d-flex justify-content-between"><span>推荐</span> <a href="#"
-                                                                                               @click="toList()">更多...</a>
-                    </div>
-                    <div class="content d-flex">
-                        <div class="card card-item" v-for="(item, i) in technologyList">
-                            <div class="row" @click="jumpTo(item)">
-                                <div class="col-auto">
-                                    <img :src="item.goodsImgFst" class="" alt="...">
-                                </div>
-                                <div class="col">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="#" v-text="item.goodsName"></a></h5>
-                                        <div class="addition">
-                                            <div class="short-text">
-                                                <p v-text="item.categoryName"><i class="iconfont icon-tag"></i></p>
-                                                <p><i class="iconfont icon-city"></i> {{item.shopName}}</p>
-                                            </div>
-                                            <div class="quoted-price">
-                                                {{formatPrice(item.choosePriceTag,item.price, item.minPrice, item.maxPrice)}}</span>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <div class="block block-assess">
 <!--                    <div class="block-title"><span>店铺评价</span></div>-->
-                    <h4 class="mall-text" style="padding-top:40px ">店铺<span>评价</span></h4>
+                    <h4 class="mall-text" style="padding-top:40px ">店铺<span> ● 评价</span></h4>
                     <div class="content">
                         <div class="shop-label" v-if="shopInfo.evaluateTagList">
                             <span class="badge rounded-pill" v-for="k in shopInfo.evaluateTagList"
                                   v-text="k.tagDisplay"></span>
                         </div>
-                        <div class="review-toolbar d-flex justify-content-between">
+                        <div class="review-toolbar d-flex justify-content-between" style="align-items: center">
                             <div class="all-review-filter">
                                 <a :class="{active:activeIndex===0}" @click="handleComment(0)">全部评价
                                     ({{statisticsInfo.countTotal||0}})</a>
@@ -406,7 +427,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                         </div>
                         <div class="pager">

@@ -343,7 +343,7 @@ require(['/common/js/require.config.js'], function () {
                         let removeId = _this.textList[index].id
                         console.log(_this.textList[index].id)
                         _this.textList.splice(index, 1);
-
+                        _this.tagList.splice(index, 1);
                         _this.secondOptions.forEach(function (item) {
                             item.children.forEach(function (i) {
                                 if (i.id == removeId) {
@@ -430,6 +430,7 @@ require(['/common/js/require.config.js'], function () {
                         var _this = this;
                         let removeId = _this.textIndustryList[index].id;
                         _this.textIndustryList.splice(index, 1);
+                        _this.industryList.splice(index, 1);
                         _this.secondIndustryOptions.forEach(function (item) {
                             if (item.id == removeId) {
                                 item.active = false;
@@ -450,7 +451,7 @@ require(['/common/js/require.config.js'], function () {
                         console.log(httpUrl.baseSchoolOutUrl + '/uc/myClass')
                         var userPhone = localStorage.getItem("userPhone");
                         if (null == userPhone && "" == userPhone || undefined == userPhone) {
-                            window.location.href =this.$pathPrefix+ '/common/login.html';
+                            window.location.href = this.$pathPrefix + '/common/login.html';
                         }
                         userCenterApi.turn_page_class_sign_1();
                         window.open(httpUrl.baseSchoolOutUrl + "/uc/index");
@@ -626,10 +627,10 @@ require(['/common/js/require.config.js'], function () {
                             }
 
 
-                            console.log(_this.personImg)
-                            console.log(_this.business_files1)
-                            console.log(_this.business_files2)
-                            console.log(_this.business_files3)
+                            // console.log(_this.personImg)
+                            // console.log(_this.business_files1)
+                            // console.log(_this.business_files2)
+                            // console.log(_this.business_files3)
                         })
                     },
 
@@ -644,6 +645,9 @@ require(['/common/js/require.config.js'], function () {
                                 idForm.push(element.id);
                             });
                             _this.tagList = idForm;
+                            form.tags = idForm;
+                        } else {
+                            form.tags = _this.tagList;
                         }
 
                         // 转行业类型
@@ -653,10 +657,13 @@ require(['/common/js/require.config.js'], function () {
                                 industryForm.push(element.id);
                             });
                             _this.industryList = industryForm;
+                            form.projectIndustryType = industryForm;
+                        } else {
+                            form.projectIndustryType = _this.industryList;
                         }
 
-                        form.tags = _this.tagList; // 标签
-                        form.projectIndustryType = _this.industryList; // 行业类型
+                        // form.tags = _this.tagList; // 标签
+                        // form.projectIndustryType = _this.industryList; // 行业类型
                         form.zMProjectAdditionalList = [];
                         form.id = _this.$utils.validatesEmpty(_this.techId) ? _this.techId : ""; // id
                         form.projectImg = _this.headImg; // 成果图片(主)
@@ -678,7 +685,7 @@ require(['/common/js/require.config.js'], function () {
                                 _this.$dialog.showToast("提交成功");
                                 setTimeout(function () {
                                     // window.href = "/user_market_tech_achievements.html"
-                                    window.location.href =this.$pathPrefix+ "/common/usercenter/user_market_tech_achievements.html"
+                                    window.location.href = this.$pathPrefix + "/common/usercenter/user_market_tech_achievements.html"
                                 }, 2000)
                             })
                         }

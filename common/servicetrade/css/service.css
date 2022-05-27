@@ -55,7 +55,7 @@ button {
 	font-size: 18px;
 	line-height: 50px;
 	padding: 0 18px;
-	border-bottom: 2px solid #2649a1;
+	border-bottom: 2px solid #ff5e06;
 }
 
 .addinfo {
@@ -100,10 +100,11 @@ button {
 .address {
 	float: left;
 	color: #282828;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 400;
-	line-height: 45px;
-	margin-right: 15px;
+	line-height: 25px;
+	/*margin-right: 15px;*/
+	min-height: 50px;
 }
 
 .tnumber {
@@ -125,7 +126,9 @@ button {
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 24px;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	position: absolute;
+	right: 0;
 }
 
 .pr30 {
@@ -134,9 +137,9 @@ button {
 
 .delete {
 	color: #191919;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 400;
-	line-height: 45px;
+	line-height: 40px;
 	float: right;
 	background-color: transparent;
 	cursor: pointer;
@@ -144,20 +147,24 @@ button {
 
 .edit {
 	float: right;
-	color: #2649a1;
-	font-size: 16px;
+	color:#ff5e06;
+	font-size: 14px;
 	font-weight: 400;
-	line-height: 45px;
+	line-height: 40px;
 	margin-right: 24px;
 	cursor: pointer;
 	background-color: transparent;
 }
-
+.delete:focus,.edit:focus,.setdefault:focus{
+	outline: none;
+	border-color: transparent;
+box-shadow:none;
+}
 .setdefault {
-	color: #2649a1;
-	font-size: 16px;
+	color: #ff5e06;
+	font-size: 14px;
 	font-weight: 400;
-	line-height: 45px;
+	line-height: 40px;
 	background-color: transparent;
 	margin-right: 35px;
 	cursor: pointer;
@@ -172,19 +179,42 @@ button {
 }
 .consignorlist li{
 	margin-bottom: 16px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	position: relative;
+	width:24%;
+	margin-right:0.625rem!important;
+	padding-left: 1.2rem;
+	min-height: 140px;
 }
 .consignorlist li:last-child{
 	margin-bottom: 0;
 }
 .consignorlist li:hover .name{
 	border: 2px solid #2649a1;
-	line-height: 41px;
+	/*line-height: 41px;*/
 	background-color: #fff;
 }
 .consignorlist li:hover, .consignorlist li.active{
-	background-color: #e7eff9;
+	background-color: #fffcfa!important;
+	border: 1px solid #ff5600;
 }
-
+.consignorlist li.active:after{
+	position: absolute;
+	display: block;
+	right: 0px;
+	bottom: 0px;
+	width: 20px;
+	height: 20px;
+	background:#ff5600;
+	font-family: "iconfont";
+	font-size: 14px;
+	line-height: 24px;
+	z-index: 99;
+	color: #fff;
+	content: "\e647";
+	text-align: center;
+}
 .rightbtn {
 	display: none;
 }
@@ -556,10 +586,17 @@ button {
 	color: #ffffff;
 	font-size: 20px;
 	font-weight: 400;
-	background-color: #2649a1;
+	background-color: #ff5e06;
 	margin: 0 25px;
 }
-
+vlt-p{
+	position: absolute;
+	left: auto!important;
+	right: 0;
+	bottom: auto!important;
+	font-size: 13px!important;
+	color: red;
+}
 .textcenter {
 	text-align: center;
 }
@@ -614,10 +651,10 @@ button {
 
 
 .crumbs {
-	border-top: 1px solid #c1c1c1;
+	/*border-top: 1px solid #c1c1c1;*/
 	height: 38px;
 	line-height: 38px;
-	background-color: #E7E7E7;
+	background-color: #f2f2f2;
 	color: #8c8c8c;
 	font-size: 14px;
 }
@@ -659,24 +696,25 @@ button {
 	padding: 50px 0;
 	text-align: center;
 	margin-bottom: 60px;
+	background: #FFFFff;
 }
 
 .background {
 	display: inline-block;
 	line-height: 0px;
-	border-top: 2px dashed #dcdcdc;
+	border-top: 2px solid #dcdcdc;
 }
 .background li {
 	position: relative;
 	display: inline-block;
 	margin: -21px 65px 0;
-	width: 32px;
-	height: 32px;
+	width: 40px;
+	height: 40px;
 	background-color: #dcdcdc;
 	border-radius: 50%;
-	line-height: 32px;
+	line-height: 40px;
 	color: #fff;
-	font-size: 14px;
+	font-size: 18px;
 }
 .background li:first-child {
 	margin-left: 0;
@@ -697,11 +735,11 @@ button {
 .background li:before {
 	position: absolute;
 	left: -138px;
-	top: 13px;
+	top: 15px;
 	width: 140px;
 	content: "";
 	display: block;
-	border-top: 2px dashed #5ed42d;
+	border-top: 3px solid #5ed42d;
 }
 .background li:first-child:before {
 	display: none;
@@ -711,13 +749,13 @@ button {
 	display: block;
 	left: 0;
 	top: 0;
-	width: 32px;
-	height: 32px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	background-color: #5ed42d;
 	font-family: "iconfont";
-	font-size: 14px;
-	line-height: 34px;
+	font-size: 18px;
+	line-height: 40px;
 	color: #fff;
 	content: "\e647";
 }
@@ -754,15 +792,16 @@ button {
 	margin-right: 0;
 }
 .orderbox .infotable {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	padding: 30px;
-	border-width: 1px;
-	border-color: #c9c9c9;
-	border-style: solid;
+	/*border-width: 1px;*/
+	/*border-color: #c9c9c9;*/
+	/*border-style: solid;*/
 	background-color: #fff;
 }
 .orderbox .infotable>.title {
 	margin-bottom: 10px;
+	font-size: 16px;
 	color: #000;
 	font-weight: 700;
 }
@@ -771,7 +810,7 @@ button {
 	border-bottom: 1px solid #d0d0d0;
 }
 .orderbox .tbody .row {
-	padding: 0 80px;
+	/*padding: 0 80px;*/
 	width: 100%;
 	height: 44px;
 	line-height: 44px;
@@ -790,7 +829,7 @@ button {
 	line-height: 38px;
 	text-align: center;
 	border-width: 1px;
-	border-color: #c9c9c9;
+	border-color: #dcdcdc;
 	border-style: solid;
 	background-color: #e7eff9;
 	border-bottom: 1px solid #dcdcdc;
@@ -838,6 +877,7 @@ button {
 	padding: 25px;
 	width: 361px;
 	border-right: 1px solid #dcdcdc;
+	vertical-align: middle;
 }
 .goodsitem .img {
 	display: block;
@@ -852,7 +892,7 @@ button {
 	display: block;
 	margin-top: -7px;
 	overflow: hidden;
-	color: #1154b0;
+	color: #3a3a3a;
 	line-height: 28px;
 	font-size: 16px;
 }
@@ -861,13 +901,14 @@ button {
 }
 .goodsitem .price {
 	display: table-cell;
-	padding: 20px 0;
+	/*padding: 20px 0;*/
 	text-align: center;
 	width: 120px;
 	border-right: 1px solid #dcdcdc;
 	font-size: 16px;
 	color: #ff6600;
 	position: relative;
+	vertical-align: middle;
 }
 .goodsitem .price i{
 	color: #bfbfbf;
@@ -917,8 +958,9 @@ button {
 	display: table-cell;
 	padding: 20px;
 	width: 87px;
-	text-align: center;;
+	text-align: center;
 	border-right: 1px solid #dcdcdc;
+	vertical-align: middle;
 }
 .goodsitem .message {
 	display: table-cell;
@@ -987,7 +1029,7 @@ button {
 	width: 100%;
 	height: 40px;
 	background-color: #f7f7f7;
-	border-bottom: 1px solid #cecece;
+	/*border-bottom: 1px solid #cecece;*/
 	padding: 0 22px;
 }
 
@@ -1077,7 +1119,7 @@ button {
 	border-bottom: 0;
 }
 .splist li:hover{
-	background-color: #eaeff8;
+	background-color: #fff5f0;
 }
 
 .litips {
@@ -1110,7 +1152,9 @@ button {
 	font-weight: 400;
 	line-height: 18px;
 }
-
+.spintro:hover a{
+	color: #000;
+}
 .mtxt {
 	color: #999999;
 	font-size: 16px;
@@ -1122,10 +1166,16 @@ button {
 .mtxt2 {
 	color: #000000;
 	font-size: 16px;
-	font-weight: 700;
+	/*font-weight: 700;*/
 	line-height: 18px;
 }
+.jtt:hover{
+	color: #ff5e06;
 
+}
+.nomall{
+	background: #eee;
+}
 .addbtn {
 	width: 28px;
 	height: 28px;
@@ -1201,7 +1251,7 @@ input[type="number"] {
 .titfoot {
 	width: 100%;
 	height: 50px;
-	background-color: #dfdfdf;
+	background-color: #f7f7f7;
 	padding-left: 22px;
 }
 

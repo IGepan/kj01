@@ -167,7 +167,7 @@
         </div>
       </div>
     </div>
-    <chat-im :userinfo="userInfo"></chat-im>
+<!--    <chat-im :userinfo="userInfo"></chat-im>-->
 
 <!--    <div class="c-hover-menu" v-if="userInfo && userInfo.userId && topClass!=='red'">-->
 <!--      <chat-history-->
@@ -227,7 +227,18 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
+    <chat-im :userinfo="userInfo"></chat-im>
+    <chat-history
+        :userinfo="userInfo"
+        @clearmsg="clearUnreadMsg"
+    ></chat-history>
     <ul class="www-fixright">
+      <a @click="action('message')"><li class="info-xx">
+                    <span
+                        style="top:10px"
+                        v-if="menuInfo.messageCount"
+                        class="c-hover-count"
+                        v-html="menuInfo.messageCount">1</span></li></a>
       <a href="https://tb.53kf.com/code/client/10113491/1" target="_blank"><li class="zxkf"><span>客服</span></li></a>
       <el-popover
           placement="left"
@@ -505,34 +516,38 @@ module.exports = {
       });
     },
     action: function (type) {
-      switch (type) {
-        case "message":
-          this.$root.$chat_history.showDlg();
-          break;
-        case "server":
-          window.open(
-            "http://www.kj01.cn/service.htm?arg=10113491&style=4&kflist=off&kf=edwinzuo&zdkf_type=1&lnk_overflow=0&callback_id6ds=10152438&language=zh-cn&charset=gbk&referer={hz6d_referer}&keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&tfrom=1&tpl=crystal_blue",
-            "_blank",
-            "height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no"
-          );
-          break;
-        case "help":
-          $dialog.showToast("开发中……");
-          break;
-        case "top":
-          window.scrollTo(0, 0);
-          break;
-        case "cart":
-          if (
-            this.userInfo.userTypes &&
-            this.userInfo.userTypes.indexOf("001") !== -1
-          ) {
-            this.$utils.openNewTable("/common/servicetrade/shopping_cart.html");
-          } else {
-            this.urlType = "/common/servicetrade/shopping_cart.html";
-            this.openBuyerConfirm();
-          }
-          break;
+      if (!this.userInfo.userId) {
+        window.location.href = "/common/login.html";
+      } else {
+        switch (type) {
+          case "message":
+            this.$root.$chat_history.showDlg();
+            break;
+          case "server":
+            window.open(
+                "http://www.kj01.cn/service.htm?arg=10113491&style=4&kflist=off&kf=edwinzuo&zdkf_type=1&lnk_overflow=0&callback_id6ds=10152438&language=zh-cn&charset=gbk&referer={hz6d_referer}&keyword=http%3A%2F%2Fwww.kjy01.com%2Findex.html&tfrom=1&tpl=crystal_blue",
+                "_blank",
+                "height=600,width=800,top=50,left=200,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no"
+            );
+            break;
+          case "help":
+            $dialog.showToast("开发中……");
+            break;
+          case "top":
+            window.scrollTo(0, 0);
+            break;
+          case "cart":
+            if (
+                this.userInfo.userTypes &&
+                this.userInfo.userTypes.indexOf("001") !== -1
+            ) {
+              this.$utils.openNewTable("/common/servicetrade/shopping_cart.html");
+            } else {
+              this.urlType = "/common/servicetrade/shopping_cart.html";
+              this.openBuyerConfirm();
+            }
+            break;
+        }
       }
     },
     initSeller: function () {
@@ -760,6 +775,16 @@ module.exports = {
 /*  border-color: #ff5e06;*/
 /*  background-image: url(/style/images/index/kefu.svg);*/
 /*}*/
+.www-fixright li.info-xx {
+  background-position:center;
+  background-image: url(/style/images/index/info.svg);
+  background-size: 28px;
+}
+.www-fixright li.info-xx:hover {
+  background-position:center;
+  background-image: url(/style/images/index/info_s.svg);
+  background-size: 28px;
+}
 .www-fixright li.zxkf {
   background-position:center;
   background-image: url(/style/images/index/kefu.svg);

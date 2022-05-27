@@ -31,6 +31,21 @@
         width: 1400px;
         margin: 0 auto;
     }
+    .other_payment{
+        margin: 0!important;
+        padding-top:40px;
+        color: #FFFFff!important;
+        display: block;
+    }
+    .other_payment a{
+        font-size: 16px!important;
+        background: #fc7f10;
+        color: #FFFFff!important;
+        padding: 5px 10px;
+    }
+    .other_payment:hover{
+        color: #fff;
+    }
 </style>
 
 <body>
@@ -48,8 +63,8 @@
         <div class="container">
             <div class="pw_hd">
                 <a class="logo" href="" target="_blank"></a>
-                <div class="price">
-                    支付总金额：<span>￥{{detailInfo[0].protocolPrice}}</span>
+                <div class="price" v-if="detailInfo.length>0">
+                    应付金额：<span>￥{{detailInfo[0].protocolPrice ||0}}</span>
                 </div>
             </div>
             <div class="pw_bd">
@@ -61,9 +76,10 @@
                     <div class="qrcode">
                         <div id="qrcode" ref="qrCodeUrl"></div>
                         <div style="margin-top: 13px">请使用微信扫一扫<br>&emsp;扫描二维码支付</div>
+<!--                        <div class="other_payment"><a @click="goNow(outTradeNo)"><i></i>确认已付款</a></div>-->
                     </div>
                 </div>
-                <!--                <div class="other_payment"><a href=""><i></i>选择其他支付方式</a></div>-->
+
             </div>
         </div>
     </div>
@@ -170,12 +186,12 @@
 <script type="text/javascript" src="//static.runoob.com/assets/qrcode/qrcode.min.js"></script>
 <script>
     // var qrcode = new QRCode("qrcode", {
-    //
     //     text: 'weixin://wxpay/bizpayurl?pr=onwXorVzz',
     //     width: 200,
     //     height: 200,
     //     colorDark : "#000000",
     //     colorLight : "#ffffff",
+    //     correntlevel:QRCode.CorrectLevel.H
     // });
     // console.log(QRCode,'QRCode')
 </script>

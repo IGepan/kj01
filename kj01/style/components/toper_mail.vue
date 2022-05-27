@@ -138,7 +138,6 @@
         </div>
       </div>
     </div>
-    <chat-im :userinfo="userInfo"></chat-im>
 <!--    <div class="c-hover-menu">-->
 <!--      <div class="c-hover-txt">-->
 <!--        <chat-history-->
@@ -223,7 +222,18 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
+    <chat-im :userinfo="userInfo"></chat-im>
+    <chat-history
+        :userinfo="userInfo"
+        @clearmsg="clearUnreadMsg"
+    ></chat-history>
     <ul class="www-fixright">
+      <a @click="action('message')"><li class="info-xx">
+                    <span
+                        style="top:10px"
+                      v-if="menuInfo.messageCount"
+                      class="c-hover-count"
+                      v-html="menuInfo.messageCount">1</span></li></a>
       <a href="https://tb.53kf.com/code/client/10113491/1" target="_blank"><li class="zxkf"><span>客服</span></li></a>
       <el-popover
           placement="left"
@@ -479,6 +489,9 @@ module.exports = {
       } else {
         switch (type) {
           case "message":
+            if (!this.userInfo.userId) {
+              window.location.href = "/common/login.html";
+            }
             this.$root.$chat_history.showDlg();
             break;
           case "server":
@@ -736,6 +749,16 @@ ul{
 /*  border-color: #ff5e06;*/
 /*  background-image: url(/style/images/index/kefu.svg);*/
 /*}*/
+.www-fixright li.info-xx {
+  background-position:center;
+  background-image: url(/style/images/index/info.svg);
+  background-size: 28px;
+}
+.www-fixright li.info-xx:hover {
+  background-position:center;
+  background-image: url(/style/images/index/info_s.svg);
+  background-size: 28px;
+}
 .www-fixright li.zxkf {
   background-position:center;
   background-image: url(/style/images/index/kefu.svg);

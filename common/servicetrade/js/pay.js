@@ -1,6 +1,6 @@
 require(['/common/js/require.config.js'], function () {
-    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl','httpCartApi','httpOrderApi'],
-        function ($, Vue, httpVueLoader, httpUrl,indexApi,httpOrderApi) {
+    require(['jquery', 'vue', 'httpVueLoader', 'httpUrl','httpCartApi','httpOrderApi','httpUser',],
+        function ($, Vue, httpVueLoader, httpUrl,indexApi,httpOrderApi,httpUser) {
             new Vue({
                 el: '#index_box',
                 data: {
@@ -44,6 +44,7 @@ require(['/common/js/require.config.js'], function () {
                     dataList:[],
                     outTradeNo:'',
                     type:'',
+                    price:0,
                     detailInfo:[]
                 },
                 components: {
@@ -69,7 +70,7 @@ require(['/common/js/require.config.js'], function () {
                     this.init(this.outTradeNo);
                     console.log(this.type,'tyep')
                     // this.init(this.outTradeNo);
-                    // this.getQrcode();
+                    this.getQrcode(this.outTradeNo);
                     // var qrcode= new QRCode('qrcode', {
                     //
                     //     text: 'weixin://wxpay/bizpayurl?pr=onwXorVzz', // 需要转换为二维码的内容
@@ -119,8 +120,25 @@ require(['/common/js/require.config.js'], function () {
                                 }
                             })
                     },
-                    getQrcode(ewmUrl){
-                        console.log(ewmUrl,'res')
+                    getQrcode(val){
+                        var vm =this
+                        indexApi.getResult({
+                            outTradeNo: val,
+                            tradeType: 'NATIVE',
+                            payChannel: 'wxPay'
+                        }).then(function (res) {
+                            console.log(res.result, 'res.result')
+                            if (res.result && res.result.tradeState == 'SUCCESS') {
+                                vm.price=res.result.amountPayerTotalDecimals
+                                // indexApi.getUpdateStatus({payStatus: '002', id: val}).then(function (res) {
+                                //     if (res.code == "rest.success") {
+                                //         setTimeout(function () {
+                                //             window.location.href = this.$pathPrefix + '/common/servicetrade/nativePay.html?id=' + val + '&type=01'
+                                //         }, 300)
+                                //     }
+                                // })
+                            }
+                        })
 
                     },
                     getDataList(){

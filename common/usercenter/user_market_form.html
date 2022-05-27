@@ -30,20 +30,16 @@
             top: 140px;
             z-index: 999;
             width: 140px;
-            height: 130px;
+            height: 170px;
             background: url(/common/usercenter/images/box.png) no-repeat;
             background-size: cover;
             display: block;
             padding-top: 55px;
             font-size: 18px;
             text-align: center;
-            color: #FFFFff !important;
         }
         .disabled{
             pointer-events: none;
-        }
-        .studybox:hover {
-            color: #f0ad4e !important;
         }
     </style>
 </head>
@@ -440,7 +436,7 @@
                         </div>
 
                         <div>
-                            <a class="studybox" @click="turnPageClassSign" target="_blank">参加培训考试<br>获得证书</a>
+                            <a class="studybox" @click="turnPageClassSign" target="_blank"></a>
                         </div>
 
                         <div v-if="flag==1">
