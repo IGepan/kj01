@@ -18,7 +18,7 @@
 <!--      </div>-->
       <!--<seller-tree :http='http' class="leftbar"></seller-tree>-->
       <div class="group"
-           v-for="(menu,index) in meanTreeData3">
+           v-for="(menu,index) in meanTreeData3" :key="index">
         <div class="name" @click="dropTechDown(menu)">{{menu.name}}
           <i class="iconfont icon-xiala"
              :class="{openT:!menu.opened}"
